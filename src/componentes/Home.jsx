@@ -84,7 +84,7 @@ export default class Home extends Component {
         {/**-----------------------------SECCION1------------------------------------------------------------------- */}
         <div className="row  sec1  fondogalaxy ">
 
-          <div className="col-7  text-center    ">
+          <div className="col-7 ">
             <p className="moneda1">
               SE PARTE DE  NUESTRA <br />
               <strong className=" revo1">REVOLUCION</strong>
