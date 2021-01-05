@@ -117,7 +117,7 @@ export default class Home extends Component {
           </div>
           </div>
         {/**-----------------------------SECCION3------------------------------------------------------------------- */}
-        <div className=" row   fondosec3 ">
+        <div className=" row  fondosec3-alter fondosec3 ">
 
           <div className="col-12 text-center ">
             <p className="sec3con">

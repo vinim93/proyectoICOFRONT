@@ -62,7 +62,7 @@ import Cellyon from '../images/cellyon.svg';
 class Foco extends Component{
     render() {
       return(
-          <div className="row fondosec3 ">
+          <div className="row  fondosec3 ">
         <div className=" container-fluid sec6  ">
         <span className="titulo6 ">Proyectos</span>
       </div>

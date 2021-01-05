@@ -239,6 +239,9 @@ display: flex;
 
   border-top:100px white solid
 }
+.fondosec3-alter{
+  height: 1600px!important;
+}
 .fondosec3-ali{
   display: flex;
   position: relative;
@@ -256,6 +259,7 @@ display: flex;
   justify-content: center;
   position: relative;
   margin-top: 230px;
+
 }
 /*------------------------------------------estilos CONTADOR Seccion tres-------------------------*/
 
