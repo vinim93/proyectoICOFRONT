@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1936.285" height="1580.24" viewBox="0 0 1936.285 1580.24">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Trazado_10150" data-name="Trazado 10150" d="M76.362,0C51.414.012,30.171.97,16.878,18.988,10.7,27.359,6.243,39.414,3.927,56.766c-8.982,67.284.236,150.833.38,219.561q.462,219.249,1.33,438.492,1.713,432.72,5.011,865.421c16.755-66.473,38.64-131.591,72.143-183.023s79.98-88.086,128.745-87.748c64.731.448,124.166,64.008,188.794,58.716,98.3-8.05,159.05-165.176,252.182-211.546,65.58-32.652,139.38-6.27,205.772-35.259,84.113-36.725,144.284-156.781,230.8-178.808,108.983-27.747,208.361,110.166,319,111.572,91.594,1.163,170.747-90.9,232.647-188.9,40.134-63.538,78.432-133.574,131.728-171.605s127.607-31.821,160.9,39.559q1.46-349.757,2.917-699.515c.037-8.71-.212-18.46-4.527-24.515-4.095-5.748-10.41-6.1-16.107-6.111L80.357,0,77.275,0Z" fill="none"/>
+    </clipPath>
+    <radialGradient id="radial-gradient" cx="0.003" cy="1" r="0.001" gradientTransform="translate(0.093) scale(0.814 1)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#05002a"/>
+      <stop offset="1" stop-color="#05002a"/>
+    </radialGradient>
+  </defs>
+  <g id="Grupo_5421" data-name="Grupo 5421" transform="translate(0)">
+    <g id="Grupo_5420" data-name="Grupo 5420" clip-path="url(#clip-path)">
+      <rect id="Rectángulo_789" data-name="Rectángulo 789" width="1941.375" height="1580.24" transform="translate(-5.055 0)" fill="url(#radial-gradient)"/>
+    </g>
+  </g>
+</svg>
