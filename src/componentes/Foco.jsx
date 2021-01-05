@@ -69,7 +69,7 @@ class Foco extends Component{
       <div className="  container-fluid focsec6">
       <div className="row  contenedor-engra ">
         <div className="col align-self-start ">
-          <button className="btn btn-primary radiofoc radiofon-sym fap-btn2 " type="button" data-toggle="modal" 
+          <button className="btn  radiofoc radiofon-sym fap-btn2 " type="button" data-toggle="modal" 
           data-target=".bd-example-modal-lg">
           <div className="modal  fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div className="modal-dialog modal-cont  modal-lg">
