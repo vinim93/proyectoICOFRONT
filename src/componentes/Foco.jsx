@@ -62,11 +62,11 @@ import Cellyon from '../images/cellyon.svg';
 class Foco extends Component{
     render() {
       return(
-          <div className=" col-12 ">
-        <div className=" sec6  ">
+          <div className="row fondosec3 ">
+        <div className=" container-fluid sec6  ">
         <span className="titulo6 ">Proyectos</span>
       </div>
-      <div className="   focsec6">
+      <div className="  container-fluid focsec6">
       <div className="row  contenedor-engra ">
         <div className="col align-self-start ">
           <button className="btn radiofoc radiofon-sym fap-btn2 " type="button" data-toggle="modal" 

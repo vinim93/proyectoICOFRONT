@@ -199,10 +199,10 @@ filter: drop-shadow(0px 9px 6px rgba(0, 0, 0, 1));
   padding: 0px!important;
   
   position: relative;
-  overflow: visible;
+  overflow: hidden;
   margin: 0px;
   
-  width: 97.5vw!important;
+  width: 100vw!important;
   height: 600px!important;
 }
 
