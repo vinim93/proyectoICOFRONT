@@ -79,12 +79,12 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div className="
+      <div className="container-fluid
                            ">
         {/**-----------------------------SECCION1------------------------------------------------------------------- */}
-        <div className="row  sec1  fondogalaxy ">
+        <div className="row sec1  fondogalaxy ">
 
-          <div className="col-7 ">
+          <div className="col-7 p-0 ">
             <p className="moneda1">
               SE PARTE DE  NUESTRA <br />
               <strong className=" revo1">REVOLUCION</strong>
@@ -108,9 +108,9 @@ export default class Home extends Component {
       
   
 
-        <div className=" p-0">
-          <div className=" col-12 p-0 ">
-            <ReactPlayer className="container-fluid videosunrep embed-responsive-item  "
+        <div className="row  p-0">
+          <div className="container-fluid col-12 p-0 ">
+            <ReactPlayer className=" videosunrep embed-responsive-item  "
               url='https://www.youtube.com/watch?v=JqyDcDPi3jg'
               controls="true"
             />
@@ -119,7 +119,7 @@ export default class Home extends Component {
         {/**-----------------------------SECCION3------------------------------------------------------------------- */}
         <div className=" row  fondosec3-alter fondosec3 ">
 
-          <div className="col-12 text-center ">
+          <div className="container-fluid p-0 ">
             <p className="sec3con">
               El intercambio de  tokens  termina en:
                                     </p><br />
@@ -135,7 +135,7 @@ export default class Home extends Component {
               </li>
 
               <li className="row tecno">
-                <img src={tecnologias} className="col-12 " />
+                <img src={tecnologias} className=" p-0 " />
               </li>
             </ul>
 

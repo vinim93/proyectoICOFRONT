@@ -17,8 +17,8 @@ import Moneda2 from '../images/modenasun2.svg';
 function Footer() {
     return (
 
-        <div className="  container-fluid con-footer con-conecta">
-            <div className="col-12 ">
+        <div className="  container-fluid p-0 con-footer con-conecta">
+            <div className="col-12 p-0 m-0">
                 <a href="" className="">
                 <img src={Sol} alt="" />
                  </a>
