@@ -13,9 +13,11 @@ import Twiter from '../images/twiter.svg';
 import Youtube from '../images/youtube.svg';
 import Moneda2 from '../images/modenasun2.svg';
 import moneda from "../images/moneda.png";
+import './enviar.php';
 
 
 function Footer() {
+    
     return (
 
         <div className="  container-fluid p-0 con-footer con-conecta">
@@ -74,26 +76,27 @@ function Footer() {
         <img src={moneda} className="img-fluid" alt=""/>
       </div>
       <div className="col-sm-4">
-          <form className="form-cont" action="">
+          <form className="form-cont" action="enviar.php" method="post">
               <div className="form-group">
-              <input type="text" className="form-control" id="nombre" placeholder="Nombre"/>
+              <input type="text" className="form-control" id="name" name="name"placeholder="Nombre"/>
               </div>
               <div className="form-group">
-              <input type="email" className="form-control" id="email" placeholder="Email"/>
+              <input type="email" className="form-control" name="mail" id="mail" placeholder="Email"/>
 
               </div>
               <div className="form-group">
-              <textarea class="form-control" id="message" placeholder="Comentarios" rows="10"></textarea>
+              <textarea class="form-control" name="message"  id="message" placeholder="Comentarios" rows="10"></textarea>
 
               </div>
+              <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </div>
           </form>
       </div>
       </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Enviar</button>
-      </div>
+      
     </div>
   </div>
 </div>
