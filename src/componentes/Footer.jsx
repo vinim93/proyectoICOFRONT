@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState} from "react";
+
 
 import '../App.css';
 
@@ -13,11 +14,42 @@ import Twiter from '../images/twiter.svg';
 import Youtube from '../images/youtube.svg';
 import Moneda2 from '../images/modenasun2.svg';
 import moneda from "../images/moneda.png";
-import './enviar.php';
+import {db} from './firebase';
+import * as emailjs from 'emailjs-com';
 
 
-function Footer() {
-    
+const Footer =()=> {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+
+        emailjs.sendForm(
+            
+            "service_ndmas34",
+            "template_jxdqfp9",
+            ".form-cont",
+            "user_At37nmOGM1SpkVgtRqHq2"
+            );
+
+        db.collection('contactos').add({
+            nombre:name,
+            email:email,
+            comentarios:message,
+
+        })
+        .then(()=>{
+            alert('Gracias por contactarnos');
+        })
+        .catch((error) =>{
+            alert(error.message);
+        });
+        setName('');
+        setEmail('');
+        setMessage('');
+    };
+
     return (
 
         <div className="  container-fluid p-0 con-footer con-conecta">
@@ -76,16 +108,28 @@ function Footer() {
         <img src={moneda} className="img-fluid" alt=""/>
       </div>
       <div className="col-sm-4">
-          <form className="form-cont" action="enviar.php" method="post">
+          <form className="form-cont" onSubmit={handleSubmit}>
               <div className="form-group">
-              <input type="text" className="form-control" id="name" name="name"placeholder="Nombre"/>
+              <input type="text" className="form-control" 
+              name="name"
+              value={name} 
+              onChange={(e)=>setName(e.target.value)}
+              placeholder="Nombre"/>
               </div>
               <div className="form-group">
-              <input type="email" className="form-control" name="mail" id="mail" placeholder="Email"/>
+              <input type="email" className="form-control" 
+              name="email"
+               value={email} 
+               onChange={(e)=>setEmail(e.target.value)}
+              id="mail" placeholder="Email"/>
 
               </div>
               <div className="form-group">
-              <textarea class="form-control" name="message"  id="message" placeholder="Comentarios" rows="10"></textarea>
+              <textarea class="form-control" 
+              name="message"
+               value={message} 
+               onChange={(e)=>setMessage(e.target.value)}
+              id="message" placeholder="Comentarios" rows="10"></textarea>
 
               </div>
               <div class="modal-footer">
@@ -93,6 +137,7 @@ function Footer() {
         <button type="submit" class="btn btn-primary">Enviar</button>
       </div>
           </form>
+          
       </div>
       </div>
       </div>
