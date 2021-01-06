@@ -108,8 +108,8 @@ margin: 0px;
 
 display:flex;
 
-filter: drop-shadow(0px 9px 6px rgba(0, 0, 0, 1));
-    left: 60px;
+filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
+    left: 130px;
     top: 20px;
     position: relative;
     
@@ -117,19 +117,19 @@ filter: drop-shadow(0px 9px 6px rgba(0, 0, 0, 1));
     
     line-height: 60%;
     margin:0px;
-    text-align: left;
-    font-family: Eras Demi ITC;
+    text-align: right;
+    font-family: 'Eras Demi ITC';
     font-style: oblique;
     font-weight: 900!important;
     font-size: 100px;
-    color: rgba(213,186,78,1);
+    color: white;
    
    
  }
  .tec1{
   display:flex;
 
-  filter: drop-shadow(0px 9px 6px rgba(0, 0, 0, 1));
+  filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
       left: -10wpx;
       top: 0px;
       position: relative;
@@ -143,7 +143,7 @@ filter: drop-shadow(0px 9px 6px rgba(0, 0, 0, 1));
       font-style: oblique;
       font-weight: 900!important;
       font-size: 100px;
-      color: rgba(213,186,78,1);
+      color: white
  }
 
 
@@ -153,7 +153,7 @@ filter: drop-shadow(0px 9px 6px rgba(0, 0, 0, 1));
     left: 86px;
     top: 30px;
     position: relative;
-    
+    text-transform: uppercase;
     width: 100px;
     white-space: nowrap;
     
@@ -168,12 +168,12 @@ filter: drop-shadow(0px 9px 6px rgba(0, 0, 0, 1));
     
 }
 .boton1{
-  display: flex;
- position: relative;
-  left: 20px;
- top: 50px;
-
   
+ position: relative;
+  top: 10px;
+ 
+
+  text-align: center!important;
   
  color: rgb(4, 4, 82)!important;
   font-family:'Lato', sans-serif;
@@ -949,6 +949,59 @@ text-align: center;
   text-align: center;
   padding: 0px!important;
   font-family: 'Josefin Sans';
+}
+
+.modalfootcont{
+  background-image:url("./images/fondogalaxy.png")!important;
+  background-size:cover;
+  
+  background-position:center;
+
+}
+.modal-content{
+
+border: none;
+}
+.modal-header{
+  margin: 30px 0 0 0;
+  border: none!important;
+  font-family:'Lato';
+  font-weight:bold!important;
+}
+.modal-title{
+  
+  position: absolute!important;
+  font-size: 40px;
+  white-space: normal;
+  line-height: 15px!important;
+  text-align: start;
+  
+}
+.close {
+position: relative;
+  color: white!important; 
+  font-size: 40px!important;
+  opacity: 1!important;
+}
+ h5 p {
+  font-size: 69px;
+}
+.form-cont{
+  margin: 100px 0 0 0!important;
+}
+.form-control{
+
+background-color: #ffffff80!important;
+color: white!important;
+font-family:'Lato';
+  font-weight:bold!important;
+
+}
+.form-control::placeholder{
+  color: white!important;
+  
+  font-family:'Lato';
+  font-weight:bold!important;
 }
 /*-------------------------------------------- PESTAÑA ACERCA DE-----------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------

@@ -12,6 +12,7 @@ import Linke from '../images/linke.svg';
 import Twiter from '../images/twiter.svg';
 import Youtube from '../images/youtube.svg';
 import Moneda2 from '../images/modenasun2.svg';
+import moneda from "../images/moneda.png";
 
 
 function Footer() {
@@ -43,19 +44,75 @@ function Footer() {
                           
                 <img src={Youtube} alt="" />
                           </a>
-                          <div className="col-12 foottitulo">
-                <h1 className="">CONECTATE CON NOSOTROS<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-  <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-</svg></h1>
-<img src={Moneda2}alt=""/>
+                          <div className=" col-12 foottitulo">
+
+                          <button type="button" className="btn foottitulo" data-toggle="modal"
+                           data-target="#staticBackdrop">
+                <h1 className="">CONECTATE CON NOSOTROS<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                 class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+  <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/> <br/>
+</svg></h1></button>
+
+{/*---------------------------------------------------------------------------------------modal*------------------------------*/}
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content modalfootcont">
+      <div class="modal-header ">
+        <h5 className=" modal-title col-12 " id="staticBackdropLabel">Conéctate <svg xmlns="http://www.w3.org/2000/svg" width="484.203" height="7.402" viewBox="0 0 484.203 7.402">
+  <rect id="Rectángulo_187" data-name="Rectángulo 187" width="484.203" height="7.402" fill="#dbb80b"/>
+</svg> <p className=""> <br/>con nosotros</p></h5> 
+
+ 
+ 
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div className="container">
+      <div className="row ">
+      <div class="col-sm-6 modal-body">
+        <img src={moneda} className="img-fluid" alt=""/>
+      </div>
+      <div className="col-sm-4">
+          <form className="form-cont" action="">
+              <div className="form-group">
+              <input type="text" className="form-control" id="nombre" placeholder="Nombre"/>
+              </div>
+              <div className="form-group">
+              <input type="email" className="form-control" id="email" placeholder="Email"/>
+
+              </div>
+              <div className="form-group">
+              <textarea class="form-control" id="message" placeholder="Comentarios" rows="10"></textarea>
+
+              </div>
+          </form>
+      </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{/*--------------------------------------------------------------------------------------------*/}
             </div>
+
+
+
+            
+            <img src={Moneda2}alt=""/>
             </div>
            
 
 
 
-
-        </div>
+</div>
+        
 
 
 

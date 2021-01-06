@@ -211,6 +211,7 @@ de los empleadores, así obteniendo una mayor circulación de criptomoneda.
       
       
     </div>
+    <Footer />
     </div>
         )
     }}

@@ -85,7 +85,7 @@ export default class Home extends Component {
         <div className="row sec1  fondogalaxy ">
 
           <div className="col-7 p-0 ">
-            <p className="moneda1">
+            <p className="moneda1 text-left">
               SE PARTE DE  NUESTRA <br />
               <strong className=" revo1">REVOLUCION</strong>
 
@@ -94,9 +94,14 @@ export default class Home extends Component {
               <strong className="   tec1"><br />TECNOLOGICA</strong>
               <strong className="  hometext1  "><br />UNA NUEVA ERA DE EN EL MERCADO DIGITAL,
                                       <br />basado en cadenas de bloques inteligentes
-                                      <br />para el intercambio de tokens de utilidad.</strong>
-              <button className="btn form-inline  btn-light-moon boton1 ">SE PARTE DE  SUNSHINE</button>
+                                      <br />para el intercambio de tokens de utilidad. <br/></strong>
+                                      <div className="text-center">
+
+                                      <button className="btn form-inline  btn-light-moon boton1 ">SE PARTE DE  SUNSHINE</button>
+                                      </div>
+              
             </p>
+            
           </div>
           <div className="col-5  contenedor">
             <img className="moneda " src={moneda} />
