@@ -19,6 +19,6 @@ export default class Proyectos extends Component {
     render() {
         return (
             <div className="container">
-<h1 className="navegacion">Proyectos</h1>
+<h1 className="">Proyect</h1>
             </div>
         )}}

@@ -17,6 +17,9 @@ body{
  
   
 }
+.fixed-top{
+  z-index: 100!important;
+}
  .navbar{
    color: white!important;  
    font-size: 10px; 
@@ -115,13 +118,13 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
     
    
     
-    line-height: 60%;
+    line-height: 100%;
     margin:0px;
     text-align: right;
     font-family: 'Eras Demi ITC';
     font-style: oblique;
     font-weight: 900!important;
-    font-size: 100px;
+    font-size: 6.5vw;
     color: white;
    
    
@@ -142,7 +145,7 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
       font-family: Eras Demi ITC;
       font-style: oblique;
       font-weight: 900!important;
-      font-size: 100px;
+      font-size: 6.5vw;
       color: white
  }
 
@@ -154,8 +157,8 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
     top: 30px;
     position: relative;
     text-transform: uppercase;
-    width: 100px;
-    white-space: nowrap;
+    
+    white-space: normal;
     
     margin-top: -4px;
     text-align: center;
@@ -218,10 +221,10 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
    background-position:center ;
    background-repeat: no-repeat;    
     position: relative;
-    overflow: visible;
-    width: 100vw;
-    height: 1600px;
     
+    width: 100vw;
+    
+    background-color:white!important;
    
     padding: 0px!important;
     white-space: nowrap;
@@ -440,7 +443,7 @@ padding: 0px;
   position: relative;
   background:#043361;
   justify-content: center;
-  width: 1520px!important;
+  width: 100vw!important;
   padding: 0px;
   
 }
@@ -474,17 +477,15 @@ padding: 0px;
   
   
   justify-content: center!important;
-  width: 100vw;
-  
-  
+  width: 100vw!important;  
 }
 .titulo6{
   filter: drop-shadow(7px 3px 8px rgba(0, 0, 0, 0.851));
     height: 200px;
     
+    justify-content: center!important;
     
-    
-    margin-top: 2px;
+    margin: 2px 0 5px 0;
     
     font-family: 'Barlow Condensed';
     font-style: normal;
@@ -494,27 +495,26 @@ padding: 0px;
     
 }
 .focsec6{
-  background-image: url("./images/fondo-foco.png")!important;
+  display: flex;
+  background-color:white;
   background-size: contain;
   background-position:top;
   background-repeat: no-repeat;
   background-color: white!important;
-  height: 2000px;
-  display: flex;
-}
-  
-.radiofoc{
+  text-align: left!important;
+  width: 100vw!important;
   
 }
-.radiofon-sym{
   
-}
+
 .fap-btn2{
+
+
+position: relative;
+  margin: 30px 0 0 150px;
+
+ 
   
-  position: relative;
-  bottom: -67px;
-  left: 39px;
-  overflow: visible;
   color:#025889!important;
   border: 3px solid #fff!important;
   height: 200px;
@@ -526,12 +526,52 @@ padding: 0px;
   outline: none;
   transition: 1s ease-in-out;
  }
+ .fap-btn2:hover svg{
+ z-index: 1;
+  stroke-dashoffset: -480;
+  
+}
+circle:hover{
+  overflow:visible;
+  fill: transparent;
+  z-index: 1;
+}
+.textbtn2{
+  position: relative;
+z-index: 10!important ;
+
+}
+.fap-btn2 svg{
+ overflow:visible;
+
+  z-index: 1;
+}
+ 
+
+.fap-btn2:hover{
+ 
+ 
+  
+  color:inherit !important;
+  
+  
+  
+}
+ .fap-btn2-1{
+   z-index: 1;
+   position: absolute;
+   height: 310px;
+   width: 310px;
+   
+   top: -50px;
+   right:-50px;
+ }
  .fap-btn3{
    
   position: relative;
   bottom: -326px!important;
   left:-15px;
-  overflow: visible;
+  
   color:#025889!important;
   border: 3px solid #fff!important;
   height: 200px;
@@ -541,11 +581,18 @@ padding: 0px;
   cursor: pointer;
   outline: none;
   transition: 1s ease-in-out;
+ }
+ .fap-btn3-2{
+   
+position: absolute;
+left:-110px;
+bottom: -60px!important;
  }
  .fap-btn4{
   position: relative;
   bottom: -594px!important;
   left: -5px;
+  
   overflow: visible;
   color:#025889!important;
   border: 3px solid #fff!important;
@@ -557,11 +604,20 @@ padding: 0px;
   outline: none;
   transition: 1s ease-in-out;
  }
+ .fap-btn4-3{
+   
+ position: absolute;
+
+  bottom:-60px;
+ left: -110px;
+ }
 .svg1{
+  
   position: absolute;
   left: -35px!important;
   top: -37px;
   fill: none;
+  overflow: visible;
   
   background:transpar;
   overflow: visible;
@@ -572,31 +628,22 @@ padding: 0px;
   stroke-width:15px;
   transition: 3s ease-in-out;
 }
-.fap-btn2:hover svg{
-  stroke-dashoffset: -480;
-}
 
-.fap-btn2:hover{
-  
-  transition: 0s ease-in-out;
-  background: black;
-  color: white!important;
-  
-  
-}
 .textsyn{
   position: relative;
-  margin: 0px;
-margin-top: 100px;
+  
+margin-top: 10 0 0 0 0;
   font-family: 'Lucida Sans';
   font-size: 45px;
   font-weight: bold;
+ line-height: 40px;
   
 }
 .mintext{
   position: relative;
   color:#647FAA;
   font-weight: bold;
+  margin: 0 0 0 12vw;
   font-size: 30px;
   font-family:'Lato', sans-serif!important;
 }
@@ -663,7 +710,14 @@ margin-top: px;
   transform: rotate(36000deg);
  }
 }
-{/*------------------------------------------------ENGRANES DEL FOCO-----------------------------------*/}
+/*------------------------------------------------ENGRANES DEL FOCO-----------------------------------*/
+
+.focoenv{
+  position: absolute;
+  bottom: 230px;
+  left: -210px;
+  height: 980px;
+}
 .engrane1foc{
   
   position: absolute;
@@ -716,28 +770,43 @@ margin-top: px;
 }
 
 .modal-sym{
-  position: absolute;;
+  margin: 100px 0 0 0 ;
+  position: absolute;
   background-color:#CEDEEEE6!important;
   color: #025889;
   text-align: center;
+  
  
 
 }
 
-img.modal-imgsym{
 
-  
-  
-
-  
+img.modal-imgsym{  
 height: 500.28px!important;
-margin: 20px 0 20px 20px;
+margin: 20px 0 20px 20px;}
 
+
+
+.modal-backdrop {
+  z-index: 2!important;
 
 }
+
+
+
 .modal-cont{
-max-width: 1300px!important;
+  
+  
+  
+ 
 }
+.modal {
+  
+  
+}
+
+  
+
  .modal-titu{  
    
    text-align: center; 
@@ -760,6 +829,7 @@ white-space: normal;
    font-size: 25px;
    font-family: 'Josefin Sans' ;
    border-bottom: #025889 solid 10px;
+  
  }
 /*--------------SECCION 8 MAPA ESTADISTICAS--------------------------------------------------------*/
 .mapacon{
@@ -816,6 +886,7 @@ white-space: normal;
   color:white;
   justify-content: space-around;
   align-items: center;
+  white-space: normal;
 }
 
 .img-meto{
@@ -878,6 +949,10 @@ white-space: normal;
 }
 
 /*---------------------------------------------------Newlester----------------------------------------*/
+
+.newlesterenvol{
+  white-space: normal!important;
+}
 .Newlester-con{
   display: flex;
   padding: 0px!important;
@@ -919,6 +994,46 @@ font-size: 31px!important;
 font-family: 'Josefin Sans', sans-serif;
 
 }
+/*----------------------------------------------whatsapp----------------------*/
+.whatsapp-img{
+  
+  
+  
+  position:fixed;
+  width:120px;
+  height:120px;
+  bottom:30px;
+  right:30px;
+  
+  color:#FFF;
+  border-radius:50px;
+  text-align:center;
+  font-size:35px;
+  box-shadow: 0px 1px 10px rgba(0,0,0,0.3);
+  z-index:1;
+  transition: all 300ms ease;
+
+}
+.tel-img{
+  display: flex;
+  position:fixed;
+  width:120px;
+  height:120px;
+  bottom:200px;
+  right:30px;
+  object-fit: scale-down!important;
+  
+  color:#FFF;
+  border-radius:50px;
+  
+  font-size:35px;
+  box-shadow: 0px 1px 10px rgba(0,0,0,0.3);
+  z-index:1;
+  transition: all 300ms ease;
+}
+.whats-content{
+  bottom:30px;
+}
 
 /*------------------------------fotttttttttteeeeeeeeeeeeeeeeeeeeeeeeeee----------------------------------------------*/
 .con-footer{
@@ -941,6 +1056,7 @@ display: flex;
 justify-content: center!important;
 text-align: center;
   color: white!important;
+  white-space:normal;
 }
 .foottitulo{
   font-size: 59px;
@@ -948,6 +1064,10 @@ text-align: center;
   color: white!important;
   text-align: center;
   padding: 0px!important;
+  font-family: 'Josefin Sans';
+}
+.foottitulo button{
+  color: white;
   font-family: 'Josefin Sans';
 }
 
@@ -1117,6 +1237,107 @@ margin:0 10px 0 0;
   font-family: 'Eras ITC';
   color: #033462;
 }
+/*--------------------------------------------------PESTAÑA CONTACTO----------------------------------*/
+.conten-contacts{
+  background-color: #CEDEEE;
+}
+
+.card{
+  
+  margin: 100px 4vw 100px 4vw!important;
+  background-color:#FFFFFF59!important; 
+  text-align: center!important; 
+  font-family: 'Lato'!important;
+  border-radius: 15px!important;
+}
+.tarjetas img{
+  margin-top: 3vw!important;
+margin: auto;
+  width: 15vw;
+  
+  height: 15vw;
+}
+.tarjetas img:hover{
+  -webkit-transform: rotateY(180deg);
+    -webkit-transform-style: preserve-3d;
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
+    }
+   
+.card-image{
+  position: relative;
+}
+.image-overlay{
+  position: absolute;
+  margin-top: 3vw!important;
+margin: auto;
+  width: 15vw;
+  
+  height: 15vw;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    
+    opacity: 0;
+    transition: .5s ease;
+    background: linear-gradient(
+    45deg,
+    rgba(29, 236, 197, 0.5),
+    rgba(91, 14, 214, 0.5) 100%
+  )!important;
+  
+}
+.card-image:hover .image-overlay {
+  opacity: 1;
+}
+
+
+.card-body{
+  background-color: #025889;
+  margin: 2vw;
+  border-radius: 15px;
+
+}
+.red img{
+  margin-top: 0px!important;
+  height: 10vh;
+  position: relative;
+  
+}
+.img-cont2{
+object-fit: cover!important;
+}
+.card-footer{
+  text-align: none!important;
+  display: block!important;
+  position: relative; 
+}
+.cont-btn-contac{
+  display: flex;
+  justify-content: center;
+}
+.btn-contac{
+background-color:#025889!important;
+color: white!important;
+
+width: 40vw;
+font-size: 2vw!important;
+font-family: 'lato';
+margin:5vw;
+
+}
+
+
+/*---------------------------watssapp button------------------------------------*/
+
+
+/*--------------------------------------------------PESTAÑAROAPTOMAP-----------------------------------------------*/
+.road{
+  margin: 100px 0 0 0;
+  background-color:white;
+}
 
 /*@keyframes   bordegirtariovh
  
@@ -1139,3 +1360,87 @@ margin:0 10px 0 0;
     border-bottom: darkblue 5px solid!important;
    }
  }*/
+ /*----------------------------------------------registro--------------------*/
+ .registrobody{
+   display: flex!important;
+   position: relative;
+  background-image: url("./images/fondoregistro.svg")!important;
+  color: white;
+  text-align: center; 
+   justify-content: center!important;
+
+ }
+ .form-registro{
+ flex-wrap: wrap;
+   justify-content:center!important;
+   text-align: center!important;
+ }
+ .gmail{
+   
+   position: relative;
+   color: white!important;
+   background-color: #ffffff80!important;
+font-size: 2vw!important;
+font-family:'Lato';
+  font-weight:bold!important;
+ }
+.form-regi{
+  color: white!important;
+  justify-content: flex-start!important;
+  text-align: left!important;
+  font-family:'Lato';
+  font-size: 2vw;
+  font-weight:bold!important;
+}
+.form-regi::placeholder{
+  color: #ffffffb3!important;
+  justify-content: flex-start!important;
+  text-align: left;
+  font-family:'Lato';
+  font-weight:bold!important;
+  
+}
+ select{
+   background-color: #ffffff80!important;
+ }
+ option{
+   background-color: #ffffff80!important;
+   color: black;
+ }
+ .modal-sroll{
+  overflow:scroll!important;
+ }
+ input[type=radio] 
+ { 
+   border: 0px; 
+  width: 2vw;
+  height: 1em; 
+}
+ .marginlb {
+   display: flex;
+  position: relative;
+  font-size: 20px;
+  font-weight: 1vw;
+  left: 1vw;
+  line-height: 1vh;
+  margin-top: 1vw;
+
+  
+}
+.btn-registro{
+
+  color: #3A5373!important;
+  background-color:white!important;
+  font-size: 20px!important;
+  color: #3A5373!important;
+  
+  font-weight: bold!important;
+
+
+}
+.btn-footer{
+
+  position: relative;
+  justify-content: center!important;
+  text-align: center!important;
+}

@@ -14,7 +14,8 @@ import Twiter from '../images/twiter.svg';
 import Youtube from '../images/youtube.svg';
 import Moneda2 from '../images/modenasun2.svg';
 import moneda from "../images/moneda.png";
-import {db} from './firebase';
+import {db,fire} from './firebase';
+import 'firebase/firestore';
 import * as emailjs from 'emailjs-com';
 
 
@@ -80,7 +81,7 @@ const Footer =()=> {
                           </a>
                           <div className=" col-12 foottitulo">
 
-                          <button type="button" className="btn foottitulo" data-toggle="modal"
+                          <button type="button" className="btn" data-toggle="modal"
                            data-target="#staticBackdrop">
                 <h1 className="">CONECTATE CON NOSOTROS<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                  class="bi bi-caret-down-fill" viewBox="0 0 16 16">
@@ -88,7 +89,9 @@ const Footer =()=> {
 </svg></h1></button>
 
 {/*---------------------------------------------------------------------------------------modal*------------------------------*/}
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" 
+data-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" 
+aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content modalfootcont">
       <div class="modal-header ">
@@ -103,7 +106,7 @@ const Footer =()=> {
         </button>
       </div>
       <div className="container">
-      <div className="row ">
+         <div className="row ">
       <div class="col-sm-6 modal-body">
         <img src={moneda} className="img-fluid" alt=""/>
       </div>
@@ -130,7 +133,7 @@ const Footer =()=> {
                value={message} 
                onChange={(e)=>setMessage(e.target.value)}
               id="message" placeholder="Comentarios" rows="10"></textarea>
-
+                       
               </div>
               <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -153,7 +156,7 @@ const Footer =()=> {
 
 
             
-            <img src={Moneda2}alt=""/>
+            <img src={Moneda2} className="img-fluid" alt=""/>
             </div>
            
 
