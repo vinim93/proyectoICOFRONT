@@ -3,14 +3,14 @@ import ReactDOM from "react-dom";
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.css';
 import logonav from '../icons/logonav.svg';
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Popper from 'popper.js';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  NavLink
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    NavLink
 } from 'react-router-dom';
 import walpaper from '../images/banner.svg';
 import moneda from "../images/moneda.png";
@@ -60,32 +60,32 @@ import circulo3 from '../images/circulo3.svg';
 import fococontorno from '../images/fococontorno.svg';
 
 
-
-
-class Foco extends Component{
+class Foco extends Component {
     render() {
-      return(
-          <div className="row  fondosec3 ">
- <div className="container-fluid sec6  ">
-            <span className="titulo6 ">Proyectos</span>
+        return (
+            <div className="row  fondosec3 ">
+                <div className="container-fluid sec6  ">
+                    <span className="titulo6 ">Proyectos</span>
 
 
-          </div>
-          <div className="container-fluid focsec6">
-            <div className="row contenedor-engra ">
-              <div className="col-4 align-self-start ">
-                <button className="  btn fap-btn2 " type="button" data-toggle="modal" 
-                data-target=".bd-example-modal-lg">
-                <div className="modal  fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div className="modal-dialog modal-cont  modal-lg">
-    <div className=" modal-content modal-sym "> 
-    <div className="row container-fluid ">
-    
-<div className="col-3">
+                </div>
+                <div className="container-fluid focsec6">
+                    <div className="row contenedor-engra ">
+                        <div className="col-4 align-self-start ">
+                            <button className="  btn fap-btn2 " type="button" data-toggle="modal"
+                                    data-target=".bd-example-modal-lg">
+                                <div className="modal  fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div className="modal-dialog modal-cont  modal-lg">
+                                        <div className=" modal-content modal-sym ">
+                                            <div className="row container-fluid ">
 
-      <img src={Celsym} alt="" className="modal-imgsym img-fluid " align="left" />
-</div>
-<div className="col-9">
+                                                <div className="col-3">
+
+                                                    <img src={Celsym} alt="" className="modal-imgsym img-fluid "
+                                                         align="left"/>
+                                                </div>
+                                                <div className="col-9">
 
      <span className="modal-titu"> Proyecto Symphony  <p className="modal-text">(Banco)<p className="modal-cuerpo">
      Consiste en crear un banco digital con resguardo de criptomonedas, generar cuenta 
@@ -100,36 +100,41 @@ class Foco extends Component{
      
      
      </span>
-     
-</div>
-    </div>
 
-    </div>
-  </div>
-</div>
-<img src={circulo1} className="fap-btn2-1" alt=""/>
-                  <svg className="svg1" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                    width="70mm" height="70mm" viewBox="0 0 120 120">
-                    <circle cx="60" cy="60" r="50"
-                      fill="transparent" />
-                  </svg> SYMPHONY</button> 
-                  <p className="textsyn"><br />PROYECTO SYMPHONY</p><p className="mintext">(Banco)</p> 
-                 
-                  </div>
+                                                </div>
+                                            </div>
 
-              <div className="col-4 align-self-center">
-                <button className="btn radiofoc radiofon-sym fap-btn2  fap-btn3 "type="button" data-toggle="modal"
-                data-target=".bd-example-modal-lg3">
-                  <div className="modal  fade bd-example-modal-lg3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div className="modal-dialog modal-cont  modal-lg">
-    <div className=" modal-content modal-sym "> 
-    <div className="row container-fluid ">
-    
-<div className="col-3">
+                                        </div>
+                                    </div>
+                                </div>
+                                <img src={circulo1} className="fap-btn2-1" alt=""/>
+                                <svg className="svg1" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                     width="70mm" height="70mm" viewBox="0 0 120 120">
+                                    <circle cx="60" cy="60" r="50"
+                                            fill="transparent"/>
+                                </svg>
+                                SYMPHONY
+                            </button>
+                            <p className="textsyn"><br/>PROYECTO SYMPHONY</p><p className="mintext">(Banco)</p>
 
-      <img src={Celhawk} alt="" className="modal-imgsym img-fluid " align="left" />
-</div>
-<div className="col-9">
+                        </div>
+
+                        <div className="col-4 align-self-center">
+                            <button className="btn radiofoc radiofon-sym fap-btn2  fap-btn3 " type="button"
+                                    data-toggle="modal"
+                                    data-target=".bd-example-modal-lg3">
+                                <div className="modal  fade bd-example-modal-lg3" tabindex="-1" role="dialog"
+                                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div className="modal-dialog modal-cont  modal-lg">
+                                        <div className=" modal-content modal-sym ">
+                                            <div className="row container-fluid ">
+
+                                                <div className="col-3">
+
+                                                    <img src={Celhawk} alt="" className="modal-imgsym img-fluid "
+                                                         align="left"/>
+                                                </div>
+                                                <div className="col-9">
 
      <span className="modal-titu"> Proyecto HAWK  <p className="modal-text">(Exchange)<p className="modal-cuerpo">
      Este proyecto consiste en un espacio virtual y dinámico que complementa el desarrollo de nuestra propia Exchange 
@@ -140,37 +145,40 @@ class Foco extends Component{
      
      
      </span>
-     
-</div>
-    </div>
 
-    </div>
-  </div>
-</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
 
 
+                                <img src={circulo2} className="fap-btn3-2" alt=""/>
+                                <svg className="svg1" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                     width="70mm" height="70mm" viewBox="0 0 120 120">
+                                    <circle cx="60" cy="60" r="50"
+                                            fill="transparent"/>
+                                </svg>
+                                HAWK
+                            </button>
+                            <p className="textsyn2"><br/>PROYECTO HAWK</p><p className=" mintext2">(Exchange)</p></div>
+                        <div className="col-4 align-self-end">
+                            <button className="btn radiofoc radiofon-sym fap-btn2 fap-btn4  "
+                                    type="button" data-toggle="modal"
+                                    data-target=".bd-example-modal-lg2">
+                                <div className="modal  fade bd-example-modal-lg2" tabindex="-1" role="dialog"
+                                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div className="modal-dialog modal-cont  modal-lg">
+                                        <div className=" modal-content modal-sym ">
+                                            <div className="row container-fluid ">
 
-<img src={circulo2} className="fap-btn3-2" alt=""/>
-                  <svg className="svg1" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                    width="70mm" height="70mm" viewBox="0 0 120 120">
-                    <circle cx="60" cy="60" r="50"
-                      fill="transparent" />
-                  </svg>HAWK</button>
-                  <p className="textsyn2"><br />PROYECTO HAWK</p><p className=" mintext2">(Exchange)</p></div>
-              <div className="col-4 align-self-end">
-                <button className="btn radiofoc radiofon-sym fap-btn2 fap-btn4  "
-                type="button" data-toggle="modal" 
-                 data-target=".bd-example-modal-lg2">
-                <div className="modal  fade bd-example-modal-lg2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div className="modal-dialog modal-cont  modal-lg">
-    <div className=" modal-content modal-sym "> 
-    <div className="row container-fluid ">
-    
-<div className="col-3">
+                                                <div className="col-3">
 
-      <img src={Cellyon} alt="" className="modal-imgsym img-fluid " align="left" />
-</div>
-<div className="col-9">
+                                                    <img src={Cellyon} alt="" className="modal-imgsym img-fluid "
+                                                         align="left"/>
+                                                </div>
+                                                <div className="col-9">
 
      <span className="modal-titu"> Proyecto Lion  <p className="modal-text"> (E-COMMERCE)<p className="modal-cuerpo">
      Consiste en el desarrollo de software propio y de terceros,
@@ -184,60 +192,52 @@ class Foco extends Component{
      
      
      </span>
-     
-</div>
-    </div>
 
-    </div>
-  </div>
-</div>
+                                                </div>
+                                            </div>
 
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-<img src={circulo3} className="fap-btn4-3" alt=""/>
-                  <svg className="svg1" version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="70mm" height="70mm" viewBox="0 0 120 120">
-                  <circle cx="60" cy="60" r="50"
-                    fill="transparent" />
-                </svg>LYON</button>
-                <p className="textsyn3"><br />PROYECTO LYON</p><p className=" mintext3">(E-commerce)</p></div>
-                <img src={Engranaje}alt="" className="engranaje"/> 
+                                        </div>
+                                    </div>
+                                </div>
 
-                <div className="row">
-                <div className="col-6 ">
-                  <img src={fococontorno} alt="foco" className="focoenv"/>
-              <img src={Engrane1} alt="" className="engrane1foc engranaje"/>
-              <img src={Engrane2} alt="" className="engrane2foc engranaje"/>
-              <img src={Engrane3} alt="" className="engrane3foc engranaje"/>
-              <img src={Engrane4} alt="" className="engrane4foc engranaje"/>
-              <img src={Engrane5} alt="" className="engrane5foc engranaje"/>
-              <img src={Engrane6} alt="" className="engrane6foc engranaje"/>
-              <img src={Engrane7} alt="" className="engrane7foc engranaje"/>
-              
+
+                                <img src={circulo3} className="fap-btn4-3" alt=""/>
+                                <svg className="svg1" version="1.1"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     width="70mm" height="70mm" viewBox="0 0 120 120">
+                                    <circle cx="60" cy="60" r="50"
+                                            fill="transparent"/>
+                                </svg>
+                                LYON
+                            </button>
+                            <p className="textsyn3"><br/>PROYECTO LYON</p><p className=" mintext3">(E-commerce)</p>
+                        </div>
+                        <img src={Engranaje} alt="" className="engranaje"/>
+
+                        <div className="row">
+                            <div className="col-6 ">
+                                <img src={fococontorno} alt="foco" className="focoenv"/>
+                                <img src={Engrane1} alt="" className="engrane1foc engranaje"/>
+                                <img src={Engrane2} alt="" className="engrane2foc engranaje"/>
+                                <img src={Engrane3} alt="" className="engrane3foc engranaje"/>
+                                <img src={Engrane4} alt="" className="engrane4foc engranaje"/>
+                                <img src={Engrane5} alt="" className="engrane5foc engranaje"/>
+                                <img src={Engrane6} alt="" className="engrane6foc engranaje"/>
+                                <img src={Engrane7} alt="" className="engrane7foc engranaje"/>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <Footer/>
             </div>
-            </div>
-            
-            </div>
-          
-            
-            
-            
-          </div>
-    <Footer />
-    </div>
         )
-    }}
-        
-    
-      export default Foco
+    }
+}
+
+
+export default Foco
     
