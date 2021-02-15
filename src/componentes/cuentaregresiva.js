@@ -1,5 +1,9 @@
 import '../App.css';
 import React, { Component } from 'react';
+import Lineadias from '../images/lineadias.svg';
+
+/*import Lineamin from '../images/lineamin.svg';
+import Lineaseg from '../images/lineaseg.svg';*/
 
 const d=document;
 
@@ -17,17 +21,19 @@ let contadorTempo= setInterval(() => {
     minutes=("0"+ Math.floor(limitTime %(1000*60*60)/(1000*60))).slice(-2),
     seconds=("0"+ Math.floor(limitTime %(1000*60)/(1000))).slice(-2);
 
-   $contador.innerHTML =`<button class=" btn contador-fap fap-dias fap-btn ">${days} </button> <i class="texto-contenedor">
-    <br/>dias</i> <button class="btn contador-fap fap-horas fap-btn">${hours}</button> <br/><i class="texto-contenedor texto-horas">
+   $contador.innerHTML =`<button class=" btn contador-fap fap-dias fap-btn "><p class="num-conta"> ${days}</p> <img src=${Lineadias} alt="linea" class="linea-dias"/></button> <i class="texto-contenedor">
+    <br/>dias</i> 
+    
+    <button class="btn contador-fap fap-horas fap-btn"><p class="num-conta"> ${hours}</p></button> <br/><i class="texto-contenedor texto-horas">
     <br/>horas</i>
-     <button class="btn contador-fap fap-minutos fap-btn ">${minutes}</button><br/><i class="texto-contenedor texto-min">
+     <button class="btn contador-fap fap-minutos fap-btn "><p class="num-conta">${minutes}</p></button><br/><i class="texto-contenedor texto-min">
      <br/>minutos</i>
-    <button class="btn contador-fap fap-seg fap-btn">${seconds}</button><br/><i class="texto-contenedo texto-seg">
+    <button class="btn contador-fap fap-seg fap-btn"><p class="num-conta">${seconds}</p></button><br/><i class="texto-contenedor texto-seg">
     <br/>segundos</i> `
     
     if(limitTime<0){
         clearInterval(contadorTempo);
-        $contador.innerHTML =`<h1>${finalMessage}TOKENS</h1>  `
+        $contador.innerHTML =`<h1 class="fintokens">${finalMessage}</h1>  `
     }
 
     

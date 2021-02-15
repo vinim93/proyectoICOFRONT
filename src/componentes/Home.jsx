@@ -16,7 +16,7 @@ import walpaper from '../images/banner.svg';
 import moneda from "../images/moneda.png";
 import transp from '../images/transparante.png';
 import contador from "./cuentaregresiva";
-import rectangulo1 from '../images/rectangulo1.png';
+import rectangulo1 from '../images/rectangulo1.svg';
 import tecnologias from '../images/tecnologias.svg';
 import Pdf from './Pdf';
 import facil from '../images/FACIL.png';
@@ -31,7 +31,7 @@ import Engrane4 from '../images/engrane4.svg';
 import Engrane5 from '../images/engrane5.svg';
 import Engrane6 from '../images/engrane6.svg';
 import Engrane7 from '../images/engrane7.svg';
-import Mapa from '../images/mapa.svg';
+import Mapa from '../images/mapat.png';
 import Textmoneda from '../images/textmoneda.svg';
 import Nuestraapp from '../images/nuestraapp.svg';
 import Fondoedi from '../images/fondoedi.svg';
@@ -59,7 +59,10 @@ import circulo2 from '../images/circulo2.svg';
 import circulo3 from '../images/circulo3.svg';
 import fococontorno from '../images/fococontorno.svg';
 import Watsappicon from '../images/watsapp-icon.png';
-
+import Lineadias from '../images/lineadias.svg';
+import Facilmovil from '../images/facilmovil.svg';
+import Seguromovil from '../images/seguromovil.svg';
+import Transmovil from '../images/transmovil.svg';
 
 {/*---------------------------------------FRONTEND-----------------------------------------------------------------*/ }
 
@@ -75,7 +78,7 @@ export default class Home extends Component {
   componentDidMount() {
     
     contador("contador",
-      "Jan 25  , 2021 16:30:00",
+      "Feb 25  , 2021 16:30:00",
       "El intercambio de tokens  a terminado");
   }
  
@@ -83,32 +86,36 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div className="container-fluid
+      <div className="
                            ">
         {/**-----------------------------SECCION1------------------------------------------------------------------- */}
-        <div className="row sec1  fondogalaxy ">
-
-          <div className="col-7 p-0 ">
-            <p className="moneda1 text-left">
+        <div className="row   fondogalaxy ">
+          
+          <div className=" col-lg-7 parte col-md-7 col-12 ">
+            <p className="moneda1 text-lg-left text-center">
               SE PARTE DE  NUESTRA <br />
-              <strong className=" revo1">REVOLUCION</strong>
+              <p className=" revo1">REVOLUCION</p>
 
 
 
-              <strong className="   tec1"><br />TECNOLOGICA</strong>
-              <strong className="  hometext1  "><br />UNA NUEVA ERA DE EN EL MERCADO DIGITAL,
+              <p className="   tec1"><br />TECNOLOGICA</p>
+              <img className="moneda d-block d-sm-block d-md-none" src={moneda} />
+              <p className="  hometext1  d-none d-sm-none d-md-block"><br />UNA NUEVA ERA DE EN EL MERCADO DIGITAL,
                                       <br />basado en cadenas de bloques inteligentes
-                                      <br />para el intercambio de tokens de utilidad. <br/></strong>
-                                      <div className="text-center">
+                                      <br />para el intercambio de tokens de utilidad. <br/></p>
+              <p className="  hometext1 text-left  text-sm-center d-block d-sm-block d-md-none"><br />UNA NUEVA ERA DE EN EL MERCADO <br />
+               DIGITAL, basado en cadenas de  <br /> bloques inteligentes
+                                      para el  <br />intercambio de tokens de utilidad. <br/></p>                        
+                                      <div className="text-lg-center text-left text-sm-center">
 
-                                      <button className="btn form-inline  btn-light-moon boton1 ">SE PARTE DE  SUNSHINE</button>
+                                      <button className="btn   btn-light-moon boton1 ">SE PARTE DE  SUNSHINE</button>
                                       </div>
               
             </p>
             
           </div>
-          <div className="col-5  contenedor">
-            <img className="moneda " src={moneda} />
+          <div className=" col-lg-5 col-md-5 d-none d-sm-none d-md-block co  contenedor">
+            <img className="moneda  " src={moneda} />
           </div>
         </div>
 
@@ -117,69 +124,79 @@ export default class Home extends Component {
       
   
 
-        <div className="row  p-0">
-          <div className="container-fluid col-12 p-0 ">
-            <ReactPlayer className=" videosunrep embed-responsive-item  "
-              url='https://www.youtube.com/watch?v=JqyDcDPi3jg'
-              controls="true"
-            />
+        <div className="row   ">
+          <div className="col-12 videosunrep embed-responsive embed-responsive-16by9">
+          <iframe className="  embed-responsive-item" src="https://www.youtube.com/embed/JqyDcDPi3jg" allowfullscreen></iframe>
+
           </div>
           </div>
         {/**-----------------------------SECCION3------------------------------------------------------------------- */}
         <div className=" row  fondosec3-alter fondosec3 ">
 
-          <div className="container-fluid p-0 ">
+          <div className=" col-12 ">
             <p className="sec3con">
               El intercambio de  tokens  termina en:
                                     </p><br />
             <p className="  " id="contador"></p>
+            </div>
             <ul className="rectangulo1 text-justify text-center">
               <li className="">
                 <img src={rectangulo1} className=" " />
               </li>
               <li className=" row cap justify-content-around text-left">
-                <strong className="col-4">SOFT CAP<br /><p className="cap-min">$ 15 M USD</p></strong>
-                <strong className="col-4">HARD CAP<br /> <p className="cap-min">$ 250 M USD</p></strong>
+                <p className="col-4">SOFT CAP<br/><p className="cap-min">$ 15 M USD</p></p>
+                <p className="col-4">HARD CAP<br /> <p className="cap-min">$ 250 M USD</p></p>
 
               </li>
 
               <li className="row tecno">
-                <img src={tecnologias} className=" p-0 " />
+                <div className="col-12">
+                <img src={tecnologias} className="img-tecno  " />
+                </div>
               </li>
             </ul>
 
 
 
           </div>
+         
           {/*----------------------------------------------------------seccion 4 WALPAPER-----------------------------------------------*/}
-          <div className="  walp">
+          <div className=" row walp">
+            <div className="col-12">
             <Link to="./Pdf" target="">
               <img src={walpaper} alt="" data-toggle="modal" className="walp-img ml-0 mr-0" id="pdfcon" />
             </Link>
+            </div>
           </div>
 
 
           {/**-------------------------------------------------------------WSECCION 5 VENTAJAS--------------------------- */}
-          <div className=" container-fluid row ">
-            <div className="col-4 ventajas p-0">
-              <img src={facil} alt="FACIL" className="img-fluid" />
+          <div className="  row ventajascont ">
+            <div className="col-md-4 col-12 ventajas  p-0">
+              <img src={facil} alt="FACIL" className="d-none d-md-block img-vent" />
+              <img src={Facilmovil} alt="FACIL" className="d-block d-md-none img-vent" />
             </div>
-            <div className="col-4 p-0 ventajas ventajas-seg">
-              <img src={seguro} alt="segurp" className="img-fluid" />
+            <div className="col-md-4   col-12 ventajas d-flex flex-row-reverse ventajas-seg p-0">
+              <img src={seguro} alt="segurp" className="d-none d-md-block img-vent" />
+              <img src={Seguromovil} alt="FACIL" className="d-block d-md-none img-vent" />
             </div>
-            <div className="col-4 p-0  ventajas">
-              <img src={transp} alt="transp.png" className="img-fluid" /></div>
+            <div className="col-md-4 col-12 p-0   ventajas">
+              <img src={transp} alt="transp.png" className="d-none d-md-block img-vent"/>
+              <img src={Transmovil} alt="FACIL" className="d-block d-md-none img-vent" />
+              
+              </div>
           </div>
           {/*-------------------------------------------------------Seccion6 foco-------------------------------------------*/}
-          <div className="container-fluid sec6  ">
+          <div className="row">
+            <div className="col-12 sec6">
             <span className="titulo6 ">Proyectos</span>
-
-
+            </div>
           </div>
-          <div className="container-fluid focsec6">
-            <div className="row contenedor-engra ">
-              <div className="col align-self-start ">
-                <button className="  btn fap-btn2 " type="button" data-toggle="modal" 
+
+          <div className="row">
+            <div className="col-12 contenedor-engra ">
+              <div className=" d-flex justify-content-start ">
+                <button className=" btn fap-btn2 " type="button" data-toggle="modal" 
                 data-target="#bd-example-modal-lg">
                 <div class="modal  bd-example-modal-lg" id="bd-example-modal-lg" 
                 data-backdrop="static" data-keyboard="false" 
@@ -218,15 +235,18 @@ export default class Home extends Component {
 <img src={circulo1} className="fap-btn2-1" alt=""/>
                   <svg className="svg1" version="1.1" xmlns="http://www.w3.org/2000/svg"
                     width="70mm" height="70mm" viewBox="0 0 120 120">
-                    <circle cx="60" cy="60" r="50"
+                    <circle className="circle1"cx="60" cy="60" r="50"
                       fill="transparent" />
                   </svg> <p className="textbtn2"> SYMPHONY</p></button> 
-                  <p className="textsyn"><br />PROYECTO SYMPHONY</p><p className="mintext">(Banco)</p> 
-                 
+               <br/>
+                  <div className="con-txtbtn">
+                <p className=" textsyn"><br /><br /><br /><br />
+                <br /><br /><br />PROYECTO SYMPHONY <br/> </p><p className="mintext">(Banco)</p> 
+                </div>
                   </div>
 
-              <div className="col align-self-center">
-                <button className="btn radiofoc radiofon-sym fap-btn2  fap-btn3 "type="button" data-toggle="modal"
+              <div className="col-12 d-flex justify-content-center ">
+                <button className="btn  fap-btn3  "type="button" data-toggle="modal"
                 data-target=".bd-example-modal-lg3">
                   <div className="modal  fade bd-example-modal-lg3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                   <div className="modal-dialog modal-cont modal-dialog-centered modal-dialog-scrollable  modal-xl ">
@@ -262,14 +282,19 @@ export default class Home extends Component {
 
 
 <img src={circulo2} className="fap-btn3-2" alt=""/>
-                  <svg className="svg1" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                  <svg className="svg2" version="1.1" xmlns="http://www.w3.org/2000/svg"
                     width="70mm" height="70mm" viewBox="0 0 120 120">
-                    <circle cx="60" cy="60" r="50"
+                    <circle cx="60"  className="circle2" cy="60" r="50"
                       fill="transparent" />
-                  </svg><p className="textbtn2"> HAWK</p></button>
-                  <p className="textsyn2"><br />PROYECTO HAWK</p><p className=" mintext2">(Exchange)</p></div>
-              <div className="col align-self-end">
-                <button className="btn radiofoc radiofon-sym fap-btn2 fap-btn4  "
+                  </svg><p className="textbtn3"> HAWK</p></button>
+                <p className="textsyn2"><br />  <br/>  <br/>PROYECTO HAWK</p><p className=" mintext2">(Exchange)</p></div>
+
+
+
+
+              <div className="d-flex justify-content-end">
+
+                <button className="btn   fap-btn4"
                 type="button" data-toggle="modal" 
                  data-target=".bd-example-modal-lg2">
                 <div className="modal  fade bd-example-modal-lg2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -315,17 +340,17 @@ export default class Home extends Component {
                   
                   
 <img src={circulo3} className="fap-btn4-3" alt=""/>
-                  <svg className="svg1" version="1.1"
+                  <svg className="svg3" version="1.1"
                   xmlns="http://www.w3.org/2000/svg"
                   width="70mm" height="70mm" viewBox="0 0 120 120">
                   <circle cx="60" cy="60" r="50"
                     fill="transparent" />
-                </svg><p className="textbtn2"> LYON</p></button>
+                </svg><p className="textbtn4"> LYON</p></button>
                 <p className="textsyn3"><br />PROYECTO LYON</p><p className=" mintext3">(E-commerce)</p></div>
-                <img src={Engranaje}alt="" className="engranaje"/> 
+                <img src={Engranaje}alt="" className="engranaje engranejegris"/> 
 
                 <div className="row">
-                <div className="col-6 ">
+                <div className="col-6 focoenv-cont">
                   <img src={fococontorno} alt="foco" className="focoenv"/>
               <img src={Engrane1} alt="" className="engrane1foc engranaje"/>
               <img src={Engrane2} alt="" className="engrane2foc engranaje"/>
@@ -345,49 +370,60 @@ export default class Home extends Component {
             
           </div>
           {/*----------------------------------------------------------------------------SECCION7 MAPA--------------------------------------*/}
-          <div className="row mapacon">
-               <div className="col-12">
+          <div className="row mapacon  ">
+               <div className="col-12 ">
                  <img src={Mapa} className=" mapaes"/>                  
                </div>
              </div>
-             <div className="row text-moneda">
+             <div className="row text-moneda ">
                <div className="col-12">
                  <img src={Textmoneda} className="img-fluid "/>                  
                </div>
              </div>
 
-             <div className="row textappcon">
+             <div className="row textappcon ">
                <div className="col-12">
-                 <img src={Nuestraapp} className="img-fluid text-App"/>    
+                 <img src={Nuestraapp} className="d-none d-sm-block img-fluid text-App"/>  
+                 <img src={Nuestraapp} className="d-block d-sm-none  text-App"/>      
 
                </div>
-               <img src={Google} className="img-goo "/><br/>
+               <div className="col-12 goo-aple">
+               <img src={Google} className="img-goo"/>
+               </div>
+               <div className="col-12 goo-aple">
+
                <img src={Apple} className="img-aple"/>
+               </div>
              </div>
 
                  {/*------------------------------------------------SECCCION 9 SOPORTE--------------------------------------------*/}
-             <div className="row  fondoedi">
+             <div className="row  ">
+               <div className="col-12  fondoedi">
                <p className="text-soporte">
                SOCIOS Y SOPORTE
                </p>
-               <div className="col-12 fondo-opa">
-                 <img src={Wallet} className="img-meto"/> 
+               <div className=" row fondo-opa">
+                 <img src={Wallet} className="img-meto col-lg-4  col-md-4 col-12 img-fluid" /> 
+                 <img src={Openzepp} className="img-meto col-lg-4  col-md-4 col-12"/>  
+                 </div>
                  
-                 <img src={Openzepp} className="img-meto"/>                    
-               </div>
-               <div className="col-12 fondo-opa">
-                 <img src={Github} className="img-meto"/> 
+
+                                   
                  
-                 <img src={Hardwallet} className="img-meto"/>                    
-               </div>
-                              
                
+               <div className="row fondo-opa">
+                 <img src={Github} className="img-meto col-12 col-lg-4  col-md-4  "/> 
+                 
+                 <img src={Hardwallet} className="img-meto col-lg-4  col-md-4 col-12 "/>                    
+               </div> 
+                              
+               </div>
              </div>
              
              {/**------------------------------------------------------SECCION 10-------------------------------------------------- */}
              <div className="row fondo-preg">
-               <p className="">PREGUNTAS FRECUENTES</p>
-               <div className="col-6 preguntas  ">
+               <p className="frecprec">PREGUNTAS FRECUENTES</p>
+               <div className="col-lg-6 col-md-6 col-12 preguntas  ">
                   
 <p className="">
                <button className="btn btn-preg1"  onClick={changeImageA}
@@ -397,7 +433,7 @@ export default class Home extends Component {
   </button>
   </p>
   <div className="collapse btn-res1 " id="collapsetoken">
-  <div className="  ">
+  <div className="text-preg">
   Es una ficha virtual que tiene una unidad de valor la cual es emitida por una entidad privada, 
   tiene diversas funciones a parte de actuar como una moneda virtual y está asentado sobre el protocolo de
    Blockchain Ethereum, lo que lo hace transparente, privado y a prueba de cualquier hackeo.
@@ -412,7 +448,7 @@ export default class Home extends Component {
   </button>
   </p>
   <div className="collapse btn-res1 " id="collapsetoken1">
-  <div className="  ">
+  <div className=" text-preg ">
   Es una  moneda virtual que nació como un medio de intercambio digital, permitiendo transacciones instantáneas a través de internet.
    Mediante el uso de criptografía se aseguran y verifican las transacciones que se realicen con ella, además la criptografía controla
     la creación de nuevas unidades de una moneda en particular.
@@ -425,9 +461,11 @@ export default class Home extends Component {
                aria-expanded="false" aria-controls="collapseExample">
     <img src={Depmason}    id="myImageB"alt="" className="mas"/>¿Qué es una ICO?
   </button>
+
   </p>
+  <img src={Imgpreg}   id="" className="imgpreg d-block d-lg-none d-md-none"/> 
   <div className="collapse btn-res1 " id="collapsetoken2">
-  <div className="  ">
+  <div className=" text-preg ">
   ICO, por sus siglas en inglés Inicial Coin Offering u Oferta Inicial de Moneda, es un  token el cual es administrado por
    la Blockchain correspondiente a la criptomoneda en uso es decir tiene registros limitados en una base de datos que no pueden 
    Xser modificados.
@@ -445,7 +483,7 @@ export default class Home extends Component {
   </button>
   </p>
   <div className="collapse btn-res1 " id="collapsetoken3">
-  <div className="  ">
+  <div className=" text-preg ">
   Cualquier persona que sea mayor de edad y que desee comprar un SUN puede hacerlo.
 
 
@@ -461,7 +499,7 @@ export default class Home extends Component {
   </button>
   </p>
   <div className="collapse btn-res1 " id="collapsetoken4">
-  <div className="  ">
+  <div className=" text-preg ">
   Es muy fácil, sólo debes crear una cuenta en nuestra página y de ahí seleccionar el número de SUN que desees adquirir
 
 
@@ -470,15 +508,17 @@ export default class Home extends Component {
                </div>
                
                <div className="col-6">
-               <img src={Imgpreg}   id="" className="PREGIMG"/> 
+               <img src={Imgpreg}   id="" className="PREGIMG d-none d-lg-block d-md-block"/> 
                
                </div>
                
              </div>
-             <div className="  row newlesterenvol">
-               <div className="col-12 Newlester-con">
+
+ {/*-----------------------------------------------------------------------------------newwwlester/*---------------------------------------------*/}
+             <div className="  row text-center newlesterenvol">
+               <div className="col-12  Newlester-con">
                  <h1 className="titunew">NEWSLETTER</h1>
-  <img src={ Newlesters}alt="" className="new"/>
+  <img src={ Newlesters}alt="" className="new "/>
   
                </div>
                <div className="col-12 newpara">
@@ -492,7 +532,7 @@ artículo sobre las ICO, tokens, y el mundo de las criptomonedas.
        
        
              <Footer/> 
-        </div>
+      
 
 
          

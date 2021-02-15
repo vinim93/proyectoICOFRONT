@@ -5,7 +5,7 @@ console.log("gola");
 
 export default function Menuregistro() {
 
-   var registro= document.querySelector('signup-form')
+   const signupform = document.querySelector('#signup-form')
 
 
 }

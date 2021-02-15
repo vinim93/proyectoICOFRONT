@@ -53,9 +53,10 @@ const Footer =()=> {
 
     return (
 
-        <div className="  container-fluid p-0 con-footer con-conecta">
-            <div className="col-12 p-0 m-0">
+        <div className="  row  con-footer con-conecta">
+            <div className="col-12 ">
                 <a href="" className="">
+                  
                 <img src={Sol} alt="" />
                  </a>
                  <a href="https://www.facebook.com/Sunshine-Imagine-Cripto-115833410321279" className="">
@@ -82,14 +83,14 @@ const Footer =()=> {
                           <div className=" col-12 foottitulo">
 
                           <button type="button" className="btn" data-toggle="modal"
-                           data-target="#staticBackdrop">
+                           data-target="#staticBackdropcon">
                 <h1 className="">CONECTATE CON NOSOTROS<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                  class="bi bi-caret-down-fill" viewBox="0 0 16 16">
   <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/> <br/>
 </svg></h1></button>
 
 {/*---------------------------------------------------------------------------------------modal*------------------------------*/}
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" 
+<div class="modal fade" id="staticBackdropcon" data-backdrop="static" 
 data-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" 
 aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered">
