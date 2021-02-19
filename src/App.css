@@ -17,6 +17,21 @@ body{
  
   
 }
+.container2 {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.bg-cards{
+  background-color: #025889 !important;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .fixed-top{
   z-index: 100!important;
 }
@@ -1432,47 +1447,52 @@ margin:0 10px 0 0;
     margin-top: 150px;
    }
    .cont-diferencia img {
-     margin-bottom: 10px!important;
-   }
-   .cont-diferencia span{
-    color: #025889!important;
+    margin-bottom: 10px !important;
+}
+
+.cont-diferencia h3 {
+    margin-top: 50px;
+    color: #025889 !important;
     font-family: 'Josefin Sans';
-    font-size: 35px;
     font-weight: bold;
-   }
-   .cont-diferencia p{
-    color: #025889!important;
+}
+
+.cont-diferencia p {
+    color: #025889 !important;
     font-family: 'Josefin Sans';
-    font-size: 30px;
-    font-weight: 200;
-   }
+    font-size: 150%;
+}
 .titu-dife{
-  display: flex;
-  position: relative;
-  justify-content: flex-end;
-  margin-right: 100px!important;
-  
-  right: 0px;
-  margin-right: 0px;
-  margin-top: 350px;
-  font-size: 60px;
   font-weight: bold;
   font-family: 'Eras ITC';
   color: #033462;
+
 }
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.wrapper:after{
+  content: "EQUIPO SUNSHINE";
+  background-color: rgba(2, 88, 137, 0.6);
+  position: absolute;
+  display: block;
+  width: 98.5%;
+  top: 0;
+  bottom: 0;
+  padding-left: 35%;
+  padding-top: 13%;
+  font-size: 60px;
+  font-weight: bold;
+}
+
+
 /*--------------------------------------------------PESTAÑA CONTACTO----------------------------------*/
 .conten-contacts{
   background-color: #CEDEEE;
 }
 
-.card{
-  
-  margin: 100px 4vw 100px 4vw!important;
-  background-color:#FFFFFF59!important; 
-  text-align: center!important; 
-  font-family: 'Lato'!important;
-  border-radius: 15px!important;
-}
 .tarjetas img{
   margin-top: 3vw!important;
 margin: auto;
@@ -1487,9 +1507,7 @@ margin: auto;
     transform-style: preserve-3d;
     }
    
-.card-image{
-  position: relative;
-}
+
 .image-overlay{
   position: absolute;
   margin-top: 3vw!important;
@@ -1512,17 +1530,7 @@ margin: auto;
   )!important;
   
 }
-.card-image:hover .image-overlay {
-  opacity: 1;
-}
 
-
-.card-body{
-  background-color: #025889;
-  margin: 2vw;
-  border-radius: 15px;
-
-}
 .red img{
   margin-top: 0px!important;
   height: 10vh;
@@ -1532,11 +1540,7 @@ margin: auto;
 .img-cont2{
 object-fit: cover!important;
 }
-.card-footer{
-  text-align: none!important;
-  display: block!important;
-  position: relative; 
-}
+
 .cont-btn-contac{
   display: flex;
   justify-content: center;
@@ -2391,4 +2395,130 @@ resize: none;
   }
   /*PREGUNSTAS FRECUENTES ----------------------------------------------/**/
   
+}
+
+/* -----------------------------------MEDIAS AUGUSTO---------------------------------*/
+@media only screen and (max-width: 1163px) {
+  .wrapper:after{
+      content: "EQUIPO SUNSHINE";
+      background-color: rgba(2, 88, 137, 0.6);
+      position: absolute;
+      display: block;
+      width: 96%;
+      top: 0;
+      bottom: 0;
+      padding-left: 32%;
+      padding-top: 13%;
+      font-size: 40px;
+      font-weight: bold;
+  }
+}
+
+@media only screen and (max-width: 854px) {
+  .wrapper:after{
+      content: "EQUIPO SUNSHINE";
+      background-color: rgba(2, 88, 137, 0.6);
+      position: absolute;
+      display: block;
+      width: 96%;
+      top: 0;
+      bottom: 0;
+      padding-left: 28%;
+      padding-top: 13%;
+      font-size: 40px;
+      font-weight: bold;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .wrapper:after{
+      content: "EQUIPO SUNSHINE";
+      background-color: rgba(2, 88, 137, 0.6);
+      position: absolute;
+      display: block;
+      width: 96%;
+      top: 0;
+      bottom: 0;
+      padding-left: 35%;
+      padding-top: 13%;
+      font-size: 40px;
+      font-weight: bold;
+  }
+}
+
+@media only screen and (max-width: 777px) {
+  .wrapper:after{
+      content: "EQUIPO SUNSHINE";
+      background-color: rgba(2, 88, 137, 0.6);
+      position: absolute;
+      display: block;
+      width: 96%;
+      top: 0;
+      bottom: 0;
+      padding-left: 28%;
+      padding-top: 13%;
+      font-size: 35px;
+      font-weight: bold;
+  }
+}
+
+@media only screen and (max-width: 555px) {
+  .wrapper:after{
+      content: "EQUIPO SUNSHINE";
+      background-color: rgba(2, 88, 137, 0.6);
+      position: absolute;
+      display: block;
+      width: 96%;
+      top: 0;
+      bottom: 0;
+      padding-left: 22%;
+      padding-top: 13%;
+      font-size: 30px;
+      font-weight: bold;
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .wrapper:after{
+      content: "EQUIPO SUNSHINE";
+      background-color: rgba(2, 88, 137, 0.6);
+      position: absolute;
+      display: block;
+      width: 96%;
+      top: 0;
+      bottom: 0;
+      padding-left: 20%;
+      padding-top: 13%;
+      font-size: 25px;
+      font-weight: bold;
+  }
+}
+
+@media only screen and (max-width: 363px) {
+  .wrapper:after{
+      content: "EQUIPO SUNSHINE";
+      background-color: rgba(2, 88, 137, 0.6);
+      position: absolute;
+      display: block;
+      width: 96%;
+      top: 0;
+      bottom: 0;
+      padding-left: 16%;
+      padding-top: 10%;
+      font-size: 25px;
+      font-weight: bold;
+  }
+
+  .icons-differences{
+      width: 30%;
+      height: 30%;
+      margin: 0px 30px;
+      align-self: center;
+  }
+
+  .titu-dife {
+      font-weight: bold;
+      font-family: 'Eras ITC';
+      color: #033462;
+  }
 }

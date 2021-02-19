@@ -1,7 +1,8 @@
-import React, {useRef, useState} from 'react';
+import React, { useState} from 'react';
 import '../App.css';
 import Docpdf from '../docs/Avance.pdf';
 import Loader from './Loader';
+
 import {Document, Page} from 'react-pdf';
 import {pdfjs} from 'react-pdf';
 import ControlPanel from './ControlPanel';
@@ -25,7 +26,7 @@ const Pdf = ()=>{
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
     const [isLoading, setIsLoading] =useState(true);
-
+   const [scale,setScale]=useState(1.0);
 
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
@@ -39,13 +40,14 @@ const Pdf = ()=>{
                  <ControlPanel 
                  numPages={numPages}                 
                  pageNumber={pageNumber}
-                 setPageNumber={setPageNumber} />
+                 setPageNumber={setPageNumber} 
+                 setScale={setScale}/>
               <Loader isLoading={isLoading}/>
               <Document className="pdfcontainer"
         file={Docpdf}
         onLoadSuccess={onDocumentLoadSuccess}
       >
-        <Page pageNumber={pageNumber} />
+        <Page pageNumber={pageNumber} scale={scale} />
       </Document>
       <p>Page {pageNumber} of {numPages}</p>
               {/*  <div >
