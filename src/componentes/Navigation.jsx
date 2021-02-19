@@ -196,26 +196,26 @@ const Navigation = () => {
 
 
                                                 <div className="form-group col-12 ">
-                                                    <button className="btn col-5 gmail">
+                                                    <button className="btn col-xl-5 col-lg-7 gmail">
                                                         <img src={Icongmail} alt=""
                                                              className="icon-g img-fluid"/> Registrate con Gmail
                                                     </button>
                                                 </div>
                                                 <div className="form-group col-12 ">
-                                                    <button className="btn col-5 gmail">
+                                                    <button className="btn col-xl-5 col-lg-7 gmail">
                                                         <img src={Iconfaceb} alt=""
                                                              className="icon-g img-fluid"/> Registrate con Facebook
                                                     </button>
                                                 </div>
                                                 <div className="form-group  col-12">
-                                                    <input className="btn col-5  form-regi gmail form-control"
+                                                    <input className="btn col-xl-5 col-lg-7 form-regi gmail form-control"
                                                            type="text" placeholder="Ciudad o Pais"
                                                            name='ciudad'
                                                            value={ciudad}
                                                            onChange={(e) => setCiudad(e.target.value)}/>
                                                 </div>
                                                 <div className="form-group  col-12">
-                                                    <input className="btn col-5  form-regi gmail form-control"
+                                                    <input className="btn col-xl-5 col-lg-7  form-regi gmail form-control"
                                                            type="text"
                                                            placeholder="Tel:"
                                                            name="telefono"
@@ -224,7 +224,7 @@ const Navigation = () => {
                                                 </div>
                                                 <div className="form-group  col-12">
 
-                                                    <input className="btn col-5  form-regi gmail form-control"
+                                                    <input className="btn col-xl-5 col-lg-7 form-regi gmail form-control"
                                                            type="text" placeholder="Nombre"
                                                            name='name'
                                                            value={name}
@@ -232,7 +232,7 @@ const Navigation = () => {
 
                                                 </div>
                                                 <div className="form-group  col-12">
-                                                    <input className="btn col-5  form-regi gmail form-control"
+                                                    <input className="btn col-xl-5 col-lg-7 form-regi gmail form-control"
                                                            type="text"
                                                            placeholder="Apellido"
                                                            name="apellido"
@@ -240,7 +240,7 @@ const Navigation = () => {
                                                            onChange={(e) => setApellido(e.target.value)}/>
                                                 </div>
                                                 <div className="form-group  col-12">
-                                                    <input className="btn col-5  form-regi gmail form-control"
+                                                    <input className="btn col-xl-5  col-lg-7 form-regi gmail form-control"
                                                            type="email"
 
                                                            placeholder="Email"
@@ -249,7 +249,7 @@ const Navigation = () => {
                                                            onChange={(e) => setEmail(e.target.value)}/>
                                                 </div>
                                                 <div className="form-group  col-12">
-                              <span className="form-regi col-5">ID<label className="btn form-regi" for="cameraine"
+                              <span className="form-regi col-xl-5 col-lg-7">ID<label className="btn form-regi" for="cameraine"
                               > 
                                 <img src={Camaraine} alt="" className=""/>
                               </label>
@@ -308,11 +308,11 @@ const Navigation = () => {
                               </span>
                                                 </div>
                                                 <div className="form-group  col-12">
-                                                    <input className="btn col-5  form-regi gmail" type="text"
+                                                    <input className="btn col-xl-5 col-lg-7 form-regi gmail" type="text"
                                                            placeholder="Usuario"/>
                                                 </div>
                                                 <div className="form-group  col-12">
-                                                    <input className="btn col-5  form-regi gmail" type="password"
+                                                    <input className="btn col-xl-5 col-lg-7 form-regi gmail" type="password"
                                                            id="signup-password"
                                                            placeholder="Contraseña " required
                                                            name="password"
@@ -320,7 +320,7 @@ const Navigation = () => {
                                                            onChange={(e) => setPassword(e.target.value)}/>
                                                 </div>
                                                 <div className="form-group  col-12">
-                                                    <input className="btn col-5  form-regi gmail" type="password" id=""
+                                                    <input className="btn col-xl-5 col-lg-7 form-regi gmail" type="password" id=""
                                                            placeholder="Confirmar Contraseña" required
                                                            name="password"
                                                            value={password}

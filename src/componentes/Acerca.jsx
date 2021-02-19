@@ -28,9 +28,9 @@ class Acerca extends Component{
     return(
       
     
-    <div className=" p-0">
-          <div className=" col-12 p-0 ">
-            <ReactPlayer className="videosunrep embed-responsive-item  "
+    <div className=" row ">
+          <div className=" col-12  ">
+            <ReactPlayer className=" embed-responsive-item  "
               url='https://www.youtube.com/watch?v=JqyDcDPi3jg'
               controls="true"
             />

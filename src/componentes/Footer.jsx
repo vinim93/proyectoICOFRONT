@@ -102,7 +102,7 @@ const Footer = () => {
                                         viewBox="0 0 484.203 7.402">
                                         <rect id="Rectángulo_187" data-name="Rectángulo 187" width="484.203"
                                               height="7.402" fill="#dbb80b"/>
-                                    </svg> <p className=""><br/>con nosotros</p></h5>
+                                    </svg> <p className="conectate"><br/>con nosotros</p></h5>
 
 
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -111,10 +111,10 @@ const Footer = () => {
                                 </div>
                                 <div className="container">
                                     <div className="row ">
-                                        <div class="col-sm-6 modal-body">
-                                            <img src={moneda} className="img-fluid" alt=""/>
+                                        <div class="col-md-6 modal-body">
+                                            <img src={moneda} className="img-fluid d-none d-md-block" alt=""/>
                                         </div>
-                                        <div className="col-sm-4">
+                                        <div className="col-md-4">
                                             <form className="form-cont" onSubmit={handleSubmit}>
                                                 <div className="form-group">
                                                     <input type="text" className="form-control"

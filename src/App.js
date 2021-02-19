@@ -19,7 +19,7 @@ import Map from './componentes/Roaptomap';
 import Blog from './componentes/Blog';
 import Contactos from './componentes/contact';
 import Proyectos from './componentes/Proyectos';
-import Pdf from "./componentes/Pdf.js";
+import Pdf from "./componentes/Pdf";
 import contador from './componentes/cuentaregresiva';
 import Footer from "./componentes/Footer";
 import Foco from "./componentes/Foco";

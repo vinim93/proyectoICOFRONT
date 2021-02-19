@@ -245,16 +245,16 @@ const Home = () => {
                                  aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div
                                     className="modal-dialog modal-cont modal-dialog-centered modal-dialog-scrollable  modal-xl ">
-                                    <div className=" modal-content  modal-sym ">
+                                    <div className=" modal-content p-0 modal-sym ">
                                         <div className="modal-body row container-fluid ">
 
 
-                                            <div className="col-3">
+                                            <div className="col-md-3 col-12 justify-content-center" >
 
                                                 <img src={Celhawk} alt="" className="modal-imgsym img-fluid "
-                                                     align="left"/>
+                                                     />
                                             </div>
-                                            <div className="col-9">
+                                            <div className="col-md-9 col-12">
 
      <span className="modal-titu"> Proyecto HAWK  <p className="modal-text">(Exchange)<p className="modal-cuerpo">
      Este proyecto consiste en un espacio virtual y dinámico que complementa el desarrollo de nuestra propia Exchange 
@@ -293,16 +293,17 @@ const Home = () => {
                                 data-target=".bd-example-modal-lg2">
                             <div className="modal  fade bd-example-modal-lg2" tabindex="-1" role="dialog"
                                  aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                <div className="modal-dialog modal-cont  modal-lg">
+                                <div className="modal-dialog modal-cont   modal-xl
+                                ">
                                     <div className=" modal-content modal-sym ">
                                         <div className="row container-fluid ">
 
-                                            <div className="col-3">
+                                            <div className="col-lg-3 col-12 cont-cel">
 
-                                                <img src={Cellyon} alt="" className="modal-imgsym img-fluid "
-                                                     align="left"/>
+                                                <img src={Cellyon} alt="" className="modal-imgsym img-fluid"
+                                                     />
                                             </div>
-                                            <div className="col-9">
+                                            <div className="col-lg-9 col-12">
 
      <span className="modal-titu"> Proyecto Lion  <p className="modal-text"> (E-COMMERCE)<p className="modal-cuerpo">
      Consiste en el desarrollo de software propio y de terceros,
@@ -498,7 +499,7 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className="col-6">
+                <div className="col-md-6 col-12">
                     <img src={Imgpreg} id="" className="PREGIMG d-none d-lg-block d-md-block"/>
 
                 </div>

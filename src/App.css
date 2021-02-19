@@ -473,6 +473,94 @@ padding: 0px;
   padding: 0px;
   
 }
+.loadercontainer{
+  
+  width: 100vw!important;
+  height: 100vh!important;
+}
+.control-panel{
+  font-size: 1.6vw;
+  background-color: white;
+  height: 4vw;
+  line-height: 1!important;
+  color: black;
+  white-space: normal ;
+  margin-top: 10vw!important;
+
+  border-radius: 10px;
+  
+}
+.clickable{
+  cursor: pointer;
+}
+.disabled{
+cursor: not-allowed;
+color: lightgray;
+}
+.input-pdf{
+  position: relative;
+  top: -.5vw;
+}
+.pdfcontainer{
+  display: flex;
+  position: relative;
+  
+  justify-content: center!important;
+  text-align: center;
+  
+  align-items: center!important;
+  
+}
+.pdfcontainer canvas{
+  
+  position: relative;
+  width: 70vw!important;
+  text-align: center;
+  height: 100vh;
+  justify-content: center!important;
+  margin-top: 5vw;
+  align-items: center;
+  
+}
+#loader{
+  position: fixed !important;;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(155, 155, 155, 0.7);
+}
+
+
+.fondopdf{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(155, 155, 155, 0.7);
+}
+
+.Logo-loader{
+  height: 30vmin;
+  pointer-events: none;  
+}
+ @media(prefers-reduced-motion: no-preference){
+   .Logo-loader{
+     animation: Logo-loader-spin infinite 1s linear;
+   }
+ }
+ @keyframes Logo-loader-spin{
+   from{
+     transform: rotate(0deg);
+   }to{
+     transform: rotate(360deg) ;
+   }
+ }
+.viewercontainer{
+  position: relative;
+top: 15vw!important;
+width: 100vw!important;
+height: 100vh!important;
+}
 
 
 .walp-img{
@@ -885,7 +973,7 @@ color: #024870;
 
 .modal-sym{
   margin: 100px 0 0 0 ;
-  position: absolute;
+  position: relative;
   background-color:#CEDEEEE6!important;
   color: #025889;
   text-align: center;
@@ -894,10 +982,13 @@ color: #024870;
 
 }
 
-
+.cont-cel {
+  text-align: center!important;
+}
 img.modal-imgsym{  
 height: 500.28px!important;
-margin: 20px 0 20px 20px;}
+
+}
 
 
 
@@ -1069,7 +1160,7 @@ text-align: center;
   margin-bottom: 2vw;
 }
 .PREGIMG{
-  height: 90%;
+  height: 100%;
 }
 
 /*---------------------------------------------------Newlester----------------------------------------*/
@@ -1179,6 +1270,9 @@ font-family: 'Josefin Sans', sans-serif;
   margin: 0px 10px 10px 10px;
   text-align: center;
   
+}
+.conectate{
+  font-size: 4vw;
 }
 .con-conecta{
 display: flex;
@@ -1575,9 +1669,43 @@ font-family:'Lato';
 }
 /*----------------------------------------------------------------------medias-------------------------------------------------*/
 
+
+@media screen and (max-width:2000px){
+  .focoenv-cont{
+    bottom: -4vw!important; 
+  
+  }
+  .contenedor-engra{
+    height: 2300px;
+  }
+  .textbtn2{
+    font-size: 1.5vw;
+  }
+
+}
+@media screen and (max-width:1650px){
+  .focoenv-cont{
+    bottom: 15vw!important; 
+     
+  }
+  .contenedor-engra{
+    height: 1800px;
+  }
+
+}
+
 @media screen and (max-width:1319px){
   /*//boton1///////////////*/
-.fap-btn2{
+
+  .focoenv-cont{
+    bottom: 30vw!important; 
+     
+  }
+  .contenedor-engra{
+    height: 1700px;
+  }
+  .fap-btn2{
+
   height: 150px;
   width: 150px;
   margin-top: 4vw;
@@ -1927,9 +2055,10 @@ margin-top: -8vh!important;
     position: absolute;
     opacity: .37;
     z-index: -3!important;
-    height: 200vh;
-    width: 100vw;
-    bottom: -30vw;
+    height: 212vh;
+    justify-content: center;
+    width: 110vw;
+    bottom: -130vw!important  ;
     left: 60vw;
   }
   .frecprec{
@@ -2129,7 +2258,7 @@ margin-top: -8vh!important;
     background-position:center!important;  
   }
   .videosunrep{
-    height: 70vw!important;
+    
   }
   .hometext1{
     margin-bottom: 5vw;
@@ -2260,4 +2389,6 @@ resize: none;
     bottom: -200vw;
     left: -10vw;
   }
+  /*PREGUNSTAS FRECUENTES ----------------------------------------------/**/
+  
 }
