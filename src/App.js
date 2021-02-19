@@ -1,34 +1,25 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 
 import './App.css';
 
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import 'bootstrap/dist/css/bootstrap.css';
 
-import Navigation from "./componentes/Navigation";
+import Navigation from "./componentes/navbar/Navigation";
 import {
-    BrowserRouter, Router,
+    BrowserRouter,
     Switch,
     Route,
-    Redirect
 }
     from "react-router-dom";
-import Acerca from "./componentes/Acerca";
-import Home from './componentes/Home';
-import Map from './componentes/Roaptomap';
-import Blog from './componentes/Blog';
-import Contactos from './componentes/contact';
-import Proyectos from './componentes/Proyectos';
-import Pdf from "./componentes/Pdf";
-import contador from './componentes/cuentaregresiva';
-import Footer from "./componentes/Footer";
-import Foco from "./componentes/Foco";
-import RoaptoMapa from './componentes/Roaptomap';
+import Acerca from "./componentes/acerca/Acerca";
+import Home from './componentes/home/Home';
+import Pdf from "./componentes/whitepaper/Pdf";
+import Foco from "./componentes/proyectos/Foco";
+import RoaptoMapa from './componentes/road_to_map/Roaptomap';
 import Watsappicon from './images/watsapp-icon.png';
 import Telicon from './images/tel-icon.png';
-import firebase from "firebase";
 import "firebase/auth";
-import Menuregistro from './componentes/main.js'
 
 
 const App = (props) => {
@@ -42,11 +33,9 @@ const App = (props) => {
 
 
                 <Switch>
-                    <Route path="/contact" component={Contactos}/>
                     <Route path="/Roaptomap" component={RoaptoMapa}/>
                     <Route path="/Acerca" component={Acerca}/>
                     <Route path="/Proyectos" component={Foco}/>
-                    <Route path="/Blog" component={Blog}/>
 
                     <Route path="/Pdf" exact><Pdf/></Route>
                     <Route path="/" exact><Home/></Route>
