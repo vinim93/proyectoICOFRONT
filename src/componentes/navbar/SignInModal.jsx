@@ -1,10 +1,51 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Icongmail from "../../images/icongmail.svg";
 import Iconfaceb from "../../images/iconfaceb.svg";
+import firebase from 'firebase';
+import "firebase/auth";
+import {db} from '../config/firebase';
+import swal from 'sweetalert';
 
 const SignInModal = () => {
+
+    const [email, setEmail] = useState("");
+    const [pass, setPass] = useState("");
+
+    const signIn = (e) => {
+        e.preventDefault();
+        if(email !== "" && pass !== ""){
+            firebase.auth().signInWithEmailAndPassword(email, pass)
+                .then((user) => {
+                    console.log("SESION INICIADA");
+                })
+                .catch((error) => {
+                    let errorCode = error.code;
+                    switch (errorCode) {
+                        case "auth/user-not-found":
+                            swal("Usuario no encontrado", "La cuenta de correo proporcionada no esta registrada!", "warning");
+                            break;
+
+                        case "auth/wrong-password":
+                            swal("Datos incorrectos", "La contraseña es incorrecta!", "warning");
+                            break;
+
+                        case "auth/invalid-email":
+                            swal("Datos mal escritos", "Solo puedes ingresar una cuenta de correo válida!", "warning");
+                            break;
+
+                        default:
+                            let errorMessage = error.message;
+                            console.log(errorCode, errorMessage);
+                    }
+                })
+        } else {
+            swal("No ingresaste datos", "Debes ingresar datos en los campos de usuario y contraseña!", "warning");
+        }
+
+    }
+
     return (
-        <form className="form my-2 my-lg-0 ">
+        <form className="form my-2 my-lg-0" onSubmit={signIn}>
             <div className="modal fade " id="signInModal" data-backdrop="static" data-keyboard="false"
                  tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div className="modal-dialog modal-xl modal-dialog-centered   ">
@@ -36,26 +77,31 @@ const SignInModal = () => {
                                     </div>
 
                                     <div className="form-group col-12 mt-5">
-                                        <input className="btn col-xl-5 col-lg-7 form-regi gmail" type="text"
-                                               placeholder="Usuario"/>
+                                        <input className="btn col-xl-5 col-lg-7 form-regi gmail"
+                                               type="email"
+                                               placeholder="Usuario"
+                                               value={email}
+                                               onChange={e => setEmail(e.target.value)}
+                                               required
+                                        />
                                     </div>
 
                                     <div className="form-group  col-12">
                                         <input className="btn col-xl-5 col-lg-7 form-regi gmail"
                                                type="password"
                                                id="signup-password"
-                                               placeholder="Contraseña " required
+                                               placeholder="Contraseña"
                                                name="password"
+                                               value={pass}
+                                               onChange={e => setPass(e.target.value)}
+                                               required
                                         />
                                     </div>
 
                                     <div className="form-group col-12 mt-5 mb-5">
-                                        <button type="submit" className="btn btn-registro">ENTRAR</button>
-                                    </div>
-
-                                    <div className="form-group col-12 mt-5">
-                                        <button className="btn btn-registro" data-toggle="modal"
-                                                data-target="#signUpModal" >¿No tienes una cuenta con nosotros?</button>
+                                        <button type="submit"
+                                                className="btn btn-registro">ENTRAR
+                                        </button>
                                     </div>
 
                                 </div>
