@@ -100,7 +100,8 @@ const Home = () => {
                             para el <br/>intercambio de tokens de utilidad. <br/></p>
                         <div className="text-lg-center text-left text-sm-center">
 
-                            <button className="btn   btn-light-moon boton1 ">SE PARTE DE SUNSHINE</button>
+                            <button className="btn   btn-light-moon boton1  "data-toggle="modal"
+                                data-target="#staticBackdrop">SE PARTE DE SUNSHINE</button>
                         </div>
 
                     </p>

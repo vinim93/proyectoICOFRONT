@@ -147,8 +147,7 @@ const Navigation = () => {
                         </li>
                     </ul>
                     <form className="form my-2 my-lg-0  " onSubmit={handleSubmit}>
-                        <button type="button" className=" navsesion btn btn-link" data-toggle="modal"
-                                data-target="#staticBackdrop">
+                        <button type="button" className=" navsesion btn btn-link" >
                             Inicia Sesion
                         </button>
 
@@ -341,7 +340,8 @@ const Navigation = () => {
                             </div>
                         </div>
                         {/*------------------------------------------------------------------------------*/}
-                        <button type="button" className=" navsesion btn btn-link">Crea tu cuenta</button>
+                        <button type="button" className=" navsesion btn btn-link" data-toggle="modal"
+                                data-target="#staticBackdrop">Crea tu cuenta</button>
 
                     </form>
                 </div>

@@ -1,5 +1,6 @@
 import React, { useState} from 'react';
 import '../../App.css';
+import './Whitepaper.css';
 import Docpdf from '../../docs/Avance.pdf';
 import Loader from './Loader';
 
@@ -35,21 +36,21 @@ const Pdf = ()=>{
    
             return(
              
-           <div className="row fondopdf">
-            <div className="col-12 pdfcontainer flex-column">
-                 <ControlPanel 
+           <div className="row  fondopdf">
+            <div className="col-12  p-3">
+                 <ControlPanel className="control-panel"
                  numPages={numPages}                 
                  pageNumber={pageNumber}
                  setPageNumber={setPageNumber} 
                  setScale={setScale}/>
               <Loader isLoading={isLoading}/>
-              <Document className="pdfcontainer"
+              <Document className=" pdfcontainer "
         file={Docpdf}
         onLoadSuccess={onDocumentLoadSuccess}
       >
-        <Page pageNumber={pageNumber} scale={scale} />
+        <Page pageNumber={pageNumber} className="   "scale={scale} />
       </Document>
-      <p>Page {pageNumber} of {numPages}</p>
+     
               {/*  <div >
                     <iframe  className="viewercontainer"    src={Docpdf} type="application/pdf " />
                 </div>

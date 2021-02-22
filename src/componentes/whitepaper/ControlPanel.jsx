@@ -1,5 +1,6 @@
 import React from 'react';
 import Engrane1 from '../../images/engrane1.svg';
+import './Whitepaper.css';
 
 
 const ControlPanel = (props) =>{
