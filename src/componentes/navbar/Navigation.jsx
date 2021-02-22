@@ -171,6 +171,7 @@ const Navigation = () => {
                         getStatesValues={[picture, uploadValue, name, email, ciudad, telefono, apellido, password]}
                         handleCheckboxState={handleCheckboxState}
                     />
+                    <SignInModal />
                 </div>
             </div>
         </nav>
