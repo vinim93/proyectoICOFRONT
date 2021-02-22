@@ -1,0 +1,170 @@
+.loadercontainer{
+  width: 50vw;
+  height: 100vh;
+  z-index: -1;
+   
+  }
+  .fondopdf{
+  position: relative;
+    
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+  background-color: rgb(155, 155, 155, 0.7);
+ 
+}
+  .control-panel{
+      position: relative;
+    font-size: 30px;
+    background-color: white;
+    margin-top: 15vh;
+    line-height: 1!important;
+    color: black;
+;
+  
+    border-radius: 10px;
+    
+  }
+  .clickable{
+    cursor: pointer;
+  }
+  .disabled{
+  cursor: not-allowed;
+  color: lightgray;
+  }
+  .input-pdf{
+    position: relative;
+    top: -.5vw;
+  }
+  .pdfcontainer{
+      display: flex;
+       position: relative;
+    
+    justify-content: center!important;
+    text-align: center;
+    
+    align-items: center!important;
+    
+    
+  }
+  .pdfcontainer canvas{
+    
+   position: relative;
+   width: 100vw!important;
+   height: 100vw!important;
+    
+    
+  }
+  #loader{
+    position: fixed !important;;
+    top: 0;
+    left: 0;
+    
+    background-color: rgb(155, 155, 155, 0.7);
+  }
+  
+  
+
+  
+  .Logo-loader{
+    height: 30vmin;
+    pointer-events: none;  
+  }
+   @media(prefers-reduced-motion: no-preference){
+     .Logo-loader{
+       animation: Logo-loader-spin infinite 1s linear;
+     }
+   }
+   @keyframes Logo-loader-spin{
+     from{
+       transform: rotate(0deg);
+     }to{
+       transform: rotate(360deg) ;
+     }
+   }
+  .viewercontainer{
+    position: relative;
+  top: 15vw!important;
+  width: 100vw!important;
+  height: 100vh!important;
+  }
+
+  @media screen and (max-width:675px){
+    .fondopdf{
+    
+       width: 120vw;
+       
+      }
+   
+  }
+  @media screen and (max-width:589px){
+    .fondopdf{
+    
+       width: 130vw;
+       
+      }
+      .pdfcontainer canvas{
+          width: 120vw!important;
+      }
+   
+  }
+  @media screen and (max-width:523px){
+    .fondopdf{
+    
+       width: 160vw;
+       height: 180vh;
+       
+      }
+   
+  }
+  @media screen and (max-width:427px){
+    .fondopdf{
+    
+       width: 170vw;
+       height: 180vh;
+       
+      }
+      .pdfcontainer canvas{
+        width: 160vw!important;
+        height: 160vw!important;
+    }
+ 
+  }
+  @media screen and (max-width:410px){
+    .fondopdf{
+    
+       width: 190vw;
+       height: 190vh;
+       
+      }
+     
+  }
+  @media screen and (max-width:365px){
+    .fondopdf{
+    
+       width: 200vw;
+       height: 200vh;
+       
+      }
+      .pdfcontainer canvas{
+        width: 185vw!important;
+        height: 185vw!important;
+    }
+ 
+  }
+
+  @media screen and (max-width:365px){
+    .fondopdf{
+    
+       width: 220vw;
+       height: 220vh;
+       
+      }
+      .pdfcontainer canvas{
+        width: 200vw!important;
+        height: 200vw!important;
+    }
+ 
+  }
+  
