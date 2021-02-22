@@ -1,27 +1,42 @@
 .loadercontainer{
-  width: 50vw;
+  width: 100vw;
   height: 100vh;
   z-index: -1;
    
   }
   .fondopdf{
+      
   position: relative;
-    
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  overflow: hidden;
+  overflow-y: scroll;
+  
+ width: 100%;
+ height: 100%!important;
+   
+  justify-content: center!important;
+  align-items: center!important;
+  text-align: center!important;
   
   background-color: rgb(155, 155, 155, 0.7);
  
 }
+.control-para{
+    background-color: white!important;
+}
   .control-panel{
-      position: relative;
+      
+      
+    text-align: center!important;
+    align-items: center!important;
+    justify-content: center!important;
     font-size: 30px;
-    background-color: white;
+    
+    
+    
     margin-top: 15vh;
-    line-height: 1!important;
+
     color: black;
-;
+
   
     border-radius: 10px;
     
@@ -35,9 +50,10 @@
   }
   .input-pdf{
     position: relative;
-    top: -.5vw;
+    
   }
   .pdfcontainer{
+      margin-bottom: 10vw;
       display: flex;
        position: relative;
     
@@ -51,8 +67,8 @@
   .pdfcontainer canvas{
     
    position: relative;
-   width: 100vw!important;
-   height: 100vw!important;
+   width: 80vw!important;
+   height: 80vw!important;
     
     
   }
@@ -68,6 +84,7 @@
 
   
   .Logo-loader{
+      position: relative;
     height: 30vmin;
     pointer-events: none;  
   }
@@ -90,81 +107,45 @@
   height: 100vh!important;
   }
 
-  @media screen and (max-width:675px){
-    .fondopdf{
-    
-       width: 120vw;
-       
-      }
-   
-  }
-  @media screen and (max-width:589px){
-    .fondopdf{
-    
-       width: 130vw;
-       
-      }
-      .pdfcontainer canvas{
-          width: 120vw!important;
-      }
-   
-  }
-  @media screen and (max-width:523px){
-    .fondopdf{
-    
-       width: 160vw;
-       height: 180vh;
-       
-      }
-   
-  }
-  @media screen and (max-width:427px){
-    .fondopdf{
-    
-       width: 170vw;
-       height: 180vh;
-       
-      }
-      .pdfcontainer canvas{
-        width: 160vw!important;
-        height: 160vw!important;
-    }
- 
-  }
-  @media screen and (max-width:410px){
-    .fondopdf{
-    
-       width: 190vw;
-       height: 190vh;
-       
-      }
-     
-  }
-  @media screen and (max-width:365px){
-    .fondopdf{
-    
-       width: 200vw;
-       height: 200vh;
-       
-      }
-      .pdfcontainer canvas{
-        width: 185vw!important;
-        height: 185vw!important;
-    }
- 
-  }
 
-  @media screen and (max-width:365px){
-    .fondopdf{
-    
-       width: 220vw;
-       height: 220vh;
-       
-      }
-      .pdfcontainer canvas{
-        width: 200vw!important;
-        height: 200vw!important;
+  /*---------------------------------------------------MEDIAS------------------------------------------------------------*/
+  @media screen and (max-width: 609px) {
+    .control-panel{
+        font-size: 5vw;
     }
- 
+    .pdfcontainer canvas{
+    
+        position: relative;
+        width: 100vw!important;
+        height: 100vw!important;
+         
+         
+       }
+       .pdfcontainer{
+           margin-bottom: 30vw!important;}
+           .fondopdf{
+      
+           
+    
+           
+           height: 100vh!important;
+             
+            justify-content: center!important;
+            align-items: center!important;
+            text-align: center!important;
+            
+            background-color: rgb(155, 155, 155, 0.7);
+           
+          }
+
+
+}
+
+  @media screen and (max-width: 351px) {
+      .control-panel{
+          font-size: 5vw;
+      }
+      
   }
+  
   

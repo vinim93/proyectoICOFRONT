@@ -151,7 +151,6 @@ const Navigation = () => {
                             </NavLink>
                         </li>
                     </ul>
-<<<<<<< HEAD
                     <form className="form my-2 my-lg-0  " onSubmit={handleSubmit}>
                         <button type="button" className=" navsesion btn btn-link" >
                             Inicia Sesion
@@ -350,19 +349,6 @@ const Navigation = () => {
                                 data-target="#staticBackdrop">Crea tu cuenta</button>
 
                     </form>
-=======
-                    <button type="button" className=" navsesion btn btn-link" data-toggle="modal"
-                            data-target="#staticBackdrop">
-                        Inicia Sesion
-                    </button>
-                    <button type="button" className=" navsesion btn btn-link">Crea tu cuenta</button>
-                    <SignUpModal
-                        handleSubmit={handleSubmit}
-                        handleOnChange={handleOnChange}
-                        setStatesValues={setStatesValues}
-                        getStatesValues={[picture, uploadValue, name, email, ciudad, telefono, apellido, password]}
-                    />
->>>>>>> 0b89e96a896bfc698c8501a5dca03c2d33567565
                 </div>
             </div>
         </nav>

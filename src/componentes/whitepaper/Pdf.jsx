@@ -36,14 +36,15 @@ const Pdf = ()=>{
    
             return(
              
-           <div className="row  fondopdf">
-            <div className="col-12  p-3">
-                 <ControlPanel className="control-panel"
+           <div className="row   ">
+            <div className="col-12  fondopdf p-3">
+            <Loader isLoading={isLoading}/>
+                 <ControlPanel className=""
                  numPages={numPages}                 
                  pageNumber={pageNumber}
                  setPageNumber={setPageNumber} 
                  setScale={setScale}/>
-              <Loader isLoading={isLoading}/>
+              
               <Document className=" pdfcontainer "
         file={Docpdf}
         onLoadSuccess={onDocumentLoadSuccess}

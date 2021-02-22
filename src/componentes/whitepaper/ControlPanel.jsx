@@ -31,15 +31,17 @@ const ControlPanel = (props) =>{
     };
     
     return(
-        <div className="control-panel  p-3 d-flex aling-items-baseline justify-content-center">
-            
+        <div className="row control-panel ">
+            <div className=" p-3 ">
+            <p className="control-para">
             <i className={`fas fa-fast-backward mx-3 ${firstPageClass}` } onClick={goToFirstPage}/>
             <i className={`fas fa-backward mx-3 ${firstPageClass}` } onClick={goToPreviousPage}/>
              <span>Page <input type="number" min={1} max={numPages || 1} name="pageNumber" 
              onChange={onChangePage}
              value={pageNumber}className="input-pdf p-0 pl-2 "/> {pageNumber} of {numPages}</span>
             <i className={`fas fa-forward  mx-3 ${lastPageClass}`} onClick={goToNextPage}/>
-            <i className={`fas fa-fast-forward mx-3 ${lastPageClass}`} onClick={goToLastPage}/>
+            <i className={`fas fa-fast-forward mx-3 ${lastPageClass}`} onClick={goToLastPage}/> </p>
+            </div>
         </div>
     )
 };
