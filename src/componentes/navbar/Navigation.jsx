@@ -1,28 +1,25 @@
 import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import logonav from '../../icons/logonav.svg';
-import React, {Component, useState} from 'react';
-import Icongmail from '../../images/icongmail.svg';
-import Iconfaceb from '../../images/iconfaceb.svg';
-import Pdfine from '../../images/pdfine.svg';
+import React, {useState} from 'react';
 import firebase from 'firebase';
+import "firebase/auth";
+
 import swal from 'sweetalert';
 import {
     NavLink
 } from 'react-router-dom';
-import Camaraine from '../../images/camaraine.svg';
-
 import {db} from '../config/firebase';
-
 import 'firebase/firestore';
 import SignUpModal from "./SignUpModal";
+import SignInModal from "./SignInModal";
 
-var caracteres = "abcdefghijkmnpqrtuvwxyzABCDEFGHJKMNPQRTUVWXYZ2346789";
-var contraseña = ""
-var i = 0;
-for (i = 0; i < 20; i++) contraseña += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+let caracteres = "abcdefghijkmnpqrtuvwxyzABCDEFGHJKMNPQRTUVWXYZ2346789";
+let contrasenia = ""
+let i = 0;
+for (i = 0; i < 20; i++) contrasenia += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
 
-var aleatorio = (Math.random());
+let aleatorio = (Math.random());
 
 
 const Navigation = () => {
@@ -30,29 +27,32 @@ const Navigation = () => {
 
     const [picture, setPicture] = useState(null);
     const [uploadValue, setUploadValue] = useState(0);
-
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [ciudad, setCiudad] = useState("");
     const [telefono, setTelefono] = useState("");
     const [apellido, setApellido] = useState("");
     const [password, setPassword] = useState("");
+    const [checkedValue, setCheckedValue] = useState(false);
+
+    const handleCheckboxState = (e) => {
+        console.log(e.target.checked);
+        setCheckedValue(e.target.checked);
+    }
 
     const handleOnChange = (e) => {
         const file = e.target.files[0]
-        const storageRef = firebase.storage().ref(`INE/${file.name}${contraseña} ${aleatorio * aleatorio}`);
+        const storageRef = firebase.storage().ref(`INE/${file.name}${contrasenia} ${aleatorio * aleatorio}`);
         const task = storageRef.put(file);
 
 
         task.on('state_changed', (snapshot) => {
-            var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
             setUploadValue(percentage)
-
 
         }, error => {
             console.log(error.message)
         }, () => {
-            console.log(task.snapshot);
             storageRef.getDownloadURL().then(url => {
                 setPicture(url
                 )
@@ -67,49 +67,55 @@ const Navigation = () => {
 
         });
 
-
     }
-
-    console.log(picture);
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(checkedValue){
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((user) => {
 
+                    /*============GUARDAR DATOS EN FIRESTORE===========*/
+                    db.collection("credentials").doc(user.user.uid).set({
+                        UUID: user.user.uid,
+                        city: ciudad,
+                        doc: picture,
+                        email: email,
+                        last_name: apellido,
+                        name: name,
+                        phone: telefono
+                    }).then(docRef => {
+                        swal("Listo", "Si se pudo", "success");
+                        setName('');
+                        setEmail('');
+                        setCiudad('');
+                        setTelefono('');
+                        setPassword('');
+                        setApellido('');
+                        setPicture('');
+                    }).catch((error) => {
+                        console.log(error);
+                    });
+                    /*============GUARDAR DATOS EN FIRESTORE===========*/
 
-        db.collection('Usuarios').add({
-            nombre: name,
-            correo: email,
-            ciudadpais: ciudad,
-            telefono: telefono,
-            apellido: apellido,
-            contraseña: password,
-            doc: picture
-        })
-            .then(docRef => {
+                }).catch((error) => {
+                let errorCode = error.code;
+                let errorMessage = error.message;
+                console.log(errorCode, errorMessage);
 
-                console.log(docRef.id)
-                swal("Felicidades!", "Gracias por registrarse!", "success");
-
-
-            })
-            .catch((error) => {
-                alert(error.message);
+                /*============== EL CORREO YA SE USA POR OTRA CUENTA ==================*/
+                if(errorCode === "auth/email-already-in-use"){
+                    swal("Oops", "La dirección de correo ya esta siendo usada por otra cuenta!", "warning");
+                }
             });
-        setName('');
-        setEmail('');
-        setCiudad('');
-        setTelefono('');
-        setPassword('');
-        setApellido('');
-        setPicture('');
+        } else {
+            swal("Advertencia", "Debes aceptar los términos y condiciones para poder registrarte!", "warning");
+        }
 
-        console.log('se enviaron los datos')
 
 
     };
-
-    console.log({name, ciudad, email, telefono, apellido, password, picture})
 
     const setStatesValues = (event, state) => {
         eval(state)(event);
@@ -152,16 +158,21 @@ const Navigation = () => {
                         </li>
                     </ul>
                     <button type="button" className=" navsesion btn btn-link" data-toggle="modal"
-                            data-target="#staticBackdrop">
-                        Inicia Sesion
+                            data-target="#signInModal">Inciar sesión
                     </button>
-                    <button type="button" className=" navsesion btn btn-link">Crea tu cuenta</button>
+                    <button type="button" className=" navsesion btn btn-link" data-toggle="modal"
+                            data-target="#signUpModal">
+                        Crea tu cuenta
+                    </button>
                     <SignUpModal
                         handleSubmit={handleSubmit}
                         handleOnChange={handleOnChange}
                         setStatesValues={setStatesValues}
                         getStatesValues={[picture, uploadValue, name, email, ciudad, telefono, apellido, password]}
+                        handleCheckboxState={handleCheckboxState}
                     />
+
+                    <SignInModal/>
                 </div>
             </div>
         </nav>
