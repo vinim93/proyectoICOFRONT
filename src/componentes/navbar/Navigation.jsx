@@ -15,6 +15,7 @@ import Camaraine from '../../images/camaraine.svg';
 import {db} from '../config/firebase';
 
 import 'firebase/firestore';
+import SignUpModal from "./SignUpModal";
 
 var caracteres = "abcdefghijkmnpqrtuvwxyzABCDEFGHJKMNPQRTUVWXYZ2346789";
 var contraseña = ""
@@ -110,6 +111,10 @@ const Navigation = () => {
 
     console.log({name, ciudad, email, telefono, apellido, password, picture})
 
+    const setStatesValues = (event, state) => {
+        eval(state)(event);
+    }
+
     return (
 
         < nav className="navbar navbar-expand-lg navbar-dark fixed-top ">
@@ -146,204 +151,17 @@ const Navigation = () => {
                             </NavLink>
                         </li>
                     </ul>
-                    <form className="form my-2 my-lg-0  " onSubmit={handleSubmit}>
-                        <button type="button" className=" navsesion btn btn-link" data-toggle="modal"
-                                data-target="#staticBackdrop">
-                            Inicia Sesion
-                        </button>
-
-                        {/*--------MODAL DEL REGISTRO---------------------------------------------------*/}
-                        <div class="modal fade " id="staticBackdrop" data-backdrop="static" data-keyboard="false"
-                             tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl modal-dialog-centered   ">
-                                <div class="modal-content  registrobody ">
-
-                                    <div class="modal-header">
-                                        <h5 class="modal-title col-12" id="staticBackdropLabel">Crea tu cuenta</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div className="container">
-                                        <div className="row">
-                                            <div class="modal-body  col-12">
-
-
-                                                <div className="form-group col-12 ">
-                                                    <button className="btn col-xl-5 col-lg-7 gmail">
-                                                        <img src={Icongmail} alt=""
-                                                             className="icon-g img-fluid"/> Registrate con Gmail
-                                                    </button>
-                                                </div>
-                                                <div className="form-group col-12 ">
-                                                    <button className="btn col-xl-5 col-lg-7 gmail">
-                                                        <img src={Iconfaceb} alt=""
-                                                             className="icon-g img-fluid"/> Registrate con Facebook
-                                                    </button>
-                                                </div>
-                                                <div className="form-group  col-12">
-                                                    <input className="btn col-xl-5 col-lg-7 form-regi gmail form-control"
-                                                           type="text" placeholder="Ciudad o Pais"
-                                                           name='ciudad'
-                                                           value={ciudad}
-                                                           onChange={(e) => setCiudad(e.target.value)}/>
-                                                </div>
-                                                <div className="form-group  col-12">
-                                                    <input className="btn col-xl-5 col-lg-7  form-regi gmail form-control"
-                                                           type="text"
-                                                           placeholder="Tel:"
-                                                           name="telefono"
-                                                           value={telefono}
-                                                           onChange={(e) => setTelefono(e.target.value)}/>
-                                                </div>
-                                                <div className="form-group  col-12">
-
-                                                    <input className="btn col-xl-5 col-lg-7 form-regi gmail form-control"
-                                                           type="text" placeholder="Nombre"
-                                                           name='name'
-                                                           value={name}
-                                                           onChange={(e) => setName(e.target.value)}/>
-
-                                                </div>
-                                                <div className="form-group  col-12">
-                                                    <input className="btn col-xl-5 col-lg-7 form-regi gmail form-control"
-                                                           type="text"
-                                                           placeholder="Apellido"
-                                                           name="apellido"
-                                                           value={apellido}
-                                                           onChange={(e) => setApellido(e.target.value)}/>
-                                                </div>
-                                                <div className="form-group  col-12">
-                                                    <input className="btn col-xl-5  col-lg-7 form-regi gmail form-control"
-                                                           type="email"
-
-                                                           placeholder="Email"
-                                                           name="email"
-                                                           value={email}
-                                                           onChange={(e) => setEmail(e.target.value)}/>
-                                                </div>
-                                                <div className="form-group  col-12">
-                              <span className="form-regi col-xl-5 col-lg-7">ID<label className="btn form-regi" for="cameraine"
-                              > 
-                                <img src={Camaraine} alt="" className=""/>
-                              </label>
-                                <label for="pdfine" className="btn form-regi">
-                                  <img src={Pdfine} alt="" className=""/>
-                                </label>
-                                <button type="submit" class="btn btn-registro">REGISTRATE</button>
-                                  {/*---------------------------------------------------------------------------------*/}
-
-                                  <div className=" form-group  form-registro col-12 ">
-            
-            <progress value={uploadValue} max="100">
-                {uploadValue}%
-            </progress>
-            <p className="btn form-regi">{`${uploadValue}%`}</p>
-                <br/>
-                             
-                <input type="file" id="cameraine" className=" d-none"
-                       accept="image/*"
-                       onChange={handleOnChange}>
-                </input>
-                     
-                <input type="file" id="pdfine"
-                       accept="application/pdf" className="d-none"
-                       onChange={handleOnChange}>
-                </input>
-                
-                
-
-               <div style={{
-                   position: 'absolute', justifycontent: "center", bottom: '10px', left: '50vw'
-
-               }}>
-                           <object
-                               data={picture}
-                               type="application/pdf"
-                               height="100%"
-                               width="100%"
-                           >
-
-                </object>
-                    </div> 
-                
-                
-                
-                <img src={picture} width="90" className="" alt=""/>
-                             
-                
-             
-                
-        </div>
-
-
-                                  {/*-----------------------------------------------------------------------------------------------*/}
-                                
-                              </span>
-                                                </div>
-                                                <div className="form-group  col-12">
-                                                    <input className="btn col-xl-5 col-lg-7 form-regi gmail" type="text"
-                                                           placeholder="Usuario"/>
-                                                </div>
-                                                <div className="form-group  col-12">
-                                                    <input className="btn col-xl-5 col-lg-7 form-regi gmail" type="password"
-                                                           id="signup-password"
-                                                           placeholder="Contraseña " required
-                                                           name="password"
-                                                           value={password}
-                                                           onChange={(e) => setPassword(e.target.value)}/>
-                                                </div>
-                                                <div className="form-group  col-12">
-                                                    <input className="btn col-xl-5 col-lg-7 form-regi gmail" type="password" id=""
-                                                           placeholder="Confirmar Contraseña" required
-                                                           name="password"
-                                                           value={password}
-                                                           onChange={(e) => setPassword(e.target.value)}
-                                                    />
-                                                </div>
-                                                <div className="form-group form-check col-12">
-                              <span className="btn form-check col-5 form-regi">
-
-                            <input className="form-check-input  form-regi" type="radio" name="blankRadio" id="aviso"
-                                   value="option1" aria-label="..."></input>
-                            <label className="form-regi marginlb form-check-label" for="aviso">
-                                       Aviso de privacidad
-                                      </label>
-                            
-                            </span>
-                                                </div>
-                                                <div className="form-group form-check col-12">
-                              <span className="btn form-check col-5 form-regi">
-
-                            <input className="form-check-input  form-regi" type="radio" name="" id="aviso1" value=""
-                                   aria-label="..."></input>
-                            <label className="form-regi marginlb form-check-label" for="aviso1">
-                                        Aceptar Terminos y condiciones 
-                                      </label>
-                            
-                            </span>
-
-                                                </div>
-
-
-                                            </div>
-
-
-                                            <div class="modal-footer col-12 btn-footer">
-
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/*------------------------------------------------------------------------------*/}
-                        <button type="button" className=" navsesion btn btn-link">Crea tu cuenta</button>
-
-                    </form>
+                    <button type="button" className=" navsesion btn btn-link" data-toggle="modal"
+                            data-target="#staticBackdrop">
+                        Inicia Sesion
+                    </button>
+                    <button type="button" className=" navsesion btn btn-link">Crea tu cuenta</button>
+                    <SignUpModal
+                        handleSubmit={handleSubmit}
+                        handleOnChange={handleOnChange}
+                        setStatesValues={setStatesValues}
+                        getStatesValues={[picture, uploadValue, name, email, ciudad, telefono, apellido, password]}
+                    />
                 </div>
             </div>
         </nav>
