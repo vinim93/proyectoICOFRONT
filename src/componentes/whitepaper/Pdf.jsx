@@ -6,7 +6,7 @@ import Loader from './Loader';
 
 import {Document, Page} from 'react-pdf';
 import {pdfjs} from 'react-pdf';
-import GoogleDocsViewer from 'react-google-docs-viewer';
+
 import ControlPanel from './ControlPanel';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
