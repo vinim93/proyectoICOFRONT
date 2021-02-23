@@ -6,8 +6,11 @@ import Loader from './Loader';
 
 import {Document, Page} from 'react-pdf';
 import {pdfjs} from 'react-pdf';
+import GoogleDocsViewer from 'react-google-docs-viewer';
 import ControlPanel from './ControlPanel';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+
+
 
 
 
@@ -37,9 +40,20 @@ const Pdf = ()=>{
             return(
              
            <div className="row   ">
-            <div className="col-12  fondopdf p-3">
+            
+            <div className="col-12  fondopdf p-3 d-none d-md-block">
+           
             <Loader isLoading={isLoading}/>
-                 <ControlPanel className=""
+            < iframe width='800' className="google-viewer" height='600' frameborder='0' src='https://firebasestorage.googleapis.com/v0/b/ico-sunshine-contact.appspot.com/o/Avance.6c917d8f.pdf?alt=media&token=2d0bd427-c2ff-4b5c-9579-e9e6329a3681 '></iframe>
+                 
+     
+              
+              
+             
+                </div>
+                <div className="col-12 fondopdf p-3 d-block d-md-none" >
+               <Loader isLoading={isLoading}/>
+               <ControlPanel className=""
                  numPages={numPages}                 
                  pageNumber={pageNumber}
                  setPageNumber={setPageNumber} 
@@ -51,11 +65,6 @@ const Pdf = ()=>{
       >
         <Page pageNumber={pageNumber} className="   "scale={scale} />
       </Document>
-     
-              {/*  <div >
-                    <iframe  className="viewercontainer"    src={Docpdf} type="application/pdf " />
-                </div>
-              */}
                 </div>
                 </div>
             

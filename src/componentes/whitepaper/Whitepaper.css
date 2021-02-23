@@ -20,6 +20,16 @@
   background-color: rgb(155, 155, 155, 0.7);
  
 }
+.google-viewer{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: red;
+    margin-top: 50px!important;
+}
 .control-para{
     background-color: white!important;
 }
@@ -55,7 +65,7 @@
   .pdfcontainer{
       margin-bottom: 10vw;
       display: flex;
-       position: relative;
+       overflow:hidden ;
     
     justify-content: center!important;
     text-align: center;
@@ -64,14 +74,20 @@
     
     
   }
-  .pdfcontainer canvas{
-    
-   position: relative;
-   width: 80vw!important;
-   height: 80vw!important;
-    
+  .pdfcontainer span{
+    display: flex!important;
+   position: relative!important;
+   
     
   }
+  .pdfcontainer canvas{
+    
+    position: relative!important;
+    width: 80vw!important;
+    height: 80vw!important;
+     
+     
+   }
   #loader{
     position: fixed !important;;
     top: 0;
