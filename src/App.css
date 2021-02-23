@@ -969,8 +969,8 @@ white-space: normal;
   overflow: hidden;
 }
 .mapaes{
-  width: 102vw!important;
-  
+  width: 100%;
+  padding: 0;
 }
 /*-----------------------------------SECCION QUE ES ---------------------------------------*/
 .text-moneda{
