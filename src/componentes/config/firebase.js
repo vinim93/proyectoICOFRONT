@@ -3,12 +3,13 @@ import firebase from 'firebase';
 let firebaseApp = firebase.initializeApp({
 // Your web app's Firebase configuration
 
-    apiKey: "AIzaSyDOpaSp7DF6J62vugkEiTkvILG4bElpeEI",
-    authDomain: "ico-sunshine-contact.firebaseapp.com",
-    projectId: "ico-sunshine-contact",
-    storageBucket: "gs://ico-sunshine-contact.appspot.com",
-    messagingSenderId: "225520940002",
-    appId: "1:225520940002:web:a0553cbc8de0719507ffbb"
+    apiKey: "AIzaSyDHjddOZb0Vuh9wNsuC1tXgWqMSGTP8Kmw",
+    authDomain: "sunshine-ico.firebaseapp.com",
+    projectId: "sunshine-ico",
+    storageBucket: "sunshine-ico.appspot.com",
+    messagingSenderId: "263506901293",
+    appId: "1:263506901293:web:6193ece489b199e575bba4",
+    measurementId: "G-7Y0616KDLP"
 
 });
 
