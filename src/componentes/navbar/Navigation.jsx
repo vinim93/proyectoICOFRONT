@@ -86,7 +86,7 @@ const Navigation = () => {
                         name: name,
                         phone: telefono
                     }).then(docRef => {
-                        swal("Listo", "Si se pudo", "success");
+                        swal("Registro exitoso", "", "success");
                         setName('');
                         setEmail('');
                         setCiudad('');
@@ -132,7 +132,7 @@ const Navigation = () => {
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div className="collapse navbar-collapse" id="navbarNav">
 
 
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">

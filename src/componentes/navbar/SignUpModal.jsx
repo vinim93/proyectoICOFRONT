@@ -1,10 +1,29 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Icongmail from "../../images/icongmail.svg";
 import Iconfaceb from "../../images/iconfaceb.svg";
 import Camaraine from "../../images/camaraine.svg";
 import Pdfine from "../../images/pdfine.svg";
+import "./css/styles.css"
+import axios from "axios";
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 const SignUpModal = ({handleSubmit, handleOnChange, setStatesValues, getStatesValues, handleCheckboxState}) => {
+
+    const [countries, setCountries] = useState([]);
+
+    useEffect(() => {
+        const fetchCountryData = async () => {
+            try {
+                const response = await axios.get("https://restcountries.eu/rest/v2/all");
+                setCountries(response.data);
+                console.log(response.data[0].flag);
+            } catch (e){
+                console.log(e);
+            }
+        }
+        fetchCountryData();
+    }, []);
 
     return (
         <form className="form my-2 my-lg-0 " onSubmit={handleSubmit}>
@@ -38,25 +57,27 @@ const SignUpModal = ({handleSubmit, handleOnChange, setStatesValues, getStatesVa
                                         </button>
                                     </div>
 
-                                    <div className="form-group  col-12">
-                                        <input
-                                            className="btn col-xl-5 col-lg-7 form-regi gmail form-control"
-                                            type="text" placeholder="Ciudad o país"
-                                            name='ciudad'
-                                            value={getStatesValues[4]}
-                                            onChange={(e) => setStatesValues(e.target.value, "setCiudad")}
-                                            required/>
+                                    <div className="form-group col-12 d-flex justify-content-center">
+                                        <select className="col-xl-5 col-lg-7 form-regi gmail form-control" name="" id="" onChange={e => setStatesValues(e.target.value, "setCiudad")}>
+                                            <option value="">Elige un país</option>
+                                            {
+                                                countries.map((value, index) => (
+                                                    <option key={index} value={value.name}>{value.name}</option>
+                                                ))
+                                            }
+                                        </select>
+
                                     </div>
 
-                                    <div className="form-group  col-12">
-                                        <input
-                                            className="btn col-xl-5 col-lg-7  form-regi gmail form-control"
-                                            type="text"
-                                            placeholder="Teléfono"
-                                            name="telefono"
-                                            value={getStatesValues[5]}
-                                            onChange={(e) => setStatesValues(e.target.value, "setTelefono")}
-                                            required/>
+                                    <div className="form-group col-12 input-group d-flex justify-content-center">
+                                            <PhoneInput
+                                                className="col-xl-5 col-lg-7 phone-numbers-select gmail2"
+                                                international
+                                                countryCallingCodeEditable={false}
+                                                defaultCountry="MX"
+                                                value={getStatesValues[5]}
+                                                onChange={(e) => setStatesValues(e, "setTelefono")}/>
+
                                     </div>
 
                                     <div className="form-group  col-12">
@@ -73,7 +94,7 @@ const SignUpModal = ({handleSubmit, handleOnChange, setStatesValues, getStatesVa
 
                                     <div className="form-group  col-12">
                                         <input
-                                            className="btn col-xl-5 col-lg-7 form-regi gmail form-control"
+                                            className="btn col-xl-5 col-lg-7 phone-numbers-select gmail2 form-control"
                                             type="text"
                                             placeholder="Apellido"
                                             name="apellido"
