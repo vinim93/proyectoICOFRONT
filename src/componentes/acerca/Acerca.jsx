@@ -122,11 +122,10 @@ const Acerca = () => {
 
         <div className="">
 
-            <div className="container-fluid">
-                
-                <div className="row" style={{height: 500}}>
+            <div className="container-fluid pt-5">
+                <div className="row mt-5" style={{height: 500}}>
                     <div className="col-12">
-                        <ReactPlayer width="100%" height="100%" url='https://www.youtube.com/watch?v=qOVAbKKSH10'/>
+                        <ReactPlayer width="100%" height="100%" url='https://www.youtube.com/watch?v=JqyDcDPi3jg&feature=youtu.be'/>
                     </div>
                 </div>
             </div>

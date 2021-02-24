@@ -1,0 +1,29 @@
+.gmail2{
+
+    position: relative;
+    color: white!important;
+    background-color: #ffffff80!important;
+    font-size: 2vw!important;
+    font-family:'Lato';
+    font-weight:bold!important;
+}
+
+.phone-numbers-select{
+    color: white!important;
+    justify-content: flex-start!important;
+    text-align: left!important;
+    font-family:'Lato';
+    font-size: 2vw;
+    font-weight:bold!important;
+    z-index: 2000!important;
+}
+
+.phone-numbers-select::placeholder{
+    color: #ffffffb3!important;
+    justify-content: flex-start!important;
+    text-align: left;
+    font-family:'Lato';
+    font-weight:bold!important;
+
+}
+

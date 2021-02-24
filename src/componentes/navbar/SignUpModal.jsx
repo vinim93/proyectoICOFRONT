@@ -1,14 +1,33 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Icongmail from "../../images/icongmail.svg";
 import Iconfaceb from "../../images/iconfaceb.svg";
 import Camaraine from "../../images/camaraine.svg";
 import Pdfine from "../../images/pdfine.svg";
+import "./css/styles.css"
+import axios from "axios";
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
-const SignUpModal = ({handleSubmit, handleOnChange, setStatesValues, getStatesValues}) => {
+const SignUpModal = ({handleSubmit, handleOnChange, setStatesValues, getStatesValues, handleCheckboxState}) => {
+
+    const [countries, setCountries] = useState([]);
+
+    useEffect(() => {
+        const fetchCountryData = async () => {
+            try {
+                const response = await axios.get("https://restcountries.eu/rest/v2/all");
+                setCountries(response.data);
+                console.log(response.data[0].flag);
+            } catch (e){
+                console.log(e);
+            }
+        }
+        fetchCountryData();
+    }, []);
 
     return (
         <form className="form my-2 my-lg-0 " onSubmit={handleSubmit}>
-            <div className="modal fade " id="staticBackdrop" data-backdrop="static" data-keyboard="false"
+            <div className="modal fade " id="signUpModal" data-backdrop="static" data-keyboard="false"
                  tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div className="modal-dialog modal-xl modal-dialog-centered   ">
                     <div className="modal-content  registrobody ">
@@ -38,23 +57,27 @@ const SignUpModal = ({handleSubmit, handleOnChange, setStatesValues, getStatesVa
                                         </button>
                                     </div>
 
-                                    <div className="form-group  col-12">
-                                        <input
-                                            className="btn col-xl-5 col-lg-7 form-regi gmail form-control"
-                                            type="text" placeholder="Ciudad o Pais"
-                                            name='ciudad'
-                                            value={getStatesValues[4]}
-                                            onChange={(e) => setStatesValues(e.target.value, "setCiudad")} />
+                                    <div className="form-group col-12 d-flex justify-content-center">
+                                        <select className="col-xl-5 col-lg-7 form-regi gmail form-control" name="" id="" onChange={e => setStatesValues(e.target.value, "setCiudad")}>
+                                            <option value="">Elige un país</option>
+                                            {
+                                                countries.map((value, index) => (
+                                                    <option key={index} value={value.name}>{value.name}</option>
+                                                ))
+                                            }
+                                        </select>
+
                                     </div>
 
-                                    <div className="form-group  col-12">
-                                        <input
-                                            className="btn col-xl-5 col-lg-7  form-regi gmail form-control"
-                                            type="text"
-                                            placeholder="Tel:"
-                                            name="telefono"
-                                            value={getStatesValues[5]}
-                                            onChange={(e) => setStatesValues(e.target.value, "setTelefono")}/>
+                                    <div className="form-group col-12 input-group d-flex justify-content-center">
+                                            <PhoneInput
+                                                className="col-xl-5 col-lg-7 phone-numbers-select gmail2"
+                                                international
+                                                countryCallingCodeEditable={false}
+                                                defaultCountry="MX"
+                                                value={getStatesValues[5]}
+                                                onChange={(e) => setStatesValues(e, "setTelefono")}/>
+
                                     </div>
 
                                     <div className="form-group  col-12">
@@ -64,29 +87,20 @@ const SignUpModal = ({handleSubmit, handleOnChange, setStatesValues, getStatesVa
                                             type="text" placeholder="Nombre"
                                             name='name'
                                             value={getStatesValues[2]}
-                                            onChange={(e) => setStatesValues(e.target.value, "setName")}/>
+                                            onChange={(e) => setStatesValues(e.target.value, "setName")}
+                                            required/>
 
                                     </div>
 
                                     <div className="form-group  col-12">
                                         <input
-                                            className="btn col-xl-5 col-lg-7 form-regi gmail form-control"
+                                            className="btn col-xl-5 col-lg-7 phone-numbers-select gmail2 form-control"
                                             type="text"
                                             placeholder="Apellido"
                                             name="apellido"
                                             value={getStatesValues[6]}
-                                            onChange={(e) => setStatesValues(e.target.value, "setApellido")}/>
-                                    </div>
-
-                                    <div className="form-group  col-12">
-                                        <input
-                                            className="btn col-xl-5  col-lg-7 form-regi gmail form-control"
-                                            type="email"
-
-                                            placeholder="Email"
-                                            name="email"
-                                            value={getStatesValues[3]}
-                                            onChange={(e) => setStatesValues(e.target.value, "setEmail")}/>
+                                            onChange={(e) => setStatesValues(e.target.value, "setApellido")}
+                                            required/>
                                     </div>
 
                                     <div className="form-group  col-12">
@@ -98,9 +112,6 @@ const SignUpModal = ({handleSubmit, handleOnChange, setStatesValues, getStatesVa
                                                         <label htmlFor="pdfine" className="btn form-regi">
                                                             <img src={Pdfine} alt="" className=""/>
                                                         </label>
-                                                        <button type="submit"
-                                                                className="btn btn-registro">REGISTRATE</button>
-
                                                         <div className=" form-group  form-registro col-12 ">
 
                                                             <progress value={getStatesValues[1]} max="100">
@@ -135,30 +146,38 @@ const SignUpModal = ({handleSubmit, handleOnChange, setStatesValues, getStatesVa
                                                                </object>
                                                             </div>
 
-                                                            <img src={getStatesValues[0]} width="90" className="" alt=""/>
+                                                            <img src={getStatesValues[0]} width="90" className=""
+                                                                 alt=""/>
                                                         </div>
                                                     </span>
                                     </div>
 
                                     <div className="form-group  col-12">
-                                        <input className="btn col-xl-5 col-lg-7 form-regi gmail" type="text"
-                                               placeholder="Usuario"/>
+                                        <input
+                                            className="btn col-xl-5  col-lg-7 form-regi gmail form-control"
+                                            type="email"
+                                            placeholder="Email"
+                                            name="email"
+                                            value={getStatesValues[3]}
+                                            onChange={(e) => setStatesValues(e.target.value, "setEmail")}
+                                            required/>
                                     </div>
 
                                     <div className="form-group  col-12">
                                         <input className="btn col-xl-5 col-lg-7 form-regi gmail"
                                                type="password"
                                                id="signup-password"
-                                               placeholder="Contraseña " required
+                                               placeholder="Contraseña"
                                                name="password"
                                                value={getStatesValues[7]}
-                                               onChange={(e) => setStatesValues(e.target.value, "setPassword")}/>
+                                               onChange={(e) => setStatesValues(e.target.value, "setPassword")}
+                                               required/>
                                     </div>
 
                                     <div className="form-group  col-12">
                                         <input className="btn col-xl-5 col-lg-7 form-regi gmail"
                                                type="password" id=""
-                                               placeholder="Confirmar Contraseña" required
+                                               placeholder="Confirmar contraseña" required
                                                name="password"
                                                value={getStatesValues[7]}
                                                onChange={(e) => setStatesValues(e.target.value, "setPassword")}/>
@@ -166,25 +185,36 @@ const SignUpModal = ({handleSubmit, handleOnChange, setStatesValues, getStatesVa
 
                                     <div className="form-group form-check col-12">
                                                     <span className="btn form-check col-5 form-regi">
-                                                        <input className="form-check-input  form-regi" type="radio"
-                                                               name="blankRadio" id="aviso" value="option1"
-                                                               aria-label="..."></input>
-                                                        <label className="form-regi marginlb form-check-label"
-                                                               htmlFor="aviso">
-                                                            Aviso de privacidad
+                                                        <label className="form-regi marginlb form-check-label">
+                                                            <a className="text-light" href="">
+                                                                Aviso de privacidad
+                                                            </a>
                                                         </label>
                                                     </span>
                                     </div>
 
-                                    <div className="form-group form-check col-12">
+                                    <div className="form-group form-check col-12"
+                                         onChange={e => console.log(e.target.value)}>
                                                     <span className="btn form-check col-5 form-regi">
-                                                        <input className="form-check-input  form-regi" type="radio"
-                                                               name="" id="aviso1" value="" aria-label="..."></input>
+                                                        <input className="form-check-input form-regi"
+                                                               type="checkbox"
+                                                               name="terminosYCondiciones"
+                                                               id="aviso1"
+                                                               onChange={handleCheckboxState}
+                                                               required/>
+
                                                         <label className="form-regi marginlb form-check-label"
                                                                htmlFor="aviso1">
-                                                            Aceptar Terminos y condiciones
+                                                            Aceptar términos y condiciones
                                                         </label>
                                                     </span>
+                                    </div>
+
+                                    <div className="form-group col-12 mt-3">
+                                        <button type="submit"
+                                                className="btn btn-registro">REGISTRATE
+                                        </button>
+
                                     </div>
                                 </div>
 
