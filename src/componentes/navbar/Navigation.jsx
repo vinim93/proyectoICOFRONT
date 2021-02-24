@@ -157,12 +157,12 @@ const Navigation = () => {
                             </NavLink>
                         </li>
                     </ul>
-                    <button type="button" className=" navsesion btn btn-link" data-toggle="modal"
-                            data-target="#signInModal">Inciar sesión
+                    <button type="button" className="navsesion btn btn-link disabled" data-toggle="modal"
+                            data-target="#signInModal">Iniciar sesión (Próximamente)
                     </button>
-                    <button type="button" className=" navsesion btn btn-link" data-toggle="modal"
+                    <button type="button" className="navsesion btn btn-link disabled" data-toggle="modal"
                             data-target="#signUpModal">
-                        Crea tu cuenta
+                        Crea tu cuenta (Próximamente)
                     </button>
                     <SignUpModal
                         handleSubmit={handleSubmit}

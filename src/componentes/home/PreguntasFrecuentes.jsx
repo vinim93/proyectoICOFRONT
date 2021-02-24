@@ -1,20 +1,26 @@
 import React from 'react';
-import changeImageA from "./ImgcambioA";
 import Depmason from "../../images/depmason.svg";
-import changeImage from "./Imgcambio";
-import changeImageB from "./ImgcambioB";
 import Imgpreg from "../../images/imgpreg.svg";
-import changeImageC from "./ImgcambioC";
-import changeImageD from "./ImgcambioD";
+import Depmenos from "../../images/depmenos.svg";
 
 const PreguntasFrecuentes = () => {
+
+    const changeIcon = (imageID) => {
+        let image = document.getElementById(imageID)
+        if (image.src.match("on")) {
+            image.src = Depmenos;
+        } else {
+            image.src = Depmason;
+        }
+    }
+
     return (
         <div className="row fondo-preg">
             <p className="frecprec">PREGUNTAS FRECUENTES</p>
             <div className="col-lg-6 col-md-6 col-12 preguntas  ">
 
                 <p className="">
-                    <button className="btn btn-preg1" onClick={changeImageA}
+                    <button className="btn btn-preg1" onClick={() => changeIcon("myImageA")}
                             type="button" data-toggle="collapse" data-target="#collapsetoken"
                             aria-expanded="false" aria-controls="collapseExample">
                         <img src={Depmason} id="myImageA" alt="" className="mas"/>¿Qué es un Token?
@@ -32,7 +38,7 @@ const PreguntasFrecuentes = () => {
                     </div>
                 </div>
                 <p className="">
-                    <button className="btn btn-preg1" onClick={changeImage}
+                    <button className="btn btn-preg1" onClick={() => changeIcon("myImage")}
                             type="button" data-toggle="collapse" data-target="#collapsetoken1"
                             aria-expanded="false" aria-controls="collapseExample">
                         <img src={Depmason} id="myImage" alt="" className="mas"/>¿Qué es una criptomoneda?
@@ -49,7 +55,7 @@ const PreguntasFrecuentes = () => {
                     </div>
                 </div>
                 <p className="">
-                    <button className="btn btn-preg1" onClick={changeImageB}
+                    <button className="btn btn-preg1" onClick={() => changeIcon("myImageB")}
                             type="button" data-toggle="collapse" data-target="#collapsetoken2"
                             aria-expanded="false" aria-controls="collapseExample">
                         <img src={Depmason} id="myImageB" alt="" className="mas"/>¿Qué es una ICO?
@@ -69,7 +75,7 @@ const PreguntasFrecuentes = () => {
                     </div>
                 </div>
                 <p className="">
-                    <button className="btn btn-preg1" onClick={changeImageC}
+                    <button className="btn btn-preg1" onClick={() => changeIcon("myImageC")}
                             type="button" data-toggle="collapse" data-target="#collapsetoken3"
                             aria-expanded="false" aria-controls="collapseExample">
                         <img src={Depmason} id="myImageC" alt="" className="mas"/>
@@ -85,7 +91,7 @@ const PreguntasFrecuentes = () => {
                     </div>
                 </div>
                 <p className="">
-                    <button className="btn btn-preg1" onClick={changeImageD}
+                    <button className="btn btn-preg1" onClick={() => changeIcon("myImageD")}
                             type="button" data-toggle="collapse" data-target="#collapsetoken4"
                             aria-expanded="false" aria-controls="collapseExample">
                         <img src={Depmason} id="myImageD" alt="" className="mas"/>
