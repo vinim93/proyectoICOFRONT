@@ -24,16 +24,16 @@ import maparoad from '../../images/maparoad.svg';
 class RoaptoMapa extends Component{
     render() {
       return(
-          <div className="container-fluid ">
-            <div className="row">
-              <div className="col-12 m-0 p-0">
 
-              <img src={maparoad} className="img-fluid road" alt=""/>
+            <div className="road ">
+              <div className="row  ">
+
+              <img src={maparoad} className=" maparoad " alt=""/>
               </div>
               <Footer/>
             </div>
             
-          </div>
+        
       )
     }}
 
