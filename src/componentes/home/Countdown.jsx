@@ -19,7 +19,9 @@ const Countdown = () => {
                 <p className="sec3con">
                     El intercambio de tokens termina en:
                 </p><br/>
-                <p id="contador"></p>
+                <div className="container-contador">
+                <p id="contador" className=""></p>
+                </div>
             </div>
 
             <ul className="rectangulo1 text-justify text-center">

@@ -76,9 +76,9 @@ margin: 0px;
 
   opacity: 0.91;
 		filter: drop-shadow(7px 11px 20px rgba(0, 0, 0, 1));
-		position: relative;
+		position: absolute;
 		width: 50vw!important;
-		
+
 		left: 2vw;
 		top: 50px;
     overflow: hidden;
@@ -97,7 +97,7 @@ margin: 0px;
  
 
  .contenedor{
-   
+   position: absolute;
   width: 100vw!important;
   
     overflow: hidden;
@@ -113,7 +113,7 @@ margin: 0px;
    top: 12vh;
    font-family: 'Eras Demi ITC';
   font-weight: 500;
-  
+  overflow: ;
   margin-bottom: 15vh!important;
   
 
@@ -132,6 +132,7 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
     font-style: oblique;
     font-weight: 900!important;
     font-size: 6.5vw;
+  
     color: white;
    
    
@@ -143,7 +144,7 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
       left: -10px;
       top: 0px;
       position: relative;
-      
+   
      
       white-space: normal;
       line-height: 40%;
@@ -165,7 +166,7 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
   filter: drop-shadow(0px 6px 1px rgba(0, 0, 0, 1));
     left: 8vw;
     top: 30px;
-    
+    overflow: visible!important;
     text-transform: uppercase;
     
     white-space: normal;
@@ -176,18 +177,20 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
     font-style: normal;
     font-weight: normal;
     font-size: 2vw;
+   
     color: rgba(255,255,255,1);
     letter-spacing: 0.03px;
     
 }
 .boton1{
+  display: flex;
   width: 20vw!important;
  position: relative!important;
   top: 10vw;
  
 margin-left: 1vw!important;
   text-align: center!important;
-  
+  margin-bottom: 10vw;
  color: rgb(4, 4, 82)!important;
   font-family:'Lato', sans-serif;
   background:#ffefba;
@@ -293,7 +296,7 @@ width: 100vw;
   height:  11vh;
   width: 100vw!important;
   color:white!important;
-  margin-top: 8.7vw;
+  margin-top: 20vw;
   padding-top: 3.5vh;
   padding-left: 0px; 
   padding-right: 0px; ;
@@ -373,13 +376,17 @@ width: 100vw;
 }
 
 .texto-contenedor{
-  display:flex;
-  position: absolute;
+  display:flex!important;
+  top: 45vw!important;
+  position: absolute!important;
   color: #053c63!important;
   justify-content: center;
-  margin-top: 2vw;
+
   right:72vw!important;
   font-size: 3vw!important;
+}
+.container-contador{
+ 
 }
 
 .texto-horas{
@@ -1012,7 +1019,7 @@ white-space: normal;
 }
 /*----------------------------------SECCION SOPORTE---------------------------------*/
 .fondoedi{
-  
+  position:absolute;
   background-image: url("./images/fondoedi.svg");
   background-size:cover;
   background-attachment: fixed;
@@ -1021,7 +1028,7 @@ white-space: normal;
   align-items: center;
 text-align: center;
   white-space: normal!important;
-  
+  overflow: hidden;
 }
 
 .img-meto{
@@ -1589,7 +1596,7 @@ font-family:'Lato';
 /*----------------------------------------------------------------------medias-------------------------------------------------*/
 
 
-@media screen and (max-width:2000px){
+@media only screen and (max-width:2000px){
   .focoenv-cont{
     bottom: -4vw!important; 
   
@@ -1760,6 +1767,12 @@ margin-top: 3vw;
     font-size: 3vw!important;
     left: -.5vw;
   }
+  /*-----------------------------------contador-----------------------------*/
+  .texto-contenedor{
+  
+    top: 50vw!important;
+   
+  }
   /*------------------media de imagnes apps-----------------*/
   .img-aple{
        
@@ -1881,14 +1894,33 @@ margin-top: 3vw;
         height: 1200px;
       }
      
-
+     .texto-contenedor{
+      
+       top: 50vw!important;
+       left: 15vw!important;
+           
+     }
+   
+     
+     .container-contador{
+      margin-left:-5vw!important;
+     }
+     .texto-horas{
+      right:  80vw!important;
+    }
+    .texto-min{
+      right: 90vw!important
+    }
+    .texto-seg{
+      right: 100vw!important
+    }
     }
 
 
 
 
   
-@media screen and (max-width: 767px){
+@media screen and (max-width: 768px){
 
   /*-----------------------------media seccion1-------------------------*/
   .revo1{
@@ -1920,7 +1952,7 @@ margin-top: 3vw;
       }
       .parte{
        
-        position: relative;
+        position: absolute;
         overflow: hidden;
       }
       .boton1{
@@ -1995,6 +2027,8 @@ margin-top: -8vh!important;
    
   }
   .fondo-opa{
+    
+    overflow: hidden;
     margin: 1vw;
     padding: 1vw 20vw 1vw 20vw!important;
 
@@ -2021,6 +2055,21 @@ margin-top: -8vh!important;
   font-size: 3vw;
 }
 }
+    .texto-contenedor{
+      margin-top: 5vw!important;
+    left: 25vw;
+      font-size: 4vw!important;
+      
+        }
+    .texto-horas{
+      left: 45vw!important;
+    }
+    .texto-min{
+      left: 65vw!important;
+    }
+    .texto-seg{
+      left: 85vw!important;
+    }
 @media screen and (max-width: 689px){
   .textsyn{
     top: 50vw!important;
@@ -2034,7 +2083,12 @@ margin-top: -8vh!important;
   .focoenv-cont{
     top: -138vw!important;
     }
+    .texto-contenedor{
+      top: 50vw!important;
+    }
 }
+ 
+
 @media screen and (max-width: 639px){
   .focoenv-cont{
     top: -155vw!important;
@@ -2090,7 +2144,14 @@ margin-top: -8vh!important;
   .contenedor-engra{
     height: 1000px!important;
   }
-  /*------------------------------------------------------------------*/
+  /*--------------------------------------contador----------------------------*/
+  .texto-contenedor{
+    margin-top: 9vw!important;
+  left: 25vw;
+    font-size: 4vw!important;
+    
+      }
+  /*------------------------------------------------------------------------*
   .texto-min{
     
     right:33vw!important;
@@ -2241,6 +2302,10 @@ margin-top: -8vh!important;
                 top: 70vw;
                 font-size: 4vw!important;
               }
+              .texto-contenedor{
+                margin-top: -15vw!important;
+             
+                  }
 /*----------------------------------media contador----------------------------/**/
 #contador
 {
@@ -2283,9 +2348,19 @@ top: 95vw!important;
   }
   /*-------------------------------------------------------------------------------------*/
   .texto-contenedor{
-    margin-top: -12vh!important;
+    margin-top: -20vw!important;
+    left: 30vw;
     font-size: 4vw!important;
     
+      }
+      .texto-horas{
+        left: 50vw!important;
+      }
+      .texto-min{
+        left: 70vw!important;
+      }
+      .texto-seg{
+        left: 90vw!important;
       }
       .moneda{
         
