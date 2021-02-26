@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 const Banner = () => {
     return (
         <div className="row fondogalaxy ">
-            <div className=" col-lg-7 parte col-md-7  pb-md-5 pb-lg-5 pb-xl-5 ">
+            <div className=" col-lg-7 parte col-md-7   ">
                 <p className="moneda1 text-lg-left text-center">
                     SE PARTE DE NUESTRA <br/>
                     <p className=" revo1">REVOLUCION</p>

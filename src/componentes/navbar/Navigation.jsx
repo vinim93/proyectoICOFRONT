@@ -157,21 +157,12 @@ const Navigation = () => {
                             </NavLink>
                         </li>
                     </ul>
-                    <button type="button" className="navsesion btn btn-link disabled" data-toggle="modal"
-                            data-target="#signInModal">Iniciar sesión (Próximamente)
+                    <button type="button" className="navsesion btn btn-link disabled">Iniciar sesión (Próximamente)
                     </button>
-                    <button type="button" className="navsesion btn btn-link disabled" data-toggle="modal"
-                            data-target="#signUpModal">
+                    <button type="button" className="navsesion btn btn-link disabled">
                         Crea tu cuenta (Próximamente)
                     </button>
-                    <SignUpModal
-                        handleSubmit={handleSubmit}
-                        handleOnChange={handleOnChange}
-                        setStatesValues={setStatesValues}
-                        getStatesValues={[picture, uploadValue, name, email, ciudad, telefono, apellido, password]}
-                        handleCheckboxState={handleCheckboxState}
-                    />
-                    <SignInModal />
+                    
                 </div>
             </div>
         </nav>

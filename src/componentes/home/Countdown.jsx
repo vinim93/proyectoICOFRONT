@@ -8,7 +8,7 @@ const Countdown = () => {
 
     useEffect(() => {
         contador("contador",
-            "Feb 25  , 2021 16:30:00",
+            "Mar 25  , 2021 16:30:00",
             "El intercambio de tokens  a terminado");
     }, []);
 

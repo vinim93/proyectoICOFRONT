@@ -73,10 +73,10 @@ margin: 0px;
    
  }
  .moneda{ 
-
+   
   opacity: 0.91;
 		filter: drop-shadow(7px 11px 20px rgba(0, 0, 0, 1));
-		position: absolute;
+		position: relative;
 		width: 50vw!important;
 
 		left: 2vw;
@@ -97,7 +97,7 @@ margin: 0px;
  
 
  .contenedor{
-   position: absolute;
+   
   width: 100vw!important;
   
     overflow: hidden;
@@ -183,14 +183,14 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
     
 }
 .boton1{
-  display: flex;
+  
   width: 20vw!important;
  position: relative!important;
   top: 10vw;
  
 margin-left: 1vw!important;
   text-align: center!important;
-  margin-bottom: 10vw;
+  margin-bottom: 20vw!important;
  color: rgb(4, 4, 82)!important;
   font-family:'Lato', sans-serif;
   background:#ffefba;
@@ -1004,7 +1004,7 @@ white-space: normal;
 }
 /*----------------------------------SECCION SOPORTE---------------------------------*/
 .fondoedi{
-  position:absolute;
+ 
   background-image: url("./images/fondoedi.svg");
   background-size:cover;
   background-attachment: fixed;
@@ -1939,7 +1939,7 @@ margin-top: 3vw;
       .moneda{
         opacity: 0.63;
         
-        position: absolute;
+        position: absolute!important;
         height: 45vh;
         left: 64vw !important;
         width: 40vw!important;
@@ -1950,7 +1950,7 @@ margin-top: 3vw;
       }
       .parte{
        
-        position: absolute;
+       
         overflow: hidden;
       }
       .boton1{
@@ -1960,7 +1960,7 @@ margin-top: 3vw;
         
       }
       .hometext1{
-        
+       
         margin: 3vh 0 0 2vw;
         font-size: 3.5vw;
         font-weight: bold;
