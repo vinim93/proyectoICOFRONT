@@ -46,40 +46,6 @@ const SignInModal = () => {
         setLoading(false)
     }
 
-    /*const signIn = (e) => {
-        e.preventDefault();
-        if(email !== "" && pass !== ""){
-            firebase.auth().signInWithEmailAndPassword(email, pass)
-                .then((user) => {
-                    console.log("SESION INICIADA");
-                    history.push("/userSession");
-                })
-                .catch((error) => {
-                    let errorCode = error.code;
-                    switch (errorCode) {
-                        case "auth/user-not-found":
-                            swal("Usuario no encontrado", "La cuenta de correo proporcionada no esta registrada!", "warning");
-                            break;
-
-                        case "auth/wrong-password":
-                            swal("Datos incorrectos", "La contraseña es incorrecta!", "warning");
-                            break;
-
-                        case "auth/invalid-email":
-                            swal("Datos mal escritos", "Solo puedes ingresar una cuenta de correo válida!", "warning");
-                            break;
-
-                        default:
-                            let errorMessage = error.message;
-                            console.log(errorCode, errorMessage);
-                    }
-                })
-        } else {
-            swal("No ingresaste datos", "Debes ingresar datos en los campos de usuario y contraseña!", "warning");
-        }
-
-    }*/
-
     return (
         <form className="form my-2 my-lg-0" onSubmit={signIn}>
             <div className="modal fade " id="signInModal" data-backdrop="static" data-keyboard="false"

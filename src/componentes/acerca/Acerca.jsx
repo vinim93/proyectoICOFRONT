@@ -10,6 +10,7 @@ import Solidez from '../../images/solidez.svg';
 import Garantia from '../../images/garantia.svg';
 import Trabajoequipo from '../../images/trabajoequipo.svg';
 import EquipoSunshine from "../../images/team.png";
+import Viridiana from "../../images/team/viridiana.jpeg";
 import Footer from '../footer/Footer';
 import Linkecontact from "../../images/linkecontact.svg";
 import Twitercontact from "../../images/twitercontact.svg";
@@ -19,8 +20,8 @@ const Acerca = () => {
 
     const team = [
         {
-            image: "https://bootstrapmade.com/demo/templates/Mamba/assets/img/team/team-1.jpg",
-            name: "Jocelyn Uribe",
+            image: Viridiana,
+            name: "Viridiana Uribe",
             career: "Community Manager",
             description: "Creación de contenido en RRSS.\n Monitoreo de los contenidos en redes sociales.\n Gestión y planificación de las acciones de comunicación.",
             social: {

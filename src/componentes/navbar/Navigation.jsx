@@ -25,102 +25,6 @@ let aleatorio = (Math.random());
 const Navigation = () => {
 
 
-    const [picture, setPicture] = useState(null);
-    const [uploadValue, setUploadValue] = useState(0);
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [ciudad, setCiudad] = useState("");
-    const [telefono, setTelefono] = useState("");
-    const [apellido, setApellido] = useState("");
-    const [password, setPassword] = useState("");
-    const [checkedValue, setCheckedValue] = useState(false);
-
-    const handleCheckboxState = (e) => {
-        console.log(e.target.checked);
-        setCheckedValue(e.target.checked);
-    }
-
-    const handleOnChange = (e) => {
-        const file = e.target.files[0]
-        const storageRef = firebase.storage().ref(`INE/${file.name}${contrasenia} ${aleatorio * aleatorio}`);
-        const task = storageRef.put(file);
-
-
-        task.on('state_changed', (snapshot) => {
-            let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            setUploadValue(percentage)
-
-        }, error => {
-            console.log(error.message)
-        }, () => {
-            storageRef.getDownloadURL().then(url => {
-                setPicture(url
-                )
-
-            })
-            storageRef.getDownloadURL().then(docurl => {
-                setPicture(
-                    docurl
-                )
-
-            })
-
-        });
-
-    }
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if(checkedValue){
-            firebase.auth().createUserWithEmailAndPassword(email, password)
-                .then((user) => {
-
-                    /*============GUARDAR DATOS EN FIRESTORE===========*/
-                    db.collection("credentials").doc(user.user.uid).set({
-                        UUID: user.user.uid,
-                        city: ciudad,
-                        doc: picture,
-                        email: email,
-                        last_name: apellido,
-                        name: name,
-                        phone: telefono
-                    }).then(docRef => {
-                        swal("Registro exitoso", "", "success");
-                        setName('');
-                        setEmail('');
-                        setCiudad('');
-                        setTelefono('');
-                        setPassword('');
-                        setApellido('');
-                        setPicture('');
-                    }).catch((error) => {
-                        console.log(error);
-                    });
-                    /*============GUARDAR DATOS EN FIRESTORE===========*/
-
-                }).catch((error) => {
-                let errorCode = error.code;
-                let errorMessage = error.message;
-                console.log(errorCode, errorMessage);
-
-                /*============== EL CORREO YA SE USA POR OTRA CUENTA ==================*/
-                if(errorCode === "auth/email-already-in-use"){
-                    swal("Oops", "La dirección de correo ya esta siendo usada por otra cuenta!", "warning");
-                }
-            });
-        } else {
-            swal("Advertencia", "Debes aceptar los términos y condiciones para poder registrarte!", "warning");
-        }
-
-
-
-    };
-
-    const setStatesValues = (event, state) => {
-        eval(state)(event);
-    }
-
     return (
 
         < nav className="navbar navbar-expand-lg navbar-dark fixed-top ">
@@ -164,13 +68,7 @@ const Navigation = () => {
                             data-target="#signUpModal">
                         Crea tu cuenta (Próximamente)
                     </button>
-                    <SignUpModal
-                        handleSubmit={handleSubmit}
-                        handleOnChange={handleOnChange}
-                        setStatesValues={setStatesValues}
-                        getStatesValues={[picture, uploadValue, name, email, ciudad, telefono, apellido, password]}
-                        handleCheckboxState={handleCheckboxState}
-                    />
+                    <SignUpModal />
                     <SignInModal />
                 </div>
             </div>
