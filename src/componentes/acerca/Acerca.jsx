@@ -13,16 +13,32 @@ import EquipoSunshine from "../../images/team.png";
 import Footer from '../footer/Footer';
 import Linkecontact from "../../images/linkecontact.svg";
 import Twitercontact from "../../images/twitercontact.svg";
+import VIRY from "../../images/team/VIRY.jpg";
+import MANU from "../../images/team/MANU.jpg";
+import KEV from "../../images/team/KEV.jpg";
+import JOS from "../../images/team/JOS.jpg";
+import CRIS from "../../images/team/CRIS.jpg";
 
 
 const Acerca = () => {
 
     const team = [
         {
-            image: "https://bootstrapmade.com/demo/templates/Mamba/assets/img/team/team-1.jpg",
+            image: VIRY,
+            name: "Viridiana Uribe",
+            career: "Operations Coordinator",
+            description: "Coordinación del correcto desarrollo de las actividades operativas de la empresa, Garantizar procesos que se lleven acabo en el tiempo y forma.",
+            social: {
+                linkedin: "https://mx.linkedin.com/in/viry-uribe-879b68163/",
+                twitter: "https://twitter.com/home?lang=es"
+            }
+        },
+
+        {
+            image: JOS,
             name: "Jocelyn Uribe",
             career: "Community Manager",
-            description: "Creación de contenido en RRSS.\n Monitoreo de los contenidos en redes sociales.\n Gestión y planificación de las acciones de comunicación.",
+            description: "Creación de contenido en RRSS. Monitoreo de los contenidos en redes sociales. Gestión y planificación de las acciones de comunicación.",
             social: {
                 linkedin: "https://www.linkedin.com/in/ahtziri-antonio-pe%C3%B1a-142705179/",
                 twitter: "https://twitter.com/AhtziriSunshine"
@@ -30,10 +46,21 @@ const Acerca = () => {
         },
 
         {
-            image: "https://bootstrapmade.com/demo/templates/Mamba/assets/img/team/team-2.jpg",
-            name: "Jocelyn Uribe",
-            career: "Community Manager",
-            description: "Creación de contenido en RRSS.\n Monitoreo de los contenidos en redes sociales.\n Gestión y planificación de las acciones de comunicación.",
+            image: MANU,
+            name: "Manuel Viniegra",
+            career: "Fullstack Developer",
+            description: "Desarrollador de sistemas web con amplio stack de tecnologías backend y frontend como Javascript y diseño responsive. \t",
+            social: {
+                linkedin: "https://www.linkedin.com/in/jose-manuel-viniegra-molina-aab9a51a8/",
+                twitter: "https://twitter.com/AhtziriSunshine"
+            }
+        },
+
+        {
+            image: CRIS,
+            name: "Augusto Armenta",
+            career: "Fullstack Developer",
+            description: "Desarrollador Fullstack con amplio conocimiento en tecnologías web, móviles y de servidores.",
             social: {
                 linkedin: "https://www.linkedin.com/in/ahtziri-antonio-pe%C3%B1a-142705179/",
                 twitter: "https://twitter.com/AhtziriSunshine"
@@ -41,32 +68,10 @@ const Acerca = () => {
         },
 
         {
-            image: "https://bootstrapmade.com/demo/templates/Mamba/assets/img/team/team-3.jpg",
-            name: "Jocelyn Uribe",
-            career: "Community Manager",
-            description: "Creación de contenido en RRSS.\n Monitoreo de los contenidos en redes sociales.\n Gestión y planificación de las acciones de comunicación.",
-            social: {
-                linkedin: "https://www.linkedin.com/in/ahtziri-antonio-pe%C3%B1a-142705179/",
-                twitter: "https://twitter.com/AhtziriSunshine"
-            }
-        },
-
-        {
-            image: "https://bootstrapmade.com/demo/templates/Mamba/assets/img/team/team-4.jpg",
-            name: "Jocelyn Uribe",
-            career: "Community Manager",
-            description: "Creación de contenido en RRSS.\n Monitoreo de los contenidos en redes sociales.\n Gestión y planificación de las acciones de comunicación.",
-            social: {
-                linkedin: "https://www.linkedin.com/in/ahtziri-antonio-pe%C3%B1a-142705179/",
-                twitter: "https://twitter.com/AhtziriSunshine"
-            }
-        },
-
-        {
-            image: "https://bootstrapmade.com/demo/templates/Presento/assets/img/team/team-3.jpg",
-            name: "Jocelyn Uribe",
-            career: "Community Manager",
-            description: "Creación de contenido en RRSS.\n Monitoreo de los contenidos en redes sociales.\n Gestión y planificación de las acciones de comunicación.",
+            image: KEV,
+            name: "Xavier Fregoso",
+            career: "Investor",
+            description: "Inversor de la empresa sunshine con amplio conocimiento en criptomonedas y desarrollo de software",
             social: {
                 linkedin: "https://www.linkedin.com/in/ahtziri-antonio-pe%C3%B1a-142705179/",
                 twitter: "https://twitter.com/AhtziriSunshine"
