@@ -9,8 +9,8 @@ const MapaApp = () => {
     return (
         <>
             <div className="row mapacon">
-                <div className="col-12 ">
-                    <img src={Mapa} className=" mapaes"/>
+                <div className="">
+                    <img src={Mapa} className=" mapaes "/>
                 </div>
             </div>
             <div className="row text-moneda pt-3 pb-5">
@@ -21,7 +21,7 @@ const MapaApp = () => {
 
             <div className="row textappcon ">
                 <div className="col-12">
-                    <img src={Nuestraapp} className="d-none d-sm-block img-fluid text-App"/>
+                    <img src={Nuestraapp} className="d-none d-sm-block text-App-g "/>
                     <img src={Nuestraapp} className="d-block d-sm-none  text-App"/>
 
                 </div>

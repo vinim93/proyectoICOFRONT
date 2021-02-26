@@ -19,12 +19,14 @@ const Countdown = () => {
                 <p className="sec3con">
                     El intercambio de tokens termina en:
                 </p><br/>
-                <p id="contador"></p>
+                <div className="container-contador">
+                <p id="contador" className=""></p>
+                </div>
             </div>
 
             <ul className="rectangulo1 text-justify text-center">
-                <li className="">
-                    <img src={rectangulo1} className=" "/>
+                <li className=" cont-li-cap">
+                    <img src={rectangulo1} className="rectanguloimg "/>
                 </li>
 
                 <li className=" row cap justify-content-around text-left">
@@ -34,7 +36,7 @@ const Countdown = () => {
                 </li>
 
                 <li className="row tecno">
-                    <div className="col-12">
+                    <div className="col-12 cont-img-tecno">
                         <img src={tecnologias} className="img-tecno  "/>
                     </div>
                 </li>
