@@ -14,7 +14,7 @@ const Soporte = () => {
                     SOCIOS Y SOPORTE
                 </p>
                 <div className=" row fondo-opa">
-                    <img src={Wallet} className="img-meto col-lg-4  col-md-4 col-12 img-fluid"/>
+                    <img src={Wallet} className="img-meto col-lg-4  col-md-4 col-12 "/>
                     <img src={Openzepp} className="img-meto col-lg-4  col-md-4 col-12"/>
                 </div>
 
