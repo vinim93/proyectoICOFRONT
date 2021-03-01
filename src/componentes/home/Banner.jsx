@@ -1,5 +1,6 @@
 import React from 'react';
 import moneda from "../../images/moneda.png";
+import monedavideo from "../../images/moneda.m4v";
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -31,7 +32,9 @@ const Banner = () => {
 
             </div>
             <div className=" col-lg-5 col-md-5 d-none col-sm-5 d-md-block   contenedor">
+                <img src="https://acegif.com/wp-content/gifs/coin-flip-27.gif" alt=""/>
                 <img className="moneda   " src={moneda}/>
+               
             </div>
         </div>
     );

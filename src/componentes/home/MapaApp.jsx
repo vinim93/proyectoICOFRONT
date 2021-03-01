@@ -3,7 +3,7 @@ import Textmoneda from "../../images/textmoneda.svg";
 import Nuestraapp from "../../images/nuestraapp.svg";
 import Google from "../../images/google.png";
 import Apple from "../../images/apple.png";
-import Mapa from "../../images/mapa.jpg"
+import Mapa from "../../images/mapacirculo.svg"
 
 const MapaApp = () => {
     return (

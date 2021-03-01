@@ -44,14 +44,15 @@ const Proyectos = () => {
                                             <div className="col-12 col-xl-8">
 
      <span className="modal-titu">  Proyecto Symphony  <p className="modal-text">(Banco)<p className="modal-cuerpo">
-     Consiste en crear un banco digital con resguardo de criptomonedas, generar cuenta
+     El proyecto consiste en crear un banco digital con resguardo de criptomonedas, 
+     generar cuenta de ahorro, préstamos con pago de intereses, seguros de vida, médicos y de autos, 
+     integrar portafolios cripto financieros, los cuales generen rendimiento a los usuarios de la plataforma 
+     Symphony que tengan una cuenta de ahorro, la posibilidad de hacer pagos con una tarjeta que contenga el 
+     saldo en criptomonedas como si se tratara de una moneda fiduciaria incluyendo beneficios a los tenedores de servicios 
+     financieros Symphony, como descuentos por pagos con criptomonedas en establecimientos, además de agilizar pagos 
+     con comisiones más bajas, proteger el resguardo de valor limitando el número de monedas, incluso anulación de efectos 
+     inflacionarios sobre la moneda SUN y el  control absoluto de sus fondos, con disponibilidad en todo el mundo.
 
-      de ahorro, préstamos con pago de intereses, seguros de vida, médicos y de autos,
-       integrar portafolios crypto  financieros, los cuales generen rendimiento a los usuarios
-         de la plataforma Symphony que posean  con una cuenta de ahorro, la posibilidad de  hacer
-         pagos con tarjeta que contenga el saldo en  criptomonedas como si se tratara de una moneda fiduciaria,
-     incluir beneficios a los tenedores de  servicios financieros  Symphony; estructurando los servicios con especialistas
-     financieros que cuentan con experiencia en el rubro de las crypto finanzas.
      </p></p>
 
 
@@ -96,10 +97,11 @@ const Proyectos = () => {
                                             <div className="col-md-9 col-12">
 
      <span className="modal-titu"> Proyecto HAWK  <p className="modal-text">(Exchange)<p className="modal-cuerpo">
-     Este proyecto consiste en un espacio virtual y dinámico que complementa el desarrollo de nuestra propia Exchange
-     de criptomonedas y la campaña publicitaria, con el cual se ofrecerá el servicio de compra y venta de criptomonedas.
-     Se le permite al trader hacer una participación en el mercado,
-      que a su vez le generará ganancias ya que existen las variaciones de dichas criptos.
+     Este proyecto consiste en complementar el desarrollo de nuestra propia Exchange de criptomonedas y la campaña
+      publicitaria, con el cual se ofrecerá el servicio de compra y venta de criptomonedas. Actualmente se encuentra 
+      evaluando la fase beta del proyecto, se iniciará con recursos de los fundadores para después poder obtener mayor 
+      capitalización a la plataforma y  ofrecer un servicio de calidad con bajas comisiones.
+
      </p></p>
 
 

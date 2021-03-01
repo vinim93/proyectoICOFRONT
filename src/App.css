@@ -982,7 +982,8 @@ white-space: normal;
   }
 .text-App{
   position: relative;
-  width: 175vw!important;  
+  width: 175vw!important;
+  left: -1.5vw;  
   background-color:white!important; 
 }
 .img-goo{
