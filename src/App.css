@@ -998,10 +998,13 @@ white-space: normal;
   
   position: absolute!important;
   width: 15vw;
-  margin: 0 0 0 1vw;
-  left: -2vw!important;
-  margin-top: 4.2vw!important;
+  margin: 0 0 0 2vw;
+  
+  
   height: 5vw;
+}
+.goo-aple{
+  left: -2vw;
 }
 /*----------------------------------SECCION SOPORTE---------------------------------*/
 .fondoedi{
@@ -1840,11 +1843,11 @@ margin-top: 3vw;
       
     }
     .img-goo{
-      position: absolute;
+      
       top: -18vw;
     }
     .goo-aple{
-      position: absolute;
+      
       top: 6vw;
     }
     
@@ -2180,8 +2183,9 @@ margin-top: 50vw!important;
     }
     .goo-aple{
     
-     position: absolute!important;
-     top: 80vw!important;
+     
+     top: -2vw!important;
+     left: -4vw!important;
       
     }
 }
@@ -2255,11 +2259,11 @@ margin-top: 50vw!important;
   
 }
 .img-goo{
-  position: absolute;
+  
   top: -18vw;
 }
 .goo-aple{
-  position: absolute;
+  
   top: 6vw;
 }
 
