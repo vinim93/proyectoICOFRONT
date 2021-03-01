@@ -147,13 +147,12 @@ const Proyectos = () => {
                                             <div className="col-lg-9 col-12">
 
      <span className="modal-titu"> Proyecto Lion  <p className="modal-text"> (E-COMMERCE)<p className="modal-cuerpo">
-     Consiste en el desarrollo de software propio y de terceros,
-      en el desarrollo propio se buscará el desarrollo de aplicaciones
-       de servicios con la finalidad de incorporar el mundo de las criptomonedas
-        al ámbito cotidiano como puede ser el caso de habilitar plataformas donde
-        se puedan comercializar artículos, de la misma manera una plataforma donde l
-        as personas puedan conseguir trabajos con el pago de criptomonedas
-     de los empleadores, así obteniendo una mayor circulación de criptomoneda.
+     Consiste en  el desarrollo de una aplicación que ofrezca servicios en donde se puedan comercializar artículos (e-commerce).
+la empresa Sunshine-Imagine software ya se encuentra desarrollándola,  teniendo como objetivo aceptar pagos por medio de criptomonedas 
+con la finalidad de incorporar las mismas al ámbito cotidiano.
+Los usuarios que estén comercializando sus productos a través de nuestra
+ plataforma tendrán la libertad de elegir si sus pagos los aceptarán en criptos o dinero fiat, pues Sunshine 
+ se encargará de hacer la conversión de dólares/ pesos a criptos y viceversa.
      </p></p>
 
 
