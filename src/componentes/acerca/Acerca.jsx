@@ -1,132 +1,44 @@
+import React, {useState, useEffect} from "react";
 import '../../App.css';
 import ReactPlayer from 'react-player';
-import Accesibiilidad from '../../images/accesibilidad.svg';
 import 'bootstrap/dist/css/bootstrap.css';
-import React from "react";
-import Flechas from '../../images/flechas.svg';
-import Privacidad from '../../images/privacidad.svg';
-import Redtopeer from '../../images/redtopeer.svg';
-import Solidez from '../../images/solidez.svg';
-import Garantia from '../../images/garantia.svg';
-import Trabajoequipo from '../../images/trabajoequipo.svg';
 import EquipoSunshine from "../../images/team.png";
 import Footer from '../footer/Footer';
 import Linkecontact from "../../images/linkecontact.svg";
 import Twitercontact from "../../images/twitercontact.svg";
-import VIRY from "../../images/team/VIRY.jpg";
-import MANU from "../../images/team/MANU.jpg";
-import KEV from "../../images/team/KEV.jpg";
-import JOS from "../../images/team/JOS.jpg";
-import CRIS from "../../images/team/CRIS.jpg";
+import {db} from "../config/firebase";
 
 
 const Acerca = () => {
 
-    const team = [
-        {
-            image: VIRY,
-            name: "Viridiana Uribe",
-            career: "Operations Coordinator",
-            description: "Coordinación del correcto desarrollo de las actividades operativas de la empresa, Garantizar procesos que se lleven acabo en el tiempo y forma.",
-            social: {
-                linkedin: "https://mx.linkedin.com/in/viry-uribe-879b68163/",
-                twitter: "https://twitter.com/home?lang=es"
-            }
-        },
+    const [team, setTeam] = useState([]);
+    const [differencesItems, setDifferencesItems] = useState([]);
 
-        {
-            image: JOS,
-            name: "Jocelyn Uribe",
-            career: "Community Manager",
-            description: "Creación de contenido en RRSS. Monitoreo de los contenidos en redes sociales. Gestión y planificación de las acciones de comunicación.",
-            social: {
-                linkedin: "https://www.linkedin.com/in/ahtziri-antonio-pe%C3%B1a-142705179/",
-                twitter: "https://twitter.com/AhtziriSunshine"
-            }
-        },
+    const fetchData = async() => {
+        const collections = ['team', 'differencesItems'];
+        await collections.forEach(element => {
+            db.collection(element)
+                .get()
+                .then(snapshot => {
+                    let tempArray = [];
+                    snapshot
+                        .docs.forEach(item => {
+                            tempArray.push(item.data());
+                        });
+                    //LA SIGUIENTE LINEA ES PARA GUARDAR LOS DATOS EN EL STATE CORRESPONDIENTE SEGUN CADA ELEMENTO DEL ARRAY "collections"
+                    // EJ. setTeam(tempArray) , setDifferencesItems(tempArray), etc...
+                    //NOTA: eval NO DEBERIA SER USADO PARA GUARDAR DATOS EN UNA COLECCION, AQUI SE USA PARA MOSTRAR DATOS EN EL LADO DEL CLIENTE SOLAMENTE
+                    eval(`set${element.charAt(0).toUpperCase() + element.slice(1)}`)(tempArray);
+                })
+        });
+    }
 
-        {
-            image: MANU,
-            name: "Manuel Viniegra",
-            career: "Fullstack Developer",
-            description: "Desarrollador de sistemas web con amplio stack de tecnologías backend y frontend como Javascript y diseño responsive. \t",
-            social: {
-                linkedin: "https://www.linkedin.com/in/jose-manuel-viniegra-molina-aab9a51a8/",
-                twitter: "https://twitter.com/AhtziriSunshine"
-            }
-        },
-
-        {
-            image: CRIS,
-            name: "Augusto Armenta",
-            career: "Fullstack Developer",
-            description: "Desarrollador Fullstack con amplio conocimiento en tecnologías web, móviles y de servidores.",
-            social: {
-                linkedin: "https://www.linkedin.com/in/ahtziri-antonio-pe%C3%B1a-142705179/",
-                twitter: "https://twitter.com/AhtziriSunshine"
-            }
-        },
-
-        {
-            image: KEV,
-            name: "Xavier Fregoso",
-            career: "Investor",
-            description: "Inversor de la empresa sunshine con amplio conocimiento en criptomonedas y desarrollo de software",
-            social: {
-                linkedin: "https://www.linkedin.com/in/ahtziri-antonio-pe%C3%B1a-142705179/",
-                twitter: "https://twitter.com/AhtziriSunshine"
-            }
-        },
-
-        {
-            image: "https://bootstrapmade.com/demo/templates/Presento/assets/img/team/team-4.jpg",
-            name: "Jocelyn Uribe",
-            career: "Community Manager",
-            description: "Creación de contenido en RRSS.\n Monitoreo de los contenidos en redes sociales.\n Gestión y planificación de las acciones de comunicación.",
-            social: {
-                linkedin: "https://www.linkedin.com/in/ahtziri-antonio-pe%C3%B1a-142705179/",
-                twitter: "https://twitter.com/AhtziriSunshine"
-            }
-        },
-    ];
-
-    const differences = [
-        {
-            image: `${Accesibiilidad}`,
-            title: "ACCESIBILIDAD",
-            description: "Cualquier persona mayor de edad tiene acceso a la compra de SUN, Sunshine puede ser tu primer acercamiento a un servicio financiero seguro.",
-        },
-        {
-            image: `${Privacidad}`,
-            title: "PRIVACIDAD",
-            description: "Sunshine nunca compartirá tus datos personales, datos de tus inversiones ni cualquier tipo de información, ya que el SUN corre por la Blockchain Ethereum cada movimiento que realices será privado y anónimo.",
-        },
-        {
-            image: `${Redtopeer}`,
-            title: "RED PEER-TO-PEER\n",
-            description: "No es necesario ningún tipo de intermediario para que puedas realizar transacciones o compras.",
-        },
-        {
-            image: `${Solidez}`,
-            title: "SOLIDEZ",
-            description: "El SUN es un token descentralizado pues ningún gobierno ni banco tiene poder sobre él, Sunshine se distingue por la planificación estratégica que le da a sus recursos, y por el equipo responsable y comprometido que la conforma.",
-        },
-        {
-            image: `${Garantia}`,
-            title: "GARANTÍA",
-            description: "Sunshine garantiza retorno de inversión seguro una vez que los proyectos comiencen a ponerse en marcha, o en su defecto, garantiza el 100% de la devolución de la inversión en caso de que el proyecto no logre su alcance.",
-        },
-        {
-            image: `${Trabajoequipo}`,
-            title: "TRABAJO EN EQUIPO\n",
-            description: "Juntos seremos el mejor equipo, y así podremos consolidar el éxito juntos, basados en el trabajo del equipo Sunshine y el compromiso que tenemos con cada uno de nuestros Sunholders.",
-        },
-    ];
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     return (
-
         <div className="">
-
             <div className="container-fluid pt-5">
                 <div className="row mt-5" style={{height: 500}}>
                     <div className="col-12">
@@ -164,12 +76,11 @@ const Acerca = () => {
                         <h1 className="titu-dife text-center">¿QUÉ NOS DIFERENCIA?</h1>
                     </div>
                     {
-                        differences.map((value, index) => (
+                        differencesItems.map((value, index) => (
                             <div id={index} className="col-12 col-sm-12 col-lg-4 col-xl-4 cont-diferencia pl-5 pr-5 text-justify">
-                                <img src={value.image} alt="" className="img-fluid icons-differences"/>
+                                <img src={value.image} alt="" className="img-fluid icons-differences w-50"/>
                                 <h3>{value.title}</h3>
                                 <p>{value.description}</p>
-
                             </div>
                         ))
                     }
@@ -228,7 +139,8 @@ const Acerca = () => {
 
                     <div className="row">
                         <div className="col-12">
-                            <button className="btn bg-cards text-light btn-lg btn-block">¿Te gustaria unirte a nuestro equipo?</button>
+                            <button className="btn bg-cards text-light btn-lg btn-block" data-toggle="modal"
+                                    data-target="#staticBackdropcon">¿Te gustaria unirte a nuestro equipo?</button>
                         </div>
                     </div>
                 </div>
