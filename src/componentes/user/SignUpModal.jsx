@@ -3,7 +3,7 @@ import Icongmail from "../../images/icongmail.svg";
 import Iconfaceb from "../../images/iconfaceb.svg";
 import Camaraine from "../../images/camaraine.svg";
 import Pdfine from "../../images/pdfine.svg";
-import "./css/styles.css"
+import "../navbar/css/styles.css"
 import axios from "axios";
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
@@ -15,12 +15,6 @@ import {Document, Page} from 'react-pdf';
 
 
 const SignUpModal = () => {
-
-    let caracteres = "abcdefghijkmnpqrtuvwxyzABCDEFGHJKMNPQRTUVWXYZ2346789";
-    let contrasenia = "";
-    let i = 0;
-    for (i = 0; i < 20; i++) contrasenia += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
-    let aleatorio = (Math.random());
 
     const [countries, setCountries] = useState([]);
     const [fileFirestore, setFileFirestore] = useState(null);
@@ -156,7 +150,7 @@ const SignUpModal = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(name !== '' && email !== '' && ciudad !== '' && telefono !== '' && password !== '' && apellido !== '', fileFirestore !== null){
+        if(name !== '' && email !== '' && ciudad !== '' && telefono !== '' && password !== '' && apellido !== '' && fileFirestore !== null){
             if (checkedValue) {
                 document.getElementById("signUpButton").disabled = true;
                 document.getElementById("signUpButtonDiv").style.visibility = "hidden";
@@ -255,7 +249,7 @@ const SignUpModal = () => {
                                     </div>
 
                                     <div className="form-group col-12 d-flex justify-content-center">
-                                        <select className="col-xl-5 col-lg-7 form-regi gmail form-control" name="" id=""
+                                        <select className="col-xl-5 col-lg-7 form-regi gmail form-control"
                                                 onChange={e => setCiudad(e.target.value)}>
                                             <option value="">Elige un país</option>
                                             {
@@ -371,11 +365,13 @@ const SignUpModal = () => {
 
                                     <div className="form-group  col-12">
                                         <input className="btn col-xl-5 col-lg-7 form-regi gmail"
-                                               type="password" id=""
-                                               placeholder="Confirmar contraseña" required
-                                               name="password"
+                                               type="password"
+                                               id="signup-password-repeat"
+                                               placeholder="Confirmar contraseña"
+                                               name="password-repeat"
                                                value={password}
-                                               onChange={(e) => setPassword(e.target.value)}/>
+                                               onChange={(e) => setPassword(e.target.value)}
+                                               required/>
                                     </div>
 
                                     <div className="form-group form-check col-12">

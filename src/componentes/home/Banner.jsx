@@ -1,6 +1,5 @@
 import React from 'react';
 import moneda from "../../images/moneda.png";
-import monedavideo from "../../images/moneda.m4v";
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -23,8 +22,8 @@ const Banner = () => {
                         para el <br/>intercambio de tokens de utilidad. <br/></p>
                     <div className="text-lg-center text-left text-sm-center">
 
-                        <button className="btn   btn-light-moon boton1  " data-toggle="modal"
-                                data-target="#staticBackdrop">SE PARTE DE SUNSHINE
+                        <button className="btn btn-light-moon boton1" data-toggle="modal"
+                                data-target="#signUpModal">SE PARTE DE SUNSHINE
                         </button>
                     </div>
 

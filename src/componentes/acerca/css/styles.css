@@ -1,0 +1,32 @@
+.bg-about2{
+    background-image: url("../../../images/FONDO_ACERCA_DE.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.text-preview{
+    color: #025889 !important;
+    font-family: 'Josefin Sans';
+    font-weight: bold;
+}
+
+.text-size-banner{
+    font-size: 4.5vw;
+}
+
+.text-size-title-differences{
+    font-size: 7vw;
+}
+
+hr{
+    position: relative;
+    top: 20px;
+    border: none;
+    height: 3px;
+    background: #025889;
+    margin-bottom: 50px;
+}
+
+.bg-color-primary{
+    background-color: #18223E;
+}
