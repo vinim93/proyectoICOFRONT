@@ -1,47 +1,48 @@
 import React, {useState} from 'react';
 import Icongmail from "../../images/icongmail.svg";
 import Iconfaceb from "../../images/iconfaceb.svg";
-import firebase from 'firebase';
 import "firebase/auth";
-import {db} from '../config/firebase';
 import swal from 'sweetalert';
+import {useAuth} from "../contexts/AuthContext";
+import { useHistory } from "react-router-dom";
 
 const SignInModal = () => {
 
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
+    const { login } = useAuth();
+    const [loading, setLoading] = useState(false);
+    const history = useHistory();
 
-    const signIn = (e) => {
-        e.preventDefault();
-        if(email !== "" && pass !== ""){
-            firebase.auth().signInWithEmailAndPassword(email, pass)
-                .then((user) => {
-                    console.log("SESION INICIADA");
-                })
-                .catch((error) => {
-                    let errorCode = error.code;
-                    switch (errorCode) {
-                        case "auth/user-not-found":
-                            swal("Usuario no encontrado", "La cuenta de correo proporcionada no esta registrada!", "warning");
-                            break;
+    async function signIn(e) {
+        e.preventDefault()
 
-                        case "auth/wrong-password":
-                            swal("Datos incorrectos", "La contraseña es incorrecta!", "warning");
-                            break;
+        try {
+            setLoading(true)
+            await login(email, pass)
+            history.push("/")
+        } catch (error) {
+            let errorCode = error.code;
+            switch (errorCode) {
+                case "auth/user-not-found":
+                    swal("Usuario no encontrado", "La cuenta de correo proporcionada no esta registrada!", "warning");
+                    break;
 
-                        case "auth/invalid-email":
-                            swal("Datos mal escritos", "Solo puedes ingresar una cuenta de correo válida!", "warning");
-                            break;
+                case "auth/wrong-password":
+                    swal("Datos incorrectos", "La contraseña es incorrecta!", "warning");
+                    break;
 
-                        default:
-                            let errorMessage = error.message;
-                            console.log(errorCode, errorMessage);
-                    }
-                })
-        } else {
-            swal("No ingresaste datos", "Debes ingresar datos en los campos de usuario y contraseña!", "warning");
+                case "auth/invalid-email":
+                    swal("Datos mal escritos", "Solo puedes ingresar una cuenta de correo válida!", "warning");
+                    break;
+
+                default:
+                    let errorMessage = error.message;
+                    console.log(errorCode, errorMessage);
+            }
         }
 
+        setLoading(false)
     }
 
     return (

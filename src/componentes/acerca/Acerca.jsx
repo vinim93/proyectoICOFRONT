@@ -7,6 +7,8 @@ import Footer from '../footer/Footer';
 import Linkecontact from "../../images/linkecontact.svg";
 import Twitercontact from "../../images/twitercontact.svg";
 import {db} from "../config/firebase";
+import './css/styles.css';
+import Navigation from "../navbar/Navigation";
 
 
 const Acerca = () => {
@@ -38,7 +40,8 @@ const Acerca = () => {
     }, []);
 
     return (
-        <div className="">
+        <div className="bg-light">
+            <Navigation/>
             <div className="container-fluid pt-5">
                 <div className="row mt-5" style={{height: 500}}>
                     <div className="col-12">
@@ -48,32 +51,37 @@ const Acerca = () => {
             </div>
 
             <div className="container-fluid">
-                <div className="row mt-5 mb-5 pb-5">
-                    <div className="col-12 mb-5">
-                        <p className="text-center m-3" style={{fontSize: 20}}>
-                            <strong>SUNSHINE</strong> ideó una solución la cual podría resultar beneficiosa y permitir
-                            la evolución digital y tecnológica, el <strong>token ERC20</strong> que representa una
-                            oportunidad a la libertad financiera.
+                <div className="row mt-5 mb-5 pt-5 pb-5 pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5 bg-about2">
+                    <div className="col-12 mb-3">
+                        <p className="text-center m-3 text-preview pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5" style={{fontSize: 30}}>
+                            Hemos desarrollado un token que va a permitirles a los inversionistas, ser parte de este mundo
+                            financiero virtual, dando inicio a una nueva era tecnológica y la oportunidad de invertir en activos digitales
                         </p>
-                        <p className="text-center pt-3 m-3" style={{fontSize: 20}}>
-                            El equipo SUN trabaja arduamente para garantizar el retorno de utilidad a
-                            los <strong>Sunholders</strong>
+                        <p className="text-center pt-4 m-3 text-preview pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5" style={{fontSize: 30}}>
+                            Dicho token lleva por nombre SUNSHINE IMAGINE
+                        </p>
+                    </div>
+
+                    <div className="col-12 mt-3 mb-5 pb-5">
+                        <p className="mt-3 text-center pl-5 pr-5 text-preview pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5" style={{fontSize: 30}}>
+                            SUNSHINE es para los emprendedores, las personas que quieran ir un paso más adelante, para los que
+                            no se conformen con poco, SUNSHINE es el futuro, es para quien desea grandeza, aquel que perdió el
+                            miedo y decidió tomar el control de su vida.
                         </p>
                     </div>
 
                     <div className="col-12 mt-5 mb-5 pb-5">
-                        <h3 className="mt-1 font-weight-bold display-3 text-center">NUESTRA MISIÓN</h3>
-                        <p className="mt-3 text-center pl-5 pr-5" style={{fontSize: 20}}>
-                            Garantizar el bienestar de todos los Sunholders mediante el análisis de la diversificación
-                            de los diferentes proyectos y tener beneficios a futuro.
-                        </p>
+                        <h1 className="text-center text-preview text-size-banner">
+                            ASEGURA TU FUTURO, EMPIEZA HOY
+                        </h1>
+                        <hr/>
                     </div>
 
                 </div>
 
                 <div className="row mt-5 bg-light pb-5">
-                    <div className="col-12 mt-5">
-                        <h1 className="titu-dife text-center">¿QUÉ NOS DIFERENCIA?</h1>
+                    <div className="col-12 mt-5 bg-color-primary pt-4 pb-4">
+                        <h1 className="text-size-title-differences text-center">¿QUÉ NOS DIFERENCIA?</h1>
                     </div>
                     {
                         differencesItems.map((value, index) => (
