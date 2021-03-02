@@ -19,6 +19,8 @@ import Foco from "./componentes/proyectos/Foco";
 import RoaptoMapa from './componentes/road_to_map/Roaptomap';
 import Watsappicon from './images/watsapp-icon.png';
 import Telicon from './images/tel-icon.png';
+import Dashboard from "./componentes/user/Dashboard";
+import {AuthProvider} from "./componentes/contexts/AuthContext";
 import "firebase/auth";
 
 
@@ -29,18 +31,19 @@ const App = (props) => {
         <BrowserRouter>
             <div className="App">
 
-                <Navigation/>
 
+                <AuthProvider>
+                    <Navigation/>
+                    <Switch>
+                        <Route path="/Roaptomap" component={RoaptoMapa}/>
+                        <Route path="/Acerca" component={Acerca}/>
+                        <Route path="/Proyectos" component={Foco}/>
+                        <Route path="/Home" component={Home}/>
+                        <Route path="/Pdf" exact><Pdf/></Route>
+                        <Route path="/" exact component={Dashboard} />
 
-                <Switch>
-                    <Route path="/Roaptomap" component={RoaptoMapa}/>
-                    <Route path="/Acerca" component={Acerca}/>
-                    <Route path="/Proyectos" component={Foco}/>
-
-                    <Route path="/Pdf" exact><Pdf/></Route>
-                    <Route path="/" exact><Home/></Route>
-
-                </Switch>
+                    </Switch>
+                </AuthProvider>
                 <div className="whats-content">
 
                     <a href="https://api.whatsapp.com/send?phone=525584465710&text=hola%20%20quiero%20contactarneme%20con%20sunshine"
