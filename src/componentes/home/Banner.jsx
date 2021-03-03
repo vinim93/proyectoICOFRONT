@@ -1,4 +1,5 @@
 import React from 'react';
+import monedag from "../../images/moneda.gif";
 import moneda from "../../images/moneda.png";
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -32,7 +33,7 @@ const Banner = () => {
             </div>
             <div className=" col-lg-5 col-md-5 d-none col-sm-5 d-md-block   contenedor">
         
-                <img className="moneda   " src={moneda}/>
+                <img className="moneda   " src={monedag}/>
                
             </div>
         </div>

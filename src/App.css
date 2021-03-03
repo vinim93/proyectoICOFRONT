@@ -73,18 +73,16 @@ margin: 0px;
    
  }
  .moneda{ 
-   
+  position: relative!important;
   opacity: 0.91;
 		filter: drop-shadow(7px 11px 20px rgba(0, 0, 0, 1));
-		position: relative;
-		width: 50vw!important;
+		z-index: 0;
+		width: 120vw!important;
 
-		left: 2vw;
+		left:-35vw;
 		top: 50px;
     overflow: hidden;
-    animation-name: mianimacion;
-    animation-duration: 5s; 
-    animation-iteration-count: infinite;
+   
     
     
  }
@@ -97,7 +95,7 @@ margin: 0px;
  
 
  .contenedor{
-   
+   position: absolute;
   width: 100vw!important;
   
     overflow: hidden;
@@ -161,14 +159,14 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
 
 
 .hometext1{
-  display:flex;
+  
   position: relative;
   filter: drop-shadow(0px 6px 1px rgba(0, 0, 0, 1));
     left: 8vw;
     top: 30px;
     overflow: visible!important;
     text-transform: uppercase;
-    
+    z-index: 2!important;
     white-space: normal;
     line-height: 3vw!important;
     margin: -4px 0 10px 0;

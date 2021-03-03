@@ -173,8 +173,8 @@ Los usuarios que estén comercializando sus productos a través de nuestra
                                 <circle cx="60" cy="60" r="50"
                                         fill="transparent"/>
                             </svg>
-                            <p className="textbtn4"> LYON</p></button>
-                        <p className="textsyn3"><br/>PROYECTO LYON</p><p className=" mintext3">(E-commerce)</p>
+                            <p className="textbtn4"> LION</p></button>
+                        <p className="textsyn3"><br/>PROYECTO LION</p><p className=" mintext3">(E-commerce)</p>
                     </div>
                     <img src={Engranaje} alt="" className="engranaje engranejegris"/>
 
