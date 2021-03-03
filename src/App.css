@@ -2258,6 +2258,7 @@ margin-top: 50vw!important;
   top: -19vw!important;
   
 }
+
 .img-goo{
   
   top: -18vw;
@@ -2265,6 +2266,9 @@ margin-top: 50vw!important;
 .goo-aple{
   
   top: 6vw;
+}
+.hometext1{
+  line-height: normal!important;
 }
 
 @media screen and (max-width: 431px){

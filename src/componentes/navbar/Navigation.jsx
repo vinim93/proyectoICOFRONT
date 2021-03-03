@@ -9,6 +9,7 @@ import {
 import 'firebase/firestore';
 import SignUpModal from "../user/SignUpModal";
 import SignInModal from "../user/SignInModal";
+import './mostrarmenu';
 
 const Navigation = () => {
 
@@ -19,11 +20,11 @@ const Navigation = () => {
                 <NavLink className="navbar-brand navegacion  " to="/">
                     <img className="  " src={logonav}/>
                 </NavLink>
-                <button className="navbar-toggler mr-auto" type="button" data-toggle="collapse" data-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler mr-auto" id="boton-nav" type="button" data-toggle="collapse" data-target="#navbar-menu"
+                        aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
+                <div className=" collapse navbar-collapse" id="navbar-menu" >
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li className="nav-item">
                             <NavLink className="navbar-brand nav-link navegacion" data-toggle="collapse" data-target=".navbar-collapse.show"

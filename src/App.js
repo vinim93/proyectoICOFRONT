@@ -29,7 +29,7 @@ const App = (props) => {
 
     return (
         <BrowserRouter>
-            <div className="App">
+            <div className="App" data-toggle="collapse" data-target=".navbar-collapse.show">
 
 
                 <AuthProvider>

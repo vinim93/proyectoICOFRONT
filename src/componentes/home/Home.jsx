@@ -18,7 +18,7 @@ import WhitepaperHome from "./WhitepaperHome";
 const Home = () => {
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid" className="" >
 
             <Banner/>
             <Video/>
