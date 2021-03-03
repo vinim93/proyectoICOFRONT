@@ -7,7 +7,7 @@ import "../navbar/css/styles.css"
 import axios from "axios";
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
-import {db} from "../config/firebase";
+import {db, auth} from "../config/firebase";
 import swal from "sweetalert";
 import firebase from 'firebase';
 import "firebase/auth";
@@ -27,6 +27,7 @@ const SignUpModal = () => {
     const [password, setPassword] = useState("");
     const [checkedValue, setCheckedValue] = useState(false);
     const [filePreview, setFilePreview] = useState([]);
+    const [authType, setAuthType] = useState("");
 
     const setFile = (e) => {
         console.log(e.type);
@@ -89,48 +90,69 @@ const SignUpModal = () => {
         setCheckedValue(e.target.checked);
     }
 
-    const saveDataInFirestore = (file, uid) => {
+    const saveDataInFirestore = (file, uid, data= {}) => {
 
-        const storageRef = firebase.storage().ref(`INE/INE-${uid}`);
-        const task = storageRef.put(file);
-        task.on('state_changed', (snapshot) => {
-            let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            setUploadValue(percentage)
+        if(file !== null){
+            const storageRef = firebase.storage().ref(`INE/INE-${uid}`);
+            const task = storageRef.put(file);
+            task.on('state_changed', (snapshot) => {
+                let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                setUploadValue(percentage)
 
-        }, error => {
-            document.getElementById("signUpButton").disabled = false;
-            document.getElementById("signUpButtonDiv").style.visibility = "visible";
-            document.getElementById("loadingDiv").style.visibility = "hidden";
-            console.log(error.message)
-        }, () => {
-            storageRef.getDownloadURL().then(url => {
+            }, error => {
+                document.getElementById("signUpButton").disabled = false;
+                document.getElementById("signUpButtonDiv").style.visibility = "visible";
+                document.getElementById("loadingDiv").style.visibility = "hidden";
+                console.log(error.message)
+            }, () => {
+                storageRef.getDownloadURL().then(url => {
 
-                /*============GUARDAR DATOS EN FIRESTORE===========*/
-                db.collection("credentials").doc(uid).set({
-                    UUID: uid,
-                    city: ciudad,
-                    doc: url,
-                    email: email,
-                    last_name: apellido,
-                    name: name,
-                    phone: telefono
-                }).then(docRef => {
-                    swal("Registro exitoso", "", "success");
-                    document.getElementById("signUpButton").disabled = false;
-                    document.getElementById("signUpButtonDiv").style.visibility = "visible";
-                    document.getElementById("loadingDiv").style.visibility = "hidden";
-                    clearStates();
-                }).catch((error) => {
-                    document.getElementById("signUpButton").disabled = false;
-                    document.getElementById("signUpButtonDiv").style.visibility = "visible";
-                    document.getElementById("loadingDiv").style.visibility = "hidden";
-                    console.log(error);
-                });
-                /*============GUARDAR DATOS EN FIRESTORE===========*/
+                    /*============GUARDAR DATOS EN FIRESTORE===========*/
+                    db.collection("credentials").doc(uid).set({
+                        UUID: uid,
+                        city: ciudad,
+                        doc: url,
+                        email: email,
+                        name: name + " " + apellido,
+                        phone: telefono,
+                        authType: authType
+                    }).then(docRef => {
+                        swal("Registro exitoso", "", "success");
+                        document.getElementById("signUpButton").disabled = false;
+                        document.getElementById("signUpButtonDiv").style.visibility = "visible";
+                        document.getElementById("loadingDiv").style.visibility = "hidden";
+                        clearStates();
+                    }).catch((error) => {
+                        document.getElementById("signUpButton").disabled = false;
+                        document.getElementById("signUpButtonDiv").style.visibility = "visible";
+                        document.getElementById("loadingDiv").style.visibility = "hidden";
+                        console.log(error);
+                    });
+                    /*============GUARDAR DATOS EN FIRESTORE===========*/
 
-            })
+                })
 
-        });
+            });
+        } else {
+            /*============GUARDAR DATOS EN FIRESTORE===========*/
+            db.collection("credentials").doc(uid).set({
+                UUID: uid,
+                city: data.city,
+                doc: "Pending",
+                email: data.email,
+                name: data.name,
+                phone: data.phone,
+                authType: data.authType
+            }).then(docRef => {
+                swal("Registro exitoso con Google", "", "success");
+                clearStates();
+            }).catch((error) => {
+                console.log(error);
+            });
+            /*============GUARDAR DATOS EN FIRESTORE===========*/
+        }
+
+
 
     }
 
@@ -155,10 +177,12 @@ const SignUpModal = () => {
                 document.getElementById("signUpButton").disabled = true;
                 document.getElementById("signUpButtonDiv").style.visibility = "hidden";
                 document.getElementById("loadingDiv").style.visibility = "visible";
+                setAuthType("EMAIL");
                 firebase.auth().createUserWithEmailAndPassword(email, password)
                     .then((user) => {
 
                         saveDataInFirestore(fileFirestore, user.user.uid);
+
 
                     }).catch((error) => {
                     document.getElementById("signUpButton").disabled = false;
@@ -181,6 +205,30 @@ const SignUpModal = () => {
             swal("Advertencia", "Debes llenar todos los campos!", "warning");
         }
     };
+
+    const signUpWithGoogle = () => {
+
+        let provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
+        firebase.auth().languageCode = 'es';
+        firebase.auth().signInWithPopup(provider).then((result) => {
+            let user = result.user;
+            if(user.emailVerified){
+                //MANDAR A OTRA PANTALLA
+            } else {
+                user.sendEmailVerification().then(r => {
+                    saveDataInFirestore(null, user.uid, {city: "Pending", email: user.email, name: user.displayName, phone: user.phoneNumber, authType: "GOOGLE"});
+                }, (error) => {
+                    console.log(error.code, error.message);
+                });
+            }
+        }).catch((error) => {
+            let errorCode = error.code;
+            let errorMessage = error.message;
+            console.log(errorCode, errorMessage);
+        })
+
+    }
 
     useEffect(() => {
         const fetchCountryData = async () => {
@@ -235,9 +283,9 @@ const SignUpModal = () => {
                                 <div className="modal-body  col-12">
 
                                     <div className="form-group col-12 ">
-                                        <button className="btn col-xl-5 col-lg-7 gmail">
+                                        <button className="btn col-xl-5 col-lg-7 gmail" onClick={signUpWithGoogle}>
                                             <img src={Icongmail} alt=""
-                                                 className="icon-g img-fluid"/> Registrate con Gmail
+                                                 className="icon-g img-fluid"/> Registrate con Google
                                         </button>
                                     </div>
 
