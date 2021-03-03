@@ -47,14 +47,14 @@ const Navigation = () => {
                         </li>
                     </ul>
                     <a href="#" data-toggle="collapse" data-target=".navbar-collapse.show">
-                        <button type="button" className="navsesion btn btn-link" data-toggle="modal"
-                                data-target="#signInModal" >Iniciar sesión (Próximamente)
+                        <button type="button" className="navsesion btn btn-link disabled" data-toggle="modal"
+                                 >Iniciar sesión (Próximamente)
                         </button>
                     </a>
 
                     <a href="#" data-toggle="collapse" data-target=".navbar-collapse.show">
-                        <button type="button" className="navsesion btn btn-link" data-toggle="modal"
-                                data-target="#signUpModal">
+                        <button type="button" className="navsesion btn btn-link disabled" data-toggle="modal"
+                               >
                             Crea tu cuenta (Próximamente)
                         </button>
                     </a>
