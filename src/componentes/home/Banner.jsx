@@ -13,7 +13,7 @@ const Banner = () => {
                     SE PARTE DE NUESTRA <br/>
                     <p className=" revo1">REVOLUCION</p>
                     <p className="   tec1"><br/>TECNOLOGICA</p>
-                    <img className="moneda d-block  d-md-none" src={monedafinal}/>
+                    <img className="moneda d-block  d-md-none" loading="lazy" src={monedafinal}/>
                     <p className="  hometext1  d-none  d-md-block"><br/>UNA NUEVA ERA DE EN EL MERCADO
                         DIGITAL,
                         <br/>basado en cadenas de bloques inteligentes
@@ -34,7 +34,7 @@ const Banner = () => {
             </div>
             <div className=" col-lg-5 col-md-5 d-none col-sm-5 d-md-block   contenedor">
         
-                <img className="moneda   " src={monedag}/>
+                <img className="moneda   " loading="lazy" src={monedag}/>
                
             </div>
         </div>
