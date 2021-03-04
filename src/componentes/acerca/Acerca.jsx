@@ -44,8 +44,8 @@ const Acerca = () => {
             <Navigation/>
             <div className="container-fluid pt-5">
                 <div className="row mt-5" style={{height: 500}}>
-                    <div className="col-12">
-                        <ReactPlayer width="100%" height="100%" url='https://www.youtube.com/watch?v=JqyDcDPi3jg&feature=youtu.be'/>
+                    <div className="col-12" >
+                        <ReactPlayer width="100%" data-toggle="collapse" data-target=".navbar-collapse.show" height="100%" url='https://www.youtube.com/watch?v=JqyDcDPi3jg&feature=youtu.be'/>
                     </div>
                 </div>
             </div>

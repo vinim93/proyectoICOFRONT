@@ -14,6 +14,7 @@ import moneda from "../../images/moneda.png";
 import {db} from '../config/firebase';
 import 'firebase/firestore';
 import * as emailjs from 'emailjs-com';
+import monedafinal from "../../images/monedafinal.png";
 
 
 const Footer = () => {
@@ -105,7 +106,7 @@ const Footer = () => {
                                 <div className="container">
                                     <div className="row ">
                                         <div className="col-md-6 modal-body">
-                                            <img src={moneda} className="img-fluid d-none d-md-block" alt=""/>
+                                            <img src={monedafinal} className="img-fluid d-none d-md-block" alt=""/>
                                         </div>
                                         <div className="col-md-4">
                                             <form className="form-cont" onSubmit={handleSubmit}>
