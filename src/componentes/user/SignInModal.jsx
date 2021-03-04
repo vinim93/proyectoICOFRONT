@@ -94,7 +94,8 @@ const SignInModal = () => {
 
                                     <div
                                         className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
-                                        <input type="email" className="form-control ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
+                                        <input type="email"
+                                               className="form-control ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
                                                placeholder="Correo electrónico"
                                                value={email}
                                                onChange={e => setEmail(e.target.value)}
