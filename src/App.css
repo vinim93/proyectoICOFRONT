@@ -1,29 +1,31 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+
 @font-face {
-  font-family:'Eras Demi ITC' ;
-  src: url('./fonts/ERASDEMI.TTF');
+    font-family: 'Eras Demi ITC' ;
+    src: url('./fonts/ERASDEMI.TTF');
 }
 
-body{
-  margin: 0;
-  background-image: url("./images/fondogalaxy.png");
-  background-size:cover;
-  background-attachment: fixed;
- 
-  
+body {
+    margin: 0;
+    background-image: url("./images/fondogalaxy.png");
+    background-size: cover;
+    background-attachment: fixed;
+
+
 }
+
 .container2 {
-  position: relative;
-  text-align: center;
-  color: white;
+    position: relative;
+    text-align: center;
+    color: white;
 }
-.bg-cards{
-  background-color: #025889 !important;
+
+.bg-cards {
+    background-color: #025889 !important;
 }
 
 .centered {
@@ -94,50 +96,57 @@ margin: 0px;
  }
  
 
- .contenedor{
-   
-  width: 100vw!important;
-  
+
+}
+
+@keyframes mianimacion {
+
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+
+.contenedor {
+
+    width: 100vw !important;
+
     overflow: hidden;
 
- }
- 
- .moneda1{
+}
 
-   position: relative;
-  filter: drop-shadow(7px 13px 9px rgba(0, 0, 0, 1));
-  letter-spacing: 1px;
-  font-size: 4.5vw;
-   top: 12vh;
-   font-family: 'Eras Demi ITC';
-  font-weight: 500;
-  
-  margin-bottom: 15vh!important;
-  
+.moneda1 {
 
- 
- }
- .revo1{
+    position: relative;
+    filter: drop-shadow(7px 13px 9px rgba(0, 0, 0, 1));
+    letter-spacing: 1px;
+    font-size: 4.5vw;
+    top: 12vh;
+    font-family: 'Eras Demi ITC';
+    font-weight: 500;
 
-filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
+    margin-bottom: 15vh !important;
+
+
+}
+
+.revo1 {
+
+    filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
     left: 6vw;
     top: 20px;
-    position: relative;    
+    position: relative;
     line-height: 100%;
-    margin:0px;
-    text-align:left;
+    margin: 0px;
+    text-align: left;
     font-family: 'Eras Demi ITC';
     font-style: oblique;
-    font-weight: 900!important;
+    font-weight: 900 !important;
     font-size: 6.5vw;
-  
-    color: white;
-   
-   
- }
- .tec1{
-  
 
+    color: white;
+
+<<<<<<< HEAD
   filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
       left: -10px;
       top: 0px;
@@ -162,818 +171,307 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
   
   position: relative;
   filter: drop-shadow(0px 6px 1px rgba(0, 0, 0, 1));
+=======
+
+}
+
+.tec1 {
+
+
+    filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
+    left: -10px;
+    top: 0px;
+    position: relative;
+
+
+    white-space: normal;
+    line-height: 40%;
+    margin: 0px !important;
+    text-align: left;
+    font-family: 'Eras Demi ITC';
+    font-style: oblique;
+    font-weight: 900 !important;
+    font-size: 6.5vw;
+    color: white;
+
+
+}
+
+
+.hometext1 {
+    display: flex;
+    position: relative;
+    filter: drop-shadow(0px 6px 1px rgba(0, 0, 0, 1));
+>>>>>>> 58ddfcb84c0348d0aa4fe8ba22d0f5f6032fe6ad
     left: 8vw;
     top: 30px;
-    overflow: visible!important;
+    overflow: visible !important;
     text-transform: uppercase;
+<<<<<<< HEAD
     z-index: 2!important;
+=======
+
+>>>>>>> 58ddfcb84c0348d0aa4fe8ba22d0f5f6032fe6ad
     white-space: normal;
-    line-height: 3vw!important;
+    line-height: 3vw !important;
     margin: -4px 0 10px 0;
     text-align: center;
     font-family: Lucida Sans;
     font-style: normal;
     font-weight: normal;
     font-size: 2vw;
-   
-    color: rgba(255,255,255,1);
+
+    color: rgba(255, 255, 255, 1);
     letter-spacing: 0.03px;
-    
-}
-.boton1{
-  
-  width: 20vw!important;
- position: relative!important;
-  top: 10vw;
- 
-margin-left: 1vw!important;
-  text-align: center!important;
-  margin-bottom: 20vw!important;
- color: rgb(4, 4, 82)!important;
-  font-family:'Lato', sans-serif;
-  background:#ffefba;
-  background:-webkit-linear-gradient(to right, #ffffff, #ffefba);
-  background:linear-gradient(to right, #ffffff, #ffefba );
-  color: #fff;
-  border:3px solid #eee
-  
+
 }
 
-.videosun{
-  
+.boton1 {
 
-  
-  padding: 0px;
-  justify-content: center;
-  margin: 0px!important;    
-  overflow: hidden;
-    
-}
-.videocon{
-width: 100vw;
-}
-.videosunrep{
-  
-  position: relative!important;
-  
-  
-  overflow: hidden;
-  margin: 0px;
-  
-  width: 100vw!important;
-  height: 40vw!important;
+    width: 20vw !important;
+    position: relative !important;
+    top: 10vw;
+
+    margin-left: 1vw !important;
+    text-align: center !important;
+    margin-bottom: 20vw !important;
+    color: rgb(4, 4, 82) !important;
+    font-family: 'Lato', sans-serif;
+    background: #ffefba;
+    background: -webkit-linear-gradient(to right, #ffffff, #ffefba);
+    background: linear-gradient(to right, #ffffff, #ffefba);
+    color: #fff;
+    border: 3px solid #eee
+
 }
 
+.videosun {
+
+
+    padding: 0px;
+    justify-content: center;
+    margin: 0px !important;
+    overflow: hidden;
+
+}
+
+.videocon {
+    width: 100vw;
+}
+
+.videosunrep {
+
+    position: relative !important;
+
+
+    overflow: hidden;
+    margin: 0px;
+
+    width: 100vw !important;
+    height: 40vw !important;
+}
 
 
 /*--------------------------------------SECCION TRES HOME-----------------------------------*/
-.fondosec3{
-  
+.fondosec3 {
 
-  
-  justify-content: center;
-  background-image: url("./images/NUMERO1.jpg")!important;
-  background-size: cover;
-   background-position:center ;
-   background-repeat: no-repeat;    
-   
-   
-    
-    
-   
-    
+
+    justify-content: center;
+    background-image: url("./images/NUMERO1.jpg") !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+
     white-space: normal;
     line-height: 75px;
     margin-top: -10.5px;
-    
+
     text-align: center;
     font-family: Lato;
     font-style: normal;
     font-weight: normal;
     font-size: 40px;
-    color: rgba(2,88,137,1);
+    color: rgba(2, 88, 137, 1);
     letter-spacing: 0.06px;
-  overflow-x: hidden;
+    overflow-x: hidden;
 
-  border-top:1vh white solid!important;
+    border-top: 1vh white solid !important;
 }
 
-.fondosec3-ali{
-  display: flex;
-  position: relative;
-  overflow: visible;  
-  padding: 0;
-  justify-content: center;
-   
+.fondosec3-ali {
+    display: flex;
+    position: relative;
+    overflow: visible;
+    padding: 0;
+    justify-content: center;
+
 }
+
 .text-center {
-  text-align: center !important;
-  padding: 0px!important;
+    text-align: center !important;
+    padding: 0px !important;
 }
-.sec3con{
- 
-  display: flex;
-  justify-content: center;
-  white-space: normal;
-  position: relative;
-  margin-top: 5vw;
-  margin-bottom: 10vw;
+
+.sec3con {
+
+    display: flex;
+    justify-content: center;
+    white-space: normal;
+    position: relative;
+    margin-top: 5vw;
+    margin-bottom: 10vw;
 
 }
+
 /*------------------------------------------estilos CONTADOR Seccion tres-------------------------*/
 
-#contador
-{
-  display: flex;
-  
+#contador {
+    display: flex;
 
-  justify-content: space-around;
-  height:  11vh;
-  width: 100vw!important;
-  color:white!important;
-  margin-top: 20vw;
-  padding-top: 3.5vh;
-  padding-left: 0px; 
-  padding-right: 0px; ;
-  margin-bottom:100px ;
-  
-  
+
+    justify-content: space-around;
+    height: 11vh;
+    width: 100vw !important;
+    color: white !important;
+    margin-top: 20vw;
+    padding-top: 3.5vh;
+    padding-left: 0px;
+    padding-right: 0px;;
+    margin-bottom: 100px;
+
+
 }
-
 
 
 /*-----------------------------------------------------------------------------------------------------*/
-.contador-fap{
-  display: flex;
-  position: absolute;
-  top:-1vh;
-  color:orange;
-  
-  
-  
-}
-.fintokens{
-  white-space: normal!important;
-   color: rgba(2,88,137,1)!important;
-   background-color:white; filter:alpha(opacity=60); opacity:.6;
-}
-.fap-dias{
-  
-  position: absolute;
-  left:  17.5vw!important;
-
-  top: -1vw;
-  
-}
-.linea-dias{
-  position: absolute;
-  top: -39.9vw!important;
-  right:  -68.6vw!important;
-  
-  width:87vw;
-  height: 87vw; 
-}
-
-
-.fap-horas{
-  
-  position: relative;;
-  
-  top: -.5vw;
-  left:  19.2vw!important;
-}
-
-.fap-minutos{
-
-  position: relative;
-  top: -1vw;
-  left:10.5vw!important;
-}
-.fap-seg{
-  position: relative;
-  top: -1vw;
-  left: 2.5vw!important;
-}
-
-.fap-btn{
-  filter: drop-shadow(0px 9px 6px rgba(0, 0, 0, 1));
-  position: relative;
-  background:#ffefba;
-  background:-webkit-linear-gradient(to right, #ffffff, #ffefba);
-  background:linear-gradient(to right, #ffffff, #ffefba );
-  color:orange!important;
-  border: 3px solid #eee!important;
-  height: 7vw;
-  width: 7vw;
-  font-family: 'Josefin Sans';
-  font-size: 4vw!important;
-  border-radius: 50%!important;
-}
-
-.texto-contenedor{
-  display:flex!important;
-  top: 45vw!important;
-  position: absolute!important;
-  color: #053c63!important;
-  justify-content: center;
-
-  right:72vw!important;
-  font-size: 3vw!important;
-}
-
-.texto-horas{
-  display:flex;
-  position: absolute;;
-  color: #053c63!important;
-  justify-content: center;
-  
-  right:50.5vw!important;
-}
-
-.texto-min{
-  display: flex;
-  position: absolute;
-  color: #053c63!important;
-  justify-content: center;
-  right:31vw!important;
-}
-.texto-seg{
-  
-  position: absolute;
-  color: #053c63!important;
-  justify-content: center;
-  
-  margin-right: 0;
-  right:13vw!important;
-}
-/*--------------------------------------------------------------SECCION 3 CAP--------------------------------------------------*/
-.rectangulo1{
- list-style: none;
- margin-top: 20vw;
- padding: 0px;
-  
- margin-bottom: 0px!important;
- justify-content: center;
- overflow: hidden;
- 
-}
-.rectangulo1 img{
-  
-  justify-content: center;
-  
-  
-  
-  position: relative;
-  
-  margin:0px!important;
-padding: 0px;
-  margin-bottom: 0px!important;
-  width: 75vw;
-  height: 8vw;
-  border-radius:10px ;  
-}
-.text-rec-may{
-  line-height: 35px!important;
-  white-space: nowrap;
- 
-}
-.text-rec{
-  font-size: 35px;
-  font-family: 'Lato';
-    font-style: normal;
-    font-weight: normal;
-    color: rgba(2,88,137,1);
-    justify-content: center;
-    
-    
-  }
-  .tecno{
- overflow: hidden;
- background:white;
- background-size:cover;
- background-position:center;
- padding: 0px!important;
- margin-bottom: 0px!important;
-  }
-  .img-tecno{
-    width: vw!important;
-    height: 40vw!important;
-  
-    
-  }
-
-  
-  .cap{
+.contador-fap {
     display: flex;
+    position: absolute;
+    top: -1vh;
+    color: orange;
+
+
+}
+
+.fintokens {
+    white-space: normal !important;
+    color: rgba(2, 88, 137, 1) !important;
+    background-color: white;
+    filter: alpha(opacity=60);
+    opacity: .6;
+}
+
+.fap-dias {
+
+    position: absolute;
+    left: 17.5vw !important;
+
+    top: -1vw;
+
+}
+
+.linea-dias {
+    position: absolute;
+    top: -39.9vw !important;
+    right: -68.6vw !important;
+
+    width: 87vw;
+    height: 87vw;
+}
+
+
+.fap-horas {
+
+    position: relative;;
+
+    top: -.5vw;
+    left: 19.2vw !important;
+}
+
+.fap-minutos {
+
     position: relative;
-    font-size: 4vw;
-    line-height: 3vw;
-    width: 100vw!important;
-    left: 4vw;
-  }
-  .cap-min{
-    font-size: 4vw;
-    font-weight: normal!important;
-    font-family: 'Segoe UI';
-    font-style: normal;
-  }
-/*-----------------------------------SECCION 4 Proyectos------------------------------------------------*/
-.walp{
-  
-  position: relative;
-  background:#043361;
-  justify-content: center;
-  
-  padding: 0px;
-  
+    top: -1vw;
+    left: 10.5vw !important;
 }
 
-
-.walp-img{
-  
-  
-  position: relative;
- margin-right: 0px!important;
-  padding: 0px;
-  overflow: hidden;
-  width: 89%;
-  height: 35vw;
-  left: 20px;  
-  margin: 0px;
-}
-.ventajascont{
-  background-color:white!important;
-}
-.ventajas{
-  
-  border-top: white solid 50px;
-}
-.img-vent{
-  width: 100%!important;
-  height: 100%;
-}
-.ventajas-seg{
-  border-left: 1vw solid white;
-  border-right: 1vw solid white;
-}
-/*-------------------------------------------------------FOCO-----------------------------------*/
-.sec6{
-  position:relative;
-  border-top: white 1vw solid;
-  background-color: white!important;  
-  justify-content: center!important;
-  text-align: center;
-   
-}
-.titulo6{
-  filter: drop-shadow(7px 3px 8px rgba(0, 0, 0, 0.851));
-    height: 200px;
-    
-    justify-content: center!important;
-    
-    margin: 2px 0 5px 0;
-    
-    font-family: 'Barlow Condensed';
-    font-style: normal;
-    font-weight: bold;
-    font-size: 12vw;
-    color: rgba(2,88,137,1);
-    
-}
-.focsec6{
- 
-  background-color:white;
-  background-size: contain;
-  background-position:top;
-  background-repeat: no-repeat;
-  background-color: white!important;
-  font-style: normal;
-  font-family:'Lucida Sans'!important;  
-  height: 2px!important;
-  
-}
-  
-
-.fap-btn2{
-
-
-position: relative;
-  margin: 3vw 0 0 15vw;
-
- 
-  
-  color:#025889!important;
-  border: 3px solid #fff!important;
-  height: 200px;
-  width: 200px;
-  font-weight: 900!important;
-  font-size: 2.2vw!important;
-  border-radius: 50%!important;
-  cursor: pointer;
-  outline: none;
-  transition: 1s ease-in-out;
-  font-family:'Lucida Sans';  
- }
- .fap-btn2:hover svg{
- z-index: 1;
-  stroke-dashoffset: -480;
-  
-  
-}
-circle:hover{
-  overflow:visible;
-  fill: transparent;
-  z-index: 1;
-}
-.textbtn2{
-  position: relative;
-  font-size: 2vw;
-  
-z-index: 10!important ;
-
-
-}
-.textbtn3{
-  position: relative;
-  font-size: 2vw;  
-z-index: 10!important ;
-}
-.textbtn4{
-  position: relative;
-  font-size: 2vw;  
-z-index: 10!important ;
-}
-.fap-btn2 svg{
-  position: absolute;
- overflow:visible;
- 
-  z-index: 1;
-}
- 
-
-.fap-btn2:hover{
- 
- 
-  
-  color:darkblue !important;
-  
-  
-  
-}
- .fap-btn2-1{
-   z-index: 1;
-   position: absolute;
-   height: 310px;
-   width: 310px;
-   
-   top: -50px;
-   right:-50px;
- }
- .fap-btn3{
-   
-  position: absolute;  
-  color:#025889!important;
-  border: 3px solid #fff!important;
-  height: 200px;
-  width: 200px;
-  font-size: 3vw!important;
-  font-weight: 900!important;
-  border-radius: 50%!important;
-  cursor: pointer;
-  outline: none;
-  transition: 1s ease-in-out;
-font-family: 'Lucida Sans'!important;
- }
- .fap-btn3:hover svg{
-   z-index: 1;
-   stroke-dashoffset:-480 ;
- }
- .fap-btn3-2{
-   
-position: absolute;
-left:-110px;
-bottom: -60px!important;
- }
-
- 
- .fap-btn4{
-  position: absolute;
-  
-  margin-right: 6vw;
-  overflow: visible;
-  color:#025889!important;
-  border: 3px solid #fff!important;
-  height: 200px;
-  width: 200px;
-  font-size: 3vw!important;
-  font-family: 'Lucida Sans'!important;
-  font-weight: 900!important;
-  border-radius: 50%!important;
-  cursor: pointer;
-  outline: none;
-  
-  transition: 1s ease-in-out;
- }
- .fap-btn4-3{
-   
- position: absolute;
-font-family: 'Josefin Sans';
-  bottom:-59px;
- left: -110px;
- }
-
- .fap-btn4:hover svg{
-  z-index: 1;
-  stroke-dashoffset:-480 ;
-}
-.svg1{
-  
-  position: absolute;
-  left: -35px!important;
-  top: -37px;
-  fill: none;
-  overflow: visible;
-  
-  background:transparent;
-  overflow: visible;
-  stroke: darkblue;
-  border-radius: 50%;
-  stroke-dasharray: 180 480;
-  stroke-dashoffset: 180;
-  stroke-width:15px;
-  transition: 3s ease-in-out;
-}
-.svg2{
-  
-  position: absolute;
-  left: -35px!important;
-  top: -37px;
-  fill: none;
-  overflow: visible;
-  
-  background:transparent;
-  overflow: visible;
-  stroke: darkblue;
-  border-radius: 50%;
-  stroke-dasharray: 180 480;
-  stroke-dashoffset: 180;
-  stroke-width:15px;
-  transition: 3s ease-in-out;
+.fap-seg {
+    position: relative;
+    top: -1vw;
+    left: 2.5vw !important;
 }
 
-.svg3{
-  
-  position: absolute;
-  left: -35px!important;
-  top: -37px;
-  fill: none;
-  overflow: visible;
-  
-  background:transparent;
-  overflow: visible;
-  stroke: darkblue;
-  border-radius: 50%;
-  stroke-dasharray: 180 480;
-  stroke-dashoffset: 180;
-  stroke-width:15px;
-  transition: 3s ease-in-out;
-}
-.textsyn{
-   position: relative;
-  color: #024870;
-  left: -1;
-top: 3vw;
-  font-family: 'Lucida Sans';
-  font-size: 3vw;
-  font-weight: bold;
- line-height: 2.5vw;
-  
-}
-.con-txtbtn{
-  position: relative;
-  left: -22vw;
-}
-.mintext{
-  position: relative;
-  color:#647FAA;
-  top: 3vw;
-  font-weight: bold;
-  margin: 0 0 0 12vw;
-  font-size: 2.5vw;
-  font-family:'Lato', sans-serif!important;
-}
-.textsyn2{
-
-  position: relative;
- 
-  
-
-  font-family: 'Lucida Sans';
-  font-size: 3vw;
-  left: 8vw;
-  top: 3vw;
-  font-weight: bold;
-  color: #024870;
-  
-}
-.mintext2{
-  position: relative;
-  color:#647FAA;
-  font-weight: bold;
-  font-size: 2vw;
-  font-family:'Lato', sans-serif!important;
-  bottom: -20vw!important;
-right: 12vw;
-}
-.textsyn3{
-
-  position: absolute;
-  top: 55vw;
-  
-
-color: #024870;
-  font-family: 'Lucida Sans';
-  font-size: 3vw;
-  font-weight: bold;
-  
-}
-.mintext3{
-  position: relative;
-  bottom: -20vw!important;
-  left: -5vw;
-  color:#647FAA;
-  font-weight: bold;
-  font-size: 30px;
-  font-family:'Lato', sans-serif!important;
-  
+.fap-btn {
+    filter: drop-shadow(0px 9px 6px rgba(0, 0, 0, 1));
+    position: relative;
+    background: #ffefba;
+    background: -webkit-linear-gradient(to right, #ffffff, #ffefba);
+    background: linear-gradient(to right, #ffffff, #ffefba);
+    color: orange !important;
+    border: 3px solid #eee !important;
+    height: 7vw;
+    width: 7vw;
+    font-family: 'Josefin Sans';
+    font-size: 4vw !important;
+    border-radius: 50% !important;
 }
 
-.contenedor-engra{
-  overflow: hidden;
-  height: 1650px;
-  background-color:white;
-}
-.engranaje{
-  display: flex;
-  position: relative;
-  bottom: -5vw;
-  overflow: visible;
-  
-  z-index: 1!important;
-  animation-name:giroengraneje;
-  
-  animation-duration: 1200s; 
-  animation-iteration-count: infinite;  
-}
-.engranejegris{
-  left: 57vw;
-}
-@keyframes giroengraneje{
- 
-100%{
-  transform: rotate(36000deg);
- }
-}
-/*------------------------------------------------ENGRANES DEL FOCO-----------------------------------*/
+.texto-contenedor {
+    display: flex !important;
+    top: 45vw !important;
+    position: absolute !important;
+    color: #053c63 !important;
+    justify-content: center;
 
-.focoenv-cont{
-  bottom: 21vw!important; 
-
-}
-.focoenv{
-  position: absolute;
-  bottom: 15.5vw;
-  left: -14vw;
-  height: 62.5vw;
-}
-.engrane1foc{
-  
-  position: absolute;
-  bottom: 65vw;
-  width: 10vw!important;
-  height: 7vw!important;
-  left: 9vw;
-}
-.engrane2foc{
-  position: absolute;
-  bottom: 66.5vw;
-  width: 11vw!important;
-  height: 10vw!important;
-  left: 18.5vw;
-}
-.engrane3foc{
-  position: absolute;
-  bottom: 60vw;
-  width: 70vw!important;
-  height: 12vw!important;
-  left: -.5vw;
-}
-.engrane4foc{
-  position: absolute;
-  bottom: 49vw;
-  width: 50vw!important;
-  height: 11vw!important;
-  left: 13vw;
-}
-.engrane5foc{
-  position: absolute;
-  bottom: 42vw;
-  width: 42vw!important;
-  height: 7vw!important;
-  left: 13vw;
-}
-.engrane6foc{
-  position: absolute;
-  bottom:29vw;
-  width: 51vw!important;
-  height: 13vw  !important;
-  left: 1vw;
-}
-.engrane7foc{
-  position: absolute;
-  bottom: 41vw;
-  width: 40vw!important;
-  height: 28vw!important;
-  left: 1vw;
+    right: 72vw !important;
+    font-size: 3vw !important;
 }
 
-.modal-sym{
-  margin: 100px 0 0 0 ;
-  position: relative;
-  background-color:#CEDEEEE6!important;
-  color: #025889;
-  text-align: center;
-  
- 
+.texto-horas {
+    display: flex;
+    position: absolute;;
+    color: #053c63 !important;
+    justify-content: center;
+
+    right: 50.5vw !important;
+}
+
+.texto-min {
+    display: flex;
+    position: absolute;
+    color: #053c63 !important;
+    justify-content: center;
+    right: 31vw !important;
+}
+
+.texto-seg {
+
+    position: absolute;
+    color: #053c63 !important;
+    justify-content: center;
+
+    margin-right: 0;
+    right: 13vw !important;
+}
+
+/*--------------------------------------------------------------SECCION 3 CAP--------------------------------------------------*/
+.rectangulo1 {
+    list-style: none;
+    margin-top: 20vw;
+    padding: 0px;
+
+    margin-bottom: 0px !important;
+    justify-content: center;
+    overflow: hidden;
 
 }
 
-.cont-cel {
-  text-align: center!important;
-}
-img.modal-imgsym{  
-height: 500.28px!important;
+.rectangulo1 img {
 
-}
+    justify-content: center;
 
 
-
-.modal-backdrop {
-  z-index: 2!important;
-
-}
-
-
-
-
-
-  
-
- .modal-titu{  
-   
-   text-align: center; 
-white-space: normal;
-  font-family: 'Lucida Sans';
-  font-weight: bold;
-  font-size: 45px;   
- }
- .modal-text{
-   font-size: 30px;
-   font-family: 'Lato';
-   color: #647FAA;
- }
- .modal-cuerpo{
-  text-align: left; 
-   position: relative;
-   color: #025889;
-   white-space:normal;
-   font-weight: normal;
-   font-size: 25px;
-   font-family: 'Josefin Sans' ;
-   border-bottom: #025889 solid 10px;
-  
- }
-/*--------------SECCION 8 MAPA ESTADISTICAS--------------------------------------------------------*/
-.mapacon{
-  
-  overflow: hidden;
-}
-.mapaes{
-  
-  width: 100vw;
-}
-/*-----------------------------------SECCION QUE ES ---------------------------------------*/
-.text-moneda{
-  background-color: white!important;
-}
-.textappcon{
-  
-  
-  position: relative;
-  background-color:white!important;
-  overflow: hidden;
-  }
-  .text-App-g{
     position: relative;
     left: -1.5vw!important;
     width: 102vw!important;
@@ -1037,6 +535,7 @@ text-align: center;
 }
 /*----------------------------seccion10 preguntas    -------------------------------------------------------*/
 
+<<<<<<< HEAD
 .fondo-preg{
  
   background-color:white!important;
@@ -1089,752 +588,451 @@ text-align: center;
   justify-content: center!important;
   align-items: center!important;
 }
+=======
+>>>>>>> 58ddfcb84c0348d0aa4fe8ba22d0f5f6032fe6ad
 
-/*---------------------------------------------------Newlester----------------------------------------*/
+.text-rec-may {
+    line-height: 35px !important;
+    white-space: nowrap;
 
-.newlesterenvol{
-  white-space: normal!important;
-  justify-content: center;
-  background-color:#CEDEEE!important;
- 
 }
-.Newlester-con{
-  position: relative;
-  width: 100vw;
-  padding: 0px!important;
-  
-justify-content: center!important;
-text-align: center!important;
-}
-.titunew{
-  display: flex;
-  position: relative;
-  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
-  color: rgba(255,255,255,1)!important;
-    justify-content: center;
-    
-    
-    
-    
-      font-family: 'Eras ITC';
+
+.text-rec {
+    font-size: 35px;
+    font-family: 'Lato';
     font-style: normal;
     font-weight: normal;
-    font-size: 6.9vw;
-   
-}
-.new{
-  
-  position: relative;
-  justify-content: center!important;
-  margin: 3vw 0 20px 0;
-  
-}
-.newpara{
-  position: relative;
-display: flex!important;
-margin: 5vw 0 0px 0;
-line-height: 30px;
-color: #7B90A3;
-background-color:#CEDEEE!important;
-justify-content: center!important;
-font-size: 31px!important;
-font-family: 'Josefin Sans', sans-serif;
+    color: rgba(2, 88, 137, 1);
+    justify-content: center;
+
 
 }
-/*----------------------------------------------whatsapp----------------------*/
-.whatsapp-img{
-  
-  
-  
-  position:fixed;
-  width:120px;
-  height:120px;
-  bottom:30px;
-  right:30px;
-  
-  color:#FFF;
-  border-radius:50px;
-  text-align:center;
-  font-size:35px;
-  box-shadow: 0px 1px 10px rgba(0,0,0,0.3);
-  z-index:1;
-  transition: all 300ms ease;
 
-}
-.tel-img{
-  display: flex;
-  position:fixed;
-  width:120px;
-  height:120px;
-  bottom:200px;
-  right:30px;
-  object-fit: scale-down!important;
-  
-  color:#FFF;
-  border-radius:50px;
-  
-  font-size:35px;
-  box-shadow: 0px 1px 10px rgba(0,0,0,0.3);
-  z-index:1;
-  transition: all 300ms ease;
-}
-.whats-content{
-  bottom:30px;
+.tecno {
+    overflow: hidden;
+    background: white;
+    background-size: cover;
+    background-position: center;
+    padding: 0px !important;
+    margin-bottom: 0px !important;
 }
 
-/*------------------------------fotttttttttteeeeeeeeeeeeeeeeeeeeeeeeeee----------------------------------------------*/
-.con-footer{
- 
+.img-tecno {
+    width: vw !important;
+    height: 40vw !important;
 
-  justify-content: center!important;
-  
-  
-  background-image: url("./images/fondofooter.svg");
-  background-size:cover;
 
 }
-.con-footer img{
-  margin: 0px 10px 10px 10px;
-  text-align: center;
-  
-}
-.conectate{
-  font-size: 4vw;
-}
-.con-conecta{
-display: flex;
-justify-content: center!important;
-text-align: center;
-  color: white!important;
-  white-space:normal;
-}
-.foottitulo{
-  font-size: 59px;
-  border-top: #009DC8 solid 10px;
-  color: white!important;
-  text-align: center;
-  padding: 0px!important;
-  font-family: 'Josefin Sans';
-}
-.foottitulo button{
-  color: white;
-  font-family: 'Josefin Sans';
+
+
+.cap {
+    display: flex;
+    position: relative;
+    font-size: 4vw;
+    line-height: 3vw;
+    width: 100vw !important;
+    left: 4vw;
 }
 
-.modalfootcont{
-  background-image:url("./images/fondogalaxy.png")!important;
-  background-size:cover;
-  
-  background-position:center;
+.cap-min {
+    font-size: 4vw;
+    font-weight: normal !important;
+    font-family: 'Segoe UI';
+    font-style: normal;
+}
+
+/*-----------------------------------SECCION 4 Proyectos------------------------------------------------*/
+.walp {
+
+    position: relative;
+    background: #043361;
+    justify-content: center;
+
+    padding: 0px;
 
 }
-.modal-content{
 
-border: none;
-}
-.modal-header{
-  margin: 30px 0 0 0;
-  border: none!important;
-  font-family:'Lato';
-  font-weight:bold!important;
-}
-.modal-title{
-  
-  position: absolute!important;
-  font-size: 40px;
-  white-space: normal;
-  line-height: 15px!important;
-  text-align: start;
-  
-}
-.close {
-position: relative;
-  color: white!important; 
-  font-size: 40px!important;
-  opacity: 1!important;
-}
- h5 p {
-  font-size: 69px;
-}
-.form-cont{
-  margin: 100px 0 0 0!important;
-}
-.form-control{
 
-background-color: #ffffff80!important;
-color: white!important;
-font-family:'Lato';
-  font-weight:bold!important;
+.walp-img {
 
-}
-.form-control::placeholder{
-  color: white!important;
-  
-  font-family:'Lato';
-  font-weight:bold!important;
-}
-/*-------------------------------------------- PESTAÑA ACERCA DE-----------------------------------------------------------
----------------------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------------------*/
-.cont-flechas{
-  padding-top: 100px;
-  
-position: relative;
-  width: 110%!important;
- 
- 
-  
- 
 
-  
-  text-align: center;
-  justify-content: center;
-  font-size: 35px;
-  font-family: 'Josefin Sans';
-  line-height: 35px;  
+    position: relative;
+    margin-right: 0px !important;
+    padding: 0px;
+    overflow: hidden;
+    width: 89%;
+    height: 35vw;
+    left: 20px;
+    margin: 0px;
 }
-.txt-sobre{
-  position: relative;
-  z-index: 2;
-  margin-top: 10px;
+
+.ventajascont {
+    background-color: white !important;
 }
-.cont-flechas:before{
-  content: ' ';
-  display: block;
- 
-  position: absolute;
-  width: 100%;
+
+.ventajas {
+
+    border-top: white solid 50px;
+}
+
+.img-vent {
+    width: 100% !important;
     height: 100%;
-    opacity: .8;
-  background-image: url("./images/fondoNosotros.svg");
-  background-repeat: no-repeat;
-  background-attachment: "attachment";
-  background-color:white;
-    background-position: top;
-    background-size:contain ;
-
-}
-.txt-flechas{
-  
-  position: relative;
-  
-  font-size: 25px ;
-  font-family:'Lato';
-  top: 60px;
-  right: 325px;
-}
-.img-flechas{
-  z-index: 2!important;
-  position: relative;
-width: 30vw;
-margin:0 10px 0 0;
-  right: 70px;  
-}
- .txt-flechas strong{
-   font-size: 40px;
-   font-style: bold;
-   
-   font-weight: bold!important;   
- }
- .mision-titu{
-   font-family: 'Eras ITC';
-   font-size: 60px;
-   text-align: left;
-   
- 
-   font-weight: bold;
-   margin-top: 100px;
-   }
-   .texto-mision{
-     display: flex;
-     position: relative;
-     
-     justify-content: left;
-      text-align: left!important;
-      right:  145px;
-   }
-
-   .cont-diferencia{
-     
-    margin-top: 150px;
-   }
-   .cont-diferencia img {
-    margin-bottom: 10px !important;
 }
 
-.cont-diferencia h3 {
-    margin-top: 50px;
-    color: #025889 !important;
-    font-family: 'Josefin Sans';
+.ventajas-seg {
+    border-left: 1vw solid white;
+    border-right: 1vw solid white;
+}
+
+/*-------------------------------------------------------FOCO-----------------------------------*/
+.sec6 {
+    position: relative;
+    border-top: white 1vw solid;
+    background-color: white !important;
+    justify-content: center !important;
+    text-align: center;
+
+}
+
+.titulo6 {
+    filter: drop-shadow(7px 3px 8px rgba(0, 0, 0, 0.851));
+    height: 200px;
+
+    justify-content: center !important;
+
+    margin: 2px 0 5px 0;
+
+    font-family: 'Barlow Condensed';
+    font-style: normal;
     font-weight: bold;
+    font-size: 12vw;
+    color: rgba(2, 88, 137, 1);
+
 }
 
-.cont-diferencia p {
+.focsec6 {
+
+    background-color: white;
+    background-size: contain;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-color: white !important;
+    font-style: normal;
+    font-family: 'Lucida Sans' !important;
+    height: 2px !important;
+
+}
+
+
+.fap-btn2 {
+
+
+    position: relative;
+    margin: 3vw 0 0 15vw;
+
+
     color: #025889 !important;
-    font-family: 'Josefin Sans';
-    font-size: 150%;
-}
-.titu-dife{
-  font-weight: bold;
-  font-family: 'Eras ITC';
-  color: #033462;
-
-}
-.wrapper {
-  position: relative;
-  display: inline-block;
+    border: 3px solid #fff !important;
+    height: 200px;
+    width: 200px;
+    font-weight: 900 !important;
+    font-size: 2.2vw !important;
+    border-radius: 50% !important;
+    cursor: pointer;
+    outline: none;
+    transition: 1s ease-in-out;
+    font-family: 'Lucida Sans';
 }
 
-.wrapper:after{
-  content: "EQUIPO SUNSHINE";
-  background-color: rgba(2, 88, 137, 0.6);
-  position: absolute;
-  display: block;
-  width: 98.5%;
-  top: 0;
-  bottom: 0;
-  padding-left: 35%;
-  padding-top: 13%;
-  font-size: 60px;
-  font-weight: bold;
-}
+.fap-btn2:hover svg {
+    z-index: 1;
+    stroke-dashoffset: -480;
 
-
-/*--------------------------------------------------PESTAÑA CONTACTO----------------------------------*/
-.conten-contacts{
-  background-color: #CEDEEE;
-}
-
-.tarjetas img{
-  margin-top: 3vw!important;
-margin: auto;
-  width: 15vw;
-  
-  height: 15vw;
-}
-.tarjetas img:hover{
-  -webkit-transform: rotateY(180deg);
-    -webkit-transform-style: preserve-3d;
-    transform: rotateY(180deg);
-    transform-style: preserve-3d;
-    }
-   
-
-.image-overlay{
-  position: absolute;
-  margin-top: 3vw!important;
-margin: auto;
-  width: 15vw;
-  
-  height: 15vw;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    
-    
-    opacity: 0;
-    transition: .5s ease;
-    background: linear-gradient(
-    45deg,
-    rgba(29, 236, 197, 0.5),
-    rgba(91, 14, 214, 0.5) 100%
-  )!important;
-  
-}
-
-.red img{
-  margin-top: 0px!important;
-  height: 10vh;
-  position: relative;
-  
-}
-.img-cont2{
-object-fit: cover!important;
-}
-
-.cont-btn-contac{
-  display: flex;
-  justify-content: center;
-}
-.btn-contac{
-background-color:#025889!important;
-color: white!important;
-
-width: 40vw;
-font-size: 2vw!important;
-font-family: 'lato';
-margin:5vw;
 
 }
 
-
-/*---------------------------watssapp button------------------------------------*/
-
-
-/*--------------------------------------------------PESTAÑAROAPTOMAP-----------------------------------------------*/
-.road{
-  
-  margin: 40px 0 0 0!important;
-  
-  
-}
-.maparoad{
-  margin-top: 10px;
-  width: 100%;
+circle:hover {
+    overflow: visible;
+    fill: transparent;
+    z-index: 1;
 }
 
-/*@keyframes   bordegirtariovh
- 
-  10%{
-    background:BLACK;
-    color: red!important;
-    
-   }
-   20%{
-    background:brown;
-    border: blue 5px solid!important;
-   }
-   40%{
-    border-bottom:yellow 5px solid!important;
-   }
-   60%{
-    border-bottom: pink 5px solid!important;
-   }
-   100%{
-    border-bottom: darkblue 5px solid!important;
-   }
- }*/
- /*----------------------------------------------registro--------------------*/
- .registrobody{
-   display: flex!important;
-   position: relative;
-  background-image: url("./images/fondoregistro.svg")!important;
-  color: white;
-  text-align: center; 
-  
-   justify-content: center!important;
+.textbtn2 {
+    position: relative;
+    font-size: 2vw;
 
- }
- .form-registro{
- flex-wrap: wrap;
-   justify-content:center!important;
-   text-align: center!important;
-  
- }
- .gmail{
-   
-   position: relative;
-   color: white!important;
-   background-color: #ffffff80!important;
-font-size: 2vw!important;
-font-family:'Lato';
-  font-weight:bold!important;
- }
-.form-regi{
-  color: white!important;
-  justify-content: flex-start!important;
-  text-align: left!important;
-  font-family:'Lato';
-  font-size: 2vw;
-  font-weight:bold!important;
-  z-index: 2000!important;
-}
-.form-regi::placeholder{
-  color: #ffffffb3!important;
-  justify-content: flex-start!important;
-  text-align: left;
-  font-family:'Lato';
-  font-weight:bold!important;
-  
-}
- select{
-   background-color: #ffffff80!important;
- }
- option{
-   background-color: #ffffff80!important;
-   color: black;
- }
- .modal-sroll{
-  overflow:scroll!important;
- }
- input[type=radio] 
- { 
-   border: 0px; 
-  width: 2vw;
-  height: 1em; 
-}
- .marginlb {
-   display: flex;
-  position: relative;
-  font-size: 20px;
-  font-weight: 1vw;
-  left: 1vw;
-  line-height: 1vh;
-  margin-top: 1vw;
-
-  
-}
-.btn-registro{
-
-  color: #3A5373!important;
-  background-color:white!important;
-  font-size: 20px!important;
-  color: #3A5373!important;
-  
-  font-weight: bold!important;
+    z-index: 10 !important;
 
 
 }
-.btn-footer{
 
-  position: relative;
-  justify-content: center!important;
-  text-align: center!important;
-}
-/*----------------------------------------------------------------------medias-------------------------------------------------*/
-
-@media only screen and (max-width:3000px){
-  .focoenv-cont{
-    bottom: -30vw!important; 
-  }
-  .contenedor-engra{
-    height: 3200px;
-  }
-  }
-@media only screen and (max-width:2000px){
-  .focoenv-cont{
-    bottom: -4vw!important; 
-  
-  }
-  .contenedor-engra{
-    height: 2300px;
-  }
-  .textbtn2{
-    font-size: 1.5vw;
-  }
-
-}
-@media screen and (max-width:1650px){
-  .focoenv-cont{
-    bottom: 15vw!important; 
-     
-  }
-  .contenedor-engra{
-    height: 1800px;
-  }
-
+.textbtn3 {
+    position: relative;
+    font-size: 2vw;
+    z-index: 10 !important;
 }
 
-@media screen and (max-width:1319px){
-  /*//boton1///////////////*/
+.textbtn4 {
+    position: relative;
+    font-size: 2vw;
+    z-index: 10 !important;
+}
 
-  .focoenv-cont{
-    bottom: 30vw!important; 
-     
-  }
-  .contenedor-engra{
-    height: 1700px;
-  }
-  .fap-btn2{
+.fap-btn2 svg {
+    position: absolute;
+    overflow: visible;
 
-  height: 150px;
-  width: 150px;
-  margin-top: 4vw;
+    z-index: 1;
 }
 
 
-.fap-btn2 svg{
-  position: absolute;
- width: 55mm;
- height: 55mm;
- top: -3.5vw;
-}
-.fap-btn2-1{
- 
-  height: 260px;
-  width: 260px;
-  
-  top: -50px;
-  right:-53px;
-}
-.textbtn2{
-  left: -1.5vw;
-}
-  .textsyn{
-    font-size: 2.5vw;
-    left: -1vw;
-margin-top: 3vw;
-  }
-  .mintext{
-    font-size: 2.3vw;
-    left: -3vw!important;
+.fap-btn2:hover {
 
-  }
- /*boton2 //////////////////////////////////*/
-  .fap-btn3{
-    height: 150px!important;
-    width: 150px!important;
-    left: 40vw;
-  }
-  .svg2{
-  position: absolute!important;
-  width: 55mm;
-  height: 55mm;
-  top: -35px!important;
-  left: 5vw;
-  }
-  
-  .fap-btn3-2{
- position:absolute!important;
-    height: 260px;
-    width: 260px;
-    
-    top: -55px;
-    left:-80px!important;
-  }
-  .textsyn2{
-    left: 1vw;
-  }
-  .mintext2{
-    left: -20vw;
-  }
 
-  /*boton3///////////////////////////////////////*/
-  .fap-btn4{
-    height: 150px!important;
-    width: 150px!important;
-    left: 70vw;
-  }
-  .svg3{
-    position: absolute!important;
-    width: 55mm;
-    height: 55mm;
-    top: -35px!important;
-    left: 5vw;
-  
-    
-    }
-  .fap-btn4-3{
-    position:absolute!important;
-    height: 260px;
-    width: 260px;
-    
+    color: darkblue !important;
+
+
+}
+
+.fap-btn2-1 {
+    z-index: 1;
+    position: absolute;
+    height: 310px;
+    width: 310px;
+
     top: -50px;
-    left: -80px!important;
-  }
-  .textsyn3{
-    margin-top: 1vw;
-    left: 61vw;
-  }
-  .mintext3{
-    margin-top: .5vw;
-    left: -18vw;
-  }
-  /*/////////////////////////////////////////////*/
-  .img-aple{       
-    top: -16vw!important;    
-  }
-}
-@media screen and (max-width:1220px){
-.goo-aple{
-  top: 3vw;
-}
-}
-@media screen and (max-width:1091px){
-
-  /*----------media de foco------------------------------/**/
-  .contenedor-engra{
-    height: 1400px;
-  }
-  .focoenv-cont{
-    bottom: 50vw!important; 
-  
-  }
-
-  .engranejegris{
-    left: 40vw;
-  }
-  
-  .textsyn3{
-    margin-top: 5vw!important;
-    left: 63vw;
-  }
-  .textbtn2{
-    font-size: 2.5vw!important;
-    left: -1.5vw;
-    
-  }
-  .textbtn3{
-    font-size: 3vw!important;
-    left: -.5vw;
-  }
-  .textbtn4{
-    font-size: 3vw!important;
-    left: -.5vw;
-  }
-  /*-----------------------------------contador-----------------------------*/
-  .texto-contenedor{
-  
-    top: 50vw!important;
-   
-  }
-  /*------------------media de imagnes apps-----------------*/
-  .img-aple{
-       
-    top: -16vw!important;
-    
-  }
-  .goo-aple{
-    top: 6vw;
-  }
-  
-  }
-
-  @media screen and (max-width:958px){
-    /*------------media foco--------------------*/
-    .textsyn{
-      margin-top: 6vw;
-    }
-    .textsyn2{
-      margin-top: 2vw;
-      left: 4vw;
-    }
-    .mintext{
-      font-size: 3vw;
-    }
-    .mintext2{
-      font-size: 3vw;
-      margin-top: 2vw;
-    }
-    
-    .textsyn3{
-      margin-top: 11vw!important;
-    
-    }
-    .focoenv-cont{
-      bottom: 70vw!important; 
-    
-    }
-
-  }
-  @media screen and (max-width: 913px){
-    .boton1{
-      margin-bottom: 15vw;
-      
-      width: 30vw!important;
-    }
-  }
-  @media screen and (max-width:890px){
-/*-------------------media foco/*-----------------*/
-.textbtn2{
-  font-size: 3vw!important;
-}
-.focoenv-cont{
-  bottom: 78vw!important; 
-
+    right: -50px;
 }
 
+.fap-btn3 {
+
+    position: absolute;
+    color: #025889 !important;
+    border: 3px solid #fff !important;
+    height: 200px;
+    width: 200px;
+    font-size: 3vw !important;
+    font-weight: 900 !important;
+    border-radius: 50% !important;
+    cursor: pointer;
+    outline: none;
+    transition: 1s ease-in-out;
+    font-family: 'Lucida Sans' !important;
+}
+
+.fap-btn3:hover svg {
+    z-index: 1;
+    stroke-dashoffset: -480;
+}
+
+.fap-btn3-2 {
+
+    position: absolute;
+    left: -110px;
+    bottom: -60px !important;
+}
+
+
+.fap-btn4 {
+    position: absolute;
+
+    margin-right: 6vw;
+    overflow: visible;
+    color: #025889 !important;
+    border: 3px solid #fff !important;
+    height: 200px;
+    width: 200px;
+    font-size: 3vw !important;
+    font-family: 'Lucida Sans' !important;
+    font-weight: 900 !important;
+    border-radius: 50% !important;
+    cursor: pointer;
+    outline: none;
+
+    transition: 1s ease-in-out;
+}
+
+.fap-btn4-3 {
+
+    position: absolute;
+    font-family: 'Josefin Sans';
+    bottom: -59px;
+    left: -110px;
+}
+
+.fap-btn4:hover svg {
+    z-index: 1;
+    stroke-dashoffset: -480;
+}
+
+.svg1 {
+
+    position: absolute;
+    left: -35px !important;
+    top: -37px;
+    fill: none;
+    overflow: visible;
+
+    background: transparent;
+    overflow: visible;
+    stroke: darkblue;
+    border-radius: 50%;
+    stroke-dasharray: 180 480;
+    stroke-dashoffset: 180;
+    stroke-width: 15px;
+    transition: 3s ease-in-out;
+}
+
+.svg2 {
+
+    position: absolute;
+    left: -35px !important;
+    top: -37px;
+    fill: none;
+    overflow: visible;
+
+    background: transparent;
+    overflow: visible;
+    stroke: darkblue;
+    border-radius: 50%;
+    stroke-dasharray: 180 480;
+    stroke-dashoffset: 180;
+    stroke-width: 15px;
+    transition: 3s ease-in-out;
+}
+
+.svg3 {
+
+    position: absolute;
+    left: -35px !important;
+    top: -37px;
+    fill: none;
+    overflow: visible;
+
+    background: transparent;
+    overflow: visible;
+    stroke: darkblue;
+    border-radius: 50%;
+    stroke-dasharray: 180 480;
+    stroke-dashoffset: 180;
+    stroke-width: 15px;
+    transition: 3s ease-in-out;
+}
+
+.textsyn {
+    position: relative;
+    color: #024870;
+    left: -1;
+    top: 3vw;
+    font-family: 'Lucida Sans';
+    font-size: 3vw;
+    font-weight: bold;
+    line-height: 2.5vw;
+
+}
+
+.con-txtbtn {
+    position: relative;
+    left: -22vw;
+}
+
+.mintext {
+    position: relative;
+    color: #647FAA;
+    top: 3vw;
+    font-weight: bold;
+    margin: 0 0 0 12vw;
+    font-size: 2.5vw;
+    font-family: 'Lato', sans-serif !important;
+}
+
+.textsyn2 {
+
+    position: relative;
+
+
+    font-family: 'Lucida Sans';
+    font-size: 3vw;
+    left: 8vw;
+    top: 3vw;
+    font-weight: bold;
+    color: #024870;
+
+}
+
+.mintext2 {
+    position: relative;
+    color: #647FAA;
+    font-weight: bold;
+    font-size: 2vw;
+    font-family: 'Lato', sans-serif !important;
+    bottom: -20vw !important;
+    right: 12vw;
+}
+
+.textsyn3 {
+
+    position: absolute;
+    top: 55vw;
+
+
+    color: #024870;
+    font-family: 'Lucida Sans';
+    font-size: 3vw;
+    font-weight: bold;
+
+}
+
+.mintext3 {
+    position: relative;
+    bottom: -20vw !important;
+    left: -5vw;
+    color: #647FAA;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: 'Lato', sans-serif !important;
+
+}
+
+.contenedor-engra {
+    overflow: hidden;
+    height: 1650px;
+    background-color: white;
+}
+
+.engranaje {
+    display: flex;
+    position: relative;
+    bottom: -5vw;
+    overflow: visible;
+
+    z-index: 1 !important;
+    animation-name: giroengraneje;
+
+    animation-duration: 1200s;
+    animation-iteration-count: infinite;
+}
+
+.engranejegris {
+    left: 57vw;
+}
+
+@keyframes giroengraneje {
+
+    100% {
+        transform: rotate(36000deg);
+    }
+}
+
+/*------------------------------------------------ENGRANES DEL FOCO-----------------------------------*/
+
+.focoenv-cont {
+    bottom: 21vw !important;
+
+}
+
+<<<<<<< HEAD
     .textsyn3{
       margin-top: 13vw!important;    
     }
@@ -1857,173 +1055,80 @@ margin-top: 3vw;
     
     }
   
-
-
-    @media screen and (max-width: 833px){
-      /*-------------------------------media foco----------------------------*/
-      .fap-btn2{
-        margin-top: 40vw;
-      }
-      .textsyn{
-        top: 43vw;
-      }
-      .mintext{
-        top: 42vw;
-      }
-      .fap-btn3{
-        bottom: 50vw;
-        left: 70vw;
-      }
-      .textsyn2{
-        top: -40vw;
-        left: 35vw;
-      }
-      .mintext2{
-        top: -22vw;
-        left: 15vw;
-      }
-      .textsyn3{
-        margin-top: 44vw!important;
-      }
-      .mintext3{
-        top: 25vw;
-        left: -13vw;
-      }
-      .focoenv-cont{
-      top: -108vw!important;
-      }
-      .engranejegris{
-        left:20vw;
-        top: -10vw;
-      }
-      .contenedor-engra{
-        height: 1200px;
-      }
-     
-     .texto-contenedor{
-      
-       top: 50vw!important;
-       left: 15vw!important;
-           
-     }
-   
-     
-     .container-contador{
-      margin-left:-5vw!important;
-     }
-     .texto-horas{
-      right:  80vw!important;
-    }
-    .texto-min{
-      right: 90vw!important
-    }
-    .texto-seg{
-      right: 100vw!important
-    }
-    }
-
-
-
-
-  
-@media screen and (max-width: 768px){
-
-  /*-----------------------------media seccion1-------------------------*/
-  .revo1{
-    line-height: 13vh;
-    font-size: 7.5vw!important;
-    text-align: center!important;
-      
-      }
-      .tec1{
-        text-align: center!important;
-        font-size: 7.5vw;
-        margin-bottom: 1vh;
-      }
-      .moneda1{
-        top: 14vh;
-        font-size: 7vw;
-      }
-      .moneda{
-        opacity: 0.63;
-        
-        position: absolute!important;
-        height: 45vh;
-        left: 64vw !important;
-        width: 40vw!important;
-        z-index: -2;
-        animation: none;
-        
-        overflow: visible;
-      }
-      .parte{
-       
-       
-        overflow: hidden;
-      }
-      .boton1{
-        margin-bottom: 15vw;
-        margin-left: 3vw;
-        text-align: left!important;
-        
-      }
-      .hometext1{
-       
-        margin: 3vh 0 0 2vw;
-        font-size: 3.5vw;
-        font-weight: bold;
-        line-height: 6vh!important;
-      } 
-      
-      /*------------------------------seccion ventajas------------------------------*/
-  .vemtajas{
-    width: 100%!important;
-    background-color:white!important;
-    border-top: white solid 5vw;
-  }
-  
-  .img-vent{
-    width: 90vw!important;
-    height: 100%;
-    background-color:white!important;
-    
-  }
-  
-  
-  .texto-contenedor{
-margin-top: 50vw!important;
-
-  }
-  .num-conta{
-    position:absolute;
-    left: 1vw!important;
-    top: .5vw;
-  }
-  .rectangulo1{
-    
-    margin-top: 20vw!important;   
-   }
-   
-  .preguntas{
-    z-index: 0;
-    margin-bottom: 10vw;
-  }
-  .imgpreg{
+=======
+.focoenv {
     position: absolute;
-    opacity: .37;
-    z-index: -3!important;
-    height: 212vh;
-    justify-content: center;
-    width: 110vw;
-    bottom: -130vw!important  ;
-    left: 60vw;
-  }
-  .frecprec{
-    position: relative;
-    z-index: 1!important;
-  }
-  .img-meto{
+    bottom: 15.5vw;
+    left: -14vw;
+    height: 62.5vw;
+}
+>>>>>>> 58ddfcb84c0348d0aa4fe8ba22d0f5f6032fe6ad
 
+.engrane1foc {
+
+    position: absolute;
+    bottom: 65vw;
+    width: 10vw !important;
+    height: 7vw !important;
+    left: 9vw;
+}
+
+.engrane2foc {
+    position: absolute;
+    bottom: 66.5vw;
+    width: 11vw !important;
+    height: 10vw !important;
+    left: 18.5vw;
+}
+
+.engrane3foc {
+    position: absolute;
+    bottom: 60vw;
+    width: 70vw !important;
+    height: 12vw !important;
+    left: -.5vw;
+}
+
+.engrane4foc {
+    position: absolute;
+    bottom: 49vw;
+    width: 50vw !important;
+    height: 11vw !important;
+    left: 13vw;
+}
+
+.engrane5foc {
+    position: absolute;
+    bottom: 42vw;
+    width: 42vw !important;
+    height: 7vw !important;
+    left: 13vw;
+}
+
+.engrane6foc {
+    position: absolute;
+    bottom: 29vw;
+    width: 51vw !important;
+    height: 13vw !important;
+    left: 1vw;
+}
+
+.engrane7foc {
+    position: absolute;
+    bottom: 41vw;
+    width: 40vw !important;
+    height: 28vw !important;
+    left: 1vw;
+}
+
+.modal-sym {
+    margin: 100px 0 0 0;
+    position: relative;
+    background-color: #CEDEEEE6 !important;
+    color: #025889;
+    text-align: center;
+
+<<<<<<< HEAD
     position: relative!important;
     width: 3vw!important;
     height: 40vh!important;
@@ -2037,114 +1142,79 @@ margin-top: 50vw!important;
     overflow: hidden;
     margin: 2vw;
     padding: 1vw 20vw 1vw 20vw!important;
-
-  }
-.img-aple{
-  
-  left: 1vw!important;
-}
-/*--------------------------------------media foco-----------------------------*/
-.focoenv-cont{
-  top: -122vw!important;
-  }
-  .fap-btn4{
-    top:70vw ;
-  }
-  .textsyn3{
-    margin-top: 35vw!important;
-    left:70vw;
-      }
-.mintext3{
-  margin-top: 1vw;
-  top: 15vw;
-  left: -10vw;
-  font-size: 3vw;
-}
-}
-    .texto-contenedor{
-      margin-top: 5vw!important;
-    left: 25vw;
-      font-size: 4vw!important;
-      
-        }
-    .texto-horas{
-      left: 45vw!important;
-    }
-    .texto-min{
-      left: 65vw!important;
-    }
-    .texto-seg{
-      left: 85vw!important;
-    }
-@media screen and (max-width: 689px){
-  .textsyn{
-    top: 50vw!important;
-    font-size: 3vw;
-    left: -5vw;
-  }
-  .mintext{
-    top: 50vw;
-  }
-
-  .focoenv-cont{
-    top: -138vw!important;
-    }
-    .texto-contenedor{
-      top: 60vw!important;
-    }
-}
- 
-
-@media screen and (max-width: 639px){
-  .focoenv-cont{
-    top: -155vw!important;
-    }
-    .textsyn3{
-      top: 60vw;
-    }
-    .mintext3{
-      top: 18vw;
-    }
+=======
+>>>>>>> 58ddfcb84c0348d0aa4fe8ba22d0f5f6032fe6ad
 
 }
 
-@media screen and (max-width: 567px){
-  /*-------------------------media foco----------------------------*/
-.textbtn2{
-  font-size: 4.5vw!important;
-}
-.textsyn{
-  font-size: 4vw!important;
-  left: -15vw;
-  top: 53vw!important;
-}
-.mintext{
-  left: -12vw!important;
-}
-.textbtn3{
-  font-size: 4.5vw!important;
-}
-.textsyn2{
-  font-size: 4vw;
-  top: -38vw;
-  left: 38vw;
-}
-.mintext2{
-  top: -15vw;
-  left: 15vw;
-}
-.textbtn4{
-  font-size: 4.5vw!important;
-}
-.textsyn3{
-  font-size: 4vw!important;
-  top: 65vw;
-  left: 55vw;
-}
-.mintext3{
-  top: 13vw;
+.cont-cel {
+    text-align: center !important;
 }
 
+img.modal-imgsym {
+    height: 500.28px !important;
+
+}
+
+
+.modal-backdrop {
+    z-index: 2 !important;
+
+}
+
+
+.modal-titu {
+
+    text-align: center;
+    white-space: normal;
+    font-family: 'Lucida Sans';
+    font-weight: bold;
+    font-size: 45px;
+}
+
+.modal-text {
+    font-size: 30px;
+    font-family: 'Lato';
+    color: #647FAA;
+}
+
+.modal-cuerpo {
+    text-align: left;
+    position: relative;
+    color: #025889;
+    white-space: normal;
+    font-weight: normal;
+    font-size: 25px;
+    font-family: 'Josefin Sans';
+    border-bottom: #025889 solid 10px;
+
+}
+
+/*--------------SECCION 8 MAPA ESTADISTICAS--------------------------------------------------------*/
+.mapacon {
+
+    overflow: hidden;
+}
+
+.mapaes {
+
+    width: 100vw;
+}
+
+/*-----------------------------------SECCION QUE ES ---------------------------------------*/
+.text-moneda {
+    background-color: white !important;
+}
+
+.textappcon {
+
+
+    position: relative;
+    background-color: white !important;
+    overflow: hidden;
+}
+
+<<<<<<< HEAD
 .focoenv-cont{
   top: -180vw!important;
   }
@@ -2192,77 +1262,118 @@ margin-top: 50vw!important;
      left: -4vw!important;
       
     }
+=======
+.text-App-g {
+    position: relative;
+    left: -1.5vw !important;
+    width: 102vw !important;
+>>>>>>> 58ddfcb84c0348d0aa4fe8ba22d0f5f6032fe6ad
 }
 
-@media screen and (max-width: 489px){
-  /*----------------------------------------media foco---------------------------------/**/
-.textsyn{
-  top: 60vw!important;
-}
-.mintext{
-  top: 85vw;
+.text-App {
+    position: relative;
+    width: 175vw !important;
+    left: -1.5vw;
+    background-color: white !important;
 }
 
-.textsyn2{
-  top: -35vw;
-}
-.mintext2{
-  top: -10vw;
-}
-.fap-btn3{
-  left: 64vw;
-}
-.fap-btn4{
-  top: 100vw;
-  
-}
-.textsyn3{
-  left: 55vw;
-  top: 98vw;
-}
-.mintext3{
-  top: 45vw;
-}
-.focoenv-cont{
-  top: -220vw!important;
-  }
-  /*--------------------------------------------------------------------------------------------*/
-  .fondogalaxy{
-    background-image:url("./images/fondogalaxy.png")!important;
-    background-size:  cover;
-    background-position:center!important;
+.img-goo {
 
-    
-    background-repeat:no-repeat;    
-  }
-  .rectangulo1{
-    
-    margin-top: -70vw; 
-   }
-  body{
-  
-    background-size:  cover!important;
-    background-repeat:no-repeat;    
-    background-position:center!important;  
-  }
-  .videosunrep{
-  height: 50vh!important;
-    
-  }
-  .hometext1{
-    margin-bottom: 5vw;
-  }
-  .boton1{
-    width: 40vw!important;
-  }
-  
-}
-.img-aple{
-    left: 2vw!important;     
-  top: -19vw!important;
-  
+    position: relative;
+    width: 15vw;
+    margin: 0 0 0 2vw;
+    top: -20vw !important;
+    height: 5vw;
 }
 
+.img-aple {
+
+    position: absolute !important;
+    width: 15vw;
+    margin: 0 0 0 1vw;
+    left: -2vw !important;
+    margin-top: 4.2vw !important;
+    height: 5vw;
+}
+
+/*----------------------------------SECCION SOPORTE---------------------------------*/
+.fondoedi {
+
+    background-image: url("./images/fondoedi.svg");
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    white-space: normal !important;
+    overflow: hidden;
+}
+
+.img-meto {
+
+    position: relative;
+    background-color: #00234D4D;
+    white-space: normal;
+
+    height: 30vw !important;
+    width: 30vw !important;
+    margin: 0 6vw 3vw 6vw;
+}
+
+.text-soporte {
+    font-family: 'Barlow' !important;
+    font-size: 10vw;
+    font-weight: 90;
+
+    margin-bottom: 10vw;
+}
+
+/*----------------------------seccion10 preguntas    -------------------------------------------------------*/
+
+.fondo-preg {
+
+    background-color: white !important;
+    overflow: hidden;
+    justify-content: center;
+    font-weight: bold !important;
+    font-size: 6vw !important;
+    font-family: 'Lato';
+    color: #FAD000;
+
+}
+
+.preguntas {
+
+    margin: 50px 0 0 0;
+}
+
+.btn-preg1 {
+    display: flex !important;
+    white-space: normal;
+    color: white !important;
+    background-color: #025889 !important;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 30px !important;
+    font-weight: 450;
+    width: 100%;
+    border-radius: 95px !important;
+}
+
+.btn-res1 {
+    white-space: normal;
+    font-size: 21px;
+    text-align: left;
+    margin: 0 0 0 15px;
+    text-align: justify;
+    line-height: 20px;
+    font-weight: bold;
+    justify-content: left;
+    color: #7B90A3;
+
+}
+
+<<<<<<< HEAD
 .img-goo{
   
   top: -18vw;
@@ -2270,402 +1381,1785 @@ margin-top: 50vw!important;
 .goo-aple{
   
   top: 6vw;
+=======
+.text-preg {
+    margin-bottom: 2vw;
+}
+
+.PREGIMG {
+    height: 100%;
+>>>>>>> 58ddfcb84c0348d0aa4fe8ba22d0f5f6032fe6ad
 }
 .hometext1{
   line-height: normal!important;
 }
 
-@media screen and (max-width: 431px){
-  .fap-btn2{
-    top:20vw;
-  }
-  .textbtn2{
-    font-size: 6vw!important;
-    left: -3vw ;
-  }
-  .textsyn{
-    top: 85vw!important;
-    left: -20vw;
-    white-space: nowrap;
-  }
-  .mintext{
-    left: -20vw!important;
-    font-size: 4vw!important;
-  }
+/*---------------------------------------------------Newlester----------------------------------------*/
 
-  .fap-btn3{
-    left: 59vw;
-  }
-  .textbtn3{
-    font-size: 6vw!important;
-      }
-      .mintext2{
-        font-size: 4vw!important;
-      }
-      .fap-btn4{
-        left: 62vw;
-        top:125vw;
-      }
-      .textbtn4{
-        font-size: 6vw!important;
-              }
-              .textsyn3{
-                top: 130vw;
-              }
-              .mintext3{
-                top: 70vw;
-                font-size: 4vw!important;
-              }
-              .texto-contenedor{
-                margin-top: -15vw!important;
-             
-                  }
-/*----------------------------------media contador----------------------------/**/
-#contador
-{
-  
-  height:  1vh;
-  width: 100vw!important;
-  color:white!important;
-  margin-top: -2vw;
-  
-  
-  margin-bottom:100px ; 
-  
-}
-.texto-contenedor{
-  margin-top: -2vw!important;
-}
+.newlesterenvol {
+    white-space: normal !important;
+    justify-content: center;
+    background-color: #CEDEEE !important;
+
 }
 
+.Newlester-con {
+    position: relative;
+    width: 100vw;
+    padding: 0px !important;
+
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+.titunew {
+    display: flex;
+    position: relative;
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
+    color: rgba(255, 255, 255, 1) !important;
+    justify-content: center;
 
 
-@media screen and (max-width: 391px){
+    font-family: 'Eras ITC';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 6.9vw;
+
+}
+
+.new {
+
+    position: relative;
+    justify-content: center !important;
+    margin: 3vw 0 20px 0;
+
+}
+
+.newpara {
+    position: relative;
+    display: flex !important;
+    margin: 5vw 0 0px 0;
+    line-height: 30px;
+    color: #7B90A3;
+    background-color: #CEDEEE !important;
+    justify-content: center !important;
+    font-size: 31px !important;
+    font-family: 'Josefin Sans', sans-serif;
+
+}
+
+/*----------------------------------------------whatsapp----------------------*/
+.whatsapp-img {
 
 
-  /*----------------------------------------- media foco------------------------------*/
-  .titulo6{
-    font-size: 20vw;
-  } 
-  .fap-btn2{
-     left: -4vw;
-     top: 25vw!important;
+    position: fixed;
+    width: 120px;
+    height: 120px;
+    bottom: 30px;
+    right: 30px;
+
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    transition: all 300ms ease;
+
+}
+
+.tel-img {
+    display: flex;
+    position: fixed;
+    width: 120px;
+    height: 120px;
+    bottom: 200px;
+    right: 30px;
+    object-fit: scale-down !important;
+
+    color: #FFF;
+    border-radius: 50px;
+
+    font-size: 35px;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    transition: all 300ms ease;
+}
+
+.whats-content {
+    bottom: 30px;
+}
+
+/*------------------------------fotttttttttteeeeeeeeeeeeeeeeeeeeeeeeeee----------------------------------------------*/
+.con-footer {
+
+
+    justify-content: center !important;
+
+
+    background-image: url("./images/fondofooter.svg");
+    background-size: cover;
+
+}
+
+.con-footer img {
+    margin: 0px 10px 10px 10px;
+    text-align: center;
+
+}
+
+.conectate {
+    font-size: 4vw;
+}
+
+.con-conecta {
+    display: flex;
+    justify-content: center !important;
+    text-align: center;
+    color: white !important;
+    white-space: normal;
+}
+
+.foottitulo {
+    font-size: 59px;
+    border-top: #009DC8 solid 10px;
+    color: white !important;
+    text-align: center;
+    padding: 0px !important;
+    font-family: 'Josefin Sans';
+}
+
+.foottitulo button {
+    color: white;
+    font-family: 'Josefin Sans';
+}
+
+.modalfootcont {
+    background-image: url("./images/fondogalaxy.png") !important;
+    background-size: cover;
+
+    background-position: center;
+
+}
+
+.modal-content {
+
+    border: none;
+}
+
+.modal-header {
+    margin: 30px 0 0 0;
+    border: none !important;
+    font-family: 'Lato';
+    font-weight: bold !important;
+}
+
+.modal-title {
+
+    position: absolute !important;
+    font-size: 40px;
+    white-space: normal;
+    line-height: 15px !important;
+    text-align: start;
+
+}
+
+.close {
+    position: relative;
+    color: white !important;
+    font-size: 40px !important;
+    opacity: 1 !important;
+}
+
+h5 p {
+    font-size: 69px;
+}
+
+.form-cont {
+    margin: 100px 0 0 0 !important;
+}
+
+.form-control {
+
+    background-color: #ffffff80 !important;
+    color: white !important;
+    font-family: 'Lato';
+    font-weight: bold !important;
+
+}
+
+.form-control::placeholder {
+    color: white !important;
+
+    font-family: 'Lato';
+    font-weight: bold !important;
+}
+
+/*-------------------------------------------- PESTAÑA ACERCA DE-----------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------*/
+.cont-flechas {
+    padding-top: 100px;
+
+    position: relative;
+    width: 110% !important;
+
+
+    text-align: center;
+    justify-content: center;
+    font-size: 35px;
+    font-family: 'Josefin Sans';
+    line-height: 35px;
+}
+
+.txt-sobre {
+    position: relative;
+    z-index: 2;
+    margin-top: 10px;
+}
+
+.cont-flechas:before {
+    content: ' ';
+    display: block;
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: .8;
+    background-image: url("./images/fondoNosotros.svg");
+    background-repeat: no-repeat;
+    background-attachment: "attachment";
+    background-color: white;
+    background-position: top;
+    background-size: contain;
+
+}
+
+.txt-flechas {
+
+    position: relative;
+
+    font-size: 25px;
+    font-family: 'Lato';
+    top: 60px;
+    right: 325px;
+}
+
+.img-flechas {
+    z-index: 2 !important;
+    position: relative;
+    width: 30vw;
+    margin: 0 10px 0 0;
+    right: 70px;
+}
+
+.txt-flechas strong {
+    font-size: 40px;
+    font-style: bold;
+
+    font-weight: bold !important;
+}
+
+.mision-titu {
+    font-family: 'Eras ITC';
+    font-size: 60px;
+    text-align: left;
+
+
+    font-weight: bold;
+    margin-top: 100px;
+}
+
+.texto-mision {
+    display: flex;
+    position: relative;
+
+    justify-content: left;
+    text-align: left !important;
+    right: 145px;
+}
+
+.cont-diferencia {
+
+    margin-top: 150px;
+}
+
+.cont-diferencia img {
+    margin-bottom: 10px !important;
+}
+
+.cont-diferencia h3 {
+    margin-top: 50px;
+    color: #025889 !important;
+    font-family: 'Josefin Sans';
+    font-weight: bold;
+}
+
+.cont-diferencia p {
+    color: #025889 !important;
+    font-family: 'Josefin Sans';
+    font-size: 150%;
+}
+
+.titu-dife {
+    font-weight: bold;
+    font-family: 'Eras ITC';
+    color: #033462;
+
+}
+
+.wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.wrapper:after {
+    content: "EQUIPO SUNSHINE";
+    background-color: rgba(2, 88, 137, 0.6);
+    position: absolute;
+    display: block;
+    width: 98.5%;
+    top: 0;
+    bottom: 0;
+    padding-left: 35%;
+    padding-top: 13%;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+
+/*--------------------------------------------------PESTAÑA CONTACTO----------------------------------*/
+.conten-contacts {
+    background-color: #CEDEEE;
+}
+
+.tarjetas img {
+    margin-top: 3vw !important;
+    margin: auto;
+    width: 15vw;
+
+    height: 15vw;
+}
+
+.tarjetas img:hover {
+    -webkit-transform: rotateY(180deg);
+    -webkit-transform-style: preserve-3d;
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
+}
+
+
+.image-overlay {
+    position: absolute;
+    margin-top: 3vw !important;
+    margin: auto;
+    width: 15vw;
+
+    height: 15vw;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+
+    opacity: 0;
+    transition: .5s ease;
+    background: linear-gradient(
+            45deg,
+            rgba(29, 236, 197, 0.5),
+            rgba(91, 14, 214, 0.5) 100%
+    ) !important;
+
+}
+
+.red img {
+    margin-top: 0px !important;
+    height: 10vh;
+    position: relative;
+
+}
+
+.img-cont2 {
+    object-fit: cover !important;
+}
+
+.cont-btn-contac {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-contac {
+    background-color: #025889 !important;
+    color: white !important;
+
+    width: 40vw;
+    font-size: 2vw !important;
+    font-family: 'lato';
+    margin: 5vw;
+
+}
+
+
+/*---------------------------watssapp button------------------------------------*/
+
+
+/*--------------------------------------------------PESTAÑAROAPTOMAP-----------------------------------------------*/
+.road {
+
+    margin: 40px 0 0 0 !important;
+
+
+}
+
+.maparoad {
+    margin-top: 10px;
+    width: 100%;
+}
+
+/*@keyframes   bordegirtariovh
+ 
+  10%{
+    background:BLACK;
+    color: red!important;
+    
    }
-  .textsyn{
-top: 95vw!important;
-    white-space: nowrap;
-  }
-  .mintext{
-    top: 93vw;
-    left: -20vw!important;
-  }
-  .fap-btn3{
-    left: 55vw;
-  }
-  .focoenv-cont{
-    top: -250vw!important;
-  }
-  /*-------------------------------------------------------------------------------------*/
-  .texto-contenedor{
-    margin-top: -1vw!important;
-    left: 30vw;
-    font-size: 4vw!important;
-    
-      }
-      .texto-horas{
-        left: 45vw!important;
-      }
-      .texto-min{
-        left: 65vw!important;
-      }
-      .texto-seg{
-        left: 85vw!important;
-      }
-      .moneda{
-        
+   20%{
+    background:brown;
+    border: blue 5px solid!important;
+   }
+   40%{
+    border-bottom:yellow 5px solid!important;
+   }
+   60%{
+    border-bottom: pink 5px solid!important;
+   }
+   100%{
+    border-bottom: darkblue 5px solid!important;
+   }
+ }*/
+/*----------------------------------------------registro--------------------*/
+.registrobody {
+    display: flex !important;
+    position: relative;
+    background-image: url("./images/fondoregistro.svg") !important;
+    color: white;
+    text-align: center;
+
+    justify-content: center !important;
+
+}
+
+.form-registro {
+    flex-wrap: wrap;
+    justify-content: center !important;
+    text-align: center !important;
+
+}
+
+.gmail {
+
+    position: relative;
+    color: white !important;
+    background-color: #ffffff80 !important;
+    font-size: 1.5vw !important;
+    font-family: 'Lato';
+    font-weight: bold !important;
+}
+
+.form-regi {
+    color: white !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    font-family: 'Lato';
+    font-size: 2vw;
+    font-weight: bold !important;
+    z-index: 2000 !important;
+}
+
+.form-regi::placeholder {
+    color: #ffffffb3 !important;
+    justify-content: flex-start !important;
+    text-align: left;
+    font-family: 'Lato';
+    font-weight: bold !important;
+
+}
+
+select {
+    background-color: #ffffff80 !important;
+}
+
+option {
+    background-color: #ffffff80 !important;
+    color: black;
+}
+
+.modal-sroll {
+    overflow: scroll !important;
+}
+
+input[type=radio] {
+    border: 0px;
+    width: 2vw;
+    height: 1em;
+}
+
+.marginlb {
+    display: flex;
+    position: relative;
+    font-size: 20px;
+    font-weight: 1vw;
+    left: 1vw;
+    line-height: 1vh;
+    margin-top: 1vw;
+
+
+}
+
+.btn-registro {
+
+    color: #3A5373 !important;
+    background-color: white !important;
+    font-size: 20px !important;
+    color: #3A5373 !important;
+
+    font-weight: bold !important;
+
+
+}
+
+.btn-footer {
+
+    position: relative;
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+/*----------------------------------------------------------------------medias-------------------------------------------------*/
+
+@media only screen and (max-width: 3000px) {
+    .focoenv-cont {
+        bottom: -30vw !important;
+    }
+
+    .contenedor-engra {
+        height: 3200px;
+    }
+}
+
+@media only screen and (max-width: 2000px) {
+    .focoenv-cont {
+        bottom: -4vw !important;
+
+    }
+
+    .contenedor-engra {
+        height: 2300px;
+    }
+
+    .textbtn2 {
+        font-size: 1.5vw;
+    }
+
+}
+
+@media screen and (max-width: 1650px) {
+    .focoenv-cont {
+        bottom: 15vw !important;
+
+    }
+
+    .contenedor-engra {
+        height: 1800px;
+    }
+
+}
+
+@media screen and (max-width: 1319px) {
+    /*//boton1///////////////*/
+    .focoenv-cont {
+        bottom: 30vw !important;
+
+    }
+
+    .contenedor-engra {
+        height: 1700px;
+    }
+
+    .fap-btn2 {
+
+        height: 150px;
+        width: 150px;
+        margin-top: 4vw;
+    }
+
+
+    .fap-btn2 svg {
+        position: absolute;
+        width: 55mm;
+        height: 55mm;
+        top: -3.5vw;
+    }
+
+    .fap-btn2-1 {
+
+        height: 260px;
+        width: 260px;
+
+        top: -50px;
+        right: -53px;
+    }
+
+    .textbtn2 {
+        left: -1.5vw;
+    }
+
+    .textsyn {
+        font-size: 2.5vw;
+        left: -1vw;
+        margin-top: 3vw;
+    }
+
+    .mintext {
+        font-size: 2.3vw;
+        left: -3vw !important;
+
+    }
+
+    /*boton2 //////////////////////////////////*/
+    .fap-btn3 {
+        height: 150px !important;
+        width: 150px !important;
+        left: 40vw;
+    }
+
+    .svg2 {
+        position: absolute !important;
+        width: 55mm;
+        height: 55mm;
+        top: -35px !important;
+        left: 5vw;
+    }
+
+    .fap-btn3-2 {
+        position: absolute !important;
+        height: 260px;
+        width: 260px;
+
+        top: -55px;
+        left: -80px !important;
+    }
+
+    .textsyn2 {
+        left: 1vw;
+    }
+
+    .mintext2 {
+        left: -20vw;
+    }
+
+    /*boton3///////////////////////////////////////*/
+    .fap-btn4 {
+        height: 150px !important;
+        width: 150px !important;
+        left: 70vw;
+    }
+
+    .svg3 {
+        position: absolute !important;
+        width: 55mm;
+        height: 55mm;
+        top: -35px !important;
+        left: 5vw;
+
+
+    }
+
+    .fap-btn4-3 {
+        position: absolute !important;
+        height: 260px;
+        width: 260px;
+
+        top: -50px;
+        left: -80px !important;
+    }
+
+    .textsyn3 {
+        margin-top: 1vw;
+        left: 61vw;
+    }
+
+    .mintext3 {
+        margin-top: .5vw;
+        left: -18vw;
+    }
+
+    /*/////////////////////////////////////////////*/
+    .img-aple {
+        top: -16vw !important;
+    }
+}
+
+@media screen and (max-width: 1220px) {
+    .goo-aple {
+        top: 3vw;
+    }
+}
+
+@media screen and (max-width: 1091px) {
+
+    /*----------media de foco------------------------------/**/
+    .contenedor-engra {
+        height: 1400px;
+    }
+
+    .focoenv-cont {
+        bottom: 50vw !important;
+
+    }
+
+    .engranejegris {
+        left: 40vw;
+    }
+
+    .textsyn3 {
+        margin-top: 5vw !important;
+        left: 63vw;
+    }
+
+    .textbtn2 {
+        font-size: 2.5vw !important;
+        left: -1.5vw;
+
+    }
+
+    .textbtn3 {
+        font-size: 3vw !important;
+        left: -.5vw;
+    }
+
+    .textbtn4 {
+        font-size: 3vw !important;
+        left: -.5vw;
+    }
+
+    /*-----------------------------------contador-----------------------------*/
+    .texto-contenedor {
+
+        top: 50vw !important;
+
+    }
+
+    /*------------------media de imagnes apps-----------------*/
+    .img-aple {
+
+        top: -16vw !important;
+
+    }
+
+    .goo-aple {
+        top: 6vw;
+    }
+
+}
+
+@media screen and (max-width: 958px) {
+    /*------------media foco--------------------*/
+    .textsyn {
+        margin-top: 6vw;
+    }
+
+    .textsyn2 {
+        margin-top: 2vw;
+        left: 4vw;
+    }
+
+    .mintext {
+        font-size: 3vw;
+    }
+
+    .mintext2 {
+        font-size: 3vw;
+        margin-top: 2vw;
+    }
+
+    .textsyn3 {
+        margin-top: 11vw !important;
+
+    }
+
+    .focoenv-cont {
+        bottom: 70vw !important;
+
+    }
+
+}
+
+@media screen and (max-width: 913px) {
+    .boton1 {
+        margin-bottom: 15vw;
+
+        width: 30vw !important;
+    }
+}
+
+@media screen and (max-width: 890px) {
+    /*-------------------media foco/*-----------------*/
+    .textbtn2 {
+        font-size: 3vw !important;
+    }
+
+    .focoenv-cont {
+        bottom: 78vw !important;
+
+    }
+
+    .textsyn3 {
+        margin-top: 13vw !important;
+    }
+
+    .mintext3 {
+        margin-top: 2vw;
+    }
+
+    .img-aple {
+
+        top: -15vw !important;
+
+    }
+
+    .img-goo {
+        position: absolute;
+        top: -18vw;
+    }
+
+    .goo-aple {
+        position: absolute;
+        top: 6vw;
+    }
+
+}
+
+
+@media screen and (max-width: 833px) {
+    /*-------------------------------media foco----------------------------*/
+    .fap-btn2 {
+        margin-top: 40vw;
+    }
+
+    .textsyn {
+        top: 43vw;
+    }
+
+    .mintext {
+        top: 42vw;
+    }
+
+    .fap-btn3 {
+        bottom: 50vw;
+        left: 70vw;
+    }
+
+    .textsyn2 {
+        top: -40vw;
+        left: 35vw;
+    }
+
+    .mintext2 {
+        top: -22vw;
+        left: 15vw;
+    }
+
+    .textsyn3 {
+        margin-top: 44vw !important;
+    }
+
+    .mintext3 {
+        top: 25vw;
+        left: -13vw;
+    }
+
+    .focoenv-cont {
+        top: -108vw !important;
+    }
+
+    .engranejegris {
+        left: 20vw;
+        top: -10vw;
+    }
+
+    .contenedor-engra {
+        height: 1200px;
+    }
+
+    .texto-contenedor {
+
+        top: 50vw !important;
+        left: 15vw !important;
+
+    }
+
+
+    .container-contador {
+        margin-left: -5vw !important;
+    }
+
+    .texto-horas {
+        right: 80vw !important;
+    }
+
+    .texto-min {
+        right: 90vw !important
+    }
+
+    .texto-seg {
+        right: 100vw !important
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+
+    /*-----------------------------media seccion1-------------------------*/
+    .revo1 {
+        line-height: 13vh;
+        font-size: 7.5vw !important;
+        text-align: center !important;
+
+    }
+
+    .tec1 {
+        text-align: center !important;
+        font-size: 7.5vw;
+        margin-bottom: 1vh;
+    }
+
+    .moneda1 {
+        top: 14vh;
+        font-size: 7vw;
+    }
+
+    .moneda {
+        opacity: 0.63;
+
+        position: absolute !important;
+        height: 45vh;
+        left: 64vw !important;
+        width: 40vw !important;
+        z-index: -2;
+        animation: none;
+
+        overflow: visible;
+    }
+
+    .parte {
+
+
+        overflow: hidden;
+    }
+
+    .boton1 {
+        margin-bottom: 15vw;
+        margin-left: 3vw;
+        text-align: left !important;
+
+    }
+
+    .hometext1 {
+
+        margin: 3vh 0 0 2vw;
+        font-size: 3.5vw;
+        font-weight: bold;
+        line-height: 6vh !important;
+    }
+
+    /*------------------------------seccion ventajas------------------------------*/
+    .vemtajas {
+        width: 100% !important;
+        background-color: white !important;
+        border-top: white solid 5vw;
+    }
+
+    .img-vent {
+        width: 90vw !important;
+        height: 100%;
+        background-color: white !important;
+
+    }
+
+
+    .texto-contenedor {
+        margin-top: 50vw !important;
+
+    }
+
+    .num-conta {
+        position: absolute;
+        left: 1vw !important;
+        top: .5vw;
+    }
+
+    .rectangulo1 {
+
+        margin-top: 20vw !important;
+    }
+
+    .preguntas {
+        z-index: 0;
+        margin-bottom: 10vw;
+    }
+
+    .imgpreg {
+        position: absolute;
+        opacity: .37;
+        z-index: -3 !important;
+        height: 212vh;
+        justify-content: center;
+        width: 110vw;
+        bottom: -130vw !important;
+        left: 60vw;
+    }
+
+    .frecprec {
+        position: relative;
+        z-index: 1 !important;
+    }
+
+    .img-meto {
+
+        position: relative !important;
+        width: 3vw !important;
+        height: 40vh !important;
+
+        margin: 0;
+        margin-bottom: 5vw;
+
+    }
+
+    .fondo-opa {
+
+        overflow: hidden;
+        margin: 1vw;
+        padding: 1vw 20vw 1vw 20vw !important;
+
+    }
+
+    .img-aple {
+
+        left: 1vw !important;
+    }
+
+    /*--------------------------------------media foco-----------------------------*/
+    .focoenv-cont {
+        top: -122vw !important;
+    }
+
+    .fap-btn4 {
+        top: 70vw;
+    }
+
+    .textsyn3 {
+        margin-top: 35vw !important;
+        left: 70vw;
+    }
+
+    .mintext3 {
+        margin-top: 1vw;
+        top: 15vw;
+        left: -10vw;
+        font-size: 3vw;
+    }
+}
+
+.texto-contenedor {
+    margin-top: 5vw !important;
+    left: 25vw;
+    font-size: 4vw !important;
+
+}
+
+.texto-horas {
+    left: 45vw !important;
+}
+
+.texto-min {
+    left: 65vw !important;
+}
+
+.texto-seg {
+    left: 85vw !important;
+}
+
+@media screen and (max-width: 689px) {
+    .textsyn {
+        top: 50vw !important;
+        font-size: 3vw;
+        left: -5vw;
+    }
+
+    .mintext {
+        top: 50vw;
+    }
+
+    .focoenv-cont {
+        top: -138vw !important;
+    }
+
+    .texto-contenedor {
+        top: 60vw !important;
+    }
+}
+
+
+@media screen and (max-width: 639px) {
+    .focoenv-cont {
+        top: -155vw !important;
+    }
+
+    .textsyn3 {
+        top: 60vw;
+    }
+
+    .mintext3 {
+        top: 18vw;
+    }
+
+}
+
+@media screen and (max-width: 567px) {
+    /*-------------------------media foco----------------------------*/
+    .textbtn2 {
+        font-size: 4.5vw !important;
+    }
+
+    .textsyn {
+        font-size: 4vw !important;
+        left: -15vw;
+        top: 53vw !important;
+    }
+
+    .mintext {
+        left: -12vw !important;
+    }
+
+    .textbtn3 {
+        font-size: 4.5vw !important;
+    }
+
+    .textsyn2 {
+        font-size: 4vw;
+        top: -38vw;
+        left: 38vw;
+    }
+
+    .mintext2 {
+        top: -15vw;
+        left: 15vw;
+    }
+
+    .textbtn4 {
+        font-size: 4.5vw !important;
+    }
+
+    .textsyn3 {
+        font-size: 4vw !important;
+        top: 65vw;
+        left: 55vw;
+    }
+
+    .mintext3 {
+        top: 13vw;
+    }
+
+    .focoenv-cont {
+        top: -180vw !important;
+    }
+
+    .contenedor-engra {
+        height: 1000px !important;
+    }
+
+    /*--------------------------------------contador----------------------------*/
+    .texto-contenedor {
+        margin-top: 15vw !important;
+        left: 25vw;
+        font-size: 4vw !important;
+
+    }
+
+    /*------------------------------------------------------------------------*/
+    .texto-min {
+
+        right: 33vw !important;
+    }
+
+    .rectangulo1 {
+
+        margin-top: -30vw;
+    }
+
+    .boton1 {
+        margin-left: 10vw !important;
+    }
+
+    .img-aple {
+        left: 2vw !important;
+        width: 27vw;
+        height: 9vw;
+        margin-left: 3vw !important;
+        margin-top: 10vw !important;
+
+    }
+
+    .img-goo {
+        position: absolute !important;
+        width: 27vw;
+        height: 10vw;
+        top: 200vw;
+
+    }
+
+    .goo-aple {
+
+        position: absolute !important;
+        top: 80vw !important;
+
+    }
+}
+
+@media screen and (max-width: 489px) {
+    /*----------------------------------------media foco---------------------------------/**/
+    .textsyn {
+        top: 60vw !important;
+    }
+
+    .mintext {
+        top: 85vw;
+    }
+
+    .textsyn2 {
+        top: -35vw;
+    }
+
+    .mintext2 {
+        top: -10vw;
+    }
+
+    .fap-btn3 {
+        left: 64vw;
+    }
+
+    .fap-btn4 {
+        top: 100vw;
+
+    }
+
+    .textsyn3 {
+        left: 55vw;
+        top: 98vw;
+    }
+
+    .mintext3 {
+        top: 45vw;
+    }
+
+    .focoenv-cont {
+        top: -220vw !important;
+    }
+
+    /*--------------------------------------------------------------------------------------------*/
+    .fondogalaxy {
+        background-image: url("./images/fondogalaxy.png") !important;
+        background-size: cover;
+        background-position: center !important;
+
+
+        background-repeat: no-repeat;
+    }
+
+    .rectangulo1 {
+
+        margin-top: -70vw;
+    }
+
+    body {
+
+        background-size: cover !important;
+        background-repeat: no-repeat;
+        background-position: center !important;
+    }
+
+    .videosunrep {
+        height: 50vh !important;
+
+    }
+
+    .hometext1 {
+        margin-bottom: 5vw;
+    }
+
+    .boton1 {
+        width: 40vw !important;
+    }
+
+}
+
+.img-aple {
+    left: 2vw !important;
+    top: -19vw !important;
+
+}
+
+.img-goo {
+    position: absolute;
+    top: -18vw;
+}
+
+.goo-aple {
+    position: absolute;
+    top: 6vw;
+}
+
+@media screen and (max-width: 431px) {
+    .fap-btn2 {
+        top: 20vw;
+    }
+
+    .textbtn2 {
+        font-size: 6vw !important;
+        left: -3vw;
+    }
+
+    .textsyn {
+        top: 85vw !important;
+        left: -20vw;
+        white-space: nowrap;
+    }
+
+    .mintext {
+        left: -20vw !important;
+        font-size: 4vw !important;
+    }
+
+    .fap-btn3 {
+        left: 59vw;
+    }
+
+    .textbtn3 {
+        font-size: 6vw !important;
+    }
+
+    .mintext2 {
+        font-size: 4vw !important;
+    }
+
+    .fap-btn4 {
+        left: 62vw;
+        top: 125vw;
+    }
+
+    .textbtn4 {
+        font-size: 6vw !important;
+    }
+
+    .textsyn3 {
+        top: 130vw;
+    }
+
+    .mintext3 {
+        top: 70vw;
+        font-size: 4vw !important;
+    }
+
+    .texto-contenedor {
+        margin-top: -15vw !important;
+
+    }
+
+    /*----------------------------------media contador----------------------------/**/
+    #contador {
+
+        height: 1vh;
+        width: 100vw !important;
+        color: white !important;
+        margin-top: -2vw;
+
+
+        margin-bottom: 100px;
+
+    }
+
+    .texto-contenedor {
+        margin-top: -2vw !important;
+    }
+}
+
+
+@media screen and (max-width: 391px) {
+
+
+    /*----------------------------------------- media foco------------------------------*/
+    .titulo6 {
+        font-size: 20vw;
+    }
+
+    .fap-btn2 {
+        left: -4vw;
+        top: 25vw !important;
+    }
+
+    .textsyn {
+        top: 95vw !important;
+        white-space: nowrap;
+    }
+
+    .mintext {
+        top: 93vw;
+        left: -20vw !important;
+    }
+
+    .fap-btn3 {
+        left: 55vw;
+    }
+
+    .focoenv-cont {
+        top: -250vw !important;
+    }
+
+    /*-------------------------------------------------------------------------------------*/
+    .texto-contenedor {
+        margin-top: -1vw !important;
+        left: 30vw;
+        font-size: 4vw !important;
+
+    }
+
+    .texto-horas {
+        left: 45vw !important;
+    }
+
+    .texto-min {
+        left: 65vw !important;
+    }
+
+    .texto-seg {
+        left: 85vw !important;
+    }
+
+    .moneda {
+
         height: 60vw;
-   
-        
-      }
-      .rectangulo1{
-    
-        margin-top: -90vw; 
-       }
-  .texto-min{
-resize: none;
-  }
-.hometext1{
-  line-height: 4vw!important;}
-  .imgpreg{
-    
-    height: 400vh;
-    width: 300vw;
-    bottom: -200vw;
-    left: -10vw;
-  }
-  /*PREGUNSTAS FRECUENTES ----------------------------------------------/**/
-  
+
+
+    }
+
+    .rectangulo1 {
+
+        margin-top: -90vw;
+    }
+
+    .texto-min {
+        resize: none;
+    }
+
+    .hometext1 {
+        line-height: 4vw !important;
+    }
+
+    .imgpreg {
+
+        height: 400vh;
+        width: 300vw;
+        bottom: -200vw;
+        left: -10vw;
+    }
+
+    /*PREGUNSTAS FRECUENTES ----------------------------------------------/**/
+
 }
 
 /* -----------------------------------MEDIAS AUGUSTO---------------------------------*/
 @media only screen and (max-width: 1163px) {
-  .wrapper:after{
-      content: "EQUIPO SUNSHINE";
-      background-color: rgba(2, 88, 137, 0.6);
-      position: absolute;
-      display: block;
-      width: 96%;
-      top: 0;
-      bottom: 0;
-      padding-left: 32%;
-      padding-top: 13%;
-      font-size: 40px;
-      font-weight: bold;
-  }
+    .wrapper:after {
+        content: "EQUIPO SUNSHINE";
+        background-color: rgba(2, 88, 137, 0.6);
+        position: absolute;
+        display: block;
+        width: 96%;
+        top: 0;
+        bottom: 0;
+        padding-left: 32%;
+        padding-top: 13%;
+        font-size: 40px;
+        font-weight: bold;
+    }
 }
 
 @media only screen and (max-width: 854px) {
-  .wrapper:after{
-      content: "EQUIPO SUNSHINE";
-      background-color: rgba(2, 88, 137, 0.6);
-      position: absolute;
-      display: block;
-      width: 96%;
-      top: 0;
-      bottom: 0;
-      padding-left: 28%;
-      padding-top: 13%;
-      font-size: 40px;
-      font-weight: bold;
-  }
+    .wrapper:after {
+        content: "EQUIPO SUNSHINE";
+        background-color: rgba(2, 88, 137, 0.6);
+        position: absolute;
+        display: block;
+        width: 96%;
+        top: 0;
+        bottom: 0;
+        padding-left: 28%;
+        padding-top: 13%;
+        font-size: 40px;
+        font-weight: bold;
+    }
 }
 
 @media only screen and (max-width: 991px) {
-  .wrapper:after{
-      content: "EQUIPO SUNSHINE";
-      background-color: rgba(2, 88, 137, 0.6);
-      position: absolute;
-      display: block;
-      width: 96%;
-      top: 0;
-      bottom: 0;
-      padding-left: 35%;
-      padding-top: 13%;
-      font-size: 40px;
-      font-weight: bold;
-  }
+    .wrapper:after {
+        content: "EQUIPO SUNSHINE";
+        background-color: rgba(2, 88, 137, 0.6);
+        position: absolute;
+        display: block;
+        width: 96%;
+        top: 0;
+        bottom: 0;
+        padding-left: 35%;
+        padding-top: 13%;
+        font-size: 40px;
+        font-weight: bold;
+    }
 }
 
 @media only screen and (max-width: 777px) {
 
-  .wrapper:after{
-      content: "EQUIPO SUNSHINE";
-      background-color: rgba(2, 88, 137, 0.6);
-      position: absolute;
-      display: block;
-      width: 96%;
-      top: 0;
-      bottom: 0;
-      padding-left: 28%;
-      padding-top: 13%;
-      font-size: 35px;
-      font-weight: bold;
-  }
-  /*--------------------------------botonoes de watssappp------------------------------------*/
-  .whatsapp-img{
-  
-  
-  
-    position:fixed;
-    width:90px;
-    height:90px;
-    bottom:30px;
-    right:30px;
-    
-    color:#FFF;
-    border-radius:50px;
-    text-align:center;
-    font-size:35px;
-    box-shadow: 0px 1px 10px rgba(0,0,0,0.3);
-    z-index:1;
-    transition: all 300ms ease;
-  
-  }
-  .tel-img{
-    
-    width:90px;
-    height: 90px;
-    bottom: 160px;
-    right:30px;
-   
-   
-  }
-  .whats-content{
-    bottom:30px;
-  }
+    .wrapper:after {
+        content: "EQUIPO SUNSHINE";
+        background-color: rgba(2, 88, 137, 0.6);
+        position: absolute;
+        display: block;
+        width: 96%;
+        top: 0;
+        bottom: 0;
+        padding-left: 28%;
+        padding-top: 13%;
+        font-size: 35px;
+        font-weight: bold;
+    }
+
+    /*--------------------------------botonoes de watssappp------------------------------------*/
+    .whatsapp-img {
+
+
+        position: fixed;
+        width: 90px;
+        height: 90px;
+        bottom: 30px;
+        right: 30px;
+
+        color: #FFF;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 35px;
+        box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3);
+        z-index: 1;
+        transition: all 300ms ease;
+
+    }
+
+    .tel-img {
+
+        width: 90px;
+        height: 90px;
+        bottom: 160px;
+        right: 30px;
+
+
+    }
+
+    .whats-content {
+        bottom: 30px;
+    }
 }
 
 
 @media only screen and (max-width: 555px) {
-  .wrapper:after{
-      content: "EQUIPO SUNSHINE";
-      background-color: rgba(2, 88, 137, 0.6);
-      position: absolute;
-      display: block;
-      width: 96%;
-      top: 0;
-      bottom: 0;
-      padding-left: 22%;
-      padding-top: 13%;
-      font-size: 30px;
-      font-weight: bold;
-  }
+    .wrapper:after {
+        content: "EQUIPO SUNSHINE";
+        background-color: rgba(2, 88, 137, 0.6);
+        position: absolute;
+        display: block;
+        width: 96%;
+        top: 0;
+        bottom: 0;
+        padding-left: 22%;
+        padding-top: 13%;
+        font-size: 30px;
+        font-weight: bold;
+    }
 }
 
 @media only screen and (max-width: 479px) {
-  .wrapper:after{
-      content: "EQUIPO SUNSHINE";
-      background-color: rgba(2, 88, 137, 0.6);
-      position: absolute;
-      display: block;
-      width: 96%;
-      top: 0;
-      bottom: 0;
-      padding-left: 20%;
-      padding-top: 13%;
-      font-size: 25px;
-      font-weight: bold;
-  }
+    .wrapper:after {
+        content: "EQUIPO SUNSHINE";
+        background-color: rgba(2, 88, 137, 0.6);
+        position: absolute;
+        display: block;
+        width: 96%;
+        top: 0;
+        bottom: 0;
+        padding-left: 20%;
+        padding-top: 13%;
+        font-size: 25px;
+        font-weight: bold;
+    }
 }
 
-@media  screen and (max-width: 363px) {
+@media screen and (max-width: 363px) {
 
-  .fap-btn2-1 {
-    height: 200px;
-    width: 200px;
-    left: -13vw;
-    top: -10vw;
-  }
+    .fap-btn2-1 {
+        height: 200px;
+        width: 200px;
+        left: -13vw;
+        top: -10vw;
+    }
 
-  .fap-btn2{
-    top: 40vw!important;
-    left: -9vw;
-  }
-  .fap-btn2 svg {
-    left: -7vw!important;
-    top: -5vw;
-    width: 45mm;
-    height: 45mm;
-  }
-  .textsyn{
-    top: 105vw!important;
-    left: -27vw;
-  }
-  .mintext{
-    top: 102vw;
-    margin-left: 2vw!important;
-  }
-  .fap-btn3{
-    left: 40vw;
-  }
-  .fap-btn3-2{
-    width: 200px;
-    height: 200px;
-    left: -15vw!important;
-    top: -10vw;
-  }
-  .textsyn2{
-   
-  left: 28vw!important;
+    .fap-btn2 {
+        top: 40vw !important;
+        left: -9vw;
+    }
 
-  }
-  .fap-btn3 svg {
-    left: -2vw!important;
-    top: -4vw!important;
-    width: 40mm;
-    height: 40mm;
-  }
-  .mintext2{
-    left: 2vw!important;
-  }
-  .fap-btn4{
-    top: 150vw!important;
-  }
-.textsyn3{
-top: 165vw;
+    .fap-btn2 svg {
+        left: -7vw !important;
+        top: -5vw;
+        width: 45mm;
+        height: 45mm;
+    }
+
+    .textsyn {
+        top: 105vw !important;
+        left: -27vw;
+    }
+
+    .mintext {
+        top: 102vw;
+        margin-left: 2vw !important;
+    }
+
+    .fap-btn3 {
+        left: 40vw;
+    }
+
+    .fap-btn3-2 {
+        width: 200px;
+        height: 200px;
+        left: -15vw !important;
+        top: -10vw;
+    }
+
+    .textsyn2 {
+
+        left: 28vw !important;
+
+    }
+
+    .fap-btn3 svg {
+        left: -2vw !important;
+        top: -4vw !important;
+        width: 40mm;
+        height: 40mm;
+    }
+
+    .mintext2 {
+        left: 2vw !important;
+    }
+
+    .fap-btn4 {
+        top: 150vw !important;
+    }
+
+    .textsyn3 {
+        top: 165vw;
+    }
+
+    .mintext3 {
+        top: 100vw;
+    }
+
+    .wrapper:after {
+        content: "EQUIPO SUNSHINE";
+        background-color: rgba(2, 88, 137, 0.6);
+        position: absolute;
+        display: block;
+        width: 96%;
+        top: 0;
+        bottom: 0;
+        padding-left: 16%;
+        padding-top: 10%;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .icons-differences {
+        width: 30%;
+        height: 30%;
+        margin: 0px 30px;
+        align-self: center;
+    }
+
+    .titu-dife {
+        font-weight: bold;
+        font-family: 'Eras ITC';
+        color: #033462;
+    }
+
+    .texto-contenedor {
+        top: 85vw !important;
+    }
+
+    .contador-fap {
+        height: 9vw;
+    }
+
+    .focoenv-cont {
+        top: -265vw !important;
+    }
 }
-  .mintext3{
-top: 100vw;
-  }
-  .wrapper:after{
-      content: "EQUIPO SUNSHINE";
-      background-color: rgba(2, 88, 137, 0.6);
-      position: absolute;
-      display: block;
-      width: 96%;
-      top: 0;
-      bottom: 0;
-      padding-left: 16%;
-      padding-top: 10%;
-      font-size: 25px;
-      font-weight: bold;
-  }
 
-  .icons-differences{
-      width: 30%;
-      height: 30%;
-      margin: 0px 30px;
-      align-self: center;
-  }
-
-  .titu-dife {
-      font-weight: bold;
-      font-family: 'Eras ITC';
-      color: #033462;
-  }
-  .texto-contenedor{
-    top: 85vw!important;
-  }
-  .contador-fap{
-    height: 9vw;
-  }
-  .focoenv-cont {
-    top: -265vw!important;
-}
-}
- 
 @media only screen and (max-width: 330px) {
-  .texto-contenedor{
-    top: 95vw!important;
-    font-size: 4.5vw!important;
-    margin-left: -10vw!important;
-  
-  }
-  .texto-horas{
-    left: 45vw!important;
-  }
-  .texto-min{
-    left: 50vw!important;
-  }
-  .cap{
-  
-    line-height: 5vw;
-  }
-  
-  .cont-li-cap{
-    height: 10vw!important;
-  }
-  .rectanguloimg {
-    top: -40vw;
-    height: 90vw!important;
-    width: 90vw!important;
-  }
-  .container-contador{
-   margin-left:-15vw!important;
-  }
-  .num-conta{
-   
-    font-size: 4vw;
-  }
-  
+    .texto-contenedor {
+        top: 95vw !important;
+        font-size: 4.5vw !important;
+        margin-left: -10vw !important;
+
+    }
+
+    .texto-horas {
+        left: 45vw !important;
+    }
+
+    .texto-min {
+        left: 50vw !important;
+    }
+
+    .cap {
+
+        line-height: 5vw;
+    }
+
+    .cont-li-cap {
+        height: 10vw !important;
+    }
+
+    .rectanguloimg {
+        top: -40vw;
+        height: 90vw !important;
+        width: 90vw !important;
+    }
+
+    .container-contador {
+        margin-left: -15vw !important;
+    }
+
+    .num-conta {
+
+        font-size: 4vw;
+    }
+
 }
