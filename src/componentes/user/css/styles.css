@@ -48,15 +48,6 @@ hr{
     background-repeat: no-repeat;
 }
 
-.fondo-dashboard:before{
-    content:'';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(9, 32, 64, 0.7);
-}
 
 .material2 {
     height: 50px;

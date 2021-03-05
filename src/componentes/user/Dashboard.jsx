@@ -10,6 +10,7 @@ import LTC from "../../images/cryptoicons/LTC_Icon.svg";
 import XRP from "../../images/cryptoicons/XRP_Icon.svg";
 import BCH from "../../images/cryptoicons/BCH_Icon.svg";
 import axios from "axios";
+import ReactDOM from 'react-dom';
 
 
 const Dashboard = () => {
@@ -89,7 +90,7 @@ const Dashboard = () => {
     const renderData = () => {
         if(logged){
             return (
-                <div className="row mt-5 pb-5">
+                <div className="row mt-5">
 
                     <div className="col-12 mt-5 d-flex justify-content-end">
                         <p>{signinEmail}</p>
