@@ -97,7 +97,7 @@ margin: 0px;
  
 
 
-}
+
 
 @keyframes mianimacion {
 
@@ -146,7 +146,6 @@ margin: 0px;
 
     color: white;
 
-<<<<<<< HEAD
   filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
       left: -10px;
       top: 0px;
@@ -171,47 +170,11 @@ margin: 0px;
   
   position: relative;
   filter: drop-shadow(0px 6px 1px rgba(0, 0, 0, 1));
-=======
-
-}
-
-.tec1 {
-
-
-    filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
-    left: -10px;
-    top: 0px;
-    position: relative;
-
-
-    white-space: normal;
-    line-height: 40%;
-    margin: 0px !important;
-    text-align: left;
-    font-family: 'Eras Demi ITC';
-    font-style: oblique;
-    font-weight: 900 !important;
-    font-size: 6.5vw;
-    color: white;
-
-
-}
-
-
-.hometext1 {
-    display: flex;
-    position: relative;
-    filter: drop-shadow(0px 6px 1px rgba(0, 0, 0, 1));
->>>>>>> 58ddfcb84c0348d0aa4fe8ba22d0f5f6032fe6ad
     left: 8vw;
     top: 30px;
     overflow: visible !important;
     text-transform: uppercase;
-<<<<<<< HEAD
     z-index: 2!important;
-=======
-
->>>>>>> 58ddfcb84c0348d0aa4fe8ba22d0f5f6032fe6ad
     white-space: normal;
     line-height: 3vw !important;
     margin: -4px 0 10px 0;
@@ -1032,37 +995,12 @@ circle:hover {
 
 }
 
-<<<<<<< HEAD
-    .textsyn3{
-      margin-top: 13vw!important;    
-    }
-    .mintext3{
-      margin-top: 2vw;
-    }
-    .img-aple{
-         
-      top: -15vw!important;
-      
-    }
-    .img-goo{
-      
-      top: -18vw;
-    }
-    .goo-aple{
-      
-      top: 6vw;
-    }
-    
-    }
-  
-=======
 .focoenv {
     position: absolute;
     bottom: 15.5vw;
     left: -14vw;
     height: 62.5vw;
 }
->>>>>>> 58ddfcb84c0348d0aa4fe8ba22d0f5f6032fe6ad
 
 .engrane1foc {
 
@@ -1128,22 +1066,6 @@ circle:hover {
     color: #025889;
     text-align: center;
 
-<<<<<<< HEAD
-    position: relative!important;
-    width: 3vw!important;
-    height: 40vh!important;
-   
-    margin: 0;
-    margin-bottom: 5vw;
-   
-  }
-  .fondo-opa{
-    
-    overflow: hidden;
-    margin: 2vw;
-    padding: 1vw 20vw 1vw 20vw!important;
-=======
->>>>>>> 58ddfcb84c0348d0aa4fe8ba22d0f5f6032fe6ad
 
 }
 
@@ -1214,60 +1136,10 @@ img.modal-imgsym {
     overflow: hidden;
 }
 
-<<<<<<< HEAD
-.focoenv-cont{
-  top: -180vw!important;
-  }
-  .contenedor-engra{
-    height: 1000px!important;
-  }
-  /*--------------------------------------contador----------------------------*/
-  .texto-contenedor{
-    margin-top: 15vw!important;
-  left: 25vw;
-    font-size: 4vw!important;
-    
-      }
-  /*------------------------------------------------------------------------*/
-  .texto-min{
-    
-    right:33vw!important;
-      }
-      .rectangulo1{
-    
-        margin-top: -30vw; 
-       }
-       .boton1{
-         margin-left: 10vw!important;
-       }
-       .img-aple{
-        left: 2vw!important;  
-        width: 27vw; 
-        height: 9vw;
-       margin-left: 3vw!important;  
-      margin-top: 10vw!important;
-      
-    }
-    .img-goo{
-      position: absolute!important;
-      width: 27vw;
-      height: 10vw;
-      top: 200vw;
-           
-    }
-    .goo-aple{
-    
-     
-     top: -2vw!important;
-     left: -4vw!important;
-      
-    }
-=======
 .text-App-g {
     position: relative;
     left: -1.5vw !important;
     width: 102vw !important;
->>>>>>> 58ddfcb84c0348d0aa4fe8ba22d0f5f6032fe6ad
 }
 
 .text-App {
@@ -1373,22 +1245,12 @@ img.modal-imgsym {
 
 }
 
-<<<<<<< HEAD
-.img-goo{
-  
-  top: -18vw;
-}
-.goo-aple{
-  
-  top: 6vw;
-=======
 .text-preg {
     margin-bottom: 2vw;
 }
 
 .PREGIMG {
     height: 100%;
->>>>>>> 58ddfcb84c0348d0aa4fe8ba22d0f5f6032fe6ad
 }
 .hometext1{
   line-height: normal!important;
