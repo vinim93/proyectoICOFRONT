@@ -73,18 +73,16 @@ margin: 0px;
    
  }
  .moneda{ 
-   
+  position: relative!important;
   opacity: 0.91;
 		filter: drop-shadow(7px 11px 20px rgba(0, 0, 0, 1));
-		position: relative;
-		width: 50vw!important;
+		z-index: 0;
+		width: 120vw!important;
 
-		left: 2vw;
+		left:-35vw;
 		top: 50px;
     overflow: hidden;
-    animation-name: mianimacion;
-    animation-duration: 5s; 
-    animation-iteration-count: infinite;
+   
     
     
  }
@@ -161,14 +159,14 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
 
 
 .hometext1{
-  display:flex;
+  
   position: relative;
   filter: drop-shadow(0px 6px 1px rgba(0, 0, 0, 1));
     left: 8vw;
     top: 30px;
     overflow: visible!important;
     text-transform: uppercase;
-    
+    z-index: 2!important;
     white-space: normal;
     line-height: 3vw!important;
     margin: -4px 0 10px 0;
@@ -998,10 +996,13 @@ white-space: normal;
   
   position: absolute!important;
   width: 15vw;
-  margin: 0 0 0 1vw;
-  left: -2vw!important;
-  margin-top: 4.2vw!important;
+  margin: 0 0 0 2vw;
+  
+  
   height: 5vw;
+}
+.goo-aple{
+  left: -2vw;
 }
 /*----------------------------------SECCION SOPORTE---------------------------------*/
 .fondoedi{
@@ -1061,6 +1062,8 @@ text-align: center;
   font-size: 30px!important;
   font-weight: 450;
   width: 100%;
+  
+  align-items: center;
   border-radius: 95px!important;
 }
 
@@ -1081,6 +1084,10 @@ text-align: center;
 }
 .PREGIMG{
   height: 100%;
+}
+.mas{
+  justify-content: center!important;
+  align-items: center!important;
 }
 
 /*---------------------------------------------------Newlester----------------------------------------*/
@@ -1840,11 +1847,11 @@ margin-top: 3vw;
       
     }
     .img-goo{
-      position: absolute;
+      
       top: -18vw;
     }
     .goo-aple{
-      position: absolute;
+      
       top: 6vw;
     }
     
@@ -2028,7 +2035,7 @@ margin-top: 50vw!important;
   .fondo-opa{
     
     overflow: hidden;
-    margin: 1vw;
+    margin: 2vw;
     padding: 1vw 20vw 1vw 20vw!important;
 
   }
@@ -2180,8 +2187,9 @@ margin-top: 50vw!important;
     }
     .goo-aple{
     
-     position: absolute!important;
-     top: 80vw!important;
+     
+     top: -2vw!important;
+     left: -4vw!important;
       
     }
 }
@@ -2254,13 +2262,17 @@ margin-top: 50vw!important;
   top: -19vw!important;
   
 }
+
 .img-goo{
-  position: absolute;
+  
   top: -18vw;
 }
 .goo-aple{
-  position: absolute;
+  
   top: 6vw;
+}
+.hometext1{
+  line-height: normal!important;
 }
 
 @media screen and (max-width: 431px){

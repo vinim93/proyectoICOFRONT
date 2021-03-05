@@ -29,7 +29,7 @@ const App = (props) => {
 
     return (
         <BrowserRouter>
-            <div className="App">
+            <div className="App" data-toggle="collapse" data-target=".navbar-collapse.show">
 
 
                 <AuthProvider>
@@ -50,10 +50,11 @@ const App = (props) => {
                        className="whats-content" target="_blank">
                         <img src={Watsappicon} alt="" className="whatsapp-img "/>
                     </a>
+                    {/*
                     <a href="tel:525584465710" className="whats-content">
                         <img src={Telicon} alt="" className="tel-img img-fluid"/>
                     </a>
-
+                    */}
                 </div>
 
             </div>
