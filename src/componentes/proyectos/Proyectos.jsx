@@ -39,7 +39,7 @@ const Proyectos = () => {
                                             <div className="col-12 col-xl-4">
 
                                                 <img src={Celsym} alt="" className="modal-imgsym img-fluid "
-                                                     align="left"/>
+                                                     />
                                             </div>
                                             <div className="col-12 col-xl-8">
 
@@ -89,12 +89,12 @@ const Proyectos = () => {
                                         <div className="modal-body row container-fluid ">
 
 
-                                            <div className="col-md-3 col-12 justify-content-center">
+                                            <div className="col-lg-4 col-12 justify-content-center">
 
                                                 <img src={Celhawk} alt="" className="modal-imgsym img-fluid "
                                                 />
                                             </div>
-                                            <div className="col-md-9 col-12">
+                                            <div className="col-lg-8 col-12">
 
      <span className="modal-titu"> Proyecto HAWK  <p className="modal-text">(Exchange)<p className="modal-cuerpo">
      Este proyecto consiste en complementar el desarrollo de nuestra propia Exchange de criptomonedas y la campaña
@@ -173,8 +173,8 @@ Los usuarios que estén comercializando sus productos a través de nuestra
                                 <circle cx="60" cy="60" r="50"
                                         fill="transparent"/>
                             </svg>
-                            <p className="textbtn4"> LYON</p></button>
-                        <p className="textsyn3"><br/>PROYECTO LYON</p><p className=" mintext3">(E-commerce)</p>
+                            <p className="textbtn4"> LION</p></button>
+                        <p className="textsyn3"><br/>PROYECTO LION</p><p className=" mintext3">(E-commerce)</p>
                     </div>
                     <img src={Engranaje} alt="" className="engranaje engranejegris"/>
 

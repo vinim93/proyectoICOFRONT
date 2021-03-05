@@ -4,7 +4,7 @@ import walpaper from "../../images/banner.svg";
 
 const WhitepaperHome = () => {
     return (
-        <div className=" row walp">
+        <div className=" row walp"data-toggle="collapse" data-target=".navbar-collapse.show">
             <div className="col-12">
                 <Link to="./Pdf" target="">
                     <img src={walpaper} alt="" data-toggle="modal" className="walp-img ml-0 mr-0" id="pdfcon"/>
