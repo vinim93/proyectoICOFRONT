@@ -223,7 +223,27 @@ width: 100vw;
   width: 100vw!important;
   height: 40vw!important;
 }
-
+.walp-text{
+  position:absolute;
+  z-index: 2;
+ font-size: 8vw;
+  margin-left: 8%;
+  top: 7vw;
+  font-family: 'Eras ITC';
+  font-weight: bold;
+  
+  color: white;
+}
+.walp-descargar{
+  position: absolute;
+  z-index: 2;
+  color: white;
+  font-size: 3.5vw;
+  font-family: 'Josefin Sans';
+  top: 20vw;
+  margin-left: 8%;
+  color: #7B90A3;
+}
 
 
 /*--------------------------------------SECCION TRES HOME-----------------------------------*/
@@ -955,13 +975,95 @@ white-space: normal;
  }
 /*--------------SECCION 8 MAPA ESTADISTICAS--------------------------------------------------------*/
 .mapacon{
-  
+  font-family: 'lato';
   overflow: hidden;
 }
 .mapaes{
   
   width: 100vw;
 }
+.dis-fondos{
+  
+  position: absolute;
+  margin-left: 9%;
+  text-transform: uppercase;
+  margin-top: 8vw;
+  font-family: 'Lato';
+  font-weight: bold;
+  font-size: 3vw;
+}
+.dis-tokens{
+  position:absolute;
+  margin-left: 55%;
+  font-family: 'Lato';
+  font-weight: bold;
+  font-size: 3vw;
+  margin-top: 8vw;
+  text-transform: uppercase;
+}
+.por-syn{
+  position: absolute;
+  font-size: 2vw;
+  margin-left: 13.5%;
+  margin-top: -49vw;
+}
+.por-syn2{
+  margin-left: -75%!important;
+  font-size: 1.5vw;
+}
+.por-hawk{
+  position: absolute;
+  font-size: 2vw!important;
+  margin-left: 36%;
+  margin-top: -35vw;
+}
+.por-hawk2{
+  margin-top: 2vw;
+}
+.por-lion{
+  position: absolute;
+  margin-top: -48vw;
+  font-size: 2vw;
+  margin-left: 40%;
+}
+.por-lion2{
+  margin-left: 70%;
+}
+.por-reinversion{
+  position:absolute;
+  margin-left: 54%;
+  margin-top: -48vw;
+  font-size: 2vw;
+
+}
+.por-reinversion2{
+  margin-left: -65%;
+  font-size: 1.5vw;
+}
+.por-sunholders{
+  position: absolute;
+  margin-left: 83%;
+  font-size: 2vw;
+  margin-top: -48vw;
+}
+
+.por-sunholders2{
+  margin-top: 30%;
+  margin-left: -10%;
+}
+.por-equipo{
+  position:absolute;
+  margin-top: -35vw;
+  margin-left: 79%;
+  font-size: 2vw;
+}
+.por-equipo2{
+  margin-left: 3vw;
+  }
+  .sun-usd{
+    font-size: 2vw;
+    margin-top: -12%;
+  }
 /*-----------------------------------SECCION QUE ES ---------------------------------------*/
 .text-moneda{
   background-color: white!important;
@@ -1004,6 +1106,8 @@ white-space: normal;
 .goo-aple{
   left: -2vw;
 }
+/*-----------------------------------SECCION MAPA--------------------------------------------------*/
+
 /*----------------------------------SECCION SOPORTE---------------------------------*/
 .fondoedi{
  
