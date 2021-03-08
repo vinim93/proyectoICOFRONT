@@ -1020,20 +1020,13 @@ img.modal-imgsym{
 
 .img-meto{
 
-    position: relative;
     background-color:#00234D4D ;
-    white-space:normal;
 
-    height: 30vw!important;
-    width: 30vw!important;
-    margin: 0 6vw 3vw 6vw;
 }
 .text-soporte{
     font-family: 'Barlow'!important;
     font-size: 10vw;
     font-weight: 90;
-
-    margin-bottom: 10vw;
 }
 /*----------------------------seccion10 preguntas    -------------------------------------------------------*/
 
@@ -2022,16 +2015,7 @@ input[type=radio]
         position: relative;
         z-index: 1!important;
     }
-    .img-meto{
 
-        position: relative!important;
-        width: 3vw!important;
-        height: 40vh!important;
-
-        margin: 0;
-        margin-bottom: 5vw;
-
-    }
     .fondo-opa{
 
         overflow: hidden;
