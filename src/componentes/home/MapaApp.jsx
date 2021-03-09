@@ -28,7 +28,7 @@ const MapaApp = () => {
                 <div className="col-12">
                     <h1 className="titu-token text-center">token sunshine</h1>
                     <p className="cont-text-moneda" >
-                    <img src={Textmoneda} className="img-fluid col-6" align="left"/>
+                    <img src={Textmoneda} className="img-fluid img-token col-6" align="left"/>
                     <p className="parrafos-tokens">Token compatible, interoperable y  reutilizable dentro de diversas 
                         aplicaciones, billeteras y exchange, propiedades heredadas del  estándar 
                         ERC-20 bajo el cual fue  creado.</p>
@@ -50,7 +50,7 @@ El Gas es, dicho de una forma simple, el precio que se tiene que pagar al realiz
 
             <div className="row textappcon ">
                 <div className="col-12">
-                    <p className=" text-titu-app">próximamente <h2 className="">nuestra app</h2></p>
+                    <p className=" text-titu-app">próximamente <h2 className="text-left">nuestra app</h2></p>
                     <div className=" ventajas-app">
                        <ul className="">
                            <li>Tú cartera disponible donde y cuando quieras</li>
