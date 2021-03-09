@@ -1,0 +1,126 @@
+{
+  "Navbar": {
+    "Acerca": "Acerca de",
+    "Proyectos": "Proyectos",
+    "RoadToMap": "Road to map",
+    "SignIn": "Iniciar sesión (Próximamente)",
+    "SignUp": "Crea tu cuenta (Próximamente)"
+  },
+  "Banner": {
+    "Titulo": {
+      "1": "SE PARTE DE NUESTRA",
+      "2": "REVOLUCION",
+      "3": "TECNOLOGICA"
+    },
+    "Texto": "UNA NUEVA ERA DE EN EL MERCADO DIGITAL, basado en cadenas de bloques inteligentes para el intercambio de tokens de utilidad.",
+    "TextoBoton": "SE PARTE DE SUNSHINE"
+  },
+  "CountdownL": {
+    "Title": "El intercambio de tokens termina en:",
+    "Message": "Próximamente"
+  },
+  "Projects": {
+    "Title": "Proyectos",
+    "Symphony": {
+      "Title": "Symphony",
+      "ModalTitle": "Proyecto Symphony",
+      "Text": "El proyecto consiste en crear un banco digital con resguardo de criptomonedas,  generar cuenta de ahorro, préstamos con pago de intereses, seguros de vida, médicos y de autos, integrar portafolios cripto financieros, los cuales generen rendimiento a los usuarios de la plataforma Symphony que tengan una cuenta de ahorro, la posibilidad de hacer pagos con una tarjeta que contenga el saldo en criptomonedas como si se tratara de una moneda fiduciaria incluyendo beneficios a los tenedores de servicios financieros Symphony, como descuentos por pagos con criptomonedas en establecimientos, además de agilizar pagos con comisiones más bajas, proteger el resguardo de valor limitando el número de monedas, incluso anulación de efectos inflacionarios sobre la moneda SUN y el  control absoluto de sus fondos, con disponibilidad en todo el mundo.",
+      "Type": "Banco"
+    },
+    "Hawk": {
+      "Title": "Hawk",
+      "ModalTitle": "Proyecto Hawk",
+      "Text": "Este proyecto consiste en complementar el desarrollo de nuestra propia Exchange de criptomonedas y la campaña publicitaria, con el cual se ofrecerá el servicio de compra y venta de criptomonedas. Actualmente se encuentra evaluando la fase beta del proyecto, se iniciará con recursos de los fundadores para después poder obtener mayor capitalización a la plataforma y  ofrecer un servicio de calidad con bajas comisiones.",
+      "Type": "Exchange"
+    },
+    "Lion": {
+      "Title": "Lion",
+      "ModalTitle": "Proyecto Lion",
+      "Text": "Consiste en  el desarrollo de una aplicación que ofrezca servicios en donde se puedan comercializar artículos (e-commerce). La empresa Sunshine-Imagine software ya se encuentra desarrollándola,  teniendo como objetivo aceptar pagos por medio de criptomonedas con la finalidad de incorporar las mismas al ámbito cotidiano. Los usuarios que estén comercializando sus productos a través de nuestra plataforma tendrán la libertad de elegir si sus pagos los aceptarán en criptos o dinero fiat, pues Sunshine se encargará de hacer la conversión de dólares/pesos a criptos y viceversa.",
+      "Type": "E-Commerce"
+    }
+  },
+  "Support": {
+    "Title": "SOCIOS Y SOPORTE",
+    "Items": {
+      "Github": {
+        "Title": "GITHUB",
+        "Text": "Plataforma web de alojamiento de repositorios de código fuente para el control de versiones"
+      },
+      "OpenZeppelin": {
+        "Title": "OPENZEPPELIN",
+        "Text": "Permite crear contratos inteligentes de tipo ERC20, a través de una API estable, uno de sus principales objetivos es garantizar la seguridad de los contratos una vez que éstos se encuentren liberados."
+      }
+    }
+  },
+  "Ventajas": {
+    "Facil": {
+      "Titulo": "DE USO FÁCIL",
+      "Texto": "Diseño accesible para todos los Sunholders, creado para que sea práctico, cómodoy rápido poder adquirir el SUN"
+    },
+    "Seguro": {
+      "Titulo": "SEGURO",
+      "Texto": "Procesamiento confiable, el SUN está asentado sobre el protocolo de Blockchain Ethereum, lo que lo hace privado y a prueba de cualquier hackeo"
+    },
+    "Transparente": {
+      "Titulo": "TRANSPARENTE",
+      "Texto": "En Sunshine estamos comprometidos a informar, explicar y justificar cada proyecto financiado con el SUN, aclarar las dudas de nuestros Sunholders y ser siempre claros y precisos brindando toda la información correspondiente a las inversiones"
+    }
+  },
+  "FAQ": {
+    "Title": "PREGUNTAS FREQUENTES",
+    "Items": {
+      "1": {
+        "Title": "¿Qué es un Token?",
+        "Text": "Es una ficha virtual que tiene una unidad de valor la cual es emitida por una entidad privada, tiene diversas funciones a parte de actuar como una moneda virtual y está asentado sobre el protocolo de Blockchain Ethereum, lo que lo hace transparente, privado y a prueba de cualquier hackeo."
+      },
+      "2": {
+        "Title": "¿Qué es una criptomoneda?",
+        "Text": "Es una moneda virtual que nació como un medio de intercambio digital, permitiendo transacciones instantáneas a través de internet. Mediante el uso de criptografía se aseguran y verifican las transacciones que se realicen con ella, además la criptografía controla la creación de nuevas unidades de una moneda en particular."
+      },
+      "3": {
+        "Title": "¿Qué es una ICO?",
+        "Text": "ICO, por sus siglas en inglés Inicial Coin Offering u Oferta Inicial de Moneda, es un token el cual es administrado por la Blockchain correspondiente a la criptomoneda en uso es decir tiene registros limitados en una base de datos que no pueden ser modificados."
+      },
+      "4": {
+        "Title": "¿Quiénes pueden comprar un SUN?",
+        "Text": "Cualquier persona que sea mayor de edad y que desee comprar un SUN puede hacerlo."
+      },
+      "5": {
+        "Title": "¿Cómo comprar un SUN?",
+        "Text": "Es muy fácil, sólo debes crear una cuenta en nuestra página y de ahí seleccionar el número de SUN que desees adquirir"
+      }
+    }
+  },
+
+  "Newsletter": {
+    "Title": "BOLETÍN INFORMATIVO",
+    "Text": "Cada semana los que se suscriban al boletín informativo recibirán un artículo sobre las ICO, tokens, y el mundo de las criptomonedas."
+  },
+
+  "ContactUs": {
+    "Title": "Contactanos",
+    "Form": {
+      "Name": "Nombre",
+      "Email": "Email",
+      "Coments": "Comentarios",
+      "Close": "Cerrar",
+      "Send": "Enviar"
+    },
+    "Extra": {
+      "1": "Conéctate",
+      "2": "con nosotros"
+    }
+  },
+  "AboutSection": {
+    "Title": "ASEGURA TU FUTURO, EMPIEZA HOY",
+    "Introduction": {
+      "1": "Hemos desarrollado un token que va a permitirles a los inversionistas, ser parte de este mundo financiero virtual, dando inicio a una nueva era tecnológica y la oportunidad de invertir en activos digitales",
+      "2": "Dicho token lleva por nombre SUNSHINE IMAGINE",
+      "3": "SUNSHINE es para los emprendedores, las personas que quieran ir un paso más adelante, para los que no se conformen con poco, SUNSHINE es el futuro, es para quien desea grandeza, aquel que perdió el miedo y decidió tomar el control de su vida."
+    },
+    "Differences": {
+      "Title": "¿QUÉ NOS DIFERENCIA?"
+    }
+  }
+}

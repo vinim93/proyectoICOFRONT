@@ -1,17 +1,25 @@
 import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle';
 import logonav from '../../icons/logonav.svg';
 import React from 'react';
 import "firebase/auth";
-import {
-    NavLink
-} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import 'firebase/firestore';
 import SignUpModal from "../user/SignUpModal";
 import SignInModal from "../user/SignInModal";
 import './mostrarmenu';
+import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
+import USAFLAG from "../../images/usa_flag_icon.svg";
+import MEXICOFLAG from "../../images/mexico_flag_icon.svg";
 
 const Navigation = () => {
+    const { t } = useTranslation();
+
+    function handleClick(lang) {
+        i18next.changeLanguage(lang)
+    }
 
     return (
 
@@ -28,35 +36,43 @@ const Navigation = () => {
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li className="nav-item">
                             <NavLink className="navbar-brand nav-link navegacion" data-toggle="collapse" data-target=".navbar-collapse.show"
-                                     to="./Acerca">Acerca de
+                                     to="./Acerca">{t('Navbar.Acerca')}
                             </NavLink>
                         </li>
                         <li className="nav-item ">
 
                             <NavLink className="navbar-brand nav-link navegacion" tap-index="-1"
                                      activeClassName="active" area-disabled="true" data-toggle="collapse" data-target=".navbar-collapse.show"
-                                     to="./Roaptomap">Road to Map
+                                     to="./Roaptomap">{t('Navbar.RoadToMap')}
                             </NavLink>
                         </li>
                         <li className="nav-item ">
 
                             <NavLink className="navbar-brand nav-link navegacion" activeClassName="active"
                                      area-disabled="true" data-toggle="collapse" data-target=".navbar-collapse.show"
-                                     to="./Proyectos">Proyectos
+                                     to="./Proyectos">{t('Navbar.Proyectos')}
                             </NavLink>
                         </li>
                     </ul>
                     <a href="#" data-toggle="collapse" data-target=".navbar-collapse.show">
                         <button type="button" className="navsesion btn btn-link disabled" data-toggle="modal"
-                                 >Iniciar sesión (Próximamente)
+                                 >{t('Navbar.SignIn')}
                         </button>
                     </a>
 
                     <a href="#" data-toggle="collapse" data-target=".navbar-collapse.show">
                         <button type="button" className="navsesion btn btn-link disabled" data-toggle="modal"
                                >
-                            Crea tu cuenta (Próximamente)
+                            {t('Navbar.SignUp')}
                         </button>
+                    </a>
+
+                    <a href="#" className="btn btn-link" onClick={() => handleClick('en')} data-toggle="collapse" data-target=".navbar-collapse.show">
+                        <img src={USAFLAG} className="img-fluid" style={{width: 50}} alt=""/>
+                    </a>
+
+                    <a href="#" className="btn btn-link" onClick={() => handleClick('es')} data-toggle="collapse" data-target=".navbar-collapse.show">
+                        <img src={MEXICOFLAG} className="img-fluid" style={{width: 50}} alt=""/>
                     </a>
 
                 </div>

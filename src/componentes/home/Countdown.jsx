@@ -3,13 +3,16 @@ import rectangulo1 from "../../images/rectangulo1.svg";
 import tecnologias from "../../images/tecnologias.svg";
 import 'bootstrap/dist/css/bootstrap.css';
 import contador from "./cuentaregresiva";
+import { useTranslation } from 'react-i18next';
+
 
 const Countdown = () => {
+    const { t } = useTranslation();
 
     useEffect(() => {
         contador("contador",
             "Feb 28  , 2021 16:30:00",
-            "PROXIMAMENTE");
+            "...");
     }, []);
 
     return (
@@ -17,7 +20,7 @@ const Countdown = () => {
 
             <div className=" col-12 ">
                 <p className="sec3con">
-                    El intercambio de tokens termina en:
+                    {t('CountdownL.Title')}
                 </p><br/>
                 <div className="container-contador">
                 <p id="contador" className=""></p>

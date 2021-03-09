@@ -9,10 +9,12 @@ import Twitercontact from "../../images/twitercontact.svg";
 import {db} from "../config/firebase";
 import './css/styles.css';
 import Navigation from "../navbar/Navigation";
+import { useTranslation } from 'react-i18next';
 
 
 const Acerca = () => {
 
+    const { t } = useTranslation();
     const [team, setTeam] = useState([]);
     const [differencesItems, setDifferencesItems] = useState([]);
 
@@ -42,16 +44,15 @@ const Acerca = () => {
     return (
         <div className="bg-light">
             <Navigation/>
-            <div className="container-fluid pt-5">
-                <div className="row mt-5" style={{height: 500}}>
-                    <div className="col-12" >
-                        <ReactPlayer width="100%" data-toggle="collapse" data-target=".navbar-collapse.show" height="100%" url='https://www.youtube.com/embed/UZvxWOiruss'/>
-                    </div>
-                </div>
-            </div>
 
             <div className="container-fluid">
                 <div className="row mt-5 mb-5 pt-5 pb-5 pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5 bg-about2">
+                    <div className="col-12 mt-5 mb-5 pb-5">
+                        <h1 className="text-center text-preview text-size-banner">
+                            ASEGURA TU FUTURO, EMPIEZA HOY
+                        </h1>
+                        <hr/>
+                    </div>
                     <div className="col-12 mb-3">
                         <p className="text-center m-3 text-preview pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5" style={{fontSize: 30}}>
                             Hemos desarrollado un token que va a permitirles a los inversionistas, ser parte de este mundo
@@ -68,13 +69,6 @@ const Acerca = () => {
                             no se conformen con poco, SUNSHINE es el futuro, es para quien desea grandeza, aquel que perdió el
                             miedo y decidió tomar el control de su vida.
                         </p>
-                    </div>
-
-                    <div className="col-12 mt-5 mb-5 pb-5">
-                        <h1 className="text-center text-preview text-size-banner">
-                            ASEGURA TU FUTURO, EMPIEZA HOY
-                        </h1>
-                        <hr/>
                     </div>
 
                 </div>
