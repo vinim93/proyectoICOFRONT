@@ -1067,18 +1067,80 @@ white-space: normal;
 /*-----------------------------------SECCION QUE ES ---------------------------------------*/
 .text-moneda{
   background-color: white!important;
+  font-family: 'Barlow'!important;
+  color: #7B90A3;
 }
-.textappcon{
+.text-moneda img{
+
+  margin-bottom: 10vw;
+}
+.titu-token{
+  color: #025889;
+  filter: drop-shadow(7px 3px 8px rgba(0, 0, 0, 0.851));
+  color: rgba(2,88,137,1);
+    text-transform: uppercase;
+    font-family: Barlow;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 7vw;
+}
+.parrafos-tokens{
   
+  font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.5vw;
+    margin-bottom: 3%!important ; 
+}
+.parra-3{
+  margin-top: 6%;
+      
+    }
+.textappcon{
+  color: white;
   
   position: relative;
   background-color:white!important;
   overflow: hidden;
+  
+  }
+  .text-titu-app{
+    position: absolute;
+    z-index: 10;
+    margin:10vw 0 0 2vw;
+    font-size: 7vw;
+    font-family: Barlow;
+    height: 4vw;
+    font-weight: bold;
+    text-transform: uppercase;
+    
+  }
+  .text-titu-app h2{
+    font-family: Lato!important;
+    font-style: italic;
+    font-size: 3.5vw;
+    
+  }
+  .ventajas-app{
+    position: absolute;
+    z-index: 2;
+    line-height: 5vw;
+  text-transform: uppercase;
+    margin-top: 30vw;
+    font-size: 2vw;
+  }
+  
+  .ventajas-app ul{
+    list-style: none;
+  }
+  .ventajas-app ul li::before{
+    content: "\2022";
+    color: yellow;
   }
   .text-App-g{
     position: relative;
-    left: -1.5vw!important;
-    width: 102vw!important;
+    left: -5.5vw!important;
+    width: 180vw!important;
   }
 .text-App{
   position: relative;
@@ -1091,22 +1153,42 @@ white-space: normal;
   position: relative;
   width: 15vw;
   margin: 0 0 0 2vw;
-  top: -20vw!important;
+  top: -35vw!important;
+  left: 2vw;
   height: 5vw;
 }
 .img-aple{
   
   position: absolute!important;
   width: 15vw;
-  margin: 0 0 0 2vw;
-  
-  
+  margin: -15vw 0 0 3vw;  
   height: 5vw;
+}
+.constru-cartera{
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
+  font-family: 'Eras ITC';
+  font-weight: 500;
+  font-style: "Demi";
+  margin-top: 58vw;
+  color: #025889;
+  margin-left: 21vw;
+  text-transform: uppercase;
+  font-size: 4vw;
+  position: absolute;
+  z-index: 4;
+  text-decoration:underline yellow;
 }
 .goo-aple{
   left: -2vw;
 }
-/*-----------------------------------SECCION MAPA--------------------------------------------------*/
+.disponible-text{
+  position: absolute;
+  margin-top: 50vw;
+margin-left: 2vw;
+font-size: 2vw;
+  z-index: 2;
+}
+
 
 /*----------------------------------SECCION SOPORTE---------------------------------*/
 .fondoedi{
@@ -2276,18 +2358,21 @@ margin-top: 50vw!important;
        }
        .img-aple{
         left: 2vw!important;  
-        width: 27vw; 
-        height: 9vw;
-       margin-left: 3vw!important;  
-      margin-top: 10vw!important;
+        width: 20vw; 
+        height: 7vw;
+       margin-left: 6vw!important;  
+      margin-top: 5vw!important;
       
     }
     .img-goo{
       position: absolute!important;
-      width: 27vw;
-      height: 10vw;
-      top: 200vw;
-           
+      left: 6vw;
+      width: 20vw;
+      height: 7vw;
+      top: -23vw!important;           
+    }
+    .constru-cartera{
+      left: 4vw;
     }
     .goo-aple{
     

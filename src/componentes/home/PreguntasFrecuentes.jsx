@@ -69,7 +69,7 @@ const PreguntasFrecuentes = () => {
                         token el cual es administrado por
                         la Blockchain correspondiente a la criptomoneda en uso es decir tiene registros
                         limitados en una base de datos que no pueden
-                        Xser modificados.
+                        ser modificados.
 
 
                     </div>

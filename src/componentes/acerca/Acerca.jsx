@@ -43,11 +43,7 @@ const Acerca = () => {
         <div className="bg-light">
             <Navigation/>
             <div className="container-fluid pt-5">
-                <div className="row mt-5" style={{height: 500}}>
-                    <div className="col-12" >
-                        <ReactPlayer width="100%" data-toggle="collapse" data-target=".navbar-collapse.show" height="100%" url='https://www.youtube.com/embed/UZvxWOiruss'/>
-                    </div>
-                </div>
+                
             </div>
 
             <div className="container-fluid">
