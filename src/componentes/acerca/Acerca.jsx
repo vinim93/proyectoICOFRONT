@@ -43,7 +43,6 @@ const Acerca = () => {
 
     return (
         <div className="bg-light">
-            <Navigation/>
 
             <div className="container-fluid">
                 <div className="row mt-5 mb-5 pt-5 pb-5 pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5 bg-about2">
