@@ -1,7 +1,10 @@
 import '../../App.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.css';
+import monedag from "../../images/moneda.gif";
+
 import React, {Suspense, lazy} from 'react';
+
 
 const Banner =lazy(()=>import ('./Banner'));
 const Video =lazy(()=>import ('./Video'));
@@ -21,7 +24,13 @@ const Home = () => {
 
     return (
         <div className="container-fluid" className="" >
-<Suspense fallback={<h1 className="mt-5">CARGANDO...</h1>}>
+<Suspense fallback={
+<div className="  container mt-5 text-center   justify-content-center">
+
+<img className="moneda-carga" loading="lazy" align="top"src={monedag}/><p className="">CARGANDO...</p> 
+    
+</div>
+}>
             <Banner/>
             <Video/>
             <Countdown/>

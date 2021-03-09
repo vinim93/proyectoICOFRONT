@@ -43,7 +43,7 @@ const Pdf = ()=>{
             
             <div className="col-12  fondopdf p-3 d-none d-md-block" >
            
-            < iframe width='800' data-toggle="collapse" data-target=".navbar-collapse.show" className="google-viewer" height='600' frameborder='0' src='https://firebasestorage.googleapis.com/v0/b/ico-sunshine-contact.appspot.com/o/Avance.6c917d8f.pdf?alt=media&token=2d0bd427-c2ff-4b5c-9579-e9e6329a3681 '></iframe>
+            < iframe width='800' data-toggle="collapse" data-target=".navbar-collapse.show" className="google-viewer" height='600' frameborder='0' src={Docpdf}></iframe>
             <Loader isLoading={isLoading}/>
                  
      

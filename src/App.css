@@ -25,7 +25,13 @@ body{
 .bg-cards{
   background-color: #025889 !important;
 }
-
+.moneda-carga{
+  position: relative;
+  justify-content: center;
+  margin-top: 2vw;
+  width: 50vw!important;
+  height: 55vh!important;
+}
 .centered {
   position: absolute;
   top: 50%;
