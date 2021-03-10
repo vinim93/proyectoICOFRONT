@@ -33,11 +33,11 @@ const MapaApp = () => {
                     <h1 className="titu-token text-center">{t('MapaApp.SunshineToken.Title')}</h1>
                     <p className="cont-text-moneda">
                         <img src={Textmoneda} className="img-fluid img-token col-6" align="left"/>
+                        <p className="parrafos-tokens">{t('MapaApp.SunshineToken.Items.0')}</p>
                         <p className="parrafos-tokens">{t('MapaApp.SunshineToken.Items.1')}</p>
-                        <p className="parrafos-tokens">{t('MapaApp.SunshineToken.Items.2')}</p>
-                        <p className="parrafos-tokens parra-3">{t('MapaApp.SunshineToken.Items.3')}</p>
+                        <p className="parrafos-tokens parra-3">{t('MapaApp.SunshineToken.Items.2')}</p>
+                        <p className="parrafos-tokens">{t('MapaApp.SunshineToken.Items.3')}</p>
                         <p className="parrafos-tokens">{t('MapaApp.SunshineToken.Items.4')}</p>
-                        <p className="parrafos-tokens">{t('MapaApp.SunshineToken.Items.5')}</p>
                     </p>
                 </div>
             </div>
@@ -47,9 +47,9 @@ const MapaApp = () => {
                     <p className=" text-titu-app">{t('MapaApp.AppDownload.Title')}<h2 className="text-left">{t('MapaApp.AppDownload.Subtitle')}</h2></p>
                     <div className=" ventajas-app">
                         <ul className="">
+                            <li>{t('MapaApp.AppDownload.Items.0')}</li>
                             <li>{t('MapaApp.AppDownload.Items.1')}</li>
                             <li>{t('MapaApp.AppDownload.Items.2')}</li>
-                            <li>{t('MapaApp.AppDownload.Items.3')}</li>
                         </ul>
                     </div>
                     <p className="  disponible-text">{t('MapaApp.AppDownload.Avaliable')}:</p>

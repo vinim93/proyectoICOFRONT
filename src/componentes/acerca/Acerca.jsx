@@ -52,32 +52,32 @@ const Acerca = () => {
     const differences = [
         {
             image: ACCESIBILIDAD,
+            title: t('AboutSection.Differences.Items.0.Title'),
+            description: t('AboutSection.Differences.Items.0.Text')
+        },
+        {
+            image: PRIVACIDAD,
             title: t('AboutSection.Differences.Items.1.Title'),
             description: t('AboutSection.Differences.Items.1.Text')
         },
         {
-            image: PRIVACIDAD,
+            image: SOLIDEZ,
             title: t('AboutSection.Differences.Items.2.Title'),
             description: t('AboutSection.Differences.Items.2.Text')
         },
         {
-            image: SOLIDEZ,
+            image: TRABAJOEQUIPO,
             title: t('AboutSection.Differences.Items.3.Title'),
             description: t('AboutSection.Differences.Items.3.Text')
-        },
-        {
-            image: TRABAJOEQUIPO,
-            title: t('AboutSection.Differences.Items.4.Title'),
-            description: t('AboutSection.Differences.Items.4.Text')
         }
     ];
 
     const team2 = [
         {
             image: VIRY,
-            name: t('AboutSection.Team.Items.1.Name'),
-            career: t('AboutSection.Team.Items.1.Career'),
-            description: t('AboutSection.Team.Items.1.Description'),
+            name: t('AboutSection.Team.Items.0.Name'),
+            career: t('AboutSection.Team.Items.0.Career'),
+            description: t('AboutSection.Team.Items.0.Description'),
             social: {
                 linkedin: "https://mx.linkedin.com/in/viry-uribe-879b68163/",
                 twitter: "https://twitter.com/home?lang=es"
@@ -85,9 +85,9 @@ const Acerca = () => {
         },
         {
             image: JOSS,
-            name: t('AboutSection.Team.Items.2.Name'),
-            career: t('AboutSection.Team.Items.2.Career'),
-            description: t('AboutSection.Team.Items.2.Description'),
+            name: t('AboutSection.Team.Items.1.Name'),
+            career: t('AboutSection.Team.Items.1.Career'),
+            description: t('AboutSection.Team.Items.1.Description'),
             social: {
                 linkedin: "https://www.linkedin.com/in/jocelyn-uribe-maldonado-720a90203/",
                 twitter: "https://twitter.com/jocelyn_um"
@@ -95,9 +95,9 @@ const Acerca = () => {
         },
         {
             image: CHRIS,
-            name: t('AboutSection.Team.Items.3.Name'),
-            career: t('AboutSection.Team.Items.3.Career'),
-            description: t('AboutSection.Team.Items.3.Description'),
+            name: t('AboutSection.Team.Items.2.Name'),
+            career: t('AboutSection.Team.Items.2.Career'),
+            description: t('AboutSection.Team.Items.2.Description'),
             social: {
                 linkedin: "https://www.linkedin.com/in/ahtziri-antonio-pe%C3%B1a-142705179/",
                 twitter: ""
@@ -105,9 +105,9 @@ const Acerca = () => {
         },
         {
             image: MANU,
-            name: t('AboutSection.Team.Items.4.Name'),
-            career: t('AboutSection.Team.Items.4.Career'),
-            description: t('AboutSection.Team.Items.4.Description'),
+            name: t('AboutSection.Team.Items.3.Name'),
+            career: t('AboutSection.Team.Items.3.Career'),
+            description: t('AboutSection.Team.Items.3.Description'),
             social: {
                 linkedin: "https://www.linkedin.com/in/jose-manuel-viniegra-molina-aab9a51a8/",
                 twitter: "https://twitter.com/manuel87129931"
@@ -115,9 +115,9 @@ const Acerca = () => {
         },
         {
             image: CRIS,
-            name: t('AboutSection.Team.Items.5.Name'),
-            career: t('AboutSection.Team.Items.5.Career'),
-            description: t('AboutSection.Team.Items.5.Description'),
+            name: t('AboutSection.Team.Items.4.Name'),
+            career: t('AboutSection.Team.Items.4.Career'),
+            description: t('AboutSection.Team.Items.4.Description'),
             social: {
                 linkedin: "https://www.linkedin.com/in/cristian-augusto-armenta-garcia/",
                 twitter: "https://twitter.com/CRISTIANAUGUS14"
@@ -138,16 +138,16 @@ const Acerca = () => {
                     </div>
                     <div className="col-12 mb-3">
                         <p className="text-center m-3 text-preview pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5" style={{fontSize: 30}}>
-                            {t('AboutSection.Introduction.1')}
+                            {t('AboutSection.Introduction.0')}
                         </p>
                         <p className="text-center pt-4 m-3 text-preview pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5" style={{fontSize: 30}}>
-                            {t('AboutSection.Introduction.2')}
+                            {t('AboutSection.Introduction.1')}
                         </p>
                     </div>
 
                     <div className="col-12 mt-3 mb-5 pb-5">
                         <p className="mt-3 text-center pl-5 pr-5 text-preview pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5" style={{fontSize: 30}}>
-                            {t('AboutSection.Introduction.3')}
+                            {t('AboutSection.Introduction.2')}
                         </p>
                     </div>
 

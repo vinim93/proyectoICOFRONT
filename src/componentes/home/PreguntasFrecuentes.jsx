@@ -20,32 +20,32 @@ const PreguntasFrecuentes = () => {
     const items = [
         {
             icon: Depmason,
+            title: t('FAQ.Items.0.Title'),
+            text: t('FAQ.Items.0.Text'),
+            id: "myImageA"
+        },
+        {
+            icon: Depmason,
             title: t('FAQ.Items.1.Title'),
             text: t('FAQ.Items.1.Text'),
-            id: "myImageA"
+            id: "myImageB"
         },
         {
             icon: Depmason,
             title: t('FAQ.Items.2.Title'),
             text: t('FAQ.Items.2.Text'),
-            id: "myImageB"
+            id: "myImageC"
         },
         {
             icon: Depmason,
             title: t('FAQ.Items.3.Title'),
             text: t('FAQ.Items.3.Text'),
-            id: "myImageC"
+            id: "myImageD"
         },
         {
             icon: Depmason,
             title: t('FAQ.Items.4.Title'),
             text: t('FAQ.Items.4.Text'),
-            id: "myImageD"
-        },
-        {
-            icon: Depmason,
-            title: t('FAQ.Items.5.Title'),
-            text: t('FAQ.Items.5.Text'),
             id: "myImageE"
         },
     ]

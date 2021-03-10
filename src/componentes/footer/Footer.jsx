@@ -94,12 +94,12 @@ const Footer = () => {
                         <div className="modal-dialog modal-xl modal-dialog-centered">
                             <div className="modal-content modalfootcont">
                                 <div className="modal-header ">
-                                    <h5 className=" modal-title col-12 " id="staticBackdropLabel">{t('ContactUs.Extra.1')} <svg
+                                    <h5 className=" modal-title col-12 " id="staticBackdropLabel">{t('ContactUs.Extra.0')} <svg
                                         xmlns="http://www.w3.org/2000/svg" width="484.203" height="7.402"
                                         viewBox="0 0 484.203 7.402">
                                         <rect id="Rectángulo_187" data-name="Rectángulo 187" width="484.203"
                                               height="7.402" fill="#dbb80b"/>
-                                    </svg> <p className="conectate"><br/>{t('ContactUs.Extra.2')}</p></h5>
+                                    </svg> <p className="conectate"><br/>{t('ContactUs.Extra.1')}</p></h5>
 
 
                                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">

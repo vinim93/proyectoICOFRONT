@@ -7,11 +7,11 @@
     "SignUp": "Crea tu cuenta (Próximamente)"
   },
   "Banner": {
-    "Titulo": {
-      "1": "SE PARTE DE NUESTRA",
-      "2": "REVOLUCION",
-      "3": "TECNOLOGICA"
-    },
+    "Titulo": [
+      "SE PARTE DE NUESTRA",
+      "REVOLUCION",
+      "TECNOLOGICA"
+    ],
     "Texto": "UNA NUEVA ERA DE EN EL MERCADO DIGITAL, basado en cadenas de bloques inteligentes para el intercambio de tokens de utilidad.",
     "TextoBoton": "SE PARTE DE SUNSHINE"
   },
@@ -69,35 +69,33 @@
   },
   "FAQ": {
     "Title": "PREGUNTAS FREQUENTES",
-    "Items": {
-      "1": {
+    "Items": [
+      {
         "Title": "¿Qué es un Token?",
         "Text": "Es una ficha virtual que tiene una unidad de valor la cual es emitida por una entidad privada, tiene diversas funciones a parte de actuar como una moneda virtual y está asentado sobre el protocolo de Blockchain Ethereum, lo que lo hace transparente, privado y a prueba de cualquier hackeo."
       },
-      "2": {
+      {
         "Title": "¿Qué es una criptomoneda?",
         "Text": "Es una moneda virtual que nació como un medio de intercambio digital, permitiendo transacciones instantáneas a través de internet. Mediante el uso de criptografía se aseguran y verifican las transacciones que se realicen con ella, además la criptografía controla la creación de nuevas unidades de una moneda en particular."
       },
-      "3": {
+      {
         "Title": "¿Qué es una ICO?",
         "Text": "ICO, por sus siglas en inglés Inicial Coin Offering u Oferta Inicial de Moneda, es un token el cual es administrado por la Blockchain correspondiente a la criptomoneda en uso es decir tiene registros limitados en una base de datos que no pueden ser modificados."
       },
-      "4": {
+      {
         "Title": "¿Quiénes pueden comprar un SUN?",
         "Text": "Cualquier persona que sea mayor de edad y que desee comprar un SUN puede hacerlo."
       },
-      "5": {
+      {
         "Title": "¿Cómo comprar un SUN?",
         "Text": "Es muy fácil, sólo debes crear una cuenta en nuestra página y de ahí seleccionar el número de SUN que desees adquirir"
       }
-    }
+    ]
   },
-
   "Newsletter": {
     "Title": "BOLETÍN INFORMATIVO",
     "Text": "Cada semana los que se suscriban al boletín informativo recibirán un artículo sobre las ICO, tokens, y el mundo de las criptomonedas."
   },
-
   "ContactUs": {
     "Title": "Contactanos",
     "Form": {
@@ -107,73 +105,71 @@
       "Close": "Cerrar",
       "Send": "Enviar"
     },
-    "Extra": {
-      "1": "Conéctate",
-      "2": "con nosotros"
-    }
+    "Extra": [
+      "Conéctate",
+      "con nosotros"
+    ]
   },
   "AboutSection": {
     "Title": "ASEGURA TU FUTURO, EMPIEZA HOY",
     "Banner": "EQUIPO SUNSHINE",
     "ButtonText": "¿Te gustaria unirte a nuestro equipo?",
-    "Introduction": {
-      "1": "Hemos desarrollado un token que va a permitirles a los inversionistas, ser parte de este mundo financiero virtual, dando inicio a una nueva era tecnológica y la oportunidad de invertir en activos digitales",
-      "2": "Dicho token lleva por nombre SUNSHINE IMAGINE",
-      "3": "SUNSHINE es para los emprendedores, las personas que quieran ir un paso más adelante, para los que no se conformen con poco, SUNSHINE es el futuro, es para quien desea grandeza, aquel que perdió el miedo y decidió tomar el control de su vida."
-    },
+    "Introduction": [
+      "Hemos desarrollado un token que va a permitirles a los inversionistas, ser parte de este mundo financiero virtual, dando inicio a una nueva era tecnológica y la oportunidad de invertir en activos digitales",
+      "Dicho token lleva por nombre SUNSHINE IMAGINE",
+      "SUNSHINE es para los emprendedores, las personas que quieran ir un paso más adelante, para los que no se conformen con poco, SUNSHINE es el futuro, es para quien desea grandeza, aquel que perdió el miedo y decidió tomar el control de su vida."
+    ],
     "Differences": {
       "Title": "¿QUÉ NOS DIFERENCIA?",
-      "Items": {
-        "1": {
+      "Items": [
+        {
           "Title": "ACCESIBILIDAD",
           "Text": "Cualquier persona mayor de edad tiene acceso a la compra de SUN, Sunshine puede ser tu primer acercamiento a un servicio financiero seguro."
         },
-        "2": {
+        {
           "Title": "PRIVACIDAD",
           "Text": "Sunshine nunca compartirá tus datos personales, datos de tus inversiones ni cualquier tipo de información, ya que el SUN corre por la Blockchain Ethereum cada movimiento que realices será privado y anónimo."
         },
-        "3": {
+        {
           "Title": "SOLIDEZ",
           "Text": "El SUN es un token descentralizado pues ningún gobierno ni banco tiene poder sobre él, Sunshine se distingue por la planificación estratégica que le da a sus recursos, y por el equipo responsable y comprometido que la conforma."
         },
-        "4": {
+        {
           "Title": "TRABAJO EN EQUIPO",
           "Text": "Juntos seremos el mejor equipo, y así podremos consolidar el éxito juntos, basados en el trabajo del equipo Sunshine y el compromiso que tenemos con cada uno de nuestros Sunholders."
         }
-      }
+      ]
     },
     "Team": {
-      "Items": {
-        "1": {
+      "Items": [
+        {
           "Name": "Viridiana Uribe",
           "Career": "Operations Coordinator",
           "Description": "Coordinación del correcto desarrollo de las actividades operativas de la empresa, Garantizar procesos que se lleven acabo en el tiempo y forma."
         },
-        "2": {
+        {
           "Name": "Jocelyn Uribe",
           "Career": "Community Manager",
           "Description": "Creación de contenido en RRSS. Monitoreo de los contenidos en redes sociales. Gestión y planificación de las acciones de comunicación."
         },
-        "3": {
+        {
           "Name": "Christian Manjarrez",
           "Career": "Graphic Designer",
           "Description": "Diseño de contenido digital ( Edición de videos, contenido para redes sociales , gifs , infografías, etc.) Maquetación y desarrollo visual para web."
         },
-        "4": {
+        {
           "Name": "Manuel Viniegra",
           "Career": "Fullstack Developer",
           "Description": "Desarrollador Fullstack de sistemas web con amplio stack de tecnologías backend y frontend como Javascript y diseño responsive"
         },
-        "5": {
+        {
           "Name": "Augusto Armenta",
           "Career": "Fullstack Developer",
           "Description": "Desarrollador Fullstack con amplio conocimiento en tecnologías web, móviles, servidores y patrónes de arquitectura."
         }
-
-      }
+      ]
     }
   },
-
   "MapaApp": {
     "Funding": {
       "Title": "Distribución de fondos",
@@ -190,25 +186,24 @@
     "Price": "El costo inicial del SUN es de 1 USD",
     "SunshineToken": {
       "Title": "Token sunshine",
-      "Items": {
-        "1": "Token compatible, interoperable y reutilizable dentro de diversas aplicaciones, billeteras y exchange, propiedades heredadas del estándar ERC-20 bajo el cual fue creado.",
-        "2": "Utilizan \"gas\" para cubrir las tarifas de transacción. El Gas es, dicho de una forma simple, el precio que se tiene que pagar al realizar una operación en la red de Ethereum.",
-        "3": "Se alojan en el blockchain de Etherum, a diferencia de otras criptomonedas que se alojan en sus respectiva blockchain.",
-        "4": "Desarrollado con Solidity, lenguaje de programación diseñado para ejecutar Smart contracts de manera óptima en la máquina virtual de Etherum (EVM).",
-        "5": "Utiliza la API estable de OpenZeppelin, las cuales verifican que los contratos presenten brechas de seguridad o puntos débiles que puedan ser explotados."
-      }
+      "Items": [
+        "Token compatible, interoperable y reutilizable dentro de diversas aplicaciones, billeteras y exchange, propiedades heredadas del estándar ERC-20 bajo el cual fue creado.",
+        "Utilizan \"gas\" para cubrir las tarifas de transacción. El Gas es, dicho de una forma simple, el precio que se tiene que pagar al realizar una operación en la red de Ethereum.",
+        "Se alojan en el blockchain de Etherum, a diferencia de otras criptomonedas que se alojan en sus respectiva blockchain.",
+        "Desarrollado con Solidity, lenguaje de programación diseñado para ejecutar Smart contracts de manera óptima en la máquina virtual de Etherum (EVM).",
+        "Utiliza la API estable de OpenZeppelin, las cuales verifican que los contratos presenten brechas de seguridad o puntos débiles que puedan ser explotados."
+      ]
     },
     "AppDownload": {
       "Title": "Próximamente",
       "Subtitle": "Nuestra app",
-      "Items": {
-        "1": "Tú cartera disponible donde y cuando quieras",
-        "2": "Revisa tu saldo todo el tiempo",
-        "3": "Mantente conectado"
-      },
+      "Items": [
+        "Tú cartera disponible donde y cuando quieras",
+        "Revisa tu saldo todo el tiempo",
+        "Mantente conectado"
+      ],
       "Avaliable": "Disponible para",
       "Footer": "Construye una cartera"
     }
   }
-
 }

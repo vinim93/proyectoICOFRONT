@@ -13,9 +13,9 @@ const Banner = () => {
         <div className="row fondogalaxy pl-5">
             <div className=" col-lg-7 parte col-md-7   ">
                 <p className="moneda1 text-lg-left text-center">
-                    {t('Banner.Titulo.1')}
-                    <p className="revo1">{t('Banner.Titulo.2')}</p>
-                    <p className="tec1"><br/>{t('Banner.Titulo.3')}</p>
+                    {t('Banner.Titulo.0')}
+                    <p className="revo1">{t('Banner.Titulo.1')}</p>
+                    <p className="tec1"><br/>{t('Banner.Titulo.2')}</p>
                     <img className="moneda d-block  d-md-none" loading="lazy" src={monedafinal}/>
                     <p className="  hometext1  d-none  d-md-block"><br/>
                         {t('Banner.Texto')}
