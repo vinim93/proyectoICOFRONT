@@ -205,5 +205,19 @@
       "Avaliable": "Available for",
       "Footer": "Build a wallet"
     }
+  },
+  "RoadToMap": [
+    "ICO Planning SUN Project",
+    "Launch of ICO 1st SUN token sale period",
+    "Creation of the ICO SUN page",
+    "2nd SUN token sale period",
+    "3rd SUN token sale period",
+    "Exchange project start",
+    "ICO project closure",
+    "Start of the Crypto Bank project"
+  ],
+  "Whitepaper": {
+    "Read": "READ",
+    "Click": "Click to download pdf"
   }
 }

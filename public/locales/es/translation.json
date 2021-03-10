@@ -205,5 +205,19 @@
       "Avaliable": "Disponible para",
       "Footer": "Construye una cartera"
     }
+  },
+  "RoadToMap": [
+    "Planificación ICO Proyecto SUN",
+    "Lanzamiento de ICO 1er periodo de venta token SUN",
+    "Creación de la página ICO SUN",
+    "2do periodo de venta token SUN",
+    "3er periodo de venta token SUN",
+    "Inicio proyecto Exchange",
+    "Cierre del proyecto ICO",
+    "Inicio al proyecto Cripto Banco"
+  ],
+  "Whitepaper": {
+    "Read": "LEE",
+    "Click": "Click para descargar pdf"
   }
 }
