@@ -118,6 +118,104 @@
       "1": "Connect",
       "2": "with us"
     }
-  }
+  },
 
+  "AboutSection": {
+    "Title": "SECURE YOUR FUTURE, START TODAY",
+    "Banner": "SUNSHINE TEAM",
+    "ButtonText": "Would you like to join our team?",
+    "Introduction": {
+      "1": "We have developed a token that will allow investors to be part of this virtual financial world, starting a new technological era and the opportunity to invest in digital assets",
+      "2": "This token is called SUNSHINE IMAGINE",
+      "3": "SUNSHINE is for entrepreneurs, people who want to go a step further, for those who do not settle for little, SUNSHINE is the future, it is for those who want greatness, who lost their fear and decided to take control of their life."
+    },
+    "Differences": {
+      "Title": "WHAT MAKES US DIFFERENT?",
+      "Items": {
+        "1": {
+          "Title": "ACCESSIBILITY",
+          "Text": "Anyone of legal age has access to the purchase of SUN, Sunshine can be your first approach to a secure financial service."
+        },
+        "2": {
+          "Title": "PRIVACY",
+          "Text": "Sunshine will never share your personal data, your investment data or any type of information, since the SUN runs through the Ethereum Blockchain, every movement you make will be private and anonymous."
+        },
+        "3": {
+          "Title": "SOLIDITY",
+          "Text": "The SUN is a decentralized token since no government or bank has power over it, Sunshine is distinguished by the strategic planning that it gives to its resources, and by the responsible and committed team that makes it up."
+        },
+        "4": {
+          "Title": "TEAMWORK",
+          "Text": "Together we will be the best team, and thus we can consolidate success together, based on the work of the Sunshine team and the commitment we have with each of our Sunholders."
+        }
+      }
+    },
+    "Team": {
+      "Items": {
+        "1": {
+          "Name": "Viridiana Uribe",
+          "Career": "Operations Coordinator",
+          "Description": "Coordination of the correct development of the operational activities of the company, Guarantee processes that are carried out in the time and form."
+        },
+        "2": {
+          "Name": "Jocelyn Uribe",
+          "Career": "Community Manager",
+          "Description": "Creation of content in RRSS. Monitoring of content on social networks. Management and planning of communication actions."
+        },
+        "3": {
+          "Name": "Christian Manjarrez",
+          "Career": "Graphic Designer",
+          "Description": "Digital content design (Video editing, content for social networks, gifs, infographics, etc.) Layout and visual development for the web."
+        },
+        "4": {
+          "Name": "Manuel Viniegra",
+          "Career": "Fullstack Developer",
+          "Description": "Fullstack developer of web systems with a wide stack of backend and frontend technologies such as Javascript and responsive design"
+        },
+        "5": {
+          "Name": "Augusto Armenta",
+          "Career": "Fullstack Developer",
+          "Description": "Fullstack developer with extensive knowledge of web, mobile, server and architecture patterns."
+        }
+
+      }
+    }
+  },
+
+  "MapaApp": {
+    "Funding": {
+      "Title": "Fund distribution",
+      "Symphony": "Symphony",
+      "Hawk": "Hawk",
+      "Lion": "Lion"
+    },
+    "Tokens": {
+      "Title": "Token distribution",
+      "Reinvestment": "Reinvestment",
+      "Sunholders": "Sunholders",
+      "SUNTeam": "SUN Team"
+    },
+    "Price": "The initial cost of the SUN is 1 USD",
+    "SunshineToken": {
+      "Title": "Sunshine Token",
+      "Items": {
+        "1": "Compatible, interoperable and reusable token within various applications, wallets and exchanges, properties inherited from the ERC-20 standard under which it was created.",
+        "2": "They use \"gas\" to cover transaction fees. Gas is, simply put, the price that has to be paid when carrying out an operation on the Ethereum network.",
+        "3": "They are hosted on the Etherum blockchain, unlike other cryptocurrencies that are hosted on their respective blockchain.",
+        "4": "Developed with Solidity, a programming language designed to execute Smart contracts optimally in the Etherum virtual machine (EVM).",
+        "5": "It uses the stable OpenZeppelin API, which verify that the contracts present security gaps or weak points that can be exploited."
+      }
+    },
+    "AppDownload": {
+      "Title": "Soon",
+      "Subtitle": "Our app",
+      "Items": {
+        "1": "Your portfolio available wherever and whenever you want",
+        "2": "Check your balance all the time",
+        "3": "Stay connected"
+      },
+      "Avaliable": "Available for",
+      "Footer": "Build a wallet"
+    }
+  }
 }
