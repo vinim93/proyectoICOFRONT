@@ -43,12 +43,12 @@ const App = (props) => {
                     </Switch>
                 </AuthProvider>
                 <div className="whats-content">
-
+{/*
                     <a href="https://api.whatsapp.com/send?phone=525584465710&text=hola%20%20quiero%20contactarneme%20con%20sunshine"
                        className="whats-content" target="_blank">
                         <img src={Watsappicon} alt="" className="whatsapp-img "/>
                     </a>
-                    {/*
+                    
                     <a href="tel:525584465710" className="whats-content">
                         <img src={Telicon} alt="" className="tel-img img-fluid"/>
                     </a>

@@ -44,7 +44,11 @@ const MapaApp = () => {
 
             <div className="row textappcon ">
                 <div className="col-12">
+<<<<<<< HEAD
                     <p className=" text-titu-app">{t('MapaApp.AppDownload.Title')}<h2 className="text-left">{t('MapaApp.AppDownload.Subtitle')}</h2></p>
+=======
+                    <p className=" text-titu-app">próximamente <h2 className="text-center">nuestra app</h2></p>
+>>>>>>> manuel
                     <div className=" ventajas-app">
                         <ul className="">
                             <li>{t('MapaApp.AppDownload.Items.0')}</li>
