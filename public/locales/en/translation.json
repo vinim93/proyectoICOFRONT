@@ -1,0 +1,209 @@
+{
+  "Navbar": {
+    "Acerca": "About",
+    "Proyectos": "Projects",
+    "RoadToMap": "Road to map",
+    "SignIn": "Sign In (Soon)",
+    "SignUp": "Sign Up (Soon)"
+  },
+  "Banner": {
+    "Titulo": [
+      "BE PART OF OUR",
+      "TECHNOLOGICAL",
+      "REVOLUTION"
+    ],
+    "Texto": "A NEW ERA IN THE DIGITAL MARKET, based on smart blockchains for the exchange of utility tokens.",
+    "TextoBoton": "BE PART OF SUNSHINE"
+  },
+  "CountdownL": {
+    "Title": "Token exchange ends in:",
+    "Message": "Soon"
+  },
+  "Projects": {
+    "Title": "Projects",
+    "Symphony": {
+      "Title": "Symphony",
+      "ModalTitle": "Symphony Project",
+      "Text": "The project consists of creating a digital bank with cryptocurrency protection, generating savings accounts, loans with interest payments, life, medical and car insurance, integrating crypto-financial portfolios, which generate performance for users of the Symphony platform that have a savings account, the possibility of making payments with a card that contains the balance in cryptocurrencies as if it were a fiat currency, including benefits for holders of Symphony financial services, such as discounts for payments with cryptocurrencies in establishments, in addition to speeding up Payments with lower commissions, protect the safeguard of value by limiting the number of currencies, even nullifying the inflationary effects on the SUN currency and the absolute control of your funds, with availability worldwide.",
+      "Type": "Bank"
+    },
+    "Hawk": {
+      "Title": "Hawk",
+      "ModalTitle": "Hawk Project",
+      "Text": "This project consists of complementing the development of our own cryptocurrency exchange and the advertising campaign, with which the cryptocurrency purchase and sale service will be offered. It is currently evaluating the beta phase of the project, it will start with resources from the founders to later be able to obtain greater capitalization to the platform and offer a quality service with low commissions.",
+      "Type": "Exchange"
+    },
+    "Lion": {
+      "Title": "Lion",
+      "ModalTitle": "Lion Project",
+      "Text": "It consists of the development of an application that offers services where items can be sold (e-commerce). The Sunshine-Imagine software company is already developing it, with the objective of accepting payments through cryptocurrencies in order to incorporate them into the daily environment. Users who are marketing their products through our platform will have the freedom to choose whether their payments will be accepted in crypto or fiat money, as Sunshine will be in charge of converting dollars / pesos to crypto and vice versa.",
+      "Type": "E-Commerce"
+    }
+  },
+  "Support": {
+    "Title": "PARTNERS AND SUPPORT",
+    "Items": {
+      "Github": {
+        "Title": "GITHUB",
+        "Text": "Web platform for hosting source code repositories for version control"
+      },
+      "OpenZeppelin": {
+        "Title": "OPENZEPPELIN",
+        "Text": "It allows the creation of ERC20 type smart contracts, through a stable API, one of its main objectives is to guarantee the security of the contracts once they are released."
+      }
+    }
+  },
+  "Ventajas": {
+    "Facil": {
+      "Titulo": "EASY TO USE",
+      "Texto": "Accessible design for all Sunholders, created to be practical, comfortable and quick to acquire the SUN"
+    },
+    "Seguro": {
+      "Titulo": "SURE",
+      "Texto": "Reliable processing, the SUN is based on the Ethereum Blockchain protocol, which makes it private and proof of any hacking"
+    },
+    "Transparente": {
+      "Titulo": "TRANSPARENT",
+      "Texto": "At Sunshine we are committed to informing, explaining and justifying each project financed with the SUN, clarifying the doubts of our Sunholders and always being clear and precise, providing all the information corresponding to the investments"
+    }
+  },
+  "FAQ": {
+    "Title": "FREQUENTLY ASKED QUESTIONS",
+    "Items": [
+      {
+        "Title": "What is a Token?",
+        "Text": "It is a virtual token that has a unit of value which is issued by a private entity, has various functions apart from acting as a virtual currency and is based on the Ethereum Blockchain protocol, which makes it transparent, private and proof of any hack."
+      },
+      {
+        "Title": "What is a cryptocurrency?",
+        "Text": "It is a virtual currency that was born as a means of digital exchange, allowing instant transactions through the internet. Through the use of cryptography, the transactions carried out with it are secured and verified, in addition cryptography controls the creation of new units of a particular currency."
+      },
+      {
+        "Title": "What is ICO?",
+        "Text": "ICO, for its acronym in English Initial Coin Offering or Initial Coin Offering, is a token which is managed by the Blockchain corresponding to the cryptocurrency in use, that is, it has limited records in a database that cannot be modified."
+      },
+      {
+        "Title": "Who can buy a SUN?",
+        "Text": "Anyone who is of legal age and wants to buy a SUN can do so."
+      },
+      {
+        "Title": "How to buy a SUN?",
+        "Text": "It is very easy, you just have to create an account on our page and from there select the SUN number you want to acquire"
+      }
+    ]
+  },
+  "Newsletter": {
+    "Title": "NEWSLETTER",
+    "Text": "Every week those who subscribe to the newsletter will receive an article about ICOs, tokens, and the world of cryptocurrencies."
+  },
+  "ContactUs": {
+    "Title": "Contact us",
+    "Form": {
+      "Name": "First name",
+      "Email": "Email",
+      "Coments": "Coments",
+      "Close": "Close",
+      "Send": "Send message"
+    },
+    "Extra": [
+      "Connect",
+      "with us"
+    ]
+  },
+  "AboutSection": {
+    "Title": "SECURE YOUR FUTURE, START TODAY",
+    "Banner": "SUNSHINE TEAM",
+    "ButtonText": "Would you like to join our team?",
+    "Introduction": [
+      "We have developed a token that will allow investors to be part of this virtual financial world, starting a new technological era and the opportunity to invest in digital assets",
+      "This token is called SUNSHINE IMAGINE",
+      "SUNSHINE is for entrepreneurs, people who want to go a step further, for those who do not settle for little, SUNSHINE is the future, it is for those who want greatness, who lost their fear and decided to take control of their life."
+    ],
+    "Differences": {
+      "Title": "WHAT MAKES US DIFFERENT?",
+      "Items": [
+        {
+          "Title": "ACCESSIBILITY",
+          "Text": "Anyone of legal age has access to the purchase of SUN, Sunshine can be your first approach to a secure financial service."
+        },
+        {
+          "Title": "PRIVACY",
+          "Text": "Sunshine will never share your personal data, your investment data or any type of information, since the SUN runs through the Ethereum Blockchain, every movement you make will be private and anonymous."
+        },
+        {
+          "Title": "SOLIDITY",
+          "Text": "The SUN is a decentralized token since no government or bank has power over it, Sunshine is distinguished by the strategic planning that it gives to its resources, and by the responsible and committed team that makes it up."
+        },
+        {
+          "Title": "TEAMWORK",
+          "Text": "Together we will be the best team, and thus we can consolidate success together, based on the work of the Sunshine team and the commitment we have with each of our Sunholders."
+        }
+      ]
+    },
+    "Team": {
+      "Items": [
+        {
+          "Name": "Viridiana Uribe",
+          "Career": "Operations Coordinator",
+          "Description": "Coordination of the correct development of the operational activities of the company, Guarantee processes that are carried out in the time and form."
+        },
+        {
+          "Name": "Jocelyn Uribe",
+          "Career": "Community Manager",
+          "Description": "Creation of content in RRSS. Monitoring of content on social networks. Management and planning of communication actions."
+        },
+        {
+          "Name": "Christian Manjarrez",
+          "Career": "Graphic Designer",
+          "Description": "Digital content design (Video editing, content for social networks, gifs, infographics, etc.) Layout and visual development for the web."
+        },
+        {
+          "Name": "Manuel Viniegra",
+          "Career": "Fullstack Developer",
+          "Description": "Fullstack developer of web systems with a wide stack of backend and frontend technologies such as Javascript and responsive design"
+        },
+        {
+          "Name": "Augusto Armenta",
+          "Career": "Fullstack Developer",
+          "Description": "Fullstack developer with extensive knowledge of web, mobile, server and architecture patterns."
+        }
+      ]
+    }
+  },
+  "MapaApp": {
+    "Funding": {
+      "Title": "Fund distribution",
+      "Symphony": "Symphony",
+      "Hawk": "Hawk",
+      "Lion": "Lion"
+    },
+    "Tokens": {
+      "Title": "Token distribution",
+      "Reinvestment": "Reinvestment",
+      "Sunholders": "Sunholders",
+      "SUNTeam": "SUN Team"
+    },
+    "Price": "The initial cost of the SUN is 1 USD",
+    "SunshineToken": {
+      "Title": "Sunshine Token",
+      "Items": [
+        "Compatible, interoperable and reusable token within various applications, wallets and exchanges, properties inherited from the ERC-20 standard under which it was created.",
+        "They use \"gas\" to cover transaction fees. Gas is, simply put, the price that has to be paid when carrying out an operation on the Ethereum network.",
+        "They are hosted on the Etherum blockchain, unlike other cryptocurrencies that are hosted on their respective blockchain.",
+        "Developed with Solidity, a programming language designed to execute Smart contracts optimally in the Etherum virtual machine (EVM).",
+        "It uses the stable OpenZeppelin API, which verify that the contracts present security gaps or weak points that can be exploited."
+      ]
+    },
+    "AppDownload": {
+      "Title": "Soon",
+      "Subtitle": "Our app",
+      "Items": [
+        "Your portfolio available wherever and whenever you want",
+        "Check your balance all the time",
+        "Stay connected"
+      ],
+      "Avaliable": "Available for",
+      "Footer": "Build a wallet"
+    }
+  }
+}

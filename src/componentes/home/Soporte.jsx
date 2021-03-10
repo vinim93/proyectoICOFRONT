@@ -3,20 +3,22 @@ import Openzepp from "../../images/zeppelin_icon.svg";
 import Github from "../../images/github_icon.svg";
 import 'bootstrap/dist/css/bootstrap.css';
 import "./css/styles.css";
-
+import {useTranslation} from 'react-i18next';
 
 const Soporte = () => {
+
+    const {t} = useTranslation();
 
     const items = [
         {
             icon: Github,
-            title: "GITHUB",
-            text: "Plataforma web de alojamiento de repositorios de código fuente para el control de versiones"
+            title: t('Support.Items.Github.Title'),
+            text: t('Support.Items.Github.Text')
         },
         {
             icon: Openzepp,
-            title: "OPENZEPPELIN",
-            text: "Permite crear contratos inteligentes de tipo ERC20, a través de una API estable, uno de sus principales objetivos es garantizar la seguridad de los contratos una vez que éstos se encuentren liberados."
+            title: t('Support.Items.OpenZeppelin.Title'),
+            text: t('Support.Items.OpenZeppelin.Text')
         }
     ];
 
@@ -24,7 +26,7 @@ const Soporte = () => {
         <div className="row">
             <div className="col-12 fondoedi">
                 <p className="text-soporte">
-                    SOCIOS Y SOPORTE
+                    {t('Support.Title')}
                 </p>
                 <div className="row fondo-opa d-flex justify-content-center pb-5">
                 {
@@ -36,7 +38,6 @@ const Soporte = () => {
                                     {value.text}
                                 </p>
                             </div>
-
                     ))
                 }
                 </div>

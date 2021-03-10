@@ -15,9 +15,12 @@ import {db} from '../config/firebase';
 import 'firebase/firestore';
 import * as emailjs from 'emailjs-com';
 import monedafinal from "../../images/monedafinal.png";
+import {useTranslation} from 'react-i18next';
 
 
 const Footer = () => {
+
+    const {t} = useTranslation();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
@@ -74,7 +77,7 @@ const Footer = () => {
 
                     <button type="button" className="btn" data-toggle="modal"
                             data-target="#staticBackdropcon">
-                        <h1>CONECTATE CON NOSOTROS
+                        <h1>{t('ContactUs.Title')}
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                                  className="bi bi-caret-down-fill" viewBox="0 0 16 16">
                                 <path
@@ -91,12 +94,12 @@ const Footer = () => {
                         <div className="modal-dialog modal-xl modal-dialog-centered">
                             <div className="modal-content modalfootcont">
                                 <div className="modal-header ">
-                                    <h5 className=" modal-title col-12 " id="staticBackdropLabel">Conéctate <svg
+                                    <h5 className=" modal-title col-12 " id="staticBackdropLabel">{t('ContactUs.Extra.0')} <svg
                                         xmlns="http://www.w3.org/2000/svg" width="484.203" height="7.402"
                                         viewBox="0 0 484.203 7.402">
                                         <rect id="Rectángulo_187" data-name="Rectángulo 187" width="484.203"
                                               height="7.402" fill="#dbb80b"/>
-                                    </svg> <p className="conectate"><br/>con nosotros</p></h5>
+                                    </svg> <p className="conectate"><br/>{t('ContactUs.Extra.1')}</p></h5>
 
 
                                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -115,29 +118,32 @@ const Footer = () => {
                                                            name="name"
                                                            value={name}
                                                            onChange={(e) => setName(e.target.value)}
-                                                           placeholder="Nombre"/>
+                                                           placeholder={t('ContactUs.Form.Name')}/>
                                                 </div>
                                                 <div className="form-group">
                                                     <input type="email" className="form-control"
                                                            name="email"
                                                            value={email}
                                                            onChange={(e) => setEmail(e.target.value)}
-                                                           id="mail" placeholder="Email"/>
+                                                           id="mail"
+                                                           placeholder={t('ContactUs.Form.Email')}/>
 
                                                 </div>
                                                 <div className="form-group">
-              <textarea className="form-control"
-                        name="message"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        id="message" placeholder="Comentarios" rows="10"></textarea>
+                                                  <textarea className="form-control"
+                                                            name="message"
+                                                            value={message}
+                                                            onChange={(e) => setMessage(e.target.value)}
+                                                            id="message"
+                                                            placeholder={t('ContactUs.Form.Coments')}
+                                                            rows="10"></textarea>
 
                                                 </div>
                                                 <div className="modal-footer">
                                                     <button type="button" className="btn btn-secondary"
-                                                            data-dismiss="modal">Cerrar
+                                                            data-dismiss="modal">{t('ContactUs.Form.Close')}
                                                     </button>
-                                                    <button type="submit" className="btn btn-primary">Enviar</button>
+                                                    <button type="submit" className="btn btn-primary">{t('ContactUs.Form.Send')}</button>
                                                 </div>
                                             </form>
 

@@ -18,14 +18,12 @@ import Pdf from "./componentes/whitepaper/Pdf";
 import Foco from "./componentes/proyectos/Foco";
 import RoaptoMapa from './componentes/road_to_map/Roaptomap';
 import Watsappicon from './images/watsapp-icon.png';
-import Telicon from './images/tel-icon.png';
 import Dashboard from "./componentes/user/Dashboard";
 import {AuthProvider} from "./componentes/contexts/AuthContext";
 import "firebase/auth";
 
 
 const App = (props) => {
-
 
     return (
         <BrowserRouter>
