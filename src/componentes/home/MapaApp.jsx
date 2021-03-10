@@ -50,7 +50,7 @@ El Gas es, dicho de una forma simple, el precio que se tiene que pagar al realiz
 
             <div className="row textappcon ">
                 <div className="col-12">
-                    <p className=" text-titu-app">próximamente <h2 className="text-left">nuestra app</h2></p>
+                    <p className=" text-titu-app">próximamente <h2 className="text-center">nuestra app</h2></p>
                     <div className=" ventajas-app">
                        <ul className="">
                            <li>Tú cartera disponible donde y cuando quieras</li>
