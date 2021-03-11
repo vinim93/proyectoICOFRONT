@@ -340,8 +340,10 @@ width: 100vw;
 }
 .fintokens{
   white-space: normal!important;
+  position: inherit;
    color: rgba(2,88,137,1)!important;
-   background-color:white; filter:alpha(opacity=60); opacity:.6;
+   margin-top: -20vw!important;
+  
 }
 .fap-dias{
   
@@ -773,6 +775,7 @@ top: 3vw;
   font-size: 3vw;
   font-weight: bold;
  line-height: 2.5vw;
+ z-index: 0;
   
 }
 .con-txtbtn{

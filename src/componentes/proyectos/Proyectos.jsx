@@ -32,9 +32,9 @@ const Proyectos = () => {
                     <div className=" d-flex justify-content-start ">
                         <button className=" btn fap-btn2 " type="button" data-toggle="modal"
                                 data-target="#bd-example-modal-lg">
-                            <div className="modal  bd-example-modal-lg" id="bd-example-modal-lg"
+                            <div className="modal fade bd-example-modal-lg" id="bd-example-modal-lg"
                                  data-backdrop="static" data-keyboard="false"
-                                 tabIndex="-1" aria-labelledby="staticBackdropLabel"
+                                 tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                                  aria-hidden="true">
                                 <div className="modal-dialog modal-xl modal-dialog-centered">
                                     <div className="modal-content  modal-sym ">
