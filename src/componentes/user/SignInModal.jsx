@@ -23,6 +23,7 @@ const SignInModal = () => {
             setLoading(true);
             await login(email, pass);
             history.push("/");
+            window.location.reload();
         } catch (error) {
             let errorCode = error.code;
             switch (errorCode) {

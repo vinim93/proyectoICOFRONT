@@ -26,6 +26,7 @@ const Dashboard = () => {
         try {
             await logout();
             history.push("/Home");
+            window.location.reload();
         } catch {
             setError("Failed to log out");
         }
