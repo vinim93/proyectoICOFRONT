@@ -1010,7 +1010,7 @@ white-space: normal;
 .por-syn{
   position: absolute;
   font-size: 2vw;
-  margin-left: 13.5%;
+  margin-left: 12%;
   margin-top: -49vw;
 }
 .por-syn2{
@@ -1394,6 +1394,7 @@ font-family: 'Josefin Sans', sans-serif;
 }
 .conectate{
   margin-top: 1vw;
+  
   margin-bottom: 10vw!important;
   font-size: 60px;
 }
