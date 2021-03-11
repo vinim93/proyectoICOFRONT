@@ -24,7 +24,7 @@ const RoaptoMapa = () => {
                     <p className="text-roap-7">{t('RoadToMap.6')}</p>
                     <p className="text-roap-8">{t('RoadToMap.7')}</p>
                 </p>
-                <img src={maparoad} className="img-fluid maparoad " alt=""/>
+                <img src={maparoad} className="img-fluid  maparoad " alt=""/>
             </div>
             <Footer/>
         </div>
