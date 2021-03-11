@@ -93,13 +93,6 @@ const Dashboard = () => {
             return (
                 <div className="row mt-5">
 
-                    <div className="col-12 mt-5 d-flex justify-content-end">
-                        <p>{signinEmail}</p>
-                        <button type="button" className="btn btn-primary" onClick={handleLogout}>
-                            Log Out
-                        </button>
-                    </div>
-
                     <div className="col-12 mt-5 d-flex justify-content-center">
                         <img src={moneda_dashboard} className="img-fluid" style={{width: 400}} alt="MONEDA-SUNSHINE"/>
                     </div>

@@ -4,7 +4,7 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 import logonav from '../../icons/logonav.svg';
 import React, {useState} from 'react';
 import "firebase/auth";
-import {NavLink} from 'react-router-dom';
+import {NavLink, useHistory} from 'react-router-dom';
 import 'firebase/firestore';
 import SignUpModal from "../user/SignUpModal";
 import SignInModal from "../user/SignInModal";
@@ -17,13 +17,24 @@ import {useAuth} from "../contexts/AuthContext";
 import './css/styles.css';
 
 
+
 const Navigation = () => {
+    const history = useHistory();
     const {currentUser, logout} = useAuth();
     const { t } = useTranslation();
     const [logged, setLogged] = useState(currentUser ? true : false);
 
     function handleClick(lang) {
         i18next.changeLanguage(lang)
+    }
+
+    async function handleLogout() {
+        try {
+            await logout();
+            window.location.reload();
+            history.push("/Home");
+        } catch {
+        }
     }
 
     const renderNavbar = () => {
@@ -54,7 +65,18 @@ const Navigation = () => {
                                 <img src={MEXICOFLAG} className="img-fluid" style={{width: 50}} alt=""/>
                             </a>
 
-                            <a href="" className="navsesion btn btn-primary">Sign Out</a>
+                            <div className="dropdown">
+                                <button className="btn btn-primary dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    {currentUser ? currentUser.email : "Invitado"}
+                                </button>
+                                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a className="dropdown-item" href="#">Perfíl</a>
+                                    <a className="dropdown-item" href="#">Ajustes</a>
+                                    <a className="dropdown-item" href="#" onClick={handleLogout}>Cerrar sesión</a>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
