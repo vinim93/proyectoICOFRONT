@@ -2818,6 +2818,14 @@ resize: none;
       font-weight: bold;
   }
 }
+@media screen and (max-width:408px){
+  .conectate{
+    margin-top: -8vw!important;
+    line-height: 10vw;
+    
+   
+  }
+}
 
 @media  screen and (max-width: 363px) {
 
