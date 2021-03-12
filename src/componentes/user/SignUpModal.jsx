@@ -1,18 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import Icongmail from "../../images/icongmail.svg";
-import Iconfaceb from "../../images/iconfaceb.svg";
-import Camaraine from "../../images/camaraine.svg";
-import Pdfine from "../../images/pdfine.svg";
 import "../navbar/css/styles.css"
 import axios from "axios";
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import {db, auth} from "../config/firebase";
 import swal from "sweetalert";
+import swal2 from '@sweetalert/with-react';
+
 import firebase from 'firebase';
 import "firebase/auth";
-import {Document, Page} from 'react-pdf';
 import GoogleButton from "react-google-button";
+import passwordValidator from "password-validator";
 
 
 const SignUpModal = () => {
@@ -27,6 +25,52 @@ const SignUpModal = () => {
     const [password, setPassword] = useState("");
     const [checkedValue, setCheckedValue] = useState(false);
     const [authType, setAuthType] = useState("");
+    const [passwordProblems, setPasswordProblems] = useState([]);
+
+    //VALIDATIONS
+    const validations = {
+        requiredFields: () => {
+            return (name !== '' && email !== '' && ciudad !== '' && telefono !== '' && password !== '' && apellido !== '')
+        },
+        passwordValidator: () => {
+            let schema = new passwordValidator();
+            schema
+                .is().min(8)
+                .is().max(100)
+                .has().uppercase()
+                .has().lowercase()
+                .has().digits(1)
+                .has().not().spaces();
+
+            if(schema.validate(password)){
+                setPasswordProblems([]);
+                return true;
+            } else {
+                setPasswordProblems(schema.validate(password, {list: true}));
+                console.log(passwordProblems);
+                return false;
+            }
+
+        }
+    }
+
+    const getPasswordProblemsMessages = element => {
+        switch (element) {
+            case "min":
+                return "Al menos 8 caracteres";
+            case "max":
+                return "Máximo 100 caracteres";
+            case "uppercase":
+                return "Al menos 1 letra mayuscula";
+            case "lowercase":
+                return "Al menos 1 letra miniscula";
+            case "digits":
+                return "Al menos 1 número";
+            case "spaces":
+                return "No tener espacios";
+        }
+    }
+
 
     const handleCheckboxState = (e) => {
         console.log(e.target.checked);
@@ -94,40 +138,60 @@ const SignUpModal = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (name !== '' && email !== '' && ciudad !== '' && telefono !== '' && password !== '' && apellido !== '') {
-            if (checkedValue) {
-                document.getElementById("signUpButton").disabled = true;
-                document.getElementById("signUpButtonDiv").style.visibility = "hidden";
-                document.getElementById("loadingDiv").style.visibility = "visible";
-                setAuthType("EMAIL");
-                auth.createUserWithEmailAndPassword(email, password)
-                    .then((user) => {
+        if (validations.requiredFields()) {
+            if(validations.passwordValidator()){
+                if (checkedValue) {
+                    document.getElementById("signUpButton").disabled = true;
+                    document.getElementById("signUpButtonDiv").style.visibility = "hidden";
+                    document.getElementById("loadingDiv").style.visibility = "visible";
+                    setAuthType("EMAIL");
+                    auth.createUserWithEmailAndPassword(email, password)
+                        .then((user) => {
 
-                        user.user.sendEmailVerification().then(r => {
-                            saveDataInFirestore(user.user.uid);
-                        }, (error) => {
-                            console.log(error.code, error.message);
-                        })
+                            user.user.sendEmailVerification().then(r => {
+                                saveDataInFirestore(user.user.uid);
+                            }, (error) => {
+                                console.log(error.code, error.message);
+                            })
 
-                        auth.signOut();
+                            auth.signOut();
 
-                    }).catch((error) => {
-                    document.getElementById("signUpButton").disabled = false;
-                    document.getElementById("signUpButtonDiv").style.visibility = "visible";
-                    document.getElementById("loadingDiv").style.visibility = "hidden";
-                    let errorCode = error.code;
-                    let errorMessage = error.message;
-                    console.log(errorCode, errorMessage);
+                        }).catch((error) => {
+                        document.getElementById("signUpButton").disabled = false;
+                        document.getElementById("signUpButtonDiv").style.visibility = "visible";
+                        document.getElementById("loadingDiv").style.visibility = "hidden";
+                        let errorCode = error.code;
+                        let errorMessage = error.message;
+                        console.log(errorCode, errorMessage);
 
-                    /*============== EL CORREO YA SE USA POR OTRA CUENTA ==================*/
-                    if (errorCode === "auth/email-already-in-use") {
-                        swal("Oops", "La dirección de correo ya esta siendo usada por otra cuenta!", "warning");
-                    }
+                        /*============== EL CORREO YA SE USA POR OTRA CUENTA ==================*/
+                        if (errorCode === "auth/email-already-in-use") {
+                            swal("Oops", "La dirección de correo ya esta siendo usada por otra cuenta!", "warning");
+                        }
 
-                });
+                    });
+                } else {
+                    swal("Advertencia", "Debes aceptar los términos y condiciones para poder registrarte!", "warning");
+                }
             } else {
-                swal("Advertencia", "Debes aceptar los términos y condiciones para poder registrarte!", "warning");
+                swal2(
+                    <div className="container">
+                        <div className="row">
+                            <h1 className="text-dark">Tu contraseña debe complir con los siguientes requisitos:</h1>
+                            <ul className="col-12 list-group text-dark">
+                                {
+                                    passwordProblems.forEach(element => {
+                                        return (
+                                            <li className="list-group-item text-dark">Cras justo odio</li>
+                                        )
+                                    })
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                )
             }
+
         } else {
             swal("Advertencia", "Debes llenar todos los campos!", "warning");
         }
