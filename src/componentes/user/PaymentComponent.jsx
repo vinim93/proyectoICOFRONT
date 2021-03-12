@@ -27,6 +27,37 @@ const CheckoutForm = () => {
                 amount: currency*100
             });
             console.log(data);
+
+            if(data.codeResponse === 'succeeded'){
+                console.log("TARJETA ACEPTADA");
+            } else if(data.codeResponse.code === 'card_declined'){
+                switch (data.codeResponse.decline_code) {
+                    case 'generic_decline':
+                        console.log("TARJETA RECHAZADA POR ERROR GENERICO");
+                        break;
+                    case 'insufficient_funds':
+                        console.log("FONDOS INSUFICIENTES");
+                        break;
+                    case 'lost_card':
+                    case 'stolen_card':
+                        console.log("PARECE QUE LA TARJETA ESTA REPORTADA COMO ROBADA");
+                        break;
+                }
+            } else {
+                switch (data.codeResponse.code) {
+                    case 'expired_card':
+                        console.log("TARJETA EXPIRADA");
+                        break;
+                    case 'incorrect_cvc':
+                        console.log("CÓDIGO CVC INCORRECTO");
+                        break;
+                    case 'incorrect_number':
+                        console.log("NUMERO DE LA TARJETA INCORRECTO");
+                        break;
+                }
+            }
+
+
         }
     }
 
