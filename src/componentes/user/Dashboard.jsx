@@ -57,7 +57,7 @@ const Dashboard = () => {
                     </div>
 
                     <DollarMarktComponent />
-                    <PaymentComponent />
+                    <PaymentComponent coinImage={moneda_dashboard} />
 
                 </div>
             )

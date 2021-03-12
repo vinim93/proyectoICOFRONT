@@ -1,0 +1,13 @@
+.form-control{
+    color: #495057 !important;
+    background-color: #fff !important;
+}
+
+.form-control::placeholder {
+    color: #909499 !important;
+    opacity: 5 !important;
+}
+
+.currency-value-title{
+    color: #084873;
+}
