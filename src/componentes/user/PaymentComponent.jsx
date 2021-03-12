@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import {Elements, CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import axios from 'axios';
+import swal from "sweetalert";
 const stripePromise = loadStripe('pk_test_51IUDGUD9LA3P3AmKfFAk32py2vEcZs0LEw7FWhU8Ebp1YgNqJK09LkJyo11b5dCXWk6ZluCo3JBmTTdbSTc61EKq00EqsKyM49');
 
 
@@ -29,30 +30,30 @@ const CheckoutForm = () => {
             console.log(data);
 
             if(data.codeResponse === 'succeeded'){
-                console.log("TARJETA ACEPTADA");
+                swal("Compra realizada", "Felicidades, tu compra se realizó con éxito!", "success");
             } else if(data.codeResponse.code === 'card_declined'){
                 switch (data.codeResponse.decline_code) {
                     case 'generic_decline':
-                        console.log("TARJETA RECHAZADA POR ERROR GENERICO");
+                        swal("Tarjeta rechazada", "Comunicate con tu banco para resolver el problema!", "warning");
                         break;
                     case 'insufficient_funds':
-                        console.log("FONDOS INSUFICIENTES");
+                        swal("Tarjeta rechazada", "Parece que tu tarjeta no tiene fondos suficientes!", "warning");
                         break;
                     case 'lost_card':
                     case 'stolen_card':
-                        console.log("PARECE QUE LA TARJETA ESTA REPORTADA COMO ROBADA");
+                        swal("Tarjeta rechazada", "Parece que tu tarjeta tiene reporte de robo, comunicate con tu banco para resolver el problema!", "warning");
                         break;
                 }
             } else {
                 switch (data.codeResponse.code) {
                     case 'expired_card':
-                        console.log("TARJETA EXPIRADA");
+                        swal("Tarjeta expirada", "Parece que tu tarjeta expiró, comunicate con tu banco!", "warning");
                         break;
                     case 'incorrect_cvc':
-                        console.log("CÓDIGO CVC INCORRECTO");
+                        swal("CVC Incorrecto", "Revisa el código CVC de tu tarjeta e intentalo de nuevo, de lo contrario, comunicate con tu banco!", "warning");
                         break;
                     case 'incorrect_number':
-                        console.log("NUMERO DE LA TARJETA INCORRECTO");
+                        swal("Datos incorrectos", "Verifica que los datos de tu tarjeta sean correctos, de ser así, comunicate con tu banco para resolver el problema!", "warning");
                         break;
                 }
             }
@@ -88,7 +89,7 @@ const CheckoutForm = () => {
                 </div>
                 <div className="row mt-5">
                     <div className="col-12">
-                        <button className="btn btn-lg btn-primary">PAGAR</button>
+                        <button className="btn btn-lg btn-primary disabled" aria-pressed="false" role="button" aria-disabled="true">PAGAR</button>
                     </div>
                 </div>
             </div>  
