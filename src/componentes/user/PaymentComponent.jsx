@@ -5,60 +5,89 @@ import {Elements, CardElement, useStripe, useElements} from '@stripe/react-strip
 import {loadStripe} from '@stripe/stripe-js';
 import axios from 'axios';
 import swal from "sweetalert";
+import CurrencyInput from 'react-currency-input-field';
+import {light} from "@material-ui/core/styles/createPalette";
 const stripePromise = loadStripe('pk_test_51IUDGUD9LA3P3AmKfFAk32py2vEcZs0LEw7FWhU8Ebp1YgNqJK09LkJyo11b5dCXWk6ZluCo3JBmTTdbSTc61EKq00EqsKyM49');
+
 
 
 const CheckoutForm = () => {
 
     const stripe = useStripe();
     const elements = useElements();
-    const [currency, setCurrency] = useState(null);
+    const [currency, setCurrency] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     const buyToken = async(e) => {
         e.preventDefault();
-        const {error, paymentMethod} = await stripe.createPaymentMethod({
-            type: 'card',
-            card: elements.getElement(CardElement)
-        })
-
-        if(!error){
-            const {id} = paymentMethod;
-            const {data} = await axios.post('http://localhost:3001/api/checkout', {
-                id,
-                amount: currency*100
+        if(currency > 0){
+            document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-invalid");
+            document.getElementById("inlineFormInputGroupCurrency").classList.add("is-valid");
+            const {error, paymentMethod} = await stripe.createPaymentMethod({
+                type: 'card',
+                card: elements.getElement(CardElement)
             });
-            console.log(data);
 
-            if(data.codeResponse === 'succeeded'){
-                swal("Compra realizada", "Felicidades, tu compra se realizó con éxito!", "success");
-            } else if(data.codeResponse.code === 'card_declined'){
-                switch (data.codeResponse.decline_code) {
-                    case 'generic_decline':
-                        swal("Tarjeta rechazada", "Comunicate con tu banco para resolver el problema!", "warning");
-                        break;
-                    case 'insufficient_funds':
-                        swal("Tarjeta rechazada", "Parece que tu tarjeta no tiene fondos suficientes!", "warning");
-                        break;
-                    case 'lost_card':
-                    case 'stolen_card':
-                        swal("Tarjeta rechazada", "Parece que tu tarjeta tiene reporte de robo, comunicate con tu banco para resolver el problema!", "warning");
-                        break;
+            if(!error){
+                setLoading(true);
+                const {id} = paymentMethod;
+                try{
+                    const {data} = await axios.post('http://localhost:3001/api/checkout', {
+                        id,
+                        amount: currency*100
+                    });
+                    console.log(data);
+
+                    if(data.codeResponse === 'succeeded'){
+                        swal("Compra realizada", "Felicidades, tu compra se realizó con éxito!", "success");
+                        setCurrency(0);
+                    } else if(data.codeResponse.code === 'card_declined'){
+                        switch (data.codeResponse.decline_code) {
+                            case 'generic_decline':
+                                swal("Tarjeta rechazada", "Comunicate con tu banco para resolver el problema!", "warning");
+                                break;
+                            case 'insufficient_funds':
+                                swal("Tarjeta rechazada", "Parece que tu tarjeta no tiene fondos suficientes!", "warning");
+                                break;
+                            case 'lost_card':
+                            case 'stolen_card':
+                                swal("Tarjeta rechazada", "Parece que tu tarjeta tiene reporte de robo, comunicate con tu banco para resolver el problema!", "warning");
+                                break;
+                        }
+                    } else {
+                        switch (data.codeResponse.code) {
+                            case 'expired_card':
+                                swal("Tarjeta expirada", "Parece que tu tarjeta expiró, comunicate con tu banco!", "warning");
+                                break;
+                            case 'incorrect_cvc':
+                                swal("CVC Incorrecto", "Revisa el código CVC de tu tarjeta e intentalo de nuevo, de lo contrario, comunicate con tu banco!", "warning");
+                                break;
+                            case 'incorrect_number':
+                                swal("Datos incorrectos", "Verifica que los datos de tu tarjeta sean correctos, de ser así, comunicate con tu banco para resolver el problema!", "warning");
+                                break;
+                        }
+                    }
+                } catch (error) {
+                    console.log(error);
                 }
-            } else {
-                switch (data.codeResponse.code) {
-                    case 'expired_card':
-                        swal("Tarjeta expirada", "Parece que tu tarjeta expiró, comunicate con tu banco!", "warning");
-                        break;
-                    case 'incorrect_cvc':
-                        swal("CVC Incorrecto", "Revisa el código CVC de tu tarjeta e intentalo de nuevo, de lo contrario, comunicate con tu banco!", "warning");
-                        break;
-                    case 'incorrect_number':
-                        swal("Datos incorrectos", "Verifica que los datos de tu tarjeta sean correctos, de ser así, comunicate con tu banco para resolver el problema!", "warning");
-                        break;
-                }
+                setLoading(false);
+
             }
+        } else {
+            document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-valid");
+            document.getElementById("inlineFormInputGroupCurrency").classList.add("is-invalid");
+        }
 
+    }
 
+    const typeCurrency = (value) => {
+        setCurrency(value);
+        if (value >= 1) {
+            document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-invalid");
+            document.getElementById("inlineFormInputGroupCurrency").classList.add("is-valid");
+        } else {
+            document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-valid");
+            document.getElementById("inlineFormInputGroupCurrency").classList.add("is-invalid");
         }
     }
 
@@ -69,15 +98,17 @@ const CheckoutForm = () => {
                     <div className="col-12">
                         <div className="pl-5 pr-5">
                             <div className="input-group pl-5 pr-5">
-                                <div className="input-group-prepend">
-                                    <div className="input-group-text">$</div>
-                                </div>
-                                <input type="text"
-                                       className="form-control"
-                                       id="inlineFormInputGroupUsername"
-                                       placeholder="Cantidad en dolares"
-                                       value={currency}
-                                       onChange={e => setCurrency(e.target.value)}/>
+
+                                <CurrencyInput
+                                    className="form-control"
+                                    id="inlineFormInputGroupCurrency"
+                                    name="input-name"
+                                    placeholder="Cantidad en dolares"
+                                    decimalsLimit={0}
+                                    prefix="$"
+                                    value={currency}
+                                    onValueChange={(value) => typeCurrency(value)}
+                                />;
                             </div>
                         </div>
                     </div>
@@ -89,7 +120,13 @@ const CheckoutForm = () => {
                 </div>
                 <div className="row mt-5">
                     <div className="col-12">
-                        <button className="btn btn-lg btn-primary disabled" aria-pressed="false" role="button" aria-disabled="true">PAGAR</button>
+                        <button className="btn btn-lg btn-primary" disabled={loading} aria-pressed="false" role="button" aria-disabled="true">
+                            {loading ? (
+                                <div className="spinner-border text-light" role="status">
+                                    <span className="sr-only">Loading...</span>
+                                </div>
+                            ): "Pagar"}
+                        </button>
                     </div>
                 </div>
             </div>  
