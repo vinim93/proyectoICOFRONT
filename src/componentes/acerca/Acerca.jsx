@@ -168,7 +168,7 @@ const Acerca = () => {
                     }
 
                     <div className="container2 mt-5">
-                        <img src={EquipoSunshine} alt="Notebook" className="img-fluid"/>
+                        <img src={EquipoSunshine} alt="Notebook" className=" img-fluid"/>
                         <div className="centered">
                             <h1 className="display-4 font-weight-bold">
                                 {t('AboutSection.Banner')}
@@ -188,8 +188,8 @@ const Acerca = () => {
                                 <div className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
                                     <div className="card text-light text-center mt-5 mb-5 bg-cards">
 
-                                        <div className="card-img-top mt-5">
-                                            <img className="rounded-circle img-fluid w-50" src={value.image} alt="Card image cap"/>
+                                        <div className="card-img-top mt-5"> 
+                                            <img className="rounded-circle img-fluid teams-images w-50" src={value.image} alt="Card image cap"/>
                                         </div>
 
                                         <div className="card-body mt-3 d-block">
