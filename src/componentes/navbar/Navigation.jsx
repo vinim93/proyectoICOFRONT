@@ -23,7 +23,7 @@ const Navigation = () => {
 
     return (
 
-        <nav className="navbar navbar-expand-lg navbar-dark fixed-top ">
+        <nav className="navbar navbar-expand-lg navbar-light fixed-top ">
             <div className="container-fluid">
                 <NavLink className="navbar-brand navegacion  " to="/">
                     <img className="  " src={logonav}/>

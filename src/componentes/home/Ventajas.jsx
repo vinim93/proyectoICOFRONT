@@ -30,14 +30,14 @@ const Ventajas = () => {
         <div className="row">
             {
                 ventajas.map((value, index) => (
-                    <div key={index} className="col-md-4 col-12 p-5">
-                        <div className="col-12 d-flex justify-content-center mt-5">
+                    <div key={index} className="col-md-4 col-12 p-5 ventajas-cuerpo ">
+                        <div className="col-12 d-flex justify-content-center mt-5  ">
                             <img src={value.icon} alt="FACIL" className="img-fluid"/>
                         </div>
-                        <div className="col-12 d-flex justify-content-center mt-5 text-justify">
+                        <div className="col-12 d-flex justify-content-center mt-5 text-justify ">
                             <h3>{value.title}</h3>
                         </div>
-                        <div className="col-12 d-flex justify-content-center mt-2 text-justify">
+                        <div className="col-12 d-flex justify-content-center mt-2 text-justify ">
                             <h5>{value.description}</h5>
                         </div>
                     </div>

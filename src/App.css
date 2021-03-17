@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
-
+@import 'https://fonts.googleapis.com/css?family=Rubik+One';
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
 @font-face {
   font-family:'Eras Demi ITC' ;
@@ -11,12 +11,13 @@
 
 body{
   margin: 0;
-  background-image: url("./images/fondogalaxy.png");
-  background-size:cover;
+  
+  background-size:center;
   background-attachment: fixed;
  
   
 }
+
 .container2 {
   position: relative;
   text-align: center;
@@ -42,14 +43,13 @@ body{
   z-index: 100!important;
 }
  .navbar{
-   color: white!important;  
-   font-size: 10px; 
-   background-image:url("./images/fondogalaxy.png")!important;
-   background-size:cover;
-  background-attachment: fixed;
+   color: black!important;  
+   font-size: 10px;
+   background-color: white; 
+   
  }
  .navegacion {
-color: white!important;
+color: black!important;
 font-size: 20px!important;
 font-family: 'Lato', sans-serif;
 margin: 0px;
@@ -62,16 +62,16 @@ margin: 0px;
    margin-left: -25px!important;
  }
  .navsesion{
-  color: white!important;
+  color: black!important;
   font-size: 15px!important;
   font-family: 'Lato', sans-serif;
   margin: 0px;
  }
  .fondogalaxy{
-   background-image:url("./images/fondogalaxy.png")!important;
-   background-size:cover;
-   background-position:center;
-   background-attachment: fixed;
+   background-image:url("./images/fondogalaxy.svg")!important;
+   background-size:contain;
+   background-position:top;
+   
    background-repeat:no-repeat;
    
    
@@ -114,7 +114,7 @@ margin: 0px;
   filter: drop-shadow(7px 13px 9px rgba(0, 0, 0, 1));
   letter-spacing: 1px;
   font-size: 4.5vw;
-   top: 12vh;
+   margin-top: 100px;
    font-family: 'Eras Demi ITC';
   font-weight: 500;
   
@@ -221,13 +221,19 @@ width: 100vw;
 .videosunrep{
   
   position: relative!important;
-  
+  justify-content: center;
   
   overflow: hidden;
-  margin: 0px;
+  margin-bottom: 1vw;
   
-  width: 100vw!important;
-  height: 40vw!important;
+  width: 70vw!important;
+  height:auto!important;
+}
+.videosunrep iframe{
+position: relative;
+width: 70vw;
+height: 40vw;
+margin-bottom: 1vw;
 }
 .walp-text{
   position:absolute;
@@ -258,7 +264,7 @@ width: 100vw;
 
   
   justify-content: center;
-  background-image: url("./images/NUMERO1.jpg")!important;
+  
   background-size: cover;
    background-position:center ;
    background-repeat: no-repeat;    
@@ -281,7 +287,7 @@ width: 100vw;
     letter-spacing: 0.06px;
   overflow-x: hidden;
 
-  border-top:1vh white solid!important;
+  
 }
 
 .fondosec3-ali{
@@ -340,8 +346,10 @@ width: 100vw;
 }
 .fintokens{
   white-space: normal!important;
+  position: inherit;
    color: rgba(2,88,137,1)!important;
-   background-color:white; filter:alpha(opacity=60); opacity:.6;
+   margin-top: -20vw!important;
+  
 }
 .fap-dias{
   
@@ -507,9 +515,9 @@ padding: 0px;
 .walp{
   
   position: relative;
-  background:#043361;
-  justify-content: center;
   
+  justify-content: center;
+  overflow: hidden;
   padding: 0px;
   
 }
@@ -522,25 +530,19 @@ padding: 0px;
  margin-right: 0px!important;
   padding: 0px;
   overflow: hidden;
-  width: 89%;
-  height: 35vw;
-  left: 20px;  
+  width: 600vw;
+  height: 45vw;
+  top: 1vw;
+  left: -250vw;  
   margin: 0px;
 }
-.ventajascont{
-  background-color:white!important;
-}
-.ventajas{
-  
-  border-top: white solid 50px;
-}
-.img-vent{
-  width: 100%!important;
-  height: 100%;
-}
-.ventajas-seg{
-  border-left: 1vw solid white;
+.ventajas-cuerpo{
+  background: linear-gradient(to bottom,#043361, #02182e);
   border-right: 1vw solid white;
+  border-left: 1vw solid white;
+font-family: "Josefin Sans";
+
+ 
 }
 /*-------------------------------------------------------FOCO-----------------------------------*/
 .sec6{
@@ -773,6 +775,7 @@ top: 3vw;
   font-size: 3vw;
   font-weight: bold;
  line-height: 2.5vw;
+ z-index: 0;
   
 }
 .con-txtbtn{
@@ -981,6 +984,8 @@ white-space: normal;
  }
 /*--------------SECCION 8 MAPA ESTADISTICAS--------------------------------------------------------*/
 .mapacon{
+  
+  background-image: radial-gradient(farthest-corner at 45px 45px , #05198d 0%, #05002A 100%);
   font-family: 'lato';
   overflow: hidden;
 }
@@ -1010,7 +1015,7 @@ white-space: normal;
 .por-syn{
   position: absolute;
   font-size: 2vw;
-  margin-left: 13.5%;
+  margin-left: 12%;
   margin-top: -49vw;
 }
 .por-syn2{
@@ -1043,7 +1048,7 @@ white-space: normal;
 
 }
 .por-reinversion2{
-  margin-left: -65%;
+  margin-left: -80%;
   font-size: 1.5vw;
 }
 .por-sunholders{
@@ -1072,8 +1077,9 @@ white-space: normal;
   }
 /*-----------------------------------SECCION QUE ES ---------------------------------------*/
 .text-moneda{
-  background-color: white!important;
+  
   font-family: 'Barlow'!important;
+  
   color: #7B90A3;
 }
 .text-moneda img{
@@ -1103,7 +1109,7 @@ white-space: normal;
       
     }
 .textappcon{
-  color: white;
+  color:#1D3557;
   
   position: relative;
   background-color:white!important;
@@ -1113,7 +1119,7 @@ white-space: normal;
   .text-titu-app{
     position: absolute;
     z-index: 10;
-    margin:10vw 0 0 2vw;
+    margin:3vw 0 0 2vw;
     font-size: 7vw;
     font-family: Barlow;
     height: 4vw;
@@ -1124,6 +1130,8 @@ white-space: normal;
   .text-titu-app h2{
     font-family: Lato!important;
     font-style: italic;
+    margin-left:45vw;
+    
     font-size: 3.5vw;
     
   }
@@ -1133,7 +1141,8 @@ white-space: normal;
     z-index: 2;
     line-height: 5vw;
   text-transform: uppercase;
-    margin-top: 30vw;
+    margin-top: 18vw;
+    left: 45vw;
     font-size: 2vw;
   }
   
@@ -1145,16 +1154,21 @@ white-space: normal;
     color: yellow;
   }
   .text-App-g{
+    
     position: relative;
-    left: -5.5vw!important;
-    width: 180vw!important;
+    transition: transform .2s;
+    left: -10.5vw!important;
+    width: 111vw!important;
   }
-.text-App{
-  position: relative;
-  width: 175vw!important;
-  left: -4vw;  
-  background-color:white!important; 
-}
+  .text-App-g:hover {
+    
+    
+    transform: scale(1.2)!important;
+    
+    
+     
+  }
+
 .img-goo{
   
   
@@ -1165,6 +1179,7 @@ white-space: normal;
   left: 3vw;
   height: 5vw;
 }
+
 .img-aple{
   
   position: absolute!important;
@@ -1177,22 +1192,27 @@ white-space: normal;
   font-family: 'Eras ITC';
   font-weight: 500;
   font-style: "Demi";
-  margin-top: 58vw;
+  margin-top: 35vw;
   color: #025889;
-  margin-left: 21vw;
+  margin-left: 50vw;
   text-transform: uppercase;
-  font-size: 4vw;
+  font-size: 3.5vw;
   position: absolute;
   z-index: 4;
   text-decoration:underline yellow;
 }
 .goo-aple{
-  left: -2vw;
+  
+  top: 18vw!important;
+  left: 27vw;
 }
 .disponible-text{
   position: absolute;
-  margin-top: 50vw;
-margin-left: 2vw;
+  background-color:#FFFFFF;
+  color: #3C7EA4;
+  margin-top: 35vw;
+  font-weight: bold;
+margin-left: 32vw;
 font-size: 2vw;
   z-index: 2;
 }
@@ -1394,6 +1414,7 @@ font-family: 'Josefin Sans', sans-serif;
 }
 .conectate{
   margin-top: 1vw;
+  
   margin-bottom: 10vw!important;
   font-size: 60px;
 }
@@ -2204,7 +2225,10 @@ margin-top: 3vw;
 
   
 @media screen and (max-width: 768px){
-
+.fondogalaxy{
+  background-position:center ;
+  background-size:cover ;
+}
   /*-----------------------------media seccion1-------------------------*/
   .revo1{
     line-height: 13vh;
@@ -2218,7 +2242,7 @@ margin-top: 3vw;
         margin-bottom: 1vh;
       }
       .moneda1{
-        top: 14vh;
+        margin-top: 100px;
         font-size: 7vw;
       }
       .moneda{
@@ -2246,8 +2270,14 @@ margin-top: 3vw;
       }
       .hometext1{
        
-        margin: 3vh 0 0 2vw;
+        position: relative;
+        justify-self: start;
+       justify-content: center;
+        margin: 0 0 0 -1vw;
+      
         font-size: 3.5vw;
+        
+        white-space:normal;
         font-weight: bold;
         line-height: 6vh!important;
       } 
@@ -2447,31 +2477,14 @@ margin-top: 50vw!important;
        .boton1{
          margin-left: 10vw!important;
        }
-       .img-aple{
-        left: 2vw!important;  
-        width: 20vw; 
-        height: 7vw;
-       margin-left: 6vw!important;  
-      margin-top: 5vw!important;
       
-    }
-    .img-goo{
-      position: absolute!important;
-      left: 6vw;
-      width: 20vw;
-      height: 7vw;
-      top: -23vw!important;           
-    }
     .constru-cartera{
       left: 4vw;
     }
-    .goo-aple{
-    
-     
-     top: -2vw!important;
-     left: -4vw!important;
-      
+    .text-App-g{
+      width: 115vw!important;
     }
+    
 }
 
 @media screen and (max-width: 489px){
@@ -2507,14 +2520,7 @@ margin-top: 50vw!important;
   top: -220vw!important;
   }
   /*--------------------------------------------------------------------------------------------*/
-  .fondogalaxy{
-    background-image:url("./images/fondogalaxy.png")!important;
-    background-size:  cover;
-    background-position:center!important;
-
-    
-    background-repeat:no-repeat;    
-  }
+  
   .rectangulo1{
     
     margin-top: -70vw; 
@@ -2815,6 +2821,14 @@ resize: none;
       padding-top: 13%;
       font-size: 25px;
       font-weight: bold;
+  }
+}
+@media screen and (max-width:408px){
+  .conectate{
+    margin-top: -8vw!important;
+    line-height: 10vw;
+    
+   
   }
 }
 
