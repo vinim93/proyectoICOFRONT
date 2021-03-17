@@ -221,7 +221,7 @@ width: 100vw;
 .videosunrep{
   
   position: relative!important;
-  
+  justify-content: center;
   
   overflow: hidden;
   margin-bottom: 1vw;
@@ -230,7 +230,7 @@ width: 100vw;
   height:auto!important;
 }
 .videosunrep iframe{
-position: static;
+position: relative;
 width: 70vw;
 height: 40vw;
 margin-bottom: 1vw;
@@ -2269,7 +2269,7 @@ margin-top: 3vw;
         
       }
       .hometext1{
-        display: flex!important;
+       
         position: relative;
         justify-self: start;
        justify-content: center;
