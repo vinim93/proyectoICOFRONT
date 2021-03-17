@@ -1141,7 +1141,7 @@ white-space: normal;
     text-align: left;
     z-index: 2;
     line-height: 5vw;
-  text-transform: uppercase;
+  
     margin-top: 18vw;
     left: 45vw;
     font-size: 2vw;
@@ -1233,21 +1233,14 @@ text-align: center;
   overflow: hidden;
 }
 
-.img-meto{
+
   
-  position: relative;
-  background-color:#00234D4D ;
-  white-space:normal;
  
-  height: 30vw!important;
-  width: 30vw!important;
-  margin: 0 6vw 3vw 6vw;
-}
 .text-soporte{
   font-family: 'Barlow Condensed', sans-serif!important;
   font-size: 10vw;
   font-weight: 90;
-  
+  white-space: normal;
   margin-bottom: 10vw;
 }
 /*----------------------------seccion10 preguntas    -------------------------------------------------------*/
@@ -2351,6 +2344,20 @@ margin-top: 50vw!important;
   
   left: 1vw!important;
 }
+/*--------------------------------------video------------------------------------------------------------*/
+.videosunrep{
+ 
+  
+  
+  width: 90vw!important;
+  height:auto!important;
+}
+.videosunrep iframe{
+
+width: 90vw!important;
+height: 40vw;
+margin-bottom: 1vw;
+}
 /*--------------------------------------media foco-----------------------------*/
 .focoenv-cont{
   top: -122vw!important;
@@ -2532,10 +2539,7 @@ margin-top: 50vw!important;
     background-repeat:no-repeat;    
     background-position:center!important;  
   }
-  .videosunrep{
-  height: 50vh!important;
-    
-  }
+ 
   .hometext1{
     margin-bottom: 5vw;
   }
