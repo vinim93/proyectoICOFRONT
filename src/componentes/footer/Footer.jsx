@@ -109,9 +109,9 @@ const Footer = () => {
                                 <div className="container">
                                     <div className="row ">
                                         <div className="col-md-6 modal-body">
-                                            <img src={monedafinal} className="img-fluid d-none d-md-block" alt=""/>
+                                            <img src={monedafinal} className="img-fluid d-none d-lg-block" alt=""/>
                                         </div>
-                                        <div className="col-md-4">
+                                        <div className="col-lg-4">
                                             <form className="form-cont" onSubmit={handleSubmit}>
                                                 <div className="form-group">
                                                     <input type="text" className="form-control"

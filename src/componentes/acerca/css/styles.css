@@ -30,3 +30,16 @@ hr{
 .bg-color-primary{
     background-color: #18223E;
 }
+.icons-differences{
+    transition: transform .2s;
+}
+.icons-differences:hover{
+    transform: scale(1.2);
+}
+.teams-images{
+    transition: transform .2s;
+}
+.teams-images:hover{
+    transform: scale(1.2);
+}
+.card-img-top{overflow: hidden;}

@@ -20,7 +20,7 @@ const Banner = () => {
                     <p className="  hometext1  d-none  d-md-block"><br/>
                         {t('Banner.Texto')}
                     </p>
-                    <p className="hometext1 text-left  text-sm-center d-block  d-md-none"><br/>UNA
+                    <p className="hometext1 col-12 text-left  text-sm-left d-block  d-md-none"><br/>
                         {t('Banner.Texto')} </p>
                     <div className="text-lg-center text-left text-sm-center">
 

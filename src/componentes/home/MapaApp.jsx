@@ -44,7 +44,7 @@ const MapaApp = () => {
 
             <div className="row textappcon ">
                 <div className="col-12">
-                    <p className=" text-titu-app">{t('MapaApp.AppDownload.Title')}<h2 className="text-left">{t('MapaApp.AppDownload.Subtitle')}</h2></p>
+                    <p className=" text-titu-app">{t('MapaApp.AppDownload.Title')}<h2 className="text-center">{t('MapaApp.AppDownload.Subtitle')}</h2></p>
                     <div className=" ventajas-app">
                         <ul className="">
                             <li>{t('MapaApp.AppDownload.Items.0')}</li>
@@ -53,8 +53,8 @@ const MapaApp = () => {
                         </ul>
                     </div>
                     <p className="  disponible-text">{t('MapaApp.AppDownload.Avaliable')}:</p>
-                    <img src={Nuestraapp} className="d-none d-sm-block text-App-g "/>
-                    <img src={Nuestraapp} className="d-block d-sm-none  text-App"/>
+                    <img src={Nuestraapp} className=" text-App-g "/>
+                    
 
                 </div>
                 <div className="col-12 goo-aple">
