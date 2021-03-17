@@ -1,6 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 @import 'https://fonts.googleapis.com/css?family=Rubik+One';
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
@@ -242,7 +242,7 @@ margin-bottom: 1vw;
   margin-left: 8%;
   top: 7vw;
   font-family: 'Eras ITC';
-  font-weight: bold;
+  font-weight: 400;
   
   color: white;
 }
@@ -499,6 +499,7 @@ padding: 0px;
   
   .cap{
     display: flex;
+    margin-top: 2vw;
     position: relative;
     font-size: 4vw;
     line-height: 3vw;
@@ -1243,7 +1244,7 @@ text-align: center;
   margin: 0 6vw 3vw 6vw;
 }
 .text-soporte{
-  font-family: 'Barlow'!important;
+  font-family: 'Barlow Condensed', sans-serif!important;
   font-size: 10vw;
   font-weight: 90;
   
@@ -2249,7 +2250,7 @@ margin-top: 3vw;
         opacity: 0.63;
         
         position: absolute!important;
-        height: 45vh;
+        height: 45vw;
         left: 64vw !important;
         width: 40vw!important;
         z-index: -2;
@@ -2667,12 +2668,7 @@ top: 95vw!important;
       .texto-seg{
         left: 85vw!important;
       }
-      .moneda{
-        
-        height: 60vw;
-   
-        
-      }
+     
       .rectangulo1{
     
         margin-top: -90vw; 
