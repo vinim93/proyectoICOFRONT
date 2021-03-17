@@ -72,7 +72,7 @@ const Navigation = () => {
                                     {currentUser ? currentUser.email : "Invitado"}
                                 </button>
                                 <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a className="dropdown-item" href="#">Perfíl</a>
+                                    <a className="dropdown-item" href="./Profile">Perfil</a>
                                     <a className="dropdown-item" href="#">Ajustes</a>
                                     <a className="dropdown-item" href="#" onClick={handleLogout}>Cerrar sesión</a>
                                 </div>

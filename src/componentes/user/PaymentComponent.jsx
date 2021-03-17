@@ -1,47 +1,58 @@
 import finalCoin from '../../images/monedafinal.png';
 import './css/paymentComponent.css';
 import React, {useState} from 'react';
-import {Elements, CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
+import IMask from 'imask';
+import {
+    Elements,
+    CardElement,
+    useStripe,
+    useElements,
+    CardExpiryElement,
+    CardNumberElement
+} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import axios from 'axios';
 import swal from "sweetalert";
 import CurrencyInput from 'react-currency-input-field';
 import {light} from "@material-ui/core/styles/createPalette";
+
 const stripePromise = loadStripe('pk_test_51IUDGUD9LA3P3AmKfFAk32py2vEcZs0LEw7FWhU8Ebp1YgNqJK09LkJyo11b5dCXWk6ZluCo3JBmTTdbSTc61EKq00EqsKyM49');
 
 
-
-const CheckoutForm = () => {
+const CheckoutForm = ({currency, setCurrency, email}) => {
 
     const stripe = useStripe();
     const elements = useElements();
-    const [currency, setCurrency] = useState(0);
     const [loading, setLoading] = useState(false);
 
-    const buyToken = async(e) => {
+    const buyToken = async (e) => {
         e.preventDefault();
-        if(currency > 0){
+        setLoading(true);
+        if (currency > 0) {
             document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-invalid");
             document.getElementById("inlineFormInputGroupCurrency").classList.add("is-valid");
             const {error, paymentMethod} = await stripe.createPaymentMethod({
                 type: 'card',
-                card: elements.getElement(CardElement)
+                card: elements.getElement(CardElement),
+                billing_details: {
+                    email: email
+                }
             });
 
-            if(!error){
+            if (!error) {
                 setLoading(true);
                 const {id} = paymentMethod;
-                try{
+                try {
                     const {data} = await axios.post('http://localhost:3001/api/checkout', {
                         id,
-                        amount: currency*100
+                        amount: currency * 100
                     });
                     console.log(data);
 
-                    if(data.codeResponse === 'succeeded'){
+                    if (data.codeResponse === 'succeeded') {
                         swal("Compra realizada", "Felicidades, tu compra se realizó con éxito!", "success");
                         setCurrency(0);
-                    } else if(data.codeResponse.code === 'card_declined'){
+                    } else if (data.codeResponse.code === 'card_declined') {
                         switch (data.codeResponse.decline_code) {
                             case 'generic_decline':
                                 swal("Tarjeta rechazada", "Comunicate con tu banco para resolver el problema!", "warning");
@@ -76,6 +87,7 @@ const CheckoutForm = () => {
         } else {
             document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-valid");
             document.getElementById("inlineFormInputGroupCurrency").classList.add("is-invalid");
+            setLoading(false);
         }
 
     }
@@ -96,9 +108,8 @@ const CheckoutForm = () => {
             <div className="container">
                 <div className="row m-3">
                     <div className="col-12">
-                        <div className="pl-5 pr-5">
-                            <div className="input-group pl-5 pr-5">
-
+                        <div className="pl-0 pr-0 pl-lg-5 pr-lg-5">
+                            <div className="input-group pl-0 pr-0 pl-lg-5 pr-lg-5">
                                 <CurrencyInput
                                     className="form-control"
                                     id="inlineFormInputGroupCurrency"
@@ -107,6 +118,7 @@ const CheckoutForm = () => {
                                     decimalsLimit={0}
                                     prefix="$"
                                     value={currency}
+                                    autoComplete={false}
                                     onValueChange={(value) => typeCurrency(value)}
                                 />;
                             </div>
@@ -114,46 +126,57 @@ const CheckoutForm = () => {
                     </div>
                 </div>
                 <div className="row mt-5">
-                    <div className="col-12">
-                        <CardElement />
+                    <div className="col-12 pl-0 pr-0 pl-lg-5 pr-lg-5">
+                        <div className="pl-0 pr-0 pl-lg-5 pr-lg-5">
+                            <CardElement />
+                        </div>
                     </div>
                 </div>
                 <div className="row mt-5">
                     <div className="col-12">
-                        <button className="btn btn-lg btn-primary" disabled={loading} aria-pressed="false" role="button" aria-disabled="true">
+                        <button className="btn btn-lg btn-primary" disabled={loading} aria-pressed="false" role="button"
+                                aria-disabled="true">
                             {loading ? (
                                 <div className="spinner-border text-light" role="status">
                                     <span className="sr-only">Loading...</span>
                                 </div>
-                            ): "Pagar"}
+                            ) : "Pagar"}
                         </button>
                     </div>
                 </div>
-            </div>  
+            </div>
         </form>
     )
 }
 
-const PaymentSection = ({coinImage}) => {
+const PaymentSection = ({coinImage, email}) => {
+    const [currency, setCurrency] = useState(0);
+
+    const dollarToSun = () => {
+        return currency * 1 || 0;
+    }
+
+
     return (
         <div>
             <div className="container">
                 <div className="row">
                     <div className="col-12">
                         <img src={finalCoin} style={{width: 150}} className="img-fluid" alt="SUNSHINE COIN IMAGE"/>
-                        <h5 className="currency-value-title font-weight-bold mt-3">1 USD = 1 SUN</h5>
+                        <h5 className="currency-value-title font-weight-bold mt-3">{currency || 0} USD
+                            = {dollarToSun()} SUN</h5>
                     </div>
                 </div>
             </div>
             <Elements stripe={stripePromise}>
-                <CheckoutForm />
+                <CheckoutForm currency={currency} setCurrency={setCurrency} email={email}/>
             </Elements>
         </div>
 
     )
 }
 
-const PaymentComponent = ({coinImage}) => {
+const PaymentComponent = ({coinImage, email}) => {
     return (
         <div className="modal fade" id="paymentModal" tabIndex="-1" role="dialog"
              aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -167,7 +190,7 @@ const PaymentComponent = ({coinImage}) => {
                     </div>
                     <div className="modal-body">
 
-                        <PaymentSection coinImage={coinImage} />
+                        <PaymentSection coinImage={coinImage} email={email}/>
 
                     </div>
                 </div>

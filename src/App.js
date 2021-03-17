@@ -19,6 +19,7 @@ import Foco from "./componentes/proyectos/Foco";
 import RoaptoMapa from './componentes/road_to_map/Roaptomap';
 import Watsappicon from './images/watsapp-icon.png';
 import Dashboard from "./componentes/user/Dashboard";
+import Profile from "./componentes/user/Profile";
 import {AuthProvider} from "./componentes/contexts/AuthContext";
 import "firebase/auth";
 
@@ -39,7 +40,7 @@ const App = (props) => {
                         <Route path="/Home" component={Home}/>
                         <Route path="/Pdf" exact><Pdf/></Route>
                         <Route path="/" exact component={Dashboard} />
-
+                        <Route path={"/Profile"} component={Profile}/>
                     </Switch>
                 </AuthProvider>
                 <div className="whats-content">
