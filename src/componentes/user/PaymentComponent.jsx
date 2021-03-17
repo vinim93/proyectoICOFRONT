@@ -1,7 +1,6 @@
 import finalCoin from '../../images/monedafinal.png';
 import './css/paymentComponent.css';
 import React, {useState} from 'react';
-import IMask from 'imask';
 import {
     Elements,
     CardElement,
