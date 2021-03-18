@@ -11,6 +11,8 @@ import "firebase/auth";
 import GoogleButton from "react-google-button";
 import passwordValidator from "password-validator";
 import TextField from '@material-ui/core/TextField';
+import {useHistory} from "react-router-dom";
+
 
 const SignUpModal = () => {
 
@@ -23,6 +25,8 @@ const SignUpModal = () => {
     const [repeatedPassword, setRepeteadPassword] = useState("");
     const [checkedValue, setCheckedValue] = useState(false);
     const [loading, setLoading] = useState(false);
+    const history = useHistory();
+
 
     //VALIDATIONS
     const validations = {
@@ -36,7 +40,6 @@ const SignUpModal = () => {
     }
 
     const saveDataInFirestore = (uid, data = {}) => {
-
         if (Object.keys(data).length > 0) {
             /*============GUARDAR DATOS EN FIRESTORE CON GOOGLE===========*/
             db.collection("credentials").doc(uid).set({
@@ -45,10 +48,11 @@ const SignUpModal = () => {
                 doc: "Pending".replace(/<[^>]+>/g, ''),
                 email: data.email.replace(/<[^>]+>/g, ''),
                 name: data.name.replace(/<[^>]+>/g, ''),
-                phone: data.phone.replace(/<[^>]+>/g, ''),
+                phone: data.phone === null ? "Pending".replace(/<[^>]+>/g, '') : data.phone.replace(/<[^>]+>/g, ''),
                 authType: data.authType.replace(/<[^>]+>/g, '')
             }).then(docRef => {
-                swal("Registro exitoso con Google", "", "success");
+                history.push("/");
+                window.location.reload();
                 clearStates();
             }).catch((error) => {
                 console.log(error);
@@ -74,8 +78,15 @@ const SignUpModal = () => {
             });
             /*============GUARDAR DATOS EN FIRESTORE===========*/
         }
+    }
 
-
+    const searchDataInFirestore = id => {
+        let docRef = db.collection('credentials').doc(id);
+        docRef.get().then(doc => {
+            return doc.exists;
+        }).catch(error => {
+            console.log("ERROR AL BUSCAR EL UID");
+        });
     }
 
     const clearStates = () => {
@@ -205,11 +216,23 @@ const SignUpModal = () => {
 
         let provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
-        firebase.auth().languageCode = 'es';
-        firebase.auth().signInWithPopup(provider).then((result) => {
+        auth.languageCode = 'es';
+        auth.signInWithPopup(provider).then((result) => {
+            console.log(result);
             let user = result.user;
+            console.log(user);
             if (user.emailVerified) {
-                //MANDAR A OTRA PANTALLA
+
+                if(!searchDataInFirestore(user.uid)){
+                    saveDataInFirestore(user.uid, {
+                        city: "Pending",
+                        email: user.email,
+                        name: user.displayName,
+                        phone: user.phoneNumber,
+                        authType: "GOOGLE"
+                    });
+                }
+
             } else {
                 user.sendEmailVerification().then(r => {
                     saveDataInFirestore(user.uid, {
@@ -222,11 +245,13 @@ const SignUpModal = () => {
                 }, (error) => {
                     console.log(error.code, error.message);
                 });
+                auth.signOut();
             }
         }).catch((error) => {
             let errorCode = error.code;
             let errorMessage = error.message;
             console.log(errorCode, errorMessage);
+            auth.signOut();
         })
 
     }
