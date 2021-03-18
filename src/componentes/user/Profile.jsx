@@ -57,7 +57,7 @@ export default function Profile() {
                 history.push("/Home");
             } else {
                 setLogged(true);
-                history.push("/");
+                history.push("/Profile");
             }
         } catch (e) {
             history.push("/Home");

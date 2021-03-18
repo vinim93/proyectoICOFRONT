@@ -43,6 +43,10 @@ const SignInModal = () => {
                     swal("Correo no verificado", "Revisa tu bandeja de entrada de tu correo y verifica tu cuenta!", "warning");
                     break;
 
+                case "auth/too-many-requests":
+                    swal("Cuenta desactivada", "El acceso a esta cuenta ha sido desactivada temporalmente debido a muchos intentos de inicio de sesión fallidos, Puedes recuperarla reestableciendo tu contraseña o puedes intentarlo más tarde!", "warning");
+                    break;
+
                 default:
                     let errorMessage = error.message;
                     console.log(errorCode, errorMessage);

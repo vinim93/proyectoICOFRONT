@@ -6,12 +6,11 @@ import PhoneInput from 'react-phone-number-input'
 import {db, auth} from "../config/firebase";
 import swal from "sweetalert";
 import swal2 from '@sweetalert/with-react';
-
 import firebase from 'firebase';
 import "firebase/auth";
 import GoogleButton from "react-google-button";
 import passwordValidator from "password-validator";
-
+import TextField from '@material-ui/core/TextField';
 
 const SignUpModal = () => {
 
@@ -19,76 +18,35 @@ const SignUpModal = () => {
     const [uploadValue, setUploadValue] = useState(0);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [ciudad, setCiudad] = useState("");
-    const [telefono, setTelefono] = useState("");
     const [apellido, setApellido] = useState("");
     const [password, setPassword] = useState("");
+    const [repeatedPassword, setRepeteadPassword] = useState("");
     const [checkedValue, setCheckedValue] = useState(false);
-    const [authType, setAuthType] = useState("");
-    const [passwordProblems, setPasswordProblems] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     //VALIDATIONS
     const validations = {
         requiredFields: () => {
-            return (name !== '' && email !== '' && ciudad !== '' && telefono !== '' && password !== '' && apellido !== '')
-        },
-        passwordValidator: () => {
-            let schema = new passwordValidator();
-            schema
-                .is().min(8)
-                .is().max(100)
-                .has().uppercase()
-                .has().lowercase()
-                .has().digits(1)
-                .has().not().spaces();
-
-            if(schema.validate(password)){
-                setPasswordProblems([]);
-                return true;
-            } else {
-                setPasswordProblems(schema.validate(password, {list: true}));
-                console.log(passwordProblems);
-                return false;
-            }
-
+            return (name !== '' && email !== '' && password !== '' && apellido !== '')
         }
     }
-
-    const getPasswordProblemsMessages = element => {
-        switch (element) {
-            case "min":
-                return "Al menos 8 caracteres";
-            case "max":
-                return "Máximo 100 caracteres";
-            case "uppercase":
-                return "Al menos 1 letra mayuscula";
-            case "lowercase":
-                return "Al menos 1 letra miniscula";
-            case "digits":
-                return "Al menos 1 número";
-            case "spaces":
-                return "No tener espacios";
-        }
-    }
-
 
     const handleCheckboxState = (e) => {
-        console.log(e.target.checked);
         setCheckedValue(e.target.checked);
     }
 
     const saveDataInFirestore = (uid, data = {}) => {
 
-        if(Object.keys(data).length > 0){
-            /*============GUARDAR DATOS EN FIRESTORE===========*/
+        if (Object.keys(data).length > 0) {
+            /*============GUARDAR DATOS EN FIRESTORE CON GOOGLE===========*/
             db.collection("credentials").doc(uid).set({
                 UUID: uid,
-                city: data.city,
-                doc: "Pending",
-                email: data.email,
-                name: data.name,
-                phone: data.phone,
-                authType: data.authType
+                city: data.city.replace(/<[^>]+>/g, ''),
+                doc: "Pending".replace(/<[^>]+>/g, ''),
+                email: data.email.replace(/<[^>]+>/g, ''),
+                name: data.name.replace(/<[^>]+>/g, ''),
+                phone: data.phone.replace(/<[^>]+>/g, ''),
+                authType: data.authType.replace(/<[^>]+>/g, '')
             }).then(docRef => {
                 swal("Registro exitoso con Google", "", "success");
                 clearStates();
@@ -100,22 +58,18 @@ const SignUpModal = () => {
             /*============GUARDAR DATOS EN FIRESTORE===========*/
             db.collection("credentials").doc(uid).set({
                 UUID: uid,
-                city: ciudad,
-                doc: "Pending",
-                email: email,
-                name: name + " " + apellido,
-                phone: telefono,
-                authType: authType
+                city: "Pending".replace(/<[^>]+>/g, ''),
+                doc: "Pending".replace(/<[^>]+>/g, ''),
+                email: email.replace(/<[^>]+>/g, ''),
+                name: (name + " " + apellido).replace(/<[^>]+>/g, ''),
+                phone: "Pending".replace(/<[^>]+>/g, ''),
+                authType: "EMAIL".replace(/<[^>]+>/g, '')
             }).then(docRef => {
-                swal("Registro exitoso", "", "success");
-                document.getElementById("signUpButton").disabled = false;
-                document.getElementById("signUpButtonDiv").style.visibility = "visible";
-                document.getElementById("loadingDiv").style.visibility = "hidden";
+                swal("Registro exitoso", "Te mandamos un mensaje a tu correo electrónico que proporcionaste para verificar tu cuenta", "success");
                 clearStates();
+                setLoading(false);
             }).catch((error) => {
-                document.getElementById("signUpButton").disabled = false;
-                document.getElementById("signUpButtonDiv").style.visibility = "visible";
-                document.getElementById("loadingDiv").style.visibility = "hidden";
+                setLoading(false);
                 console.log(error);
             });
             /*============GUARDAR DATOS EN FIRESTORE===========*/
@@ -127,9 +81,8 @@ const SignUpModal = () => {
     const clearStates = () => {
         setName('');
         setEmail('');
-        setCiudad('');
-        setTelefono('');
         setPassword('');
+        setRepeteadPassword('');
         setApellido('');
         setUploadValue(0);
         setCheckedValue(false);
@@ -139,57 +92,108 @@ const SignUpModal = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validations.requiredFields()) {
-            if(validations.passwordValidator()){
-                if (checkedValue) {
-                    document.getElementById("signUpButton").disabled = true;
-                    document.getElementById("signUpButtonDiv").style.visibility = "hidden";
-                    document.getElementById("loadingDiv").style.visibility = "visible";
-                    setAuthType("EMAIL");
-                    auth.createUserWithEmailAndPassword(email, password)
-                        .then((user) => {
 
-                            user.user.sendEmailVerification().then(r => {
-                                saveDataInFirestore(user.user.uid);
-                            }, (error) => {
-                                console.log(error.code, error.message);
-                            })
+            let schema = new passwordValidator();
+            schema
+                .is().min(8)
+                .is().max(100)
+                .has().uppercase()
+                .has().lowercase()
+                .has().digits(1)
+                .has().not().spaces();
 
-                            auth.signOut();
+            if (schema.validate(password)) {
+                if(password === repeatedPassword){
+                    if (checkedValue) {
 
-                        }).catch((error) => {
-                        document.getElementById("signUpButton").disabled = false;
-                        document.getElementById("signUpButtonDiv").style.visibility = "visible";
-                        document.getElementById("loadingDiv").style.visibility = "hidden";
-                        let errorCode = error.code;
-                        let errorMessage = error.message;
-                        console.log(errorCode, errorMessage);
+                        setLoading(true);
 
-                        /*============== EL CORREO YA SE USA POR OTRA CUENTA ==================*/
-                        if (errorCode === "auth/email-already-in-use") {
-                            swal("Oops", "La dirección de correo ya esta siendo usada por otra cuenta!", "warning");
-                        }
+                        auth.createUserWithEmailAndPassword(email, password)
+                            .then((user) => {
 
-                    });
+                                user.user.sendEmailVerification().then(r => {
+                                    saveDataInFirestore(user.user.uid);
+                                }, (error) => {
+                                    console.log(error.code, error.message);
+                                })
+
+                                auth.signOut();
+
+                            }).catch((error) => {
+                            setLoading(false);
+                            let errorCode = error.code;
+                            let errorMessage = error.message;
+                            console.log(errorCode, errorMessage);
+
+                            /*============== EL CORREO YA SE USA POR OTRA CUENTA ==================*/
+                            if (errorCode === "auth/email-already-in-use") {
+                                swal("Oops", "La dirección de correo ya esta siendo usada por otra cuenta!", "warning");
+                            } else if (errorCode === "auth/weak-password") {
+                                swal("Oops", "La contraseña debe tener al menos 6 caracteres!", "warning");
+                            }
+
+                        });
+                    } else {
+                        swal("Advertencia", "Debes aceptar los términos y condiciones para poder registrarte!", "warning");
+                    }
                 } else {
-                    swal("Advertencia", "Debes aceptar los términos y condiciones para poder registrarte!", "warning");
+                    swal("Las contraseñas no coinciden", "Asegurate de escribir las mismas contraseñas en los campos correspondientes!", "warning");
                 }
+
             } else {
-                swal2(
-                    <div className="container">
-                        <div className="row">
-                            <h1 className="text-dark">Tu contraseña debe complir con los siguientes requisitos:</h1>
-                            <ul className="col-12 list-group text-dark">
-                                {
-                                    passwordProblems.forEach(element => {
-                                        return (
-                                            <li className="list-group-item text-dark">Cras justo odio</li>
-                                        )
-                                    })
-                                }
-                            </ul>
+                swal2({
+                    text: "Tu contraseña debe cumplir con los siguientes requisitos",
+                    buttons: {
+                        cancel: "Entendido",
+                    },
+                    content: (
+                        <div className="container">
+                            <div className="row">
+                                <ul>
+                                    {
+                                        schema.validate(password, {list: true}).map((element, index) => {
+                                            console.log(element);
+                                            switch(element) {
+                                                case 'min':
+
+                                                    return(
+                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">Mínimo 8 caracteres</p></li>
+                                                    )
+
+                                                case 'max':
+                                                    return(
+                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">Máximo 100 caracteres</p></li>
+                                                    )
+
+                                                case 'uppercase':
+                                                    return(
+                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">Mínimo una letra mayuscula</p></li>
+                                                    )
+
+                                                case 'lowercase':
+                                                    return(
+                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">Mínimo 1 letra minuscula</p></li>
+                                                    )
+
+                                                case 'spaces':
+                                                    return(
+                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">No debe contener espacios</p></li>
+                                                    )
+
+                                                case 'digits':
+                                                    return(
+                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">Mínimo 1 número</p></li>
+                                                    )
+
+                                            }
+
+                                        })
+                                    }
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                )
+                    )
+                })
             }
 
         } else {
@@ -240,26 +244,6 @@ const SignUpModal = () => {
         fetchCountryData();
     }, []);
 
-    const loading = () => {
-        const times = 3;
-        let circles = [];
-        for (let i = 0; i < times; i++) {
-            if (i === times - 1) {
-                circles.push(
-                    <div className="spinner-grow text-light" role="status">
-                        <span className="visually-hidden"></span>
-                    </div>
-                );
-            } else {
-                circles.push(
-                    <div className="spinner-grow text-light mr-4" role="status">
-                        <span className="visually-hidden"></span>
-                    </div>
-                );
-            }
-        }
-        return circles;
-    }
 
     return (
 
@@ -301,99 +285,76 @@ const SignUpModal = () => {
                                 <div className="row pl-xl-5 pr-xl-5">
 
                                     <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
-                                        <select className="custom-select custom-select-lg ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5 text-light"
-                                                aria-label="Default select example"
-                                                onChange={e => setCiudad(e.target.value)}>
 
-                                            <option value="">Elige un país</option>
-                                            {
-                                                countries.map((value, index) => (
-                                                    <option key={index} value={value.name}>{value.name}</option>
-                                                ))
-                                            }
-                                        </select>
-                                    </div>
+                                        <TextField required={true}
+                                                   fullWidth
+                                                   style={{backgroundColor: "#FFFFFF", fontWeight: "bold"}}
+                                                   className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
+                                                   id="name"
+                                                   name="name"
+                                                   value={name}
+                                                   label="Nombre"
+                                                   type="text"
+                                                   onChange={(e) => setName(e.target.value)} variant="filled"/>
 
-                                    <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
-                                        <PhoneInput
-                                            className="form-control ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                            international
-                                            countryCallingCodeEditable={false}
-                                            defaultCountry="MX"
-                                            value={telefono}
-                                            onChange={(e) => setTelefono(e)}/>
 
                                     </div>
 
                                     <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
 
-                                        <input
-                                            className="form-control ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                            type="text"
-                                            placeholder="Nombre"
-                                            name='name'
-                                            value={name}
-                                            onChange={(e) => setName(e.target.value)}
-                                            required/>
+                                        <TextField required={true}
+                                                   fullWidth
+                                                   style={{backgroundColor: "#FFFFFF", fontWeight: "bold"}}
+                                                   className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
+                                                   id="lastname"
+                                                   name="lastnane"
+                                                   label="Apellido"
+                                                   value={apellido}
+                                                   type="text"
+                                                   onChange={(e) => setApellido(e.target.value)} variant="filled"/>
+                                    </div>
+
+                                    <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
+
+                                        <TextField required={true}
+                                                   fullWidth
+                                                   style={{backgroundColor: "#FFFFFF", fontWeight: "bold"}}
+                                                   className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
+                                                   id="outlined-basic" label="Email"
+                                                   value={email}
+                                                   type="email"
+                                                   onChange={(e) => setEmail(e.target.value)} variant="filled"/>
+                                    </div>
+
+                                    <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
+
+                                        <TextField required={true}
+                                                   fullWidth
+                                                   style={{backgroundColor: "#FFFFFF", fontWeight: "bold"}}
+                                                   className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
+                                                   id="signup-password"
+                                                   label="Contraseña"
+                                                   value={password}
+                                                   type="password"
+                                                   onChange={(e) => setPassword(e.target.value)} variant="filled"/>
 
                                     </div>
 
                                     <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
-                                        <input
-                                            className="form-control ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                            type="text"
-                                            placeholder="Apellido"
-                                            name="apellido"
-                                            value={apellido}
-                                            onChange={(e) => setApellido(e.target.value)}
-                                            required/>
-                                    </div>
-
-                                    <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
-                                        <input
-                                            className="form-control ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                            type="email"
-                                            placeholder="Email"
-                                            name="email"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            required/>
-                                    </div>
-
-                                    <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
-                                        <input className="form-control ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                               type="password"
-                                               id="signup-password"
-                                               placeholder="Contraseña"
-                                               name="password"
-                                               value={password}
-                                               onChange={(e) => setPassword(e.target.value)}
-                                               required/>
-                                    </div>
-
-                                    <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
-                                        <input className="form-control ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                               type="password"
-                                               id="signup-password-repeat"
-                                               placeholder="Confirmar contraseña"
-                                               name="password-repeat"
-                                               value={password}
-                                               onChange={(e) => setPassword(e.target.value)}
-                                               required/>
-                                    </div>
-
-                                    <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
-                                                    <span className="btn form-check ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5">
-                                                        <label className="form-regi marginlb form-check-label">
-                                                            <a className="text-light" href="">
-                                                                Aviso de privacidad
-                                                            </a>
-                                                        </label>
-                                                    </span>
+                                        <TextField required={true}
+                                                   fullWidth
+                                                   style={{backgroundColor: "#FFFFFF", fontWeight: "bold"}}
+                                                   className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
+                                                   id="signup-password"
+                                                   label="Repite tu contraseña"
+                                                   value={repeatedPassword}
+                                                   type="password"
+                                                   onChange={(e) => setRepeteadPassword(e.target.value)} variant="filled"/>
                                     </div>
 
                                     <div className="form-group form-check col-12 mb-3 pl-xl-5 pr-xl-5">
-                                                    <span className="btn form-check ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5 form-regi">
+                                                    <span
+                                                        className="btn form-check ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5 form-regi">
                                                         <input className="form-check-input form-regi"
                                                                type="checkbox"
                                                                name="terminosYCondiciones"
@@ -410,13 +371,17 @@ const SignUpModal = () => {
 
                                     <div className="form-group col-12 mt-3" id="signUpButtonDiv">
                                         <button type="submit"
-                                                className="btn btn-registro" id="signUpButton">REGISTRATE
+                                                className="btn btn-registro"
+                                                id="signUpButton"
+                                                disabled={loading}>
+                                            {loading ? (
+                                                <div className="spinner-border text-dark" role="status">
+                                                    <span className="sr-only">Registrando...</span>
+                                                </div>
+                                            ) : "REGISTRATE"}
                                         </button>
                                     </div>
 
-                                    <div id="loadingDiv" style={{visibility: 'hidden'}}>
-                                        {loading()}
-                                    </div>
                                 </div>
                             </div>
                         </form>
