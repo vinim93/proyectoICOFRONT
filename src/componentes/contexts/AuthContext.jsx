@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
             setCurrentUser(user);
             setLoading(false);
         })
-
+        console.log("SE EJECUTA");
         return unsubscribe;
     }, []);
 

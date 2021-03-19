@@ -18,16 +18,8 @@ const Dashboard = () => {
         try{
             let email = currentUser.email;
             setSigninEmail(email);
-            if(!currentUser.emailVerified){
-                setLogged(false);
-                console.log("NO VERIFICADO");
-                logout();
-                history.push("/Home");
-                swal("Cuenta sin verificar", "Debes verificar tu cuenta primero, busca en tu bandeja de entrada de tu correo que registraste!", "warning");
-            } else {
-                setLogged(true);
-                history.push("/");
-            }
+            setLogged(true);
+            history.push("/");
         } catch (e) {
             setSigninEmail("");
             history.push("/Home");

@@ -7,12 +7,14 @@ import {useAuth} from "../contexts/AuthContext";
 import {useHistory} from "react-router-dom";
 import "./css/styles.css";
 import GoogleButton from 'react-google-button'
+import TextField from "@material-ui/core/TextField";
 
 const SignInModal = () => {
 
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
     const {login} = useAuth();
+    const {currentUser, logout} = useAuth();
     const [loading, setLoading] = useState(false);
     const history = useHistory();
 
@@ -21,9 +23,17 @@ const SignInModal = () => {
 
         try {
             setLoading(true);
-            await login(email, pass);
-            history.push("/");
-            window.location.reload();
+            await login(email, pass).then(r => {
+                if(r.user.emailVerified){
+                    history.push("/");
+                    window.location.reload();
+                } else {
+                    logout();
+                    let error = new Error("email_not_verified");
+                    error.code = "email_not_verified";
+                    throw error;
+                }
+            });
         } catch (error) {
             let errorCode = error.code;
             switch (errorCode) {
@@ -85,7 +95,9 @@ const SignInModal = () => {
                         <div className="form-group col-12 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5">
                             <div className="container pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5">
                                 <div className="row pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5">
-                                    <a href="#" className="fb connect mr-xl-5 ml-xl-5">Iniciar sesión con Facebook</a>
+                                    <button className="fb connect mr-xl-5 ml-xl-5">
+                                        Iniciar sesión con Facebook
+                                    </button>
                                 </div>
                             </div>
 
@@ -99,30 +111,45 @@ const SignInModal = () => {
 
                                     <div
                                         className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
-                                        <input type="email"
-                                               className="form-control ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                               placeholder="Correo electrónico"
-                                               value={email}
-                                               onChange={e => setEmail(e.target.value)}
-                                               required
-                                        />
+
+                                        <TextField required={true}
+                                                   fullWidth
+                                                   style={{backgroundColor: "#FFFFFF", fontWeight: "bold"}}
+                                                   className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
+                                                   id="email"
+                                                   name="email"
+                                                   value={email}
+                                                   label="Correo electrónico"
+                                                   type="text"
+                                                   onChange={e => setEmail(e.target.value)} variant="filled"/>
                                     </div>
 
                                     <div className="input-group input-group-lg col-12  pl-xl-5 pr-xl-5">
-                                        <input type="password" className="form-control ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                               id="signup-password"
-                                               placeholder="Contraseña"
-                                               name="password"
-                                               value={pass}
-                                               onChange={e => setPass(e.target.value)}
-                                               required
-                                        />
+
+                                        <TextField required={true}
+                                                   fullWidth
+                                                   style={{backgroundColor: "#FFFFFF", fontWeight: "bold"}}
+                                                   className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
+                                                   id="signin-password"
+                                                   label="Contraseña"
+                                                   value={pass}
+                                                   type="password"
+                                                   onChange={e => setPass(e.target.value)} variant="filled"/>
+
                                     </div>
 
 
                                     <div className="form-group col-12 mt-5 mb-5">
+
                                         <button type="submit"
-                                                className="btn btn-registro">ENTRAR
+                                                className="btn btn-registro"
+                                                id="signInButton"
+                                                disabled={loading}>
+                                            {loading ? (
+                                                <div className="spinner-border text-dark" role="status">
+                                                    <span className="sr-only">Entrando...</span>
+                                                </div>
+                                            ) : "ENTRAR"}
                                         </button>
                                     </div>
                                 </div>
