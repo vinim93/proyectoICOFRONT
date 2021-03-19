@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import "../navbar/css/styles.css"
 import axios from "axios";
 import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
 import {db, auth} from "../config/firebase";
 import swal from "sweetalert";
 import swal2 from '@sweetalert/with-react';
@@ -71,7 +70,13 @@ const SignUpModal = () => {
                 phone: "Pending".replace(/<[^>]+>/g, ''),
                 authType: "EMAIL".replace(/<[^>]+>/g, '')
             }).then(docRef => {
-                swal("Registro exitoso", "Te mandamos un mensaje a tu correo electrónico que proporcionaste para verificar tu cuenta", "success");
+                swal({
+                    title: "Registro exitoso!",
+                    text: "Te mandamos un mensaje a tu correo electrónico que proporcionaste para verificar tu cuenta",
+                    icon: "success",
+                    button: "Entendido!",
+                    closeOnClickOutside: false
+                });
                 clearStates();
                 setLoading(false);
             }).catch((error) => {
@@ -140,22 +145,46 @@ const SignUpModal = () => {
 
                             /*============== EL CORREO YA SE USA POR OTRA CUENTA ==================*/
                             if (errorCode === "auth/email-already-in-use") {
-                                swal("Oops", "La dirección de correo ya esta siendo usada por otra cuenta!", "warning");
+                                swal({
+                                    title: "Oops",
+                                    text: "La dirección de correo ya esta siendo usada por otra cuenta",
+                                    icon: "warning",
+                                    button: "Entendido!",
+                                    closeOnClickOutside: false
+                                });
                             } else if (errorCode === "auth/weak-password") {
-                                swal("Oops", "La contraseña debe tener al menos 6 caracteres!", "warning");
+                                swal({
+                                    title: "Oops",
+                                    text: "La contraseña debe tener al menos 8 caracteres!",
+                                    icon: "warning",
+                                    button: "Entendido!"
+                                });
                             }
 
                         });
                     } else {
-                        swal("Advertencia", "Debes aceptar los términos y condiciones para poder registrarte!", "warning");
+                        swal({
+                            title: "Advertencia",
+                            text: "Debes aceptar los términos y condiciones para poder registrarte!",
+                            icon: "warning",
+                            button: "Entendido!",
+                            closeOnClickOutside: false
+                        });
                     }
                 } else {
-                    swal("Las contraseñas no coinciden", "Asegurate de escribir las mismas contraseñas en los campos correspondientes!", "warning");
+                    swal({
+                        title: "Las contraseñas no coinciden",
+                        text: "Asegurate de escribir las mismas contraseñas en los campos correspondientes!",
+                        icon: "warning",
+                        button: "Entendido!",
+                        closeOnClickOutside: false
+                    });
                 }
 
             } else {
                 swal2({
                     text: "Tu contraseña debe cumplir con los siguientes requisitos",
+                    closeOnClickOutside: false,
                     buttons: {
                         cancel: "Entendido",
                     },
@@ -210,7 +239,13 @@ const SignUpModal = () => {
             }
 
         } else {
-            swal("Advertencia", "Debes llenar todos los campos!", "warning");
+            swal({
+                title: "Advertencia",
+                text: "Debes llenar todos los campos!",
+                icon: "warning",
+                button: "Entendido!",
+                closeOnClickOutside: false
+            });
         }
     };
 
