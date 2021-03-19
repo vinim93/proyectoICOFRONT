@@ -2,7 +2,7 @@
     width: 50%;
 }
 
-a.fb {
+button.fb {
     font-family: Lucida Grande, Helvetica Neue, Helvetica, Arial, sans-serif;
     display: inline-block;
     font-size: 15px;
@@ -13,6 +13,7 @@ a.fb {
     text-decoration: none;
     position: relative;
     border-radius: 5px;
+    border-color: transparent;
     width: 100%;
 }
 

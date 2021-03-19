@@ -11,6 +11,8 @@ import "firebase/auth";
 import GoogleButton from "react-google-button";
 import passwordValidator from "password-validator";
 import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import {useHistory} from "react-router-dom";
 
 
@@ -212,6 +214,41 @@ const SignUpModal = () => {
         }
     };
 
+    const signUpWithFacebook = () => {
+        let provider = new firebase.auth.FacebookAuthProvider();
+        provider.addScope('public_profile');
+        auth.languageCode = 'es';
+        provider.setCustomParameters({
+            'display': 'popup'
+        });
+        auth
+            .signInWithPopup(provider)
+            .then((result) => {
+                let credential = result.credential;
+
+                // The signed-in user info.
+                let user = result.user;
+                console.log("YA SE HIZO CON FACEBOOK");
+                console.log(user);
+
+                // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+                let accessToken = credential.accessToken;
+
+                // ...
+            })
+            .catch((error) => {
+                // Handle Errors here.
+                let errorCode = error.code;
+                let errorMessage = error.message;
+                // The email of the user's account used.
+                let email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                let credential = error.credential;
+
+                // ...
+            });
+    }
+
     const signUpWithGoogle = () => {
 
         let provider = new firebase.auth.GoogleAuthProvider();
@@ -299,8 +336,11 @@ const SignUpModal = () => {
                         <div className="form-group col-12 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5">
                             <div className="container pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5">
                                 <div className="row pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5">
-                                    <a href="#" className="fb connect mr-xl-5 ml-xl-5">Iniciar sesión con
-                                        Facebook</a>
+
+                                    <button onClick={signUpWithFacebook} className="fb connect mr-xl-5 ml-xl-5">
+                                        Iniciar sesión con
+                                        Facebook
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -380,17 +420,16 @@ const SignUpModal = () => {
                                     <div className="form-group form-check col-12 mb-3 pl-xl-5 pr-xl-5">
                                                     <span
                                                         className="btn form-check ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5 form-regi">
-                                                        <input className="form-check-input form-regi"
-                                                               type="checkbox"
-                                                               name="terminosYCondiciones"
-                                                               id="aviso1"
-                                                               onChange={handleCheckboxState}
-                                                               required/>
 
-                                                        <label className="form-regi marginlb form-check-label"
-                                                               htmlFor="aviso1">
-                                                            Aceptar términos y condiciones
-                                                        </label>
+                                                        <FormControlLabel
+                                                            control={
+                                                                <Checkbox className="form-check-input form-regi"
+                                                                          checked={checkedValue}
+                                                                          onChange={handleCheckboxState}
+                                                                          required={true}
+                                                                          name="terminosyCondiciones" />}
+                                                            label="Aceptar términos y condiciones" required name="terminosYCondiciones"
+                                                        />
                                                     </span>
                                     </div>
 
