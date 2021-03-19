@@ -27,7 +27,7 @@ const Countdown = () => {
                 </div>
             </div>
 
-            <ul className="rectangulo1 text-justify text-center">
+            <ul className="rectangulo1   text-center">
                 <li className=" cont-li-cap">
                     <img src={rectangulo1} className="rectanguloimg "/>
                 </li>
@@ -38,10 +38,10 @@ const Countdown = () => {
 
                 </li>
 
-                <li className="row tecno">
-                    <div className="col-12 cont-img-tecno">
-                        <img src={tecnologias} className="img-tecno  "/>
-                    </div>
+                <li className=" tecno ">
+                   
+                        <img src={tecnologias} className=" img-tecno  "/>
+                   
                 </li>
             </ul>
 

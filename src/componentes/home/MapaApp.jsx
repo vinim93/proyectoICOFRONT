@@ -4,6 +4,7 @@ import Nuestraapp from "../../images/nuestraapp.svg";
 import Google from "../../images/google.png";
 import Apple from "../../images/apple.png";
 import Mapa from "../../images/mapacirculo.svg"
+import Mapamini from "../../images/mapacirculomini.svg"
 import {useTranslation} from 'react-i18next';
 
 const MapaApp = () => {
@@ -16,7 +17,8 @@ const MapaApp = () => {
                 <div className="col-12">
                     <p className="dis-fondos">{t('MapaApp.Funding.Title')}</p>
                     <p className="dis-tokens">{t('MapaApp.Tokens.Title')}</p>
-                    <img src={Mapa} className=" mapaes "/>
+                    <img src={Mapa} className=" mapaes d-none d-md-flex"/>
+                    <img src={Mapamini} className=" mapaes d-flex d-md-none"/>
                     <p className="por-syn">40% <br/><p className="por-syn2">{t('MapaApp.Funding.Symphony')}</p></p>
                     <p className="por-hawk">30% <br/><p className="por-hawk2">{t('MapaApp.Funding.Hawk')}</p></p>
                     <p className="por-lion">30% <br/><p className="por-lion2">{t('MapaApp.Funding.Lion')}</p></p>

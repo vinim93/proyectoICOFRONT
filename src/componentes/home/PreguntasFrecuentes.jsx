@@ -76,10 +76,10 @@ const PreguntasFrecuentes = () => {
 
             </div>
 
-            <div className="col-md-6 col-12">
-                <img src={Imgpreg} id="" className="PREGIMG d-none d-lg-block d-md-block"/>
+                        <div className="col-md-6 col-12">
+                            <img src={Imgpreg} id="" className="PREGIMG d-none d-lg-block d-md-block"/>
 
-            </div>
+                        </div>
 
         </div>
     );

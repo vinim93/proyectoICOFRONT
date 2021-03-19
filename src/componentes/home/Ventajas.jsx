@@ -30,8 +30,8 @@ const Ventajas = () => {
         <div className="row">
             {
                 ventajas.map((value, index) => (
-                    <div key={index} className="col-md-4 col-12 p-5 ventajas-cuerpo ">
-                        <div className="col-12 d-flex justify-content-center mt-5  ">
+                    <div key={index} className="  col-md-4 ventajas-cuerpo d-none d-md-block">
+                        <div className="col-12  d-flex justify-content-center mt-5  ">
                             <img src={value.icon} alt="FACIL" className="img-fluid"/>
                         </div>
                         <div className="col-12 d-flex justify-content-center mt-5 text-justify ">
@@ -41,8 +41,29 @@ const Ventajas = () => {
                             <h5>{value.description}</h5>
                         </div>
                     </div>
+                    
+                   
                 ))
             }
+             <div className=" ">
+            
+                 
+                 {ventajas.map((value, index)=>(
+                      <div className={index%2===0 ?" ventajas-cuerpo-min p-0 d-flex d-md-none":" justify-content-end ventajas-cuerpo-min p-0  d-flex d-md-none"}>
+                     <div key={index} className={index%2===0 ? "col-10 p-0 mt-3  ventajas-cuerpo-index d-flex   d-md-none":"ventajas-cuerpo-index2  p-0 col-10  mt-3    d-flex d-md-none"}>
+                         <div className=" col-2">                  
+                             <img src={value.icon} alt="FACIL" className="img-fluid  "/>                            
+                         </div>
+                         <div className="col-10 text-left">
+                         <h3 className="titu-ventajas">{value.title}</h3>
+                             <p className="">{value.description}</p>
+                         </div>
+                       
+                     </div>
+                     </div>
+                 ))}
+             </div>
+           
         </div>
     );
 };

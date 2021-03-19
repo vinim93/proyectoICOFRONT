@@ -12,15 +12,15 @@ const Banner = () => {
     return (
         <div className="row fondogalaxy pl-5">
             <div className=" col-lg-7 parte col-md-7   ">
-                <p className="moneda1 text-lg-left text-center">
+                <p className="moneda1 text-lg-left ">
                     {t('Banner.Titulo.0')}
                     <p className="revo1">{t('Banner.Titulo.1')}</p>
-                    <p className="tec1"><br/>{t('Banner.Titulo.2')}</p>
+                    <p className="tec1">{t('Banner.Titulo.2')}</p>
                     <img className="moneda d-block  d-md-none" loading="lazy" src={monedafinal}/>
-                    <p className="  hometext1  d-none  d-md-block"><br/>
+                    <p className="  hometext1   d-none  d-md-block">
                         {t('Banner.Texto')}
                     </p>
-                    <p className="hometext1 col-12 text-left  text-sm-left d-block  d-md-none"><br/>
+                    <p className="hometext1 col-12 text-left  d-block  d-md-none">
                         {t('Banner.Texto')} </p>
                     <div className="text-lg-center text-left text-sm-center">
 
