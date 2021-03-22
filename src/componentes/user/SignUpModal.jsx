@@ -13,9 +13,22 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import {useHistory} from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 const SignUpModal = () => {
+
+
+    const sendReCAPTCHAValue = async (value) => {
+        const response = await axios.post("http://localhost:3001/api/recaptcha", {
+            captchaValue: value
+        });
+
+        if(response.data.status === "success"){
+            setVerifiedCaptcha(true);
+        }
+
+    }
 
     const [countries, setCountries] = useState([]);
     const [uploadValue, setUploadValue] = useState(0);
@@ -26,6 +39,7 @@ const SignUpModal = () => {
     const [repeatedPassword, setRepeteadPassword] = useState("");
     const [checkedValue, setCheckedValue] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [verifiedCaptcha, setVerifiedCaptcha] = useState(false);
     const history = useHistory();
 
 
@@ -104,6 +118,7 @@ const SignUpModal = () => {
         setApellido('');
         setUploadValue(0);
         setCheckedValue(false);
+        setVerifiedCaptcha(false);
     }
 
 
@@ -123,45 +138,53 @@ const SignUpModal = () => {
             if (schema.validate(password)) {
                 if(password === repeatedPassword){
                     if (checkedValue) {
+                        if(verifiedCaptcha){
+                            setLoading(true);
+                            auth.createUserWithEmailAndPassword(email, password)
+                                .then((user) => {
 
-                        setLoading(true);
+                                    user.user.sendEmailVerification().then(r => {
+                                        saveDataInFirestore(user.user.uid);
+                                    }, (error) => {
+                                        console.log(error.code, error.message);
+                                    })
 
-                        auth.createUserWithEmailAndPassword(email, password)
-                            .then((user) => {
+                                    auth.signOut();
 
-                                user.user.sendEmailVerification().then(r => {
-                                    saveDataInFirestore(user.user.uid);
-                                }, (error) => {
-                                    console.log(error.code, error.message);
-                                })
+                                }).catch((error) => {
+                                setLoading(false);
+                                let errorCode = error.code;
+                                let errorMessage = error.message;
+                                console.log(errorCode, errorMessage);
 
-                                auth.signOut();
+                                /*============== EL CORREO YA SE USA POR OTRA CUENTA ==================*/
+                                if (errorCode === "auth/email-already-in-use") {
+                                    swal({
+                                        title: "Oops",
+                                        text: "La dirección de correo ya esta siendo usada por otra cuenta",
+                                        icon: "warning",
+                                        button: "Entendido!",
+                                        closeOnClickOutside: false
+                                    });
+                                } else if (errorCode === "auth/weak-password") {
+                                    swal({
+                                        title: "Oops",
+                                        text: "La contraseña debe tener al menos 8 caracteres!",
+                                        icon: "warning",
+                                        button: "Entendido!"
+                                    });
+                                }
 
-                            }).catch((error) => {
-                            setLoading(false);
-                            let errorCode = error.code;
-                            let errorMessage = error.message;
-                            console.log(errorCode, errorMessage);
+                            });
+                        } else {
+                            swal({
+                                title: "Verifica el CAPTCHA",
+                                text: "Intenta verificar el CAPTCHA de nuevo para poder continuar!",
+                                icon: "warning",
+                                button: "Entendido!"
+                            });
+                        }
 
-                            /*============== EL CORREO YA SE USA POR OTRA CUENTA ==================*/
-                            if (errorCode === "auth/email-already-in-use") {
-                                swal({
-                                    title: "Oops",
-                                    text: "La dirección de correo ya esta siendo usada por otra cuenta",
-                                    icon: "warning",
-                                    button: "Entendido!",
-                                    closeOnClickOutside: false
-                                });
-                            } else if (errorCode === "auth/weak-password") {
-                                swal({
-                                    title: "Oops",
-                                    text: "La contraseña debe tener al menos 8 caracteres!",
-                                    icon: "warning",
-                                    button: "Entendido!"
-                                });
-                            }
-
-                        });
                     } else {
                         swal({
                             title: "Advertencia",
@@ -466,6 +489,10 @@ const SignUpModal = () => {
                                                             label="Aceptar términos y condiciones" required name="terminosYCondiciones"
                                                         />
                                                     </span>
+                                    </div>
+
+                                    <div className="form-group col-12 d-flex justify-content-center">
+                                        <ReCAPTCHA sitekey="6LceM4oaAAAAAJhirPQbyXB2KERNzwHUyoAspql-" onChange={sendReCAPTCHAValue} />
                                     </div>
 
                                     <div className="form-group col-12 mt-3" id="signUpButtonDiv">

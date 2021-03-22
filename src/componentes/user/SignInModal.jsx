@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import Icongmail from "../../images/icongmail.svg";
-import Iconfaceb from "../../images/iconfaceb.svg";
 import "firebase/auth";
 import swal from 'sweetalert';
 import {useAuth} from "../contexts/AuthContext";
@@ -8,6 +6,10 @@ import {useHistory} from "react-router-dom";
 import "./css/styles.css";
 import GoogleButton from 'react-google-button'
 import TextField from "@material-ui/core/TextField";
+import axios from "axios";
+import ReCAPTCHA from "react-google-recaptcha";
+import firebase from 'firebase';
+import {auth, db} from "../config/firebase";
 
 const SignInModal = () => {
 
@@ -15,8 +17,94 @@ const SignInModal = () => {
     const [pass, setPass] = useState("");
     const {login} = useAuth();
     const {currentUser, logout} = useAuth();
+    const [verifiedCaptcha, setVerifiedCaptcha] = useState(false);
     const [loading, setLoading] = useState(false);
     const history = useHistory();
+
+    const searchDataInFirestore = id => {
+        let docRef = db.collection('credentials').doc(id);
+        docRef.get().then(doc => {
+            return doc.exists;
+        }).catch(error => {
+            console.log("ERROR AL BUSCAR EL UID");
+        });
+    }
+
+    const saveDataInFirestore = (uid, data = {}) => {
+        if (Object.keys(data).length > 0) {
+            /*============GUARDAR DATOS EN FIRESTORE CON GOOGLE===========*/
+            db.collection("credentials").doc(uid).set({
+                UUID: uid,
+                city: data.city.replace(/<[^>]+>/g, ''),
+                doc: "Pending".replace(/<[^>]+>/g, ''),
+                email: data.email.replace(/<[^>]+>/g, ''),
+                name: data.name.replace(/<[^>]+>/g, ''),
+                phone: data.phone === null ? "Pending".replace(/<[^>]+>/g, '') : data.phone.replace(/<[^>]+>/g, ''),
+                authType: data.authType.replace(/<[^>]+>/g, '')
+            }).then(docRef => {
+                history.push("/");
+                window.location.reload();
+            }).catch((error) => {
+                console.log(error);
+            });
+            /*============GUARDAR DATOS EN FIRESTORE===========*/
+        }
+    }
+
+    const signUpWithGoogle = () => {
+
+        let provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
+        auth.languageCode = 'es';
+        auth.signInWithPopup(provider).then((result) => {
+            console.log(result);
+            let user = result.user;
+            console.log(user);
+            if (user.emailVerified) {
+
+                if(!searchDataInFirestore(user.uid)){
+                    saveDataInFirestore(user.uid, {
+                        city: "Pending",
+                        email: user.email,
+                        name: user.displayName,
+                        phone: user.phoneNumber,
+                        authType: "GOOGLE"
+                    });
+                }
+
+            } else {
+                user.sendEmailVerification().then(r => {
+                    saveDataInFirestore(user.uid, {
+                        city: "Pending",
+                        email: user.email,
+                        name: user.displayName,
+                        phone: user.phoneNumber,
+                        authType: "GOOGLE"
+                    });
+                }, (error) => {
+                    console.log(error.code, error.message);
+                });
+                auth.signOut();
+            }
+        }).catch((error) => {
+            let errorCode = error.code;
+            let errorMessage = error.message;
+            console.log(errorCode, errorMessage);
+            auth.signOut();
+        })
+
+    }
+
+    const sendReCAPTCHAValue = async (value) => {
+        const response = await axios.post("http://localhost:3001/api/recaptcha", {
+            captchaValue: value
+        });
+
+        if(response.data.status === "success"){
+            setVerifiedCaptcha(true);
+        }
+
+    }
 
     async function signIn(e) {
         e.preventDefault()
@@ -25,8 +113,15 @@ const SignInModal = () => {
             setLoading(true);
             await login(email, pass).then(r => {
                 if(r.user.emailVerified){
-                    history.push("/");
-                    window.location.reload();
+                    if(verifiedCaptcha){
+                        history.push("/");
+                        window.location.reload();
+                    } else {
+                        let error = new Error("captcha_not_verified");
+                        error.code = "captcha_not_verified";
+                        throw error;
+                    }
+
                 } else {
                     logout();
                     let error = new Error("email_not_verified");
@@ -57,6 +152,10 @@ const SignInModal = () => {
                     swal("Cuenta desactivada", "El acceso a esta cuenta ha sido desactivada temporalmente debido a muchos intentos de inicio de sesión fallidos, Puedes recuperarla reestableciendo tu contraseña o puedes intentarlo más tarde!", "warning");
                     break;
 
+                case "captcha_not_verified":
+                    swal("Verifica el CAPTCHA", "Intenta verificar el CAPTCHA de nuevo para poder continuar!", "warning");
+                    break;
+
                 default:
                     let errorMessage = error.message;
                     console.log(errorCode, errorMessage);
@@ -85,9 +184,7 @@ const SignInModal = () => {
                         <div className="form-group col-12 d-flex justify-content-center">
                             <GoogleButton
                                 label='Iniciar sesión con Google'
-                                onClick={() => {
-                                    console.log('Google button clicked')
-                                }}
+                                onClick={signUpWithGoogle}
                                 style={{width: 500, borderRadius: 3}}
                             />
                         </div>
@@ -124,7 +221,7 @@ const SignInModal = () => {
                                                    onChange={e => setEmail(e.target.value)} variant="filled"/>
                                     </div>
 
-                                    <div className="input-group input-group-lg col-12  pl-xl-5 pr-xl-5">
+                                    <div className="input-group input-group-lg col-12 pl-xl-5 pr-xl-5">
 
                                         <TextField required={true}
                                                    fullWidth
@@ -138,6 +235,9 @@ const SignInModal = () => {
 
                                     </div>
 
+                                    <div className="input-group col-12 d-flex justify-content-center pl-xl-5 pr-xl-5 mt-3">
+                                        <ReCAPTCHA sitekey="6LceM4oaAAAAAJhirPQbyXB2KERNzwHUyoAspql-" onChange={sendReCAPTCHAValue} />
+                                    </div>
 
                                     <div className="form-group col-12 mt-5 mb-5">
 
