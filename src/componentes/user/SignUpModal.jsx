@@ -64,7 +64,8 @@ const SignUpModal = () => {
                 email: data.email.replace(/<[^>]+>/g, ''),
                 name: data.name.replace(/<[^>]+>/g, ''),
                 phone: data.phone === null ? "Pending".replace(/<[^>]+>/g, '') : data.phone.replace(/<[^>]+>/g, ''),
-                authType: data.authType.replace(/<[^>]+>/g, '')
+                authType: data.authType.replace(/<[^>]+>/g, ''),
+                suns: 0
             }).then(docRef => {
                 history.push("/");
                 window.location.reload();
@@ -82,7 +83,8 @@ const SignUpModal = () => {
                 email: email.replace(/<[^>]+>/g, ''),
                 name: (name + " " + apellido).replace(/<[^>]+>/g, ''),
                 phone: "Pending".replace(/<[^>]+>/g, ''),
-                authType: "EMAIL".replace(/<[^>]+>/g, '')
+                authType: "EMAIL".replace(/<[^>]+>/g, ''),
+                suns: 0
             }).then(docRef => {
                 swal({
                     title: "Registro exitoso!",

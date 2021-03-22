@@ -6,20 +6,37 @@ import moneda_dashboard from "../../images/moneda-dashboard.svg";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DollarMarktComponent from "./DollarMarktComponent";
 import PaymentComponent from "./PaymentComponent";
+import {db} from "../config/firebase";
 
 const Dashboard = () => {
     const {currentUser, logout} = useAuth();
     const [signinEmail, setSigninEmail] = useState("");
+    const [uid, setUid] = useState("");
+    const [amount, setAmount] = useState(0);
     const [logged, setLogged] = useState(false);
     const [cryptoData, setCryptoData] = useState([{}]);
+    const [userInfo, setUserInfo] = useState({});
     const history = useHistory();
+
+    const getUserData = (id) => {
+        let docRef = db.collection('credentials').doc(id);
+        docRef.onSnapshot(doc => {
+            if(doc.exists){
+                setUserInfo(doc.data());
+            }
+        })
+    }
+
 
     useEffect(() => {
         try{
             let email = currentUser.email;
+            let id = currentUser.uid;
             setSigninEmail(email);
+            setUid(id);
             setLogged(true);
             history.push("/");
+            getUserData(id);
         } catch (e) {
             setSigninEmail("");
             history.push("/Home");
@@ -37,7 +54,7 @@ const Dashboard = () => {
                     </div>
 
                     <div className="col-12 d-flex justify-content-center">
-                        <h1>$0.00 <br/> Total SUN'S</h1>
+                        <h1>${userInfo.suns} <br/> Total SUN'S</h1>
                     </div>
 
                     <div className="col-12 d-flex justify-content-center mt-5">
@@ -49,7 +66,7 @@ const Dashboard = () => {
                     </div>
 
                     <DollarMarktComponent />
-                    <PaymentComponent coinImage={moneda_dashboard} email={currentUser.email} />
+                    <PaymentComponent coinImage={moneda_dashboard} email={currentUser.email} userData={uid} />
 
                 </div>
             )

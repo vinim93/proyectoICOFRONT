@@ -18,7 +18,7 @@ import {light} from "@material-ui/core/styles/createPalette";
 const stripePromise = loadStripe('pk_test_51IUDGUD9LA3P3AmKfFAk32py2vEcZs0LEw7FWhU8Ebp1YgNqJK09LkJyo11b5dCXWk6ZluCo3JBmTTdbSTc61EKq00EqsKyM49');
 
 
-const CheckoutForm = ({currency, setCurrency, email}) => {
+const CheckoutForm = ({currency, setCurrency, email, userData}) => {
 
     const stripe = useStripe();
     const elements = useElements();
@@ -44,7 +44,8 @@ const CheckoutForm = ({currency, setCurrency, email}) => {
                 try {
                     const {data} = await axios.post('http://localhost:3001/api/checkout', {
                         id,
-                        amount: currency * 100
+                        amount: currency * 100,
+                        uid: userData
                     });
                     console.log(data);
 
@@ -148,7 +149,7 @@ const CheckoutForm = ({currency, setCurrency, email}) => {
     )
 }
 
-const PaymentSection = ({coinImage, email}) => {
+const PaymentSection = ({coinImage, email, userData}) => {
     const [currency, setCurrency] = useState(0);
 
     const dollarToSun = () => {
@@ -168,14 +169,14 @@ const PaymentSection = ({coinImage, email}) => {
                 </div>
             </div>
             <Elements stripe={stripePromise}>
-                <CheckoutForm currency={currency} setCurrency={setCurrency} email={email}/>
+                <CheckoutForm currency={currency} setCurrency={setCurrency} email={email} userData={userData}/>
             </Elements>
         </div>
 
     )
 }
 
-const PaymentComponent = ({coinImage, email}) => {
+const PaymentComponent = ({coinImage, email, userData}) => {
     return (
         <div className="modal fade" id="paymentModal" tabIndex="-1" role="dialog"
              aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -189,7 +190,7 @@ const PaymentComponent = ({coinImage, email}) => {
                     </div>
                     <div className="modal-body">
 
-                        <PaymentSection coinImage={coinImage} email={email}/>
+                        <PaymentSection coinImage={coinImage} email={email} userData={userData}/>
 
                     </div>
                 </div>
