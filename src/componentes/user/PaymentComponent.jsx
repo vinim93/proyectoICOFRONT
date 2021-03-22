@@ -27,7 +27,7 @@ const CheckoutForm = ({currency, setCurrency, email, userData}) => {
     const buyToken = async (e) => {
         e.preventDefault();
         setLoading(true);
-        if (currency > 0) {
+        if (currency > 1) {
             document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-invalid");
             document.getElementById("inlineFormInputGroupCurrency").classList.add("is-valid");
             const {error, paymentMethod} = await stripe.createPaymentMethod({
@@ -75,6 +75,12 @@ const CheckoutForm = ({currency, setCurrency, email, userData}) => {
                                 break;
                             case 'incorrect_number':
                                 swal("Datos incorrectos", "Verifica que los datos de tu tarjeta sean correctos, de ser así, comunicate con tu banco para resolver el problema!", "warning");
+                                break;
+                            case 'amount_too_small':
+                                swal("Monto muy pequeño", "El monto ingresado de compra es muy pequeño para poder ser procesado!", "warning");
+                                break;
+                            case 'parameter_invalid_integer':
+                                swal("Verifica el monto", "El monto debe tener centavos válidos!", "warning");
                                 break;
                         }
                     }
