@@ -2,7 +2,10 @@ import React from 'react';
 import monedag from "../../images/moneda.gif";
 import monedafinal from "../../images/monedafinal.png";
 import 'bootstrap/dist/css/bootstrap.css';
+
+
 import {useTranslation} from "react-i18next";
+import ParticlesBackground from './ParticlesBackground';
 
 
 const Banner = () => {
@@ -10,8 +13,16 @@ const Banner = () => {
     const { t } = useTranslation();
 
     return (
-        <div className="row fondogalaxy pl-5">
-            <div className=" col-lg-7 parte col-md-7   ">
+       <div className="fondogalaxy" >
+            <div className="position-absolute w-100  particles-cont">
+            <ParticlesBackground >   
+            </ParticlesBackground>
+        </div>
+           
+
+        <div className="row fondogalaxy pl-5 " >
+           
+            <div className=" col-lg-7 parte col-md-7" >
                 <p className="moneda1 text-lg-left ">
                     {t('Banner.Titulo.0')}
                     <p className="revo1">{t('Banner.Titulo.1')}</p>
@@ -38,6 +49,8 @@ const Banner = () => {
                 <img className="moneda   " loading="lazy" src={monedag}/>
 
             </div>
+           
+        </div>
         </div>
     );
 };
