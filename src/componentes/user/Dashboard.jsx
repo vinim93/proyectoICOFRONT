@@ -68,12 +68,12 @@ const Dashboard = () => {
                         </div>
 
                         <DollarMarktComponent />
-                        <PaymentComponent coinImage={moneda_dashboard} email={currentUser.email} userData={uid} />
+                        <PaymentComponent coinImage={moneda_dashboard} email={currentUser.email} name={userInfo.name} userData={uid} />
 
                     </div>
 
                     <div className="row mt-5">
-                        <PurchaseHistory />
+                        <PurchaseHistory uid={uid} />
                     </div>
                 </div>
 

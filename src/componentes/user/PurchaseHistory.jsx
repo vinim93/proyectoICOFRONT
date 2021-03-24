@@ -14,20 +14,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import axios from "axios";
 import {db} from "../config/firebase";
 
-function createData(name, calories, fat, carbs, protein) {
-    return {name, calories, fat, carbs, protein};
+function createData(id, tokens, price, datetime, cardDetails) {
+    return {id, tokens, price, datetime, cardDetails};
 }
-
-
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -56,11 +47,11 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-    {id: 'name', numeric: false, disablePadding: true, label: 'ID'},
-    {id: 'calories', numeric: true, disablePadding: false, label: 'Tokens'},
-    {id: 'fat', numeric: true, disablePadding: false, label: 'Precio (USD)'},
-    {id: 'carbs', numeric: true, disablePadding: false, label: 'Fecha'},
-    {id: 'protein', numeric: true, disablePadding: false, label: 'Forma de pago'},
+    {id: 'id', numeric: false, disablePadding: true, label: 'ID'},
+    {id: 'tokens', numeric: true, disablePadding: false, label: 'Tokens'},
+    {id: 'price', numeric: true, disablePadding: false, label: 'Precio (USD)'},
+    {id: 'datetime', numeric: true, disablePadding: false, label: 'Fecha'},
+    {id: 'cardDetails', numeric: true, disablePadding: false, label: 'Forma de pago'},
 ];
 
 function EnhancedTableHead(props) {
@@ -156,19 +147,6 @@ const EnhancedTableToolbar = (props) => {
                 </Typography>
             )}
 
-            {numSelected > 0 ? (
-                <Tooltip title="Delete">
-                    <IconButton aria-label="delete">
-                        <DeleteIcon/>
-                    </IconButton>
-                </Tooltip>
-            ) : (
-                <Tooltip title="Filter list">
-                    <IconButton aria-label="filter list">
-                        <FilterListIcon/>
-                    </IconButton>
-                </Tooltip>
-            )}
         </Toolbar>
     );
 };
@@ -201,18 +179,17 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function PurchaseHistory(callback, thisArg) {
+export default function PurchaseHistory({uid}) {
     const classes = useStyles();
     const [order, setOrder] = useState('asc');
-    const [orderBy, setOrderBy] = useState('calories');
+    const [orderBy, setOrderBy] = useState('tokens');
     const [selected, setSelected] = useState([]);
     const [page, setPage] = useState(0);
-    const [dense, setDense] = useState(false);
     const [rows, setRows] = useState([]);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
     useEffect(() => {
-        getData("zWUn8GyRbrM0YYfQTsDCG2i4cs92");
+        getData(uid);
     }, []);
 
     const getData = (id) => {
@@ -221,10 +198,10 @@ export default function PurchaseHistory(callback, thisArg) {
             let elements = [];
             querySnapshot.forEach((doc) => {
                 let id = doc.data().charges.data[0].id;
-                let tokens = "PENDING";
-                let price = doc.data().amount / 100;
-                let date = "PENDING";
-                let paymentMethod = doc.data().charges.data[0].payment_method_details.type;
+                let tokens = doc.data().tokens_number;
+                let price = "$" + doc.data().amount / 100;
+                let date = doc.data().date;
+                let paymentMethod = doc.data().charges.data[0].payment_method_details.card.network + " " + doc.data().charges.data[0].payment_method_details.type + " " +"*".repeat(12) + doc.data().charges.data[0].payment_method_details.card.last4;
                 elements.push(createData(id, tokens, price, date, paymentMethod));
             });
             setRows(elements);
@@ -239,19 +216,19 @@ export default function PurchaseHistory(callback, thisArg) {
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
-            const newSelecteds = rows.map((n) => n.name);
+            const newSelecteds = rows.map((n) => n.id);
             setSelected(newSelecteds);
             return;
         }
         setSelected([]);
     };
 
-    const handleClick = (event, name) => {
-        const selectedIndex = selected.indexOf(name);
+    const handleClick = (event, id) => {
+        const selectedIndex = selected.indexOf(id);
         let newSelected = [];
 
         if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, name);
+            newSelected = newSelected.concat(selected, id);
         } else if (selectedIndex === 0) {
             newSelected = newSelected.concat(selected.slice(1));
         } else if (selectedIndex === selected.length - 1) {
@@ -275,11 +252,8 @@ export default function PurchaseHistory(callback, thisArg) {
         setPage(0);
     };
 
-    const handleChangeDense = (event) => {
-        setDense(event.target.checked);
-    };
 
-    const isSelected = (name) => selected.indexOf(name) !== -1;
+    const isSelected = (id) => selected.indexOf(id) !== -1;
 
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
@@ -291,7 +265,7 @@ export default function PurchaseHistory(callback, thisArg) {
                     <Table
                         className={classes.table}
                         aria-labelledby="tableTitle"
-                        size={dense ? 'small' : 'medium'}
+                        size='medium'
                         aria-label="enhanced table"
                     >
                         <EnhancedTableHead
@@ -307,17 +281,17 @@ export default function PurchaseHistory(callback, thisArg) {
                             {stableSort(rows, getComparator(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => {
-                                    const isItemSelected = isSelected(row.name);
+                                    const isItemSelected = isSelected(row.id);
                                     const labelId = `enhanced-table-checkbox-${index}`;
 
                                     return (
                                         <TableRow
                                             hover
-                                            onClick={(event) => handleClick(event, row.name)}
+                                            onClick={(event) => handleClick(event, row.id)}
                                             role="checkbox"
                                             aria-checked={isItemSelected}
                                             tabIndex={-1}
-                                            key={row.name}
+                                            key={row.id}
                                             selected={isItemSelected}
                                         >
                                             <TableCell padding="checkbox">
@@ -327,17 +301,17 @@ export default function PurchaseHistory(callback, thisArg) {
                                                 />
                                             </TableCell>
                                             <TableCell component="th" id={labelId} scope="row" padding="none">
-                                                {row.name}
+                                                {row.id}
                                             </TableCell>
-                                            <TableCell align="right">{row.calories}</TableCell>
-                                            <TableCell align="right">{row.fat}</TableCell>
-                                            <TableCell align="right">{row.carbs}</TableCell>
-                                            <TableCell align="right">{row.protein}</TableCell>
+                                            <TableCell align="right">{row.tokens}</TableCell>
+                                            <TableCell align="right">{row.price}</TableCell>
+                                            <TableCell align="right">{row.datetime}</TableCell>
+                                            <TableCell align="right">{row.cardDetails}</TableCell>
                                         </TableRow>
                                     );
                                 })}
                             {emptyRows > 0 && (
-                                <TableRow style={{height: (dense ? 33 : 53) * emptyRows}}>
+                                <TableRow style={{height: 53 * emptyRows}}>
                                     <TableCell colSpan={6}/>
                                 </TableRow>
                             )}
@@ -354,10 +328,6 @@ export default function PurchaseHistory(callback, thisArg) {
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                 />
             </Paper>
-            <FormControlLabel
-                control={<Switch checked={dense} onChange={handleChangeDense}/>}
-                label="Dense padding"
-            />
         </div>
     );
 }

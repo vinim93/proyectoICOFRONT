@@ -18,7 +18,7 @@ import {light} from "@material-ui/core/styles/createPalette";
 const stripePromise = loadStripe('pk_test_51IUDGUD9LA3P3AmKfFAk32py2vEcZs0LEw7FWhU8Ebp1YgNqJK09LkJyo11b5dCXWk6ZluCo3JBmTTdbSTc61EKq00EqsKyM49');
 
 
-const CheckoutForm = ({currency, setCurrency, email, userData}) => {
+const CheckoutForm = ({currency, setCurrency, email, name, userData}) => {
 
     const stripe = useStripe();
     const elements = useElements();
@@ -27,7 +27,7 @@ const CheckoutForm = ({currency, setCurrency, email, userData}) => {
     const buyToken = async (e) => {
         e.preventDefault();
         setLoading(true);
-        if (currency > 1) {
+        if (currency >= 1) {
             document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-invalid");
             document.getElementById("inlineFormInputGroupCurrency").classList.add("is-valid");
             const {error, paymentMethod} = await stripe.createPaymentMethod({
@@ -98,6 +98,32 @@ const CheckoutForm = ({currency, setCurrency, email, userData}) => {
 
     }
 
+    const buyTokenWithOxxo = async() => {
+        const {data} = await axios.post('http://localhost:3001/create-payment-intent', {
+            id: "holaoxxo",
+            amount: currency,
+        });
+        console.log(data);
+        stripe.confirmOxxoPayment(
+            data.clientSecret,
+            {
+                payment_method: {
+                    billing_details: {
+                        name: name,
+                        email: email,
+                    },
+                },
+            }) // Stripe.js will open a modal to display the OXXO voucher to your customer
+            .then(function(result) {
+                // This promise resolves when the customer closes the modal
+                console.log("EL USUARIO CERRO EL MODAL");
+                if (result.error) {
+                    // Display error to your customer
+                    console.log(result.error);
+                }
+            });
+    }
+
     const typeCurrency = (value) => {
         setCurrency(value);
         if (value >= 1) {
@@ -110,52 +136,69 @@ const CheckoutForm = ({currency, setCurrency, email, userData}) => {
     }
 
     return (
-        <form onSubmit={buyToken}>
-            <div className="container">
-                <div className="row m-3">
-                    <div className="col-12">
-                        <div className="pl-0 pr-0 pl-lg-5 pr-lg-5">
-                            <div className="input-group pl-0 pr-0 pl-lg-5 pr-lg-5">
-                                <CurrencyInput
-                                    className="form-control"
-                                    id="inlineFormInputGroupCurrency"
-                                    name="input-name"
-                                    placeholder="Cantidad en dolares"
-                                    decimalsLimit={0}
-                                    prefix="$"
-                                    value={currency}
-                                    autoComplete={false}
-                                    onValueChange={(value) => typeCurrency(value)}
-                                />;
+
+        <>
+            <form onSubmit={buyToken}>
+                <div className="container">
+                    <div className="row m-3">
+                        <div className="col-12">
+                            <div className="pl-0 pr-0 pl-lg-5 pr-lg-5">
+                                <div className="input-group pl-0 pr-0 pl-lg-5 pr-lg-5">
+                                    <CurrencyInput
+                                        className="form-control"
+                                        id="inlineFormInputGroupCurrency"
+                                        name="input-name"
+                                        placeholder="Cantidad en dolares"
+                                        decimalsLimit={0}
+                                        prefix="$"
+                                        value={currency}
+                                        autoComplete={false}
+                                        onValueChange={(value) => typeCurrency(value)}
+                                    />;
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="row mt-5">
-                    <div className="col-12 pl-0 pr-0 pl-lg-5 pr-lg-5">
-                        <div className="pl-0 pr-0 pl-lg-5 pr-lg-5">
-                            <CardElement />
+                    <div className="row mt-5">
+                        <div className="col-12 pl-0 pr-0 pl-lg-5 pr-lg-5">
+                            <div className="pl-0 pr-0 pl-lg-5 pr-lg-5">
+                                <CardElement />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row mt-5">
+                        <div className="col-12">
+                            <button className="btn btn-lg btn-primary" disabled={loading} aria-pressed="false" role="button"
+                                    aria-disabled="true">
+                                {loading ? (
+                                    <div className="spinner-border text-light" role="status">
+                                        <span className="sr-only">Loading...</span>
+                                    </div>
+                                ) : "Pagar"}
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div className="row mt-5">
-                    <div className="col-12">
-                        <button className="btn btn-lg btn-primary" disabled={loading} aria-pressed="false" role="button"
-                                aria-disabled="true">
-                            {loading ? (
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                            ) : "Pagar"}
-                        </button>
-                    </div>
+            </form>
+
+            <div className="row mt-5">
+                <div className="col-12">
+                    <button className="btn btn-lg btn-primary" onClick={buyTokenWithOxxo} disabled={loading} aria-pressed="false" role="button"
+                            aria-disabled="true">
+                        {loading ? (
+                            <div className="spinner-border text-light" role="status">
+                                <span className="sr-only">Loading...</span>
+                            </div>
+                        ) : "Pagar con oxxo"}
+                    </button>
                 </div>
             </div>
-        </form>
+        </>
+
     )
 }
 
-const PaymentSection = ({coinImage, email, userData}) => {
+const PaymentSection = ({coinImage, email, name, userData}) => {
     const [currency, setCurrency] = useState(0);
 
     const dollarToSun = () => {
@@ -175,14 +218,14 @@ const PaymentSection = ({coinImage, email, userData}) => {
                 </div>
             </div>
             <Elements stripe={stripePromise}>
-                <CheckoutForm currency={currency} setCurrency={setCurrency} email={email} userData={userData}/>
+                <CheckoutForm currency={currency} setCurrency={setCurrency} email={email} name={name} userData={userData}/>
             </Elements>
         </div>
 
     )
 }
 
-const PaymentComponent = ({coinImage, email, userData}) => {
+const PaymentComponent = ({coinImage, email, name, userData}) => {
     return (
         <div className="modal fade" id="paymentModal" tabIndex="-1" role="dialog"
              aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -196,7 +239,7 @@ const PaymentComponent = ({coinImage, email, userData}) => {
                     </div>
                     <div className="modal-body">
 
-                        <PaymentSection coinImage={coinImage} email={email} userData={userData}/>
+                        <PaymentSection coinImage={coinImage} email={email} name={name} userData={userData}/>
 
                     </div>
                 </div>
