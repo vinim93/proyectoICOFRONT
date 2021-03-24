@@ -2,6 +2,8 @@ import React from 'react';
 import Candado from "../../images/candado.svg";
 import Mano from "../../images/mano_icon.svg";
 import Escudo from "../../images/escudo.svg";
+import Fade from 'react-reveal/Fade';
+import Jump from 'react-reveal/Jump';
 import {useTranslation} from "react-i18next";
 
 const Ventajas = () => {
@@ -30,6 +32,7 @@ const Ventajas = () => {
         <div className="row">
             {
                 ventajas.map((value, index) => (
+                    <Jump>
                     <div key={index} className="  col-md-4 ventajas-cuerpo d-none d-md-block">
                         <div className="col-12  d-flex justify-content-center mt-5  ">
                             <img src={value.icon} alt="FACIL" className="img-fluid"/>
@@ -41,7 +44,7 @@ const Ventajas = () => {
                             <h5>{value.description}</h5>
                         </div>
                     </div>
-                    
+                    </Jump>
                    
                 ))
             }
@@ -49,7 +52,9 @@ const Ventajas = () => {
             
                  
                  {ventajas.map((value, index)=>(
+                    
                       <div className={index%2===0 ?" ventajas-cuerpo-min p-0 d-flex d-md-none":" justify-content-end ventajas-cuerpo-min p-0  d-flex d-md-none"}>
+                           <Fade right>
                      <div key={index} className={index%2===0 ? "col-10 p-0 mt-3  ventajas-cuerpo-index d-flex   d-md-none":"ventajas-cuerpo-index2  p-0 col-10  mt-3    d-flex d-md-none"}>
                          <div className=" col-2">                  
                              <img src={value.icon} alt="FACIL" className="img-fluid  "/>                            
@@ -60,7 +65,9 @@ const Ventajas = () => {
                          </div>
                        
                      </div>
+                     </Fade>
                      </div>
+                    
                  ))}
              </div>
            

@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 
 import {useTranslation} from "react-i18next";
-import ParticlesBackground from './ParticlesBackground';
+import ParticlesBackground from './particlesbackground';
 
 
 const Banner = () => {
@@ -14,7 +14,7 @@ const Banner = () => {
 
     return (
        <div className="fondogalaxy" >
-            <div className="position-absolute w-100  particles-cont">
+            <div className="position-absolute  particles-cont">
             <ParticlesBackground >   
             </ParticlesBackground>
         </div>

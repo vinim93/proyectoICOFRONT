@@ -2,6 +2,9 @@ import React from 'react';
 import Depmason from "../../images/depmason.svg";
 import Imgpreg from "../../images/imgpreg.svg";
 import Depmenos from "../../images/depmenos.svg";
+import Fade from 'react-reveal/Fade';
+
+
 import {useTranslation} from 'react-i18next';
 
 const PreguntasFrecuentes = () => {
@@ -58,6 +61,7 @@ const PreguntasFrecuentes = () => {
                 {
                     items.map((value, index) => (
                         <div key={index}>
+                            <Fade left>
                             <p className="">
                                 <button className="btn btn-preg1" onClick={() => changeIcon(value.id)}
                                         type="button" data-toggle="collapse" data-target={"#"+value.id+"target"}
@@ -70,6 +74,7 @@ const PreguntasFrecuentes = () => {
                                     {value.text}
                                 </div>
                             </div>
+                            </Fade>
                         </div>
                     ))
                 }

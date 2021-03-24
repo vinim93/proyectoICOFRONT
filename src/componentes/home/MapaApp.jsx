@@ -11,6 +11,7 @@ import Boton2token from "../../images/boton2token.svg";
 import Boton3token from "../../images/boton3token.svg";
 import Boton4token from "../../images/boton4token.svg";
 import Boton5token from "../../images/boton5token.svg";
+import Fade from 'react-reveal/Fade';
 
 import {useTranslation} from 'react-i18next';
 
@@ -20,6 +21,7 @@ const MapaApp = () => {
 
     return (
         <>
+        <Fade left>
             <div className="row mapacon">
                 <div className="col-12">
                     <p className="dis-fondos">{t('MapaApp.Funding.Title')}</p>
@@ -152,6 +154,7 @@ const MapaApp = () => {
                 </div>
                 <p className=" constru-cartera ">¡{t('MapaApp.AppDownload.Footer')}!</p>
             </div>
+            </Fade>
         </>
     );
 };

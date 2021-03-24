@@ -3,6 +3,7 @@ import rectangulo1 from "../../images/rectangulo1.svg";
 import tecnologias from "../../images/tecnologias.svg";
 import 'bootstrap/dist/css/bootstrap.css';
 import contador from "./cuentaregresiva";
+import Zoom from 'react-reveal/Zoom';
 import { useTranslation } from 'react-i18next';
 
 
@@ -37,12 +38,13 @@ const Countdown = () => {
                     <p className="col-4">HARD CAP<br/> <p className="cap-min">$ 250 M USD</p></p>
 
                 </li>
-
+                      <Zoom>
                 <li className=" tecno ">
                    
                         <img src={tecnologias} className=" img-tecno  "/>
                    
                 </li>
+                </Zoom>
             </ul>
 
         </div>
