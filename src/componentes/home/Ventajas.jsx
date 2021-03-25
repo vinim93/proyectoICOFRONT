@@ -9,6 +9,7 @@ import {useTranslation} from "react-i18next";
 const Ventajas = () => {
 
     const { t } = useTranslation();
+    
 
     const ventajas = [
         {
@@ -54,7 +55,7 @@ const Ventajas = () => {
                  {ventajas.map((value, index)=>(
                     
                       <div className={index%2===0 ?" ventajas-cuerpo-min p-0 d-flex d-md-none":" justify-content-end ventajas-cuerpo-min p-0  d-flex d-md-none"}>
-                           <Fade right>
+                           <Fade  key={index} left={index%2===0 }else right>
                      <div key={index} className={index%2===0 ? "col-10 p-0 mt-3  ventajas-cuerpo-index d-flex   d-md-none":"ventajas-cuerpo-index2  p-0 col-10  mt-3    d-flex d-md-none"}>
                          <div className=" col-2">                  
                              <img src={value.icon} alt="FACIL" className="img-fluid  "/>                            

@@ -2,10 +2,11 @@ import React from 'react';
 import monedag from "../../images/moneda.gif";
 import monedafinal from "../../images/monedafinal.png";
 import 'bootstrap/dist/css/bootstrap.css';
-
+import Zoom from 'react-reveal/Zoom';
 
 import {useTranslation} from "react-i18next";
 import ParticlesBackground from './particlesbackground';
+import Fade from 'react-reveal/Fade';
 
 
 const Banner = () => {
@@ -21,7 +22,7 @@ const Banner = () => {
            
 
         <div className="row fondogalaxy pl-5 " >
-           
+        <Zoom top>
             <div className=" col-lg-7 parte col-md-7" >
                 <p className="moneda1 text-lg-left ">
                     {t('Banner.Titulo.0')}
@@ -44,11 +45,14 @@ const Banner = () => {
                 </p>
 
             </div>
+            </Zoom>
+            <Fade right>
             <div className=" col-lg-5 col-md-5 d-none col-sm-5 d-md-block   contenedor">
 
                 <img className="moneda   " loading="lazy" src={monedag}/>
 
             </div>
+            </Fade>
            
         </div>
         </div>

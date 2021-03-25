@@ -111,7 +111,7 @@ margin: 0px;
  .contenedor{
    
   width: 100vw!important;
-  
+  animation-delay:1s!important ;
     overflow: hidden;
 
  }
