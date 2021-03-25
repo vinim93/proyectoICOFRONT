@@ -61,7 +61,7 @@ const PreguntasFrecuentes = () => {
                 {
                     items.map((value, index) => (
                         <div key={index}>
-                            <Fade left>
+                            <Fade left cascade>
                             <p className="">
                                 <button className="btn btn-preg1" onClick={() => changeIcon(value.id)}
                                         type="button" data-toggle="collapse" data-target={"#"+value.id+"target"}

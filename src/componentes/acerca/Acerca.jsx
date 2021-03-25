@@ -17,6 +17,8 @@ import JOSS from '../../images/team/JOS.jpg';
 import CHRIS from '../../images/team/CHRIS.jpg';
 import MANU from '../../images/team/MANU.jpg';
 import CRIS from '../../images/team/CRIS.jpg';
+import Roll from 'react-reveal/Roll';
+
 
 
 const Acerca = () => {
@@ -127,6 +129,8 @@ const Acerca = () => {
 
     return (
         <div className="bg-light">
+            <Roll>
+
 
             <div className="container-fluid">
                 <div className="row mt-5 mb-5 pt-5 pb-5 pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5 bg-about2">
@@ -227,12 +231,13 @@ const Acerca = () => {
                     </div>
                 </div>
             </div>
-
+            </Roll>
             <div className="container-fluid">
                 <Footer/>
             </div>
 
 
+                                   
         </div>
 
 

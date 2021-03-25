@@ -996,8 +996,8 @@ height: 500.28px!important;
 
 
 .modal-backdrop {
-  z-index: 2!important;
-
+ 
+ 
 }
 
 
@@ -1026,6 +1026,7 @@ white-space: normal;
    white-space:normal;
    font-weight: normal;
    font-size: 25px;
+
    font-family: 'Josefin Sans' ;
    border-bottom: #025889 solid 10px;
   
@@ -1564,7 +1565,8 @@ text-align: center;
 
 }
 .modal-content{
-
+  position: static!important;
+  z-index: 3!important;
 border: none;
 }
 .modal-header{
@@ -1572,6 +1574,7 @@ border: none;
   border: none!important;
   font-family:'Lato';
   font-weight:bold!important;
+  
 }
 .modal-title{
   
@@ -1972,6 +1975,7 @@ font-family:'Lato';
    color: black;
  }
  .modal-sroll{
+  
   overflow:scroll!important;
  }
  input[type=radio] 
@@ -3127,8 +3131,11 @@ resize: none;
   }
 
   .fap-btn2{
+    position: relative;
     top: 40vw!important;
     left: -9vw;
+    z-index: 100;
+  ;
   }
   .fap-btn2 svg {
     left: -7vw!important;

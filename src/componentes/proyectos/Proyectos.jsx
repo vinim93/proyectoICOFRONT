@@ -14,6 +14,8 @@ import Engrane4 from "../../images/engrane4.svg";
 import Engrane5 from "../../images/engrane5.svg";
 import Engrane6 from "../../images/engrane6.svg";
 import Engrane7 from "../../images/engrane7.svg";
+import Zoom from 'react-reveal/Zoom';
+
 import {useTranslation} from 'react-i18next';
 
 const Proyectos = () => {
@@ -22,6 +24,7 @@ const Proyectos = () => {
 
     return (
         <div>
+            
             <div className="row">
                 <div className="col-12 sec6">
                     <span className="titulo6 ">{t('Projects.Title')}</span>
@@ -32,12 +35,15 @@ const Proyectos = () => {
                     <div className=" d-flex justify-content-start ">
                         <button className=" btn fap-btn2 " type="button" data-toggle="modal"
                                 data-target="#bd-example-modal-lg">
+                                   
                             <div className="modal fade bd-example-modal-lg" id="bd-example-modal-lg"
                                  data-backdrop="static" data-keyboard="false"
                                  tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                                  aria-hidden="true">
                                 <div className="modal-dialog modal-xl modal-dialog-centered">
+                                <Zoom>
                                     <div className="modal-content  modal-sym ">
+                                    
                                         <div className="modal-body row container-fluid ">
 
                                             <div className="col-12 col-xl-4">
@@ -57,11 +63,12 @@ const Proyectos = () => {
 
                                             </div>
                                         </div>
-
+                                        
                                     </div>
+                                    </Zoom>
                                 </div>
                             </div>
-
+                            
                             <img src={circulo1} className="fap-btn2-1" alt=""/>
                             <svg className="svg1" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                  width="70mm" height="70mm" viewBox="0 0 120 120">
@@ -188,6 +195,7 @@ const Proyectos = () => {
 
 
             </div>
+       
         </div>
     );
 };
