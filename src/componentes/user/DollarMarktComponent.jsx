@@ -35,7 +35,7 @@ const DollarMarktComponent = () => {
                     object["name"] = property;
                     object["conversion_to_dollar"] = JSONObject[property];
                     data.push(object);
-                    console.log(object);
+
                 }
             }
             setCryptoData(data);

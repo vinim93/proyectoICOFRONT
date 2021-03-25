@@ -152,7 +152,6 @@ const CheckoutForm = ({currency, setCurrency, email, name, userData}) => {
                                         decimalsLimit={0}
                                         prefix="$"
                                         value={currency}
-                                        autoComplete={false}
                                         onValueChange={(value) => typeCurrency(value)}
                                     />;
                                 </div>
