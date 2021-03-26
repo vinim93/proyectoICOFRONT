@@ -1,7 +1,7 @@
 const particlesConfig={
     particles: {
       number: {
-        value: 100,
+        value: 50,
         density: {
           enable: true,
           value_area: 800
@@ -29,7 +29,7 @@ const particlesConfig={
         value: 0.7,
         random: false,
         anim: {
-          enable: false,
+          enable: true,
           speed: 1,
           opacity_min: 0.1,
           sync: false
@@ -75,7 +75,7 @@ const particlesConfig={
           mode: "grab"
         },
         onclick: {
-          enable: false,
+          enable: true,
           mode: "push"
         },
         resize: true
@@ -99,7 +99,7 @@ const particlesConfig={
           duration: 0.4
         },
         push: {
-          particles_nb: 4
+          particles_nb: 3
         },
         remove: {
           particles_nb: 2

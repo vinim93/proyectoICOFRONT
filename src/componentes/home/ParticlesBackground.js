@@ -6,7 +6,7 @@ import Particles from 'react-particles-js';
 
 
 
-export default function ParticlesBackground() {
+export default function ParticleBackground() {
     return(
 
         <Particles params={particlesConfig}></Particles>

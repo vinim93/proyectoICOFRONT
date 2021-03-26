@@ -46,13 +46,13 @@ const Banner = () => {
 
             </div>
             </Zoom>
-            <Fade right>
+           
             <div className=" col-lg-5 col-md-5 d-none col-sm-5 d-md-block   contenedor">
 
-                <img className="moneda   " loading="lazy" src={monedag}/>
+                <img className="moneda   "  src={monedag}/>
 
             </div>
-            </Fade>
+            
            
         </div>
         </div>
