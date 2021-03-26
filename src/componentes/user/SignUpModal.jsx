@@ -20,7 +20,7 @@ const SignUpModal = () => {
 
 
     const sendReCAPTCHAValue = async (value) => {
-        const response = await axios.post("http://localhost:3001/api/recaptcha", {
+        const response = await axios.post("https://sunshine-ico.uc.r.appspot.com/api/recaptcha", {
             captchaValue: value
         });
 

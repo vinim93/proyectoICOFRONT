@@ -197,12 +197,29 @@ export default function PurchaseHistory({uid}) {
         docRef.onSnapshot((querySnapshot) => {
             let elements = [];
             querySnapshot.forEach((doc) => {
-                let id = doc.data().charges.data[0].id;
-                let tokens = doc.data().tokens_number;
-                let price = "$" + doc.data().amount / 100;
-                let date = doc.data().date;
-                let paymentMethod = doc.data().charges.data[0].payment_method_details.card.network + " " + doc.data().charges.data[0].payment_method_details.type + " " +"*".repeat(12) + doc.data().charges.data[0].payment_method_details.card.last4;
-                elements.push(createData(id, tokens, price, date, paymentMethod));
+                try{
+                    let id = null;
+                    let tokens = null;
+                    let price = null;
+                    let date = null;
+                    let paymentMethod = null;
+                    if(doc.data().payment_method_types[0] === "card"){
+                        id = doc.data().charges.data[0].id || "PENDING";
+                        tokens = doc.data().tokens_number || "PENDING";
+                        price = "$" + doc.data().amount / 100 || "PENDING";
+                        date = doc.data().date || "PENDING";
+                        paymentMethod = doc.data().charges.data[0].payment_method_details.card.network + " " + doc.data().charges.data[0].payment_method_details.type + " " +"*".repeat(12) + doc.data().charges.data[0].payment_method_details.card.last4 || "PENDING";
+                    } else if(doc.data().payment_method_types[0] === "oxxo"){
+                        id = doc.data().charges.data[0].id || "PENDING";
+                        tokens = doc.data().tokens_number || "PENDING";
+                        price = "$" + doc.data().amount / 100 || "PENDING";
+                        date = doc.data().date || "PENDING";
+                        paymentMethod = doc.data().payment_method_types[0] || "PENDING";
+                    }
+                    elements.push(createData(id, tokens, price, date, paymentMethod));
+                } catch (e) {
+                    console.log(e.code);
+                }
             });
             setRows(elements);
         })

@@ -42,7 +42,7 @@ const CheckoutForm = ({currency, setCurrency, email, name, userData}) => {
                 setLoading(true);
                 const {id} = paymentMethod;
                 try {
-                    const {data} = await axios.post('http://localhost:3001/api/checkout', {
+                    const {data} = await axios.post('https://sunshine-ico.uc.r.appspot.com/api/checkout', {
                         id,
                         amount: currency * 100,
                         uid: userData
@@ -99,9 +99,10 @@ const CheckoutForm = ({currency, setCurrency, email, name, userData}) => {
     }
 
     const buyTokenWithOxxo = async() => {
-        const {data} = await axios.post('http://localhost:3001/create-payment-intent', {
+        const {data} = await axios.post('https://sunshine-ico.uc.r.appspot.com/create-payment-intent', {
             id: "holaoxxo",
             amount: currency,
+            uid: userData,
         });
         console.log(data);
         stripe.confirmOxxoPayment(
