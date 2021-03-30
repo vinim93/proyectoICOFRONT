@@ -14,6 +14,7 @@ import axios from 'axios';
 import swal from "sweetalert";
 import CurrencyInput from 'react-currency-input-field';
 import {light} from "@material-ui/core/styles/createPalette";
+import Checkout from "./checkout/Checkout";
 
 const stripePromise = loadStripe('pk_test_51IUDGUD9LA3P3AmKfFAk32py2vEcZs0LEw7FWhU8Ebp1YgNqJK09LkJyo11b5dCXWk6ZluCo3JBmTTdbSTc61EKq00EqsKyM49');
 
@@ -193,6 +194,19 @@ const CheckoutForm = ({currency, setCurrency, email, name, userData}) => {
                     </button>
                 </div>
             </div>
+
+            <div className="row mt-5">
+                <div className="col-12">
+                    <button className="btn btn-lg btn-primary" onClick={buyTokenWithOxxo} disabled={loading} aria-pressed="false" role="button"
+                            aria-disabled="true">
+                        {loading ? (
+                            <div className="spinner-border text-light" role="status">
+                                <span className="sr-only">Loading...</span>
+                            </div>
+                        ) : "Pagar con oxxo"}
+                    </button>
+                </div>
+            </div>
         </>
 
     )
@@ -230,18 +244,14 @@ const PaymentComponent = ({coinImage, email, name, userData}) => {
         <div className="modal fade" id="paymentModal" tabIndex="-1" role="dialog"
              aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div className="modal-content">
+                <div className="modal-content py-0">
                     <div className="modal-header">
-                        <h5 className="modal-title-dashboard" id="exampleModalLabel">Compra de token</h5>
+                        <h5 className="modal-title-dashboard" id="exampleModalLabel">Proceso de pago</h5>
                         <button type="button" className="close-modal" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div className="modal-body">
-
-                        <PaymentSection coinImage={coinImage} email={email} name={name} userData={userData}/>
-
-                    </div>
+                    <Checkout uid={userData} email={email}/>
                 </div>
             </div>
         </div>
