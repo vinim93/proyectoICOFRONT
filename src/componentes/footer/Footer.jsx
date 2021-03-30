@@ -88,7 +88,7 @@ const Footer = () => {
                     </button>
 
                     {/*---------------------------------------------------------------------------------------modal*------------------------------*/}
-                    <div className="modal fade" id="staticBackdropcon" data-backdrop="static"
+                    <div className="modal fade modal-fullscreen" id="staticBackdropcon" data-backdrop="static"
                          data-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel"
                          aria-hidden="true">
                         <div className="modal-dialog modal-xl modal-dialog-centered">

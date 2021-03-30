@@ -5,6 +5,8 @@ import './App.css';
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import 'bootstrap/dist/css/bootstrap.css';
 
+import '../node_modules/bootstrap4-fs-modal/dist/css/history';
+
 import Navigation from "./componentes/navbar/Navigation";
 import {
     BrowserRouter,
