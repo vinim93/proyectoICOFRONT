@@ -28,7 +28,7 @@ const Banner = () => {
                     {t('Banner.Titulo.0')}
                     <p className="revo1">{t('Banner.Titulo.1')}</p>
                     <p className="tec1">{t('Banner.Titulo.2')}</p>
-                    <img className="moneda d-block  d-md-none" loading="lazy" src={monedafinal}/>
+                    <img className="moneda d-block  d-md-none"  src={monedafinal}/>
                     <p className="  hometext1   d-none  d-md-block">
                         {t('Banner.Texto')}
                     </p>
@@ -36,7 +36,7 @@ const Banner = () => {
                         {t('Banner.Texto')} </p>
                     <div className="text-lg-center text-left text-sm-center">
 
-                        <button className="btn btn-light-moon boton1 disabled " disabled="disabled" aria-disabled="true"
+                        <button className="btn btn-light-moon btn-link boton1 disabled " 
                                 role="button" data-toggle="modal">
                             {t('Banner.TextoBoton')}
                         </button>

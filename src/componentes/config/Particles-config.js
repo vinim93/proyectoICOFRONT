@@ -4,7 +4,7 @@ const particlesConfig={
         value: 50,
         density: {
           enable: true,
-          value_area: 800
+          value_area: 700
         }
       },
       color: {
@@ -47,7 +47,7 @@ const particlesConfig={
       },
       line_linked: {
         enable: true,
-        distance: 150,
+        distance: 100,
         color: "#ffffff",
         opacity: 0.4,
         width: 1
@@ -59,7 +59,7 @@ const particlesConfig={
         random: false,
         straight: false,
         out_mode: "out",
-        bounce: false,
+        bounce: true,
         attract: {
           enable: false,
           rotateX: 600,
@@ -68,7 +68,7 @@ const particlesConfig={
       }
     },
     interactivity: {
-      detect_on: "canvas",
+      detect_on: "window",
       events: {
         onhover: {
           enable: true,

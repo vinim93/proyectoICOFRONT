@@ -129,10 +129,11 @@ const Acerca = () => {
 
     return (
         <div className="bg-light">
-            <Roll>
+           
 
 
             <div className="container-fluid">
+            <Roll cascade>
                 <div className="row mt-5 mb-5 pt-5 pb-5 pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5 bg-about2">
                     <div className="col-12 mt-5 mb-5 pb-5">
                         <h1 className="text-center text-preview text-size-banner">
@@ -156,7 +157,7 @@ const Acerca = () => {
                     </div>
 
                 </div>
-
+                </Roll>
                 <div className="row mt-5 bg-light pb-5">
                     <div className="col-12 mt-5 bg-color-primary pt-4 pb-4">
                         <h1 className="text-size-title-differences text-center">{t('AboutSection.Differences.Title')}</h1>
@@ -228,10 +229,13 @@ const Acerca = () => {
                             <button className="btn bg-cards text-light btn-lg btn-block" data-toggle="modal"
                                     data-target="#staticBackdropcon">{t('AboutSection.ButtonText')}</button>
                         </div>
+                        
                     </div>
+                    
                 </div>
+              
             </div>
-            </Roll>
+            
             <div className="container-fluid">
                 <Footer/>
             </div>

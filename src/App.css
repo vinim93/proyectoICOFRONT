@@ -80,16 +80,22 @@ margin: 0px;
     overflow: hidden;
     width: 101%;
     height: 1600px;
-      z-index: 1;
+      z-index: 0;
     }
 
    #tsparticles{
 
-     z-index: 3!important;
+     z-index: 0!important;
      height: 1600px;
     
    }
-  
+   .parte{
+        
+    z-index: 1!important;
+   line-height: normal;
+   pointer-events: !important;
+   
+  }
    
  .moneda{ 
   position: relative!important;
@@ -115,15 +121,16 @@ margin: 0px;
   width: 20vw!important;
   animation-delay:1s!important ;
     overflow: hidden;
-    z-index: unset;
+    z-index: 1!important;
+    
 
  }
  
  .moneda1{
-z-index: 1!important;
+z-index: 10!important;
    position: relative;
   filter: drop-shadow(7px 13px 9px rgba(0, 0, 0, 1));
-  
+ 
   font-size: 4.5vw;
    margin-top: 100px;
    font-family: 'Eras Demi ITC';
@@ -211,7 +218,10 @@ margin-left: 1vw!important;
   background:-webkit-linear-gradient(to right, #ffffff, #ffefba);
   background:linear-gradient(to right, #ffffff, #ffefba );
   color: #fff;
-  border:3px solid #eee
+  border:3px solid #eee;
+  cursor: pointer;
+  z-index:1!important ;
+  pointer-events: ;
   
 }
 
@@ -2362,7 +2372,7 @@ margin-top: 3vw;
 }
 #tsparticles{
 height: 100vw;
-  z-index: 3!important;
+  z-index: 1!important;
      
  
 }
@@ -2406,6 +2416,7 @@ height: 100vw;
         
         z-index: 1!important;
        line-height: normal;
+       pointer-events: !important;
        
       }
       .boton1{
