@@ -12,8 +12,7 @@ import PaymentForm from './PaymentForm';
 import Review from './Review';
 import './css/style.css';
 import TokenAmount from "./TokenAmount";
-import {CardElement} from "@stripe/react-stripe-js";
-import axios from "axios";
+import DONE from './../../../images/done.png';
 import swal from "sweetalert";
 
 const steps = ['Token', 'Datos personales', 'Detalles del pago', 'Revisa tu compra'];
@@ -21,7 +20,7 @@ const steps = ['Token', 'Datos personales', 'Detalles del pago', 'Revisa tu comp
 export default function Checkout({uid, email}) {
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
-    const [currency, setCurrency] = useState(0);
+    const [currency, setCurrency] = useState(null);
 
     const [name, setName] = useState("");
     const [lastname, setLastname] = useState("");
@@ -33,6 +32,7 @@ export default function Checkout({uid, email}) {
     const [loading, setLoading] = useState(false);
     const [paymentID, setPaymentID] = useState("");
     const [paymentDone, setPaymentDone] = useState(false);
+    const [currencyType, setCurrencyType] = useState('USD');
     //SI TU EDITOR DE TEXTO TE INDICA QUE DICHOS ESTADOS NO ESTAN SIENDO UTILIZADOS REVISA LAS 2 FUNCIONES DE ABAJO
 
     const setStates = (state, value) => {
@@ -43,28 +43,42 @@ export default function Checkout({uid, email}) {
         return eval(state);
     }
 
-
     const getStepContent = (step) => {
         switch (step) {
             case 0:
-                return <TokenAmount currency={currency} setCurrency={setCurrency}/>;
+                return <TokenAmount currency={currency} setCurrency={setCurrency} setStates={setStates} getStates={getStates}/>;
             case 1:
                 return <AddressForm setStates={setStates} getStates={getStates} />;
             case 2:
                 return <PaymentForm/>;
             case 3:
-                return <Review setPaymentDone={setPaymentDone} getStates={getStates} uid={uid} activeStep={activeStep} handleNext={handleNext} email={email}/>;
+                return <Review getStates={getStates} uid={uid} handleNext={handleNext} email={email}/>;
             default:
                 throw new Error('Unknown step');
         }
     }
 
-    const handleNext = () => {
-        console.log(activeStep);
+    const handleNext = (payment = false) => {
+        console.log("SE EJECUTA handleNext()");
         switch (activeStep){
             case 0:
-                if(currency >= 1){
-                    setActiveStep(activeStep + 1);
+                console.log("ES EL CERO");
+                console.log(currencyType);
+                if(currencyType === "USD"){
+                    console.log("DOLAR");
+                    if(currency >= 1){
+                        setActiveStep(activeStep + 1);
+                    } else {
+                        swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
+                    }
+                } else if(currencyType === "MX"){
+                    console.log("mexicano");
+                    if(currency >= 20.5){
+                        setActiveStep(activeStep + 1);
+                    } else {
+                        console.log("JAJA");
+                        swal("Monto invalido", "Debes pagar la mínima cantidad de $20.5 MXN!", "warning");
+                    }
                 }
                 break;
             case 1:
@@ -76,12 +90,8 @@ export default function Checkout({uid, email}) {
                 setActiveStep(activeStep + 1);
                 break;
             case 3:
-                console.log(paymentID);
-                if(paymentDone){
-                    console.log("PAGADO");
+                if(payment){
                     setActiveStep(activeStep + 1);
-                } else {
-                    console.log("NO PAGADO");
                 }
                 break;
         }
@@ -108,11 +118,11 @@ export default function Checkout({uid, email}) {
                             {activeStep === steps.length ? (
                                 <React.Fragment>
                                     <Typography variant="h5" gutterBottom>
-                                        Thank you for your order.
+                                        ¡Gracias por tu compra!
                                     </Typography>
+                                    <img src={DONE} className="img-fluid mb-3" width="13%" alt="PAGO REALIZADO"/>
                                     <Typography variant="subtitle1">
-                                        Your order number is #2001539. We have emailed your order confirmation, and will
-                                        send you an update when your order has shipped.
+                                        Hemos enviado tu comprobante de pago al correo electrónico que tienes registrado
                                     </Typography>
                                 </React.Fragment>
                             ) : (

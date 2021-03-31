@@ -11,18 +11,30 @@ import axios from "axios";
 import swal from "sweetalert";
 import Button from '@material-ui/core/Button';
 import {act} from "@testing-library/react";
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 const stripePromise = loadStripe('pk_test_51IUDGUD9LA3P3AmKfFAk32py2vEcZs0LEw7FWhU8Ebp1YgNqJK09LkJyo11b5dCXWk6ZluCo3JBmTTdbSTc61EKq00EqsKyM49');
 
-const CheckoutForm = ({setPaymentDone, setPaymentDone2, getStates, uid, activeStep, handleNext, email}) => {
+const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
+    const classes = useStyles();
     const stripe = useStripe();
     const elements = useElements();
     const [loading, setLoading] = useState(false);
+    const [open, setOpen] = React.useState(false);
+    const handleClose = () => {
+        setOpen(false);
+    };
+    const handleToggle = () => {
+        setOpen(!open);
+    };
 
     const buyToken = async (e) => {
         e.preventDefault();
         setLoading(true);
         if (getStates("currency") >= 1) {
+            setOpen(true);
             //document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-invalid");
             //document.getElementById("inlineFormInputGroupCurrency").classList.add("is-valid");
             const {error, paymentMethod} = await stripe.createPaymentMethod({
@@ -36,22 +48,22 @@ const CheckoutForm = ({setPaymentDone, setPaymentDone2, getStates, uid, activeSt
             if (!error) {
                 setLoading(true);
                 const {id} = paymentMethod;
+                console.log("TIPO DE DIVISA = " + (currencyType.trim()==="MX" ? "MXN" : "USD"));
                 try {
                     const {data} = await axios.post('https://sunshine-ico.uc.r.appspot.com/api/checkout', {
                         id,
                         amount: getStates("currency") * 100,
-                        uid
+                        uid,
+                        currency: (currencyType.trim()==="MX" ? "MXN" : "USD")
                     });
                     console.log(data);
                     console.log(getStates("paymentDone"))
                     if (data.codeResponse === 'succeeded') {
-                        swal("Compra realizada", "Felicidades, tu compra se realizó con éxito!", "success");
-                        setPaymentDone(true);
-                        handleNext();
+                        handleNext(true);
                         console.log(getStates("paymentDone"));
-                        //setCurrency(0);
                     } else if (data.codeResponse.code === 'card_declined') {
-                        setPaymentDone(false);
+                        setOpen(false);
+                        handleNext(false);
                         switch (data.codeResponse.decline_code) {
                             case 'generic_decline':
                                 swal("Tarjeta rechazada", "Comunicate con tu banco para resolver el problema!", "warning");
@@ -65,7 +77,8 @@ const CheckoutForm = ({setPaymentDone, setPaymentDone2, getStates, uid, activeSt
                                 break;
                         }
                     } else {
-                        setPaymentDone(false);
+                        setOpen(false);
+                        handleNext(false);
                         switch (data.codeResponse.code) {
                             case 'expired_card':
                                 swal("Tarjeta expirada", "Parece que tu tarjeta expiró, comunicate con tu banco!", "warning");
@@ -85,17 +98,20 @@ const CheckoutForm = ({setPaymentDone, setPaymentDone2, getStates, uid, activeSt
                         }
                     }
                 } catch (error) {
-                    setPaymentDone(false);
+                    setOpen(false);
+                    handleNext(false);
                     console.log("MENSAJE");
                     console.log(error);
                 }
                 setLoading(false);
             }
+            setOpen(false);
         } else {
             //document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-valid");
             //document.getElementById("inlineFormInputGroupCurrency").classList.add("is-invalid");
             setLoading(false);
         }
+
     }
 
     return (
@@ -118,6 +134,10 @@ const CheckoutForm = ({setPaymentDone, setPaymentDone2, getStates, uid, activeSt
                         },
                     }}/>
 
+                    <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
+                        <CircularProgress color="inherit" />
+                    </Backdrop>
+
 
                 </Grid>
                 <Grid item xs={12}>
@@ -130,12 +150,10 @@ const CheckoutForm = ({setPaymentDone, setPaymentDone2, getStates, uid, activeSt
     );
 }
 
-export default function Review({setPaymentDone, getStates, uid, activeStep, handleNext, email}) {
+export default function Review({getStates, uid, handleNext, email}) {
     const classes = useStyles();
-    const [paymentID2, setPaymentID2] = useState("");
-    const [paymentDone2, setPaymentDone2] = useState(false);
     const products = [
-        {name: 'Sun Token', desc: getStates("currency"), price: getStates("currency") + ' USD'},
+        {name: 'Sun Token', desc: (getStates("currencyType") === "MX" ? getStates("currency") * 0.049 : getStates("currency")), price: getStates("currency") + ' ' + (getStates("currencyType") === "MX" ? "MXN" : "USD")},
     ];
     const addresses = [getStates("address"), getStates("city"), getStates("stateLocation"), getStates("zip"), getStates("country")];
     const payments = [
@@ -172,7 +190,7 @@ export default function Review({setPaymentDone, getStates, uid, activeStep, hand
             <Grid container spacing={2}>
                 <Grid item xs={12} className="mt-3 mb-3">
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm setPaymentDone={setPaymentDone} setPaymentDone2={setPaymentDone2} getStates={getStates} uid={uid} activeStep={activeStep} handleNext={handleNext} email={email}/>
+                        <CheckoutForm getStates={getStates} uid={uid} handleNext={handleNext} email={email} currencyType={getStates("currencyType")}/>
                     </Elements>
                 </Grid>
             </Grid>
@@ -189,5 +207,9 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         marginTop: theme.spacing(2),
+    },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
     },
 }));
