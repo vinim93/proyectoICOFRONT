@@ -22,7 +22,8 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
     const stripe = useStripe();
     const elements = useElements();
     const [loading, setLoading] = useState(false);
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [cardComplete, setCardComplete] = useState(false);
     const handleClose = () => {
         setOpen(false);
     };
@@ -32,94 +33,103 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
 
     const buyToken = async (e) => {
         e.preventDefault();
-        setLoading(true);
-        if (getStates("currency") >= 1) {
-            setOpen(true);
-            //document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-invalid");
-            //document.getElementById("inlineFormInputGroupCurrency").classList.add("is-valid");
-            const {error, paymentMethod} = await stripe.createPaymentMethod({
-                type: 'card',
-                card: elements.getElement(CardElement),
-                billing_details: {
-                    email
-                }
-            });
-
-            if (!error) {
-                setLoading(true);
-                const {id} = paymentMethod;
-                console.log("TIPO DE DIVISA = " + (currencyType.trim()==="MX" ? "MXN" : "USD"));
-                try {
-                    const {data} = await axios.post('https://sunshine-ico.uc.r.appspot.com/api/checkout', {
-                        id,
-                        amount: getStates("currency") * 100,
-                        uid,
-                        currency: (currencyType.trim()==="MX" ? "MXN" : "USD")
-                    });
-                    console.log(data);
-                    console.log(getStates("paymentDone"))
-                    if (data.codeResponse === 'succeeded') {
-                        handleNext(true);
-                        console.log(getStates("paymentDone"));
-                    } else if (data.codeResponse.code === 'card_declined') {
-                        setOpen(false);
-                        handleNext(false);
-                        switch (data.codeResponse.decline_code) {
-                            case 'generic_decline':
-                                swal("Tarjeta rechazada", "Comunicate con tu banco para resolver el problema!", "warning");
-                                break;
-                            case 'insufficient_funds':
-                                swal("Tarjeta rechazada", "Parece que tu tarjeta no tiene fondos suficientes!", "warning");
-                                break;
-                            case 'lost_card':
-                            case 'stolen_card':
-                                swal("Tarjeta rechazada", "Parece que tu tarjeta tiene reporte de robo, comunicate con tu banco para resolver el problema!", "warning");
-                                break;
-                        }
-                    } else {
-                        setOpen(false);
-                        handleNext(false);
-                        switch (data.codeResponse.code) {
-                            case 'expired_card':
-                                swal("Tarjeta expirada", "Parece que tu tarjeta expiró, comunicate con tu banco!", "warning");
-                                break;
-                            case 'incorrect_cvc':
-                                swal("CVC Incorrecto", "Revisa el código CVC de tu tarjeta e intentalo de nuevo, de lo contrario, comunicate con tu banco!", "warning");
-                                break;
-                            case 'incorrect_number':
-                                swal("Datos incorrectos", "Verifica que los datos de tu tarjeta sean correctos, de ser así, comunicate con tu banco para resolver el problema!", "warning");
-                                break;
-                            case 'amount_too_small':
-                                swal("Monto muy pequeño", "El monto ingresado de compra es muy pequeño para poder ser procesado!", "warning");
-                                break;
-                            case 'parameter_invalid_integer':
-                                swal("Verifica el monto", "El monto debe tener centavos válidos!", "warning");
-                                break;
+        if(cardComplete){
+            setLoading(true);
+            if (getStates("currency") >= 1) {
+                setOpen(true);
+                //document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-invalid");
+                //document.getElementById("inlineFormInputGroupCurrency").classList.add("is-valid");
+                const {error, paymentMethod} = await stripe.createPaymentMethod({
+                    type: 'card',
+                    card: elements.getElement(CardElement),
+                    billing_details: {
+                        email,
+                        name: "ALGUNNOMBRE",
+                        address: {
+                            city: "ESTADO1",
+                            country: "PAIS1",
+                            state: "ESTADO2"
                         }
                     }
-                } catch (error) {
-                    setOpen(false);
-                    handleNext(false);
-                    console.log("MENSAJE");
-                    console.log(error);
+                });
+
+                if (!error) {
+                    setLoading(true);
+                    const {id} = paymentMethod;
+                    console.log("TIPO DE DIVISA = " + (currencyType.trim()==="MX" ? "MXN" : "USD"));
+                    try {
+                        const {data} = await axios.post('https://sunshine-ico.uc.r.appspot.com/api/checkout', {
+                            id,
+                            amount: getStates("currency") * 100,
+                            uid,
+                            currency: (currencyType.trim()==="MX" ? "MXN" : "USD")
+                        });
+                        console.log(data);
+                        console.log(getStates("paymentDone"))
+                        if (data.codeResponse === 'succeeded') {
+                            handleNext(true);
+                            console.log(getStates("paymentDone"));
+                        } else if (data.codeResponse.code === 'card_declined') {
+                            setOpen(false);
+                            handleNext(false);
+                            switch (data.codeResponse.decline_code) {
+                                case 'generic_decline':
+                                    swal("Tarjeta rechazada", "Comunicate con tu banco para resolver el problema!", "warning");
+                                    break;
+                                case 'insufficient_funds':
+                                    swal("Tarjeta rechazada", "Parece que tu tarjeta no tiene fondos suficientes!", "warning");
+                                    break;
+                                case 'lost_card':
+                                case 'stolen_card':
+                                    swal("Tarjeta rechazada", "Parece que tu tarjeta tiene reporte de robo, comunicate con tu banco para resolver el problema!", "warning");
+                                    break;
+                            }
+                        } else {
+                            setOpen(false);
+                            handleNext(false);
+                            switch (data.codeResponse.code) {
+                                case 'expired_card':
+                                    swal("Tarjeta expirada", "Parece que tu tarjeta expiró, comunicate con tu banco!", "warning");
+                                    break;
+                                case 'incorrect_cvc':
+                                    swal("CVC Incorrecto", "Revisa el código CVC de tu tarjeta e intentalo de nuevo, de lo contrario, comunicate con tu banco!", "warning");
+                                    break;
+                                case 'incorrect_number':
+                                    swal("Datos incorrectos", "Verifica que los datos de tu tarjeta sean correctos, de ser así, comunicate con tu banco para resolver el problema!", "warning");
+                                    break;
+                                case 'amount_too_small':
+                                    swal("Monto muy pequeño", "El monto ingresado de compra es muy pequeño para poder ser procesado!", "warning");
+                                    break;
+                                case 'parameter_invalid_integer':
+                                    swal("Verifica el monto", "El monto debe tener centavos válidos!", "warning");
+                                    break;
+                            }
+                        }
+                    } catch (error) {
+                        setOpen(false);
+                        handleNext(false);
+                        console.log("MENSAJE");
+                        console.log(error);
+                    }
+                    setLoading(false);
                 }
+                setOpen(false);
+            } else {
+                //document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-valid");
+                //document.getElementById("inlineFormInputGroupCurrency").classList.add("is-invalid");
                 setLoading(false);
             }
-            setOpen(false);
-        } else {
-            //document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-valid");
-            //document.getElementById("inlineFormInputGroupCurrency").classList.add("is-invalid");
-            setLoading(false);
         }
 
     }
+
 
     return (
         <form onSubmit={buyToken}>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
 
-                    <CardElement options={{
+                    <CardElement onReady={e => console.log("LISTO STRIPE")} onChange={e => setCardComplete(e.complete)} options={{
                         style: {
                             base: {
                                 fontSize: '17px',

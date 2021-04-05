@@ -65,19 +65,23 @@ export default function Checkout({uid, email}) {
                 console.log("ES EL CERO");
                 console.log(currencyType);
                 if(currencyType === "USD"){
-                    console.log("DOLAR");
                     if(currency >= 1){
                         setActiveStep(activeStep + 1);
                     } else {
                         swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
                     }
                 } else if(currencyType === "MX"){
-                    console.log("mexicano");
                     if(currency >= 20.5){
                         setActiveStep(activeStep + 1);
                     } else {
                         console.log("JAJA");
                         swal("Monto invalido", "Debes pagar la mínima cantidad de $20.5 MXN!", "warning");
+                    }
+                } else if (currencyType === "SUN"){
+                    if(currency >= 1){
+                        setActiveStep(activeStep + 1);
+                    } else {
+                        swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
                     }
                 }
                 break;

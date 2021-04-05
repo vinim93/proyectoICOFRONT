@@ -20,12 +20,17 @@ const Dashboard = () => {
     const history = useHistory();
 
     const getUserData = (id) => {
-        let docRef = db.collection('credentials').doc(id);
-        docRef.onSnapshot(doc => {
-            if(doc.exists){
-                setUserInfo(doc.data());
-            }
-        })
+        try{
+            let docRef = db.collection('credentials').doc(id);
+            docRef.onSnapshot(doc => {
+                if(doc.exists){
+                    setUserInfo(doc.data());
+                }
+            })
+        } catch (e) {
+            console.log("Dashboard.jsx - getUserData()" + e);
+        }
+
     }
 
 
@@ -42,6 +47,7 @@ const Dashboard = () => {
             setSigninEmail("");
             history.push("/Home");
             setLogged(false);
+            console.log("useEffect de Dashboard= " + e);
         }
     },[]);
 
