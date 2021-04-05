@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect, Component } from 'react';
+import ReactDOM from "react-dom";
 import monedag from "../../images/moneda.gif";
 import monedafinal from "../../images/monedafinal.png";
 import 'bootstrap/dist/css/bootstrap.css';
@@ -8,14 +9,21 @@ import {useTranslation} from "react-i18next";
 import ParticlesBackground from './particlesbackground';
 import Fade from 'react-reveal/Fade';
 
-
-const Banner = () => {
-
+const Banner  = () => {
+    useEffect(() => {
+        <ParticlesBackground />   
+    }, []);
+    
+    
+    
+   
     const { t } = useTranslation();
 
     return (
        <div className="fondogalaxy" >
             <div className="position-absolute  particles-cont">
+          
+
             <ParticlesBackground >   
             </ParticlesBackground>
         </div>

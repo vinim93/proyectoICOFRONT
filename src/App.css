@@ -69,10 +69,10 @@ margin: 0px;
  }
  .fondogalaxy{
    
-   background-image:url("./images/fondogalaxy.svg")!important;
+   
    background-size:cover;
    background-position:top;
-  
+   background: linear-gradient(to bottom,#043361, #000000);
    background-repeat:no-repeat;
    
    }
@@ -221,7 +221,6 @@ margin-left: 1vw!important;
   border:3px solid #eee;
   cursor: pointer;
   z-index:1!important ;
-  pointer-events: ;
   
 }
 
@@ -636,7 +635,7 @@ font-family: "Josefin Sans";
   background-size: contain;
   background-position:top;
   background-repeat: no-repeat;
-  background-color: white!important;
+
   font-style: normal;
   font-family:'Lucida Sans'!important;  
   height: 2px!important;
@@ -1576,6 +1575,7 @@ text-align: center;
 
 .modalfootcont{
   background-image:url("./images/fondogalaxy.png")!important;
+  
   background-size:cover;
   
   background-position:center;

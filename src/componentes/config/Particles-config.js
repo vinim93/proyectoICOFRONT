@@ -47,9 +47,9 @@ const particlesConfig={
       },
       line_linked: {
         enable: true,
-        distance: 100,
+        distance: 150,
         color: "#ffffff",
-        opacity: 0.4,
+        opacity: 0.8,
         width: 1
       },
       move: {
@@ -58,8 +58,8 @@ const particlesConfig={
         direction: "none",
         random: false,
         straight: false,
-        out_mode: "out",
-        bounce: true,
+        out_mode: "bounce",
+        bounce: false,
         attract: {
           enable: false,
           rotateX: 600,
@@ -68,7 +68,7 @@ const particlesConfig={
       }
     },
     interactivity: {
-      detect_on: "window",
+      detect_on: "window",/*aqui  por defecto tiene canvas*/
       events: {
         onhover: {
           enable: true,
@@ -82,7 +82,7 @@ const particlesConfig={
       },
       modes: {
         grab: {
-          distance: 400,
+          distance: 200,
           line_linked: {
             opacity: 1
           }
