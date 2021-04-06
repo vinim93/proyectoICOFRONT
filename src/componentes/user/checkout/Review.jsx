@@ -44,13 +44,14 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                     card: elements.getElement(CardElement),
                     billing_details: {
                         email,
-                        name: "ALGUNNOMBRE",
+                        name: getStates('name') + " " + getStates('lastname'),
                         address: {
-                            city: "ESTADO1",
-                            country: "PAIS1",
-                            state: "ESTADO2"
+                            state: getStates('stateLocation'),
+                            country: getStates('country'),
+                            city: getStates('city'),
+                            line1: getStates('address')
                         }
-                    }
+                }
                 });
 
                 if (!error) {
