@@ -6,7 +6,7 @@ import CREDIT from './../../../images/credit_card.png'
 import OXXO from './../../../images/store.png';
 import Link from '@material-ui/core/Link';
 
-export default function PaymentForm() {
+export default function PaymentForm({handleNext}) {
 
 
     return (
@@ -19,7 +19,7 @@ export default function PaymentForm() {
 
                 <Grid item xs={12} md={12}>
 
-                    <Link onClick={() => console.log("hey")} style={{cursor: "pointer", textDecoration: "none"}}>
+                    <Link onClick={() => handleNext(false, "card")} style={{cursor: "pointer", textDecoration: "none"}}>
                         <Paper elevation={5}>
                             <img src={CREDIT} className="img-fluid" width="10%" alt=""/>
                             <Typography variant="h6">Tarjeta crédito / débito</Typography>
@@ -29,7 +29,7 @@ export default function PaymentForm() {
                 </Grid>
 
                 <Grid item xs={12} md={12}>
-                    <Link onClick={() => console.log("hey")} style={{cursor: "pointer", textDecoration: "none"}}>
+                    <Link onClick={() => handleNext(false, "oxxo")} style={{cursor: "pointer", textDecoration: "none"}}>
                         <Paper elevation={5}>
                             <img src={OXXO} className="img-fluid" width="10%" alt=""/>
                             <Typography variant="h6">Pago en oxxo</Typography>

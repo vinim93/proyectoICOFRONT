@@ -181,8 +181,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PurchaseHistory({uid}) {
     const classes = useStyles();
-    const [order, setOrder] = useState('asc');
-    const [orderBy, setOrderBy] = useState('tokens');
+    const [order, setOrder] = useState('desc');
+    const [orderBy, setOrderBy] = useState('');
     const [selected, setSelected] = useState([]);
     const [page, setPage] = useState(0);
     const [rows, setRows] = useState([]);
@@ -192,9 +192,24 @@ export default function PurchaseHistory({uid}) {
         getData(uid);
     }, []);
 
+    const timeConverter = (UNIX_timestamp) => {
+        let a = new Date(UNIX_timestamp * 1000);
+        let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        let year = a.getFullYear();
+        let month = months[a.getMonth()];
+        let date = a.getDate();
+        let hour = a.getHours();
+        let min = a.getMinutes();
+        let sec = a.getSeconds();
+        let time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+        return time;
+    }
+
     const getData = (id) => {
         let docRef = db.collection('credentials').doc(id).collection('transactions');
-        docRef.onSnapshot((querySnapshot) => {
+        docRef
+            .orderBy("dateField", 'desc')
+            .onSnapshot((querySnapshot) => {
             let elements = [];
             querySnapshot.forEach((doc) => {
                 try{
@@ -204,16 +219,20 @@ export default function PurchaseHistory({uid}) {
                     let date = null;
                     let paymentMethod = null;
                     if(doc.data().payment_method_types[0] === "card"){
+                        if(doc.data().currency === "usd"){
+                            price = "$" + doc.data().amount / 100 || "PENDING";
+                        } else if(doc.data().currency === "mxn"){
+                            price = "$" + (doc.data().amount / 100) * 0.049 || "PENDING";
+                        }
                         id = doc.data().charges.data[0].id || "PENDING";
                         tokens = doc.data().tokens_number || "PENDING";
-                        price = "$" + doc.data().amount / 100 || "PENDING";
-                        date = doc.data().date || "PENDING";
+                        date = timeConverter(doc.data().created) || "PENDING";
                         paymentMethod = doc.data().charges.data[0].payment_method_details.card.network + " " + doc.data().charges.data[0].payment_method_details.type + " " +"*".repeat(12) + doc.data().charges.data[0].payment_method_details.card.last4 || "PENDING";
                     } else if(doc.data().payment_method_types[0] === "oxxo"){
                         id = doc.data().charges.data[0].id || "PENDING";
                         tokens = doc.data().tokens_number || "PENDING";
                         price = "$" + doc.data().amount / 100 || "PENDING";
-                        date = doc.data().date || "PENDING";
+                        date = timeConverter(doc.data().created) || "PENDING";
                         paymentMethod = doc.data().payment_method_types[0] || "PENDING";
                     }
                     elements.push(createData(id, tokens, price, date, paymentMethod));

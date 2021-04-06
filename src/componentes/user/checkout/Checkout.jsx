@@ -50,7 +50,7 @@ export default function Checkout({uid, email}) {
             case 1:
                 return <AddressForm setStates={setStates} getStates={getStates} />;
             case 2:
-                return <PaymentForm/>;
+                return <PaymentForm handleNext={handleNext}/>;
             case 3:
                 return <Review getStates={getStates} uid={uid} handleNext={handleNext} email={email}/>;
             default:
@@ -58,7 +58,7 @@ export default function Checkout({uid, email}) {
         }
     }
 
-    const handleNext = (payment = false) => {
+    const handleNext = (payment = false, paymentOption = "") => {
         console.log("SE EJECUTA handleNext()");
         switch (activeStep){
             case 0:
@@ -91,7 +91,11 @@ export default function Checkout({uid, email}) {
                 }
                 break;
             case 2:
-                setActiveStep(activeStep + 1);
+                if(paymentOption === "card"){
+                    setActiveStep(activeStep + 1);
+                } else if(paymentOption === "oxxo"){
+
+                }
                 break;
             case 3:
                 if(payment){

@@ -120,6 +120,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                 //document.getElementById("inlineFormInputGroupCurrency").classList.add("is-invalid");
                 setLoading(false);
             }
+            setLoading(false);
         }
 
     }
@@ -145,7 +146,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                         },
                     }}/>
 
-                    <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
+                    <Backdrop className={classes.backdrop} open={open} >
                         <CircularProgress color="inherit" />
                     </Backdrop>
 
