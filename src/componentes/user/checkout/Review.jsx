@@ -104,6 +104,9 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                                 case 'parameter_invalid_integer':
                                     swal("Verifica el monto", "El monto debe tener centavos válidos!", "warning");
                                     break;
+                                case 'amount_too_large':
+                                    swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99!", "warning");
+                                    break;
                             }
                         }
                     } catch (error) {

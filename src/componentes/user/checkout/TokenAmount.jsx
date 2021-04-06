@@ -40,7 +40,7 @@ const TokenAmount = ({currency, setCurrency, setStates, getStates}) => {
 
     const typeCurrency = (val) => {
         setCurrency(val);
-        if ((val >= 1 && getStates("currencyType") === "USD" || (val >= 20.5 && getStates("currencyType") === "MX") || (val >= 1 && getStates("currencyType") === "SUN"))) {
+        if ((val >= 1 && val<=999999 && getStates("currencyType") === "USD" || (val >= 20.5 && val<=999999 && getStates("currencyType") === "MX") || (val >= 1 && val<=999999 && getStates("currencyType") === "SUN"))) {
             document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-invalid");
             document.getElementById("inlineFormInputGroupCurrency").classList.add("is-valid");
         } else {
