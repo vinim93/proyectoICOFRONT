@@ -8,6 +8,8 @@ import DollarMarktComponent from "./DollarMarktComponent";
 import PaymentComponent from "./PaymentComponent";
 import {db} from "../config/firebase";
 import PurchaseHistory from "./PurchaseHistory";
+import CheckConnection from "./CheckConnection";
+import NumberFormat from "react-number-format";
 
 const Dashboard = () => {
     const {currentUser, logout} = useAuth();
@@ -62,7 +64,14 @@ const Dashboard = () => {
                         </div>
 
                         <div className="col-12 d-flex justify-content-center">
-                            <h1>${userInfo.suns} <br/> Total SUN'S</h1>
+                            <h1>
+                                <NumberFormat
+                                    type="text"
+                                    displayType="text"
+                                    value={userInfo.suns}
+                                    thousandSeparator={true}
+                                />
+                                <br/> Total SUN'S</h1>
                         </div>
 
                         <div className="col-12 d-flex justify-content-center mt-5">
@@ -79,8 +88,11 @@ const Dashboard = () => {
                     </div>
 
                     <div className="row mt-5">
+                        <CheckConnection />
                         <PurchaseHistory uid={uid} />
                     </div>
+
+
                 </div>
 
             )

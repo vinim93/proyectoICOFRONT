@@ -24,12 +24,8 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
     const [cardComplete, setCardComplete] = useState(false);
-    const handleClose = () => {
-        setOpen(false);
-    };
-    const handleToggle = () => {
-        setOpen(!open);
-    };
+    const [readyStripe, setReadyStripe] = useState(false);
+
 
     const buyToken = async (e) => {
         e.preventDefault();
@@ -37,8 +33,6 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
             setLoading(true);
             if (getStates("currency") >= 1) {
                 setOpen(true);
-                //document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-invalid");
-                //document.getElementById("inlineFormInputGroupCurrency").classList.add("is-valid");
                 const {error, paymentMethod} = await stripe.createPaymentMethod({
                     type: 'card',
                     card: elements.getElement(CardElement),
@@ -119,8 +113,6 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                 }
                 setOpen(false);
             } else {
-                //document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-valid");
-                //document.getElementById("inlineFormInputGroupCurrency").classList.add("is-invalid");
                 setLoading(false);
             }
             setLoading(false);
@@ -133,8 +125,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
         <form onSubmit={buyToken}>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-
-                    <CardElement onReady={e => console.log("LISTO STRIPE")} onChange={e => setCardComplete(e.complete)} options={{
+                    <CardElement onReady={() => setReadyStripe(true)} onChange={e => setCardComplete(e.complete)} options={{
                         style: {
                             base: {
                                 fontSize: '17px',
@@ -148,16 +139,13 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                             },
                         },
                     }}/>
-
                     <Backdrop className={classes.backdrop} open={open} >
                         <CircularProgress color="inherit" />
                     </Backdrop>
-
-
                 </Grid>
                 <Grid item xs={12}>
-                    <Button variant="contained" size="large" color="primary" type="submit">
-                        COMPRAR TOKEN
+                    <Button disabled={!readyStripe} variant="contained" size="large" color="primary" type="submit">
+                        {readyStripe ? "COMPRAR TOKEN" : "CARGANDO..."}
                     </Button>
                 </Grid>
             </Grid>

@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import {db} from "../config/firebase";
+import NumberFormat from "react-number-format";
 
 function createData(id, tokens, price, datetime, cardDetails) {
     return {id, tokens, price, datetime, cardDetails};
@@ -113,14 +114,14 @@ const useToolbarStyles = makeStyles((theme) => ({
         paddingRight: theme.spacing(1),
     },
     highlight:
-        theme.palette.type === 'light'
+        theme.palette.type === 'dark'
             ? {
-                color: theme.palette.secondary.main,
-                backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+                color: theme.palette.success.main,
+                backgroundColor: lighten(theme.palette.success.light, 0.85),
             }
             : {
                 color: theme.palette.text.primary,
-                backgroundColor: theme.palette.secondary.dark,
+                backgroundColor: theme.palette.success.dark,
             },
     title: {
         flex: '1 1 100%',
@@ -139,7 +140,7 @@ const EnhancedTableToolbar = (props) => {
         >
             {numSelected > 0 ? (
                 <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
-                    {numSelected} selected
+                    {numSelected} {numSelected === 1 ? "seleccionado" : "seleccionados"}
                 </Typography>
             ) : (
                 <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
@@ -340,7 +341,15 @@ export default function PurchaseHistory({uid}) {
                                                 {row.id}
                                             </TableCell>
                                             <TableCell align="right">{row.tokens}</TableCell>
-                                            <TableCell align="right">{row.price}</TableCell>
+                                            <TableCell align="right">
+                                                <NumberFormat
+                                                    type="text"
+                                                    displayType="text"
+                                                    value={row.price}
+                                                    thousandSeparator={true}
+                                                    prefix='$'
+                                                />
+                                            </TableCell>
                                             <TableCell align="right">{row.datetime}</TableCell>
                                             <TableCell align="right">{row.cardDetails}</TableCell>
                                         </TableRow>
