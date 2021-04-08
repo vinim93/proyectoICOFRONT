@@ -26,7 +26,6 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
     const [cardComplete, setCardComplete] = useState(false);
     const [readyStripe, setReadyStripe] = useState(false);
 
-
     const buyToken = async (e) => {
         e.preventDefault();
         if(cardComplete){
@@ -120,36 +119,86 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
 
     }
 
+    const buyTokenWithOxxo = async() => {
+        setOpen(true);
+        try{
+            const {data} = await axios.post('https://sunshine-ico.uc.r.appspot.com/create-payment-intent', {
+                id: "holaoxxo",
+                amount: getStates("currency"),
+                uid,
+            });
+            console.log(data);
+            stripe.confirmOxxoPayment(
+                data.clientSecret,
+                {
+                    payment_method: {
+                        billing_details: {
+                            name: getStates('name') + " " + getStates('lastname'),
+                            email,
+                        },
+                    },
+                }) // Stripe.js will open a modal to display the OXXO voucher to your customer
+                .then(function(result) {
+                    // This promise resolves when the customer closes the modal
+                    console.log("EL USUARIO CERRO EL MODAL");
+                    if (result.error) {
+                        // Display error to your customer
+                        console.log(result.error);
+                    }
+                });
+            handleNext(true);
+        } catch (e) {
+            console.log("ERROR AL INTENTAR PAGAR CON OXXO, INFO: ");
+            console.log(e.code, e.message);
+        }
+        setOpen(false);
+    }
+
 
     return (
-        <form onSubmit={buyToken}>
-            <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    <CardElement onReady={() => setReadyStripe(true)} onChange={e => setCardComplete(e.complete)} options={{
-                        style: {
-                            base: {
-                                fontSize: '17px',
-                                color: '#424770',
-                                '::placeholder': {
-                                    color: '#aab7c4',
-                                },
-                            },
-                            invalid: {
-                                color: '#9e2146',
-                            },
-                        },
-                    }}/>
-                    <Backdrop className={classes.backdrop} open={open} >
-                        <CircularProgress color="inherit" />
-                    </Backdrop>
-                </Grid>
-                <Grid item xs={12}>
-                    <Button disabled={!readyStripe} variant="contained" size="large" color="primary" type="submit">
-                        {readyStripe ? "COMPRAR TOKEN" : "CARGANDO..."}
-                    </Button>
-                </Grid>
-            </Grid>
-        </form>
+        <div>
+            {
+                getStates("paymentMethod") === "card" ? (
+                    <form onSubmit={buyToken}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <CardElement onReady={() => setReadyStripe(true)} onChange={e => setCardComplete(e.complete)} options={{
+                                    style: {
+                                        base: {
+                                            fontSize: '17px',
+                                            color: '#424770',
+                                            '::placeholder': {
+                                                color: '#aab7c4',
+                                            },
+                                        },
+                                        invalid: {
+                                            color: '#9e2146',
+                                        },
+                                    },
+                                }}/>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Button disabled={!readyStripe} variant="contained" size="large" color="primary" type="submit">
+                                    {readyStripe ? "COMPRAR TOKEN" : "CARGANDO..."}
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </form>
+                ) : (
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <Button variant="contained" size="large" color="primary" onClick={buyTokenWithOxxo}>
+                                {open ? "PROCESANDO..." : "GENERAR PAGO CON OXXO"}
+                            </Button>
+                        </Grid>
+                    </Grid>
+                )
+            }
+            <Backdrop className={classes.backdrop} open={open} >
+                <CircularProgress color="inherit" />
+            </Backdrop>
+        </div>
+
     );
 }
 

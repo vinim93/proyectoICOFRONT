@@ -15,7 +15,7 @@ import TokenAmount from "./TokenAmount";
 import DONE from './../../../images/done.png';
 import swal from "sweetalert";
 
-const steps = ['Token', 'Datos personales', 'Detalles del pago', 'Revisa tu compra'];
+const steps = ['Token', 'Forma de pago', 'Datos', 'Revisa tu compra'];
 
 export default function Checkout({uid, email}) {
     const classes = useStyles();
@@ -33,6 +33,7 @@ export default function Checkout({uid, email}) {
     const [paymentID, setPaymentID] = useState("");
     const [paymentDone, setPaymentDone] = useState(false);
     const [currencyType, setCurrencyType] = useState('USD');
+    const [paymentMethod, setPaymentMethod] = useState('');
     //SI TU EDITOR DE TEXTO TE INDICA QUE DICHOS ESTADOS NO ESTAN SIENDO UTILIZADOS REVISA LAS 2 FUNCIONES DE ABAJO
 
     const setStates = (state, value) => {
@@ -48,9 +49,9 @@ export default function Checkout({uid, email}) {
             case 0:
                 return <TokenAmount currency={currency} setCurrency={setCurrency} setStates={setStates} getStates={getStates}/>;
             case 1:
-                return <AddressForm setStates={setStates} getStates={getStates} />;
-            case 2:
                 return <PaymentForm handleNext={handleNext}/>;
+            case 2:
+                return <AddressForm setStates={setStates} getStates={getStates} />;
             case 3:
                 return <Review getStates={getStates} uid={uid} handleNext={handleNext} email={email}/>;
             default:
@@ -59,11 +60,8 @@ export default function Checkout({uid, email}) {
     }
 
     const handleNext = (payment = false, paymentOption = "") => {
-        console.log("SE EJECUTA handleNext()");
         switch (activeStep){
             case 0:
-                console.log("ES EL CERO");
-                console.log(currencyType);
                 if(currencyType === "USD"){
                     if(currency >= 1){
                         if(currency <= 999999){
@@ -82,7 +80,6 @@ export default function Checkout({uid, email}) {
                             swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99!", "warning");
                         }
                     } else {
-                        console.log("JAJA");
                         swal("Monto invalido", "Debes pagar la mínima cantidad de $20.5 MXN!", "warning");
                     }
                 } else if (currencyType === "SUN"){
@@ -94,15 +91,21 @@ export default function Checkout({uid, email}) {
                 }
                 break;
             case 1:
-                if(name !== "" && lastname !== "" && address !== "" && city !== "" && stateLocation !== "" && zip  !== "" && country !== ""){
+                if(paymentOption === "card"){
+                    setPaymentMethod(paymentOption);
                     setActiveStep(activeStep + 1);
+                } else if(paymentOption === "oxxo"){
+                    if(currencyType === "USD"){
+                        swal("Pago con dolar invalido", "No puedes pagar en oxxo con dolar, tienes que cambiar la divisa a pesos mexicanos!", "warning");
+                    } else {
+                        setPaymentMethod(paymentOption);
+                        setActiveStep(activeStep + 1);
+                    }
                 }
                 break;
             case 2:
-                if(paymentOption === "card"){
+                if(name !== "" && lastname !== "" && address !== "" && city !== "" && stateLocation !== "" && zip  !== "" && country !== ""){
                     setActiveStep(activeStep + 1);
-                } else if(paymentOption === "oxxo"){
-
                 }
                 break;
             case 3:
@@ -134,11 +137,13 @@ export default function Checkout({uid, email}) {
                             {activeStep === steps.length ? (
                                 <React.Fragment>
                                     <Typography variant="h5" gutterBottom>
-                                        ¡Gracias por tu compra!
+                                        {paymentMethod === "card" ? "¡Gracias por tu compra!" : "¡Referencia de oxxo generada!"}
+
                                     </Typography>
                                     <img src={DONE} className="img-fluid mb-3" width="13%" alt="PAGO REALIZADO"/>
                                     <Typography variant="subtitle1">
-                                        Hemos enviado tu comprobante de pago al correo electrónico que tienes registrado
+                                        {paymentMethod === "card" ? "¡Hemos enviado tu comprobante de pago al correo electrónico que tienes registrado!" : "¡Tienes 24 hrs para pagar en el oxxo con el voucher generado, el cual se envió tambien a tu correo electrónico!"}
+
                                     </Typography>
                                 </React.Fragment>
                             ) : (

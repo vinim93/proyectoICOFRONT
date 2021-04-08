@@ -150,7 +150,7 @@ const EnhancedTableToolbar = (props) => {
 
         </Toolbar>
     );
-};
+}
 
 EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
@@ -232,7 +232,7 @@ export default function PurchaseHistory({uid}) {
                     } else if(doc.data().payment_method_types[0] === "oxxo"){
                         id = doc.data().charges.data[0].id || "PENDING";
                         tokens = doc.data().tokens_number || "PENDING";
-                        price = "$" + doc.data().amount / 100 || "PENDING";
+                        price = "$" + (doc.data().amount / 100) * 0.049 || "PENDING";
                         date = timeConverter(doc.data().created) || "PENDING";
                         paymentMethod = doc.data().payment_method_types[0] || "PENDING";
                     }
