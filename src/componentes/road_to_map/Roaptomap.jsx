@@ -2,7 +2,7 @@ import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import React, {Component} from "react";
 import Footer from '../footer/Footer';
-import maparoad from '../../images/maparoad.svg';
+import maparoad from '../../images/road-map.png';
 import {useTranslation} from 'react-i18next';
 
 const RoaptoMapa = () => {
@@ -24,7 +24,7 @@ const RoaptoMapa = () => {
                     <p className="text-roap-7">{t('RoadToMap.6')}</p>
                     <p className="text-roap-8">{t('RoadToMap.7')}</p>
                 </p>
-                <img src={maparoad} className="img-fluid  maparoad " alt=""/>
+                <img src={maparoad} className="  maparoad " alt=""/>
             </div>
             <Footer/>
         </div>

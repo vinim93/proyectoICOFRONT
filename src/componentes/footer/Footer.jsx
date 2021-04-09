@@ -99,7 +99,7 @@ const Footer = () => {
                                         viewBox="0 0 484.203 7.402">
                                         <rect id="Rectángulo_187" data-name="Rectángulo 187" width="484.203"
                                               height="7.402" fill="#dbb80b"/>
-                                    </svg> <p className="conectate"><br/>{t('ContactUs.Extra.1')}</p></h5>
+                                    </svg> <p className="conectate "><br/>{t('ContactUs.Extra.1')}</p></h5>
 
 
                                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">

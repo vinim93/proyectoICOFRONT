@@ -1,6 +1,6 @@
 import React, {useEffect, Component } from 'react';
 import ReactDOM from "react-dom";
-import monedag from "../../images/moneda.gif";
+import monedag from "../../images/moneda2.gif";
 import monedafinal from "../../images/monedafinal.png";
 import 'bootstrap/dist/css/bootstrap.css';
 import Zoom from 'react-reveal/Zoom';

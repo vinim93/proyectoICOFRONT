@@ -17,6 +17,9 @@ body{
  
   
 }
+.pull-right{
+  display: none!important;
+}
 
 .container2 {
   position: relative;
@@ -93,8 +96,7 @@ margin: 0px;
         
     z-index: 1!important;
    line-height: normal;
-   pointer-events: !important;
-   
+ 
   }
    
  .moneda{ 
@@ -130,7 +132,7 @@ margin: 0px;
 z-index: 10!important;
    position: relative;
   filter: drop-shadow(7px 13px 9px rgba(0, 0, 0, 1));
- 
+ color: white;
   font-size: 4.5vw;
    margin-top: 100px;
    font-family: 'Eras Demi ITC';
@@ -1014,11 +1016,7 @@ height: 500.28px!important;
 
 
 
-.modal-backdrop {
  
- 
-}
-
 
 
 
@@ -1533,13 +1531,16 @@ font-family: 'Josefin Sans', sans-serif;
 
 /*------------------------------fotttttttttteeeeeeeeeeeeeeeeeeeeeeeeeee----------------------------------------------*/
 .con-footer{
- 
+  position: relative;
 
+margin-top: 10vw;
   justify-content: center!important;
   
-  
+ 
   background-image: url("./images/fondofooter.svg");
   background-size:cover;
+  
+
 
 }
 .con-footer img{
@@ -1833,24 +1834,31 @@ margin:5vw;
 .road{
   align-items: center;
   text-align: center;
+  background-color:#ffffff!important;
 justify-content: center;
-  
-  margin: 60px 0 0 0!important;
+  width: 100%;
+  margin: 9vw 0 0 0!important;
+  overflow: hidden;
   
   
 }
 .maparoad{
+  position: relative;
   align-items: center;
   text-align: center;
 justify-content: center;
-  width: 100%;
-  z-index: 1;
+left: -15vw;
+top: 5vw;
+  width: 128%;
+height: 93vw;
+  z-index: 0;
 }
 .text-roap-map{
   width: 100vw;
 
   position: absolute;
   color:black;
+  margin-top: 2vw;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -2416,7 +2424,7 @@ height: 100vw;
         
         z-index: 1!important;
        line-height: normal;
-       pointer-events: !important;
+    
        
       }
       .boton1{
@@ -2719,7 +2727,19 @@ left: 25vw;
     .texto-contenedor{
       top: 60vw!important;
     }
+    /*-----------------------------------------roap-MAp--------------------------------------------*/
+
+.text-roap-map h1{
+  position: relative;
+   top: 4vw;
+   font-size: 8vw;
+ }
+ .text-roap-4{
+  margin-left: 48%;
+ }
 }
+
+
  
 
 @media screen and (max-width: 639px){
@@ -2805,6 +2825,15 @@ left: 25vw;
     .text-App-g{
       width: 115vw!important;
     }
+    /*-----------------------------------------roap-MAp--------------------------------------------*/
+.road{
+ 
+  margin-top: 100px!important;
+}
+.text-roap-2{
+  margin-left: 28%;
+}
+
     
 }
 
