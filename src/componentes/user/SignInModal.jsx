@@ -10,6 +10,14 @@ import axios from "axios";
 import ReCAPTCHA from "react-google-recaptcha";
 import firebase from 'firebase';
 import {auth, db} from "../config/firebase";
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import FormControl from '@material-ui/core/FormControl';
+import IconButton from '@material-ui/core/IconButton';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FilledInput from '@material-ui/core/FilledInput';
+
 
 const SignInModal = () => {
 
@@ -62,7 +70,7 @@ const SignInModal = () => {
             console.log(user);
             if (user.emailVerified) {
 
-                if(!searchDataInFirestore(user.uid)){
+                if (!searchDataInFirestore(user.uid)) {
                     saveDataInFirestore(user.uid, {
                         city: "Pending",
                         email: user.email,
@@ -100,7 +108,7 @@ const SignInModal = () => {
             captchaValue: value
         });
 
-        if(response.data.status === "success"){
+        if (response.data.status === "success") {
             setVerifiedCaptcha(true);
         }
 
@@ -112,8 +120,9 @@ const SignInModal = () => {
         try {
             setLoading(true);
             await login(email, pass).then(r => {
-                if(r.user.emailVerified){
-                    if(verifiedCaptcha){
+
+                if (r.user.emailVerified) {
+                    if (verifiedCaptcha) {
                         history.push("/");
                         window.location.reload();
                     } else {
@@ -131,6 +140,7 @@ const SignInModal = () => {
             });
         } catch (error) {
             let errorCode = error.code;
+            logout();
             switch (errorCode) {
                 case "auth/user-not-found":
                     swal("Usuario no encontrado", "La cuenta de correo proporcionada no esta registrada!", "warning");
@@ -164,6 +174,22 @@ const SignInModal = () => {
 
         setLoading(false)
     }
+
+    const [values, setValues] = useState({
+        amount: '',
+        password: '',
+        weight: '',
+        weightRange: '',
+        showPassword: false,
+    });
+
+    const handleClickShowPassword = () => {
+        setValues({...values, showPassword: !values.showPassword});
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
 
     return (
 
@@ -223,20 +249,35 @@ const SignInModal = () => {
 
                                     <div className="input-group input-group-lg col-12 pl-xl-5 pr-xl-5">
 
-                                        <TextField required={true}
-                                                   fullWidth
-                                                   style={{backgroundColor: "#FFFFFF", fontWeight: "bold"}}
-                                                   className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                                   id="signin-password"
-                                                   label="Contraseña"
-                                                   value={pass}
-                                                   type="password"
-                                                   onChange={e => setPass(e.target.value)} variant="filled"/>
+                                        <FormControl fullWidth className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5" variant="filled">
+                                            <InputLabel htmlFor="filled-adornment-password">Contraseña *</InputLabel>
+                                            <FilledInput
+                                                id="signin-password"
+                                                type={values.showPassword ? 'text' : 'password'}
+                                                value={pass}
+                                                onChange={e => setPass(e.target.value)}
+                                                style={{backgroundColor: "#FFFFFF"}}
+                                                endAdornment={
+                                                    <InputAdornment position="end">
+                                                        <IconButton
+                                                            aria-label="toggle password visibility"
+                                                            onClick={handleClickShowPassword}
+                                                            onMouseDown={handleMouseDownPassword}
+                                                            edge="end"
+                                                        >
+                                                            {values.showPassword ? <Visibility/> : <VisibilityOff/>}
+                                                        </IconButton>
+                                                    </InputAdornment>
+                                                }
+                                            />
+                                        </FormControl>
 
                                     </div>
 
-                                    <div className="input-group col-12 d-flex justify-content-center pl-xl-5 pr-xl-5 mt-3">
-                                        <ReCAPTCHA sitekey="6LceM4oaAAAAAJhirPQbyXB2KERNzwHUyoAspql-" onChange={sendReCAPTCHAValue} />
+                                    <div
+                                        className="input-group col-12 d-flex justify-content-center pl-xl-5 pr-xl-5 mt-3">
+                                        <ReCAPTCHA sitekey="6LceM4oaAAAAAJhirPQbyXB2KERNzwHUyoAspql-"
+                                                   onChange={sendReCAPTCHAValue}/>
                                     </div>
 
                                     <div className="form-group col-12 mt-5 mb-5">

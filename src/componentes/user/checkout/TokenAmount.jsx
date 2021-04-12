@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import finalCoin from "../../../images/monedafinal.png";
 import NumberFormat from 'react-number-format';
 import TextField from '@material-ui/core/TextField';
+import axios from "axios";
 
 const currencies = [
     {
@@ -23,24 +24,26 @@ const TokenAmount = ({currency, setCurrency, setStates, getStates}) => {
     const conversor = (type, amount = "USD") => {
         switch (type) {
             case "USD":
-                return `${amount || 0} USD - ${amount * 1 || 0} SUN - ${(amount * 20.45).toFixed(2) || 0} MXN`;
+                return `${amount || 0} USD - ${amount * 1 || 0} SUN - ${(amount * getStates("usdToMxn")).toFixed(2) || 0} MXN`;
                 break;
 
             case "SUN":
-                return `${amount * 1 || 0} USD - ${amount || 0} SUN - ${(amount * 20.45).toFixed(2) || 0} MXN`;
+                return `${amount * 1 || 0} USD - ${amount || 0} SUN - ${(amount * getStates("usdToMxn")).toFixed(2) || 0} MXN`;
                 break;
 
             case "MX":
-                return `${(amount * 0.049).toFixed(2) || 0} USD - ${(amount * 0.049).toFixed(2) || 0} SUN - ${amount || 0} MXN`;
+                return `${(amount * getStates("mxnToUsd")).toFixed(2) || 0} USD - ${(amount * getStates("mxnToUsd")).toFixed(2) || 0} SUN - ${amount || 0} MXN`;
                 break;
             default:
-                return `${amount || 0} USD - ${amount * 1 || 0} SUN - ${(amount * 20.45).toFixed(2)} MXN`;
+                return `${amount || 0} USD - ${amount * 1 || 0} SUN - ${(amount * getStates("usdToMxn").toFixed(2))} MXN`;
         }
     }
 
     const typeCurrency = (val) => {
         setCurrency(val);
-        if ((val >= 1 && val<=999999 && getStates("currencyType") === "USD" || (val >= 20.5 && val<=999999 && getStates("currencyType") === "MX") || (val >= 1 && val<=999999 && getStates("currencyType") === "SUN"))) {
+        let dollar = parseFloat(getStates("usdToMxn").toFixed(2));
+        val = parseFloat(val);
+        if ( (val >= 1 && val<=999999 && getStates("currencyType") === "USD") || (val >= dollar && val<=999999 && getStates("currencyType") === "MX") || (val >= 1 && val<=999999 && getStates("currencyType") === "SUN")) {
             document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-invalid");
             document.getElementById("inlineFormInputGroupCurrency").classList.add("is-valid");
         } else {
@@ -48,7 +51,6 @@ const TokenAmount = ({currency, setCurrency, setStates, getStates}) => {
             document.getElementById("inlineFormInputGroupCurrency").classList.add("is-invalid");
         }
     }
-
 
     const handleChange = (event) => {
         setStates("setCurrencyType", event.target.value);

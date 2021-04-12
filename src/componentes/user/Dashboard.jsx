@@ -21,12 +21,13 @@ const Dashboard = () => {
     const [userInfo, setUserInfo] = useState({});
     const history = useHistory();
 
-    const getUserData = (id) => {
+    const getUserData = async(id) => {
         try{
             let docRef = db.collection('credentials').doc(id);
-            docRef.onSnapshot(doc => {
+            await docRef.onSnapshot(doc => {
                 if(doc.exists){
                     setUserInfo(doc.data());
+                    setAmount(doc.data().suns);
                 }
             })
         } catch (e) {
@@ -68,7 +69,7 @@ const Dashboard = () => {
                                 <NumberFormat
                                     type="text"
                                     displayType="text"
-                                    value={userInfo.suns}
+                                    value={amount}
                                     thousandSeparator={true}
                                 />
                                 <br/> Total SUN'S</h1>

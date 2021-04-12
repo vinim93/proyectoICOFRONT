@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
@@ -14,6 +14,7 @@ import './css/style.css';
 import TokenAmount from "./TokenAmount";
 import DONE from './../../../images/done.png';
 import swal from "sweetalert";
+import axios from "axios";
 
 const steps = ['Token', 'Forma de pago', 'Datos', 'Revisa tu compra'];
 
@@ -21,7 +22,8 @@ export default function Checkout({uid, email}) {
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
     const [currency, setCurrency] = useState(null);
-
+    const [usdToMxn, setUsdToMxn] = useState(0);
+    const [mxnToUsd, setMxnToUsd] = useState(0);
     const [name, setName] = useState("");
     const [lastname, setLastname] = useState("");
     const [address, setAddress] = useState("");
@@ -35,6 +37,24 @@ export default function Checkout({uid, email}) {
     const [currencyType, setCurrencyType] = useState('USD');
     const [paymentMethod, setPaymentMethod] = useState('');
     //SI TU EDITOR DE TEXTO TE INDICA QUE DICHOS ESTADOS NO ESTAN SIENDO UTILIZADOS REVISA LAS 2 FUNCIONES DE ABAJO
+
+    useEffect(() => {
+        currencyConversor("USD", "MXN");
+        currencyConversor("MXN", "USD");
+    },[]);
+
+    const currencyConversor = async (from, to) => {
+        try{
+            const result = await axios.get(`https://free.currconv.com/api/v7/convert?q=${from}_${to}&compact=ultra&apiKey=8a57011799b9d69fa40a`);
+            if(from==="USD" && to==="MXN"){
+                setUsdToMxn(result.data[`${from}_${to}`]);
+            } else if(from==="MXN" && to==="USD"){
+                setMxnToUsd(result.data[`${from}_${to}`]);
+            }
+        } catch (e) {
+            console.log("NO AGARRA LA API DE INTERCAMBIO DE MONEDA = ", e);
+        }
+    }
 
     const setStates = (state, value) => {
         eval(state)(value);

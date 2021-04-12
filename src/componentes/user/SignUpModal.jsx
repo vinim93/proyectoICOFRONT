@@ -14,6 +14,13 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import {useHistory} from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
+import InputLabel from "@material-ui/core/InputLabel";
+import FilledInput from "@material-ui/core/FilledInput";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import FormControl from "@material-ui/core/FormControl";
 
 
 const SignUpModal = () => {
@@ -366,6 +373,21 @@ const SignUpModal = () => {
         fetchCountryData();
     }, []);
 
+    const [values, setValues] = useState({
+        amount: '',
+        password: '',
+        weight: '',
+        weightRange: '',
+        showPassword: false,
+    });
+
+    const handleClickShowPassword = () => {
+        setValues({...values, showPassword: !values.showPassword});
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
 
     return (
 
@@ -453,28 +475,57 @@ const SignUpModal = () => {
 
                                     <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
 
-                                        <TextField required={true}
-                                                   fullWidth
-                                                   style={{backgroundColor: "#FFFFFF", fontWeight: "bold"}}
-                                                   className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                                   id="signup-password"
-                                                   label="Contraseña"
-                                                   value={password}
-                                                   type="password"
-                                                   onChange={(e) => setPassword(e.target.value)} variant="filled"/>
+                                        <FormControl fullWidth className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5" variant="filled">
+                                            <InputLabel htmlFor="filled-adornment-password">Contraseña *</InputLabel>
+                                            <FilledInput
+                                                id="signup-password"
+                                                type={values.showPassword ? 'text' : 'password'}
+                                                value={password}
+                                                onChange={(e) => setPassword(e.target.value)}
+                                                style={{backgroundColor: "#FFFFFF"}}
+                                                endAdornment={
+                                                    <InputAdornment position="end">
+                                                        <IconButton
+                                                            aria-label="toggle password visibility"
+                                                            onClick={handleClickShowPassword}
+                                                            onMouseDown={handleMouseDownPassword}
+                                                            edge="end"
+                                                        >
+                                                            {values.showPassword ? <Visibility/> : <VisibilityOff/>}
+                                                        </IconButton>
+                                                    </InputAdornment>
+                                                }
+                                            />
+                                        </FormControl>
+
 
                                     </div>
 
                                     <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
-                                        <TextField required={true}
-                                                   fullWidth
-                                                   style={{backgroundColor: "#FFFFFF", fontWeight: "bold"}}
-                                                   className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                                   id="signup-password"
-                                                   label="Repite tu contraseña"
-                                                   value={repeatedPassword}
-                                                   type="password"
-                                                   onChange={(e) => setRepeteadPassword(e.target.value)} variant="filled"/>
+
+                                        <FormControl fullWidth className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5" variant="filled">
+                                            <InputLabel htmlFor="filled-adornment-password">Repite tu contraseña *</InputLabel>
+                                            <FilledInput
+                                                id="signup-password"
+                                                type={values.showPassword ? 'text' : 'password'}
+                                                value={repeatedPassword}
+                                                onChange={(e) => setRepeteadPassword(e.target.value)}
+                                                style={{backgroundColor: "#FFFFFF"}}
+                                                endAdornment={
+                                                    <InputAdornment position="end">
+                                                        <IconButton
+                                                            aria-label="toggle password visibility"
+                                                            onClick={handleClickShowPassword}
+                                                            onMouseDown={handleMouseDownPassword}
+                                                            edge="end"
+                                                        >
+                                                            {values.showPassword ? <Visibility/> : <VisibilityOff/>}
+                                                        </IconButton>
+                                                    </InputAdornment>
+                                                }
+                                            />
+                                        </FormControl>
+
                                     </div>
 
                                     <div className="form-group form-check col-12 mb-3 pl-xl-5 pr-xl-5">

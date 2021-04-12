@@ -56,7 +56,11 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                             id,
                             amount: getStates("currency") * 100,
                             uid,
-                            currency: (currencyType.trim()==="MX" ? "MXN" : "USD")
+                            currency: (currencyType.trim()==="MX" ? "MXN" : "USD"),
+                            exchange: {
+                                usdToMxn: getStates("usdToMxn"),
+                                mxnToUsd: getStates("mxnToUsd")
+                            }
                         });
                         console.log(data);
                         console.log(getStates("paymentDone"))
@@ -109,6 +113,8 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                         console.log(error);
                     }
                     setLoading(false);
+                } else {
+                    swal("No se pudo procesar el pago", "Verifica que los datos que pusiste sean correctos o intenta de nuevo más tarde!", "error");
                 }
                 setOpen(false);
             } else {
@@ -126,6 +132,10 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                 id: "holaoxxo",
                 amount: getStates("currency"),
                 uid,
+                exchange: {
+                    usdToMxn: getStates("usdToMxn"),
+                    mxnToUsd: getStates("mxnToUsd")
+                }
             });
             console.log(data);
             stripe.confirmOxxoPayment(
