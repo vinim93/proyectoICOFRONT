@@ -38,7 +38,7 @@ const App = (props) => {
                         <Route path="/Roaptomap" component={RoaptoMapa}/>
                         <Route path="/Acerca" component={Acerca}/>
                         <Route path="/Proyectos" component={Foco}/>
-                        <Route path="/Home" component={Home}/>
+                        <Route path="/home" component={Home}/>
                         <Route path="/Pdf" exact><Pdf/></Route>
                         <Route path="/" exact component={Dashboard} />
 
