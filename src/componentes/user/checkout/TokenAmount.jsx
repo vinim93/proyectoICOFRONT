@@ -32,7 +32,7 @@ const TokenAmount = ({currency, setCurrency, setStates, getStates}) => {
                 break;
 
             case "MX":
-                return `${(amount * getStates("mxnToUsd")).toFixed(2) || 0} USD - ${(amount * getStates("mxnToUsd")).toFixed(2) || 0} SUN - ${amount || 0} MXN`;
+                return `${(amount * getStates("mxnToUsd")).toFixed(2) || 0} USD - ${(amount * getStates("mxnToUsd")) || 0} SUN - ${amount || 0} MXN`;
                 break;
             default:
                 return `${amount || 0} USD - ${amount * 1 || 0} SUN - ${(amount * getStates("usdToMxn").toFixed(2))} MXN`;

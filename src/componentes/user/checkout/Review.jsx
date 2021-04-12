@@ -10,10 +10,8 @@ import {CardElement, Elements, useElements, useStripe} from "@stripe/react-strip
 import axios from "axios";
 import swal from "sweetalert";
 import Button from '@material-ui/core/Button';
-import {act} from "@testing-library/react";
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
 
 const stripePromise = loadStripe('pk_test_51IUDGUD9LA3P3AmKfFAk32py2vEcZs0LEw7FWhU8Ebp1YgNqJK09LkJyo11b5dCXWk6ZluCo3JBmTTdbSTc61EKq00EqsKyM49');
 
@@ -215,7 +213,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
 export default function Review({getStates, uid, handleNext, email}) {
     const classes = useStyles();
     const products = [
-        {name: 'Sun Token', desc: (getStates("currencyType") === "MX" ? getStates("currency") * 0.049 : getStates("currency")), price: getStates("currency") + ' ' + (getStates("currencyType") === "MX" ? "MXN" : "USD")},
+        {name: 'Sun Token', desc: (getStates("currencyType") === "MX" ? getStates("currency") * getStates("mxnToUsd") : getStates("currency")), price: getStates("currency") + ' ' + (getStates("currencyType") === "MX" ? "MXN" : "USD")},
     ];
     const addresses = [getStates("address"), getStates("city"), getStates("stateLocation"), getStates("zip"), getStates("country")];
     const payments = [

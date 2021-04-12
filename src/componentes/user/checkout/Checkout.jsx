@@ -93,14 +93,14 @@ export default function Checkout({uid, email}) {
                         swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
                     }
                 } else if(currencyType === "MX"){
-                    if(currency >= 20.5){
+                    if(currency >= usdToMxn.toFixed(2)){
                         if(currency <= 999999){
                             setActiveStep(activeStep + 1);
                         } else {
                             swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99!", "warning");
                         }
                     } else {
-                        swal("Monto invalido", "Debes pagar la mínima cantidad de $20.5 MXN!", "warning");
+                        swal("Monto invalido", `Debes pagar la mínima cantidad de $${usdToMxn.toFixed(2)} MXN!`, "warning");
                     }
                 } else if (currencyType === "SUN"){
                     if(currency >= 1){
