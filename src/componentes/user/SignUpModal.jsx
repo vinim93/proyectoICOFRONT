@@ -72,6 +72,10 @@ const SignUpModal = () => {
                 name: data.name.replace(/<[^>]+>/g, ''),
                 phone: data.phone === null ? "Pending".replace(/<[^>]+>/g, '') : data.phone.replace(/<[^>]+>/g, ''),
                 authType: data.authType.replace(/<[^>]+>/g, ''),
+                birthday: data.birthday.replace(/<[^>]+>/g, ''),
+                country: data.country.replace(/<[^>]+>/g, ''),
+                state: data.state.replace(/<[^>]+>/g, ''),
+                address: data.address.replace(/<[^>]+>/g, ''),
                 suns: 0
             }).then(docRef => {
                 history.push("/");
@@ -88,9 +92,15 @@ const SignUpModal = () => {
                 city: "Pending".replace(/<[^>]+>/g, ''),
                 doc: "Pending".replace(/<[^>]+>/g, ''),
                 email: email.replace(/<[^>]+>/g, ''),
-                name: (name + " " + apellido).replace(/<[^>]+>/g, ''),
+                name: name.replace(/<[^>]+>/g, ''),
+                lastname: apellido.replace(/<[^>]+>/g, ''),
                 phone: "Pending".replace(/<[^>]+>/g, ''),
                 authType: "EMAIL".replace(/<[^>]+>/g, ''),
+                birthday: "Pending".replace(/<[^>]+>/g, ''),
+                country: "Pending".replace(/<[^>]+>/g, ''),
+                state: "Pending".replace(/<[^>]+>/g, ''),
+                address: "Pending".replace(/<[^>]+>/g, ''),
+                profileStatus: "Pending".replace(/<[^>]+>/g, ''),
                 suns: 0
             }).then(docRef => {
                 swal({
@@ -333,7 +343,12 @@ const SignUpModal = () => {
                         email: user.email,
                         name: user.displayName,
                         phone: user.phoneNumber,
-                        authType: "GOOGLE"
+                        authType: "GOOGLE",
+                        birthday: "Pending",
+                        country: "Pending",
+                        state: "Pending",
+                        address: "Pending",
+                        profileStatus: 0
                     });
                 }
 
@@ -344,7 +359,12 @@ const SignUpModal = () => {
                         email: user.email,
                         name: user.displayName,
                         phone: user.phoneNumber,
-                        authType: "GOOGLE"
+                        authType: "GOOGLE",
+                        birthday: "Pending",
+                        country: "Pending",
+                        state: "Pending",
+                        address: "Pending",
+                        profileStatus: 0
                     });
                 }, (error) => {
                     console.log(error.code, error.message);
