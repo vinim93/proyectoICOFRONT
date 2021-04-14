@@ -77,7 +77,8 @@ const SignUpModal = () => {
                 state: data.state.replace(/<[^>]+>/g, ''),
                 address: data.address.replace(/<[^>]+>/g, ''),
                 suns: 0,
-                countryComplete: data.countryComplete.replace(/<[^>]+>/g, '')
+                countryComplete: data.countryComplete.replace(/<[^>]+>/g, ''),
+                profileStatus: data.profileStatus
             }).then(docRef => {
                 history.push("/");
                 window.location.reload();
@@ -101,7 +102,7 @@ const SignUpModal = () => {
                 country: "".replace(/<[^>]+>/g, ''),
                 state: "".replace(/<[^>]+>/g, ''),
                 address: "".replace(/<[^>]+>/g, ''),
-                profileStatus: "".replace(/<[^>]+>/g, ''),
+                profileStatus: 0,
                 suns: 0,
                 countryComplete: "".replace(/<[^>]+>/g, ''),
             }).then(docRef => {

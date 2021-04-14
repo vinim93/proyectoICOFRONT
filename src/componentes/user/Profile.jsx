@@ -158,9 +158,21 @@ export default function Profile() {
         return new Date(time);
     }
 
+    const getAge = (birthDateString) => {
+        let today = new Date();
+        let birthDate = new Date(birthDateString);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        let m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        return age;
+    }
+
     const classes = useStyles();
 
     const handleDateChange = (date) => {
+        console.log(typeof date);
         setBirthday(date);
     };
 
@@ -168,32 +180,41 @@ export default function Profile() {
         e.preventDefault();
         try {
             if (profileStatus === 0 || profileStatus === 3) {
-
-                swal({
-                    title: "¿Estas seguro de subir la información?",
-                    text: "Una vez enviada la información no se podrá modificar!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            db.collection('credentials').doc(uid).update({
-                                address: address,
-                                birthday: birthday,
-                                city: city,
-                                country: country,
-                                lastname: lastname,
-                                name: name,
-                                phone: phone,
-                                state: stateLocation,
-                                countryComplete: countryCompleteName,
-                                profileStatus: 1
-                            }).then(() => {
-                                swal("Información actualizada", "La información de tu perfil fue actualizada con éxito!", "success");
+                if(name !== "" && lastname !== "" && birthday !== "" && country !== "" && stateLocation !== "" && city !== "" && phone !== "" && address !== ""){
+                    if(getAge(birthday) >= 18){
+                        swal({
+                            title: "¿Estas seguro de subir la información?",
+                            text: "Una vez enviada la información no se podrá modificar!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                        })
+                            .then((willDelete) => {
+                                if (willDelete) {
+                                    db.collection('credentials').doc(uid).update({
+                                        address: address,
+                                        birthday: birthday,
+                                        city: city,
+                                        country: country,
+                                        lastname: lastname,
+                                        name: name,
+                                        phone: phone,
+                                        state: stateLocation,
+                                        countryComplete: countryCompleteName,
+                                        profileStatus: 1
+                                    }).then(() => {
+                                        swal("Información actualizada", "La información de tu perfil fue actualizada con éxito!", "success");
+                                    });
+                                }
                             });
-                        }
-                    });
+                    } else {
+                        swal("Debes ser mayor de edad", "Para poder continuar con la verificación de tus datos debes contar con la mayoria de edad!", "warning");
+                    }
+
+                } else {
+                    swal("Información faltante", "Llena todos los campos correspondientes para poder continuar!", "warning");
+                }
+
             }
 
         } catch (e) {

@@ -16,7 +16,7 @@ import DONE from './../../../images/done.png';
 import swal from "sweetalert";
 import axios from "axios";
 
-const steps = ['Token', 'Forma de pago', 'Datos', 'Revisa tu compra'];
+const steps = ['Token', 'Método', 'Datos', 'Compra'];
 
 export default function Checkout({uid, email, allData}) {
     const classes = useStyles();
