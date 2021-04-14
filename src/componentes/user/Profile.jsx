@@ -20,7 +20,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Alert from '@material-ui/lab/Alert';
-
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/material.css'
 
 export default function Profile() {
 
@@ -180,8 +181,8 @@ export default function Profile() {
         e.preventDefault();
         try {
             if (profileStatus === 0 || profileStatus === 3) {
-                if(name !== "" && lastname !== "" && birthday !== "" && country !== "" && stateLocation !== "" && city !== "" && phone !== "" && address !== ""){
-                    if(getAge(birthday) >= 18){
+                if (name !== "" && lastname !== "" && birthday !== "" && country !== "" && stateLocation !== "" && city !== "" && phone !== "" && address !== "") {
+                    if (getAge(birthday) >= 18) {
                         swal({
                             title: "¿Estas seguro de subir la información?",
                             text: "Una vez enviada la información no se podrá modificar!",
@@ -254,14 +255,16 @@ export default function Profile() {
                             <div className="row mt-3">
 
                                 <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
-                                    <TextField required disabled={!(profileStatus === 0 || profileStatus === 3)}
+                                    <TextField variant="outlined" required
+                                               disabled={!(profileStatus === 0 || profileStatus === 3)}
                                                fullWidth id="outlined-basic" label="Nombre(s)"
                                                style={{alignContent: "center"}} value={name}
                                                onChange={(profileStatus === 0 || profileStatus === 3) ? e => setName(e.target.value) : false}/>
                                 </div>
 
                                 <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
-                                    <TextField required disabled={!(profileStatus === 0 || profileStatus === 3)}
+                                    <TextField variant="outlined" required
+                                               disabled={!(profileStatus === 0 || profileStatus === 3)}
                                                fullWidth id="outlined-basic" label="Apellido(s)" value={lastname}
                                                onChange={(profileStatus === 0 || profileStatus === 3) ? e => setLastname(e.target.value) : false}/>
                                 </div>
@@ -269,6 +272,7 @@ export default function Profile() {
                                 <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
                                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                         <KeyboardDatePicker
+                                            inputVariant="outlined"
                                             required
                                             id="date-picker-dialog"
                                             disabled={!(profileStatus === 0 || profileStatus === 3)}
@@ -285,9 +289,10 @@ export default function Profile() {
                                 </div>
 
                                 <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
-                                    <FormControl fullWidth className={classes.formControl}>
+                                    <FormControl variant="outlined" fullWidth className={classes.formControl}>
                                         <InputLabel id="demo-simple-select-label">País</InputLabel>
                                         <Select
+                                            style={{paddingLeft: 5}}
                                             required
                                             disabled={!(profileStatus === 0 || profileStatus === 3)}
                                             labelId="demo-simple-select-label"
@@ -313,7 +318,7 @@ export default function Profile() {
                                 </div>
 
                                 <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
-                                    <FormControl fullWidth className={classes.formControl}>
+                                    <FormControl variant="outlined" fullWidth className={classes.formControl}>
                                         <InputLabel id="demo-simple-select-label">Estado</InputLabel>
                                         <Select
                                             required
@@ -339,15 +344,18 @@ export default function Profile() {
                                 </div>
 
                                 <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
-                                    <FormControl fullWidth className={classes.formControl}>
-                                        <InputLabel id="demo-simple-select-label">Ciudad</InputLabel>
+                                    <FormControl variant="outlined" fullWidth className={classes.formControl}>
+                                        <InputLabel id="demo-simple-select-outlined-label">Ciudad</InputLabel>
                                         <Select
                                             required
                                             disabled={!(profileStatus === 0 || profileStatus === 3)}
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select-state"
+                                            labelId="demo-simple-select-outlined-label"
+                                            id="demo-simple-select-outlined"
                                             value={city}
                                             onChange={(profileStatus === 0 || profileStatus === 3) ? e => setCity(e.target.value) : false}
+                                            inputProps={{
+                                                id: 'outlined-age-native-simple',
+                                            }}
                                         >
                                             {
                                                 citiesAPI.map((value, index) => (
@@ -360,9 +368,18 @@ export default function Profile() {
                                 </div>
 
                                 <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
-                                    <TextField required disabled={!(profileStatus === 0 || profileStatus === 3)}
-                                               fullWidth id="outlined-basic" label="Número telefonico" value={phone}
-                                               onChange={(profileStatus === 0 || profileStatus === 3) ? e => setPhone(e.target.value) : false}/>
+                                    {!(profileStatus === 0 || profileStatus === 3) ?
+                                        <TextField required variant="outlined" disabled={!(profileStatus === 0 || profileStatus === 3)}
+                                                   fullWidth id="outlined-basic" label="Número telefonico" value={"+"+phone}
+                                                   onChange={(profileStatus === 0 || profileStatus === 3) ? e => setPhone(e.target.value) : false}/> :
+                                        <PhoneInput
+                                            disabled={!(profileStatus === 0 || profileStatus === 3)}
+                                            country={'mx'}
+                                            inputStyle={{height: 56, width: "100%"}}
+                                            value={phone}
+                                            onChange={(profileStatus === 0 || profileStatus === 3) ? e => setPhone(e) : false}
+                                        />}
+
                                 </div>
 
 
