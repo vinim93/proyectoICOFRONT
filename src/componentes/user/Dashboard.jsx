@@ -46,6 +46,7 @@ const Dashboard = () => {
             setLogged(true);
             history.push("/");
             getUserData(id);
+            console.log(userInfo);
         } catch (e) {
             setSigninEmail("");
             history.push("/Home");
@@ -55,7 +56,7 @@ const Dashboard = () => {
     },[]);
 
     const renderData = () => {
-        if(logged){
+        if(logged && Object.keys(userInfo).length !== 0){
             return (
                 <div className="container-fluid">
                     <div className="row mt-5">
@@ -84,7 +85,7 @@ const Dashboard = () => {
                         </div>
 
                         <DollarMarktComponent />
-                        <PaymentComponent coinImage={moneda_dashboard} email={currentUser.email} name={userInfo.name} userData={uid} />
+                        <PaymentComponent coinImage={moneda_dashboard} email={currentUser.email} name={userInfo.name} userData={uid} allData={userInfo} />
 
                     </div>
 

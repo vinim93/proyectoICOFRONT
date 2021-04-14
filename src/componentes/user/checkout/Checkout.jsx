@@ -18,7 +18,7 @@ import axios from "axios";
 
 const steps = ['Token', 'Forma de pago', 'Datos', 'Revisa tu compra'];
 
-export default function Checkout({uid, email}) {
+export default function Checkout({uid, email, allData}) {
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
     const [currency, setCurrency] = useState(null);
@@ -41,6 +41,13 @@ export default function Checkout({uid, email}) {
     useEffect(() => {
         currencyConversor("USD", "MXN");
         currencyConversor("MXN", "USD");
+        console.log(allData);
+        setName(allData.name);
+        setLastname(allData.lastname);
+        setAddress(allData.address);
+        setCity(allData.city);
+        setStateLocation(allData.state);
+        setCountry(allData.country);
     },[]);
 
     const currencyConversor = async (from, to) => {
@@ -71,7 +78,7 @@ export default function Checkout({uid, email}) {
             case 1:
                 return <PaymentForm handleNext={handleNext}/>;
             case 2:
-                return <AddressForm setStates={setStates} getStates={getStates} />;
+                return <AddressForm getStates={getStates} />;
             case 3:
                 return <Review getStates={getStates} uid={uid} handleNext={handleNext} email={email}/>;
             default:
@@ -124,7 +131,7 @@ export default function Checkout({uid, email}) {
                 }
                 break;
             case 2:
-                if(name !== "" && lastname !== "" && address !== "" && city !== "" && stateLocation !== "" && zip  !== "" && country !== ""){
+                if(name !== "" && lastname !== "" && address !== "" && city !== "" && stateLocation !== "" && country !== ""){
                     setActiveStep(activeStep + 1);
                 }
                 break;
