@@ -14,6 +14,10 @@ import i18next from 'i18next';
 import USAFLAG from "../../images/usa_flag_icon.svg";
 import MEXICOFLAG from "../../images/mexico_flag_icon.svg";
 import {useAuth} from "../contexts/AuthContext";
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const Navigation = () => {
     const { t } = useTranslation();
@@ -33,6 +37,27 @@ const Navigation = () => {
         } catch {
         }
     }
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleClick2 = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = (e) => {
+        setAnchorEl(null);
+        console.log(e);
+        switch (e) {
+            case "profile":
+                history.push("./Profile");
+                break;
+            case "logout":
+                handleLogout();
+                break;
+            case "settings":
+                break;
+        }
+    };
 
     const renderNavbar = () => {
         if(logged) {
@@ -63,17 +88,21 @@ const Navigation = () => {
                                 <img src={MEXICOFLAG} className="img-fluid" style={{width: 50}} alt=""/>
                             </a>
 
-                            <div className="dropdown">
-                                <button className="btn btn-primary dropdown-toggle" type="button"
-                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                    {currentUser ? currentUser.email : "Invitado"}
-                                </button>
-                                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a className="dropdown-item" href="./Profile">Perfil</a>
-                                    <a className="dropdown-item" href="#">Ajustes</a>
-                                    <a className="dropdown-item" href="#" onClick={handleLogout}>Cerrar sesión</a>
-                                </div>
+                            <div>
+                                <Button aria-controls="simple-menu" variant="contained" color="primary" aria-haspopup="true" onClick={handleClick2}>
+                                    {currentUser ? currentUser.email : "Invitado"} <ExpandMoreIcon />
+                                </Button>
+                                <Menu
+                                    id="simple-menu"
+                                    anchorEl={anchorEl}
+                                    keepMounted
+                                    open={Boolean(anchorEl)}
+                                    onClose={handleClose}
+                                >
+                                    <MenuItem id="profile" onClick={e => handleClose(e.target.id)}>Perfil</MenuItem>
+                                    <MenuItem id="settings" onClick={e => handleClose(e.target.id)}>Ajustes</MenuItem>
+                                    <MenuItem id="logout" onClick={e => handleClose(e.target.id)}>Cerrar sesión</MenuItem>
+                                </Menu>
                             </div>
 
                         </div>
