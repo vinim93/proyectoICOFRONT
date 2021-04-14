@@ -19,6 +19,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Alert from '@material-ui/lab/Alert';
 
 
 export default function Profile() {
@@ -37,6 +38,7 @@ export default function Profile() {
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
     const [profileStatus, setProfileStatus] = useState(0);
+    const [jalaPorfavor, setAuthToken] = useState("");
     const [countriesAPI, setCountriesAPI] = useState([]);
     const [statesAPI, setStatesAPI] = useState([]);
     const [citiesAPI, setCitiesAPI] = useState([]);
@@ -50,6 +52,7 @@ export default function Profile() {
                     setName(doc.data().name);
                     setLastname(doc.data().lastname);
                     setBirthday(timeConverter(doc.data().birthday.seconds));
+                    console.log(doc.data().birthday.seconds);
                     setCountry(doc.data().country);
                     setStateLocation(doc.data().state);
                     setCity(doc.data().city);
@@ -57,6 +60,7 @@ export default function Profile() {
                     setAddress(doc.data().address);
                     setProfileStatus(doc.data().profileStatus);
                     getStatesAPI(doc.data().countryComplete);
+                    getCitiesAPI(doc.data().state);
                 }
             });
 
@@ -66,10 +70,16 @@ export default function Profile() {
 
     }
 
-    const fetchCountryData = async () => {
+    const getAuthTokenCountries = async () => {
         try {
-            const response = await axios.get("https://restcountries.eu/rest/v2/all");
-            setCountriesAPI(response.data);
+            const response = await axios.get("https://www.universal-tutorial.com/api/getaccesstoken", {
+                headers: {
+                    "api-token": "8X4CFJBt--Ev5K8GkL_R9Z2lNS72XQ9ez_NutQRcq4bannc96Q4-YGjDq4IKqlDSFas",
+                    "user-email": "taikus.jango@sunshine-imagine.io"
+                }
+            });
+            await setAuthToken("Bearer " + response.data.auth_token);
+            await getCountriesAPI();
         } catch (e) {
             console.log(e);
         }
@@ -79,7 +89,7 @@ export default function Profile() {
         try {
             const response = await axios.get("https://www.universal-tutorial.com/api/countries/", {
                 headers: {
-                    Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJ0YWlrdXMuamFuZ29Ac3Vuc2hpbmUtaW1hZ2luZS5pbyIsImFwaV90b2tlbiI6IjhYNENGSkJ0LS1FdjVLOEdrTF9SOVoybE5TNzJYUTllel9OdXRRUmNxNGJhbm5jOTZRNC1ZR2pEcTRJS3FsRFNGYXMifSwiZXhwIjoxNjE4NDE5NzA5fQ.bN5mloZdPlwvAJRLxRAqA5Wase0Wp-1tYVZoKfRuIR4"
+                    Authorization: jalaPorfavor
                 }
             });
             console.log(response.data);
@@ -93,7 +103,7 @@ export default function Profile() {
         try {
             const response = await axios.get(`https://www.universal-tutorial.com/api/states/${countryAPI}`, {
                 headers: {
-                    Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJ0YWlrdXMuamFuZ29Ac3Vuc2hpbmUtaW1hZ2luZS5pbyIsImFwaV90b2tlbiI6IjhYNENGSkJ0LS1FdjVLOEdrTF9SOVoybE5TNzJYUTllel9OdXRRUmNxNGJhbm5jOTZRNC1ZR2pEcTRJS3FsRFNGYXMifSwiZXhwIjoxNjE4NDE5NzA5fQ.bN5mloZdPlwvAJRLxRAqA5Wase0Wp-1tYVZoKfRuIR4"
+                    Authorization: jalaPorfavor
                 }
             });
             console.log(response.data);
@@ -107,7 +117,7 @@ export default function Profile() {
         try {
             const response = await axios.get(`https://www.universal-tutorial.com/api/cities/${stateAPI}`, {
                 headers: {
-                    Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJ0YWlrdXMuamFuZ29Ac3Vuc2hpbmUtaW1hZ2luZS5pbyIsImFwaV90b2tlbiI6IjhYNENGSkJ0LS1FdjVLOEdrTF9SOVoybE5TNzJYUTllel9OdXRRUmNxNGJhbm5jOTZRNC1ZR2pEcTRJS3FsRFNGYXMifSwiZXhwIjoxNjE4NDE5NzA5fQ.bN5mloZdPlwvAJRLxRAqA5Wase0Wp-1tYVZoKfRuIR4"
+                    Authorization: jalaPorfavor
                 }
             });
             console.log(response.data);
@@ -117,7 +127,7 @@ export default function Profile() {
         }
     }
 
-    useEffect(() => {
+    useEffect(async () => {
         try {
             let email = currentUser.email;
             let id = currentUser.uid;
@@ -128,15 +138,15 @@ export default function Profile() {
             } else {
                 setLogged(true);
                 history.push("/Profile");
-                setUid(id);
                 getUserData(id);
-                getCountriesAPI();
+                setUid(id);
+                getAuthTokenCountries();
             }
         } catch (e) {
             history.push("/Home");
             setLogged(false);
         }
-    }, []);
+    }, [jalaPorfavor]);
 
     const timeConverter = (UNIX_timestamp) => {
         let a = new Date(UNIX_timestamp * 1000);
@@ -144,7 +154,8 @@ export default function Profile() {
         let month = a.getMonth() + 1;
         let date = a.getDate().toString().length === 1 ? "0" + a.getDate().toString() : a.getDate();
         let time = month + '/' + date + '/' + year;
-        return time;
+        console.log(time);
+        return new Date(time);
     }
 
     const classes = useStyles();
@@ -156,34 +167,56 @@ export default function Profile() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            db.collection('credentials').doc(uid).update({
-                address: address,
-                birthday: birthday,
-                city: city,
-                country: country,
-                lastname: lastname,
-                name: name,
-                phone: phone,
-                state: stateLocation,
-                countryComplete: countryCompleteName
-            }).then(() => {
-                swal("Información actualizada", "La información de tu perfil fue actualizada con éxito!", "success");
-            });
+            if (profileStatus === 0 || profileStatus === 3) {
+
+                swal({
+                    title: "¿Estas seguro de subir la información?",
+                    text: "Una vez enviada la información no se podrá modificar!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            db.collection('credentials').doc(uid).update({
+                                address: address,
+                                birthday: birthday,
+                                city: city,
+                                country: country,
+                                lastname: lastname,
+                                name: name,
+                                phone: phone,
+                                state: stateLocation,
+                                countryComplete: countryCompleteName,
+                                profileStatus: 1
+                            }).then(() => {
+                                swal("Información actualizada", "La información de tu perfil fue actualizada con éxito!", "success");
+                            });
+                        }
+                    });
+            }
+
         } catch (e) {
             console.log("Profile.jsx - handleSubmit() -> " + e);
         }
     }
-    const [age, setAge] = useState('MX');
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    };
 
     const renderData = () => {
         if (logged) {
             return (
                 <Card className={classes.root}>
                     <CardContent>
+                        <div className={classes.alert}>
+                            {profileStatus === 1 ?
+                                <Alert variant="filled" severity="warning">En espera de verificación — Se estan
+                                    validando tus datos!</Alert> : null}
+                            {profileStatus === 2 ?
+                                <Alert variant="filled" severity="success">Cuenta verificada</Alert> : null}
+                            {profileStatus === 3 ?
+                                <Alert variant="filled" severity="error">Cuenta no verificada — Verifica que tus datos
+                                    sean correctos e intenta de nuevo!</Alert> : null}
+
+                        </div>
                         <Typography className={classes.title} variant="h3" component="h3">
                             Datos personales
                         </Typography>
@@ -194,28 +227,35 @@ export default function Profile() {
                             </div>
                         </div>
 
-                        <form className={classes.root} id="profileform" onSubmit={handleSubmit}>
+                        <form className={classes.root}
+                              id={(profileStatus === 0 || profileStatus === 3) ? "profileform" : ""}
+                              onSubmit={(profileStatus === 0 || profileStatus === 3) ? handleSubmit : false}>
                             <div className="row mt-3">
 
                                 <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
-                                    <TextField fullWidth id="outlined-basic" label="Nombre(s)" value={name}
-                                               onChange={e => setName(e.target.value)}/>
+                                    <TextField required disabled={!(profileStatus === 0 || profileStatus === 3)}
+                                               fullWidth id="outlined-basic" label="Nombre(s)"
+                                               style={{alignContent: "center"}} value={name}
+                                               onChange={(profileStatus === 0 || profileStatus === 3) ? e => setName(e.target.value) : false}/>
                                 </div>
 
                                 <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
-                                    <TextField fullWidth id="outlined-basic" label="Apellido(s)" value={lastname}
-                                               onChange={e => setLastname(e.target.value)}/>
+                                    <TextField required disabled={!(profileStatus === 0 || profileStatus === 3)}
+                                               fullWidth id="outlined-basic" label="Apellido(s)" value={lastname}
+                                               onChange={(profileStatus === 0 || profileStatus === 3) ? e => setLastname(e.target.value) : false}/>
                                 </div>
 
                                 <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
                                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                         <KeyboardDatePicker
+                                            required
                                             id="date-picker-dialog"
+                                            disabled={!(profileStatus === 0 || profileStatus === 3)}
                                             fullWidth
                                             label="Fecha nacimiento"
                                             format="dd/MM/yyyy"
                                             value={birthday ? birthday : null}
-                                            onChange={handleDateChange}
+                                            onChange={(profileStatus === 0 || profileStatus === 3) ? handleDateChange : false}
                                             KeyboardButtonProps={{
                                                 'aria-label': 'change date',
                                             }}
@@ -227,14 +267,19 @@ export default function Profile() {
                                     <FormControl fullWidth className={classes.formControl}>
                                         <InputLabel id="demo-simple-select-label">País</InputLabel>
                                         <Select
+                                            required
+                                            disabled={!(profileStatus === 0 || profileStatus === 3)}
                                             labelId="demo-simple-select-label"
                                             id="demo-simple-select"
                                             value={country}
-                                            onChange={e => {
-                                                setCountry(e.target.value)
-                                                getStatesAPI(e.currentTarget.id)
-                                                setCountryCompleteName(e.currentTarget.id);
-                                            }}
+                                            onChange={
+                                                (profileStatus === 0 || profileStatus === 3) ?
+                                                    e => {
+                                                        setCountry(e.target.value)
+                                                        getStatesAPI(e.currentTarget.id)
+                                                        getCitiesAPI("");
+                                                        setCountryCompleteName(e.currentTarget.id);
+                                                    } : false}
                                         >
                                             {
                                                 countriesAPI.map((value, index) => (
@@ -250,14 +295,22 @@ export default function Profile() {
                                     <FormControl fullWidth className={classes.formControl}>
                                         <InputLabel id="demo-simple-select-label">Estado</InputLabel>
                                         <Select
+                                            required
+                                            disabled={!(profileStatus === 0 || profileStatus === 3)}
                                             labelId="demo-simple-select-label"
                                             id="demo-simple-select-state"
                                             value={stateLocation}
-                                            onChange={e => setStateLocation(e.target.value)}
+                                            onChange={
+                                                (profileStatus === 0 || profileStatus === 3) ?
+                                                    e => {
+                                                        setStateLocation(e.target.value)
+                                                        getCitiesAPI(e.target.value)
+                                                    } : false}
                                         >
                                             {
                                                 statesAPI.map((value, index) => (
-                                                    <MenuItem key={index} value={value.state_name}>{value.state_name}</MenuItem>
+                                                    <MenuItem key={index}
+                                                              value={value.state_name}>{value.state_name}</MenuItem>
                                                 ))
                                             }
                                         </Select>
@@ -265,13 +318,30 @@ export default function Profile() {
                                 </div>
 
                                 <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
-                                    <TextField fullWidth id="outlined-basic" label="Ciudad" value={city}
-                                               onChange={e => setCity(e.target.value)}/>
+                                    <FormControl fullWidth className={classes.formControl}>
+                                        <InputLabel id="demo-simple-select-label">Ciudad</InputLabel>
+                                        <Select
+                                            required
+                                            disabled={!(profileStatus === 0 || profileStatus === 3)}
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select-state"
+                                            value={city}
+                                            onChange={(profileStatus === 0 || profileStatus === 3) ? e => setCity(e.target.value) : false}
+                                        >
+                                            {
+                                                citiesAPI.map((value, index) => (
+                                                    <MenuItem key={index}
+                                                              value={value.city_name}>{value.city_name}</MenuItem>
+                                                ))
+                                            }
+                                        </Select>
+                                    </FormControl>
                                 </div>
 
                                 <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
-                                    <TextField fullWidth id="outlined-basic" label="Número telefonico" value={phone}
-                                               onChange={e => setPhone(e.target.value)}/>
+                                    <TextField required disabled={!(profileStatus === 0 || profileStatus === 3)}
+                                               fullWidth id="outlined-basic" label="Número telefonico" value={phone}
+                                               onChange={(profileStatus === 0 || profileStatus === 3) ? e => setPhone(e.target.value) : false}/>
                                 </div>
 
 
@@ -281,13 +351,15 @@ export default function Profile() {
                             <div className="row mt-5 mb-5">
                                 <div className="col-12 px-5">
                                     <TextField
+                                        required
+                                        disabled={!(profileStatus === 0 || profileStatus === 3)}
                                         fullWidth
                                         id="standard-multiline-static"
                                         label="Dirección"
                                         multiline
                                         rows={4}
                                         value={address}
-                                        onChange={e => setAddress(e.target.value)}
+                                        onChange={(profileStatus === 0 || profileStatus === 3) ? e => setAddress(e.target.value) : false}
                                     />
                                 </div>
                             </div>
@@ -295,12 +367,13 @@ export default function Profile() {
                             <div className="row">
                                 <div className="col-12 d-flex justify-content-center">
                                     <Button
+                                        disabled={!(profileStatus === 0 || profileStatus === 3)}
                                         variant="contained"
                                         color="primary"
                                         size="large"
                                         className={classes.button}
                                         startIcon={<SaveIcon/>}
-                                        type="submit"
+                                        type={(profileStatus === 0 || profileStatus === 3) ? "submit" : "button"}
                                     >
                                         Guardar
                                     </Button>
@@ -309,7 +382,6 @@ export default function Profile() {
                         </form>
                     </CardContent>
                     <CardActions>
-
                     </CardActions>
                 </Card>
             )
@@ -359,4 +431,10 @@ const useStyles = makeStyles((theme) => ({
     selectEmpty: {
         marginTop: theme.spacing(2),
     },
+    alert: {
+        width: '100%',
+        '& > * + *': {
+            marginTop: theme.spacing(2),
+        },
+    }
 }));

@@ -67,16 +67,17 @@ const SignUpModal = () => {
             db.collection("credentials").doc(uid).set({
                 UUID: uid,
                 city: data.city.replace(/<[^>]+>/g, ''),
-                doc: "Pending".replace(/<[^>]+>/g, ''),
+                doc: "".replace(/<[^>]+>/g, ''),
                 email: data.email.replace(/<[^>]+>/g, ''),
                 name: data.name.replace(/<[^>]+>/g, ''),
-                phone: data.phone === null ? "Pending".replace(/<[^>]+>/g, '') : data.phone.replace(/<[^>]+>/g, ''),
+                phone: data.phone === null ? "".replace(/<[^>]+>/g, '') : data.phone.replace(/<[^>]+>/g, ''),
                 authType: data.authType.replace(/<[^>]+>/g, ''),
                 birthday: data.birthday.replace(/<[^>]+>/g, ''),
                 country: data.country.replace(/<[^>]+>/g, ''),
                 state: data.state.replace(/<[^>]+>/g, ''),
                 address: data.address.replace(/<[^>]+>/g, ''),
-                suns: 0
+                suns: 0,
+                countryComplete: data.countryComplete.replace(/<[^>]+>/g, '')
             }).then(docRef => {
                 history.push("/");
                 window.location.reload();
@@ -89,19 +90,20 @@ const SignUpModal = () => {
             /*============GUARDAR DATOS EN FIRESTORE===========*/
             db.collection("credentials").doc(uid).set({
                 UUID: uid,
-                city: "Pending".replace(/<[^>]+>/g, ''),
-                doc: "Pending".replace(/<[^>]+>/g, ''),
+                city: "".replace(/<[^>]+>/g, ''),
+                doc: "".replace(/<[^>]+>/g, ''),
                 email: email.replace(/<[^>]+>/g, ''),
                 name: name.replace(/<[^>]+>/g, ''),
                 lastname: apellido.replace(/<[^>]+>/g, ''),
-                phone: "Pending".replace(/<[^>]+>/g, ''),
+                phone: "".replace(/<[^>]+>/g, ''),
                 authType: "EMAIL".replace(/<[^>]+>/g, ''),
-                birthday: "Pending".replace(/<[^>]+>/g, ''),
-                country: "Pending".replace(/<[^>]+>/g, ''),
-                state: "Pending".replace(/<[^>]+>/g, ''),
-                address: "Pending".replace(/<[^>]+>/g, ''),
-                profileStatus: "Pending".replace(/<[^>]+>/g, ''),
-                suns: 0
+                birthday: "".replace(/<[^>]+>/g, ''),
+                country: "".replace(/<[^>]+>/g, ''),
+                state: "".replace(/<[^>]+>/g, ''),
+                address: "".replace(/<[^>]+>/g, ''),
+                profileStatus: "".replace(/<[^>]+>/g, ''),
+                suns: 0,
+                countryComplete: "".replace(/<[^>]+>/g, ''),
             }).then(docRef => {
                 swal({
                     title: "Registro exitoso!",
@@ -339,32 +341,34 @@ const SignUpModal = () => {
 
                 if(!searchDataInFirestore(user.uid)){
                     saveDataInFirestore(user.uid, {
-                        city: "Pending",
+                        city: "",
                         email: user.email,
                         name: user.displayName,
                         phone: user.phoneNumber,
                         authType: "GOOGLE",
-                        birthday: "Pending",
-                        country: "Pending",
-                        state: "Pending",
-                        address: "Pending",
-                        profileStatus: 0
+                        birthday: "",
+                        country: "",
+                        state: "",
+                        address: "",
+                        profileStatus: 0,
+                        countryComplete: ""
                     });
                 }
 
             } else {
                 user.sendEmailVerification().then(r => {
                     saveDataInFirestore(user.uid, {
-                        city: "Pending",
+                        city: "",
                         email: user.email,
                         name: user.displayName,
                         phone: user.phoneNumber,
                         authType: "GOOGLE",
-                        birthday: "Pending",
-                        country: "Pending",
-                        state: "Pending",
-                        address: "Pending",
-                        profileStatus: 0
+                        birthday: "",
+                        country: "",
+                        state: "",
+                        address: "",
+                        profileStatus: 0,
+                        countryComplete: ""
                     });
                 }, (error) => {
                     console.log(error.code, error.message);
