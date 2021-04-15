@@ -94,7 +94,7 @@ margin: 0px;
    }
    .parte{
         
-    z-index: 1!important;
+    z-index: 2!important;
    line-height: normal;
  
   }
@@ -103,7 +103,7 @@ margin: 0px;
   position: relative!important;
   opacity: 0.91;
 		filter: drop-shadow(7px 11px 20px rgba(0, 0, 0, 1));
-   z-index: 14!important;
+   z-index: 1!important;
 
    
 		width: 120vw!important;
