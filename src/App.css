@@ -103,7 +103,7 @@ margin: 0px;
   position: relative!important;
   opacity: 0.91;
 		filter: drop-shadow(7px 11px 20px rgba(0, 0, 0, 1));
-   z-index: 1!important;
+   z-index: 1npm!important;
 
    
 		width: 120vw!important;
@@ -135,7 +135,8 @@ z-index: 10!important;
  color: white;
   font-size: 4.5vw;
    margin-top: 100px;
-   font-family: 'Eras Demi ITC';
+   
+   font-family: 'Josefin Sans';
   font-weight: 500;
   
  
@@ -152,9 +153,9 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
    
     width: 40vw;
     text-align:left;
-    font-family: 'Eras Demi ITC';
-    font-style: oblique;
-    font-weight: 900!important;
+    
+    
+    font-weight: bold!important;
     font-size: 6.5vw;
   
     color: white;
@@ -165,7 +166,7 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
   
 
   filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
-      left: -10px;
+  
       position: relative;
    
      
@@ -173,9 +174,9 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
       
      
       text-align: left;
-      font-family: 'Eras Demi ITC';
-      font-style: oblique;
-      font-weight: 900!important;
+      
+
+      font-weight: bold!important;
       font-size: 6.5vw;
       color: white;
       
@@ -196,7 +197,7 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
     line-height: 3vw!important;
     margin: -4px 0 10px 0;
     text-align: center;
-    font-family: Lucida Sans;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 2vw;
@@ -1176,7 +1177,7 @@ white-space: normal;
     }
 .textappcon{
   color:#1D3557;
-  
+  height: auto!important;
   position: relative;
   background-color:white!important;
   overflow: hidden;
@@ -2392,8 +2393,8 @@ height: 100vw;
    position: relative;
     font-size: 7.5vw!important;
     z-index: 5;
-    text-align: left!important;
-    margin: 4vw 0 0 -12vw ;
+    text-align: center!important;
+    margin: 4vw 0 0 10vw ;
       
       }
       .tec1{
@@ -2407,21 +2408,23 @@ height: 100vw;
         z-index: 1;
         margin-top: 100px;
         font-size: 7vw;
+       
       }
       .moneda{
-        opacity: 0.63;
+     
         
         position: absolute!important;
-        height: 45vw;
-        left: 40vw !important;
-        width: 45vw!important;
+        height: 70vw;
+        left: 52vw !important;
+        width: 70vw!important;
         z-index: -2;
         animation: none;
+        overflow: hidden;
         
-        overflow: visible;
+        
       }
       .parte{
-        
+        overflow: hidden;
         z-index: 1!important;
        line-height: normal;
     
@@ -2431,7 +2434,7 @@ height: 100vw;
         width: 40vw!important ;
         margin-bottom: 15vw;
         margin-left: 3vw;
-        text-align: left!important;
+        text-align: center!important;
         
       }
       .hometext1{
@@ -2439,7 +2442,7 @@ height: 100vw;
         position: relative;
         justify-self: start;
        justify-content: center;
-        margin: 0 0 0 -15vw;
+        margin: 0 0 0 -4vw;
       
         font-size: 4vw;
         
@@ -2469,7 +2472,61 @@ height: 100vw;
 .walp-img{
   left: -246vw!important;
 }
-     
+     /*--------------------------------------------------------------------------seccion app----------------------------*/
+     .textappcon{
+      
+      height: 100vw!important;
+      position: relative;
+      
+      overflow: hidden;
+            }
+            .text-App-g{
+              height: 160vw!important;
+              top: -35vw;
+              width: 170vw!important;
+            }
+            .text-titu-app h2{
+             
+              margin-left:30vw;
+              font-style: italic;
+              font-weight: normal!important;
+              font-size: 5vw;
+              
+            }
+            .constru-cartera{
+ 
+ 
+              font-style: "Demi";
+              margin-top: 65vw;
+              font-size: 5vw;
+              background-color: #ffffff;
+              margin-left: 50vw;
+              width: 45vw;
+              text-decoration:underline white;
+            }
+            .disponible-text{
+  
+  
+              margin-top: 25vw;
+              font-size: 4vw;
+              font-weight: bold;
+            margin-left: 55vw;
+                        }
+                        .goo-aple{
+  
+                          top: -90vw!important;
+                          left: 55vw;
+                        }
+                        .img-goo{
+                          width: 40vw;
+                          height: 14vw;
+                        }
+                        .img-aple{
+                          width: 40vw;
+                          height: 14vw;
+                          margin-top: -1vw;
+                        }
+                        
       
       /*------------------------------seccion ventajas------------------------------*/
   .ventajas{
@@ -2539,40 +2596,9 @@ margin-top: 50vw!important;
   
   left: 1vw!important;
 }
-.goo-aple{
-  
-  top: 8vw!important;
-  left: 60vw;
-}
-.img-goo{
-  width: 20vw;
-  height: 7vw;
-}
-.img-aple{
-  width: 20vw;
-  height: 7vw;
-  margin-top: -8vw;
-}
-.text-App-g{
-  width: 130vw!important;
-}
-.constru-cartera{
- 
- 
-  font-style: "Demi";
-  margin-top: 20vw;
-  
-  margin-left: 50vw;
-}
-.disponible-text{
-  
-  
-  margin-top: 25vw;
-  font-size: 3vw;
-  font-weight: bold;
-margin-left: 60vw;
 
-}
+
+
 /*--------------------------------------video------------------------------------------------------------*/
 .videosunrep{
 
@@ -2822,9 +2848,7 @@ left: 25vw;
     .constru-cartera{
       left: 4vw;
     }
-    .text-App-g{
-      width: 115vw!important;
-    }
+  
     /*-----------------------------------------roap-MAp--------------------------------------------*/
 .road{
  

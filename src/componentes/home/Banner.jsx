@@ -1,4 +1,5 @@
 import React, {useEffect, Component } from 'react';
+import ParticlesBackground from './particlesbackground';
 import ReactDOM from "react-dom";
 import monedag from "../../images/moneda2.gif";
 import monedafinal from "../../images/monedafinal.png";
@@ -6,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Zoom from 'react-reveal/Zoom';
 
 import {useTranslation} from "react-i18next";
-import ParticlesBackground from './particlesbackground';
+
 import Fade from 'react-reveal/Fade';
 
 const Banner  = () => {
@@ -20,6 +21,7 @@ const Banner  = () => {
     const { t } = useTranslation();
 
     return (
+        
        <div className="fondogalaxy" >
             <div className="position-absolute  particles-cont">
           
@@ -29,7 +31,7 @@ const Banner  = () => {
         </div>
            
 
-        <div className="row fondogalaxy pl-5 " >
+        <div className="row fondogalaxy  " >
         <Zoom top>
             <div className=" col-lg-7 parte col-md-7" >
                 <p className="moneda1 text-lg-left ">
@@ -37,7 +39,7 @@ const Banner  = () => {
                     <p className="revo1">{t('Banner.Titulo.1')}</p>
                     <p className="tec1">{t('Banner.Titulo.2')}</p>
                     <img className="moneda d-block  d-md-none"  src={monedafinal}/>
-                    <p className="  hometext1   d-none  d-md-block">
+                    <p className="  hometext1  text-center d-none  d-md-block">
                         {t('Banner.Texto')}
                     </p>
                     <p className="hometext1 col-12 text-left  d-block  d-md-none">
