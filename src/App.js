@@ -19,7 +19,7 @@ import Foco from "./componentes/proyectos/Foco";
 import RoaptoMapa from './componentes/road_to_map/Roaptomap';
 import Watsappicon from './images/watsapp-icon.png';
 import Dashboard from "./componentes/user/Dashboard";
-import Profile from "./componentes/user/Profile";
+import Profile from "./componentes/user/profile/Profile";
 import {AuthProvider} from "./componentes/contexts/AuthContext";
 import Checkout from "./componentes/user/checkout/Checkout";
 import "firebase/auth";
