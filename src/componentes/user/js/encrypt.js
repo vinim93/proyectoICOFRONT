@@ -5,5 +5,7 @@ export const encryptData = (str) => {
         const shortedString = str.substring(3, str.length-3);
         const md5String = MD5(shortedString).toString();
         return md5String;
+    } else {
+        return MD5(str).toString();
     }
 }

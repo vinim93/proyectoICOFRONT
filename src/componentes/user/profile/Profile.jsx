@@ -113,7 +113,7 @@ export default function Profile() {
                 return (
                     <div className="row d-flex justify-content-center">
                         <div className="col-12 col-sm-12 col-xl-6 w-25 h-25">
-                            <img src={doc} className="img-fluid w-50" alt=""/>
+                            <img src={doc} className="img-fluid" alt=""/>
                         </div>
                     </div>
 

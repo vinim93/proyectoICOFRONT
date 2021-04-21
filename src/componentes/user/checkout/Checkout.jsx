@@ -87,33 +87,68 @@ export default function Checkout({uid, email, allData}) {
     const handleNext = (payment = false, paymentOption = "") => {
         switch (activeStep){
             case 0:
-                if(currencyType === "USD"){
-                    if(currency >= 1){
-                        if(currency <= 999999){
+
+                if(allData.profileStatus === 4){
+                    if(currencyType === "USD"){
+                        if(parseFloat(currency) >= 1){
+                            if(parseFloat(currency) <= 999999){
+                                setActiveStep(activeStep + 1);
+                            } else {
+                                swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99!", "warning");
+                            }
+                        } else {
+                            swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
+                        }
+                    } else if(currencyType === "MX"){
+                        if(parseFloat(currency) >= usdToMxn.toFixed(2)){
+                            if(parseFloat(currency) <= 999999){
+                                setActiveStep(activeStep + 1);
+                            } else {
+                                swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99!", "warning");
+                            }
+                        } else {
+                            swal("Monto invalido", `Debes pagar la mínima cantidad de $${usdToMxn.toFixed(2)} MXN!`, "warning");
+                        }
+                    } else if (currencyType === "SUN"){
+                        if(parseFloat(currency) >= 1){
                             setActiveStep(activeStep + 1);
                         } else {
-                            swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99!", "warning");
+                            swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
                         }
-                    } else {
-                        swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
                     }
-                } else if(currencyType === "MX"){
-                    if(currency >= usdToMxn.toFixed(2)){
-                        if(currency <= 999999){
+                } else {
+
+                    if(currencyType === "USD"){
+                        if(parseFloat(currency) >= 1){
+                            if(parseFloat(currency) <= 1000){
+                                setActiveStep(activeStep + 1);
+                            } else {
+                                swal("Cantidad limitada", "Tu límite es de $1000 USD, si deseas mayor margen debes ir a tu perfíl y verificar tu cuenta!", "warning");
+                            }
+                        } else {
+                            swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
+                        }
+                    } else if(currencyType === "MX"){
+                        console.log(typeof currency);
+                        if(parseFloat(currency) >= usdToMxn.toFixed(2)){
+                            if(parseFloat(currency) <= usdToMxn.toFixed(2)*1000){
+                                setActiveStep(activeStep + 1);
+                            } else {
+                                swal("Cantidad limitada", `Tu límite es de $${usdToMxn.toFixed(2)*1000} MXN, si deseas mayor margen debes ir a tu perfíl y verificar tu cuenta!`, "warning");
+                            }
+                        } else {
+                            swal("Monto invalido", `Debes pagar la mínima cantidad de $${usdToMxn.toFixed(2)} MXN!`, "warning");
+                        }
+                    } else if (currencyType === "SUN"){
+                        if(parseFloat(currency) >= 1){
                             setActiveStep(activeStep + 1);
                         } else {
-                            swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99!", "warning");
+                            swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
                         }
-                    } else {
-                        swal("Monto invalido", `Debes pagar la mínima cantidad de $${usdToMxn.toFixed(2)} MXN!`, "warning");
                     }
-                } else if (currencyType === "SUN"){
-                    if(currency >= 1){
-                        setActiveStep(activeStep + 1);
-                    } else {
-                        swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
-                    }
+
                 }
+
                 break;
             case 1:
                 if(paymentOption === "card"){

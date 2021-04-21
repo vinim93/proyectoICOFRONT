@@ -42,7 +42,6 @@ const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
                                                 profileStatus: 3,
                                                 doc: url,
                                                 fileType: getStates("fileObject"),
-                                                address: getStates("address")
                                             }).then(() => {
                                                 swal("Información actualizada", "La información de tu perfil fue actualizada con éxito!", "success");
                                             });
@@ -81,22 +80,6 @@ const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
                     Verifica que tus datos coincidan con tu identifiación oficial
                 </Typography>
 
-                <div className="row mt-5 mb-5">
-                    <div className="col-12 px-5">
-                        <TextField
-                            variant="outlined"
-                            required
-                            disabled={!(masterCondition)}
-                            fullWidth
-                            id="standard-multiline-static"
-                            label="Dirección"
-                            multiline
-                            rows={4}
-                            value={getStates("address")}
-                            onChange={(masterCondition) ? e => setStates("setAddress", e.target.value) : false}
-                        />
-                    </div>
-                </div>
 
                 <div className="row mb-5 mt-5">
 

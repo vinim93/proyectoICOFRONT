@@ -33,7 +33,6 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
     }
 
     const handleDateChange = (date) => {
-        console.log(typeof date);
         setStates("setBirthday", date);
     };
 
@@ -41,7 +40,7 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
         e.preventDefault();
         try {
             if (masterCondition) {
-                if (getStates("name") !== "" && getStates("lastname") !== "" && getStates("birthday") !== "" && getStates("country") !== "" && getStates("stateLocation") !== "" && getStates("city") !== "" && getStates("phone") !== "") {
+                if (getStates("name") !== "" && getStates("lastname") !== "" && getStates("birthday") !== "" && getStates("country") !== "" && getStates("stateLocation") !== "" && getStates("city") !== "" && getStates("phone") !== "" && getStates("address") !== "") {
                     if (getAge(getStates("birthday")) >= 18) {
                         swal({
                             title: "¿Estas seguro de subir la información?",
@@ -61,6 +60,7 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
                                         phone: getStates("phone"),
                                         state: getStates("stateLocation"),
                                         countryComplete: getStates("countryCompleteName"),
+                                        address: getStates("address"),
                                         profileStatus: 1,
                                     }).then(() => {
                                         swal("Información actualizada", "La información de tu perfil fue actualizada con éxito!", "success");
@@ -271,6 +271,23 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
                                 onChange={(masterCondition) ? e => setStates("setPhone", e) : false}
                             />}
 
+                    </div>
+
+                    <div className="row mt-5 mb-5 px-5 mt-5">
+                        <div className="col-12">
+                            <TextField
+                                variant="outlined"
+                                required
+                                disabled={!(masterCondition)}
+                                fullWidth
+                                id="standard-multiline-static"
+                                label="Dirección"
+                                multiline
+                                rows={4}
+                                value={getStates("address")}
+                                onChange={(masterCondition) ? e => setStates("setAddress", e.target.value) : false}
+                            />
+                        </div>
                     </div>
 
 

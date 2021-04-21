@@ -105,6 +105,9 @@ const SignUpModal = () => {
                 profileStatus: 0,
                 suns: 0,
                 countryComplete: "".replace(/<[^>]+>/g, ''),
+                fileType: "".replace(/<[^>]+>/g, ''),
+                profilePicture: "".replace(/<[^>]+>/g, ''),
+                profilePictureStatus: 0
             }).then(docRef => {
                 swal({
                     title: "Registro exitoso!",

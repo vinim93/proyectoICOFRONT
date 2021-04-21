@@ -10,7 +10,6 @@ import {useHistory} from "react-router-dom";
 const PaymentComponent = ({email, userData, allData}) => {
     const history = useHistory();
     const classes = useStyles();
-
     const gotoProfile = () => {
         history.push("/Profile");
     }

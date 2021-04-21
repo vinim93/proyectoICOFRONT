@@ -164,9 +164,9 @@ export default function PurchaseHistory({uid}) {
                         let paymentMethod = null;
                         if (doc.data().payment_method_types[0] === "card") {
                             if (doc.data().currency === "usd") {
-                                price = "$" + (doc.data().amount / 100).toFixed(2) || "PENDING";
+                                price = "$" + (doc.data().amount / 100) || "PENDING";
                             } else if (doc.data().currency === "mxn") {
-                                price = "$" + doc.data().final_amount.toFixed(2) || "PENDING";
+                                price = "$" + doc.data().final_amount || "PENDING";
                             }
                             id = doc.data().charges.data[0].id || "PENDING";
                             tokens = doc.data().tokens_number || "PENDING";

@@ -215,7 +215,7 @@ export default function Review({getStates, uid, handleNext, email}) {
     const products = [
         {name: 'Sun Token', desc: (getStates("currencyType") === "MX" ? getStates("currency") * getStates("mxnToUsd") : getStates("currency")), price: getStates("currency") + ' ' + (getStates("currencyType") === "MX" ? "MXN" : "USD")},
     ];
-    const addresses = [getStates("address"), getStates("city"), getStates("stateLocation"), getStates("zip"), getStates("country")];
+    const addresses = [getStates("address"), getStates("city"), getStates("stateLocation"), getStates("country")];
     const payments = [
         {name: 'Método de pago', detail: 'Tarjeta débito/crédito'},
     ];
