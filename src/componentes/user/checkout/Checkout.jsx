@@ -29,7 +29,6 @@ export default function Checkout({uid, email, allData}) {
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
     const [stateLocation, setStateLocation] = useState("");
-    const [zip, setZip] = useState("");
     const [country, setCountry] = useState("");
     const [loading, setLoading] = useState(false);
     const [paymentID, setPaymentID] = useState("");
@@ -41,7 +40,6 @@ export default function Checkout({uid, email, allData}) {
     useEffect(() => {
         currencyConversor("USD", "MXN");
         currencyConversor("MXN", "USD");
-        console.log(allData);
         setName(allData.name);
         setLastname(allData.lastname);
         setAddress(allData.address);
@@ -165,12 +163,10 @@ export default function Checkout({uid, email, allData}) {
                                 <React.Fragment>
                                     <Typography variant="h5" gutterBottom>
                                         {paymentMethod === "card" ? "¡Gracias por tu compra!" : "¡Referencia de oxxo generada!"}
-
                                     </Typography>
                                     <img src={DONE} className="img-fluid mb-3" width="13%" alt="PAGO REALIZADO"/>
                                     <Typography variant="subtitle1">
                                         {paymentMethod === "card" ? "¡Hemos enviado tu comprobante de pago al correo electrónico que tienes registrado!" : "¡Tienes 24 hrs para pagar en el oxxo con el voucher generado, el cual se envió tambien a tu correo electrónico!"}
-
                                     </Typography>
                                 </React.Fragment>
                             ) : (
@@ -193,7 +189,6 @@ export default function Checkout({uid, email, allData}) {
                                             </Button>
                                         )
                                         }
-
                                     </div>
                                 </React.Fragment>
                             )}

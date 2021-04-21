@@ -1,22 +1,22 @@
 import 'date-fns';
-import React from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {Button, TextField, Avatar} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import DateFnsUtils from '@date-io/date-fns';
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
 import SaveIcon from '@material-ui/icons/Save';
-import CRIS from '../../../images/team/CRIS.jpg'
 import swal from "sweetalert";
-import {db} from "../../config/firebase";
+import {db, useStorage} from "../../config/firebase";
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import PhoneInput from 'react-phone-input-2'
+import PhoneInput from 'react-phone-input-2';
+import UploadImage from "./UploadImage";
 import 'react-phone-input-2/lib/material.css'
 
-const PersonalData = ({getStates, setStates, uid}) => {
+const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
 
     const classes = useStyles();
     const masterCondition = getStates("profileStatus") === 0 || getStates("profileStatus") === 6 || getStates("profileStatus") === 7;
@@ -83,6 +83,38 @@ const PersonalData = ({getStates, setStates, uid}) => {
         }
     }
 
+    const uploadProfilePicture = () => {
+        swal({
+            title: "¿Estas seguro de subir esa foto?",
+            text: "Una vez enviada la foto no se podrá modificar, asegurate de que cumpla los requisitos antes mencionados!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    const storageRef = useStorage.ref(`credentials/profilePictures-${uid}`);
+                    const task = storageRef.put(getStates("image"));
+                    task.on('state_changed', snapshot => {
+                        let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        setStates("setUploadValue", percentage);
+                    }, error => {
+                        console.log(error);
+                    }, () => {
+                        storageRef.getDownloadURL().then(url => {
+                            db.collection('credentials').doc(uid).update({
+                                profilePicture: url,
+                                profilePictureStatus: 1
+                            }).then(() => {
+                                swal("Foto subida", "La foto de tu perfil fue actualizada con éxito!", "success");
+                            });
+                        })
+                    });
+                }
+            });
+
+    }
+
     return (
         <div>
 
@@ -92,16 +124,20 @@ const PersonalData = ({getStates, setStates, uid}) => {
 
             <div className="row mt-5">
                 <div className="col-12 d-flex justify-content-center">
-                    <Avatar alt="Remy Sharp" src={CRIS} className={classes.large}/>
+                    <Avatar alt="Profile image" src={getStates("croppedImage")} className={classes.large}/>
                 </div>
             </div>
+            {
+                profilePictureStatus === 0 ? (<UploadImage uploadProfilePicture={uploadProfilePicture} getStates={getStates} setStates={setStates} profilePictureStatus={profilePictureStatus} />) : null
+            }
+
 
             <form className={classes.root}
                   id={(masterCondition) ? "profileform" : ""}
                   onSubmit={(masterCondition) ? handleSubmit : false}>
                 <Typography className={classes.title} variant="subtitle2" component="subtitle2"
                             color="textSecondary">
-                    Verifica que tus datos coincidan con tu identifiación oficial
+                    Verifica que tus datos y foto coincidan con tu identificación oficial
                 </Typography>
                 <div className="row mt-3">
 
@@ -252,7 +288,7 @@ const PersonalData = ({getStates, setStates, uid}) => {
                             startIcon={<SaveIcon/>}
                             type={(masterCondition) ? "submit" : "button"}
                         >
-                            Enviar verificación
+                            Enviar
                         </Button>
                     </div>
                 </div>
@@ -286,6 +322,7 @@ const useStyles = makeStyles((theme) => ({
     large: {
         width: theme.spacing(25),
         height: theme.spacing(25),
+        marginBottom: 10
     },
     formControl: {
         minWidth: 120,

@@ -40,6 +40,9 @@ export default function Profile() {
     const [fileFirestore, setFileFirestore] = useState(null);
     const [uploadValue, setUploadValue] = useState(0);
     const [fileObject, setFileObject] = useState("");
+    const [profilePictureStatus, setProfilePictureStatus] = useState(0);
+    const [croppedImage, setCroppedImage] = useState(null);
+    const [image, setImage] = useState("");
 
     const setFile = (e) => {
         try {
@@ -48,8 +51,6 @@ export default function Profile() {
             const pdfDocument = "application/pdf";
             const acceptedFiles = [jpegImage, pngImage, pdfDocument];
             const maxSize = 5242880;
-            console.log(e);
-            console.log(URL.createObjectURL(e));
 
             if (acceptedFiles.includes(e.type)) {
                 if (e.size <= maxSize) {
@@ -58,6 +59,7 @@ export default function Profile() {
                         case pngImage:
                             setFilePreview([URL.createObjectURL(e), "image"]);
                             setFileObject("image");
+                            console.log(e);
                             setFileFirestore(e);
                             break;
 
@@ -141,11 +143,9 @@ export default function Profile() {
             let docRef = db.collection('credentials').doc(id);
             await docRef.onSnapshot(doc => {
                 if (doc.exists) {
-                    console.log(doc.data());
                     setName(doc.data().name);
                     setLastname(doc.data().lastname);
                     setBirthday(timeConverter(doc.data().birthday.seconds));
-                    console.log(doc.data().birthday.seconds);
                     setCountry(doc.data().country);
                     setStateLocation(doc.data().state);
                     setCity(doc.data().city);
@@ -154,6 +154,8 @@ export default function Profile() {
                     setProfileStatus(doc.data().profileStatus);
                     setDoc(doc.data().doc);
                     setFileObject(doc.data().fileType);
+                    setProfilePictureStatus(doc.data().profilePictureStatus);
+                    setCroppedImage(doc.data().profilePicture)
                     getStatesAPI(doc.data().countryComplete);
                     getCitiesAPI(doc.data().state);
                 }
@@ -174,7 +176,6 @@ export default function Profile() {
                 }
             });
             await setAuthToken("Bearer " + response.data.auth_token);
-            await getCountriesAPI();
         } catch (e) {
             console.log(e);
         }
@@ -187,7 +188,6 @@ export default function Profile() {
                     Authorization: jalaPorfavor
                 }
             });
-            console.log(response.data);
             setCountriesAPI(response.data);
         } catch (e) {
             console.log(e);
@@ -201,7 +201,6 @@ export default function Profile() {
                     Authorization: jalaPorfavor
                 }
             });
-            console.log(response.data);
             setStatesAPI(response.data);
         } catch (e) {
             console.log(e);
@@ -215,14 +214,13 @@ export default function Profile() {
                     Authorization: jalaPorfavor
                 }
             });
-            console.log(response.data);
             setCitiesAPI(response.data);
         } catch (e) {
             console.log(e);
         }
     }
 
-    useEffect(async () => {
+    useEffect(async() => {
         try {
             let email = currentUser.email;
             let id = currentUser.uid;
@@ -235,7 +233,8 @@ export default function Profile() {
                 history.push("/Profile");
                 getUserData(id);
                 setUid(id);
-                getAuthTokenCountries();
+                await getAuthTokenCountries();
+                await getCountriesAPI();
             }
         } catch (e) {
             history.push("/Home");
@@ -249,7 +248,6 @@ export default function Profile() {
         let month = a.getMonth() + 1;
         let date = a.getDate().toString().length === 1 ? "0" + a.getDate().toString() : a.getDate();
         let time = month + '/' + date + '/' + year;
-        console.log(time);
         return new Date(time);
     }
 
@@ -260,6 +258,7 @@ export default function Profile() {
     const setStates = (stateRequired, value) => {
         eval(stateRequired)(value);
     }
+
 
     const renderData = () => {
         if (logged) {
@@ -281,7 +280,7 @@ export default function Profile() {
                                 <Alert variant="filled" severity="error">Cuenta no verificada — Verifica todos tus!</Alert> : null}
                         </div>
 
-                        <ExpansionComponent getStates={getStates} setStates={setStates} uid={uid} showFile={showFile} setFile={setFile}/>
+                        <ExpansionComponent getStates={getStates} setStates={setStates} uid={uid} showFile={showFile} setFile={setFile} profilePictureStatus={profilePictureStatus}/>
 
                     </CardContent>
                     <CardActions>

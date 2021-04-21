@@ -19,7 +19,6 @@ const DollarMarktComponent = () => {
             for(const property in JSONObject){
                 if(cryptosList.includes(property)){
                     let object = {};
-
                     if (property === "BTC"){
                         object["icon"] = BTC;
                     } else if (property === "ETH"){
@@ -31,11 +30,9 @@ const DollarMarktComponent = () => {
                     } else if (property === "BCH"){
                         object["icon"] = BCH;
                     }
-
                     object["name"] = property;
                     object["conversion_to_dollar"] = JSONObject[property];
                     data.push(object);
-
                 }
             }
             setCryptoData(data);
@@ -60,7 +57,6 @@ const DollarMarktComponent = () => {
                         </button>
                     </div>
                     <div className="modal-body">
-
                         {
                             cryptoData.map((value, index) => (
                                 <div key={index} className="alert alert-primary-data-cryptos mr-0 mr-md-3 mr-lg-5" role="alert">
@@ -77,7 +73,6 @@ const DollarMarktComponent = () => {
                                 </div>
                             ))
                         }
-
                     </div>
                 </div>
             </div>

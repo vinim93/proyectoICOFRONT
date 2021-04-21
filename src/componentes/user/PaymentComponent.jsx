@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import {useHistory} from "react-router-dom";
 
 
-const PaymentComponent = ({coinImage, email, name, userData, allData}) => {
+const PaymentComponent = ({email, userData, allData}) => {
     const history = useHistory();
     const classes = useStyles();
 
@@ -27,7 +27,7 @@ const PaymentComponent = ({coinImage, email, name, userData, allData}) => {
                         </button>
                     </div>
                     {
-                        allData.profileStatus === 1
+                        allData.profileStatus !== 0
                             ? <Checkout uid={userData} email={email} allData={allData}/>
                             : <div className="modal-body">
                                 <img src={WARNING} className="img-fluid w-25 mb-5" alt=""/>

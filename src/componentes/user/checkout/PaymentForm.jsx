@@ -8,7 +8,6 @@ import Link from '@material-ui/core/Link';
 
 export default function PaymentForm({handleNext}) {
 
-
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>

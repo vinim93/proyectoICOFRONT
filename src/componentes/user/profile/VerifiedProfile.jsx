@@ -7,15 +7,16 @@ import SaveIcon from "@material-ui/icons/Save";
 import swal from "sweetalert";
 import {db, useStorage} from "../../config/firebase";
 import {makeStyles} from "@material-ui/core/styles";
+import {encryptData} from "../js/encrypt";
 
 const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
 
     const classes = useStyles();
     const masterCondition = getStates("profileStatus") === 1 || getStates("profileStatus") === 2 || getStates("profileStatus") === 5 || getStates("profileStatus") === 7;
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+
             if (masterCondition) {
                 if (getStates("address") !== "") {
                     if (getStates("fileFirestore") !== null) {
@@ -28,7 +29,7 @@ const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
                         })
                             .then((willDelete) => {
                                 if (willDelete) {
-                                    const storageRef = useStorage.ref(`INE/INE-${uid}`);
+                                    const storageRef = useStorage.ref(`id/${encryptData(uid)}`);
                                     const task = storageRef.put(getStates("fileFirestore"));
                                     task.on('state_changed', snapshot => {
                                         let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -56,7 +57,6 @@ const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
                 } else {
                     swal("Información faltante", "Llena todos los campos correspondientes para poder continuar!", "warning");
                 }
-
             }
 
         } catch (e) {

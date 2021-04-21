@@ -8,12 +8,12 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PersonalData from "./PersonalData";
 import VerifiedProfile from "./VerifiedProfile";
 
-export default function ExpansionComponent({getStates, setStates, uid, showFile, setFile}) {
+export default function ExpansionComponent({getStates, setStates, uid, showFile, setFile, profilePictureStatus}) {
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
-            <Accordion>
+            <Accordion expanded={true}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
@@ -22,7 +22,7 @@ export default function ExpansionComponent({getStates, setStates, uid, showFile,
                     <Typography className={classes.heading}>Datos personales</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                   <PersonalData getStates={getStates} setStates={setStates} uid={uid} />
+                   <PersonalData getStates={getStates} setStates={setStates} uid={uid} profilePictureStatus={profilePictureStatus}/>
                 </AccordionDetails>
             </Accordion>
             <Accordion>

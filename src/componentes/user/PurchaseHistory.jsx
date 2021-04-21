@@ -17,11 +17,11 @@ import Checkbox from '@material-ui/core/Checkbox';
 import {db} from "../config/firebase";
 import NumberFormat from "react-number-format";
 
-function createData(id, tokens, price, datetime, cardDetails) {
+const createData = (id, tokens, price, datetime, cardDetails) => {
     return {id, tokens, price, datetime, cardDetails};
 }
 
-function descendingComparator(a, b, orderBy) {
+const descendingComparator = (a, b, orderBy) => {
     if (b[orderBy] < a[orderBy]) {
         return -1;
     }
@@ -31,13 +31,13 @@ function descendingComparator(a, b, orderBy) {
     return 0;
 }
 
-function getComparator(order, orderBy) {
+const getComparator = (order, orderBy) => {
     return order === 'desc'
         ? (a, b) => descendingComparator(a, b, orderBy)
         : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-function stableSort(array, comparator) {
+const stableSort = (array, comparator) => {
     const stabilizedThis = array.map((el, index) => [el, index]);
     stabilizedThis.sort((a, b) => {
         const order = comparator(a[0], b[0]);
@@ -55,7 +55,7 @@ const headCells = [
     {id: 'cardDetails', numeric: true, disablePadding: false, label: 'Forma de pago'},
 ];
 
-function EnhancedTableHead(props) {
+const EnhancedTableHead = (props) => {
     const {classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort} = props;
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
@@ -98,36 +98,6 @@ function EnhancedTableHead(props) {
     );
 }
 
-EnhancedTableHead.propTypes = {
-    classes: PropTypes.object.isRequired,
-    numSelected: PropTypes.number.isRequired,
-    onRequestSort: PropTypes.func.isRequired,
-    onSelectAllClick: PropTypes.func.isRequired,
-    order: PropTypes.oneOf(['asc', 'desc']).isRequired,
-    orderBy: PropTypes.string.isRequired,
-    rowCount: PropTypes.number.isRequired,
-};
-
-const useToolbarStyles = makeStyles((theme) => ({
-    root: {
-        paddingLeft: theme.spacing(2),
-        paddingRight: theme.spacing(1),
-    },
-    highlight:
-        theme.palette.type === 'dark'
-            ? {
-                color: theme.palette.success.main,
-                backgroundColor: lighten(theme.palette.success.light, 0.85),
-            }
-            : {
-                color: theme.palette.text.primary,
-                backgroundColor: theme.palette.success.dark,
-            },
-    title: {
-        flex: '1 1 100%',
-    },
-}));
-
 const EnhancedTableToolbar = (props) => {
     const classes = useToolbarStyles();
     const {numSelected} = props;
@@ -152,33 +122,6 @@ const EnhancedTableToolbar = (props) => {
     );
 }
 
-EnhancedTableToolbar.propTypes = {
-    numSelected: PropTypes.number.isRequired,
-};
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        width: '100%',
-    },
-    paper: {
-        width: '100%',
-        marginBottom: theme.spacing(2),
-    },
-    table: {
-        minWidth: 750,
-    },
-    visuallyHidden: {
-        border: 0,
-        clip: 'rect(0 0 0 0)',
-        height: 1,
-        margin: -1,
-        overflow: 'hidden',
-        padding: 0,
-        position: 'absolute',
-        top: 20,
-        width: 1,
-    },
-}));
 
 export default function PurchaseHistory({uid}) {
     const classes = useStyles();
@@ -195,14 +138,14 @@ export default function PurchaseHistory({uid}) {
 
     const timeConverter = (UNIX_timestamp) => {
         let a = new Date(UNIX_timestamp * 1000);
-        let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         let year = a.getFullYear();
         let month = months[a.getMonth()];
         let date = a.getDate();
         let hour = a.getHours();
         let min = a.getMinutes();
         let sec = a.getSeconds();
-        let time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+        let time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
         return time;
     }
 
@@ -211,38 +154,38 @@ export default function PurchaseHistory({uid}) {
         docRef
             .orderBy("dateField", 'desc')
             .onSnapshot((querySnapshot) => {
-            let elements = [];
-            querySnapshot.forEach((doc) => {
-                try{
-                    let id = null;
-                    let tokens = null;
-                    let price = null;
-                    let date = null;
-                    let paymentMethod = null;
-                    if(doc.data().payment_method_types[0] === "card"){
-                        if(doc.data().currency === "usd"){
-                            price = "$" + (doc.data().amount / 100).toFixed(2) || "PENDING";
-                        } else if(doc.data().currency === "mxn"){
-                            price = "$" + doc.data().final_amount.toFixed(2) || "PENDING";
+                let elements = [];
+                querySnapshot.forEach((doc) => {
+                    try {
+                        let id = null;
+                        let tokens = null;
+                        let price = null;
+                        let date = null;
+                        let paymentMethod = null;
+                        if (doc.data().payment_method_types[0] === "card") {
+                            if (doc.data().currency === "usd") {
+                                price = "$" + (doc.data().amount / 100).toFixed(2) || "PENDING";
+                            } else if (doc.data().currency === "mxn") {
+                                price = "$" + doc.data().final_amount.toFixed(2) || "PENDING";
+                            }
+                            id = doc.data().charges.data[0].id || "PENDING";
+                            tokens = doc.data().tokens_number || "PENDING";
+                            date = timeConverter(doc.data().created) || "PENDING";
+                            paymentMethod = doc.data().charges.data[0].payment_method_details.card.network + " " + doc.data().charges.data[0].payment_method_details.type + " " + "*".repeat(12) + doc.data().charges.data[0].payment_method_details.card.last4 || "PENDING";
+                        } else if (doc.data().payment_method_types[0] === "oxxo") {
+                            id = doc.data().charges.data[0].id || "PENDING";
+                            tokens = doc.data().tokens_number || "PENDING";
+                            price = "$" + doc.data().final_amount || "PENDING";
+                            date = timeConverter(doc.data().created) || "PENDING";
+                            paymentMethod = doc.data().payment_method_types[0] || "PENDING";
                         }
-                        id = doc.data().charges.data[0].id || "PENDING";
-                        tokens = doc.data().tokens_number || "PENDING";
-                        date = timeConverter(doc.data().created) || "PENDING";
-                        paymentMethod = doc.data().charges.data[0].payment_method_details.card.network + " " + doc.data().charges.data[0].payment_method_details.type + " " +"*".repeat(12) + doc.data().charges.data[0].payment_method_details.card.last4 || "PENDING";
-                    } else if(doc.data().payment_method_types[0] === "oxxo"){
-                        id = doc.data().charges.data[0].id || "PENDING";
-                        tokens = doc.data().tokens_number || "PENDING";
-                        price = "$" + doc.data().final_amount || "PENDING";
-                        date = timeConverter(doc.data().created) || "PENDING";
-                        paymentMethod = doc.data().payment_method_types[0] || "PENDING";
+                        elements.push(createData(id, tokens, price, date, paymentMethod));
+                    } catch (e) {
+                        console.log(e.code);
                     }
-                    elements.push(createData(id, tokens, price, date, paymentMethod));
-                } catch (e) {
-                    console.log(e.code);
-                }
-            });
-            setRows(elements);
-        })
+                });
+                setRows(elements);
+            })
     }
 
     const handleRequestSort = (event, property) => {
@@ -376,3 +319,61 @@ export default function PurchaseHistory({uid}) {
         </div>
     );
 }
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: '100%',
+    },
+    paper: {
+        width: '100%',
+        marginBottom: theme.spacing(2),
+    },
+    table: {
+        minWidth: 750,
+    },
+    visuallyHidden: {
+        border: 0,
+        clip: 'rect(0 0 0 0)',
+        height: 1,
+        margin: -1,
+        overflow: 'hidden',
+        padding: 0,
+        position: 'absolute',
+        top: 20,
+        width: 1,
+    },
+}));
+
+const useToolbarStyles = makeStyles((theme) => ({
+    root: {
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(1),
+    },
+    highlight:
+        theme.palette.type === 'dark'
+            ? {
+                color: theme.palette.success.main,
+                backgroundColor: lighten(theme.palette.success.light, 0.85),
+            }
+            : {
+                color: theme.palette.text.primary,
+                backgroundColor: theme.palette.success.dark,
+            },
+    title: {
+        flex: '1 1 100%',
+    },
+}));
+
+EnhancedTableToolbar.propTypes = {
+    numSelected: PropTypes.number.isRequired,
+};
+
+EnhancedTableHead.propTypes = {
+    classes: PropTypes.object.isRequired,
+    numSelected: PropTypes.number.isRequired,
+    onRequestSort: PropTypes.func.isRequired,
+    onSelectAllClick: PropTypes.func.isRequired,
+    order: PropTypes.oneOf(['asc', 'desc']).isRequired,
+    orderBy: PropTypes.string.isRequired,
+    rowCount: PropTypes.number.isRequired,
+};

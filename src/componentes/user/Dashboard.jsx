@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useAuth} from "../contexts/AuthContext";
 import {useHistory} from "react-router-dom";
-import swal from "sweetalert";
 import moneda_dashboard from "../../images/moneda-dashboard.svg";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DollarMarktComponent from "./DollarMarktComponent";
@@ -33,9 +32,7 @@ const Dashboard = () => {
         } catch (e) {
             console.log("Dashboard.jsx - getUserData()" + e);
         }
-
     }
-
 
     useEffect(() => {
         try{
@@ -46,12 +43,10 @@ const Dashboard = () => {
             setLogged(true);
             history.push("/");
             getUserData(id);
-            console.log(userInfo);
         } catch (e) {
             setSigninEmail("");
             history.push("/Home");
             setLogged(false);
-            console.log("useEffect de Dashboard= " + e);
         }
     },[]);
 
@@ -85,7 +80,7 @@ const Dashboard = () => {
                         </div>
 
                         <DollarMarktComponent />
-                        <PaymentComponent coinImage={moneda_dashboard} email={currentUser.email} name={userInfo.name} userData={uid} allData={userInfo} />
+                        <PaymentComponent email={currentUser.email} userData={uid} allData={userInfo} />
 
                     </div>
 
@@ -94,7 +89,6 @@ const Dashboard = () => {
                         <PurchaseHistory uid={uid} />
                     </div>
 
-
                 </div>
 
             )
@@ -102,7 +96,6 @@ const Dashboard = () => {
             return null
         }
     }
-
 
     return (
         <div className="container-fluid fondo-dashboard">
