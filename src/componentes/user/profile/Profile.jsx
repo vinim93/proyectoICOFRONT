@@ -44,6 +44,29 @@ export default function Profile() {
     const [croppedImage, setCroppedImage] = useState(null);
     const [image, setImage] = useState("");
 
+    useEffect(() => {
+        try {
+            let email = currentUser.email;
+            let id = currentUser.uid;
+            if (!currentUser.emailVerified) {
+                setLogged(false);
+                logout();
+                history.push("/Home");
+            } else {
+                setLogged(true);
+                history.push("/Profile");
+                getUserData(id);
+                setUid(id);
+                getAuthTokenCountries().then(() => {
+                    getCountriesAPI();
+                });
+            }
+        } catch (e) {
+            history.push("/Home");
+            setLogged(false);
+        }
+    }, [jalaPorfavor]);
+
     const setFile = (e) => {
         try {
             const jpegImage = "image/jpeg";
@@ -162,7 +185,7 @@ export default function Profile() {
             });
 
         } catch (e) {
-            console.log("Profile.jsx - getUserData()" + e);
+            //console.log("Profile.jsx - getUserData()" + e);
         }
 
     }
@@ -177,7 +200,7 @@ export default function Profile() {
             });
             await setAuthToken("Bearer " + response.data.auth_token);
         } catch (e) {
-            console.log(e);
+            //console.log(e);
         }
     }
 
@@ -190,7 +213,7 @@ export default function Profile() {
             });
             setCountriesAPI(response.data);
         } catch (e) {
-            console.log(e);
+            //console.log(e);
         }
     }
 
@@ -203,7 +226,7 @@ export default function Profile() {
             });
             setStatesAPI(response.data);
         } catch (e) {
-            console.log(e);
+            //console.log(e);
         }
     }
 
@@ -216,31 +239,9 @@ export default function Profile() {
             });
             setCitiesAPI(response.data);
         } catch (e) {
-            console.log(e);
+            //console.log(e);
         }
     }
-
-    useEffect(async() => {
-        try {
-            let email = currentUser.email;
-            let id = currentUser.uid;
-            if (!currentUser.emailVerified) {
-                setLogged(false);
-                logout();
-                history.push("/Home");
-            } else {
-                setLogged(true);
-                history.push("/Profile");
-                getUserData(id);
-                setUid(id);
-                await getAuthTokenCountries();
-                await getCountriesAPI();
-            }
-        } catch (e) {
-            history.push("/Home");
-            setLogged(false);
-        }
-    }, [jalaPorfavor]);
 
     const timeConverter = (UNIX_timestamp) => {
         let a = new Date(UNIX_timestamp * 1000);

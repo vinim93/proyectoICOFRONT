@@ -144,7 +144,7 @@ const Navigation = () => {
                                 </li>
                             </ul>
                             <a href="#" data-toggle="collapse" data-target=".navbar-collapse.show">
-                                <button type="button" className="navsesion btn btn-link" data-toggle="modal" data-target="#signInModal"
+                                <button type="button" id="signInButton" className="navsesion btn btn-link" data-toggle="modal" data-target="#signInModal"
                                 >{t('Navbar.SignIn')}
                                 </button>
                             </a>

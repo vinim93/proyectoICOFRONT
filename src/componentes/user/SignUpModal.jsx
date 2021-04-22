@@ -22,9 +22,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import FormControl from "@material-ui/core/FormControl";
 
-
 const SignUpModal = () => {
-
 
     const sendReCAPTCHAValue = async (value) => {
         const response = await axios.post("https://sunshine-ico.uc.r.appspot.com/api/recaptcha", {
@@ -48,7 +46,6 @@ const SignUpModal = () => {
     const [loading, setLoading] = useState(false);
     const [verifiedCaptcha, setVerifiedCaptcha] = useState(false);
     const history = useHistory();
-
 
     //VALIDATIONS
     const validations = {
@@ -115,6 +112,11 @@ const SignUpModal = () => {
                     icon: "success",
                     button: "Entendido!",
                     closeOnClickOutside: false
+                }).then(confirm => {
+                    if(confirm){
+                        document.getElementById("closeModalSignUp").click();
+                        document.getElementById("signInButton").click();
+                    }
                 });
                 clearStates();
                 setLoading(false);
@@ -426,7 +428,7 @@ const SignUpModal = () => {
 
                     <div className="modal-header">
                         <h5 className="modal-title col-12" id="staticBackdropLabel">Crea tu cuenta</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" id="closeModalSignUp" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>

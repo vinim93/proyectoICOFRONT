@@ -1,5 +1,5 @@
 import 'date-fns';
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {Button, TextField, Avatar} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
@@ -130,12 +130,10 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
             {
                 profilePictureStatus === 0 ? (<UploadImage uploadProfilePicture={uploadProfilePicture} getStates={getStates} setStates={setStates} profilePictureStatus={profilePictureStatus} />) : null
             }
-
-
             <form className={classes.root}
                   id={(masterCondition) ? "profileform" : ""}
-                  onSubmit={(masterCondition) ? handleSubmit : false}>
-                <Typography className={classes.title} variant="subtitle2" component="subtitle2"
+                  onSubmit={(masterCondition) ? handleSubmit : () => false}>
+                <Typography className={classes.title} variant="subtitle2" component="h2"
                             color="textSecondary">
                     Verifica que tus datos y foto coincidan con tu identificación oficial
                 </Typography>
@@ -146,14 +144,14 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
                                    disabled={!(masterCondition)}
                                    fullWidth id="outlined-basic" label="Nombre(s)"
                                    style={{alignContent: "center"}} value={getStates("name")}
-                                   onChange={(masterCondition) ? e => setStates("setName", e.target.value) : false}/>
+                                   onChange={(masterCondition) ? e => setStates("setName", e.target.value) : () => false}/>
                     </div>
 
                     <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
                         <TextField variant="outlined" required
                                    disabled={!(masterCondition)}
                                    fullWidth id="outlined-basic" label="Apellido(s)" value={getStates("lastname")}
-                                   onChange={(masterCondition) ? e => setStates("setLastname", e.target.value) : false}/>
+                                   onChange={(masterCondition) ? e => setStates("setLastname", e.target.value) : () => false}/>
                     </div>
 
                     <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
@@ -167,7 +165,7 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
                                 label="Fecha nacimiento"
                                 format="dd/MM/yyyy"
                                 value={getStates("birthday") ? getStates("birthday") : null}
-                                onChange={(masterCondition) ? handleDateChange : false}
+                                onChange={(masterCondition) ? handleDateChange : () => false}
                                 KeyboardButtonProps={{
                                     'aria-label': 'change date',
                                 }}
@@ -178,81 +176,108 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
                     <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
                         <FormControl variant="outlined" fullWidth className={classes.formControl}>
                             <InputLabel id="demo-simple-select-label">País</InputLabel>
-                            <Select
-                                required
-                                disabled={!(masterCondition)}
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={getStates("country")}
-                                onChange={
-                                    (masterCondition) ?
-                                        e => {
-                                            setStates("setCountry", e.target.value)
-                                            setStates("setStateLocation", "")
-                                            setStates("setCity", "")
-                                            setStates("getStatesAPI", e.currentTarget.id)
-                                            setStates("getCitiesAPI", null)
-                                            setStates("setCountryCompleteName", e.currentTarget.id)
-                                        } : false}
-                            >
-                                {
-                                    getStates("countriesAPI").map((value, index) => (
-                                        <MenuItem key={index} id={value.country_name}
-                                                  value={value.country_short_name}>{value.country_name}</MenuItem>
-                                    ))
-                                }
-                            </Select>
+                            {
+                                (masterCondition) ? (
+                                    <Select
+                                        required
+                                        disabled={!(masterCondition)}
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={ (masterCondition) ? getStates("country") : false}
+                                        onChange={
+                                            (masterCondition) ?
+                                                e => {
+                                                    setStates("setCountry", e.target.value)
+                                                    setStates("setStateLocation", "")
+                                                    setStates("setCity", "")
+                                                    setStates("getStatesAPI", e.currentTarget.id)
+                                                    setStates("getCitiesAPI", null)
+                                                    setStates("setCountryCompleteName", e.currentTarget.id)
+                                                } : () => false}>
+                                        {
+                                            getStates("countriesAPI").map((value, index) => (
+                                                <MenuItem key={index} id={value.country_name}
+                                                          value={value.country_short_name}>{value.country_name}</MenuItem>
+                                            ))
+                                        }
+                                    </Select>
+                                ) : (
+                                    <TextField variant="outlined" required
+                                               disabled={!(masterCondition)}
+                                               fullWidth id="outlined-basic" label="País" value={getStates("country")}
+                                    />
+                                )
+                            }
+
                         </FormControl>
                     </div>
 
                     <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
                         <FormControl variant="outlined" fullWidth className={classes.formControl}>
                             <InputLabel id="demo-simple-select-label">Estado</InputLabel>
-                            <Select
-                                required
-                                disabled={!(masterCondition)}
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select-state"
-                                value={getStates("stateLocation")}
-                                onChange={
-                                    (masterCondition) ?
-                                        e => {
-                                            setStates("setStateLocation", e.target.value)
-                                            setStates("setCity", "")
-                                            setStates("getCitiesAPI", e.target.value)
-                                        } : false}
-                            >
-                                {
-                                    getStates("statesAPI").map((value, index) => (
-                                        <MenuItem key={index}
-                                                  value={value.state_name}>{value.state_name}</MenuItem>
-                                    ))
-                                }
-                            </Select>
+                            {
+                                (masterCondition) ? (
+                                    <Select
+                                        required
+                                        disabled={!(masterCondition)}
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select-state"
+                                        value={(masterCondition) ? getStates("stateLocation") : false}
+                                        onChange={
+                                            (masterCondition) ?
+                                                e => {
+                                                    setStates("setStateLocation", e.target.value)
+                                                    setStates("setCity", "")
+                                                    setStates("getCitiesAPI", e.target.value)
+                                                } : () => false}>
+                                        {
+                                            getStates("statesAPI").map((value, index) => (
+                                                <MenuItem key={index}
+                                                          value={value.state_name}>{value.state_name}</MenuItem>
+                                            ))
+                                        }
+                                    </Select>
+                                ) : (
+                                    <TextField variant="outlined" required
+                                               disabled={!(masterCondition)}
+                                               fullWidth id="outlined-basic" label="Estado" value={getStates("stateLocation")}
+                                    />
+                                )
+                            }
+
                         </FormControl>
                     </div>
 
                     <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
                         <FormControl variant="outlined" fullWidth className={classes.formControl}>
                             <InputLabel id="demo-simple-select-outlined-label">Ciudad</InputLabel>
-                            <Select
-                                required
-                                disabled={!(masterCondition)}
-                                labelId="demo-simple-select-outlined-label"
-                                id="demo-simple-select-outlined"
-                                value={getStates("city")}
-                                onChange={(masterCondition) ? e => setStates("setCity", e.target.value) : false}
-                                inputProps={{
-                                    id: 'outlined-age-native-simple',
-                                }}
-                            >
-                                {
-                                    getStates("citiesAPI").map((value, index) => (
-                                        <MenuItem key={index}
-                                                  value={value.city_name}>{value.city_name}</MenuItem>
-                                    ))
-                                }
-                            </Select>
+                            {
+                                (masterCondition) ? (
+                                    <Select
+                                        required
+                                        disabled={!(masterCondition)}
+                                        labelId="demo-simple-select-outlined-label"
+                                        id="demo-simple-select-outlined"
+                                        value={(masterCondition) ? getStates("city") : false}
+                                        onChange={(masterCondition) ? e => setStates("setCity", e.target.value) : () => false}
+                                        inputProps={{
+                                            id: 'outlined-age-native-simple',
+                                        }}>
+                                        {
+                                            getStates("citiesAPI").map((value, index) => (
+                                                <MenuItem key={index}
+                                                          value={value.city_name}>{value.city_name}</MenuItem>
+                                            ))
+                                        }
+                                    </Select>
+                                ) : (
+                                    <TextField variant="outlined" required
+                                               disabled={!(masterCondition)}
+                                               fullWidth id="outlined-basic" label="Ciudad" value={getStates("city")}
+                                    />
+                                )
+                            }
+
                         </FormControl>
                     </div>
 
@@ -262,13 +287,13 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
                                        disabled={!(masterCondition)}
                                        fullWidth id="outlined-basic" label="Número telefonico"
                                        value={"+" + getStates("phone")}
-                                       onChange={(masterCondition) ? e => setStates("setPhone", e.target.value) : false}/> :
+                                       onChange={(masterCondition) ? e => setStates("setPhone", e.target.value) : () => false}/> :
                             <PhoneInput
                                 disabled={!(masterCondition)}
                                 country={'mx'}
                                 inputStyle={{height: 56, width: "100%"}}
                                 value={getStates("phone")}
-                                onChange={(masterCondition) ? e => setStates("setPhone", e) : false}
+                                onChange={(masterCondition) ? e => setStates("setPhone", e) : () => false}
                             />}
 
                     </div>
@@ -285,7 +310,7 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
                                 multiline
                                 rows={4}
                                 value={getStates("address")}
-                                onChange={(masterCondition) ? e => setStates("setAddress", e.target.value) : false}
+                                onChange={(masterCondition) ? e => setStates("setAddress", e.target.value) : () => false}
                             />
                         </div>
                     </div>

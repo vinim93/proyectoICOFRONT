@@ -67,7 +67,7 @@ const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
         <div>
             <form className={classes.root}
                   id={(masterCondition) ? "profileform" : ""}
-                  onSubmit={(masterCondition) ? handleSubmit : false}>
+                  onSubmit={(masterCondition) ? handleSubmit : () => false}>
 
                 <div className="col-12">
                     <Typography className={classes.title} variant="h4" component="h4">
@@ -75,7 +75,7 @@ const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
                     </Typography>
                 </div>
 
-                <Typography className={classes.title} variant="subtitle2" component="subtitle2"
+                <Typography className={classes.title} variant="subtitle2" component="h2"
                             color="textSecondary">
                     Verifica que tus datos coincidan con tu identifiación oficial
                 </Typography>
