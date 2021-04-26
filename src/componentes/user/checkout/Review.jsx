@@ -124,8 +124,10 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
     }
 
     const buyTokenWithOxxo = async() => {
+        console.log("ENTRO A LA FUNCION");
         setOpen(true);
         try{
+            console.log("ENTRO AL TRY");
             const {data} = await axios.post('https://sunshine-ico.uc.r.appspot.com/create-payment-intent', {
                 id: "holaoxxo",
                 amount: getStates("currency"),
@@ -159,6 +161,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
             console.log("ERROR AL INTENTAR PAGAR CON OXXO, INFO: ");
             console.log(e.code, e.message);
         }
+        console.log("AQUI YA DEBIO ACABAR LA FUNCION");
         setOpen(false);
     }
 

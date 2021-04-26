@@ -20,18 +20,17 @@ import RoaptoMapa from './componentes/road_to_map/Roaptomap';
 import Watsappicon from './images/watsapp-icon.png';
 import Dashboard from "./componentes/user/Dashboard";
 import Profile from "./componentes/user/profile/Profile";
+import Recovery from "./componentes/user/Recovery";
 import {AuthProvider} from "./componentes/contexts/AuthContext";
 import Checkout from "./componentes/user/checkout/Checkout";
 import "firebase/auth";
 
 
-const App = (props) => {
+const App = () => {
 
     return (
         <BrowserRouter>
             <div className="App" data-toggle="collapse" data-target=".navbar-collapse.show">
-
-
                 <AuthProvider>
                     <Navigation/>
                     <Switch>
@@ -43,6 +42,9 @@ const App = (props) => {
                         <Route path="/" exact component={Dashboard} />
                         <Route path={"/Profile"} component={Profile}/>
                         <Route path={"/Checkout"} component={Checkout}/>
+                        <Route path="/Recovery/:id">
+                            <Recovery />
+                        </Route>
                     </Switch>
                 </AuthProvider>
                 <div className="whats-content">

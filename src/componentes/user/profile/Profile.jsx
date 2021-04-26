@@ -180,7 +180,6 @@ export default function Profile() {
                     setProfilePictureStatus(doc.data().profilePictureStatus);
                     setCroppedImage(doc.data().profilePicture)
                     getStatesAPI(doc.data().countryComplete);
-                    getCitiesAPI(doc.data().state);
                 }
             });
 
@@ -225,19 +224,6 @@ export default function Profile() {
                 }
             });
             setStatesAPI(response.data);
-        } catch (e) {
-            //console.log(e);
-        }
-    }
-
-    const getCitiesAPI = async (stateAPI) => {
-        try {
-            const response = await axios.get(`https://www.universal-tutorial.com/api/cities/${stateAPI}`, {
-                headers: {
-                    Authorization: jalaPorfavor
-                }
-            });
-            setCitiesAPI(response.data);
         } catch (e) {
             //console.log(e);
         }

@@ -408,11 +408,16 @@ const SignUpModal = () => {
         password: '',
         weight: '',
         weightRange: '',
-        showPassword: false,
+        showPassword1: false,
+        showPassword2: false
     });
 
-    const handleClickShowPassword = () => {
-        setValues({...values, showPassword: !values.showPassword});
+    const handleClickShowPassword = (id) => {
+        if(id === 1){
+            setValues({...values, showPassword1: !values.showPassword1});
+        } else if (id === 2){
+            setValues({...values, showPassword2: !values.showPassword2});
+        }
     };
 
     const handleMouseDownPassword = (event) => {
@@ -509,7 +514,7 @@ const SignUpModal = () => {
                                             <InputLabel htmlFor="filled-adornment-password">Contraseña *</InputLabel>
                                             <FilledInput
                                                 id="signup-password"
-                                                type={values.showPassword ? 'text' : 'password'}
+                                                type={values.showPassword1 ? 'text' : 'password'}
                                                 value={password}
                                                 onChange={(e) => setPassword(e.target.value)}
                                                 style={{backgroundColor: "#FFFFFF"}}
@@ -517,17 +522,16 @@ const SignUpModal = () => {
                                                     <InputAdornment position="end">
                                                         <IconButton
                                                             aria-label="toggle password visibility"
-                                                            onClick={handleClickShowPassword}
+                                                            onClick={() => handleClickShowPassword(1)}
                                                             onMouseDown={handleMouseDownPassword}
                                                             edge="end"
                                                         >
-                                                            {values.showPassword ? <Visibility/> : <VisibilityOff/>}
+                                                            {values.showPassword1 ? <Visibility/> : <VisibilityOff/>}
                                                         </IconButton>
                                                     </InputAdornment>
                                                 }
                                             />
                                         </FormControl>
-
 
                                     </div>
 
@@ -537,7 +541,7 @@ const SignUpModal = () => {
                                             <InputLabel htmlFor="filled-adornment-password">Repite tu contraseña *</InputLabel>
                                             <FilledInput
                                                 id="signup-password"
-                                                type={values.showPassword ? 'text' : 'password'}
+                                                type={values.showPassword2 ? 'text' : 'password'}
                                                 value={repeatedPassword}
                                                 onChange={(e) => setRepeteadPassword(e.target.value)}
                                                 style={{backgroundColor: "#FFFFFF"}}
@@ -545,11 +549,11 @@ const SignUpModal = () => {
                                                     <InputAdornment position="end">
                                                         <IconButton
                                                             aria-label="toggle password visibility"
-                                                            onClick={handleClickShowPassword}
+                                                            onClick={() => handleClickShowPassword(2)}
                                                             onMouseDown={handleMouseDownPassword}
                                                             edge="end"
                                                         >
-                                                            {values.showPassword ? <Visibility/> : <VisibilityOff/>}
+                                                            {values.showPassword2 ? <Visibility/> : <VisibilityOff/>}
                                                         </IconButton>
                                                     </InputAdornment>
                                                 }

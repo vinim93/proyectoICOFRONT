@@ -18,6 +18,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import PasswordRecoveryModal from "../user/PasswordRecoveryModal";
 
 const Navigation = () => {
     const { t } = useTranslation();
@@ -167,6 +168,7 @@ const Navigation = () => {
                         </div>
                         <SignUpModal />
                         <SignInModal />
+                        <PasswordRecoveryModal/>
                     </div>
                 </nav>
             )

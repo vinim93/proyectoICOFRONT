@@ -17,7 +17,8 @@ import IconButton from '@material-ui/core/IconButton';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FilledInput from '@material-ui/core/FilledInput';
-
+import Link from "@material-ui/core/Link";
+import PasswordRecoveryModal from "./PasswordRecoveryModal";
 
 const SignInModal = () => {
 
@@ -191,6 +192,10 @@ const SignInModal = () => {
         event.preventDefault();
     };
 
+    const openForgetPass = async () => {
+        await document.getElementById("closeSignInModal").click();
+    }
+
     return (
 
         <div className="modal fade " id="signInModal" data-backdrop="static" data-keyboard="false"
@@ -200,7 +205,8 @@ const SignInModal = () => {
 
                     <div className="modal-header">
                         <h5 className="modal-title col-12" id="staticBackdropLabel">Tu cuenta</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" id="closeSignInModal" className="close" data-dismiss="modal"
+                                aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -249,7 +255,8 @@ const SignInModal = () => {
 
                                     <div className="input-group input-group-lg col-12 pl-xl-5 pr-xl-5">
 
-                                        <FormControl fullWidth className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5" variant="filled">
+                                        <FormControl fullWidth className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
+                                                     variant="filled">
                                             <InputLabel htmlFor="filled-adornment-password">Contraseña *</InputLabel>
                                             <FilledInput
                                                 id="signin-password"
@@ -280,8 +287,7 @@ const SignInModal = () => {
                                                    onChange={sendReCAPTCHAValue}/>
                                     </div>
 
-                                    <div className="form-group col-12 mt-5 mb-5">
-
+                                    <div className="form-group col-12 mt-4 mb-5">
                                         <button type="submit"
                                                 className="btn btn-registro"
                                                 id="signInButton"
@@ -295,15 +301,25 @@ const SignInModal = () => {
                                     </div>
                                 </div>
                             </div>
-
                         </form>
 
+                        <div className="container pl-xl-5 pr-xl-5">
+                            <div className="row pl-xl-5 pr-xl-5">
+                                <div className="col-12 mb-5">
+
+                                    <a style={{color: "white"}} href="#" onClick={openForgetPass} data-toggle="modal"
+                                       data-target="#recoveryModal">
+                                        <h6>
+                                            ¿Olvidaste la contraseña?
+                                        </h6>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
-
                     <div className="modal-footer col-12 btn-footer"></div>
                 </div>
-
             </div>
         </div>
 
