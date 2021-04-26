@@ -29,7 +29,7 @@ const SignUpModal = () => {
             captchaValue: value
         });
 
-        if(response.data.status === "success"){
+        if (response.data.status === "success") {
             setVerifiedCaptcha(true);
         }
 
@@ -113,7 +113,7 @@ const SignUpModal = () => {
                     button: "Entendido!",
                     closeOnClickOutside: false
                 }).then(confirm => {
-                    if(confirm){
+                    if (confirm) {
                         document.getElementById("closeModalSignUp").click();
                         document.getElementById("signInButton").click();
                     }
@@ -128,13 +128,15 @@ const SignUpModal = () => {
         }
     }
 
-    const searchDataInFirestore = id => {
-        let docRef = db.collection('credentials').doc(id);
-        docRef.get().then(doc => {
-            return doc.exists;
+    const searchDataInFirestore = async id => {
+        let result = null;
+        await db.collection('credentials').doc(id).get().then(doc => {
+            result = doc.exists ? "exists" : "not-exists";
         }).catch(error => {
+            result = "error";
             console.log("ERROR AL BUSCAR EL UID");
         });
+        return result;
     }
 
     const clearStates = () => {
@@ -163,9 +165,9 @@ const SignUpModal = () => {
                 .has().not().spaces();
 
             if (schema.validate(password)) {
-                if(password === repeatedPassword){
+                if (password === repeatedPassword) {
                     if (checkedValue) {
-                        if(verifiedCaptcha){
+                        if (verifiedCaptcha) {
                             setLoading(true);
                             auth.createUserWithEmailAndPassword(email, password)
                                 .then((user) => {
@@ -245,36 +247,42 @@ const SignUpModal = () => {
                                     {
                                         schema.validate(password, {list: true}).map((element, index) => {
                                             console.log(element);
-                                            switch(element) {
+                                            switch (element) {
                                                 case 'min':
 
-                                                    return(
-                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">Mínimo 8 caracteres</p></li>
+                                                    return (
+                                                        <li key={index} className="text-dark text-justify"><p
+                                                            className="text-danger">Mínimo 8 caracteres</p></li>
                                                     )
 
                                                 case 'max':
-                                                    return(
-                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">Máximo 100 caracteres</p></li>
+                                                    return (
+                                                        <li key={index} className="text-dark text-justify"><p
+                                                            className="text-danger">Máximo 100 caracteres</p></li>
                                                     )
 
                                                 case 'uppercase':
-                                                    return(
-                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">Mínimo una letra mayuscula</p></li>
+                                                    return (
+                                                        <li key={index} className="text-dark text-justify"><p
+                                                            className="text-danger">Mínimo una letra mayuscula</p></li>
                                                     )
 
                                                 case 'lowercase':
-                                                    return(
-                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">Mínimo 1 letra minuscula</p></li>
+                                                    return (
+                                                        <li key={index} className="text-dark text-justify"><p
+                                                            className="text-danger">Mínimo 1 letra minuscula</p></li>
                                                     )
 
                                                 case 'spaces':
-                                                    return(
-                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">No debe contener espacios</p></li>
+                                                    return (
+                                                        <li key={index} className="text-dark text-justify"><p
+                                                            className="text-danger">No debe contener espacios</p></li>
                                                     )
 
                                                 case 'digits':
-                                                    return(
-                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">Mínimo 1 número</p></li>
+                                                    return (
+                                                        <li key={index} className="text-dark text-justify"><p
+                                                            className="text-danger">Mínimo 1 número</p></li>
                                                     )
 
                                             }
@@ -299,53 +307,23 @@ const SignUpModal = () => {
         }
     };
 
-    const signUpWithFacebook = () => {
-        let provider = new firebase.auth.FacebookAuthProvider();
-        provider.addScope('public_profile');
-        auth.languageCode = 'es';
-        provider.setCustomParameters({
-            'display': 'popup'
-        });
-        auth
-            .signInWithPopup(provider)
-            .then((result) => {
-                let credential = result.credential;
-
-                // The signed-in user info.
-                let user = result.user;
-                console.log("YA SE HIZO CON FACEBOOK");
-                console.log(user);
-
-                // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-                let accessToken = credential.accessToken;
-
-                // ...
-            })
-            .catch((error) => {
-                // Handle Errors here.
-                let errorCode = error.code;
-                let errorMessage = error.message;
-                // The email of the user's account used.
-                let email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
-                let credential = error.credential;
-
-                // ...
-            });
-    }
-
     const signUpWithGoogle = () => {
 
         let provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
         auth.languageCode = 'es';
-        auth.signInWithPopup(provider).then((result) => {
+        auth.signInWithPopup(provider).then(async (result) => {
             console.log(result);
             let user = result.user;
-            console.log(user);
+            console.log(user.uid);
             if (user.emailVerified) {
 
-                if(!searchDataInFirestore(user.uid)){
+                let userStatus = await searchDataInFirestore(user.uid);
+                if(userStatus === "exists"){
+                    history.push("/");
+                    window.location.reload();
+                    clearStates();
+                } else if (userStatus === "not-exists"){
                     saveDataInFirestore(user.uid, {
                         city: "",
                         email: user.email,
@@ -358,6 +336,14 @@ const SignUpModal = () => {
                         address: "",
                         profileStatus: 0,
                         countryComplete: ""
+                    });
+                } else {
+                    swal({
+                        title: "Ocurrio un error",
+                        text: "Ocurrio un error inesperado, intentalo de nuevo más tarde!",
+                        icon: "error",
+                        button: "Entendido!",
+                        closeOnClickOutside: false
                     });
                 }
 
@@ -382,26 +368,13 @@ const SignUpModal = () => {
                 auth.signOut();
             }
         }).catch((error) => {
+            auth.signOut();
             let errorCode = error.code;
             let errorMessage = error.message;
             console.log(errorCode, errorMessage);
-            auth.signOut();
         })
 
     }
-
-    useEffect(() => {
-        const fetchCountryData = async () => {
-            try {
-                const response = await axios.get("https://restcountries.eu/rest/v2/all");
-                setCountries(response.data);
-                console.log(response.data[0].flag);
-            } catch (e) {
-                console.log(e);
-            }
-        }
-        fetchCountryData();
-    }, []);
 
     const [values, setValues] = useState({
         amount: '',
@@ -413,9 +386,9 @@ const SignUpModal = () => {
     });
 
     const handleClickShowPassword = (id) => {
-        if(id === 1){
+        if (id === 1) {
             setValues({...values, showPassword1: !values.showPassword1});
-        } else if (id === 2){
+        } else if (id === 2) {
             setValues({...values, showPassword2: !values.showPassword2});
         }
     };
@@ -433,7 +406,8 @@ const SignUpModal = () => {
 
                     <div className="modal-header">
                         <h5 className="modal-title col-12" id="staticBackdropLabel">Crea tu cuenta</h5>
-                        <button type="button" id="closeModalSignUp" className="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" id="closeModalSignUp" className="close" data-dismiss="modal"
+                                aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -448,18 +422,6 @@ const SignUpModal = () => {
                                 onClick={signUpWithGoogle}
                                 style={{width: 500, borderRadius: 3}}
                             />
-                        </div>
-
-                        <div className="form-group col-12 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5">
-                            <div className="container pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5">
-                                <div className="row pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5">
-
-                                    <button onClick={signUpWithFacebook} className="fb connect mr-xl-5 ml-xl-5">
-                                        Iniciar sesión con
-                                        Facebook
-                                    </button>
-                                </div>
-                            </div>
                         </div>
 
                         <form className="form" onSubmit={handleSubmit}>
@@ -510,7 +472,8 @@ const SignUpModal = () => {
 
                                     <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
 
-                                        <FormControl fullWidth className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5" variant="filled">
+                                        <FormControl fullWidth className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
+                                                     variant="filled">
                                             <InputLabel htmlFor="filled-adornment-password">Contraseña *</InputLabel>
                                             <FilledInput
                                                 id="signup-password"
@@ -537,8 +500,10 @@ const SignUpModal = () => {
 
                                     <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
 
-                                        <FormControl fullWidth className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5" variant="filled">
-                                            <InputLabel htmlFor="filled-adornment-password">Repite tu contraseña *</InputLabel>
+                                        <FormControl fullWidth className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
+                                                     variant="filled">
+                                            <InputLabel htmlFor="filled-adornment-password">Repite tu contraseña
+                                                *</InputLabel>
                                             <FilledInput
                                                 id="signup-password"
                                                 type={values.showPassword2 ? 'text' : 'password'}
@@ -572,14 +537,16 @@ const SignUpModal = () => {
                                                                           checked={checkedValue}
                                                                           onChange={handleCheckboxState}
                                                                           required={true}
-                                                                          name="terminosyCondiciones" />}
-                                                            label="Aceptar términos y condiciones" required name="terminosYCondiciones"
+                                                                          name="terminosyCondiciones"/>}
+                                                            label="Aceptar términos y condiciones" required
+                                                            name="terminosYCondiciones"
                                                         />
                                                     </span>
                                     </div>
 
                                     <div className="form-group col-12 d-flex justify-content-center">
-                                        <ReCAPTCHA sitekey="6LceM4oaAAAAAJhirPQbyXB2KERNzwHUyoAspql-" onChange={sendReCAPTCHAValue} />
+                                        <ReCAPTCHA sitekey="6LceM4oaAAAAAJhirPQbyXB2KERNzwHUyoAspql-"
+                                                   onChange={sendReCAPTCHAValue}/>
                                     </div>
 
                                     <div className="form-group col-12 mt-3" id="signUpButtonDiv">

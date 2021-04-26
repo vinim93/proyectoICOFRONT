@@ -30,13 +30,15 @@ const SignInModal = () => {
     const [loading, setLoading] = useState(false);
     const history = useHistory();
 
-    const searchDataInFirestore = id => {
-        let docRef = db.collection('credentials').doc(id);
-        docRef.get().then(doc => {
-            return doc.exists;
+    const searchDataInFirestore = async id => {
+        let result = null;
+        await db.collection('credentials').doc(id).get().then(doc => {
+            result = doc.exists ? "exists" : "not-exists";
         }).catch(error => {
+            result = "error";
             console.log("ERROR AL BUSCAR EL UID");
         });
+        return result;
     }
 
     const saveDataInFirestore = (uid, data = {}) => {
@@ -65,30 +67,54 @@ const SignInModal = () => {
         let provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
         auth.languageCode = 'es';
-        auth.signInWithPopup(provider).then((result) => {
+        auth.signInWithPopup(provider).then(async (result) => {
             console.log(result);
             let user = result.user;
-            console.log(user);
+            console.log(user.uid);
             if (user.emailVerified) {
 
-                if (!searchDataInFirestore(user.uid)) {
+                let userStatus = await searchDataInFirestore(user.uid);
+                if(userStatus === "exists"){
+                    history.push("/");
+                    window.location.reload();
+                } else if (userStatus === "not-exists"){
                     saveDataInFirestore(user.uid, {
-                        city: "Pending",
+                        city: "",
                         email: user.email,
                         name: user.displayName,
                         phone: user.phoneNumber,
-                        authType: "GOOGLE"
+                        authType: "GOOGLE",
+                        birthday: "",
+                        country: "",
+                        state: "",
+                        address: "",
+                        profileStatus: 0,
+                        countryComplete: ""
+                    });
+                } else {
+                    swal({
+                        title: "Ocurrio un error",
+                        text: "Ocurrio un error inesperado, intentalo de nuevo más tarde!",
+                        icon: "error",
+                        button: "Entendido!",
+                        closeOnClickOutside: false
                     });
                 }
 
             } else {
                 user.sendEmailVerification().then(r => {
                     saveDataInFirestore(user.uid, {
-                        city: "Pending",
+                        city: "",
                         email: user.email,
                         name: user.displayName,
                         phone: user.phoneNumber,
-                        authType: "GOOGLE"
+                        authType: "GOOGLE",
+                        birthday: "",
+                        country: "",
+                        state: "",
+                        address: "",
+                        profileStatus: 0,
+                        countryComplete: ""
                     });
                 }, (error) => {
                     console.log(error.code, error.message);
@@ -96,10 +122,10 @@ const SignInModal = () => {
                 auth.signOut();
             }
         }).catch((error) => {
+            auth.signOut();
             let errorCode = error.code;
             let errorMessage = error.message;
             console.log(errorCode, errorMessage);
-            auth.signOut();
         })
 
     }
@@ -219,17 +245,6 @@ const SignInModal = () => {
                                 onClick={signUpWithGoogle}
                                 style={{width: 500, borderRadius: 3}}
                             />
-                        </div>
-
-                        <div className="form-group col-12 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5">
-                            <div className="container pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5">
-                                <div className="row pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5">
-                                    <button className="fb connect mr-xl-5 ml-xl-5">
-                                        Iniciar sesión con Facebook
-                                    </button>
-                                </div>
-                            </div>
-
                         </div>
 
                         <hr/>
