@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
+
+.control-dots{
+    position: absolute !important;
+     margin-bottom: 69.2%!important;
+   justify-content:space-around!important;
+     
+     list-style: none;
+     left: -47vw;
+     width: 195vw!important;
+     z-index: 2!important;
+     
+    }
+    .carousel .control-dots .dot {
+        transition:background-color .25s ease-in!important;
+        
+        background-color: red!important;}
+ .carousel-root {    
+     margin-top: 20vw!important;     
+ }
+ .linea-car-1{
+     position:absolute;
+    
+   width: 90vw!important;
+     margin-top: 19.5%!important;
+     margin-left: 9vw!important;
+     z-index: 0!important;
+ }
+ 
+ .carousel{
+     overflow: visible!important;
+ }
+ .car-carrousel{
+     border-top: 1vw solid #8F8F914d!important;
+     
+ }
+ .carousel .control-dots .dot.selected, .carousel .control-dots .dot:hover{
+    background-color: #015280!important;
+ }
+
+.dot{
+   position: relative;
+    background-color: #015280!important;
+    font-size: 3vw!important;
+    opacity: 1!important;
+    box-shadow: 5px 5px 5px rgb(0 0 0 / 100%)!important;
+    width: 3vw!important;
+    height: 3vw!important;
+    left: 5.1vw!important;
+    margin: 0 7.3vw 0 0vw!important;
+ }
+ .img-carrusel1{
+     position: relative;
+     width: 30vw!important;
+ }
+ .cont-car-carrusel{
+   
+    margin-top: 4vw!important;
+    
+}
+.thumb{
+   height: 82px!important;
+   
+    
+}
+.thumb  .cont-car-carrusel{
+    position: relative!important;
+    top: -3vw!important;
+} 
+.thumb p{
+    color: white !important;
+}
+.control-arrow{
+    color: #00000000!important;
+    
+}
+.carousel .control-next.control-arrow:before {
+    border-left: 8px solid darkred!important;
+}
+.carousel .control-prev.control-arrow:before {
+    border-right: 8px solid darkred;
+}
+.legend{
+ 
+    color: #000000!important;
+    font-family: 'Josefin Sans'!important;
+    background-color: transparent!important;
+    font-size: 7vw!important;
+    font-weight: bold;
+    left:  55%!important;
+}
+ 
+@media  screen and (max-width: 520px) {
+    .control-dots{
+    
+        left: -48vw;
+        width: 195vw!important;
+        margin-bottom: 72.1%!important;
+        
+       }
+}

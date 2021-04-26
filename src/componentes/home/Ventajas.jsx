@@ -41,7 +41,7 @@ const Ventajas = () => {
                         <div className="col-12 d-flex justify-content-center mt-5 text-justify ">
                             <h3>{value.title}</h3>
                         </div>
-                        <div className="col-12 d-flex justify-content-center mt-2 text-justify ">
+                        <div className="col-12 d-flex justify-content-center mt-2 text-justify fuente-ventajas ">
                             <h5>{value.description}</h5>
                         </div>
                     </div>

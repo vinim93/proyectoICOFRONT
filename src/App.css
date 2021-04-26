@@ -2,12 +2,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
-@import 'https://fonts.googleapis.com/css?family=Rubik+One';
+
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
 @font-face {
   font-family:'Eras Demi ITC' ;
   src: url('./fonts/ERASDEMI.TTF');
 }
+@font-face {
+  font-family: Alfa-Bold;
+  src: url(fonts/Alfa-Bold.woff);
+}
+@font-face {
+  font-family: digitalo;
+  src: url(fonts/digitalo.woff);
+}
+@font-face {
+  font-family: Josefin Sans Regular Roman;
+  src: url(fonts/Josefin\ Sans\ Regular\ Roman.TTF);
+}
+@font-face {
+  font-family: Blackpast;
+  src: url(fonts/Blackpast.woff);
+}
+
+
+
+
 
 body{
   margin: 0;
@@ -75,7 +95,7 @@ margin: 0px;
    
    background-size:cover;
    background-position:top;
-   background: linear-gradient(to bottom,#043361, #000000);
+   background-image: url("./images/FONDO\ HOME.jpg")!important;
    background-repeat:no-repeat;
    
    }
@@ -131,12 +151,14 @@ margin: 0px;
  .moneda1{
 z-index: 10!important;
    position: relative;
+   white-space: nowrap;
   filter: drop-shadow(7px 13px 9px rgba(0, 0, 0, 1));
  color: white;
   font-size: 4.5vw;
-   margin-top: 100px;
+   margin-top: 30%;
+   margin-left: 7vw;
    
-   font-family: 'Josefin Sans';
+   font-family: Alfa-Bold;
   font-weight: 500;
   
  
@@ -146,17 +168,16 @@ z-index: 10!important;
  }
  .revo1{
 
-filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
-    left: 6vw;
+filter: drop-shadow(0px 9px 6px rgba(22, 8, 1, 0.753));
+    left: 7vw;
     
     position: relative;    
-   
-    width: 40vw;
+  white-space: normal;
     text-align:left;
-    
-    
-    font-weight: bold!important;
-    font-size: 6.5vw;
+    font-family: digitalo;
+    line-height:100%;
+text-transform: lowercase;
+    font-size: 7vw;
   
     color: white;
    
@@ -165,19 +186,14 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
  .tec1{
   
 
-  filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
-  
-      position: relative;
-   
-     
+  filter: drop-shadow(0px 9px 6px rgba(3, 1, 0, 0.753));  
+      position: relative;     
       white-space: normal;
-      
-     
-      text-align: left;
-      
-
-      font-weight: bold!important;
-      font-size: 6.5vw;
+      line-height: 100%;     
+      text-align: left; 
+      font-family: digitalo;     
+      font-size: 7vw;
+      text-transform: lowercase;
       color: white;
       
       
@@ -189,19 +205,18 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
   position: relative;
   filter: drop-shadow(0px 6px 1px rgba(0, 0, 0, 1));
     left: 8vw;
-    top: 30px;
+    top: 45px;
     overflow: visible!important;
-    text-transform: uppercase;
+   
     z-index: 2!important;
     white-space: normal;
     line-height: 3vw!important;
     margin: -4px 0 10px 0;
     text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 2vw;
+    font-family: "agency FB";
    
+    font-size: 3vw;
+    text-transform: lowercase;
     color: rgba(255,255,255,1);
     letter-spacing: 0.03px;
     
@@ -262,8 +277,8 @@ margin-bottom: 1vw;
   z-index: 2;
  font-size: 8vw;
   margin-left: 8%;
-  top: 7vw;
-  font-family: 'Eras ITC';
+  top: 8vw;
+  font-family: digitalo;
   font-weight: 400;
   
   color: white;
@@ -273,7 +288,7 @@ margin-bottom: 1vw;
   z-index: 2;
   color: white;
   font-size: 3.5vw;
-  font-family: 'Josefin Sans';
+  font-family: digitalo;
   top: 20vw;
   margin-left: 8%;
   color: #7B90A3;
@@ -325,7 +340,8 @@ margin-bottom: 1vw;
   padding: 0px!important;
 }
 .sec3con{
- 
+  font-family: "agency FB";
+  font-size: 120%;
   display: flex;
   justify-content: center;
   white-space: normal;
@@ -578,17 +594,23 @@ margin-bottom: 1vw;
   font-size: 25px!important;
   align-items: center;
   
-font-family: "Josefin Sans"; 
+font-family:lato; 
 }
 .ventajas-cuerpo-min{
   font-size: 3.5vw!important;
   line-height: normal;
-  font-family: "Lato"; 
+  
   text-align: justify!important;
   width: 100%;
   
  
   margin: 0!important;
+}
+.fuente-ventajas{
+  font-family: Josefin Sans Regular Roman!important;
+  color: #CEDEEE;
+  font-weight: bolder!important;
+  
 }
 .ventajas-cuerpo-index{
   font-weight:normal!important;
@@ -625,12 +647,11 @@ font-family: "Josefin Sans";
     
     margin: 5px 0 5px 0!important;
     
-    font-family: 'Barlow Condensed';
+    font-family:Blackpast;
     font-style: normal;
     font-weight: bold;
     font-size: 12vw;
-    color: rgba(2,88,137,1);
-    
+    color: #1D3557
 }
 .focsec6{
  
@@ -1156,16 +1177,15 @@ white-space: normal;
 .titu-token{
   color: #025889;
   filter: drop-shadow(7px 3px 8px rgba(0, 0, 0, 0.851));
-  color: rgba(2,88,137,1);
-    text-transform: uppercase;
-    font-family: Barlow;
-    font-style: normal;
-    font-weight: bold;
+ 
+    
+    font-family: Blackpast!important;
+   
     font-size: 7vw;
 }
 .parrafos-tokens{
   text-align: left;
-  font-family: Josefin Sans;
+  font-family: Josefin Sans Regular Roman;
     font-style: normal;
     font-weight: normal;
     font-size: 1.5vw;
@@ -1188,10 +1208,10 @@ white-space: normal;
     z-index: 10;
     margin:3vw 0 0 2vw;
     font-size: 7vw;
-    font-family: Barlow;
+    font-family: Blackpast;
     height: 4vw;
     font-weight: bold;
-    text-transform: uppercase;
+   
     
   }
   .cont-token{
@@ -1269,8 +1289,8 @@ right: 88vw;
     background-color: transparent!important;
   }
   .text-titu-app h2{
-    font-family: Lato!important;
-    font-style: italic;
+    font-family: digitalo!important;
+  
     margin-left:45vw;
     
     font-size: 3.5vw;
@@ -1281,7 +1301,7 @@ right: 88vw;
     text-align: left;
     z-index: 2;
     line-height: 5vw;
-  
+  font-family: "josefin sans regular roman";
     margin-top: 18vw;
     left: 45vw;
     font-size: 2vw;
@@ -1330,7 +1350,7 @@ right: 88vw;
 }
 .constru-cartera{
   filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
-  font-family: 'Eras ITC';
+  font-family: Digitalo;
   font-weight: 500;
   font-style: "Demi";
   margin-top: 35vw;
@@ -1377,11 +1397,12 @@ text-align: center;
   
  
 .text-soporte{
-  font-family: 'Barlow Condensed', sans-serif!important;
+  font-family:Blackpast;
   font-size: 10vw;
-  font-weight: 90;
+  
   white-space: normal;
   margin-bottom: 10vw;
+  text-transform: lowercase;
 }
 /*----------------------------seccion10 preguntas    -------------------------------------------------------*/
 
@@ -1392,9 +1413,15 @@ text-align: center;
   justify-content: center;
   font-weight:bold !important;
   font-size: 6vw!important;
-  font-family: 'Lato';
+  font-family: josefin sans regular roman;
   color:#FAD000;
   
+}
+.frecprec{
+  font-family: Blackpast!important;
+  position: relative;
+  z-index: 1!important;
+  text-transform: lowercase;
 }
 .preguntas{
   
@@ -1838,8 +1865,9 @@ margin:5vw;
   background-color:#ffffff!important;
 justify-content: center;
   width: 100%;
-  margin: 9vw 0 0 0!important;
+  margin: 9vw 0 0 !important;
   overflow: hidden;
+  
   
   
 }
@@ -1856,7 +1884,6 @@ height: 93vw;
 }
 .text-roap-map{
   width: 100vw;
-
   position: absolute;
   color:black;
   margin-top: 2vw;
@@ -1865,7 +1892,7 @@ height: 93vw;
   text-align: center;
   font-family: 'Josefin Sans';
   font-size: 1.7vw;
-  line-height: 1.5vw;
+  line-height: 1.5vw;  
   font-weight: bold;
   z-index: 2;
 }
@@ -2049,6 +2076,10 @@ font-family:'Lato';
   .contenedor-engra{
     height: 3200px;
   }
+  .textbtn2{
+    font-size: 1.45vw;
+    left: -1vw;
+  }
   }
 @media only screen and (max-width:2000px){
   .focoenv-cont{
@@ -2187,6 +2218,10 @@ margin-top: 3vw;
 @media screen and (max-width:1220px){
 .goo-aple{
   top: 3vw;
+}
+
+.moneda{
+  margin-top: 5vw;
 }
 }
 @media screen and (max-width:1091px){
@@ -2391,16 +2426,16 @@ height: 100vw;
   /*-----------------------------media seccion1-------------------------*/
   .revo1{
    position: relative;
-    font-size: 7.5vw!important;
+    font-size: 9vw!important;
     z-index: 5;
     text-align: center!important;
-    margin: 4vw 0 0 10vw ;
+    margin: 4vw 0 0 -40vw ;
       
       }
       .tec1{
         text-align: center!important;
-        font-size: 7.5vw;
-        margin-left: -12vw;
+        font-size: 9vw;
+        margin-left: -35vw;
         margin-bottom: 1vw;
       }
       .moneda1{
@@ -2415,7 +2450,8 @@ height: 100vw;
         
         position: absolute!important;
         height: 70vw;
-        left: 52vw !important;
+        left: 35vw !important;
+        top: 1vw;
         width: 70vw!important;
         z-index: -2;
         animation: none;
@@ -2486,9 +2522,9 @@ height: 100vw;
               width: 170vw!important;
             }
             .text-titu-app h2{
-             
+              font-family: Digitalo!important;
               margin-left:30vw;
-              font-style: italic;
+             
               font-weight: normal!important;
               font-size: 5vw;
               
@@ -2572,8 +2608,10 @@ margin-top: 50vw!important;
     left: 60vw;
   }
   .frecprec{
+    font-family: Blackpast;
     position: relative;
     z-index: 1!important;
+    text-transform: lowercase;
   }
   .img-meto{
 

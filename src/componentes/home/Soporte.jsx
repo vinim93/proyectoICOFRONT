@@ -25,9 +25,9 @@ const Soporte = () => {
     return (
         <div className="row">
             <div className="col-12 fondoedi">
-                <p className="text-soporte">
+                <span className="text-soporte">
                     {t('Support.Title')}
-                </p>
+                </span>
                 <div className="row fondo-opa d-flex justify-content-center pb-5">
                 {
                     items.map((value, index) => (

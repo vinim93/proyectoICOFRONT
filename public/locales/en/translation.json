@@ -60,7 +60,7 @@
     },
     "Seguro": {
       "Titulo": "SURE",
-      "Texto": "Reliable processing, the SUN is based on the Ethereum Blockchain protocol, which makes it private and proof of any hacking"
+      "Texto": "Reliable processing, the SUN is settled on Blockchain's protocol  TRON, which makes it private and proof of any hacking."
     },
     "Transparente": {
       "Titulo": "TRANSPARENT",
@@ -72,7 +72,7 @@
     "Items": [
       {
         "Title": "What is a Token?",
-        "Text": "It is a virtual token that has a unit of value which is issued by a private entity, has various functions apart from acting as a virtual currency and is based on the Ethereum Blockchain protocol, which makes it transparent, private and proof of any hack."
+        "Text": "A token is a virtual token that has a value unit which is issued on a Blockchain, has various functions other than acting as a virtual currency, which makes it transparent, private and hack-proof."
       },
       {
         "Title": "What is a cryptocurrency?",
@@ -187,11 +187,11 @@
     "SunshineToken": {
       "Title": "Sunshine Token",
       "Items": [
-        "Compatible, interoperable and reusable token within various applications, wallets and exchanges, properties inherited from the ERC-20 standard under which it was created.",
-        "They use \"gas\" to cover transaction fees. Gas is, simply put, the price that has to be paid when carrying out an operation on the Ethereum network.",
-        "They are hosted on the Etherum blockchain, unlike other cryptocurrencies that are hosted on their respective blockchain.",
-        "Developed with Solidity, a programming language designed to execute Smart contracts optimally in the Etherum virtual machine (EVM).",
-        "It uses the stable OpenZeppelin API, which verify that the contracts present security gaps or weak points that can be exploited."
+        "It allows application developers to issue their own tokens within the TRON platform.",
+        "The average commit time per transaction is 1 min. For the transaction to be committed, 19 network blocks will be required (a new block is created approximately every 3 seconds).",
+        "Virtual machine (TVM), smart contracts, and TRON token standards support Ethereum, simplifying project migration to this blockchain.",
+        "Users can transact on the TRON network for free, i.e. without commissions due to the presence of special parameters: bandwidth and power.",
+        "Ability to simplify token creation (TRC10), without much money and time."
       ]
     },
     "AppDownload": {
