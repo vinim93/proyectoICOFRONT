@@ -111,13 +111,13 @@
     ]
   },
   "AboutSection": {
-    "Title": "ASEGURA TU FUTURO, EMPIEZA HOY",
+    "Title": "ASEGURA TU FUTURO",
     "Banner": "EQUIPO SUNSHINE",
     "ButtonText": "¿Te gustaria unirte a nuestro equipo?",
     "Introduction": [
-      "Hemos desarrollado un token que va a permitirles a los inversionistas, ser parte de este mundo financiero virtual, dando inicio a una nueva era tecnológica y la oportunidad de invertir en activos digitales",
-      "Dicho token lleva por nombre SUNSHINE IMAGINE",
-      "SUNSHINE es para los emprendedores, las personas que quieran ir un paso más adelante, para los que no se conformen con poco, SUNSHINE es el futuro, es para quien desea grandeza, aquel que perdió el miedo y decidió tomar el control de su vida."
+      "Somos un equipo de profesionales que trabajan para revolucionar el mundo digital financiero a través del compromiso y la transparencia, ofreciendo resultados favorables a los sunholders para consolidarse como socios estratégicos en el logro de sus objetivos."
+      
+    
     ],
     "Differences": {
       "Title": "¿QUÉ NOS DIFERENCIA?",
@@ -128,7 +128,7 @@
         },
         {
           "Title": "PRIVACIDAD",
-          "Text": "Sunshine nunca compartirá tus datos personales, datos de tus inversiones ni cualquier tipo de información, ya que el SUN corre por la Blockchain Ethereum cada movimiento que realices será privado y anónimo."
+          "Text": "Sunshine nunca compartirá tus datos personales, datos de tus inversiones ni cualquier tipo de información, ya que el SUN corre por la Blockchain TRON cada movimiento que realices será privado y anónimo."
         },
         {
           "Title": "SOLIDEZ",

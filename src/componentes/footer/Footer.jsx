@@ -55,12 +55,15 @@ const Footer = () => {
 
         <div className="  row  con-footer con-conecta">
             <div className="col-12 ">
+                <a href="https://sunshine-imagine.com/">
+
                 <img src={Sol} alt=""/>
+                </a>
 
                 <a href="https://www.facebook.com/Sunshine-Imagine-Cripto-115833410321279">
                     <img src={Face} alt=""/>
                 </a>
-                <img src={Gmail} alt=""/>
+               
                 <a href="https://www.instagram.com/sunshine.imagine.cripto/">
 
                     <img src={Insta} alt=""/>
@@ -71,7 +74,7 @@ const Footer = () => {
                     <img src={Twiter} alt=""/>
                 </a>
 
-                <img src={Youtube} alt=""/>
+               {/* <img src={Youtube} alt=""/>*/}
 
                 <div className=" col-12 foottitulo">
 

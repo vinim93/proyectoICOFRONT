@@ -1740,26 +1740,7 @@ margin:0 10px 0 0;
       right:  145px;
    }
 
-   .cont-diferencia{
-     
-    margin-top: 150px;
-   }
-   .cont-diferencia img {
-    margin-bottom: 10px !important;
-}
-
-.cont-diferencia h3 {
-    margin-top: 50px;
-    color: #025889 !important;
-    font-family: 'Josefin Sans';
-    font-weight: bold;
-}
-
-.cont-diferencia p {
-    color: #025889 !important;
-    font-family: 'Josefin Sans';
-    font-size: 150%;
-}
+  
 .titu-dife{
   font-weight: bold;
   font-family: 'Eras ITC';
