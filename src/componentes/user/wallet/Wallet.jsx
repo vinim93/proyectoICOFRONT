@@ -14,6 +14,8 @@ import "./../scss/argon-dashboard-react.scss";
 import HeaderCards from "./HeaderCards";
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import QRCode from "react-qr-code";
+
 
 const Wallet = (props) => {
     const [activeNav, setActiveNav] = useState(1);
@@ -67,11 +69,11 @@ const Wallet = (props) => {
                                     <div className="tab-content" id="myTabContent">
                                         <div className="tab-pane fade show active" id="tabs-icons-text-1"
                                              role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
-                                            <div className="col-12">
-                                                <img
-                                                    src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Commons_QR_code.png"/>
+                                            <div className="col-12 d-flex justify-content-center">
+                                                <div style={{borderColor: "white", border: "solid", backgroundColor: "white", width: "min-content"}}>
+                                                    <QRCode value="19icR5yuXUUAcD6m7qsnkGXewzs7jdj4UV" />
+                                                </div>
                                             </div>
-
                                             <div className="col-12 mt-5">
                                                 <h4 className="text-uppercase text-light ls-1 mb-1">
                                                     Wallet address
