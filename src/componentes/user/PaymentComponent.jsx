@@ -21,7 +21,7 @@ const PaymentComponent = ({email, userData, allData}) => {
                 <div className="modal-content py-0">
                     <div className="modal-header">
                         <h5 className="modal-title-dashboard" id="exampleModalLabel">Proceso de pago</h5>
-                        <button type="button" className="close-modal" data-dismiss="modal" aria-label="Close">
+                        <button type="button" id="closeModalCheckout" className="close-modal" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>

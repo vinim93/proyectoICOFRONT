@@ -23,6 +23,7 @@ import Profile from "./componentes/user/profile/Profile";
 import Recovery from "./componentes/user/Recovery";
 import {AuthProvider} from "./componentes/contexts/AuthContext";
 import Checkout from "./componentes/user/checkout/Checkout";
+import Wallet from "./componentes/user/wallet/Wallet";
 import "firebase/auth";
 
 
@@ -45,6 +46,7 @@ const App = () => {
                         <Route path="/Recovery/:id">
                             <Recovery />
                         </Route>
+                        <Route path={"/Wallet"} component={Wallet}/>
                     </Switch>
                 </AuthProvider>
                 <div className="whats-content">

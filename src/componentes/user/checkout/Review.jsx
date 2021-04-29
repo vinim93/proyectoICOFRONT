@@ -123,7 +123,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
 
     }
 
-    const buyTokenWithOxxo = async() => {
+    const buyTokenWithOxxo = async () => {
         console.log("ENTRO A LA FUNCION");
         setOpen(true);
         try{
@@ -147,7 +147,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                             email,
                         },
                     },
-                }) // Stripe.js will open a modal to display the OXXO voucher to your customer
+                })// Stripe.js will open a modal to display the OXXO voucher to your customer
                 .then(function(result) {
                     // This promise resolves when the customer closes the modal
                     console.log("EL USUARIO CERRO EL MODAL");

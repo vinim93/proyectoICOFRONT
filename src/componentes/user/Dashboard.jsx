@@ -76,7 +76,8 @@ const Dashboard = () => {
                         </div>
 
                         <div className="col-12">
-                            <button className="btn material2 ml-5 mr-5" data-toggle="modal" data-target="#paymentModal" data-backdrop='static' data-keyboard='false'>Comprar</button>
+                            <button className="btn material2 ml-5 mr-3" data-toggle="modal" data-target="#paymentModal" data-backdrop='static' data-keyboard='false'>Comprar</button>
+                            <a className="btn material2 ml-3 mr-5" href="Wallet">Wallet&nbsp;</a>
                         </div>
 
                         <DollarMarktComponent />
