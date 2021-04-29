@@ -8,31 +8,94 @@ import {
     Row,
     Col,
 } from "reactstrap";
-import TextField from '@material-ui/core/TextField';
+
+//OWN IMPORTATIONS
 import "./../css/nucleo.css";
 import "./../scss/argon-dashboard-react.scss";
 import HeaderCards from "./HeaderCards";
+
+//MATERIAL IMPORTS
+import TextField from '@material-ui/core/TextField';
+import FilledInput from '@material-ui/core/FilledInput';
+import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import CropFreeIcon from '@material-ui/icons/CropFree';
+
+//QR UTILITIES IMPORTATIONS
 import QRCode from "react-qr-code";
+import QrReader from 'react-qr-scanner'
 
 
-const Wallet = (props) => {
-    const [activeNav, setActiveNav] = useState(1);
+const Wallet = () => {
 
-    const toggleNavs = (e, index) => {
-        e.preventDefault();
-        setActiveNav(index);
+    const [scannerOpen, setScannerOpen] = useState(false);
+    const [scanValue, setScanValue] = useState("");
+
+    const ReadQR = ({setScanValue}) => {
+
+        const [value, setValue] = useState("");
+
+        const handleError = (e) => {
+            console.log(e);
+        }
+
+        if(value){
+            setScanValue(value);
+            document.getElementById("closeScanner").click();
+            return null;
+        } else {
+            return (
+                <div>
+                    <QrReader
+                        delay={1000}
+                        style={{height: 240, width: 320}}
+                        onError={handleError}
+                        onScan={data => {
+                            if(data){
+                                setValue(data.text)
+                            }
+                        }}
+                    />
+                </div>
+            )
+        }
+    }
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
     };
 
 
     return (
         <>
+            <a href="#" type="button" id="openScanner" data-toggle="modal"
+               data-target="#exampleModalCenter" />
+
+            <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <button type="button" onClick={() => {setScannerOpen(false)}} id="closeScanner" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            {scannerOpen ? <ReadQR setScanValue={setScanValue} /> : null}
+                        </div>
+                    </div>
+                </div>
+            </div>
             <HeaderCards/>
             {/* Page content */}
             <Container className="mt--7" fluid>
                 <Row className="d-flex justify-content-center">
                     <Col className="mb-5 mb-xl-0" xl="8">
+
                         <Card className="bg-gradient-default shadow">
                             <CardHeader className="bg-transparent">
                                 <Row className="align-items-center">
@@ -88,6 +151,34 @@ const Wallet = (props) => {
                                                 <div className="container px-md-5">
                                                     <div className="row px-md-5">
 
+
+                                                        <div className="col-12 mb-4 px-md-5">
+                                                            <FormControl fullWidth style={{backgroundColor: "#FFFFFF", fontWeight: "bold", borderRadius: 4}} variant="filled">
+                                                                <InputLabel htmlFor="filled-adornment-password">Dirección de destino</InputLabel>
+                                                                <FilledInput
+                                                                    id="filled-adornment-password"
+                                                                    type={'text'}
+                                                                    value={scanValue}
+                                                                    onChange={e => setScanValue(e.target.value)}
+                                                                    endAdornment={
+                                                                        <InputAdornment position="end">
+                                                                            <IconButton
+                                                                                aria-label="toggle password visibility"
+                                                                                onClick={() => {
+                                                                                    setScannerOpen(true);
+                                                                                    document.getElementById("openScanner").click();
+                                                                                }}
+                                                                                onMouseDown={handleMouseDownPassword}
+                                                                                edge="end"
+                                                                            >
+                                                                                <CropFreeIcon />
+                                                                            </IconButton>
+                                                                        </InputAdornment>
+                                                                    }
+                                                                />
+                                                            </FormControl>
+                                                        </div>
+
                                                         <div className="col-12 mb-4 px-md-5">
                                                             <TextField
                                                                 fullWidth
@@ -96,7 +187,6 @@ const Wallet = (props) => {
                                                                 variant="filled"
                                                                 style={{backgroundColor: "#FFFFFF", fontWeight: "bold", borderRadius: 4}}
                                                             />
-
                                                         </div>
 
                                                         <div className="col-12 mb-4 px-md-5">
