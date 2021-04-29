@@ -3,7 +3,7 @@ import React from "react";
 // reactstrap components
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 
-const Header = () => {
+const Header = ({tokensNumber}) => {
     return (
         <>
             <div className="header pb-8 pt-5 pt-md-8" style={{backgroundColor: "#ced4da"}}>
@@ -22,7 +22,7 @@ const Header = () => {
                                                 >
                                                     Número de SUN tokens
                                                 </CardTitle>
-                                                <span className="h2 font-weight-bold mb-0">1,959.4398</span>
+                                                <span className="h2 font-weight-bold mb-0">{tokensNumber}</span>
                                             </div>
                                             <Col className="col-auto">
                                                 <div className="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -44,7 +44,7 @@ const Header = () => {
                                                 >
                                                     Costo total (USD)
                                                 </CardTitle>
-                                                <span className="h2 font-weight-bold mb-0">$1,959.4398</span>
+                                                <span className="h2 font-weight-bold mb-0">${tokensNumber}</span>
                                             </div>
                                             <Col className="col-auto">
                                                 <div className="icon icon-shape bg-info text-white rounded-circle shadow">
