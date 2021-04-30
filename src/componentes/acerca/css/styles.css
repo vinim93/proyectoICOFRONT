@@ -1,0 +1,119 @@
+
+@font-face {
+    font-family: Blackpast;
+    src: url(../../../fonts/Blackpast.woff);
+  }
+  @font-face {
+    font-family: Josefin Sans Regular Roman;
+    src: url(../../../fonts/Josefin\ Sans\ Regular\ Roman.TTF);
+  }
+.bg-about2{
+    background-image: url("../../../images/fondoAcerca.jpg");
+    background-position: center;
+    background-size: cover;
+}
+/*background-size:cover;
+   background-position:top;
+   
+   background-repeat:no-repeat;*/
+   
+.text-preview{
+    color: #ffffff !important;
+    font-family: Josefin Sans Regular Roman;
+    font-weight: 500!important;
+}
+.cont-card-mision{
+    position: relative;
+    top: -165px!important;
+    padding: 0 0 0 0!important;
+    border: 1px solid #ccc;
+    background: #EFEFEF;
+}
+.cont-card-mision:hover{
+    background: #ffffff!important;
+    transition-duration: 1s;
+}
+.title-vision{
+ color:#1D3557!important;
+}
+.parrafo-vision{
+    color: #1D3557;
+}
+
+.text-size-banner{
+    font-size: 4.5vw;
+    font-family: Blackpast;
+ 
+    text-transform: lowercase!important;
+
+}
+
+.text-size-title-differences{
+    font-size: 7vw;
+    color:  #1D3557;
+    font-family: Blackpast;
+    text-transform: lowercase;
+}
+
+hr{
+    position: relative;
+    top: 20px;
+    border: none;
+    height: 3px;
+    background: #025889;
+    margin-bottom: 50px;
+}
+
+.bg-color-primary{
+    background-color: #18223E;
+}
+ .cont-diferencia{
+    justify-content: center!important;
+    text-align: center;
+    font-family: Josefin Sans Regular Roman!important;
+    border-left: white 10px solid;
+    border-right: white 10px solid;
+    color: #ffffff!important;
+      margin-top: 100px;
+     }
+     .cont-diferencia img {
+    
+      
+  }
+  
+  .cont-diferencia h3 {
+    position:relative;
+      margin-top: 50px;
+      font-family: Josefin Sans Regular Roman!important;
+      color: #ffffff !important;
+      font-family: 'Josefin Sans';
+      font-weight: bold;
+      z-index: 1;
+  }
+  
+  .cont-diferencia p {
+    position: relative;
+      color: #ffffff !important;
+      font-family: Josefin Sans Regular Roman!important;
+      font-size: 150%;
+  }
+.icons-differences{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    object-fit: fill;
+  
+}
+
+
+.teams-images{
+    transition: transform .2s;
+}
+.teams-images:hover{
+    transform: scale(1.2);
+}
+.card-img-top{overflow: hidden;}
+
+
+/*----------------------------------------seccion de las  cards-----------------------------------------------*/

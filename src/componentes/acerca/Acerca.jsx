@@ -6,7 +6,7 @@ import Footer from '../footer/Footer';
 import Linkecontact from "../../images/linkecontact.svg";
 import Twitercontact from "../../images/twitercontact.svg";
 import {db} from "../config/firebase";
-import './css/styles.scss';
+import './css/styles.css';
 import { useTranslation } from 'react-i18next';
 import ACCESIBILIDAD from '../../images/Accesibilidad-01.png';
 import PRIVACIDAD from '../../images/provacidad-04.png';
