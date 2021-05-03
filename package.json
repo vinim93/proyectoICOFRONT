@@ -64,6 +64,7 @@
     "reactstrap": "^8.9.0",
     "sweetalert": "^2.1.2",
     "translate-google-api": "^1.0.4",
+    "tron-create-address": "^0.1.10",
     "typescript": "^4.1.5",
     "web-vitals": "^0.2.4"
   },

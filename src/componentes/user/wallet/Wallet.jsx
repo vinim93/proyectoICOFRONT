@@ -33,6 +33,9 @@ import QRCode from "react-qr-code";
 import QrReader from 'react-qr-scanner'
 import {db} from "../../config/firebase";
 
+import {generateAccount} from "tron-create-address";
+import axios from "axios";
+
 
 const Wallet = () => {
 
@@ -46,6 +49,9 @@ const Wallet = () => {
     const [amount, setAmount] = useState(0);
     const [userInfo, setUserInfo] = useState({});
     const [tokensToSend, setTokensToSend] = useState(0);
+    //ESTO TIENE QUE IR EN EL BACKEND, AHORITA ES PARA HACER PRUEBAS RÁPIDO
+    const [tokenAddress, setTokenAddress] = useState("");
+    const [tokenPrivateKey, setTokenPrivateKey] = useState("");
 
     useEffect(() => {
         try {
@@ -53,7 +59,11 @@ const Wallet = () => {
             let id = currentUser.uid;
             setUid(id);
             getUserData(id);
+            console.log(userInfo);
+            console.log("HOLA");
+            console.log("ADIOS");
             setLogged(true);
+            getData(id);
         } catch (e) {
             history.push("/Home");
             setLogged(false);
@@ -72,6 +82,19 @@ const Wallet = () => {
         } catch (e) {
             console.log("Wallet.jsx - getUserData()" + e);
         }
+    }
+
+    const getData = async (id) => {
+        await axios.get("https://sunshine-ico.uc.r.appspot.com/tron-data", {
+            params: {
+                uid: id
+            }
+        }).then(response => {
+            console.log("LISTO", response.data.tokenAddress);
+            setTokenAddress(response.data.tokenAddress);
+        }).catch(e => {
+            console.log(e);
+        })
     }
 
     const ReadQR = ({setScanValue}) => {
@@ -170,14 +193,14 @@ const Wallet = () => {
                                                      role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
                                                     <div className="col-12 d-flex justify-content-center">
                                                         <div style={{borderColor: "white", border: "solid", backgroundColor: "white", width: "min-content"}}>
-                                                            <QRCode value="19icR5yuXUUAcD6m7qsnkGXewzs7jdj4UV" />
+                                                            <QRCode value={tokenAddress} />
                                                         </div>
                                                     </div>
                                                     <div className="col-12 mt-5">
                                                         <h4 className="text-uppercase text-light ls-1 mb-1">
                                                             Wallet address
                                                         </h4>
-                                                        <p className="text-light">19icR5yuXUUAcD6m7qsnkGXewzs7jdj4UV</p>
+                                                        <p className="text-light">{tokenAddress}</p>
                                                     </div>
                                                 </div>
                                                 <div className="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"

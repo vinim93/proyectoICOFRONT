@@ -75,7 +75,9 @@ const SignUpModal = () => {
                 address: data.address.replace(/<[^>]+>/g, ''),
                 suns: 0,
                 countryComplete: data.countryComplete.replace(/<[^>]+>/g, ''),
-                profileStatus: data.profileStatus
+                profileStatus: data.profileStatus,
+                addressToken: "",
+                privateKey: ""
             }).then(docRef => {
                 history.push("/");
                 window.location.reload();
@@ -104,7 +106,9 @@ const SignUpModal = () => {
                 countryComplete: "".replace(/<[^>]+>/g, ''),
                 fileType: "".replace(/<[^>]+>/g, ''),
                 profilePicture: "".replace(/<[^>]+>/g, ''),
-                profilePictureStatus: 0
+                profilePictureStatus: 0,
+                addressToken: "",
+                privateKey: ""
             }).then(docRef => {
                 swal({
                     title: "Registro exitoso!",
@@ -335,7 +339,9 @@ const SignUpModal = () => {
                         state: "",
                         address: "",
                         profileStatus: 0,
-                        countryComplete: ""
+                        countryComplete: "",
+                        addressToken: "",
+                        privateKey: ""
                     });
                 } else {
                     swal({
@@ -360,7 +366,9 @@ const SignUpModal = () => {
                         state: "",
                         address: "",
                         profileStatus: 0,
-                        countryComplete: ""
+                        countryComplete: "",
+                        addressToken: "",
+                        privateKey: ""
                     });
                 }, (error) => {
                     console.log(error.code, error.message);
