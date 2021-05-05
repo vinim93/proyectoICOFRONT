@@ -154,12 +154,12 @@ const Acerca = () => {
 
                 <div className="row justify-content-center">
                
-                <div  className="  col-md-3 cont-card-mision p-5 ">
+                <div  className="  col-md-3 cont-card-mision  p-5 ">
                        
-                        <div className=" d-flex  justify-content-center mt-5   text-justify ">
-                            <h3 className="title-vision">   {t('AboutSection.Mision.Title')}</h3>
+                        <div className=" d-flex justify-content-center mt-5    ">
+                            <h3 className="title-vision ">   {t('AboutSection.Mision.Title')}</h3>
                         </div>
-                        <div className="col-12 d-flex justify-content-center  text-justify  ">
+                        <div className="col-12 d-flex text-center ">
                             <h5 className="parrafo-vision p-5"> {t('AboutSection.Mision.description')}</h5>
                         </div>
                     </div>
@@ -168,10 +168,10 @@ const Acerca = () => {
                     
                     <div  className="  col-md-3  cont-card-mision p-5 ">
                        
-                       <div className="col-12 d-flex  justify-content-center mt-5  ">
-                           <h3 className="title-vision"> {t('AboutSection.Vision.Title')}</h3>
+                       <div className="d-flex  justify-content-center mt-5  ">
+                           <h3 className="title-vision "> {t('AboutSection.Vision.Title')}</h3>
                        </div>
-                       <div className="col-12 d-flex justify-content-center  text-justify  ">
+                       <div className="col-12 d-flex text-center ">
                            <h5 className="parrafo-vision p-5">{t('AboutSection.Vision.description')}
 
 </h5>
@@ -200,7 +200,7 @@ const Acerca = () => {
                     <div className="container2 mt-5">
                         <img src={EquipoSunshine} alt="Notebook" className=" img-fluid"/>
                         <div className="centered">
-                            <h1 className="display-4 font-weight-bold">
+                            <h1 className="display-4 font-weight-bold titu-team">
                                 {t('AboutSection.Banner')}
                             </h1>
                         </div>

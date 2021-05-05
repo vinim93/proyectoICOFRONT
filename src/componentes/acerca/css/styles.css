@@ -12,6 +12,7 @@
     background-position: center;
     background-size: cover;
 }
+
 /*background-size:cover;
    background-position:top;
    
@@ -25,6 +26,7 @@
 .cont-card-mision{
     position: relative;
     top: -165px!important;
+   
     padding: 0 0 0 0!important;
     border: 1px solid #ccc;
     background: #EFEFEF;
@@ -41,7 +43,7 @@
 }
 
 .text-size-banner{
-    font-size: 60px;
+    font-size: 90px;
     font-family: Blackpast;
  
     text-transform: lowercase!important;
@@ -76,10 +78,10 @@ hr{
     color: #ffffff!important;
       margin-top: 100px;
      }
-     .cont-diferencia img {
-    
-      
-  }
+   .titu-team{
+       font-family: Blackpast;
+       text-transform: lowercase;
+   }
   
   .cont-diferencia h3 {
     position:relative;
