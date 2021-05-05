@@ -65,9 +65,9 @@ const DollarMarktComponent = () => {
                                             <img className="img-fluid mt-lg-3 mt-xl-3" src={value.icon} alt=""/>
                                         </div>
                                         <div className="col-8 col-sm-9 col-md-9 col-lg-10 col-xl-10 d-flex justify-content-start">
-                                            <h3 className="align-middle mt-sm-4 mt-md-4 mt-lg-5 mt-xl-5">
-                                                {value.name}/USD ${value.conversion_to_dollar}
-                                            </h3>
+                                            <h2 className="align-middle mt-sm-4 mt-md-4 mt-lg-5 mt-xl-5 text-light">
+                                                {value.name} / USD ${value.conversion_to_dollar}
+                                            </h2>
                                         </div>
                                     </div>
                                 </div>

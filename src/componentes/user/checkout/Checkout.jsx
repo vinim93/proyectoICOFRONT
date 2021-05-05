@@ -180,6 +180,16 @@ export default function Checkout({uid, email, allData}) {
         setActiveStep(activeStep - 1);
     };
 
+    const buyAgain = () => {
+        setActiveStep(0);
+        setCurrencyType('USD');
+        setPaymentMethod('');
+        setCurrency(null);
+        setLoading(false);
+        setPaymentID("");
+        setPaymentDone(false);
+    }
+
     return (
         <div className="mt-0">
             <React.Fragment>
@@ -203,6 +213,9 @@ export default function Checkout({uid, email, allData}) {
                                     <Typography variant="subtitle1">
                                         {paymentMethod === "card" ? "¡Hemos enviado tu comprobante de pago al correo electrónico que tienes registrado!" : "¡Tienes 24 hrs para pagar en el oxxo con el voucher generado, el cual se envió tambien a tu correo electrónico!"}
                                     </Typography>
+                                    <Button variant="contained" color="primary" className={classes.button} onClick={buyAgain}>
+                                        Comprar de nuevo
+                                    </Button>
                                 </React.Fragment>
                             ) : (
                                 <React.Fragment>

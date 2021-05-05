@@ -79,6 +79,12 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                                 case 'stolen_card':
                                     swal("Tarjeta rechazada", "Parece que tu tarjeta tiene reporte de robo, comunicate con tu banco para resolver el problema!", "warning");
                                     break;
+                                case "card_not_supported":
+                                    swal("Tarjeta rechazada", "Tu tarjeta no es soportada. Por favor usa Visa o Mastercard!", "warning");
+                                    break;
+                                default:
+                                    swal("Tarjeta rechazada", "Ocurrio un error al procesar el pago con la tarjeta indicada, intenta con otra!", "warning");
+                                    break;
                             }
                         } else {
                             setOpen(false);

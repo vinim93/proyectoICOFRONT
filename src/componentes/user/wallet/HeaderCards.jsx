@@ -22,7 +22,7 @@ const Header = ({tokensNumber}) => {
                                                 >
                                                     Número de SUN tokens
                                                 </CardTitle>
-                                                <span className="h2 font-weight-bold mb-0">{tokensNumber}</span>
+                                                <span className="h2 font-weight-bold mb-0">{tokensNumber || 0}</span>
                                             </div>
                                             <Col className="col-auto">
                                                 <div className="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -44,7 +44,7 @@ const Header = ({tokensNumber}) => {
                                                 >
                                                     Costo total (USD)
                                                 </CardTitle>
-                                                <span className="h2 font-weight-bold mb-0">${tokensNumber}</span>
+                                                <span className="h2 font-weight-bold mb-0">${tokensNumber || 0}</span>
                                             </div>
                                             <Col className="col-auto">
                                                 <div className="icon icon-shape bg-info text-white rounded-circle shadow">

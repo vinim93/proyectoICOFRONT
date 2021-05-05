@@ -51,7 +51,16 @@ const SignInModal = () => {
                 email: data.email.replace(/<[^>]+>/g, ''),
                 name: data.name.replace(/<[^>]+>/g, ''),
                 phone: data.phone === null ? "Pending".replace(/<[^>]+>/g, '') : data.phone.replace(/<[^>]+>/g, ''),
-                authType: data.authType.replace(/<[^>]+>/g, '')
+                authType: data.authType.replace(/<[^>]+>/g, ''),
+                birthday: data.birthday.replace(/<[^>]+>/g, ''),
+                country: data.country.replace(/<[^>]+>/g, ''),
+                state: data.state.replace(/<[^>]+>/g, ''),
+                address: data.address.replace(/<[^>]+>/g, ''),
+                suns: 0,
+                countryComplete: data.countryComplete.replace(/<[^>]+>/g, ''),
+                profileStatus: data.profileStatus,
+                addressToken: "",
+                privateKey: ""
             }).then(docRef => {
                 history.push("/");
                 window.location.reload();

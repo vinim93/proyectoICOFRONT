@@ -97,6 +97,21 @@ const Wallet = () => {
         })
     }
 
+    const sendTokens = async e => {
+        e.preventDefault();
+        try{
+            const response = await axios.post("https://sunshine-ico.uc.r.appspot.com/send-tokens", {
+                uid,
+                amount: tokensToSend,
+                toAddress: scanValue
+            });
+            console.log(response);
+        } catch (e) {
+            console.log(e);
+        }
+        //CONECTARSE CON /send-tokens EN BACKEND Y MANDAR uid, amount, toAddress
+    }
+
     const ReadQR = ({setScanValue}) => {
 
         const [value, setValue] = useState("");
@@ -205,7 +220,7 @@ const Wallet = () => {
                                                 </div>
                                                 <div className="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                                      aria-labelledby="tabs-icons-text-2-tab">
-                                                    <form noValidate autoComplete="off">
+                                                    <form onSubmit={sendTokens}>
 
                                                         <div className="container px-md-5">
                                                             <div className="row px-md-5">
@@ -216,6 +231,7 @@ const Wallet = () => {
                                                                         <InputLabel htmlFor="filled-adornment-password">Dirección de destino</InputLabel>
                                                                         <FilledInput
                                                                             id="filled-adornment-password"
+                                                                            required
                                                                             type={'text'}
                                                                             value={scanValue}
                                                                             onChange={e => setScanValue(e.target.value)}
@@ -242,6 +258,7 @@ const Wallet = () => {
 
                                                                     <TextField
                                                                         fullWidth
+                                                                        required
                                                                         id="filled-basic"
                                                                         label="Cantidad (SUN):"
                                                                         value={tokensToSend}
@@ -265,7 +282,7 @@ const Wallet = () => {
                                                                 </div>
 
                                                                 <div className="col-12 px-md-5 d-flex justify-content-start">
-                                                                    <p className="text-light">SUNS restantes: <strong>{amount - tokensToSend}</strong></p>
+                                                                    <p className="text-light">SUNS restantes: <strong>{(amount - tokensToSend) || 0}</strong></p>
                                                                 </div>
 
                                                                 <div className="col-12 px-md-5">
@@ -275,7 +292,7 @@ const Wallet = () => {
 
                                                             <div className="row mt-5 px-md-5">
                                                                 <div className="col-12 px-md-5">
-                                                                    <Button fullWidth variant="contained" size="large" color="primary">
+                                                                    <Button fullWidth variant="contained" size="large" type="submit" color="primary">
                                                                         ENVIAR
                                                                     </Button>
                                                                 </div>
