@@ -1414,7 +1414,7 @@ text-align: center;
   font-weight:bold !important;
   font-size: 6vw!important;
   font-family: josefin sans regular roman;
-  color:#FAD000;
+  color:#025889
   
 }
 .frecprec{
@@ -1598,7 +1598,7 @@ text-align: center;
   font-family: 'Josefin Sans';
 }
 .foottitulo button{
-  color: white;
+  color: white!important;
   font-family: 'Josefin Sans';
 }
 

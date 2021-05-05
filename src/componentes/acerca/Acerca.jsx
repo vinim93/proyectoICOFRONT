@@ -17,7 +17,8 @@ import JOSS from '../../images/team/JOS.jpg';
 import CHRIS from '../../images/team/CHRIS.jpg';
 import MANU from '../../images/team/MANU.jpg';
 import CRIS from '../../images/team/CRIS.jpg';
-import Roll from 'react-reveal/Roll';
+import Fade from 'react-reveal/Fade';
+import Zoom from 'react-reveal/Zoom';
 import Cardsworkers from "./cardsworkers.jsx";
 
 
@@ -134,7 +135,7 @@ const Acerca = () => {
 
 
             <div className="container-fluid">
-            <Roll cascade>
+            <Fade left cascade>
                 <div className="row mt-5 mb-5 pt-5 pb-5 pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5 bg-about2">
                     <div className="col-12 mt-5  pb-5">
                         <h1 className="text-center text-preview text-size-banner">
@@ -156,11 +157,10 @@ const Acerca = () => {
                 <div  className="  col-md-3 cont-card-mision p-5 ">
                        
                         <div className=" d-flex  justify-content-center mt-5   text-justify ">
-                            <h3 className="title-vision">MISIÓN</h3>
+                            <h3 className="title-vision">   {t('AboutSection.Mision.Title')}</h3>
                         </div>
                         <div className="col-12 d-flex justify-content-center  text-justify  ">
-                            <h5 className="parrafo-vision p-5">Aportar valor y colaborar con los Sunholders a fortalecer su presente y construir su futuro sostenible 
-en el tiempo.</h5>
+                            <h5 className="parrafo-vision p-5"> {t('AboutSection.Mision.description')}</h5>
                         </div>
                     </div>
 
@@ -169,33 +169,31 @@ en el tiempo.</h5>
                     <div  className="  col-md-3  cont-card-mision p-5 ">
                        
                        <div className="col-12 d-flex  justify-content-center mt-5  ">
-                           <h3 className="title-vision">VISIÓN</h3>
+                           <h3 className="title-vision"> {t('AboutSection.Vision.Title')}</h3>
                        </div>
                        <div className="col-12 d-flex justify-content-center  text-justify  ">
-                           <h5 className="parrafo-vision p-5">Mantenernos como una empresa confiable en el mercado, con solidez y óptima calidad garantizando la inversión de los Sunholders 
-y generando el nivel de
- rentabilidad esperado.
+                           <h5 className="parrafo-vision p-5">{t('AboutSection.Vision.description')}
 
 </h5>
                        </div>
                    </div>
                     </div>
-                </Roll>
+                </Fade>
 
                 <div className="row mt-5 bg-light pb-5  justify-content-center">
                     <div className="col-12 mt-5 pt-4 pb-4">
-                        <h1 className="text-size-title-differences text-center">{t('AboutSection.Differences.Title')}</h1>
+                        <h1 className="text-size-title-differences text-center"> <Fade left cascade>{t('AboutSection.Differences.Title')}</Fade></h1>
                     </div>
                     {
                         differences.map((value, index) => (
+                            <Zoom>
                             <div id={index} 
-                            className="col-12 col-sm-12 col-lg-4 col-xl-4 cont-diferencia  text-justify  "
-                           
-                           >
+                            className="col-12 col-sm-12 col-lg-4 col-xl-4 cont-diferencia  text-justify  ">
                                 <img src={value.image} alt="" className="icons-differences "/>
                                 <h3 className="text-center">{value.title}</h3>
                                 <p  className="text-center">{value.description}</p>
                             </div>
+                            </Zoom>
                         ))
                     }
 
@@ -211,7 +209,7 @@ y generando el nivel de
                 </div>
             </div>
             <Cardsworkers/>
-            <div className="container-fluid bg-light pb-5">
+            <div className="container-fluid bg-light pb-5 d-flex d-md-none">
             
                 <div className="container bg-light">
                     <div className="row pb-5">

@@ -23,7 +23,7 @@
      position:absolute;
     
    width: 90vw!important;
-     margin-top: 19.5%!important;
+     margin-top: 22.5%!important;
      margin-left: 9vw!important;
      z-index: 0!important;
  }
@@ -98,5 +98,10 @@
         width: 195vw!important;
         margin-bottom: 72.1%!important;
         
+       }
+       .linea-car-1{
+     
+        margin-top: 19.5%!important;
+      
        }
 }
