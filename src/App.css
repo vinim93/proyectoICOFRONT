@@ -44,8 +44,14 @@ body{
 .container2 {
   position: relative;
   text-align: center;
-  color: white;
+  color: #ffffff
 }
+.container3{
+  position: relative;
+  background-image: url("./images/team.png")!important;
+  
+}
+
 .bg-cards{
   background-color: #025889 !important;
 }

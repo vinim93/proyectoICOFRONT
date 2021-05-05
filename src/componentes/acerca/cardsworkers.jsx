@@ -130,7 +130,10 @@ const Cardsworkers = () => {
         }
     ]
     return(
-       <div className="col-12 container-full-cards ">
+       <div className="col-12 justify-content-center container-full-cards ">
+             <h1 className="display-4 font-weight-bold titu-team   position-relative">
+                                {t('AboutSection.Banner')}
+                            </h1>
            <Carousel  className="d-none d-md-flex " showArrows={true} infiniteLoop autoPlay
             emulateTouch={true}
             centerMode={true}

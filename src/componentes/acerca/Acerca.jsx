@@ -180,7 +180,7 @@ const Acerca = () => {
                     </div>
                 </Fade>
 
-                <div className="row mt-5 bg-light pb-5  justify-content-center">
+                <div className=" row mt-5 bg-light pb-5  justify-content-center">
                     <div className="col-12 mt-5 pt-4 pb-4">
                         <h1 className="text-size-title-differences text-center"> <Fade left cascade>{t('AboutSection.Differences.Title')}</Fade></h1>
                     </div>
@@ -196,19 +196,14 @@ const Acerca = () => {
                             </Zoom>
                         ))
                     }
-
-                    <div className="container2 mt-5">
-                        <img src={EquipoSunshine} alt="Notebook" className=" img-fluid"/>
-                        <div className="centered">
-                            <h1 className="display-4 font-weight-bold titu-team">
-                                {t('AboutSection.Banner')}
-                            </h1>
-                        </div>
-                    </div>
-
+ 
+                          
+                   
                 </div>
-            </div>
+          
+                
             <Cardsworkers/>
+            
             <div className="container-fluid bg-light pb-5 d-flex d-md-none">
             
                 <div className="container bg-light">
@@ -248,7 +243,7 @@ const Acerca = () => {
                             ))
                         }
                     </div>
-
+                    </div>
                     <div className="row">
                         <div className="col-12">
                             <button className="btn bg-cards text-light btn-lg btn-block" data-toggle="modal"
