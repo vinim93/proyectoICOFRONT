@@ -60,7 +60,10 @@ const SignInModal = () => {
                 countryComplete: data.countryComplete.replace(/<[^>]+>/g, ''),
                 profileStatus: data.profileStatus,
                 addressToken: "",
-                privateKey: ""
+                privateKey: "",
+                fileType: "".replace(/<[^>]+>/g, ''),
+                profilePicture: "".replace(/<[^>]+>/g, ''),
+                profilePictureStatus: 0,
             }).then(docRef => {
                 history.push("/");
                 window.location.reload();
@@ -135,6 +138,17 @@ const SignInModal = () => {
             let errorCode = error.code;
             let errorMessage = error.message;
             console.log(errorCode, errorMessage);
+
+            switch (errorCode) {
+                case "auth/network-request-failed":
+                    swal({
+                        title: "Error de red",
+                        text: "Un error de red (como tiempo de espera, conexión interrumpida o host inalcanzable) ocurrió!",
+                        icon: "error",
+                        button: "Entendido!",
+                        closeOnClickOutside: false
+                    });
+            }
         })
 
     }

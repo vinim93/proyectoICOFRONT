@@ -76,6 +76,9 @@ const SignUpModal = () => {
                 suns: 0,
                 countryComplete: data.countryComplete.replace(/<[^>]+>/g, ''),
                 profileStatus: data.profileStatus,
+                fileType: "".replace(/<[^>]+>/g, ''),
+                profilePicture: "".replace(/<[^>]+>/g, ''),
+                profilePictureStatus: 0,
                 addressToken: "",
                 privateKey: ""
             }).then(docRef => {

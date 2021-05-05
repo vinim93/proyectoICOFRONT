@@ -46,14 +46,14 @@ export default function Checkout({uid, email, allData}) {
         setCity(allData.city);
         setStateLocation(allData.state);
         setCountry(allData.country);
-    },[]);
+    }, []);
 
     const currencyConversor = async (from, to) => {
-        try{
+        try {
             const result = await axios.get(`https://free.currconv.com/api/v7/convert?q=${from}_${to}&compact=ultra&apiKey=8a57011799b9d69fa40a`);
-            if(from==="USD" && to==="MXN"){
+            if (from === "USD" && to === "MXN") {
                 setUsdToMxn(result.data[`${from}_${to}`]);
-            } else if(from==="MXN" && to==="USD"){
+            } else if (from === "MXN" && to === "USD") {
                 setMxnToUsd(result.data[`${from}_${to}`]);
             }
         } catch (e) {
@@ -72,11 +72,12 @@ export default function Checkout({uid, email, allData}) {
     const getStepContent = (step) => {
         switch (step) {
             case 0:
-                return <TokenAmount currency={currency} setCurrency={setCurrency} setStates={setStates} getStates={getStates}/>;
+                return <TokenAmount currency={currency} setCurrency={setCurrency} setStates={setStates}
+                                    getStates={getStates}/>;
             case 1:
                 return <PaymentForm handleNext={handleNext}/>;
             case 2:
-                return <AddressForm getStates={getStates} />;
+                return <AddressForm getStates={getStates}/>;
             case 3:
                 return <Review getStates={getStates} uid={uid} handleNext={handleNext} email={email}/>;
             default:
@@ -85,13 +86,13 @@ export default function Checkout({uid, email, allData}) {
     }
 
     const handleNext = (payment = false, paymentOption = "") => {
-        switch (activeStep){
+        switch (activeStep) {
             case 0:
 
-                if(allData.profileStatus === 4){
-                    if(currencyType === "USD"){
-                        if(parseFloat(currency) >= 1){
-                            if(parseFloat(currency) <= 999999){
+                if (allData.profileStatus === 4) {
+                    if (currencyType === "USD") {
+                        if (parseFloat(currency) >= 1) {
+                            if (parseFloat(currency) <= 999999) {
                                 setActiveStep(activeStep + 1);
                             } else {
                                 swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99!", "warning");
@@ -99,9 +100,9 @@ export default function Checkout({uid, email, allData}) {
                         } else {
                             swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
                         }
-                    } else if(currencyType === "MX"){
-                        if(parseFloat(currency) >= usdToMxn.toFixed(2)){
-                            if(parseFloat(currency) <= 999999){
+                    } else if (currencyType === "MX") {
+                        if (parseFloat(currency) >= usdToMxn.toFixed(2)) {
+                            if (parseFloat(currency) <= 999999) {
                                 setActiveStep(activeStep + 1);
                             } else {
                                 swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99!", "warning");
@@ -109,8 +110,8 @@ export default function Checkout({uid, email, allData}) {
                         } else {
                             swal("Monto invalido", `Debes pagar la mínima cantidad de $${usdToMxn.toFixed(2)} MXN!`, "warning");
                         }
-                    } else if (currencyType === "SUN"){
-                        if(parseFloat(currency) >= 1){
+                    } else if (currencyType === "SUN") {
+                        if (parseFloat(currency) >= 1) {
                             setActiveStep(activeStep + 1);
                         } else {
                             swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
@@ -118,9 +119,9 @@ export default function Checkout({uid, email, allData}) {
                     }
                 } else {
 
-                    if(currencyType === "USD"){
-                        if(parseFloat(currency) >= 1){
-                            if(parseFloat(currency) <= 1000){
+                    if (currencyType === "USD") {
+                        if (parseFloat(currency) >= 1) {
+                            if (parseFloat(currency) <= 1000) {
                                 setActiveStep(activeStep + 1);
                             } else {
                                 swal("Cantidad limitada", "Tu límite es de $1000 USD, si deseas mayor margen debes ir a tu perfíl y verificar tu cuenta!", "warning");
@@ -128,19 +129,19 @@ export default function Checkout({uid, email, allData}) {
                         } else {
                             swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
                         }
-                    } else if(currencyType === "MX"){
+                    } else if (currencyType === "MX") {
                         console.log(typeof currency);
-                        if(parseFloat(currency) >= usdToMxn.toFixed(2)){
-                            if(parseFloat(currency) <= usdToMxn.toFixed(2)*1000){
+                        if (parseFloat(currency) >= usdToMxn.toFixed(2)) {
+                            if (parseFloat(currency) <= usdToMxn.toFixed(2) * 1000) {
                                 setActiveStep(activeStep + 1);
                             } else {
-                                swal("Cantidad limitada", `Tu límite es de $${usdToMxn.toFixed(2)*1000} MXN, si deseas mayor margen debes ir a tu perfíl y verificar tu cuenta!`, "warning");
+                                swal("Cantidad limitada", `Tu límite es de $${usdToMxn.toFixed(2) * 1000} MXN, si deseas mayor margen debes ir a tu perfíl y verificar tu cuenta!`, "warning");
                             }
                         } else {
                             swal("Monto invalido", `Debes pagar la mínima cantidad de $${usdToMxn.toFixed(2)} MXN!`, "warning");
                         }
-                    } else if (currencyType === "SUN"){
-                        if(parseFloat(currency) >= 1){
+                    } else if (currencyType === "SUN") {
+                        if (parseFloat(currency) >= 1) {
                             setActiveStep(activeStep + 1);
                         } else {
                             swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
@@ -151,11 +152,11 @@ export default function Checkout({uid, email, allData}) {
 
                 break;
             case 1:
-                if(paymentOption === "card"){
+                if (paymentOption === "card") {
                     setPaymentMethod(paymentOption);
                     setActiveStep(activeStep + 1);
-                } else if(paymentOption === "oxxo"){
-                    if(currencyType === "USD"){
+                } else if (paymentOption === "oxxo") {
+                    if (currencyType === "USD") {
                         swal("Pago con dolar invalido", "No puedes pagar en oxxo con dolar, tienes que cambiar la divisa a pesos mexicanos!", "warning");
                     } else {
                         setPaymentMethod(paymentOption);
@@ -164,12 +165,12 @@ export default function Checkout({uid, email, allData}) {
                 }
                 break;
             case 2:
-                if(name !== "" && lastname !== "" && address !== "" && city !== "" && stateLocation !== "" && country !== ""){
+                if (name !== "" && lastname !== "" && address !== "" && city !== "" && stateLocation !== "" && country !== "") {
                     setActiveStep(activeStep + 1);
                 }
                 break;
             case 3:
-                if(payment){
+                if (payment) {
                     setActiveStep(activeStep + 1);
                 }
                 break;
@@ -256,7 +257,6 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(1),
         marginTop: theme.spacing(1),
         [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-            width: 795,
             marginLeft: 'auto',
             marginRight: 'auto',
         },

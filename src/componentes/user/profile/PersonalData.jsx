@@ -1,5 +1,5 @@
 import 'date-fns';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {Button, TextField, Avatar} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
@@ -15,6 +15,8 @@ import Select from '@material-ui/core/Select';
 import PhoneInput from 'react-phone-input-2';
 import UploadImage from "./UploadImage";
 import 'react-phone-input-2/lib/material.css'
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Backdrop from "@material-ui/core/Backdrop";
 
 const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
 
@@ -49,8 +51,9 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
                             buttons: true,
                             dangerMode: true,
                         })
-                            .then((willDelete) => {
-                                if (willDelete) {
+                            .then((willConfirm) => {
+                                if (willConfirm) {
+                                    setOpen(true);
                                     db.collection('credentials').doc(uid).update({
                                         birthday: getStates("birthday"),
                                         city: getStates("city"),
@@ -64,6 +67,7 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
                                         profileStatus: 1,
                                     }).then(() => {
                                         swal("Información actualizada", "La información de tu perfil fue actualizada con éxito!", "success");
+                                        setOpen(false);
                                     });
                                 }
                             });
@@ -115,23 +119,14 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
 
     }
 
+    const [open, setOpen] = useState(false);
+
     return (
         <div>
 
             <Typography className={classes.title} variant="h4" component="h4">
                 Datos personales
             </Typography>
-
-            <div className="row mt-5">
-                <div className="col-12 d-flex justify-content-center">
-                    <Avatar alt="Profile image" src={getStates("croppedImage")} className={classes.large}/>
-                </div>
-            </div>
-            {
-                profilePictureStatus === 0 ? (
-                    <UploadImage uploadProfilePicture={uploadProfilePicture} getStates={getStates} setStates={setStates}
-                                 profilePictureStatus={profilePictureStatus}/>) : null
-            }
             <form className={classes.root}
                   id={(masterCondition) ? "profileform" : ""}
                   onSubmit={(masterCondition) ? handleSubmit : () => false}>
@@ -315,6 +310,9 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
                     </div>
                 </div>
             </form>
+            <Backdrop className={classes.backdrop} open={open} >
+                <CircularProgress color="inherit" />
+            </Backdrop>
         </div>
     );
 };
@@ -357,7 +355,11 @@ const useStyles = makeStyles((theme) => ({
         '& > * + *': {
             marginTop: theme.spacing(2),
         },
-    }
+    },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+    },
 }));
 
 export default PersonalData;

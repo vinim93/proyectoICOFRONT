@@ -1,20 +1,54 @@
 import 'date-fns';
 import React, {useState, useEffect} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import {useAuth} from "../../contexts/AuthContext";
 import {useHistory} from "react-router-dom";
 import swal from "sweetalert";
-import {db} from "../../config/firebase";
+import {db, useStorage} from "../../config/firebase";
 import axios from "axios";
 import Alert from '@material-ui/lab/Alert';
 import 'react-phone-input-2/lib/material.css'
 import {Document, Page} from 'react-pdf';
 import ExpansionComponent from "./ExpansionComponent";
+// reactstrap components
+import {
+    Button,
+    Card,
+    CardHeader,
+    CardBody,
+    FormGroup,
+    Form,
+    Input,
+    Container,
+    Row,
+    Col,
+} from "reactstrap";
+import UploadImage from "./UploadImage";
+import AVATAR from '../../../images/avatardefault.png';
 
-export default function Profile() {
+const UserHeader = () => {
+    return (
+        <>
+            <div
+                className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+                style={{
+                    minHeight: "200px",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center top",
+                }}
+            >
+                {/* Mask */}
+                <span className="mask bg-gradient-default opacity-8" />
+                {/* Header container */}
+            </div>
+        </>
+    );
+};
+
+
+const Profile = () => {
 
     const classes = useStyles();
     const {currentUser, logout} = useAuth();
@@ -180,6 +214,7 @@ export default function Profile() {
                     setProfilePictureStatus(doc.data().profilePictureStatus);
                     setCroppedImage(doc.data().profilePicture)
                     getStatesAPI(doc.data().countryComplete);
+                    setCountryCompleteName(doc.data().countryComplete);
                 }
             });
 
@@ -246,46 +281,133 @@ export default function Profile() {
         eval(stateRequired)(value);
     }
 
+    const uploadProfilePicture = () => {
+        swal({
+            title: "¿Estas seguro de subir esa foto?",
+            text: "Una vez enviada la foto no se podrá modificar, asegurate de que cumpla los requisitos antes mencionados!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    const storageRef = useStorage.ref(`credentials/profilePictures-${uid}`);
+                    const task = storageRef.put(image);
+                    task.on('state_changed', snapshot => {
+                        let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        setStates("setUploadValue", percentage);
+                    }, error => {
+                        console.log(error);
+                    }, () => {
+                        storageRef.getDownloadURL().then(url => {
+                            db.collection('credentials').doc(uid).update({
+                                profilePicture: url,
+                                profilePictureStatus: 1
+                            }).then(() => {
+                                swal("Foto subida", "La foto de tu perfil fue actualizada con éxito!", "success");
+                            });
+                        })
+                    });
+                }
+            });
+    }
 
-    const renderData = () => {
-        if (logged) {
-            return (
-                <Card className={classes.root}>
-
-                    <CardContent>
-                        <div className={classes.alert}>
-                            {profileStatus === 3 ?
-                                <Alert variant="filled" severity="warning">En espera de verificación — Se estan
-                                    validando tus datos!</Alert> : null}
-                            {profileStatus === 4 ?
-                                <Alert variant="filled" severity="success">Cuenta verificada</Alert> : null}
-                            {profileStatus === 5 ?
-                                <Alert variant="filled" severity="error">Cuenta no verificada — Verifica tu identificación oficial únicamente!</Alert> : null}
-                            {profileStatus === 6 ?
-                                <Alert variant="filled" severity="error">Cuenta no verificada — Verifica tus datos personales únicamente!</Alert> : null}
-                            {profileStatus === 7 ?
-                                <Alert variant="filled" severity="error">Cuenta no verificada — Verifica todos tus!</Alert> : null}
-                        </div>
-
-                        <ExpansionComponent getStates={getStates} setStates={setStates} uid={uid} showFile={showFile} setFile={setFile} profilePictureStatus={profilePictureStatus}/>
-
-                    </CardContent>
-                    <CardActions>
-                    </CardActions>
-                </Card>
-            )
-        } else {
-            return null;
+    const getAge = (birthDateString) => {
+        let today = new Date();
+        let birthDate = new Date(birthDateString);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        let m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
         }
+        return age;
     }
 
     return (
-        <div className="container mt-5 pt-5">
-            {renderData()}
-        </div>
+        <div className="pb-5">
+            <UserHeader />
+            {/* Page content */}
+            <Container className="mt-3 mt--7 mb-5" fluid>
+                <Row>
+                    <Col className="order-xl-2 mb-5 mb-xl-0" xl="4">
+                        <Card className="card-profile shadow mt-5 mt-lg-0">
+                            <Row className="justify-content-center">
+                                <Col className="order-lg-2" lg="3">
+                                    <div className="card-profile-image">
+                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                            <img
+                                                alt="..."
+                                                className="rounded-circle"
+                                                src={croppedImage || AVATAR}
+                                            />
+                                        </a>
+                                    </div>
+                                </Col>
+                            </Row>
 
+                            <CardBody className="pt-5 pt-md-0 mt-5 pb-5">
+                                <Row>
+                                    <div className="col">
+                                        <div className="card-profile-stats d-flex justify-content-center mt-md-5">
+                                            {
+                                                profilePictureStatus === 0 ? (
+                                                    <UploadImage uploadProfilePicture={uploadProfilePicture} getStates={getStates} setStates={setStates}
+                                                                 profilePictureStatus={profilePictureStatus}/>) : null
+                                            }
+                                        </div>
+                                    </div>
+                                </Row>
+                                <div className="text-center text-dark mt-3">
+                                    <h3>
+                                        {name} {lastname}
+                                        <span className="font-weight-light"></span>
+                                    </h3>
+                                    <div className="h5 font-weight-400 mt-3">
+                                        <i className="ni location_pin mr-2" />
+                                        {getAge(birthday) ? `${getAge(birthday)} años` : '00 años'}
+                                    </div>
+                                    <div className="h5 font-weight-300">
+                                        <i className="ni location_pin mr-2" />
+                                        +{phone || '0000000000'}
+                                    </div>
+
+                                    <div className="h5 mt-4">
+                                        <i className="ni business_briefcase-24 mr-2" />
+                                        {city || 'Ciudad'}, {stateLocation || 'Estado'}, {countryCompleteName || 'País'}
+                                    </div>
+                                    <div>
+                                        <i className="ni education_hat mr-2" />
+                                        {address || 'Dirección'}
+                                    </div>
+                                    <hr className="my-4" />
+
+                                    <div className={classes.alert}>
+                                        {profileStatus === 3 ?
+                                            <Alert variant="filled" severity="warning">En espera de verificación — Se estan
+                                                validando tus datos!</Alert> : null}
+                                        {profileStatus === 4 ?
+                                            <Alert variant="filled" severity="success">Cuenta verificada</Alert> : null}
+                                        {profileStatus === 5 ?
+                                            <Alert variant="filled" severity="error">Cuenta no verificada — Verifica tu identificación oficial únicamente!</Alert> : null}
+                                        {profileStatus === 6 ?
+                                            <Alert variant="filled" severity="error">Cuenta no verificada — Verifica tus datos personales únicamente!</Alert> : null}
+                                        {profileStatus === 7 ?
+                                            <Alert variant="filled" severity="error">Cuenta no verificada — Verifica todos tus!</Alert> : null}
+                                    </div>
+                                </div>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col className="order-xl-1" xl="8">
+                        <Card className="bg-secondary shadow">
+                            <ExpansionComponent getStates={getStates} setStates={setStates} uid={uid} showFile={showFile} setFile={setFile} profilePictureStatus={profilePictureStatus}/>
+                        </Card>
+                    </Col>
+                </Row>
+            </Container>
+        </div>
     );
-}
+};
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -320,9 +442,12 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2),
     },
     alert: {
+        marginTop: 50,
         width: '100%',
         '& > * + *': {
-            marginTop: theme.spacing(2),
+            marginTop: theme.spacing(3),
         },
     }
 }));
+
+export default Profile;
