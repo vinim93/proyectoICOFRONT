@@ -8,15 +8,19 @@ import Twitercontact from "../../images/twitercontact.svg";
 import {db} from "../config/firebase";
 import './css/styles.css';
 import { useTranslation } from 'react-i18next';
-import ACCESIBILIDAD from '../../images/ACCESIBILIDAD.png';
-import PRIVACIDAD from '../../images/PRIVACIDAD.png';
-import SOLIDEZ from '../../images/SOLIDEZ.png';
-import TRABAJOEQUIPO from '../../images/TRABAJO_EQUIPO.png';
+import ACCESIBILIDAD from '../../images/Accesibilidad-01.png';
+import PRIVACIDAD from '../../images/provacidad-04.png';
+import SOLIDEZ from '../../images/solidez-02.png';
+import TRABAJOEQUIPO from '../../images/trabajo en equipo-03.png';
 import VIRY from '../../images/team/VIRY.jpg';
 import JOSS from '../../images/team/JOS.jpg';
 import CHRIS from '../../images/team/CHRIS.jpg';
 import MANU from '../../images/team/MANU.jpg';
 import CRIS from '../../images/team/CRIS.jpg';
+import Fade from 'react-reveal/Fade';
+import Zoom from 'react-reveal/Zoom';
+import Cardsworkers from "./cardsworkers.jsx";
+
 
 
 const Acerca = () => {
@@ -127,60 +131,81 @@ const Acerca = () => {
 
     return (
         <div className="bg-light">
+           
+
 
             <div className="container-fluid">
+            <Fade left cascade>
                 <div className="row mt-5 mb-5 pt-5 pb-5 pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5 bg-about2">
-                    <div className="col-12 mt-5 mb-5 pb-5">
+                    <div className="col-12 mt-5  pb-5">
                         <h1 className="text-center text-preview text-size-banner">
                             {t('AboutSection.Title')}
                         </h1>
                         <hr/>
                     </div>
-                    <div className="col-12 mb-3">
-                        <p className="text-center m-3 text-preview pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5" style={{fontSize: 30}}>
+                    <div className="col-12 mb-5">
+                        <p className="text-center mb-5 text-preview pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5" style={{fontSize: 30}}>
                             {t('AboutSection.Introduction.0')}
                         </p>
-                        <p className="text-center pt-4 m-3 text-preview pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5" style={{fontSize: 30}}>
-                            {t('AboutSection.Introduction.1')}
-                        </p>
-                    </div>
-
-                    <div className="col-12 mt-3 mb-5 pb-5">
-                        <p className="mt-3 text-center pl-5 pr-5 text-preview pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5" style={{fontSize: 30}}>
-                            {t('AboutSection.Introduction.2')}
-                        </p>
+                       
                     </div>
 
                 </div>
 
-                <div className="row mt-5 bg-light pb-5">
-                    <div className="col-12 mt-5 bg-color-primary pt-4 pb-4">
-                        <h1 className="text-size-title-differences text-center">{t('AboutSection.Differences.Title')}</h1>
-                    </div>
-                    {
-                        differences.map((value, index) => (
-                            <div id={index} className="col-12 col-sm-12 col-lg-4 col-xl-4 cont-diferencia pl-5 pr-5 text-justify">
-                                <img src={value.image} alt="" className="img-fluid icons-differences w-50"/>
-                                <h3>{value.title}</h3>
-                                <p>{value.description}</p>
-                            </div>
-                        ))
-                    }
-
-                    <div className="container2 mt-5">
-                        <img src={EquipoSunshine} alt="Notebook" className=" img-fluid"/>
-                        <div className="centered">
-                            <h1 className="display-4 font-weight-bold">
-                                {t('AboutSection.Banner')}
-                            </h1>
+                <div className="row justify-content-center">
+               
+                <div  className="  col-md-3 cont-card-mision  p-5 ">
+                       
+                        <div className=" d-flex justify-content-center mt-5    ">
+                            <h3 className="title-vision ">   {t('AboutSection.Mision.Title')}</h3>
+                        </div>
+                        <div className="col-12 d-flex text-center ">
+                            <h5 className="parrafo-vision p-5"> {t('AboutSection.Mision.description')}</h5>
                         </div>
                     </div>
 
+
+                    
+                    <div  className="  col-md-3  cont-card-mision p-5 ">
+                       
+                       <div className="d-flex  justify-content-center mt-5  ">
+                           <h3 className="title-vision "> {t('AboutSection.Vision.Title')}</h3>
+                       </div>
+                       <div className="col-12 d-flex text-center ">
+                           <h5 className="parrafo-vision p-5">{t('AboutSection.Vision.description')}
+
+</h5>
+                       </div>
+                   </div>
+                    </div>
+                </Fade>
+
+                <div className=" row mt-5 bg-light pb-5  justify-content-center">
+                    <div className="col-12 mt-5 pt-4 pb-4">
+                        <h1 className="text-size-title-differences text-center"> <Fade left cascade>{t('AboutSection.Differences.Title')}</Fade></h1>
+                    </div>
+                    {
+                        differences.map((value, index) => (
+                            <Zoom>
+                            <div id={index} 
+                            className="col-12 col-sm-12 col-lg-4 col-xl-4 cont-diferencia  text-justify  ">
+                                <img src={value.image} alt="" className="icons-differences "/>
+                                <h3 className="text-center">{value.title}</h3>
+                                <p  className="text-center">{value.description}</p>
+                            </div>
+                            </Zoom>
+                        ))
+                    }
+ 
+                          
+                   
                 </div>
-            </div>
-
-            <div className="container-fluid bg-light pb-5">
-
+          
+                
+            <Cardsworkers/>
+            
+            <div className="container-fluid bg-light pb-5 d-flex d-md-none">
+            
                 <div className="container bg-light">
                     <div className="row pb-5">
                         {
@@ -218,21 +243,25 @@ const Acerca = () => {
                             ))
                         }
                     </div>
-
+                    </div>
                     <div className="row">
                         <div className="col-12">
                             <button className="btn bg-cards text-light btn-lg btn-block" data-toggle="modal"
                                     data-target="#staticBackdropcon">{t('AboutSection.ButtonText')}</button>
                         </div>
+                        
                     </div>
+                    
                 </div>
+              
             </div>
-
+            
             <div className="container-fluid">
                 <Footer/>
             </div>
 
 
+                                   
         </div>
 
 

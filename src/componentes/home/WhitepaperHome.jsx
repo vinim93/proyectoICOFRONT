@@ -7,8 +7,8 @@ const WhitepaperHome = () => {
     const {t} = useTranslation();
 
     return (
-        <div className=" row walp"data-toggle="collapse" data-target=".navbar-collapse.show">
-            <div className="col-12">
+        <div className=" row  walp"data-toggle="collapse" data-target=".navbar-collapse.show">
+            <div className="col-12 ">
                 
                 <Link to="./Pdf" target="">
                 <h1 className="walp-text">{t('Whitepaper.Read')}</h1>

@@ -5,6 +5,7 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
 import './i18n';
 
+
 ReactDOM.render(
     <Suspense fallback={(<div>Loading</div>)}>
         <App/>
