@@ -1,5 +1,5 @@
 import React, {useEffect, Component } from 'react';
-import ParticlesBackground from './particlesbackground';
+import ParticlesBackground from './ParticlesBackground.js';
 import ReactDOM from "react-dom";
 import monedag from "../../images/moneda2.gif";
 import monedafinal from "../../images/monedafinal.png";
