@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Typography from "@material-ui/core/Typography";
 import {Button, TextField} from "@material-ui/core";
 import Camaraine from "../../../images/camaraine.svg";
@@ -8,10 +8,13 @@ import swal from "sweetalert";
 import {db, useStorage} from "../../config/firebase";
 import {makeStyles} from "@material-ui/core/styles";
 import {encryptData} from "../js/encrypt";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Backdrop from "@material-ui/core/Backdrop";
 
 const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
 
     const classes = useStyles();
+    const [open, setOpen] = useState(false);
     const masterCondition = getStates("profileStatus") === 1 || getStates("profileStatus") === 2 || getStates("profileStatus") === 5 || getStates("profileStatus") === 7;
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,6 +32,7 @@ const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
                         })
                             .then((willDelete) => {
                                 if (willDelete) {
+                                    setOpen(true);
                                     const storageRef = useStorage.ref(`id/${encryptData(uid)}`);
                                     const task = storageRef.put(getStates("fileFirestore"));
                                     task.on('state_changed', snapshot => {
@@ -43,6 +47,7 @@ const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
                                                 doc: url,
                                                 fileType: getStates("fileObject"),
                                             }).then(() => {
+                                                setOpen(false);
                                                 swal("Información actualizada", "La información de tu perfil fue actualizada con éxito!", "success");
                                             });
                                         })
@@ -155,6 +160,9 @@ const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
                     </div>
                 </div>
             </form>
+            <Backdrop className={classes.backdrop} open={open} >
+                <CircularProgress color="inherit" />
+            </Backdrop>
         </div>
     );
 };
@@ -197,7 +205,11 @@ const useStyles = makeStyles((theme) => ({
         '& > * + *': {
             marginTop: theme.spacing(2),
         },
-    }
+    },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+    },
 }));
 
 export default VerifiedProfile;

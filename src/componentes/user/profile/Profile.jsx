@@ -27,6 +27,8 @@ import {
 } from "reactstrap";
 import UploadImage from "./UploadImage";
 import AVATAR from '../../../images/avatardefault.png';
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Backdrop from "@material-ui/core/Backdrop";
 
 const UserHeader = () => {
     return (
@@ -77,6 +79,7 @@ const Profile = () => {
     const [profilePictureStatus, setProfilePictureStatus] = useState(0);
     const [croppedImage, setCroppedImage] = useState(null);
     const [image, setImage] = useState("");
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         try {
@@ -127,11 +130,11 @@ const Profile = () => {
                             break;
                     }
                 } else {
-                    swal("No papi", "Tu archivo pesa un chingo igual tu no mames, maximo 5 MB!", "error");
+                    swal("Archivo muy pesado", "Tu archivo excede el peso de archivo permitido, maximo 5 MB!", "error");
                 }
 
             } else {
-                swal("No papi", "Solo puedes subir imagen o pdf ,no seas pendejo!", "error");
+                swal("Archivo no válido", "Solo puedes subir imagen o pdf", "error");
             }
         } catch (e) {
             console.log(e);
@@ -289,8 +292,9 @@ const Profile = () => {
             buttons: true,
             dangerMode: true,
         })
-            .then((willDelete) => {
-                if (willDelete) {
+            .then((willConfirm) => {
+                if (willConfirm) {
+                    setOpen(true);
                     const storageRef = useStorage.ref(`credentials/profilePictures-${uid}`);
                     const task = storageRef.put(image);
                     task.on('state_changed', snapshot => {
@@ -304,6 +308,7 @@ const Profile = () => {
                                 profilePicture: url,
                                 profilePictureStatus: 1
                             }).then(() => {
+                                setOpen(false);
                                 swal("Foto subida", "La foto de tu perfil fue actualizada con éxito!", "success");
                             });
                         })
@@ -356,6 +361,9 @@ const Profile = () => {
                                             }
                                         </div>
                                     </div>
+                                    <Backdrop className={classes.backdrop} open={open} >
+                                        <CircularProgress color="inherit" />
+                                    </Backdrop>
                                 </Row>
                                 <div className="text-center text-dark mt-3">
                                     <h3>
@@ -447,7 +455,11 @@ const useStyles = makeStyles((theme) => ({
         '& > * + *': {
             marginTop: theme.spacing(3),
         },
-    }
+    },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+    },
 }));
 
 export default Profile;

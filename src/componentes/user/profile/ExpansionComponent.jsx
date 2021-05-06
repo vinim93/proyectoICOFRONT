@@ -13,7 +13,7 @@ export default function ExpansionComponent({getStates, setStates, uid, showFile,
 
     return (
         <div className={classes.root}>
-            <Accordion expanded={true}>
+            <Accordion expanded={getStates("profileStatus")===0 || getStates("profileStatus")===6 || getStates("profileStatus")===7}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
@@ -25,7 +25,7 @@ export default function ExpansionComponent({getStates, setStates, uid, showFile,
                    <PersonalData getStates={getStates} setStates={setStates} uid={uid} profilePictureStatus={profilePictureStatus}/>
                 </AccordionDetails>
             </Accordion>
-            <Accordion>
+            <Accordion expanded={getStates("profileStatus")===1 || getStates("profileStatus")===2 || getStates("profileStatus")===5 || getStates("profileStatus")===7}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"

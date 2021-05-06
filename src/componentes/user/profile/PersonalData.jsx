@@ -21,6 +21,7 @@ import Backdrop from "@material-ui/core/Backdrop";
 const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
 
     const classes = useStyles();
+    const [open, setOpen] = useState(false);
     const masterCondition = getStates("profileStatus") === 0 || getStates("profileStatus") === 6 || getStates("profileStatus") === 7;
 
     const getAge = (birthDateString) => {
@@ -86,40 +87,6 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
             console.log("Profile.jsx - handleSubmit() -> " + e);
         }
     }
-
-    const uploadProfilePicture = () => {
-        swal({
-            title: "¿Estas seguro de subir esa foto?",
-            text: "Una vez enviada la foto no se podrá modificar, asegurate de que cumpla los requisitos antes mencionados!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    const storageRef = useStorage.ref(`credentials/profilePictures-${uid}`);
-                    const task = storageRef.put(getStates("image"));
-                    task.on('state_changed', snapshot => {
-                        let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        setStates("setUploadValue", percentage);
-                    }, error => {
-                        console.log(error);
-                    }, () => {
-                        storageRef.getDownloadURL().then(url => {
-                            db.collection('credentials').doc(uid).update({
-                                profilePicture: url,
-                                profilePictureStatus: 1
-                            }).then(() => {
-                                swal("Foto subida", "La foto de tu perfil fue actualizada con éxito!", "success");
-                            });
-                        })
-                    });
-                }
-            });
-
-    }
-
-    const [open, setOpen] = useState(false);
 
     return (
         <div>
