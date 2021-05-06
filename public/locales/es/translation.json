@@ -180,10 +180,10 @@
     "Tokens": {
       "Title": "Distribución de utilidades",
       "Reinvestment": "Reinversión",
-      "Sunholders": "Sunholders",
-      "SUNTeam": "Equipo SUN"
+      "Sunholders": "Suniholders",
+      "SUNTeam": "Equipo SUNI"
     },
-    "Price": "El costo inicial del SUN es de 1 USD",
+    "Price": "El costo inicial del SUNI es de 1 USD",
     "SunshineToken": {
       "Title": "Token sunshine",
       "Items": [
