@@ -44,6 +44,7 @@ const Dashboard = () => {
             history.push("/");
             getUserData(id);
         } catch (e) {
+            console.log("ACASO SERE YO SEÑOR?");
             setSigninEmail("");
             history.push("/Home");
             setLogged(false);

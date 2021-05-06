@@ -41,9 +41,9 @@ const App = () => {
                         <Route path="/Roaptomap" component={RoaptoMapa}/>
                         <Route path="/Acerca" component={Acerca}/>
                         <Route path="/Proyectos" component={Foco}/>
-                        <Route path="/home" component={Home}/>
+                        <Route path="/Home" component={Home}/>
                         <Route path="/Pdf" exact><Pdf/></Route>
-                        <Route path="/" exact component={Dashboard} />
+                        <Route path="/" component={Dashboard} />
                         <Route path={"/Profile"} component={Profile}/>
                         <Route path={"/Checkout"} component={Checkout}/>
                         <Route path="/Recovery/:id">

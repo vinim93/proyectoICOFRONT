@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import "firebase/auth";
 import swal from 'sweetalert';
 import {useAuth} from "../contexts/AuthContext";
-import {useHistory} from "react-router-dom";
+import {NavLink, useHistory} from 'react-router-dom';
 import "./css/styles.css";
 import GoogleButton from 'react-google-button'
 import TextField from "@material-ui/core/TextField";
@@ -17,18 +17,16 @@ import IconButton from '@material-ui/core/IconButton';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FilledInput from '@material-ui/core/FilledInput';
-import Link from "@material-ui/core/Link";
-import PasswordRecoveryModal from "./PasswordRecoveryModal";
 
 const SignInModal = () => {
 
+    const history = useHistory();
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
-    const {login} = useAuth();
-    const {currentUser, logout} = useAuth();
+    const {login, currentUser, logout} = useAuth();
     const [verifiedCaptcha, setVerifiedCaptcha] = useState(false);
     const [loading, setLoading] = useState(false);
-    const history = useHistory();
+
 
     const searchDataInFirestore = async id => {
         let result = null;
@@ -86,10 +84,10 @@ const SignInModal = () => {
             if (user.emailVerified) {
 
                 let userStatus = await searchDataInFirestore(user.uid);
-                if(userStatus === "exists"){
+                if (userStatus === "exists") {
                     history.push("/");
                     window.location.reload();
-                } else if (userStatus === "not-exists"){
+                } else if (userStatus === "not-exists") {
                     saveDataInFirestore(user.uid, {
                         city: "",
                         email: user.email,
@@ -164,17 +162,19 @@ const SignInModal = () => {
 
     }
 
-    async function signIn(e) {
-        e.preventDefault()
+    const signIn = async (e) => {
+        e.preventDefault();
 
         try {
-            setLoading(true);
+            await setLoading(true);
             await login(email, pass).then(r => {
 
                 if (r.user.emailVerified) {
                     if (verifiedCaptcha) {
-                        history.push("/");
-                        window.location.reload();
+                        setTimeout(() => {
+                            history.push("/");
+                            window.location.reload();
+                        }, 2000);
                     } else {
                         let error = new Error("captcha_not_verified");
                         error.code = "captcha_not_verified";
@@ -189,6 +189,7 @@ const SignInModal = () => {
                 }
             });
         } catch (error) {
+            setLoading(false);
             let errorCode = error.code;
             logout();
             switch (errorCode) {
@@ -222,7 +223,7 @@ const SignInModal = () => {
             }
         }
 
-        setLoading(false)
+        //setLoading(false);
     }
 
     const [values, setValues] = useState({
