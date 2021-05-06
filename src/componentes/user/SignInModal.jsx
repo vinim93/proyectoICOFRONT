@@ -247,10 +247,11 @@ const SignInModal = () => {
 
     return (
 
-        <div className="modal fade " id="signInModal" data-backdrop="static" data-keyboard="false"
-             tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div className="modal-dialog modal-xl modal-dialog-centered pl-xl-5 pr-xl-5">
-                <div className="modal-content registrobody pl-xl-5 pr-xl-5 ">
+        <div className="modal fade" id="signInModal" data-backdrop="static"
+             data-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel"
+             aria-hidden="true">
+            <div className="modal-dialog modal-xl modal-dialog-centered pl-xl-5 pr-xl-5 ">
+                <div className="modal-content registrobody   pl-xl-5 pr-xl-5 ">
 
                     <div className="modal-header">
                         <h5 className="modal-title col-12 text-light" id="staticBackdropLabel">Tu cuenta</h5>

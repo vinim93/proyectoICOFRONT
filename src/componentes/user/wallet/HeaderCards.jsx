@@ -17,12 +17,12 @@ const Header = ({tokensNumber}) => {
                                         <Row>
                                             <div className="col">
                                                 <CardTitle
-                                                    tag="h4"
+                                                    tag="h6"
                                                     className="text-uppercase text-muted mb-0"
                                                 >
                                                     Número de SUN tokens
                                                 </CardTitle>
-                                                <span className="h2 font-weight-bold mb-0">{tokensNumber || 0}</span>
+                                                <span className="h5 font-weight-bold mb-0 text-dark">{tokensNumber || 0}</span>
                                             </div>
                                             <Col className="col-auto">
                                                 <div className="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -39,12 +39,12 @@ const Header = ({tokensNumber}) => {
                                         <Row>
                                             <div className="col">
                                                 <CardTitle
-                                                    tag="h4"
+                                                    tag="h6"
                                                     className="text-uppercase text-muted mb-0"
                                                 >
                                                     Costo total (USD)
                                                 </CardTitle>
-                                                <span className="h2 font-weight-bold mb-0">${tokensNumber || 0}</span>
+                                                <span className="h5 font-weight-bold mb-0 text-dark">${tokensNumber || 0}</span>
                                             </div>
                                             <Col className="col-auto">
                                                 <div className="icon icon-shape bg-info text-white rounded-circle shadow">

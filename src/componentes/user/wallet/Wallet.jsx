@@ -15,6 +15,7 @@ import {useHistory} from "react-router-dom";
 //OWN IMPORTATIONS
 import "./../css/nucleo.css";
 import "./../scss/argon-dashboard-react.scss";
+import "./../checkout/css/style.css";
 import HeaderCards from "./HeaderCards";
 
 //MATERIAL IMPORTS
@@ -145,7 +146,7 @@ const Wallet = () => {
     const renderWallet = () => {
         if(logged){
             return(
-                <div className="mt-5 mt-md-0">
+                <div className="mt-5 mt-md-0 bodyWallet">
                     <a href="#" type="button" id="openScanner" data-toggle="modal"
                        data-target="#exampleModalCenter" />
 
@@ -174,10 +175,10 @@ const Wallet = () => {
                                     <CardHeader className="bg-transparent">
                                         <Row className="align-items-center">
                                             <div className="col-12">
-                                                <h6 className="text-uppercase text-light ls-1 mb-0">
+                                                <p className="text-uppercase text-light mb-0">
                                                     Spot wallet
-                                                </h6>
-                                                <h2 className="text-white mb-3">SUN</h2>
+                                                </p>
+                                                <h6 className="text-white mb-3">SUN</h6>
                                             </div>
                                             <div className="col-12">
                                                 <div className="nav-wrapper">
@@ -212,9 +213,9 @@ const Wallet = () => {
                                                         </div>
                                                     </div>
                                                     <div className="col-12 mt-5">
-                                                        <h4 className="text-uppercase text-light ls-1 mb-1">
+                                                        <h6 className="text-uppercase text-light ls-1 mb-1">
                                                             Wallet address
-                                                        </h4>
+                                                        </h6>
                                                         <p className="text-light">{tokenAddress}</p>
                                                     </div>
                                                 </div>
@@ -306,77 +307,6 @@ const Wallet = () => {
                                     </CardBody>
                                 </Card>
                             </Col>
-
-                        </Row>
-                        <Row className="mt-5 d-flex justify-content-center">
-                            <Col className="mb-5 mb-xl-0" xl="9">
-                                <Card className="shadow">
-                                    <CardHeader className="border-0">
-                                        <Row className="align-items-center">
-                                            <div className="col">
-                                                <h3 className="mb-0">Historial de transacciones</h3>
-                                            </div>
-
-                                        </Row>
-                                    </CardHeader>
-                                    <Table className="align-items-center table-flush" responsive>
-                                        <thead className="thead-light">
-                                        <tr>
-                                            <th scope="col">Fecha</th>
-                                            <th scope="col">Tipo</th>
-                                            <th scope="col">ID de la transacción</th>
-                                            <th scope="col">Cantidad</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <th scope="row">/argon/</th>
-                                            <td>4,569</td>
-                                            <td>340</td>
-                                            <td>
-                                                <i className="fas fa-arrow-up text-success mr-3"/> 46,53%
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">/argon/index.html</th>
-                                            <td>3,985</td>
-                                            <td>319</td>
-                                            <td>
-                                                <i className="fas fa-arrow-down text-warning mr-3"/>{" "}
-                                                46,53%
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">/argon/charts.html</th>
-                                            <td>3,513</td>
-                                            <td>294</td>
-                                            <td>
-                                                <i className="fas fa-arrow-down text-warning mr-3"/>{" "}
-                                                36,49%
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">/argon/tables.html</th>
-                                            <td>2,050</td>
-                                            <td>147</td>
-                                            <td>
-                                                <i className="fas fa-arrow-up text-success mr-3"/> 50,87%
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">/argon/profile.html</th>
-                                            <td>1,795</td>
-                                            <td>190</td>
-                                            <td>
-                                                <i className="fas fa-arrow-down text-danger mr-3"/>{" "}
-                                                46,53%
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </Table>
-                                </Card>
-                            </Col>
-
                         </Row>
                     </Container>
                 </div>
@@ -389,7 +319,7 @@ const Wallet = () => {
 
     return (
         <>
-            {renderWallet()};
+            {renderWallet()}
         </>
     );
 };

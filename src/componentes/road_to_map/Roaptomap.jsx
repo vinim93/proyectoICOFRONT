@@ -2,8 +2,11 @@ import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import React, {Component} from "react";
 import Footer from '../footer/Footer';
-import maparoad from '../../images/maparoad.svg';
+import DemoCarousel from './carussel.jsx';
+import maparoad from '../../images/road-map.png';
+import monedafinal from "../../images/monedafinal.png";
 import {useTranslation} from 'react-i18next';
+import lineascar from "../../images/lineas.svg";
 
 const RoaptoMapa = () => {
     const {t} = useTranslation();
@@ -12,20 +15,26 @@ const RoaptoMapa = () => {
 
         <div className=" road ">
             <div className="row ">
-
+            <img  className="img-fluid linea-car-1 d-flex d-md-none"src={lineascar} alt="linacarrusel"/>
                 <p className="text-roap-map  ">
                     <h1 align="center">ROAD MAP</h1>
-                    <p className="text-roap-1">{t('RoadToMap.0')}</p>
-                    <p className="text-roap-2">{t('RoadToMap.1')}</p>
-                    <p className="text-roap-3">{t('RoadToMap.2')}</p>
-                    <p className="text-roap-4">{t('RoadToMap.3')}</p>
-                    <p className="text-roap-5">{t('RoadToMap.4')}</p>
-                    <p className="text-roap-6">{t('RoadToMap.5')}</p>
-                    <p className="text-roap-7">{t('RoadToMap.6')}</p>
-                    <p className="text-roap-8">{t('RoadToMap.7')}</p>
+                   
+                    <p className="text-roap-1 d-none d-md-flex">{t('RoadToMap.0')}</p>
+                    <p className="text-roap-2 d-none d-md-flex">{t('RoadToMap.1')}</p>
+                    <p className="text-roap-3 d-none d-md-flex">{t('RoadToMap.2')}</p>
+                    <p className="text-roap-4 d-none d-md-flex">{t('RoadToMap.3')}</p>
+                    <p className="text-roap-5 d-none d-md-flex">{t('RoadToMap.4')}</p>
+                    <p className="text-roap-6 d-none d-md-flex">{t('RoadToMap.5')}</p>
+                    <p className="text-roap-7 d-none d-md-flex">{t('RoadToMap.6')}</p>
+                    <p className="text-roap-8 d-none d-md-flex">{t('RoadToMap.7')}</p>
+                    
                 </p>
-                <img src={maparoad} className="img-fluid  maparoad " alt=""/>
+                
+                <img src={maparoad} className=" d-none d-md-flex  maparoad " alt=""/>
+                 
             </div>
+           
+<DemoCarousel/>
             <Footer/>
         </div>
 

@@ -2,6 +2,9 @@ import React from 'react';
 import Depmason from "../../images/depmason.svg";
 import Imgpreg from "../../images/imgpreg.svg";
 import Depmenos from "../../images/depmenos.svg";
+import Fade from 'react-reveal/Fade';
+
+
 import {useTranslation} from 'react-i18next';
 
 const PreguntasFrecuentes = () => {
@@ -30,22 +33,17 @@ const PreguntasFrecuentes = () => {
             text: t('FAQ.Items.1.Text'),
             id: "myImageB"
         },
+      
         {
             icon: Depmason,
             title: t('FAQ.Items.2.Title'),
             text: t('FAQ.Items.2.Text'),
-            id: "myImageC"
+            id: "myImageD"
         },
         {
             icon: Depmason,
             title: t('FAQ.Items.3.Title'),
             text: t('FAQ.Items.3.Text'),
-            id: "myImageD"
-        },
-        {
-            icon: Depmason,
-            title: t('FAQ.Items.4.Title'),
-            text: t('FAQ.Items.4.Text'),
             id: "myImageE"
         },
     ]
@@ -58,6 +56,7 @@ const PreguntasFrecuentes = () => {
                 {
                     items.map((value, index) => (
                         <div key={index}>
+                            <Fade left cascade>
                             <p className="">
                                 <button className="btn btn-preg1" onClick={() => changeIcon(value.id)}
                                         type="button" data-toggle="collapse" data-target={"#"+value.id+"target"}
@@ -70,16 +69,17 @@ const PreguntasFrecuentes = () => {
                                     {value.text}
                                 </div>
                             </div>
+                            </Fade>
                         </div>
                     ))
                 }
 
             </div>
 
-            <div className="col-md-6 col-12">
-                <img src={Imgpreg} id="" className="PREGIMG d-none d-lg-block d-md-block"/>
+                        <div className="col-md-6 col-12">
+                            <img src={Imgpreg} id="" className="PREGIMG d-none d-lg-block d-md-block"/>
 
-            </div>
+                        </div>
 
         </div>
     );

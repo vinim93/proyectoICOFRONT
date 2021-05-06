@@ -62,12 +62,12 @@ const DollarMarktComponent = () => {
                                 <div key={index} className="alert alert-primary-data-cryptos mr-0 mr-md-3 mr-lg-5" role="alert">
                                     <div className="row">
                                         <div className="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
-                                            <img className="img-fluid mt-lg-3 mt-xl-3" src={value.icon} alt=""/>
+                                            <img className="img-fluid mt-lg-3 mt-xl-3 w-75" src={value.icon} alt=""/>
                                         </div>
                                         <div className="col-8 col-sm-9 col-md-9 col-lg-10 col-xl-10 d-flex justify-content-start">
-                                            <h2 className="align-middle mt-sm-4 mt-md-4 mt-lg-5 mt-xl-5 text-light">
+                                            <h4 className="align-middle mt-sm-4 mt-md-4 mt-lg-5 mt-xl-5 text-light">
                                                 {value.name} / USD ${value.conversion_to_dollar}
-                                            </h2>
+                                            </h4>
                                         </div>
                                     </div>
                                 </div>

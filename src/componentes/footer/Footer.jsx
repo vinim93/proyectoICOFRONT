@@ -55,12 +55,15 @@ const Footer = () => {
 
         <div className="  row  con-footer con-conecta">
             <div className="col-12 ">
+                <a href="https://sunshine-imagine.com/">
+
                 <img src={Sol} alt=""/>
+                </a>
 
                 <a href="https://www.facebook.com/Sunshine-Imagine-Cripto-115833410321279">
                     <img src={Face} alt=""/>
                 </a>
-                <img src={Gmail} alt=""/>
+               
                 <a href="https://www.instagram.com/sunshine.imagine.cripto/">
 
                     <img src={Insta} alt=""/>
@@ -71,7 +74,7 @@ const Footer = () => {
                     <img src={Twiter} alt=""/>
                 </a>
 
-                <img src={Youtube} alt=""/>
+               {/* <img src={Youtube} alt=""/>*/}
 
                 <div className=" col-12 foottitulo">
 
@@ -88,7 +91,7 @@ const Footer = () => {
                     </button>
 
                     {/*---------------------------------------------------------------------------------------modal*------------------------------*/}
-                    <div className="modal fade" id="staticBackdropcon" data-backdrop="static"
+                    <div className="modal fade modal-fullscreen" id="staticBackdropcon" data-backdrop="static"
                          data-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel"
                          aria-hidden="true">
                         <div className="modal-dialog modal-xl modal-dialog-centered">
@@ -99,7 +102,7 @@ const Footer = () => {
                                         viewBox="0 0 484.203 7.402">
                                         <rect id="Rectángulo_187" data-name="Rectángulo 187" width="484.203"
                                               height="7.402" fill="#dbb80b"/>
-                                    </svg> <p className="conectate"><br/>{t('ContactUs.Extra.1')}</p></h5>
+                                    </svg> <p className="conectate "><br/>{t('ContactUs.Extra.1')}</p></h5>
 
 
                                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">

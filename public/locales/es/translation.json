@@ -9,10 +9,10 @@
   "Banner": {
     "Titulo": [
       "SE PARTE DE NUESTRA",
-      "REVOLUCION",
-      "TECNOLOGICA"
+      "REVOLUCIÓN",
+      "TECNOLÓGICA"
     ],
-    "Texto": "UNA NUEVA ERA DE EN EL MERCADO DIGITAL, basado en cadenas de bloques inteligentes para el intercambio de tokens de utilidad.",
+    "Texto": "Una nueva era de el mercado digital, basado en cadenas de bloques inteligentes para el intercambio de activos digitales.",
     "TextoBoton": "SE PARTE DE SUNSHINE"
   },
   "CountdownL": {
@@ -56,39 +56,35 @@
   "Ventajas": {
     "Facil": {
       "Titulo": "DE USO FÁCIL",
-      "Texto": "Diseño accesible para todos los Sunholders, creado para que sea práctico, cómodoy rápido poder adquirir el SUN"
+      "Texto": "Diseño accesible para todos los Sunholders, creado para que sea práctico, cómodo y rápido poder adquirir el SUNI"
     },
     "Seguro": {
       "Titulo": "SEGURO",
-      "Texto": "Procesamiento confiable, el SUN está asentado sobre el protocolo de Blockchain Ethereum, lo que lo hace privado y a prueba de cualquier hackeo"
+      "Texto": "Procesamiento confiable, el SUNI está asentado sobre el protocolo de Blockchain TRON, lo que lo hace privado y a prueba de cualquier hackeo."
     },
     "Transparente": {
       "Titulo": "TRANSPARENTE",
-      "Texto": "En Sunshine estamos comprometidos a informar, explicar y justificar cada proyecto financiado con el SUN, aclarar las dudas de nuestros Sunholders y ser siempre claros y precisos brindando toda la información correspondiente a las inversiones"
+      "Texto": "En Sunshine estamos comprometidos con informar, explicar y justificar cada proyecto financiado con el SUNI, aclarar las dudas de nuestros Sunholders y ser siempre claros y precisos brindando toda la información correspondiente a las inversiones"
     }
   },
   "FAQ": {
     "Title": "PREGUNTAS FREQUENTES",
     "Items": [
       {
-        "Title": "¿Qué es un Token?",
-        "Text": "Es una ficha virtual que tiene una unidad de valor la cual es emitida por una entidad privada, tiene diversas funciones a parte de actuar como una moneda virtual y está asentado sobre el protocolo de Blockchain Ethereum, lo que lo hace transparente, privado y a prueba de cualquier hackeo."
+        "Title": "¿Qué es un Activo digital?",
+        "Text": "Un Activo Digital es una ficha virtual que tiene una unidad de valor la cual es emitida en una Blockchain, tiene diversas funciones a parte de actuar como una moneda virtual, lo que lo hace transparente, privado y a prueba de cualquier hackeo."
       },
       {
         "Title": "¿Qué es una criptomoneda?",
         "Text": "Es una moneda virtual que nació como un medio de intercambio digital, permitiendo transacciones instantáneas a través de internet. Mediante el uso de criptografía se aseguran y verifican las transacciones que se realicen con ella, además la criptografía controla la creación de nuevas unidades de una moneda en particular."
       },
       {
-        "Title": "¿Qué es una ICO?",
-        "Text": "ICO, por sus siglas en inglés Inicial Coin Offering u Oferta Inicial de Moneda, es un token el cual es administrado por la Blockchain correspondiente a la criptomoneda en uso es decir tiene registros limitados en una base de datos que no pueden ser modificados."
+        "Title": "¿Quiénes pueden comprar un SUNI?",
+        "Text": "Cualquier persona que sea mayor de edad y que desee comprar un SUNI puede hacerlo."
       },
       {
-        "Title": "¿Quiénes pueden comprar un SUN?",
-        "Text": "Cualquier persona que sea mayor de edad y que desee comprar un SUN puede hacerlo."
-      },
-      {
-        "Title": "¿Cómo comprar un SUN?",
-        "Text": "Es muy fácil, sólo debes crear una cuenta en nuestra página y de ahí seleccionar el número de SUN que desees adquirir"
+        "Title": "¿Cómo comprar un SUNI?",
+        "Text": "Es muy fácil, sólo debes crear una cuenta en nuestra página y de ahí seleccionar el número de SUN que desees adquirir."
       }
     ]
   },
@@ -97,7 +93,7 @@
     "Text": "Cada semana los que se suscriban al boletín informativo recibirán un artículo sobre las ICO, tokens, y el mundo de las criptomonedas."
   },
   "ContactUs": {
-    "Title": "Contactanos",
+    "Title": "CONTÁCTANOS",
     "Form": {
       "Name": "Nombre",
       "Email": "Email",
@@ -111,14 +107,18 @@
     ]
   },
   "AboutSection": {
-    "Title": "ASEGURA TU FUTURO, EMPIEZA HOY",
+    "Title": "ASEGURA TU FUTURO",
     "Banner": "EQUIPO SUNSHINE",
     "ButtonText": "¿Te gustaria unirte a nuestro equipo?",
     "Introduction": [
-      "Hemos desarrollado un token que va a permitirles a los inversionistas, ser parte de este mundo financiero virtual, dando inicio a una nueva era tecnológica y la oportunidad de invertir en activos digitales",
-      "Dicho token lleva por nombre SUNSHINE IMAGINE",
-      "SUNSHINE es para los emprendedores, las personas que quieran ir un paso más adelante, para los que no se conformen con poco, SUNSHINE es el futuro, es para quien desea grandeza, aquel que perdió el miedo y decidió tomar el control de su vida."
-    ],
+      "Somos un equipo de profesionales que trabajan para revolucionar el mundo digital financiero a través del compromiso y la transparencia, ofreciendo resultados favorables a los sunholders para consolidarse como socios estratégicos en el logro de sus objetivos."
+     ],
+     "Mision":{
+       "Title":"MISIÓN",
+       "description":"Aportar valor y colaborar con los Sunholders a fortalecer su presente y construir su futuro sostenible en el tiempo."},
+       "Vision":{
+        "Title":"VISIÓN",
+        "description":"Mantenernos como una empresa confiable en el mercado, con solidez y óptima calidad garantizando la inversión de los Sunholders y generando el nivel de rentabilidad esperado."},
     "Differences": {
       "Title": "¿QUÉ NOS DIFERENCIA?",
       "Items": [
@@ -128,7 +128,7 @@
         },
         {
           "Title": "PRIVACIDAD",
-          "Text": "Sunshine nunca compartirá tus datos personales, datos de tus inversiones ni cualquier tipo de información, ya que el SUN corre por la Blockchain Ethereum cada movimiento que realices será privado y anónimo."
+          "Text": "Sunshine nunca compartirá tus datos personales, datos de tus inversiones ni cualquier tipo de información, ya que el SUN corre por la Blockchain TRON cada movimiento que realices será privado y anónimo."
         },
         {
           "Title": "SOLIDEZ",
@@ -145,7 +145,7 @@
         {
           "Name": "Viridiana Uribe",
           "Career": "Operations Coordinator",
-          "Description": "Coordinación del correcto desarrollo de las actividades operativas de la empresa, Garantizar procesos que se lleven acabo en el tiempo y forma."
+          "Description": "Coordinación del  desarrollo de las actividades operativas de la empresa, Garantizar procesos que se lleven acabo en el tiempo y forma."
         },
         {
           "Name": "Jocelyn Uribe",
@@ -187,18 +187,18 @@
     "SunshineToken": {
       "Title": "Token sunshine",
       "Items": [
-        "Token compatible, interoperable y reutilizable dentro de diversas aplicaciones, billeteras y exchange, propiedades heredadas del estándar ERC-20 bajo el cual fue creado.",
-        "Utilizan \"gas\" para cubrir las tarifas de transacción. El Gas es, dicho de una forma simple, el precio que se tiene que pagar al realizar una operación en la red de Ethereum.",
-        "Se alojan en el blockchain de Etherum, a diferencia de otras criptomonedas que se alojan en sus respectiva blockchain.",
-        "Desarrollado con Solidity, lenguaje de programación diseñado para ejecutar Smart contracts de manera óptima en la máquina virtual de Etherum (EVM).",
-        "Utiliza la API estable de OpenZeppelin, las cuales verifican que los contratos presenten brechas de seguridad o puntos débiles que puedan ser explotados."
+        "Permite a los desarrolladores de aplicaciones emitir sus propios tokens dentro de la plataforma TRON.",
+        "El tiempo promedio de confirmación por transacción es de 1 min. Para que se confirme la transacción, se requerirán 19 bloques de red (se crea un nuevo bloque aproximadamente cada 3 segundos).",
+        "La máquina virtual (TVM), los contratos inteligentes y los estándares de token TRON son compatibles con Ethereum, lo que simplifica la migración de proyectos a esta cadena de bloques.",
+        "Los usuarios pueden realizar transacciones en la red TRON de forma gratuita, es decir, sin comisiones debido a la presencia de parámetros especiales: ancho de banda y energía.",
+        "Capacidad de simplificar la creación de tokens (TRC10), sin mucho dinero y tiempo."
       ]
     },
     "AppDownload": {
       "Title": "Próximamente",
       "Subtitle": "Nuestra app",
       "Items": [
-        "Tú cartera disponible donde y cuando quieras",
+        "Tu cartera disponible donde y cuando quieras",
         "Revisa tu saldo todo el tiempo",
         "Mantente conectado"
       ],
@@ -217,7 +217,7 @@
     "Inicio al proyecto Cripto Banco"
   ],
   "Whitepaper": {
-    "Read": "LEE",
+    "Read": "Lee",
     "Click": "Click para descargar pdf"
   }
 }
