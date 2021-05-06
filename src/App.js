@@ -43,8 +43,8 @@ const App = () => {
                         <Route path="/Proyectos" component={Foco}/>
                         <Route path="/Home" component={Home}/>
                         <Route path="/Pdf" exact><Pdf/></Route>
-                        <Route path="/" component={Dashboard} />
-                        <Route path={"/Profile"} component={Profile}/>
+                        <Route path="/" exact component={Dashboard} />
+                        <Route path={"/Profile"} exact component={Profile}/>
                         <Route path={"/Checkout"} component={Checkout}/>
                         <Route path="/Recovery/:id">
                             <Recovery />

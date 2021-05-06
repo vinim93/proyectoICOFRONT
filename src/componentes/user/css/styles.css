@@ -2,6 +2,11 @@
     width: 50%;
 }
 
+.contenedor-profile{
+    background-color: #043361;
+    height: 100vh;
+}
+
 button.fb {
     font-family: Lucida Grande, Helvetica Neue, Helvetica, Arial, sans-serif;
     display: inline-block;

@@ -329,7 +329,7 @@ const Profile = () => {
     }
 
     return (
-        <div className="pb-5">
+        <div className="pb-5 contenedor-profile">
             <UserHeader />
             {/* Page content */}
             <Container className="mt-3 mt--7 mb-5" fluid>
