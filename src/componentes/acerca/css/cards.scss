@@ -83,7 +83,7 @@ transform: matrix3d(-20px);
     rgba(black, 0.66) 0 30px 60px 0,
     inset #333 0 0 0 5px,
     inset rgba(white, 0.5) 0 0 0 6px;
-    text-align:justify ;
+   
     transition: .5s all ease;
   transform: rotateX(60deg) scale(0.7);
   perspective: 900px;
@@ -97,7 +97,7 @@ transform: matrix3d(-20px);
   opacity: 0.5;
   position: absolute!important;
   object-fit: cover;
-  
+  left: 1%;
   width: 100%;
   height: 100%;
   float: center;
@@ -116,6 +116,8 @@ transform: matrix3d(-20px);
     background-position: center;
     background-repeat: no-repeat!important;
     background-size: cover;
+    text-align: center;
+    justify-content: left!important;
 }
 .carousel-2 {    
     top: -100vw!important;     

@@ -14,12 +14,8 @@ const Soporte = () => {
             icon: Github,
             title: t('Support.Items.Github.Title'),
             text: t('Support.Items.Github.Text')
-        },
-        {
-            icon: Openzepp,
-            title: t('Support.Items.OpenZeppelin.Title'),
-            text: t('Support.Items.OpenZeppelin.Text')
         }
+       
     ];
 
     return (

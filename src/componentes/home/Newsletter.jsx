@@ -7,7 +7,7 @@ const Newsletter = () => {
     const {t} = useTranslation();
 
     return (
-        <div className="  row text-center newlesterenvol">
+        <div className=" d-none row text-center newlesterenvol">
             <div className="col-12  Newlester-con">
                 <h1 className="titunew">{t('Newsletter.Title')}</h1>
                 <img src={Newlesters} alt="" className="new "/>

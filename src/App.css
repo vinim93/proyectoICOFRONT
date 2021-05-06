@@ -1404,7 +1404,7 @@ text-align: center;
  
 .text-soporte{
   font-family:Blackpast;
-  font-size: 10vw;
+  font-size: 6.5vw;
   
   white-space: normal;
   margin-bottom: 10vw;
@@ -1877,7 +1877,7 @@ height: 93vw;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-family: 'Josefin Sans';
+  font-family: Josefin Sans Regular Roman;
   font-size: 1.7vw;
   line-height: 1.5vw;  
   font-weight: bold;
@@ -1886,7 +1886,8 @@ height: 93vw;
 .text-roap-map h1{
   filter: drop-shadow(7px 11px 20px rgba(0, 0, 0, 1));
   justify-content: flex-start;
-  font-family: Barlow;
+  font-family: Blackpast;
+  text-transform: lowercase;
   font-weight: 900;
   align-items: left;
   text-align: center;
