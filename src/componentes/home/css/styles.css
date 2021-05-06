@@ -14,22 +14,26 @@
     font-size: 1.5rem;
 }
 .text-zep{
-
+  font-family: 'Josefin Sans';
   white-space: normal;
-  
-    
-
-    
+  font-size: 25px;
 }
 .img-meto{
-    
-    
-height: auto!important;
+  position: relative;
+  background-color:#00234D4D ;
+  white-space:normal;
+ 
+  height: auto!important;
+  margin: 1vw;
+  padding: 1vw;
 
-word-wrap: break-word!important;
-
-
-    
+justify-content: center;
+word-wrap: break-word!important; 
     
 
+}
+.img-soporte{
+  height: 10vw;
+  width: 10vw;
+ 
 }

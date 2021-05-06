@@ -12,7 +12,7 @@
       "TECHNOLOGICAL",
       "REVOLUTION"
     ],
-    "Texto": "A NEW ERA IN THE DIGITAL MARKET, based on smart blockchains for the exchange of utility tokens.",
+    "Texto": "A NEW ERA OF DIGITAL MARKET, based on smart blockchains for the exchange of digital assets.",
     "TextoBoton": "BE PART OF SUNSHINE"
   },
   "CountdownL": {
@@ -56,38 +56,35 @@
   "Ventajas": {
     "Facil": {
       "Titulo": "EASY TO USE",
-      "Texto": "Accessible design for all Sunholders, created to be practical, comfortable and quick to acquire the SUN"
+      "Texto": "Accessible design for all Sunholders, created to be practical, comfortable and quick to acquire the SUNI"
     },
     "Seguro": {
       "Titulo": "SURE",
-      "Texto": "Reliable processing, the SUN is based on the Ethereum Blockchain protocol, which makes it private and proof of any hacking"
+      "Texto": "Reliable processing, the SUNI is settled on Blockchain's protocol  TRON, which makes it private and proof of any hacking."
     },
     "Transparente": {
       "Titulo": "TRANSPARENT",
-      "Texto": "At Sunshine we are committed to informing, explaining and justifying each project financed with the SUN, clarifying the doubts of our Sunholders and always being clear and precise, providing all the information corresponding to the investments"
+      "Texto": "At Sunshine we are committed to informing, explaining and justifying each project financed with the SUNI, clarifying the doubts of our Sunholders and always being clear and precise, providing all the information corresponding to the investments"
     }
   },
   "FAQ": {
     "Title": "FREQUENTLY ASKED QUESTIONS",
     "Items": [
       {
-        "Title": "What is a Token?",
-        "Text": "It is a virtual token that has a unit of value which is issued by a private entity, has various functions apart from acting as a virtual currency and is based on the Ethereum Blockchain protocol, which makes it transparent, private and proof of any hack."
+        "Title": "What is a Digital Asset?",
+        "Text": "A Digital Asset a virtual token that has a value unit which is issued on a Blockchain, has various functions other than acting as a virtual currency, which makes it transparent, private and hack-proof."
       },
       {
         "Title": "What is a cryptocurrency?",
         "Text": "It is a virtual currency that was born as a means of digital exchange, allowing instant transactions through the internet. Through the use of cryptography, the transactions carried out with it are secured and verified, in addition cryptography controls the creation of new units of a particular currency."
       },
+      
       {
-        "Title": "What is ICO?",
-        "Text": "ICO, for its acronym in English Initial Coin Offering or Initial Coin Offering, is a token which is managed by the Blockchain corresponding to the cryptocurrency in use, that is, it has limited records in a database that cannot be modified."
-      },
-      {
-        "Title": "Who can buy a SUN?",
+        "Title": "Who can buy a SUNI?",
         "Text": "Anyone who is of legal age and wants to buy a SUN can do so."
       },
       {
-        "Title": "How to buy a SUN?",
+        "Title": "How to buy a SUNI?",
         "Text": "It is very easy, you just have to create an account on our page and from there select the SUN number you want to acquire"
       }
     ]
@@ -119,6 +116,12 @@
       "This token is called SUNSHINE IMAGINE",
       "SUNSHINE is for entrepreneurs, people who want to go a step further, for those who do not settle for little, SUNSHINE is the future, it is for those who want greatness, who lost their fear and decided to take control of their life."
     ],
+    "Mision":{
+      "Title":"MISSION",
+      "description":"Bring value and collaborate with Sunholders to strengthen their present and build their sustainable future over time."},
+      "Vision":{
+       "Title":"VISIÓN",
+       "description":"Maintain ourselves as a reliable company in the market, with solidity and optimal quality guaranteeing the investment of the Sunholders and generating the expected level of profitability."},
     "Differences": {
       "Title": "WHAT MAKES US DIFFERENT?",
       "Items": [
@@ -180,18 +183,18 @@
     "Tokens": {
       "Title": "utilities distribution",
       "Reinvestment": "Reinvestment",
-      "Sunholders": "Sunholders",
-      "SUNTeam": "SUN Team"
+      "Sunholders": "Suniholders",
+      "SUNTeam": "SUNI Team"
     },
-    "Price": "The initial cost of the SUN is 1 USD",
+    "Price": "The initial cost of the SUNI is 1 USD",
     "SunshineToken": {
       "Title": "Sunshine Token",
       "Items": [
-        "Compatible, interoperable and reusable token within various applications, wallets and exchanges, properties inherited from the ERC-20 standard under which it was created.",
-        "They use \"gas\" to cover transaction fees. Gas is, simply put, the price that has to be paid when carrying out an operation on the Ethereum network.",
-        "They are hosted on the Etherum blockchain, unlike other cryptocurrencies that are hosted on their respective blockchain.",
-        "Developed with Solidity, a programming language designed to execute Smart contracts optimally in the Etherum virtual machine (EVM).",
-        "It uses the stable OpenZeppelin API, which verify that the contracts present security gaps or weak points that can be exploited."
+        "It allows application developers to issue their own tokens within the TRON platform.",
+        "The average commit time per transaction is 1 min. For the transaction to be committed, 19 network blocks will be required (a new block is created approximately every 3 seconds).",
+        "Virtual machine (TVM), smart contracts, and TRON token standards support Ethereum, simplifying project migration to this blockchain.",
+        "Users can transact on the TRON network for free, i.e. without commissions due to the presence of special parameters: bandwidth and power.",
+        "Ability to simplify token creation (TRC10), without much money and time."
       ]
     },
     "AppDownload": {

@@ -2,12 +2,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
-@import 'https://fonts.googleapis.com/css?family=Rubik+One';
+
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
 @font-face {
   font-family:'Eras Demi ITC' ;
   src: url('./fonts/ERASDEMI.TTF');
 }
+@font-face {
+  font-family: Alfa-Bold;
+  src: url(fonts/Alfa-Bold.woff);
+}
+@font-face {
+  font-family: digitalo;
+  src: url(fonts/digitalo.woff);
+}
+@font-face {
+  font-family: Josefin Sans Regular Roman;
+  src: url(fonts/Josefin\ Sans\ Regular\ Roman.TTF);
+}
+@font-face {
+  font-family: Blackpast;
+  src: url(fonts/Blackpast.woff);
+}
+
+
+
+
 
 body{
   margin: 0;
@@ -17,12 +37,21 @@ body{
  
   
 }
+.pull-right{
+  display: none!important;
+}
 
 .container2 {
   position: relative;
   text-align: center;
-  color: white;
+  color: #ffffff
 }
+.container3{
+  position: relative;
+  background-image: url("./images/team.png")!important;
+  
+}
+
 .bg-cards{
   background-color: #025889 !important;
 }
@@ -68,21 +97,41 @@ margin: 0px;
   margin: 0px;
  }
  .fondogalaxy{
-   background-image:url("./images/fondogalaxy.svg")!important;
-   background-size:contain;
-   background-position:top;
    
+   
+   background-size:cover;
+   background-position:top;
+   background-image: url("./images/FONDO\ HOME.jpg")!important;
    background-repeat:no-repeat;
    
+   }
+   .particles-cont{
+    overflow: hidden;
+    width: 101%;
+    height: 1600px;
+      z-index: 0;
+    }
+
+   #tsparticles{
+
+     z-index: 0!important;
+     height: 1600px;
+    
+   }
+   .parte{
+        
+    z-index: 2!important;
+   line-height: normal;
+ 
+  }
    
-   
-   
- }
  .moneda{ 
   position: relative!important;
   opacity: 0.91;
 		filter: drop-shadow(7px 11px 20px rgba(0, 0, 0, 1));
-		z-index: 0;
+   z-index: 1npm!important;
+
+   
 		width: 120vw!important;
 
 		left:-35vw;
@@ -92,50 +141,49 @@ margin: 0px;
     
     
  }
- @keyframes mianimacion{
  
-  100%{
-    transform: rotateY(360deg);
-   }
- }
  
 
  .contenedor{
    
-  width: 100vw!important;
-  
+  width: 20vw!important;
+  animation-delay:1s!important ;
     overflow: hidden;
+    z-index: 1!important;
+    
 
  }
  
  .moneda1{
-
+z-index: 10!important;
    position: relative;
+   white-space: nowrap;
   filter: drop-shadow(7px 13px 9px rgba(0, 0, 0, 1));
-  letter-spacing: 1px;
+ color: white;
   font-size: 4.5vw;
-   margin-top: 100px;
-   font-family: 'Eras Demi ITC';
+   margin-top: 30%;
+   margin-left: 7vw;
+   
+   font-family: Alfa-Bold;
   font-weight: 500;
   
-  margin-bottom: 15vh!important;
+ 
   
 
  
  }
  .revo1{
 
-filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
-    left: 6vw;
-    top: 20px;
+filter: drop-shadow(0px 9px 6px rgba(22, 8, 1, 0.753));
+    left: 7vw;
+    
     position: relative;    
-    line-height: 100%;
-    margin:0px;
+  white-space: normal;
     text-align:left;
-    font-family: 'Eras Demi ITC';
-    font-style: oblique;
-    font-weight: 900!important;
-    font-size: 6.5vw;
+    font-family: digitalo;
+    line-height:100%;
+text-transform: lowercase;
+    font-size: 7vw;
   
     color: white;
    
@@ -144,20 +192,14 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
  .tec1{
   
 
-  filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
-      left: -10px;
-      top: 0px;
-      position: relative;
-   
-     
+  filter: drop-shadow(0px 9px 6px rgba(3, 1, 0, 0.753));  
+      position: relative;     
       white-space: normal;
-      line-height: 40%;
-      margin:0px!important;
-      text-align: left;
-      font-family: 'Eras Demi ITC';
-      font-style: oblique;
-      font-weight: 900!important;
-      font-size: 6.5vw;
+      line-height: 100%;     
+      text-align: left; 
+      font-family: digitalo;     
+      font-size: 7vw;
+      text-transform: lowercase;
       color: white;
       
       
@@ -169,19 +211,18 @@ filter: drop-shadow(0px 9px 6px rgba(204, 196, 192, 0.753));
   position: relative;
   filter: drop-shadow(0px 6px 1px rgba(0, 0, 0, 1));
     left: 8vw;
-    top: 30px;
+    top: 45px;
     overflow: visible!important;
-    text-transform: uppercase;
+   
     z-index: 2!important;
     white-space: normal;
     line-height: 3vw!important;
     margin: -4px 0 10px 0;
     text-align: center;
-    font-family: Lucida Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 2vw;
+    font-family: "agency FB";
    
+    font-size: 3vw;
+
     color: rgba(255,255,255,1);
     letter-spacing: 0.03px;
     
@@ -201,7 +242,9 @@ margin-left: 1vw!important;
   background:-webkit-linear-gradient(to right, #ffffff, #ffefba);
   background:linear-gradient(to right, #ffffff, #ffefba );
   color: #fff;
-  border:3px solid #eee
+  border:3px solid #eee;
+  cursor: pointer;
+  z-index:1!important ;
   
 }
 
@@ -222,7 +265,7 @@ width: 100vw;
   
   position: relative!important;
   justify-content: center;
-  
+  z-index: 4;
   overflow: hidden;
   margin-bottom: 1vw;
   
@@ -240,8 +283,8 @@ margin-bottom: 1vw;
   z-index: 2;
  font-size: 8vw;
   margin-left: 8%;
-  top: 7vw;
-  font-family: 'Eras ITC';
+  top: 8vw;
+  font-family: digitalo;
   font-weight: 400;
   
   color: white;
@@ -251,7 +294,7 @@ margin-bottom: 1vw;
   z-index: 2;
   color: white;
   font-size: 3.5vw;
-  font-family: 'Josefin Sans';
+  font-family: digitalo;
   top: 20vw;
   margin-left: 8%;
   color: #7B90A3;
@@ -303,7 +346,8 @@ margin-bottom: 1vw;
   padding: 0px!important;
 }
 .sec3con{
- 
+  font-family: "agency FB";
+  font-size: 120%;
   display: flex;
   justify-content: center;
   white-space: normal;
@@ -445,27 +489,14 @@ margin-bottom: 1vw;
  list-style: none;
  margin-top: 20vw;
  padding: 0px;
-  
+ 
+  text-align: center;
  margin-bottom: 0px!important;
  justify-content: center;
  overflow: hidden;
  
 }
-.rectangulo1 img{
-  
-  justify-content: center;
-  
-  
-  
-  position: relative;
-  
-  margin:0px!important;
-padding: 0px;
-  margin-bottom: 0px!important;
-  width: 75vw;
-  height: 8vw;
-  border-radius:10px ;  
-}
+
 .text-rec-may{
   line-height: 35px!important;
   white-space: nowrap;
@@ -482,16 +513,23 @@ padding: 0px;
     
   }
   .tecno{
- overflow: hidden;
- background:white;
- background-size:cover;
- background-position:center;
- padding: 0px!important;
- margin-bottom: 0px!important;
+    display: flex;
+    position: relative;
+    margin: 0px;
+    width:100%!important;
+    height: auto;
+    overflow: hidden;
+    justify-content: center;
+ 
+ 
   }
-  .img-tecno{
-    width: vw!important;
-    height: 40vw!important;
+  .tecno img{
+    display: flex;
+    
+    
+   width: 100%!important;
+   
+    height: 50%!important;
   
     
   }
@@ -511,15 +549,20 @@ padding: 0px;
     font-weight: normal!important;
     font-family: 'Segoe UI';
     font-style: normal;
+    margin-top: 2vw!important;
   }
 /*-----------------------------------SECCION 4 Proyectos------------------------------------------------*/
 .walp{
   
   position: relative;
-  
+  height: 50%;
   justify-content: center;
-  overflow: hidden;
+  overflow: hidden!important;
   padding: 0px;
+  
+  animation-name: walpanime;
+  animation-duration: 1s;
+  animation-iteration-count: infinite; 
   
 }
 
@@ -534,24 +577,72 @@ padding: 0px;
   width: 600vw;
   height: 45vw;
   top: 1vw;
+  
   left: -250vw;  
   margin: 0px;
+   
 }
+@keyframes walpanime{
+ 
+  100%{
+    filter: brightness(150%);
+    filter: drop-shadow(0px 10px 20px rgba(37, 1, 102, 0.788));
+   
+    
+   }
+  }
+/*-----------------------------------------------ventajas------------------------------------------*/
 .ventajas-cuerpo{
   background: linear-gradient(to bottom,#043361, #02182e);
   border-right: 1vw solid white;
   border-left: 1vw solid white;
-font-family: "Josefin Sans";
-
- 
+  text-align: center;
+  font-size: 25px!important;
+  align-items: center;
+  
+font-family:lato; 
 }
+.ventajas-cuerpo-min{
+  font-size: 3.5vw!important;
+  line-height: normal;
+  
+  text-align: justify!important;
+  width: 100%;
+  
+ 
+  margin: 0!important;
+}
+.fuente-ventajas{
+  font-family: Josefin Sans Regular Roman!important;
+  color: #CEDEEE;
+  font-weight: bolder!important;
+  
+}
+.ventajas-cuerpo-index{
+  font-weight:normal!important;
+  
+  background-color: #025889;
+  align-items: center!important;
+}
+.ventajas-cuerpo-index2{
+  background-color: #043361;
+  align-items: center!important;
+
+}
+.titu-ventajas{
+  color: #FAD000!important;
+  margin-top: 1vw;
+  
+}
+
 /*-------------------------------------------------------FOCO-----------------------------------*/
 .sec6{
   position:relative;
-  border-top: white 1vw solid;
-  background-color: white!important;  
+  border-top:transparent 1vw solid;
+  
   justify-content: center!important;
   text-align: center;
+  margin-top: 7%;
    
 }
 .titulo6{
@@ -560,14 +651,13 @@ font-family: "Josefin Sans";
     
     justify-content: center!important;
     
-    margin: 2px 0 5px 0;
+    margin: 5px 0 5px 0!important;
     
-    font-family: 'Barlow Condensed';
+    font-family:Blackpast;
     font-style: normal;
     font-weight: bold;
     font-size: 12vw;
-    color: rgba(2,88,137,1);
-    
+    color: #1D3557
 }
 .focsec6{
  
@@ -575,7 +665,7 @@ font-family: "Josefin Sans";
   background-size: contain;
   background-position:top;
   background-repeat: no-repeat;
-  background-color: white!important;
+
   font-style: normal;
   font-family:'Lucida Sans'!important;  
   height: 2px!important;
@@ -680,7 +770,7 @@ font-family: 'Lucida Sans'!important;
  .fap-btn3-2{
    
 position: absolute;
-left:-110px;
+left:-80px;
 bottom: -60px!important;
  }
 
@@ -708,7 +798,7 @@ bottom: -60px!important;
  position: absolute;
 font-family: 'Josefin Sans';
   bottom:-59px;
- left: -110px;
+ left: -90px;
  }
 
  .fap-btn4:hover svg{
@@ -748,6 +838,11 @@ font-family: 'Josefin Sans';
   stroke-dashoffset: 180;
   stroke-width:15px;
   transition: 3s ease-in-out;
+}
+.svg2 circle{
+  display: flex;
+  position: relative;
+  left: -100px;
 }
 
 .svg3{
@@ -841,7 +936,7 @@ color: #024870;
 .contenedor-engra{
   overflow: hidden;
   height: 1650px;
-  background-color:white;
+  
 }
 .engranaje{
   display: flex;
@@ -928,10 +1023,11 @@ color: #024870;
 }
 
 .modal-sym{
-  margin: 100px 0 0 0 ;
+  margin: 0 0 0 0 ;
   position: relative;
   background-color:#CEDEEEE6!important;
   color: #025889;
+  height: auto!important;
   text-align: center;
   
  
@@ -948,11 +1044,7 @@ height: 500.28px!important;
 
 
 
-.modal-backdrop {
-  z-index: 2!important;
-
-}
-
+ 
 
 
 
@@ -979,6 +1071,7 @@ white-space: normal;
    white-space:normal;
    font-weight: normal;
    font-size: 25px;
+
    font-family: 'Josefin Sans' ;
    border-bottom: #025889 solid 10px;
   
@@ -989,6 +1082,7 @@ white-space: normal;
   background-image: radial-gradient(farthest-corner at 45px 45px , #05198d 0%, #05002A 100%);
   font-family: 'lato';
   overflow: hidden;
+
 }
 .mapaes{
   
@@ -1003,6 +1097,7 @@ white-space: normal;
   font-family: 'Lato';
   font-weight: bold;
   font-size: 3vw;
+  z-index: 1;
 }
 .dis-tokens{
   position:absolute;
@@ -1073,6 +1168,7 @@ white-space: normal;
   margin-left: 3vw;
   }
   .sun-usd{
+    z-index: 1!important;
     font-size: 2vw;
     margin-top: -12%;
   }
@@ -1083,23 +1179,19 @@ white-space: normal;
   
   color: #7B90A3;
 }
-.text-moneda img{
 
-  margin-bottom: 10vw;
-}
 .titu-token{
   color: #025889;
   filter: drop-shadow(7px 3px 8px rgba(0, 0, 0, 0.851));
-  color: rgba(2,88,137,1);
-    text-transform: uppercase;
-    font-family: Barlow;
-    font-style: normal;
-    font-weight: bold;
+ 
+    
+    font-family: Blackpast!important;
+   
     font-size: 7vw;
 }
 .parrafos-tokens{
   text-align: left;
-  font-family: Josefin Sans;
+  font-family: Josefin Sans Regular Roman;
     font-style: normal;
     font-weight: normal;
     font-size: 1.5vw;
@@ -1111,7 +1203,7 @@ white-space: normal;
     }
 .textappcon{
   color:#1D3557;
-  
+  height: auto!important;
   position: relative;
   background-color:white!important;
   overflow: hidden;
@@ -1122,15 +1214,89 @@ white-space: normal;
     z-index: 10;
     margin:3vw 0 0 2vw;
     font-size: 7vw;
-    font-family: Barlow;
+    font-family: Blackpast;
     height: 4vw;
     font-weight: bold;
-    text-transform: uppercase;
+   
     
   }
+  .cont-token{
+    position: relative;
+    height: 95vw!important;
+  }
+  .img-token{
+    top: 10vw;
+    height: 50vw;
+    right:25vw;
+    
+  }
+  .btn-img-token{
+  
+    width: 8vw!important;
+    height:8vw!important;
+    animation-name: walpanime;
+    animation-duration: 1s;
+    animation-iteration-count: infinite; 
+  }
+  .cont-text-token {
+    box-shadow: 0 0 15px #ddd;
+    font-size: 6vw;
+    color: #7B90A3;
+    font-family: 'Lato';
+    text-align: start;
+   justify-content: flex-start;
+    right: 10%;
+ overflow-x:hidden;
+ 
+height: 70vw;
+width: 120%!important;
+
+  }
+  
+ 
+  .card-link:hover img{
+    transform:scale(1.5);
+    filter: drop-shadow(2px 20px 1px rgba(60, 8, 156, 0.788));
+  }
+  .btn-img-token1{
+    position: absolute;
+right: 88vw;
+  }
+  
+  .btn-img-token2{
+    position: absolute;
+    top: 4vw;
+    right: 72vw;
+    
+  }
+  .btn-img-token3{
+    position: absolute;
+    top: 20vw;
+    right: 135%;
+    
+  }
+.btn-img-token4{
+  position: absolute;
+    top: 30vw;
+    right: 135%;
+    
+  }
+  .btn-img-token5{
+    position: absolute;
+    top: 45vw;
+    right: 145%;
+  }
+  .card-token{
+    border: none!important;
+    font-size: 4vw;
+    font-family: 'Lato';
+    text-align: start;
+   justify-content: flex-start;
+    background-color: transparent!important;
+  }
   .text-titu-app h2{
-    font-family: Lato!important;
-    font-style: italic;
+    font-family: digitalo!important;
+  
     margin-left:45vw;
     
     font-size: 3.5vw;
@@ -1141,7 +1307,7 @@ white-space: normal;
     text-align: left;
     z-index: 2;
     line-height: 5vw;
-  text-transform: uppercase;
+  font-family: "josefin sans regular roman";
     margin-top: 18vw;
     left: 45vw;
     font-size: 2vw;
@@ -1190,7 +1356,7 @@ white-space: normal;
 }
 .constru-cartera{
   filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
-  font-family: 'Eras ITC';
+  font-family: Digitalo;
   font-weight: 500;
   font-style: "Demi";
   margin-top: 35vw;
@@ -1233,22 +1399,16 @@ text-align: center;
   overflow: hidden;
 }
 
-.img-meto{
+
   
-  position: relative;
-  background-color:#00234D4D ;
-  white-space:normal;
  
-  height: 30vw!important;
-  width: 30vw!important;
-  margin: 0 6vw 3vw 6vw;
-}
 .text-soporte{
-  font-family: 'Barlow Condensed', sans-serif!important;
-  font-size: 10vw;
-  font-weight: 90;
+  font-family:Blackpast;
+  font-size: 6.5vw;
   
+  white-space: normal;
   margin-bottom: 10vw;
+  text-transform: lowercase;
 }
 /*----------------------------seccion10 preguntas    -------------------------------------------------------*/
 
@@ -1259,9 +1419,15 @@ text-align: center;
   justify-content: center;
   font-weight:bold !important;
   font-size: 6vw!important;
-  font-family: 'Lato';
-  color:#FAD000;
+  font-family: josefin sans regular roman;
+  color:#025889
   
+}
+.frecprec{
+  font-family: Blackpast!important;
+  position: relative;
+  z-index: 1!important;
+  text-transform: lowercase;
 }
 .preguntas{
   
@@ -1399,13 +1565,16 @@ font-family: 'Josefin Sans', sans-serif;
 
 /*------------------------------fotttttttttteeeeeeeeeeeeeeeeeeeeeeeeeee----------------------------------------------*/
 .con-footer{
- 
+  position: relative;
 
+margin-top: 10vw;
   justify-content: center!important;
   
-  
+ 
   background-image: url("./images/fondofooter.svg");
   background-size:cover;
+  
+
 
 }
 .con-footer img{
@@ -1435,19 +1604,21 @@ text-align: center;
   font-family: 'Josefin Sans';
 }
 .foottitulo button{
-  color: white;
+  color: white!important;
   font-family: 'Josefin Sans';
 }
 
 .modalfootcont{
   background-image:url("./images/fondogalaxy.png")!important;
+  
   background-size:cover;
   
   background-position:center;
 
 }
 .modal-content{
-
+  position: static!important;
+  z-index: 3!important;
 border: none;
 }
 .modal-header{
@@ -1455,12 +1626,15 @@ border: none;
   border: none!important;
   font-family:'Lato';
   font-weight:bold!important;
+  
 }
 .modal-title{
   
   position: absolute!important;
   font-size: 40px;
   white-space: normal;
+  
+  
   line-height: 15px!important;
   text-align: start;
   
@@ -1572,26 +1746,7 @@ margin:0 10px 0 0;
       right:  145px;
    }
 
-   .cont-diferencia{
-     
-    margin-top: 150px;
-   }
-   .cont-diferencia img {
-    margin-bottom: 10px !important;
-}
-
-.cont-diferencia h3 {
-    margin-top: 50px;
-    color: #025889 !important;
-    font-family: 'Josefin Sans';
-    font-weight: bold;
-}
-
-.cont-diferencia p {
-    color: #025889 !important;
-    font-family: 'Josefin Sans';
-    font-size: 150%;
-}
+  
 .titu-dife{
   font-weight: bold;
   font-family: 'Eras ITC';
@@ -1694,37 +1849,45 @@ margin:5vw;
 .road{
   align-items: center;
   text-align: center;
+  background-color:#ffffff!important;
 justify-content: center;
+  width: 100%;
+  margin: 9vw 0 0 !important;
+  overflow: hidden;
   
-  margin: 60px 0 0 0!important;
   
   
 }
 .maparoad{
+  position: relative;
   align-items: center;
   text-align: center;
 justify-content: center;
-  width: 100%;
-  z-index: 1;
+left: -15vw;
+top: 5vw;
+  width: 128%;
+height: 93vw;
+  z-index: 0;
 }
 .text-roap-map{
   width: 100vw;
-
   position: absolute;
   color:black;
+  margin-top: 2vw;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-family: 'Josefin Sans';
+  font-family: Josefin Sans Regular Roman;
   font-size: 1.7vw;
-  line-height: 1.5vw;
+  line-height: 1.5vw;  
   font-weight: bold;
   z-index: 2;
 }
 .text-roap-map h1{
   filter: drop-shadow(7px 11px 20px rgba(0, 0, 0, 1));
   justify-content: flex-start;
-  font-family: Barlow;
+  font-family: Blackpast;
+  text-transform: lowercase;
   font-weight: 900;
   align-items: left;
   text-align: center;
@@ -1855,6 +2018,7 @@ font-family:'Lato';
    color: black;
  }
  .modal-sroll{
+  
   overflow:scroll!important;
  }
  input[type=radio] 
@@ -1899,6 +2063,10 @@ font-family:'Lato';
   }
   .contenedor-engra{
     height: 3200px;
+  }
+  .textbtn2{
+    font-size: 1.45vw;
+    left: -1vw;
   }
   }
 @media only screen and (max-width:2000px){
@@ -2039,6 +2207,10 @@ margin-top: 3vw;
 .goo-aple{
   top: 3vw;
 }
+
+.moneda{
+  margin-top: 5vw;
+}
 }
 @media screen and (max-width:1091px){
 
@@ -2121,18 +2293,18 @@ margin-top: 3vw;
     .boton1{
       margin-bottom: 15vw;
       
-      width: 30vw!important;
+      width: 40vw!important;
     }
   }
   @media screen and (max-width:890px){
-/*-------------------media foco/*-----------------*/
-.textbtn2{
+    /*-------------------media foco/*-----------------*/
+       .textbtn2{
   font-size: 3vw!important;
-}
-.focoenv-cont{
+    }
+          .focoenv-cont{
   bottom: 78vw!important; 
 
-}
+   }
 
     .textsyn3{
       margin-top: 13vw!important;    
@@ -2230,43 +2402,63 @@ margin-top: 3vw;
   background-position:center ;
   background-size:cover ;
 }
+#tsparticles{
+height: 100vw;
+  z-index: 1!important;
+     
+ 
+}
+.particles-cont{
+  height: auto;
+}
   /*-----------------------------media seccion1-------------------------*/
   .revo1{
-    line-height: 13vh;
-    font-size: 7.5vw!important;
+   position: relative;
+    font-size: 9vw!important;
+    z-index: 5;
     text-align: center!important;
+    margin: 4vw 0 0 -40vw ;
       
       }
       .tec1{
         text-align: center!important;
-        font-size: 7.5vw;
-        margin-bottom: 1vh;
+        font-size: 9vw;
+        margin-left: -35vw;
+        margin-bottom: 1vw;
       }
       .moneda1{
+       
+        z-index: 1;
         margin-top: 100px;
         font-size: 7vw;
+       
       }
       .moneda{
-        opacity: 0.63;
+     
         
         position: absolute!important;
-        height: 45vw;
-        left: 64vw !important;
-        width: 40vw!important;
+        height: 70vw;
+        left: 35vw !important;
+        top: 1vw;
+        width: 70vw!important;
         z-index: -2;
         animation: none;
+        overflow: hidden;
         
-        overflow: visible;
+        
       }
       .parte{
-       
-       
         overflow: hidden;
+        z-index: 1!important;
+       line-height: normal;
+    
+       
       }
       .boton1{
+        width: 40vw!important ;
         margin-bottom: 15vw;
         margin-left: 3vw;
-        text-align: left!important;
+        text-align: center!important;
         
       }
       .hometext1{
@@ -2274,17 +2466,94 @@ margin-top: 3vw;
         position: relative;
         justify-self: start;
        justify-content: center;
-        margin: 0 0 0 -1vw;
+        margin: 0 0 0 -4vw;
       
-        font-size: 3.5vw;
+        font-size: 4vw;
         
         white-space:normal;
         font-weight: bold;
-        line-height: 6vh!important;
+        line-height: 6vw!important;
       } 
+      /*------------------------------------------------------rectangulo cap-------------------------------*/
+      .rectanguloimg{  
+       left: 2vw;
+        width: 100vw;
+        height: 28vw;      
+      }
+      /*--------------------------------------------------------tecnologias--------------------------------*/
+      .tecno img{
+       
+        
+       width: 125%!important;
+       
+        height: 80%!important;
+      
+        
+      }
+      
+      /*---------------------------------------walpaper--------------------------------------------------------*/
+     
+.walp-img{
+  left: -246vw!important;
+}
+     /*--------------------------------------------------------------------------seccion app----------------------------*/
+     .textappcon{
+      
+      height: 100vw!important;
+      position: relative;
+      
+      overflow: hidden;
+            }
+            .text-App-g{
+              height: 160vw!important;
+              top: -35vw;
+              width: 170vw!important;
+            }
+            .text-titu-app h2{
+              font-family: Digitalo!important;
+              margin-left:30vw;
+             
+              font-weight: normal!important;
+              font-size: 5vw;
+              
+            }
+            .constru-cartera{
+ 
+ 
+              font-style: "Demi";
+              margin-top: 65vw;
+              font-size: 5vw;
+              background-color: #ffffff;
+              margin-left: 50vw;
+              width: 45vw;
+              text-decoration:underline white;
+            }
+            .disponible-text{
+  
+  
+              margin-top: 25vw;
+              font-size: 4vw;
+              font-weight: bold;
+            margin-left: 55vw;
+                        }
+                        .goo-aple{
+  
+                          top: -90vw!important;
+                          left: 55vw;
+                        }
+                        .img-goo{
+                          width: 40vw;
+                          height: 14vw;
+                        }
+                        .img-aple{
+                          width: 40vw;
+                          height: 14vw;
+                          margin-top: -1vw;
+                        }
+                        
       
       /*------------------------------seccion ventajas------------------------------*/
-  .vemtajas{
+  .ventajas{
     width: 100%!important;
     background-color:white!important;
     border-top: white solid 5vw;
@@ -2327,8 +2596,10 @@ margin-top: 50vw!important;
     left: 60vw;
   }
   .frecprec{
+    font-family: Blackpast;
     position: relative;
     z-index: 1!important;
+    text-transform: lowercase;
   }
   .img-meto{
 
@@ -2351,6 +2622,28 @@ margin-top: 50vw!important;
   
   left: 1vw!important;
 }
+
+
+
+/*--------------------------------------video------------------------------------------------------------*/
+.videosunrep{
+
+ 
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 100%!important;
+  height:auto!important;
+}
+.videosunrep iframe{
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+width: 108vw!important;
+height: 100vw;
+margin-bottom: 1vw;
+}
 /*--------------------------------------media foco-----------------------------*/
 .focoenv-cont{
   top: -122vw!important;
@@ -2368,22 +2661,108 @@ margin-top: 50vw!important;
   left: -10vw;
   font-size: 3vw;
 }
+.texto-contenedor{
+  margin-top: 5vw!important;
+left: 25vw;
+  font-size: 4vw!important;
+  
+    }
+.texto-horas{
+  left: 45vw!important;
 }
-    .texto-contenedor{
-      margin-top: 5vw!important;
-    left: 25vw;
-      font-size: 4vw!important;
-      
-        }
-    .texto-horas{
-      left: 45vw!important;
-    }
-    .texto-min{
-      left: 65vw!important;
-    }
-    .texto-seg{
-      left: 85vw!important;
-    }
+.texto-min{
+  left: 65vw!important;
+}
+.texto-seg{
+  left: 85vw!important;
+}
+/*----------------------------Mapa Appp--------------------------*/
+.mapaes{
+  position: relative;
+  width: 160vw;
+  z-index: 0;
+  right: 25vw!important;
+}
+.dis-fondos{    
+  margin-left: 20%; 
+  margin-top: 8vw;  
+  font-size: 5vw;  
+}
+.por-syn{
+  
+  font-size: 4vw;
+  margin-left: 20%;
+  margin-top: -110vw;
+}
+.por-syn2{
+  margin-left: -75%!important;
+  font-size: 3.5vw;
+}
+.por-hawk{
+  
+  font-size: 4vw!important;
+  margin-left: 66%;
+  margin-top: -90vw;
+}
+.por-hawk2{
+  margin-top: -1vw;
+  font-size: 3.5vw;
+}
+.por-lion{
+  
+  margin-top: -110vw;
+  font-size: 4vw;
+  margin-left: 68%;
+}
+.por-lion2{
+  margin-left: 70%;
+  font-size: 3.5vw;
+}
+.por-reinversion{
+
+  margin-left: 18%;
+  margin-top: -55vw;
+  font-size: 4vw;
+
+}
+.por-reinversion2{
+  margin-left: -80%;
+  font-size: 3.5vw;
+}
+.por-sunholders{
+ 
+  margin-left: 63%;
+  font-size: 4vw;
+  margin-top: -59vw;
+}
+
+.por-sunholders2{
+  margin-top: 1%;
+  font-size: 3.5vw;
+  margin-left: 20%;
+}
+.por-equipo{
+  
+  margin-top: -40vw;
+  margin-left: 58%;
+  font-size: 4vw;
+}
+.por-equipo2{
+  margin-left: 3vw;
+  font-size: 3.5vw;
+  }
+  .sun-usd{
+    font-size: 4vw;
+    position: relative;
+    z-index: 2;
+  }
+}
+   /*----------------------------------------------footer--------------------------------------------------*/
+   .modal-title svg{
+     width:45vw ;
+   }
+    
+    
 @media screen and (max-width: 689px){
   .textsyn{
     top: 50vw!important;
@@ -2400,7 +2779,19 @@ margin-top: 50vw!important;
     .texto-contenedor{
       top: 60vw!important;
     }
+    /*-----------------------------------------roap-MAp--------------------------------------------*/
+
+.text-roap-map h1{
+  position: relative;
+   top: 4vw;
+   font-size: 8vw;
+ }
+ .text-roap-4{
+  margin-left: 48%;
+ }
 }
+
+
  
 
 @media screen and (max-width: 639px){
@@ -2476,15 +2867,23 @@ margin-top: 50vw!important;
         margin-top: -30vw; 
        }
        .boton1{
+         width: 40vw;
          margin-left: 10vw!important;
        }
       
     .constru-cartera{
       left: 4vw;
     }
-    .text-App-g{
-      width: 115vw!important;
-    }
+  
+    /*-----------------------------------------roap-MAp--------------------------------------------*/
+.road{
+ 
+  margin-top: 100px!important;
+}
+.text-roap-2{
+  margin-left: 28%;
+}
+
     
 }
 
@@ -2494,7 +2893,7 @@ margin-top: 50vw!important;
   top: 60vw!important;
 }
 .mintext{
-  top: 85vw;
+  top: 59vw;
 }
 
 .textsyn2{
@@ -2532,15 +2931,10 @@ margin-top: 50vw!important;
     background-repeat:no-repeat;    
     background-position:center!important;  
   }
-  .videosunrep{
-  height: 50vh!important;
-    
-  }
-  .hometext1{
-    margin-bottom: 5vw;
-  }
+ 
+  
   .boton1{
-    width: 40vw!important;
+    width: 60vw!important;
   }
   
 }
@@ -2559,6 +2953,7 @@ margin-top: 50vw!important;
   top: 6vw;
 }
 .hometext1{
+  margin-bottom: 5vw;
   line-height: normal!important;
 }
 
@@ -2576,6 +2971,7 @@ margin-top: 50vw!important;
     white-space: nowrap;
   }
   .mintext{
+    top: 85vw;
     left: -20vw!important;
     font-size: 4vw!important;
   }
@@ -2644,7 +3040,7 @@ top: 95vw!important;
   }
   .mintext{
     top: 93vw;
-    left: -20vw!important;
+    left: -40vw!important;
   }
   .fap-btn3{
     left: 55vw;
@@ -2838,8 +3234,14 @@ resize: none;
   }
 
   .fap-btn2{
+    
     top: 40vw!important;
-    left: -9vw;
+    left: 1vw;
+    
+  
+  }
+  .textbtn2{
+    left: -6vw!important;
   }
   .fap-btn2 svg {
     left: -7vw!important;
@@ -2851,13 +3253,25 @@ resize: none;
     top: 105vw!important;
     left: -27vw;
   }
+  
   .mintext{
     top: 102vw;
     margin-left: 2vw!important;
   }
   .fap-btn3{
-    left: 40vw;
+  
+    text-align: center;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
   }
+  .textbtn3 {
+    vertical-align: middle;
+    left: -5vw;
+    align-items: center;
+    text-align: center;
+    font-size: 8vw!important;
+}
   .fap-btn3-2{
     width: 200px;
     height: 200px;
@@ -2870,10 +3284,10 @@ resize: none;
 
   }
   .fap-btn3 svg {
-    left: -2vw!important;
-    top: -4vw!important;
-    width: 40mm;
-    height: 40mm;
+    left: -6vw!important;
+    top: -7vw!important;
+    width: 43mm;
+    height: 43mm;
   }
   .mintext2{
     left: 2vw!important;
