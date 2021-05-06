@@ -113,7 +113,7 @@ const Navigation = () => {
 
         } else {
             return(
-                <nav className="navbar navbar-expand-lg navbar-light fixed-top ">
+                <nav className="navbar navbar-expand-lg navbar-light fixed-top " id="navbar">
                     <div className="container-fluid">
                         <NavLink className="navbar-brand navegacion  " to="/">
                             <img className="  " src={logonav}/>
