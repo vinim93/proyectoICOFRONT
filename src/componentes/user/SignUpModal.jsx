@@ -416,7 +416,7 @@ const SignUpModal = () => {
                 <div className="modal-content  registrobody pl-xl-5 pr-xl-5">
 
                     <div className="modal-header">
-                        <h5 className="modal-title col-12" id="staticBackdropLabel">Crea tu cuenta</h5>
+                        <h5 className="modal-title col-12 text-light" id="staticBackdropLabel">Crea tu cuenta</h5>
                         <button type="button" id="closeModalSignUp" className="close" data-dismiss="modal"
                                 aria-label="Close">
                             <span aria-hidden="true">&times;</span>
