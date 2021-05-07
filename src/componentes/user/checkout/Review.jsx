@@ -143,26 +143,33 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                     mxnToUsd: getStates("mxnToUsd")
                 }
             });
-            console.log(data);
-            stripe.confirmOxxoPayment(
-                data.clientSecret,
-                {
-                    payment_method: {
-                        billing_details: {
-                            name: getStates('name') + " " + getStates('lastname'),
-                            email,
+            
+            if(data.statusCode === "successful"){
+                stripe.confirmOxxoPayment(
+                    data.clientSecret,
+                    {
+                        payment_method: {
+                            billing_details: {
+                                name: getStates('name') + " " + getStates('lastname'),
+                                email,
+                            },
                         },
-                    },
-                })// Stripe.js will open a modal to display the OXXO voucher to your customer
-                .then(function(result) {
-                    // This promise resolves when the customer closes the modal
-                    console.log("EL USUARIO CERRO EL MODAL");
-                    if (result.error) {
-                        // Display error to your customer
-                        console.log(result.error);
-                    }
-                });
-            handleNext(true);
+                    })// Stripe.js will open a modal to display the OXXO voucher to your customer
+                    .then(function(result) {
+                        // This promise resolves when the customer closes the modal
+                        console.log("EL USUARIO CERRO EL MODAL");
+                        if (result.error) {
+                            // Display error to your customer
+                            console.log(result.error);
+                        }
+                    });
+                handleNext(true);
+            } else if (data.statusCode === "amount-exceeded"){
+                swal("Monto inválido", "El monto máximo que puedes pagar en oxxo son de $10,000 MXN", "warning");
+            }
+
+
+            
         } catch (e) {
             console.log("ERROR AL INTENTAR PAGAR CON OXXO, INFO: ");
             console.log(e.code, e.message);
