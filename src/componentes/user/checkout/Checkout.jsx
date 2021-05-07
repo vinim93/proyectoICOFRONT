@@ -95,26 +95,26 @@ export default function Checkout({uid, email, allData}) {
                             if (parseFloat(currency) <= 999999) {
                                 setActiveStep(activeStep + 1);
                             } else {
-                                swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99!", "warning");
+                                swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99", "warning");
                             }
                         } else {
-                            swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
+                            swal("Monto inválido", "Debes pagar la mínima cantidad de $1 USD", "warning");
                         }
                     } else if (currencyType === "MX") {
                         if (parseFloat(currency) >= usdToMxn.toFixed(2)) {
                             if (parseFloat(currency) <= 999999) {
                                 setActiveStep(activeStep + 1);
                             } else {
-                                swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99!", "warning");
+                                swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99", "warning");
                             }
                         } else {
-                            swal("Monto invalido", `Debes pagar la mínima cantidad de $${usdToMxn.toFixed(2)} MXN!`, "warning");
+                            swal("Monto inválido", `Debes pagar la mínima cantidad de $${usdToMxn.toFixed(2)} MXN`, "warning");
                         }
                     } else if (currencyType === "SUN") {
                         if (parseFloat(currency) >= 1) {
                             setActiveStep(activeStep + 1);
                         } else {
-                            swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
+                            swal("Monto inválido", "Debes pagar la mínima cantidad de $1 USD", "warning");
                         }
                     }
                 } else {
@@ -124,10 +124,10 @@ export default function Checkout({uid, email, allData}) {
                             if (parseFloat(currency) <= 1000) {
                                 setActiveStep(activeStep + 1);
                             } else {
-                                swal("Cantidad limitada", "Tu límite es de $1000 USD, si deseas mayor margen debes ir a tu perfíl y verificar tu cuenta!", "warning");
+                                swal("Cantidad limitada", "Tu límite es de $1000 USD, si deseas incrementar tu límite de depósito debes ir a tu perfíl y verificar tu cuenta", "warning");
                             }
                         } else {
-                            swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
+                            swal("Monto inválido", "Debes pagar la mínima cantidad de $1 USD", "warning");
                         }
                     } else if (currencyType === "MX") {
                         console.log(typeof currency);
@@ -135,16 +135,16 @@ export default function Checkout({uid, email, allData}) {
                             if (parseFloat(currency) <= usdToMxn.toFixed(2) * 1000) {
                                 setActiveStep(activeStep + 1);
                             } else {
-                                swal("Cantidad limitada", `Tu límite es de $${usdToMxn.toFixed(2) * 1000} MXN, si deseas mayor margen debes ir a tu perfíl y verificar tu cuenta!`, "warning");
+                                swal("Cantidad limitada", `Tu límite es de $${usdToMxn.toFixed(2) * 1000} MXN, si deseas incrementar tu límite de depósito debes ir a tu perfíl y verificar tu cuenta`, "warning");
                             }
                         } else {
-                            swal("Monto invalido", `Debes pagar la mínima cantidad de $${usdToMxn.toFixed(2)} MXN!`, "warning");
+                            swal("Monto inválido", `Debes pagar la mínima cantidad de $${usdToMxn.toFixed(2)} MXN`, "warning");
                         }
                     } else if (currencyType === "SUN") {
                         if (parseFloat(currency) >= 1) {
                             setActiveStep(activeStep + 1);
                         } else {
-                            swal("Monto invalido", "Debes pagar la mínima cantidad de $1 USD!", "warning");
+                            swal("Monto inválido", "Debes pagar la mínima cantidad de $1 USD", "warning");
                         }
                     }
 
@@ -157,7 +157,7 @@ export default function Checkout({uid, email, allData}) {
                     setActiveStep(activeStep + 1);
                 } else if (paymentOption === "oxxo") {
                     if (currencyType === "USD") {
-                        swal("Pago con dolar invalido", "No puedes pagar en oxxo con dolar, tienes que cambiar la divisa a pesos mexicanos!", "warning");
+                        swal("Pago con dolar inválido", "No puedes pagar en oxxo con dolar, tienes que cambiar la divisa a pesos mexicanos", "warning");
                     } else {
                         setPaymentMethod(paymentOption);
                         setActiveStep(activeStep + 1);
@@ -212,7 +212,7 @@ export default function Checkout({uid, email, allData}) {
                                     </Typography>
                                     <img src={DONE} className="img-fluid mb-3" width="13%" alt="PAGO REALIZADO"/>
                                     <Typography variant="subtitle1">
-                                        {paymentMethod === "card" ? "¡Hemos enviado tu comprobante de pago al correo electrónico que tienes registrado!" : "¡Tienes 24 hrs para pagar en el oxxo con el voucher generado, el cual se envió tambien a tu correo electrónico!"}
+                                        {paymentMethod === "card" ? "¡Hemos enviado tu comprobante de pago al correo electrónico que registraste!" : "¡Tienes 24 hrs para realizar el pago en oxxo!"}
                                     </Typography>
                                     <Button variant="contained" color="primary" className={classes.button} onClick={buyAgain}>
                                         Comprar de nuevo

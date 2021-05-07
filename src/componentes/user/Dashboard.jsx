@@ -69,7 +69,7 @@ const Dashboard = () => {
                                     value={amount}
                                     thousandSeparator={true}
                                 />
-                                <br/> Total SUN'S</h1>
+                                <br/>SUNIS</h1>
                         </div>
 
                         <div className="col-12 d-flex justify-content-center mt-5">

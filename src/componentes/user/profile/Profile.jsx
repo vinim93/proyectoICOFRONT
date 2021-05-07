@@ -130,16 +130,15 @@ const Profile = () => {
                             break;
                     }
                 } else {
-                    swal("Archivo muy pesado", "Tu archivo excede el peso de archivo permitido, maximo 5 MB!", "error");
+                    swal("Archivo muy pesado", "Tu archivo excede el peso permitido, maximo 5 MB", "error");
                 }
 
             } else {
-                swal("Archivo no válido", "Solo puedes subir imagen o pdf", "error");
+                swal("Archivo no válido", "Solo puedes subir un formato imagen o pdf", "error");
             }
         } catch (e) {
             console.log(e);
         }
-
     }
 
     const showFile = () => {
@@ -287,7 +286,7 @@ const Profile = () => {
     const uploadProfilePicture = () => {
         swal({
             title: "¿Estas seguro de subir esa foto?",
-            text: "Una vez enviada la foto no se podrá modificar, asegurate de que cumpla los requisitos antes mencionados!",
+            text: "Una vez enviada la foto no se podrá modificar, asegúrate de que cumpla los requisitos antes mencionados",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -309,7 +308,7 @@ const Profile = () => {
                                 profilePictureStatus: 1
                             }).then(() => {
                                 setOpen(false);
-                                swal("Foto subida", "La foto de tu perfil fue actualizada con éxito!", "success");
+                                swal("La foto de tu perfil ha sido actualizada con éxito", "", "success");
                             });
                         })
                     });
@@ -391,16 +390,16 @@ const Profile = () => {
 
                                     <div className={classes.alert}>
                                         {profileStatus === 3 ?
-                                            <Alert variant="filled" severity="warning">En espera de verificación — Se estan
-                                                validando tus datos!</Alert> : null}
+                                            <Alert variant="filled" severity="warning">En espera de verificación — Se están
+                                                validando tus datos</Alert> : null}
                                         {profileStatus === 4 ?
                                             <Alert variant="filled" severity="success">Cuenta verificada</Alert> : null}
                                         {profileStatus === 5 ?
-                                            <Alert variant="filled" severity="error">Cuenta no verificada — Verifica tu identificación oficial únicamente!</Alert> : null}
+                                            <Alert variant="filled" severity="error">Cuenta no verificada — Verifica tu identificación oficial únicamente</Alert> : null}
                                         {profileStatus === 6 ?
-                                            <Alert variant="filled" severity="error">Cuenta no verificada — Verifica tus datos personales únicamente!</Alert> : null}
+                                            <Alert variant="filled" severity="error">Cuenta no verificada — Verifica tus datos personales únicamente</Alert> : null}
                                         {profileStatus === 7 ?
-                                            <Alert variant="filled" severity="error">Cuenta no verificada — Verifica todos tus!</Alert> : null}
+                                            <Alert variant="filled" severity="error">Cuenta no verificada — Verifica todos tus datos</Alert> : null}
                                     </div>
                                 </div>
                             </CardBody>

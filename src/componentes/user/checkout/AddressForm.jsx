@@ -15,7 +15,7 @@ export default function AddressForm({getStates}) {
                         disabled={true}
                         id="firstName"
                         name="firstName"
-                        label="First name"
+                        label="Nombre(s)"
                         fullWidth
                         autoComplete="given-name"
                         variant="outlined"
@@ -27,7 +27,7 @@ export default function AddressForm({getStates}) {
                         disabled={true}
                         id="lastName"
                         name="lastName"
-                        label="Last name"
+                        label="Apellido(s)"
                         fullWidth
                         autoComplete="family-name"
                         variant="outlined"
@@ -39,7 +39,7 @@ export default function AddressForm({getStates}) {
                         disabled={true}
                         id="address1"
                         name="address1"
-                        label="Address line 1"
+                        label="Dirección"
                         fullWidth
                         autoComplete="shipping address-line1"
                         variant="outlined"
@@ -51,7 +51,7 @@ export default function AddressForm({getStates}) {
                         disabled={true}
                         id="city"
                         name="city"
-                        label="City"
+                        label="Ciudad"
                         fullWidth
                         autoComplete="shipping address-level2"
                         variant="outlined"
@@ -64,7 +64,7 @@ export default function AddressForm({getStates}) {
                         id="state"
                         name="state"
                         variant="outlined"
-                        label="State/Province/Region"
+                        label="Estado/Provincia/Región"
                         fullWidth
                         value={getStates("stateLocation")}
                     />
@@ -74,7 +74,7 @@ export default function AddressForm({getStates}) {
                         disabled={true}
                         id="country"
                         name="country"
-                        label="Country"
+                        label="País"
                         fullWidth
                         autoComplete="shipping country"
                         variant="outlined"

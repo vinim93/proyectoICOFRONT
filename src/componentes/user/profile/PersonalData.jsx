@@ -47,7 +47,7 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
                     if (getAge(getStates("birthday")) >= 18) {
                         swal({
                             title: "¿Estas seguro de subir la información?",
-                            text: "Una vez enviada la información no se podrá modificar!",
+                            text: "Una vez enviada la información no se podrá modificar",
                             icon: "warning",
                             buttons: true,
                             dangerMode: true,
@@ -67,18 +67,18 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
                                         address: getStates("address"),
                                         profileStatus: 1,
                                     }).then(() => {
-                                        swal("Información actualizada", "La información de tu perfil fue actualizada con éxito!", "success");
+                                        swal("Información actualizada", "¡La información de tu perfil ha sido actualizada con éxito!", "success");
                                         setOpen(false);
                                     });
                                 }
                             });
 
                     } else {
-                        swal("Debes ser mayor de edad", "Para poder continuar con la verificación de tus datos debes contar con la mayoria de edad!", "warning");
+                        swal("Debes ser mayor de edad", "Para poder continuar con la verificación de tus datos debes contar con la mayoria de edad", "warning");
                     }
 
                 } else {
-                    swal("Información faltante", "Llena todos los campos correspondientes para poder continuar!", "warning");
+                    swal("Información incompleta", "Llena todos los campos correspondientes para poder continuar", "warning");
                 }
 
             }

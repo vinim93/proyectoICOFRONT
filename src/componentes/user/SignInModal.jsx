@@ -103,10 +103,10 @@ const SignInModal = () => {
                     });
                 } else {
                     swal({
-                        title: "Ocurrio un error",
-                        text: "Ocurrio un error inesperado, intentalo de nuevo más tarde!",
+                        title: "Ocurrió un error",
+                        text: "Ocurrió un error inesperado, inténtalo de nuevo más tarde",
                         icon: "error",
-                        button: "Entendido!",
+                        button: "¡Entendido!",
                         closeOnClickOutside: false
                     });
                 }
@@ -141,9 +141,9 @@ const SignInModal = () => {
                 case "auth/network-request-failed":
                     swal({
                         title: "Error de red",
-                        text: "Un error de red (como tiempo de espera, conexión interrumpida o host inalcanzable) ocurrió!",
+                        text: "Un error de red (como tiempo de espera, conexión interrumpida o host inalcanzable) ocurrió",
                         icon: "error",
-                        button: "Entendido!",
+                        button: "¡Entendido!",
                         closeOnClickOutside: false
                     });
             }
@@ -194,27 +194,27 @@ const SignInModal = () => {
             logout();
             switch (errorCode) {
                 case "auth/user-not-found":
-                    swal("Usuario no encontrado", "La cuenta de correo proporcionada no esta registrada!", "warning");
+                    swal("Usuario no encontrado", "La cuenta de correo proporcionada no está registrada", "warning");
                     break;
 
                 case "auth/wrong-password":
-                    swal("Datos incorrectos", "La contraseña es incorrecta!", "warning");
+                    swal("Datos incorrectos", "Contraseña incorrecta", "warning");
                     break;
 
                 case "auth/invalid-email":
-                    swal("Datos mal escritos", "Solo puedes ingresar una cuenta de correo válida!", "warning");
+                    swal("Datos incorrectos", "Solo puedes ingresar una cuenta de correo válida", "warning");
                     break;
 
                 case "email_not_verified":
-                    swal("Correo no verificado", "Revisa tu bandeja de entrada de tu correo y verifica tu cuenta!", "warning");
+                    swal("Correo no verificado", "Revisa tu bandeja de entrada de tu correo y verifica tu cuenta", "warning");
                     break;
 
                 case "auth/too-many-requests":
-                    swal("Cuenta desactivada", "El acceso a esta cuenta ha sido desactivada temporalmente debido a muchos intentos de inicio de sesión fallidos, Puedes recuperarla reestableciendo tu contraseña o puedes intentarlo más tarde!", "warning");
+                    swal("Cuenta desactivada", "El acceso a esta cuenta ha sido desactivado temporalmente debido a los intentos de inicio de sesión fallidos, puedes recuperarla reestableciendo tu contraseña o intentarlo más tarde", "warning");
                     break;
 
                 case "captcha_not_verified":
-                    swal("Verifica el CAPTCHA", "Intenta verificar el CAPTCHA de nuevo para poder continuar!", "warning");
+                    swal("Verifica el CAPTCHA", "Verifica el CAPTCHA de nuevo para poder continuar", "warning");
                     break;
 
                 default:

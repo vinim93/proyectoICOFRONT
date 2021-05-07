@@ -114,10 +114,10 @@ const SignUpModal = () => {
                 privateKey: ""
             }).then(docRef => {
                 swal({
-                    title: "Registro exitoso!",
-                    text: "Te mandamos un mensaje a tu correo electrónico que proporcionaste para verificar tu cuenta",
+                    title: "¡Registro exitoso!",
+                    text: "Enviamos un enlace al correo electrónico que proporcionaste para verificar tu cuenta.",
                     icon: "success",
-                    button: "Entendido!",
+                    button: "¡Entendido!",
                     closeOnClickOutside: false
                 }).then(confirm => {
                     if (confirm) {
@@ -197,9 +197,9 @@ const SignUpModal = () => {
                                 if (errorCode === "auth/email-already-in-use") {
                                     swal({
                                         title: "Oops",
-                                        text: "La dirección de correo ya esta siendo usada por otra cuenta",
+                                        text: "La dirección de correo ya se encuentra en uso",
                                         icon: "warning",
-                                        button: "Entendido!",
+                                        button: "¡Entendido!",
                                         closeOnClickOutside: false
                                     });
                                 } else if (errorCode === "auth/weak-password") {
@@ -207,7 +207,7 @@ const SignUpModal = () => {
                                         title: "Oops",
                                         text: "La contraseña debe tener al menos 8 caracteres!",
                                         icon: "warning",
-                                        button: "Entendido!"
+                                        button: "¡Entendido!"
                                     });
                                 }
 
@@ -215,27 +215,26 @@ const SignUpModal = () => {
                         } else {
                             swal({
                                 title: "Verifica el CAPTCHA",
-                                text: "Intenta verificar el CAPTCHA de nuevo para poder continuar!",
+                                text: "Intenta verificar el CAPTCHA de nuevo para poder continuar",
                                 icon: "warning",
-                                button: "Entendido!"
+                                button: "¡Entendido!"
                             });
                         }
-
                     } else {
                         swal({
                             title: "Advertencia",
-                            text: "Debes aceptar los términos y condiciones para poder registrarte!",
+                            text: "Debes aceptar los términos y condiciones para poder registrarte",
                             icon: "warning",
-                            button: "Entendido!",
+                            button: "¡Entendido!",
                             closeOnClickOutside: false
                         });
                     }
                 } else {
                     swal({
                         title: "Las contraseñas no coinciden",
-                        text: "Asegurate de escribir las mismas contraseñas en los campos correspondientes!",
+                        text: "Asegurate de escribir las mismas contraseñas en los campos correspondientes",
                         icon: "warning",
-                        button: "Entendido!",
+                        button: "¡Entendido!",
                         closeOnClickOutside: false
                     });
                 }
@@ -306,9 +305,9 @@ const SignUpModal = () => {
         } else {
             swal({
                 title: "Advertencia",
-                text: "Debes llenar todos los campos!",
+                text: "Debes llenar todos los campos",
                 icon: "warning",
-                button: "Entendido!",
+                button: "¡Entendido!",
                 closeOnClickOutside: false
             });
         }
@@ -348,8 +347,8 @@ const SignUpModal = () => {
                     });
                 } else {
                     swal({
-                        title: "Ocurrio un error",
-                        text: "Ocurrio un error inesperado, intentalo de nuevo más tarde!",
+                        title: "Ocurrió un error",
+                        text: "Ocurrió un error inesperado, inténtalo de nuevo más tarde",
                         icon: "error",
                         button: "Entendido!",
                         closeOnClickOutside: false

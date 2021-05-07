@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import finalCoin from "../../../images/monedafinal.png";
 import NumberFormat from 'react-number-format';
 import TextField from '@material-ui/core/TextField';
-import axios from "axios";
 
 const currencies = [
     {
@@ -24,18 +23,18 @@ const TokenAmount = ({currency, setCurrency, setStates, getStates}) => {
     const conversor = (type, amount = "USD") => {
         switch (type) {
             case "USD":
-                return `${amount || 0} USD - ${amount * 1 || 0} SUN - ${(amount * getStates("usdToMxn")).toFixed(2) || 0} MXN`;
+                return `${amount || 0} USD - ${amount * 1 || 0} SUNI - ${(amount * getStates("usdToMxn")).toFixed(2) || 0} MXN`;
                 break;
 
             case "SUN":
-                return `${amount * 1 || 0} USD - ${amount || 0} SUN - ${(amount * getStates("usdToMxn")).toFixed(2) || 0} MXN`;
+                return `${amount * 1 || 0} USD - ${amount || 0} SUNI - ${(amount * getStates("usdToMxn")).toFixed(2) || 0} MXN`;
                 break;
 
             case "MX":
                 return `${(amount * getStates("mxnToUsd")) || 0} USD - ${(amount * getStates("mxnToUsd")) || 0} SUN - ${amount || 0} MXN`;
                 break;
             default:
-                return `${amount || 0} USD - ${amount * 1 || 0} SUN - ${(amount * getStates("usdToMxn").toFixed(2))} MXN`;
+                return `${amount || 0} USD - ${amount * 1 || 0} SUNI - ${(amount * getStates("usdToMxn").toFixed(2))} MXN`;
         }
     }
 

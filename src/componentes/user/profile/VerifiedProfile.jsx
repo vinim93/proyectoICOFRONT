@@ -25,7 +25,7 @@ const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
                     if (getStates("fileFirestore") !== null) {
                         swal({
                             title: "¿Estas seguro de subir la información?",
-                            text: "Una vez enviada la información no se podrá modificar!",
+                            text: "Una vez enviada la información no se podrá modificar",
                             icon: "warning",
                             buttons: true,
                             dangerMode: true,
@@ -48,7 +48,7 @@ const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
                                                 fileType: getStates("fileObject"),
                                             }).then(() => {
                                                 setOpen(false);
-                                                swal("Información actualizada", "La información de tu perfil fue actualizada con éxito!", "success");
+                                                swal("Información actualizada", "¡La información de tu perfil fue actualizada con éxito!", "success");
                                             });
                                         })
                                     })

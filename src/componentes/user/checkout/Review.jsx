@@ -70,20 +70,20 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                             handleNext(false);
                             switch (data.codeResponse.decline_code) {
                                 case 'generic_decline':
-                                    swal("Tarjeta rechazada", "Comunicate con tu banco para resolver el problema!", "warning");
+                                    swal("Tarjeta rechazada", "Comunicate con tu banco para resolver el problema o inténtalo más tarde", "warning");
                                     break;
                                 case 'insufficient_funds':
-                                    swal("Tarjeta rechazada", "Parece que tu tarjeta no tiene fondos suficientes!", "warning");
+                                    swal("Tarjeta rechazada", "Parece que tu tarjeta no tiene fondos suficientes", "warning");
                                     break;
                                 case 'lost_card':
                                 case 'stolen_card':
-                                    swal("Tarjeta rechazada", "Parece que tu tarjeta tiene reporte de robo, comunicate con tu banco para resolver el problema!", "warning");
+                                    swal("Tarjeta rechazada", "Parece que tu tarjeta tiene reporte de robo, comunicate con tu banco para resolver el problema", "warning");
                                     break;
                                 case "card_not_supported":
-                                    swal("Tarjeta rechazada", "Tu tarjeta no es soportada. Por favor usa Visa o Mastercard!", "warning");
+                                    swal("Tarjeta rechazada", "Tu tarjeta no es soportada. Por favor usa Visa o Mastercard", "warning");
                                     break;
                                 default:
-                                    swal("Tarjeta rechazada", "Ocurrio un error al procesar el pago con la tarjeta indicada, intenta con otra!", "warning");
+                                    swal("Tarjeta rechazada", "Ocurrió un error al procesar el pago con la tarjeta indicada, intenta con otra", "warning");
                                     break;
                             }
                         } else {
@@ -91,22 +91,22 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                             handleNext(false);
                             switch (data.codeResponse.code) {
                                 case 'expired_card':
-                                    swal("Tarjeta expirada", "Parece que tu tarjeta expiró, comunicate con tu banco!", "warning");
+                                    swal("Tarjeta expirada", "Parece que tu tarjeta expiró, comunicate con tu banco", "warning");
                                     break;
                                 case 'incorrect_cvc':
-                                    swal("CVC Incorrecto", "Revisa el código CVC de tu tarjeta e intentalo de nuevo, de lo contrario, comunicate con tu banco!", "warning");
+                                    swal("CVC Incorrecto", "Revisa el código CVC de tu tarjeta e inténtalo de nuevo, de lo contrario, comunicate con tu banco", "warning");
                                     break;
                                 case 'incorrect_number':
-                                    swal("Datos incorrectos", "Verifica que los datos de tu tarjeta sean correctos, de ser así, comunicate con tu banco para resolver el problema!", "warning");
+                                    swal("Datos incorrectos", "Verifica que los datos de tu tarjeta sean correctos, de ser así, comunicate con tu banco para resolver el problema", "warning");
                                     break;
                                 case 'amount_too_small':
-                                    swal("Monto muy pequeño", "El monto ingresado de compra es muy pequeño para poder ser procesado!", "warning");
+                                    swal("Monto muy pequeño", "El monto ingresado de compra es muy pequeño para poder ser procesado", "warning");
                                     break;
                                 case 'parameter_invalid_integer':
-                                    swal("Verifica el monto", "El monto debe tener centavos válidos!", "warning");
+                                    swal("Verifica el monto", "El monto debe tener centavos válidos", "warning");
                                     break;
                                 case 'amount_too_large':
-                                    swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99!", "warning");
+                                    swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99", "warning");
                                     break;
                             }
                         }

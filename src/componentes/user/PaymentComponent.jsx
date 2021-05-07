@@ -30,7 +30,7 @@ const PaymentComponent = ({email, userData, allData}) => {
                             ? <Checkout uid={userData} email={email} allData={allData}/>
                             : <div className="modal-body">
                                 <img src={WARNING} className="img-fluid w-25 mb-5" alt=""/>
-                                <h3 className="text-dark mb-5">Verifica tus datos en el apartado de perfil para poder comprar tokens</h3>
+                                <h3 className="text-dark mb-5">Completa tus datos personales en el apartado de perfil para poder comprar tokens</h3>
                                 <Button variant="contained" onClick={gotoProfile} size="large" color="primary" className={classes.margin} data-dismiss="modal" aria-label="Close">
                                     Ir a mi perfil
                                 </Button>
