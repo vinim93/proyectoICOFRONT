@@ -293,7 +293,7 @@ const Wallet = () => {
 
                                                             <div className="row mt-5 px-md-5">
                                                                 <div className="col-12 px-md-5">
-                                                                    <Button fullWidth variant="contained" size="large" type="submit" color="primary">
+                                                                    <Button disabled fullWidth variant="contained" size="large" type="submit" color="primary">
                                                                         ENVIAR
                                                                     </Button>
                                                                 </div>

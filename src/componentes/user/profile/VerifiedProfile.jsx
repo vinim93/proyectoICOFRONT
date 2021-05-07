@@ -76,13 +76,13 @@ const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
 
                 <div className="col-12">
                     <Typography className={classes.title} variant="h4" component="h4">
-                        Especifica tu dirección y sube un documento oficial
+                        Sube un documento oficial (INE, Pasaporte, Licencia de conducir...)
                     </Typography>
                 </div>
 
                 <Typography className={classes.title} variant="subtitle2" component="h2"
                             color="textSecondary">
-                    Verifica que tus datos coincidan con tu identifiación oficial
+                    Verifica que tus datos coincidan con los datos personales que nos proporcionaste previamente
                 </Typography>
 
 
