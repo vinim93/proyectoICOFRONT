@@ -204,7 +204,7 @@ const Acerca = () => {
                 
             <Cardsworkers/>
             
-            <div className="container-fluid bg-light pb-5 d-flex d-md-none">
+            <div className="container-fluid bg-light pb-5 d-block d-md-none">
             
                 <div className="container bg-light">
                     <div className="row pb-5">

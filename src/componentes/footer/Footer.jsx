@@ -105,7 +105,7 @@ const Footer = () => {
                                     </svg> <p className="conectate "><br/>{t('ContactUs.Extra.1')}</p></h5>
 
 
-                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" className="close" id="closeEmailModal" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>

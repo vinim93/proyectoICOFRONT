@@ -5,8 +5,7 @@ import './App.css';
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import 'bootstrap/dist/css/bootstrap.css';
 
-//import "bootstrap/dist/css/history";
-import "history";
+import "bootstrap/dist/css/manuel";
 
 import Navigation from "./componentes/navbar/Navigation";
 import {
