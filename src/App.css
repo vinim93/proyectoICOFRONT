@@ -219,7 +219,7 @@ text-transform: lowercase;
     line-height: 3vw!important;
     margin: -4px 0 10px 0;
     text-align: center;
-    font-family: "agency FB";
+    font-family: "agency FB"!important;
    
     font-size: 3vw;
 
