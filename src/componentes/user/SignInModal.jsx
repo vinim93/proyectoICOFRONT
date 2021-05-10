@@ -170,7 +170,7 @@ const SignInModal = () => {
             await login(email, pass).then(r => {
 
                 if (r.user.emailVerified) {
-                    if (true) {
+                    if (verifiedCaptcha) {
                         setTimeout(() => {
                             history.push("/");
                             window.location.reload();
