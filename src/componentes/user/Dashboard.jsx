@@ -87,7 +87,6 @@ const Dashboard = () => {
                     </div>
 
                     <div className="row mt-5">
-                        <CheckConnection />
                         <PurchaseHistory uid={uid} />
                     </div>
 

@@ -31,7 +31,7 @@ import CropFreeIcon from '@material-ui/icons/CropFree';
 
 //QR UTILITIES IMPORTATIONS
 import QRCode from "react-qr-code";
-import QrReader from 'react-qr-scanner'
+import QrReader from 'react-qr-reader'
 import {db} from "../../config/firebase";
 
 import {generateAccount} from "tron-create-address";
@@ -116,6 +116,7 @@ const Wallet = () => {
     const ReadQR = ({setScanValue}) => {
 
         const [value, setValue] = useState("");
+        const [facing2, setFacing]=useState("near");
 
         const handleError = (e) => {
             console.log(e);
@@ -126,19 +127,20 @@ const Wallet = () => {
             document.getElementById("closeScanner").click();
             return null;
         } else {
+
             return (
-                <div>
                     <QrReader
                         delay={1000}
-                        style={{height: 240, width: 320}}
+                        style={{width: 350}}
                         onError={handleError}
                         onScan={data => {
+                            console.log(data);
                             if(data){
-                                setValue(data.text)
+                                setValue(data)
                             }
                         }}
+                        facingMode="environment"
                     />
-                </div>
             )
         }
     }
@@ -151,15 +153,16 @@ const Wallet = () => {
                        data-target="#exampleModalCenter" />
 
                     <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog"
-                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static"
+                         data-keyboard="false">
                         <div className="modal-dialog modal-dialog-centered" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">
                                     <button type="button" onClick={() => {setScannerOpen(false)}} id="closeScanner" className="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                        <span className="text-dark" aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div className="modal-body">
+                                <div className="qr-modal-body d-flex justify-content-center">
                                     {scannerOpen ? <ReadQR setScanValue={setScanValue} /> : null}
                                 </div>
                             </div>
