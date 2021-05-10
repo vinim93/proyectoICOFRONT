@@ -3,8 +3,8 @@
     "Acerca": "Acerca de",
     "Proyectos": "Proyectos",
     "RoadToMap": "Road to map",
-    "SignIn": "Iniciar sesión (Próximamente)",
-    "SignUp": "Crea tu cuenta (Próximamente)"
+    "SignIn": "Iniciar sesión ",
+    "SignUp": "Crea tu cuenta "
   },
   "Banner": {
     "Titulo": [
@@ -24,7 +24,7 @@
     "Symphony": {
       "Title": "Symphony",
       "ModalTitle": "Proyecto Symphony",
-      "Text": "El proyecto consiste en crear un banco digital con resguardo de criptomonedas,  generar cuenta de ahorro, préstamos con pago de intereses, seguros de vida, médicos y de autos, integrar portafolios cripto financieros, los cuales generen rendimiento a los usuarios de la plataforma Symphony que tengan una cuenta de ahorro, la posibilidad de hacer pagos con una tarjeta que contenga el saldo en criptomonedas como si se tratara de una moneda fiduciaria incluyendo beneficios a los tenedores de servicios financieros Symphony, como descuentos por pagos con criptomonedas en establecimientos, además de agilizar pagos con comisiones más bajas, proteger el resguardo de valor limitando el número de monedas, incluso anulación de efectos inflacionarios sobre la moneda SUN y el  control absoluto de sus fondos, con disponibilidad en todo el mundo.",
+      "Text": "El proyecto consiste en crear un banco digital con resguardo de criptomonedas,  generar cuenta de ahorro, préstamos con pago de intereses, seguros de vida, médicos y de autos, integrar portafolios cripto financieros, los cuales generen rendimiento a los usuarios de la plataforma Symphony que tengan una cuenta de ahorro, la posibilidad de hacer pagos con una tarjeta que contenga el saldo en criptomonedas como si se tratara de una moneda fiduciaria incluyendo beneficios a los tenedores de servicios financieros Symphony, como descuentos por pagos con criptomonedas en establecimientos, además de agilizar pagos con comisiones más bajas, proteger el resguardo de valor limitando el número de monedas, incluso anulación de efectos inflacionarios sobre la moneda SUNI y el  control absoluto de sus fondos, con disponibilidad en todo el mundo.",
       "Type": "Banco"
     },
     "Hawk": {
@@ -56,7 +56,7 @@
   "Ventajas": {
     "Facil": {
       "Titulo": "DE USO FÁCIL",
-      "Texto": "Diseño accesible para todos los Sunholders, creado para que sea práctico, cómodo y rápido poder adquirir el SUNI"
+      "Texto": "Diseño accesible para todos los Suniholders, creado para que sea práctico, cómodo y rápido poder adquirir el SUNI"
     },
     "Seguro": {
       "Titulo": "SEGURO",
@@ -64,7 +64,7 @@
     },
     "Transparente": {
       "Titulo": "TRANSPARENTE",
-      "Texto": "En Sunshine estamos comprometidos con informar, explicar y justificar cada proyecto financiado con el SUNI, aclarar las dudas de nuestros Sunholders y ser siempre claros y precisos brindando toda la información correspondiente a las inversiones"
+      "Texto": "En Sunshine estamos comprometidos con informar, explicar y justificar cada proyecto financiado con el SUNI, aclarar las dudas de nuestros Suniholders y ser siempre claros y precisos brindando toda la información correspondiente a las inversiones"
     }
   },
   "FAQ": {
@@ -111,32 +111,32 @@
     "Banner": "EQUIPO SUNSHINE",
     "ButtonText": "¿Te gustaria unirte a nuestro equipo?",
     "Introduction": [
-      "Somos un equipo de profesionales que trabajan para revolucionar el mundo digital financiero a través del compromiso y la transparencia, ofreciendo resultados favorables a los sunholders para consolidarse como socios estratégicos en el logro de sus objetivos."
+      "Somos un equipo de profesionales que trabajan para revolucionar el mundo digital financiero a través del compromiso y la transparencia, ofreciendo resultados favorables a los suniholders para consolidarse como socios estratégicos en el logro de sus objetivos."
      ],
      "Mision":{
        "Title":"MISIÓN",
-       "description":"Aportar valor y colaborar con los Sunholders a fortalecer su presente y construir su futuro sostenible en el tiempo."},
+       "description":"Aportar valor y colaborar con los Suniholders a fortalecer su presente y construir su futuro sostenible en el tiempo."},
        "Vision":{
         "Title":"VISIÓN",
-        "description":"Mantenernos como una empresa confiable en el mercado, con solidez y óptima calidad garantizando la inversión de los Sunholders y generando el nivel de rentabilidad esperado."},
+        "description":"Mantenernos como una empresa confiable en el mercado, con solidez y óptima calidad garantizando la inversión de los Suniholders y generando el nivel de rentabilidad esperado."},
     "Differences": {
       "Title": "¿QUÉ NOS DIFERENCIA?",
       "Items": [
         {
           "Title": "ACCESIBILIDAD",
-          "Text": "Cualquier persona mayor de edad tiene acceso a la compra de SUN, Sunshine puede ser tu primer acercamiento a un servicio financiero seguro."
+          "Text": "Cualquier persona mayor de edad tiene acceso a la compra de SUNI, Sunshine puede ser tu primer acercamiento a un servicio financiero seguro."
         },
         {
           "Title": "PRIVACIDAD",
-          "Text": "Sunshine nunca compartirá tus datos personales, datos de tus inversiones ni cualquier tipo de información, ya que el SUN corre por la Blockchain TRON cada movimiento que realices será privado y anónimo."
+          "Text": "Sunshine nunca compartirá tus datos personales, datos de tus inversiones ni cualquier tipo de información, ya que el SUNI corre por la Blockchain TRON cada movimiento que realices será privado y anónimo."
         },
         {
           "Title": "SOLIDEZ",
-          "Text": "El SUN es un token descentralizado pues ningún gobierno ni banco tiene poder sobre él, Sunshine se distingue por la planificación estratégica que le da a sus recursos, y por el equipo responsable y comprometido que la conforma."
+          "Text": "El SUNI es un token descentralizado pues ningún gobierno ni banco tiene poder sobre él, Sunshine se distingue por la planificación estratégica que le da a sus recursos, y por el equipo responsable y comprometido que la conforma."
         },
         {
           "Title": "TRABAJO EN EQUIPO",
-          "Text": "Juntos seremos el mejor equipo, y así podremos consolidar el éxito juntos, basados en el trabajo del equipo Sunshine y el compromiso que tenemos con cada uno de nuestros Sunholders."
+          "Text": "Juntos seremos el mejor equipo, y así podremos consolidar el éxito juntos, basados en el trabajo del equipo Sunshine y el compromiso que tenemos con cada uno de nuestros Suniholders."
         }
       ]
     },
@@ -180,10 +180,10 @@
     "Tokens": {
       "Title": "Distribución de utilidades",
       "Reinvestment": "Reinversión",
-      "Sunholders": "Sunholders",
-      "SUNTeam": "Equipo SUN"
+      "Sunholders": "Suniholders",
+      "SUNTeam": "Equipo SUNI"
     },
-    "Price": "El costo inicial del SUN es de 1 USD",
+    "Price": "El costo inicial del SUNI es de 1 USD",
     "SunshineToken": {
       "Title": "Token sunshine",
       "Items": [
@@ -207,11 +207,11 @@
     }
   },
   "RoadToMap": [
-    "Planificación ICO Proyecto SUN",
-    "Lanzamiento de ICO 1er periodo de venta token SUN",
-    "Creación de la página ICO SUN",
-    "2do periodo de venta token SUN",
-    "3er periodo de venta token SUN",
+    "Planificación ICO Proyecto SUNI",
+    "Lanzamiento de ICO 1er periodo de venta token SUNI",
+    "Creación de la página ICO SUNI",
+    "2do periodo de venta token SUNI",
+    "3er periodo de venta token SUNI",
     "Inicio proyecto Exchange",
     "Cierre del proyecto ICO",
     "Inicio al proyecto Cripto Banco"

@@ -3,8 +3,8 @@
     "Acerca": "About",
     "Proyectos": "Projects",
     "RoadToMap": "Road to map",
-    "SignIn": "Sign In (Soon)",
-    "SignUp": "Sign Up (Soon)"
+    "SignIn": "Sign In ",
+    "SignUp": "Sign Up "
   },
   "Banner": {
     "Titulo": [
@@ -24,7 +24,7 @@
     "Symphony": {
       "Title": "Symphony",
       "ModalTitle": "Symphony Project",
-      "Text": "The project consists of creating a digital bank with cryptocurrency protection, generating savings accounts, loans with interest payments, life, medical and car insurance, integrating crypto-financial portfolios, which generate performance for users of the Symphony platform that have a savings account, the possibility of making payments with a card that contains the balance in cryptocurrencies as if it were a fiat currency, including benefits for holders of Symphony financial services, such as discounts for payments with cryptocurrencies in establishments, in addition to speeding up Payments with lower commissions, protect the safeguard of value by limiting the number of currencies, even nullifying the inflationary effects on the SUN currency and the absolute control of your funds, with availability worldwide.",
+      "Text": "The project consists of creating a digital bank with cryptocurrency protection, generating savings accounts, loans with interest payments, life, medical and car insurance, integrating crypto-financial portfolios, which generate performance for users of the Symphony platform that have a savings account, the possibility of making payments with a card that contains the balance in cryptocurrencies as if it were a fiat currency, including benefits for holders of Symphony financial services, such as discounts for payments with cryptocurrencies in establishments, in addition to speeding up Payments with lower commissions, protect the safeguard of value by limiting the number of currencies, even nullifying the inflationary effects on the SUNI currency and the absolute control of your funds, with availability worldwide.",
       "Type": "Bank"
     },
     "Hawk": {
@@ -56,7 +56,7 @@
   "Ventajas": {
     "Facil": {
       "Titulo": "EASY TO USE",
-      "Texto": "Accessible design for all Sunholders, created to be practical, comfortable and quick to acquire the SUNI"
+      "Texto": "Accessible design for all Suniholders, created to be practical, comfortable and quick to acquire the SUNI"
     },
     "Seguro": {
       "Titulo": "SURE",
@@ -64,7 +64,7 @@
     },
     "Transparente": {
       "Titulo": "TRANSPARENT",
-      "Texto": "At Sunshine we are committed to informing, explaining and justifying each project financed with the SUNI, clarifying the doubts of our Sunholders and always being clear and precise, providing all the information corresponding to the investments"
+      "Texto": "At Sunshine we are committed to informing, explaining and justifying each project financed with the SUNI, clarifying the doubts of our Suniholders and always being clear and precise, providing all the information corresponding to the investments"
     }
   },
   "FAQ": {
@@ -81,11 +81,11 @@
       
       {
         "Title": "Who can buy a SUNI?",
-        "Text": "Anyone who is of legal age and wants to buy a SUN can do so."
+        "Text": "Anyone who is of legal age and wants to buy a SUNI can do so."
       },
       {
         "Title": "How to buy a SUNI?",
-        "Text": "It is very easy, you just have to create an account on our page and from there select the SUN number you want to acquire"
+        "Text": "It is very easy, you just have to create an account on our page and from there select the SUNI number you want to acquire"
       }
     ]
   },
@@ -118,10 +118,10 @@
     ],
     "Mision":{
       "Title":"MISSION",
-      "description":"Bring value and collaborate with Sunholders to strengthen their present and build their sustainable future over time."},
+      "description":"Bring value and collaborate with Suniholders to strengthen their present and build their sustainable future over time."},
       "Vision":{
        "Title":"VISIÓN",
-       "description":"Maintain ourselves as a reliable company in the market, with solidity and optimal quality guaranteeing the investment of the Sunholders and generating the expected level of profitability."},
+       "description":"Maintain ourselves as a reliable company in the market, with solidity and optimal quality guaranteeing the investment of the Suniholders and generating the expected level of profitability."},
     "Differences": {
       "Title": "WHAT MAKES US DIFFERENT?",
       "Items": [
@@ -131,15 +131,15 @@
         },
         {
           "Title": "PRIVACY",
-          "Text": "Sunshine will never share your personal data, your investment data or any type of information, since the SUN runs through the Ethereum Blockchain, every movement you make will be private and anonymous."
+          "Text": "Sunshine will never share your personal data, your investment data or any type of information, since the SUNI runs through the Ethereum Blockchain, every movement you make will be private and anonymous."
         },
         {
           "Title": "SOLIDITY",
-          "Text": "The SUN is a decentralized token since no government or bank has power over it, Sunshine is distinguished by the strategic planning that it gives to its resources, and by the responsible and committed team that makes it up."
+          "Text": "The SUNI is a decentralized token since no government or bank has power over it, Sunshine is distinguished by the strategic planning that it gives to its resources, and by the responsible and committed team that makes it up."
         },
         {
           "Title": "TEAMWORK",
-          "Text": "Together we will be the best team, and thus we can consolidate success together, based on the work of the Sunshine team and the commitment we have with each of our Sunholders."
+          "Text": "Together we will be the best team, and thus we can consolidate success together, based on the work of the Sunshine team and the commitment we have with each of our Suniholders."
         }
       ]
     },
@@ -183,10 +183,10 @@
     "Tokens": {
       "Title": "utilities distribution",
       "Reinvestment": "Reinvestment",
-      "Sunholders": "Sunholders",
-      "SUNTeam": "SUN Team"
+      "Sunholders": "Suniholders",
+      "SUNTeam": "SUNI Team"
     },
-    "Price": "The initial cost of the SUN is 1 USD",
+    "Price": "The initial cost of the SUNI is 1 USD",
     "SunshineToken": {
       "Title": "Sunshine Token",
       "Items": [
@@ -210,11 +210,11 @@
     }
   },
   "RoadToMap": [
-    "ICO Planning SUN Project",
-    "Launch of ICO 1st SUN token sale period",
-    "Creation of the ICO SUN page",
-    "2nd SUN token sale period",
-    "3rd SUN token sale period",
+    "ICO Planning SUNI Project",
+    "Launch of ICO 1st SUNI token sale period",
+    "Creation of the ICO SUNI page",
+    "2nd SUNI token sale period",
+    "3rd SUNI token sale period",
     "Exchange project start",
     "ICO project closure",
     "Start of the Crypto Bank project"
