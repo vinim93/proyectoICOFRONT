@@ -50,11 +50,12 @@ export default function Checkout({uid, email, allData}) {
 
     const currencyConversor = async (from, to) => {
         try {
-            const result = await axios.get(`https://free.currconv.com/api/v7/convert?q=${from}_${to}&compact=ultra&apiKey=8a57011799b9d69fa40a`);
+            //const result = await axios.get(`https://free.currconv.com/api/v7/convert?q=${from}_${to}&compact=ultra&apiKey=8a57011799b9d69fa40a`);
+            const result = await axios.get(`https://api.coingate.com/v2/rates/merchant/${from}/${to}`);
             if (from === "USD" && to === "MXN") {
-                setUsdToMxn(result.data[`${from}_${to}`]);
+                setUsdToMxn(result);
             } else if (from === "MXN" && to === "USD") {
-                setMxnToUsd(result.data[`${from}_${to}`]);
+                setMxnToUsd(result);
             }
         } catch (e) {
             console.log("NO AGARRA LA API DE INTERCAMBIO DE MONEDA = ", e);
