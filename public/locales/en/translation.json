@@ -16,7 +16,7 @@
     "TextoBoton": "BE PART OF SUNSHINE"
   },
   "CountdownL": {
-    "Title": "Token exchange ends in:",
+    "Title": "digital assets exchange ends in:",
     "Message": "Soon"
   },
   "Projects": {
@@ -72,7 +72,7 @@
     "Items": [
       {
         "Title": "What is a Digital Asset?",
-        "Text": "A Digital Asset a virtual token that has a value unit which is issued on a Blockchain, has various functions other than acting as a virtual currency, which makes it transparent, private and hack-proof."
+        "Text": "A Digital Asset a virtual digital assets that has a value unit which is issued on a Blockchain, has various functions other than acting as a virtual currency, which makes it transparent, private and hack-proof."
       },
       {
         "Title": "What is a cryptocurrency?",
@@ -91,7 +91,7 @@
   },
   "Newsletter": {
     "Title": "NEWSLETTER",
-    "Text": "Every week those who subscribe to the newsletter will receive an article about ICOs, tokens, and the world of cryptocurrencies."
+    "Text": "Every week those who subscribe to the newsletter will receive an article about ICOs, digital assets, and the world of cryptocurrencies."
   },
   "ContactUs": {
     "Title": "Contact us",
@@ -112,8 +112,8 @@
     "Banner": "SUNSHINE TEAM",
     "ButtonText": "Would you like to join our team?",
     "Introduction": [
-      "We have developed a token that will allow investors to be part of this virtual financial world, starting a new technological era and the opportunity to invest in digital assets",
-      "This token is called SUNSHINE IMAGINE",
+      "We have developed a digital assets that will allow investors to be part of this virtual financial world, starting a new technological era and the opportunity to invest in digital assets",
+      "This digital assets is called SUNSHINE IMAGINE",
       "SUNSHINE is for entrepreneurs, people who want to go a step further, for those who do not settle for little, SUNSHINE is the future, it is for those who want greatness, who lost their fear and decided to take control of their life."
     ],
     "Mision":{
@@ -135,7 +135,7 @@
         },
         {
           "Title": "SOLIDITY",
-          "Text": "The SUNI is a decentralized token since no government or bank has power over it, Sunshine is distinguished by the strategic planning that it gives to its resources, and by the responsible and committed team that makes it up."
+          "Text": "The SUNI is a decentralized digital assets since no government or bank has power over it, Sunshine is distinguished by the strategic planning that it gives to its resources, and by the responsible and committed team that makes it up."
         },
         {
           "Title": "TEAMWORK",
@@ -188,13 +188,13 @@
     },
     "Price": "The initial cost of the SUNI is 1 USD",
     "SunshineToken": {
-      "Title": "Sunshine Token",
+      "Title": "Sunshine digital assets",
       "Items": [
-        "It allows application developers to issue their own tokens within the TRON platform.",
+        "It allows application developers to issue their own digital assets within the TRON platform.",
         "The average commit time per transaction is 1 min. For the transaction to be committed, 19 network blocks will be required (a new block is created approximately every 3 seconds).",
-        "Virtual machine (TVM), smart contracts, and TRON token standards support Ethereum, simplifying project migration to this blockchain.",
+        "Virtual machine (TVM), smart contracts, and TRON digital assets standards support Ethereum, simplifying project migration to this blockchain.",
         "Users can transact on the TRON network for free, i.e. without commissions due to the presence of special parameters: bandwidth and power.",
-        "Ability to simplify token creation (TRC10), without much money and time."
+        "Ability to simplify digital assets creation (TRC10), without much money and time."
       ]
     },
     "AppDownload": {
@@ -211,10 +211,10 @@
   },
   "RoadToMap": [
     "ICO Planning SUNI Project",
-    "Launch of ICO 1st SUNI token sale period",
+    "Launch of ICO 1st SUNI digital assets sale period",
     "Creation of the ICO SUNI page",
-    "2nd SUNI token sale period",
-    "3rd SUNI token sale period",
+    "2nd SUNI digital assets sale period",
+    "3rd SUNI digital assets sale period",
     "Exchange project start",
     "ICO project closure",
     "Start of the Crypto Bank project"

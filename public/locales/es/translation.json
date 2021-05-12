@@ -16,7 +16,7 @@
     "TextoBoton": "SE PARTE DE SUNSHINE"
   },
   "CountdownL": {
-    "Title": "El intercambio de tokens termina en:",
+    "Title": "El intercambio de activos digitales termina en:",
     "Message": "Próximamente"
   },
   "Projects": {
@@ -68,10 +68,10 @@
     }
   },
   "FAQ": {
-    "Title": "PREGUNTAS FREQUENTES",
+    "Title": "PREGUNTAS FRECUENTES",
     "Items": [
       {
-        "Title": "¿Qué es un Activo digital?",
+        "Title": "¿Qué es un Activo Digital?",
         "Text": "Un Activo Digital es una ficha virtual que tiene una unidad de valor la cual es emitida en una Blockchain, tiene diversas funciones a parte de actuar como una moneda virtual, lo que lo hace transparente, privado y a prueba de cualquier hackeo."
       },
       {
@@ -90,7 +90,7 @@
   },
   "Newsletter": {
     "Title": "BOLETÍN INFORMATIVO",
-    "Text": "Cada semana los que se suscriban al boletín informativo recibirán un artículo sobre las ICO, tokens, y el mundo de las criptomonedas."
+    "Text": "Cada semana los que se suscriban al boletín informativo recibirán un artículo sobre las ICO, activos digitales, y el mundo de las criptomonedas."
   },
   "ContactUs": {
     "Title": "CONTÁCTANOS",
@@ -132,7 +132,7 @@
         },
         {
           "Title": "SOLIDEZ",
-          "Text": "El SUNI es un token descentralizado pues ningún gobierno ni banco tiene poder sobre él, Sunshine se distingue por la planificación estratégica que le da a sus recursos, y por el equipo responsable y comprometido que la conforma."
+          "Text": "El SUNI es un activos digitales descentralizado pues ningún gobierno ni banco tiene poder sobre él, Sunshine se distingue por la planificación estratégica que le da a sus recursos, y por el equipo responsable y comprometido que la conforma."
         },
         {
           "Title": "TRABAJO EN EQUIPO",
@@ -185,13 +185,13 @@
     },
     "Price": "El costo inicial del SUNI es de 1 USD",
     "SunshineToken": {
-      "Title": "Token sunshine",
+      "Title": "activo digital sunshine",
       "Items": [
-        "Permite a los desarrolladores de aplicaciones emitir sus propios tokens dentro de la plataforma TRON.",
+        "Permite a los desarrolladores de aplicaciones emitir sus propios activos digitales dentro de la plataforma TRON.",
         "El tiempo promedio de confirmación por transacción es de 1 min. Para que se confirme la transacción, se requerirán 19 bloques de red (se crea un nuevo bloque aproximadamente cada 3 segundos).",
-        "La máquina virtual (TVM), los contratos inteligentes y los estándares de token TRON son compatibles con Ethereum, lo que simplifica la migración de proyectos a esta cadena de bloques.",
+        "La máquina virtual (TVM), los contratos inteligentes y los estándares de activos digitales TRON son compatibles con Ethereum, lo que simplifica la migración de proyectos a esta cadena de bloques.",
         "Los usuarios pueden realizar transacciones en la red TRON de forma gratuita, es decir, sin comisiones debido a la presencia de parámetros especiales: ancho de banda y energía.",
-        "Capacidad de simplificar la creación de tokens (TRC10), sin mucho dinero y tiempo."
+        "Capacidad de simplificar la creación de activos digitales (TRC10), sin mucho dinero y tiempo."
       ]
     },
     "AppDownload": {
@@ -208,10 +208,10 @@
   },
   "RoadToMap": [
     "Planificación ICO Proyecto SUNI",
-    "Lanzamiento de ICO 1er periodo de venta token SUNI",
+    "Lanzamiento de ICO 1er periodo de venta activos digitales SUNI",
     "Creación de la página ICO SUNI",
-    "2do periodo de venta token SUNI",
-    "3er periodo de venta token SUNI",
+    "2do periodo de venta activos digitales SUNI",
+    "3er periodo de venta activos digitales SUNI",
     "Inicio proyecto Exchange",
     "Cierre del proyecto ICO",
     "Inicio al proyecto Cripto Banco"

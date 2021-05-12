@@ -68,7 +68,7 @@ const Footer = () => {
 
                     <img src={Insta} alt=""/>
                 </a>
-                <img src={Linke} alt=""/>
+                
 
                 <a href="https://twitter.com/ImagineCripto">
                     <img src={Twiter} alt=""/>
