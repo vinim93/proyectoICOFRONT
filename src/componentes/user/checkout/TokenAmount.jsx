@@ -18,7 +18,12 @@ const currencies = [
     },
 ];
 
-const TokenAmount = ({currency, setCurrency, setStates, getStates}) => {
+const TokenAmount = ({currency, setCurrency, setStates, getStates, currencyConversor}) => {
+
+    useEffect(() => {
+        currencyConversor("USD", "MXN");
+        currencyConversor("MXN", "USD");
+    }, []);
 
     const conversor = (type, amount = "USD") => {
         switch (type) {
