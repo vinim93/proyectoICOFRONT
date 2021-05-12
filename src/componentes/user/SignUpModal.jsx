@@ -1,52 +1,89 @@
 import React, {useState, useEffect} from 'react';
-import Icongmail from "../../images/icongmail.svg";
-import Iconfaceb from "../../images/iconfaceb.svg";
-import Camaraine from "../../images/camaraine.svg";
-import Pdfine from "../../images/pdfine.svg";
 import "../navbar/css/styles.css"
 import axios from "axios";
 import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
 import {db, auth} from "../config/firebase";
 import swal from "sweetalert";
+import swal2 from '@sweetalert/with-react';
 import firebase from 'firebase';
 import "firebase/auth";
-import {Document, Page} from 'react-pdf';
 import GoogleButton from "react-google-button";
-
+import passwordValidator from "password-validator";
+import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import {useHistory} from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
+import InputLabel from "@material-ui/core/InputLabel";
+import FilledInput from "@material-ui/core/FilledInput";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import FormControl from "@material-ui/core/FormControl";
 
 const SignUpModal = () => {
+
+    const sendReCAPTCHAValue = async (value) => {
+        const response = await axios.post("https://sunshine-ico.uc.r.appspot.com/api/recaptcha", {
+            captchaValue: value
+        });
+
+        if (response.data.status === "success") {
+            setVerifiedCaptcha(true);
+        }
+
+    }
 
     const [countries, setCountries] = useState([]);
     const [uploadValue, setUploadValue] = useState(0);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [ciudad, setCiudad] = useState("");
-    const [telefono, setTelefono] = useState("");
     const [apellido, setApellido] = useState("");
     const [password, setPassword] = useState("");
+    const [repeatedPassword, setRepeteadPassword] = useState("");
     const [checkedValue, setCheckedValue] = useState(false);
-    const [authType, setAuthType] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [verifiedCaptcha, setVerifiedCaptcha] = useState(false);
+    const history = useHistory();
+
+    //VALIDATIONS
+    const validations = {
+        requiredFields: () => {
+            return (name !== '' && email !== '' && password !== '' && apellido !== '')
+        }
+    }
 
     const handleCheckboxState = (e) => {
-        console.log(e.target.checked);
         setCheckedValue(e.target.checked);
     }
 
     const saveDataInFirestore = (uid, data = {}) => {
-
-        if(Object.keys(data).length > 0){
-            /*============GUARDAR DATOS EN FIRESTORE===========*/
+        if (Object.keys(data).length > 0) {
+            /*============GUARDAR DATOS EN FIRESTORE CON GOOGLE===========*/
             db.collection("credentials").doc(uid).set({
                 UUID: uid,
-                city: data.city,
-                doc: "Pending",
-                email: data.email,
-                name: data.name,
-                phone: data.phone,
-                authType: data.authType
+                city: data.city.replace(/<[^>]+>/g, ''),
+                doc: "".replace(/<[^>]+>/g, ''),
+                email: data.email.replace(/<[^>]+>/g, ''),
+                name: data.name.replace(/<[^>]+>/g, ''),
+                phone: data.phone === null ? "".replace(/<[^>]+>/g, '') : data.phone.replace(/<[^>]+>/g, ''),
+                authType: data.authType.replace(/<[^>]+>/g, ''),
+                birthday: data.birthday.replace(/<[^>]+>/g, ''),
+                country: data.country.replace(/<[^>]+>/g, ''),
+                state: data.state.replace(/<[^>]+>/g, ''),
+                address: data.address.replace(/<[^>]+>/g, ''),
+                suns: 0,
+                countryComplete: data.countryComplete.replace(/<[^>]+>/g, ''),
+                profileStatus: data.profileStatus,
+                fileType: "".replace(/<[^>]+>/g, ''),
+                profilePicture: "".replace(/<[^>]+>/g, ''),
+                profilePictureStatus: 0,
+                addressToken: "",
+                privateKey: ""
             }).then(docRef => {
-                swal("Registro exitoso con Google", "", "success");
+                history.push("/");
+                window.location.reload();
                 clearStates();
             }).catch((error) => {
                 console.log(error);
@@ -56,80 +93,223 @@ const SignUpModal = () => {
             /*============GUARDAR DATOS EN FIRESTORE===========*/
             db.collection("credentials").doc(uid).set({
                 UUID: uid,
-                city: ciudad,
-                doc: "Pending",
-                email: email,
-                name: name + " " + apellido,
-                phone: telefono,
-                authType: authType
+                city: "".replace(/<[^>]+>/g, ''),
+                doc: "".replace(/<[^>]+>/g, ''),
+                email: email.replace(/<[^>]+>/g, ''),
+                name: name.replace(/<[^>]+>/g, ''),
+                lastname: apellido.replace(/<[^>]+>/g, ''),
+                phone: "".replace(/<[^>]+>/g, ''),
+                authType: "EMAIL".replace(/<[^>]+>/g, ''),
+                birthday: "".replace(/<[^>]+>/g, ''),
+                country: "".replace(/<[^>]+>/g, ''),
+                state: "".replace(/<[^>]+>/g, ''),
+                address: "".replace(/<[^>]+>/g, ''),
+                profileStatus: 0,
+                suns: 0,
+                countryComplete: "".replace(/<[^>]+>/g, ''),
+                fileType: "".replace(/<[^>]+>/g, ''),
+                profilePicture: "".replace(/<[^>]+>/g, ''),
+                profilePictureStatus: 0,
+                addressToken: "",
+                privateKey: ""
             }).then(docRef => {
-                swal("Registro exitoso", "", "success");
-                document.getElementById("signUpButton").disabled = false;
-                document.getElementById("signUpButtonDiv").style.visibility = "visible";
-                document.getElementById("loadingDiv").style.visibility = "hidden";
+                swal({
+                    title: "¡Registro exitoso!",
+                    text: "Enviamos un enlace al correo electrónico que proporcionaste para verificar tu cuenta.",
+                    icon: "success",
+                    button: "¡Entendido!",
+                    closeOnClickOutside: false
+                }).then(confirm => {
+                    if (confirm) {
+                        document.getElementById("closeModalSignUp").click();
+                        document.getElementById("signInButton").click();
+                    }
+                });
                 clearStates();
+                setLoading(false);
             }).catch((error) => {
-                document.getElementById("signUpButton").disabled = false;
-                document.getElementById("signUpButtonDiv").style.visibility = "visible";
-                document.getElementById("loadingDiv").style.visibility = "hidden";
+                setLoading(false);
                 console.log(error);
             });
             /*============GUARDAR DATOS EN FIRESTORE===========*/
         }
+    }
 
-
+    const searchDataInFirestore = async id => {
+        let result = null;
+        await db.collection('credentials').doc(id).get().then(doc => {
+            result = doc.exists ? "exists" : "not-exists";
+        }).catch(error => {
+            result = "error";
+            console.log("ERROR AL BUSCAR EL UID");
+        });
+        return result;
     }
 
     const clearStates = () => {
         setName('');
         setEmail('');
-        setCiudad('');
-        setTelefono('');
         setPassword('');
+        setRepeteadPassword('');
         setApellido('');
         setUploadValue(0);
         setCheckedValue(false);
+        setVerifiedCaptcha(false);
     }
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (name !== '' && email !== '' && ciudad !== '' && telefono !== '' && password !== '' && apellido !== '') {
-            if (checkedValue) {
-                document.getElementById("signUpButton").disabled = true;
-                document.getElementById("signUpButtonDiv").style.visibility = "hidden";
-                document.getElementById("loadingDiv").style.visibility = "visible";
-                setAuthType("EMAIL");
-                auth.createUserWithEmailAndPassword(email, password)
-                    .then((user) => {
+        if (validations.requiredFields()) {
 
-                        user.user.sendEmailVerification().then(r => {
-                            saveDataInFirestore(user.user.uid);
-                        }, (error) => {
-                            console.log(error.code, error.message);
-                        })
+            let schema = new passwordValidator();
+            schema
+                .is().min(8)
+                .is().max(100)
+                .has().uppercase()
+                .has().lowercase()
+                .has().digits(1)
+                .has().not().spaces();
 
-                        auth.signOut();
+            if (schema.validate(password)) {
+                if (password === repeatedPassword) {
+                    if (checkedValue) {
+                        if (verifiedCaptcha) {
+                            setLoading(true);
+                            auth.createUserWithEmailAndPassword(email, password)
+                                .then((user) => {
 
-                    }).catch((error) => {
-                    document.getElementById("signUpButton").disabled = false;
-                    document.getElementById("signUpButtonDiv").style.visibility = "visible";
-                    document.getElementById("loadingDiv").style.visibility = "hidden";
-                    let errorCode = error.code;
-                    let errorMessage = error.message;
-                    console.log(errorCode, errorMessage);
+                                    user.user.sendEmailVerification().then(r => {
+                                        saveDataInFirestore(user.user.uid);
+                                    }, (error) => {
+                                        console.log(error.code, error.message);
+                                    })
 
-                    /*============== EL CORREO YA SE USA POR OTRA CUENTA ==================*/
-                    if (errorCode === "auth/email-already-in-use") {
-                        swal("Oops", "La dirección de correo ya esta siendo usada por otra cuenta!", "warning");
+                                    auth.signOut();
+
+                                }).catch((error) => {
+                                setLoading(false);
+                                let errorCode = error.code;
+                                let errorMessage = error.message;
+                                console.log(errorCode, errorMessage);
+
+                                /*============== EL CORREO YA SE USA POR OTRA CUENTA ==================*/
+                                if (errorCode === "auth/email-already-in-use") {
+                                    swal({
+                                        title: "Oops",
+                                        text: "La dirección de correo ya se encuentra en uso",
+                                        icon: "warning",
+                                        button: "¡Entendido!",
+                                        closeOnClickOutside: false
+                                    });
+                                } else if (errorCode === "auth/weak-password") {
+                                    swal({
+                                        title: "Oops",
+                                        text: "La contraseña debe tener al menos 8 caracteres!",
+                                        icon: "warning",
+                                        button: "¡Entendido!"
+                                    });
+                                }
+
+                            });
+                        } else {
+                            swal({
+                                title: "Verifica el CAPTCHA",
+                                text: "Intenta verificar el CAPTCHA de nuevo para poder continuar",
+                                icon: "warning",
+                                button: "¡Entendido!"
+                            });
+                        }
+                    } else {
+                        swal({
+                            title: "Advertencia",
+                            text: "Debes aceptar los términos y condiciones para poder registrarte",
+                            icon: "warning",
+                            button: "¡Entendido!",
+                            closeOnClickOutside: false
+                        });
                     }
+                } else {
+                    swal({
+                        title: "Las contraseñas no coinciden",
+                        text: "Asegurate de escribir las mismas contraseñas en los campos correspondientes",
+                        icon: "warning",
+                        button: "¡Entendido!",
+                        closeOnClickOutside: false
+                    });
+                }
 
-                });
             } else {
-                swal("Advertencia", "Debes aceptar los términos y condiciones para poder registrarte!", "warning");
+                swal2({
+                    text: "Tu contraseña debe cumplir con los siguientes requisitos",
+                    closeOnClickOutside: false,
+                    buttons: {
+                        cancel: "Entendido",
+                    },
+                    content: (
+                        <div className="container">
+                            <div className="row">
+                                <ul>
+                                    {
+                                        schema.validate(password, {list: true}).map((element, index) => {
+                                            console.log(element);
+                                            switch (element) {
+                                                case 'min':
+
+                                                    return (
+                                                        <li key={index} className="text-dark text-justify"><p
+                                                            className="text-danger">Mínimo 8 caracteres</p></li>
+                                                    )
+
+                                                case 'max':
+                                                    return (
+                                                        <li key={index} className="text-dark text-justify"><p
+                                                            className="text-danger">Máximo 100 caracteres</p></li>
+                                                    )
+
+                                                case 'uppercase':
+                                                    return (
+                                                        <li key={index} className="text-dark text-justify"><p
+                                                            className="text-danger">Mínimo una letra mayuscula</p></li>
+                                                    )
+
+                                                case 'lowercase':
+                                                    return (
+                                                        <li key={index} className="text-dark text-justify"><p
+                                                            className="text-danger">Mínimo 1 letra minuscula</p></li>
+                                                    )
+
+                                                case 'spaces':
+                                                    return (
+                                                        <li key={index} className="text-dark text-justify"><p
+                                                            className="text-danger">No debe contener espacios</p></li>
+                                                    )
+
+                                                case 'digits':
+                                                    return (
+                                                        <li key={index} className="text-dark text-justify"><p
+                                                            className="text-danger">Mínimo 1 número</p></li>
+                                                    )
+
+                                            }
+
+                                        })
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    )
+                })
             }
+
         } else {
-            swal("Advertencia", "Debes llenar todos los campos!", "warning");
+            swal({
+                title: "Advertencia",
+                text: "Debes llenar todos los campos",
+                icon: "warning",
+                button: "¡Entendido!",
+                closeOnClickOutside: false
+            });
         }
     };
 
@@ -137,25 +317,68 @@ const SignUpModal = () => {
 
         let provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
-        firebase.auth().languageCode = 'es';
-        firebase.auth().signInWithPopup(provider).then((result) => {
+        auth.languageCode = 'es';
+        auth.signInWithPopup(provider).then(async (result) => {
+            console.log(result);
             let user = result.user;
+            console.log(user.uid);
             if (user.emailVerified) {
-                //MANDAR A OTRA PANTALLA
-            } else {
-                user.sendEmailVerification().then(r => {
+
+                let userStatus = await searchDataInFirestore(user.uid);
+                if(userStatus === "exists"){
+                    history.push("/");
+                    window.location.reload();
+                    clearStates();
+                } else if (userStatus === "not-exists"){
                     saveDataInFirestore(user.uid, {
-                        city: "Pending",
+                        city: "",
                         email: user.email,
                         name: user.displayName,
                         phone: user.phoneNumber,
-                        authType: "GOOGLE"
+                        authType: "GOOGLE",
+                        birthday: "",
+                        country: "",
+                        state: "",
+                        address: "",
+                        profileStatus: 0,
+                        countryComplete: "",
+                        addressToken: "",
+                        privateKey: ""
+                    });
+                } else {
+                    swal({
+                        title: "Ocurrió un error",
+                        text: "Ocurrió un error inesperado, inténtalo de nuevo más tarde",
+                        icon: "error",
+                        button: "Entendido!",
+                        closeOnClickOutside: false
+                    });
+                }
+
+            } else {
+                user.sendEmailVerification().then(r => {
+                    saveDataInFirestore(user.uid, {
+                        city: "",
+                        email: user.email,
+                        name: user.displayName,
+                        phone: user.phoneNumber,
+                        authType: "GOOGLE",
+                        birthday: "",
+                        country: "",
+                        state: "",
+                        address: "",
+                        profileStatus: 0,
+                        countryComplete: "",
+                        addressToken: "",
+                        privateKey: ""
                     });
                 }, (error) => {
                     console.log(error.code, error.message);
                 });
+                auth.signOut();
             }
         }).catch((error) => {
+            auth.signOut();
             let errorCode = error.code;
             let errorMessage = error.message;
             console.log(errorCode, errorMessage);
@@ -163,39 +386,26 @@ const SignUpModal = () => {
 
     }
 
-    useEffect(() => {
-        const fetchCountryData = async () => {
-            try {
-                const response = await axios.get("https://restcountries.eu/rest/v2/all");
-                setCountries(response.data);
-                console.log(response.data[0].flag);
-            } catch (e) {
-                console.log(e);
-            }
-        }
-        fetchCountryData();
-    }, []);
+    const [values, setValues] = useState({
+        amount: '',
+        password: '',
+        weight: '',
+        weightRange: '',
+        showPassword1: false,
+        showPassword2: false
+    });
 
-    const loading = () => {
-        const times = 3;
-        let circles = [];
-        for (let i = 0; i < times; i++) {
-            if (i === times - 1) {
-                circles.push(
-                    <div className="spinner-grow text-light" role="status">
-                        <span className="visually-hidden"></span>
-                    </div>
-                );
-            } else {
-                circles.push(
-                    <div className="spinner-grow text-light mr-4" role="status">
-                        <span className="visually-hidden"></span>
-                    </div>
-                );
-            }
+    const handleClickShowPassword = (id) => {
+        if (id === 1) {
+            setValues({...values, showPassword1: !values.showPassword1});
+        } else if (id === 2) {
+            setValues({...values, showPassword2: !values.showPassword2});
         }
-        return circles;
-    }
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
 
     return (
 
@@ -205,8 +415,9 @@ const SignUpModal = () => {
                 <div className="modal-content  registrobody pl-xl-5 pr-xl-5">
 
                     <div className="modal-header">
-                        <h5 className="modal-title col-12" id="staticBackdropLabel">Crea tu cuenta</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <h5 className="modal-title col-12 text-light" id="staticBackdropLabel">Crea tu cuenta</h5>
+                        <button type="button" id="closeModalSignUp" className="close" data-dismiss="modal"
+                                aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -223,136 +434,144 @@ const SignUpModal = () => {
                             />
                         </div>
 
-                        <div className="form-group col-12 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5">
-                            <div className="container pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5">
-                                <div className="row pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5">
-                                    <a href="#" className="fb connect mr-xl-5 ml-xl-5">Iniciar sesión con
-                                        Facebook</a>
-                                </div>
-                            </div>
-                        </div>
-
                         <form className="form" onSubmit={handleSubmit}>
                             <div className="container mt-5 pl-xl-5 pr-xl-5">
                                 <div className="row pl-xl-5 pr-xl-5">
 
                                     <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
-                                        <select className="custom-select custom-select-lg ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5 text-light"
-                                                aria-label="Default select example"
-                                                onChange={e => setCiudad(e.target.value)}>
 
-                                            <option value="">Elige un país</option>
-                                            {
-                                                countries.map((value, index) => (
-                                                    <option key={index} value={value.name}>{value.name}</option>
-                                                ))
-                                            }
-                                        </select>
-                                    </div>
+                                        <TextField required={true}
+                                                   fullWidth
+                                                   style={{backgroundColor: "#FFFFFF", fontWeight: "bold"}}
+                                                   className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
+                                                   id="name"
+                                                   name="name"
+                                                   value={name}
+                                                   label="Nombre"
+                                                   type="text"
+                                                   onChange={(e) => setName(e.target.value)} variant="filled"/>
 
-                                    <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
-                                        <PhoneInput
-                                            className="form-control ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                            international
-                                            countryCallingCodeEditable={false}
-                                            defaultCountry="MX"
-                                            value={telefono}
-                                            onChange={(e) => setTelefono(e)}/>
 
                                     </div>
 
                                     <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
 
-                                        <input
-                                            className="form-control ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                            type="text"
-                                            placeholder="Nombre"
-                                            name='name'
-                                            value={name}
-                                            onChange={(e) => setName(e.target.value)}
-                                            required/>
+                                        <TextField required={true}
+                                                   fullWidth
+                                                   style={{backgroundColor: "#FFFFFF", fontWeight: "bold"}}
+                                                   className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
+                                                   id="lastname"
+                                                   name="lastnane"
+                                                   label="Apellido"
+                                                   value={apellido}
+                                                   type="text"
+                                                   onChange={(e) => setApellido(e.target.value)} variant="filled"/>
+                                    </div>
+
+                                    <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
+
+                                        <TextField required={true}
+                                                   fullWidth
+                                                   style={{backgroundColor: "#FFFFFF", fontWeight: "bold"}}
+                                                   className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
+                                                   id="outlined-basic" label="Email"
+                                                   value={email}
+                                                   type="email"
+                                                   onChange={(e) => setEmail(e.target.value)} variant="filled"/>
+                                    </div>
+
+                                    <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
+
+                                        <FormControl fullWidth className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
+                                                     variant="filled">
+                                            <InputLabel htmlFor="filled-adornment-password">Contraseña *</InputLabel>
+                                            <FilledInput
+                                                id="signup-password"
+                                                type={values.showPassword1 ? 'text' : 'password'}
+                                                value={password}
+                                                onChange={(e) => setPassword(e.target.value)}
+                                                style={{backgroundColor: "#FFFFFF"}}
+                                                endAdornment={
+                                                    <InputAdornment position="end">
+                                                        <IconButton
+                                                            aria-label="toggle password visibility"
+                                                            onClick={() => handleClickShowPassword(1)}
+                                                            onMouseDown={handleMouseDownPassword}
+                                                            edge="end"
+                                                        >
+                                                            {values.showPassword1 ? <Visibility/> : <VisibilityOff/>}
+                                                        </IconButton>
+                                                    </InputAdornment>
+                                                }
+                                            />
+                                        </FormControl>
 
                                     </div>
 
                                     <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
-                                        <input
-                                            className="form-control ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                            type="text"
-                                            placeholder="Apellido"
-                                            name="apellido"
-                                            value={apellido}
-                                            onChange={(e) => setApellido(e.target.value)}
-                                            required/>
-                                    </div>
 
-                                    <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
-                                        <input
-                                            className="form-control ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                            type="email"
-                                            placeholder="Email"
-                                            name="email"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            required/>
-                                    </div>
+                                        <FormControl fullWidth className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
+                                                     variant="filled">
+                                            <InputLabel htmlFor="filled-adornment-password">Repite tu contraseña
+                                                *</InputLabel>
+                                            <FilledInput
+                                                id="signup-password"
+                                                type={values.showPassword2 ? 'text' : 'password'}
+                                                value={repeatedPassword}
+                                                onChange={(e) => setRepeteadPassword(e.target.value)}
+                                                style={{backgroundColor: "#FFFFFF"}}
+                                                endAdornment={
+                                                    <InputAdornment position="end">
+                                                        <IconButton
+                                                            aria-label="toggle password visibility"
+                                                            onClick={() => handleClickShowPassword(2)}
+                                                            onMouseDown={handleMouseDownPassword}
+                                                            edge="end"
+                                                        >
+                                                            {values.showPassword2 ? <Visibility/> : <VisibilityOff/>}
+                                                        </IconButton>
+                                                    </InputAdornment>
+                                                }
+                                            />
+                                        </FormControl>
 
-                                    <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
-                                        <input className="form-control ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                               type="password"
-                                               id="signup-password"
-                                               placeholder="Contraseña"
-                                               name="password"
-                                               value={password}
-                                               onChange={(e) => setPassword(e.target.value)}
-                                               required/>
-                                    </div>
-
-                                    <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
-                                        <input className="form-control ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                               type="password"
-                                               id="signup-password-repeat"
-                                               placeholder="Confirmar contraseña"
-                                               name="password-repeat"
-                                               value={password}
-                                               onChange={(e) => setPassword(e.target.value)}
-                                               required/>
-                                    </div>
-
-                                    <div className="input-group input-group-lg col-12 mb-3 pl-xl-5 pr-xl-5">
-                                                    <span className="btn form-check ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5">
-                                                        <label className="form-regi marginlb form-check-label">
-                                                            <a className="text-light" href="">
-                                                                Aviso de privacidad
-                                                            </a>
-                                                        </label>
-                                                    </span>
                                     </div>
 
                                     <div className="form-group form-check col-12 mb-3 pl-xl-5 pr-xl-5">
-                                                    <span className="btn form-check ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5 form-regi">
-                                                        <input className="form-check-input form-regi"
-                                                               type="checkbox"
-                                                               name="terminosYCondiciones"
-                                                               id="aviso1"
-                                                               onChange={handleCheckboxState}
-                                                               required/>
+                                                    <span
+                                                        className="btn form-check ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5 form-regi">
 
-                                                        <label className="form-regi marginlb form-check-label"
-                                                               htmlFor="aviso1">
-                                                            Aceptar términos y condiciones
-                                                        </label>
+                                                        <FormControlLabel
+                                                            control={
+                                                                <Checkbox className="form-check-input form-regi"
+                                                                          checked={checkedValue}
+                                                                          onChange={handleCheckboxState}
+                                                                          required={true}
+                                                                          name="terminosyCondiciones"/>}
+                                                            label="Aceptar términos y condiciones" required
+                                                            name="terminosYCondiciones"
+                                                        />
                                                     </span>
+                                    </div>
+
+                                    <div className="form-group col-12 d-flex justify-content-center">
+                                        <ReCAPTCHA sitekey="6LceM4oaAAAAAJhirPQbyXB2KERNzwHUyoAspql-"
+                                                   onChange={sendReCAPTCHAValue}/>
                                     </div>
 
                                     <div className="form-group col-12 mt-3" id="signUpButtonDiv">
                                         <button type="submit"
-                                                className="btn btn-registro" id="signUpButton">REGISTRATE
+                                                className="btn btn-registro"
+                                                id="signUpButton"
+                                                disabled={loading}>
+                                            {loading ? (
+                                                <div className="spinner-border text-dark" role="status">
+                                                    <span className="sr-only">Registrando...</span>
+                                                </div>
+                                            ) : "REGISTRATE"}
                                         </button>
                                     </div>
 
-                                    <div id="loadingDiv" style={{visibility: 'hidden'}}>
-                                        {loading()}
-                                    </div>
                                 </div>
                             </div>
                         </form>

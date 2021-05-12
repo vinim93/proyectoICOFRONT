@@ -8,7 +8,6 @@ import Twitercontact from "../../images/twitercontact.svg";
 import {db} from "../config/firebase";
 
 import './css/cards.scss';
-import  './css/animationcards.jsx';
 import { useTranslation } from 'react-i18next';
 import ACCESIBILIDAD from '../../images/Accesibilidad-01.png';
 import PRIVACIDAD from '../../images/provacidad-04.png';

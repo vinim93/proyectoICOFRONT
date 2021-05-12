@@ -43,7 +43,7 @@
 }
 
 .text-size-banner{
-    font-size: 90px;
+    font-size: 9vw;
     font-family: Blackpast;
  
     text-transform: lowercase!important;
@@ -117,6 +117,8 @@ hr{
     transform: scale(1.2);
 }
 .card-img-top{overflow: hidden;}
+@media only screen and (max-width:768px){
+    .titu-team{top: 0vw!important;}
 
-
+}
 /*----------------------------------------seccion de las  cards-----------------------------------------------*/

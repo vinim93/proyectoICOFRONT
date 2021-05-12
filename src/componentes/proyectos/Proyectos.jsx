@@ -42,6 +42,10 @@ const Proyectos = () => {
                                  tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                                  aria-hidden="true">
                                 <div className="modal-dialog modal-xl modal-dialog-centered">
+                                    <button hidden type="button" id="closeSynmphonyModal" className="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 <Zoom>
                                     <div className="modal-content  modal-sym ">
                                     

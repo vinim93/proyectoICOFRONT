@@ -219,7 +219,7 @@ text-transform: lowercase;
     line-height: 3vw!important;
     margin: -4px 0 10px 0;
     text-align: center;
-    font-family: "agency FB";
+    font-family: "agency FB"!important;
    
     font-size: 3vw;
 
@@ -1595,6 +1595,9 @@ text-align: center;
   color: white!important;
   white-space:normal;
 }
+.modal{
+    z-index: 1072!important;
+}
 .foottitulo{
   font-size: 59px;
   border-top: #009DC8 solid 10px;
@@ -1606,20 +1609,21 @@ text-align: center;
 .foottitulo button{
   color: white!important;
   font-family: 'Josefin Sans';
+
 }
 
 .modalfootcont{
   background-image:url("./images/fondogalaxy.png")!important;
   
   background-size:cover;
-  
+    z-index: 11600!important;
   background-position:center;
 
 }
 .modal-content{
   position: static!important;
-  z-index: 3!important;
-border: none;
+  z-index: 11600!important;
+
 }
 .modal-header{
   margin: 30px 0 0 0;
@@ -1654,7 +1658,7 @@ position: relative;
 .form-control{
 
 background-color: #ffffff80!important;
-color: white!important;
+color: #000000 !important;
 font-family:'Lato';
   font-weight:bold!important;
 
@@ -1970,7 +1974,7 @@ height: 93vw;
  /*----------------------------------------------registro--------------------*/
  .registrobody{
    display: flex!important;
-   position: relative;
+
   background-image: url("./images/fondoregistro.svg")!important;
   color: white;
   text-align: center; 
@@ -3028,7 +3032,7 @@ left: 25vw;
 
   /*----------------------------------------- media foco------------------------------*/
   .titulo6{
-    font-size: 20vw;
+    font-size: 13vw;
   } 
   .fap-btn2{
      left: -4vw;

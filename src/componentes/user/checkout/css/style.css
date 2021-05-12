@@ -1,0 +1,10 @@
+.bodyWallet{
+    background-color: #002147 !important;
+}
+
+.qr-modal-body{
+    position: relative;
+    overflow-y: auto;
+    max-height: 400px;
+    padding: 0px 10px 50px 10px;
+}

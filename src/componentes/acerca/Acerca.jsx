@@ -130,7 +130,7 @@ const Acerca = () => {
     ]
 
     return (
-        <div className="bg-light">
+        <div className="">
            
 
 
@@ -160,7 +160,7 @@ const Acerca = () => {
                             <h3 className="title-vision ">   {t('AboutSection.Mision.Title')}</h3>
                         </div>
                         <div className="col-12 d-flex text-center ">
-                            <h5 className="parrafo-vision p-5"> {t('AboutSection.Mision.description')}</h5>
+                            <h5 className="parrafo-vision p-1"> {t('AboutSection.Mision.description')}</h5>
                         </div>
                     </div>
 
@@ -172,7 +172,7 @@ const Acerca = () => {
                            <h3 className="title-vision "> {t('AboutSection.Vision.Title')}</h3>
                        </div>
                        <div className="col-12 d-flex text-center ">
-                           <h5 className="parrafo-vision p-5">{t('AboutSection.Vision.description')}
+                           <h5 className="parrafo-vision p-1">{t('AboutSection.Vision.description')}
 
 </h5>
                        </div>
@@ -180,15 +180,15 @@ const Acerca = () => {
                     </div>
                 </Fade>
 
-                <div className=" row mt-5 bg-light pb-5  justify-content-center">
-                    <div className="col-12 mt-5 pt-4 pb-4">
+                <div className="  row  pb-5  justify-content-center">
+                    <div className="col-12  pt-4 pb-4">
                         <h1 className="text-size-title-differences text-center"> <Fade left cascade>{t('AboutSection.Differences.Title')}</Fade></h1>
                     </div>
                     {
                         differences.map((value, index) => (
                             <Zoom>
                             <div id={index} 
-                            className="col-12 col-sm-12 col-lg-4 col-xl-4 cont-diferencia  text-justify  ">
+                            className=" col-12 col-sm-12 row col-lg-4 col-xl-4 cont-diferencia    ">
                                 <img src={value.image} alt="" className="icons-differences "/>
                                 <h3 className="text-center">{value.title}</h3>
                                 <p  className="text-center">{value.description}</p>
@@ -204,9 +204,9 @@ const Acerca = () => {
                 
             <Cardsworkers/>
             
-            <div className="container-fluid bg-light pb-5 d-flex d-md-none">
+            <div className="container-fluid pb-5 d-block d-md-none">
             
-                <div className="container bg-light">
+                <div className="container ">
                     <div className="row pb-5">
                         {
                             team2.map((value, index) => (

@@ -2,7 +2,12 @@
     width: 50%;
 }
 
-a.fb {
+.contenedor-profile{
+    background-color: #043361;
+    height: 100vh;
+}
+
+button.fb {
     font-family: Lucida Grande, Helvetica Neue, Helvetica, Arial, sans-serif;
     display: inline-block;
     font-size: 15px;
@@ -13,6 +18,7 @@ a.fb {
     text-decoration: none;
     position: relative;
     border-radius: 5px;
+    border-color: transparent;
     width: 100%;
 }
 
@@ -75,7 +81,7 @@ hr{
 }
 
 .material {
-    height: 80px;
+    height: 90px;
     padding: 0 50px;
     font-size: 18px;
     text-decoration: none;
