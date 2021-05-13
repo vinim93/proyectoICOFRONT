@@ -6,7 +6,7 @@ import Loader from './Loader';
 
 import {Document, Page} from 'react-pdf';
 import {pdfjs} from 'react-pdf';
-
+import {useTranslation} from 'react-i18next';
 import ControlPanel from './ControlPanel';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
@@ -26,6 +26,7 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css';*/
 
 
 const Pdf = ()=>{
+  const {t} = useTranslation();
     
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
@@ -60,7 +61,7 @@ const Pdf = ()=>{
                  setScale={setScale}/>
               
               <Document className=" pdfcontainer "
-        file={Docpdf}
+        file= {t("Whitepaper.urLEsp")}
         onLoadSuccess={onDocumentLoadSuccess}
       >
         <Page pageNumber={pageNumber} className="   "scale={scale} />
