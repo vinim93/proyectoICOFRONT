@@ -20,7 +20,7 @@ $returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
 .card-wrap-personal {
     position: relative;
-    top: 10%;
+  
    
     width: 600px;
     height:100%;
@@ -114,9 +114,11 @@ transform: matrix3d(-20px);
     position: relative;    
     background-image: url("../../../images/team.png")!important;
     background-position: center;
+    
     background-repeat: no-repeat!important;
     background-size: cover;
     text-align: center;
+    padding: 0 0 5vw 0;
     justify-content: left!important;
 }
 .carousel-2 {    
