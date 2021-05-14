@@ -3,7 +3,6 @@ import {
     Card,
     CardHeader,
     CardBody,
-    Table,
     Container,
     Row,
     Col,
@@ -17,6 +16,7 @@ import "./../css/nucleo.css";
 import "./../scss/argon-dashboard-react.scss";
 import "./../checkout/css/style.css";
 import HeaderCards from "./HeaderCards";
+import CryptoList from "./CryptoList";
 
 //MATERIAL IMPORTS
 import TextField from '@material-ui/core/TextField';
@@ -33,8 +33,6 @@ import CropFreeIcon from '@material-ui/icons/CropFree';
 import QRCode from "react-qr-code";
 import QrReader from 'react-qr-reader'
 import {db} from "../../config/firebase";
-
-import {generateAccount} from "tron-create-address";
 import axios from "axios";
 
 
@@ -172,7 +170,7 @@ const Wallet = () => {
                     {/* Page content */}
                     <Container className="mt--7" fluid>
                         <Row className="d-flex justify-content-center">
-                            <Col className="mb-5 mb-xl-0" xl="8">
+                            <Col className="mb-5 mb-xl-0" xl="7">
 
                                 <Card className="bg-gradient-default shadow">
                                     <CardHeader className="bg-transparent">
@@ -296,7 +294,7 @@ const Wallet = () => {
 
                                                             <div className="row mt-5 px-md-5">
                                                                 <div className="col-12 px-md-5">
-                                                                    <Button disabled fullWidth variant="contained" size="large" type="submit" color="primary">
+                                                                    <Button fullWidth variant="contained" size="large" type="submit" color="primary">
                                                                         ENVIAR
                                                                     </Button>
                                                                 </div>
@@ -309,6 +307,9 @@ const Wallet = () => {
                                         </div>
                                     </CardBody>
                                 </Card>
+                            </Col>
+                            <Col className="mb-5 mb-xl-0" xl="5">
+                                <CryptoList />
                             </Col>
                         </Row>
                     </Container>
