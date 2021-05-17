@@ -34,6 +34,7 @@ import QRCode from "react-qr-code";
 import QrReader from 'react-qr-reader'
 import {db} from "../../config/firebase";
 import axios from "axios";
+import swal from "sweetalert";
 
 
 const Wallet = () => {
@@ -48,6 +49,7 @@ const Wallet = () => {
     const [amount, setAmount] = useState(0);
     const [userInfo, setUserInfo] = useState({});
     const [tokensToSend, setTokensToSend] = useState(0);
+    const [tokensArray, setTokensArray] = useState([{}]);
     //ESTO TIENE QUE IR EN EL BACKEND, AHORITA ES PARA HACER PRUEBAS RÁPIDO
     const [tokenAddress, setTokenAddress] = useState("");
     const [tokenPrivateKey, setTokenPrivateKey] = useState("");
@@ -90,7 +92,11 @@ const Wallet = () => {
             }
         }).then(response => {
             console.log("LISTO", response.data.tokenAddress);
+            console.log("LISTO2", response.data.tokensArray);
             setTokenAddress(response.data.tokenAddress);
+            if(response.data.tokensArray){
+                setTokensArray(response.data.tokensArray)
+            }
         }).catch(e => {
             console.log(e);
         })
@@ -101,9 +107,19 @@ const Wallet = () => {
         try{
             const response = await axios.post("https://sunshine-ico.uc.r.appspot.com/send-tokens", {
                 uid,
-                amount: tokensToSend,
+                amount: convertForSend(tokensToSend),
                 toAddress: scanValue
             });
+
+            switch (response.data.sendTokenResponse){
+                case "without-tuah":
+                    swal("No cuentas con TUAH", "Tu wallet no cuenta con ningun TUAH por lo que no puedes enviar el monto indicado", "warning");
+                    break;
+                case "BANDWITH_ERROR":
+                    swal("Error de ancho de banda", "La wallet a la que le quieres mandar TUAH no tiene suficiente ancho de banda ", "warning");
+                    break;
+            }
+
             console.log(response);
         } catch (e) {
             console.log(e);
@@ -141,6 +157,22 @@ const Wallet = () => {
                     />
             )
         }
+    }
+
+    const convertForSend = (number) => {
+        if(number > 0){
+            if(number % 1 === 0){
+                // es entero
+                return parseInt(number + "0".repeat(6));
+            } else {
+                // es decimal
+                let positionPoint = number.toString().indexOf(".");
+                return (number + "0".repeat(6 - (number.toString().substring(positionPoint+1).length))).replace(".", "");
+            }
+        } else {
+            return number;
+        }
+
     }
 
     const renderWallet = () => {
@@ -269,6 +301,7 @@ const Wallet = () => {
                                                                                 setTokensToSend(null);
                                                                             }
                                                                             setTokensToSend(e.target.value);
+
                                                                         }}
                                                                         variant="filled"
                                                                         style={{backgroundColor: "#FFFFFF", fontWeight: "bold", borderRadius: 4}}
@@ -309,7 +342,7 @@ const Wallet = () => {
                                 </Card>
                             </Col>
                             <Col className="mb-5 mb-xl-0" xl="5">
-                                <CryptoList />
+                                <CryptoList tokensArray={tokensArray} />
                             </Col>
                         </Row>
                     </Container>

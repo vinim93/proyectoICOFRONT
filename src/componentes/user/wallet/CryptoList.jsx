@@ -5,37 +5,27 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 
 const columns = [
+    { id: 'icon', label: 'Icon', minWidth: 170 },
     { id: 'name', label: 'Name', minWidth: 170 },
-    { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
+    { id: 'abbr', label: 'ISO\u00a0Code', minWidth: 100 },
     {
-        id: 'population',
-        label: 'Population',
-        minWidth: 170,
-        align: 'right',
-        format: (value) => value.toLocaleString('en-US'),
-    },
-    {
-        id: 'size',
+        id: 'value',
         label: 'Size\u00a0(km\u00b2)',
         minWidth: 170,
         align: 'right',
-        format: (value) => value.toLocaleString('en-US'),
+        format: (value) => value.toString().slice(0, value.toString().length-6) + "." + value.toString().slice(value.toString().length-6),
     },
 ];
-
 
 function createData(name, code, population, size) {
     const density = population / size;
     return { name, code, population, size, density };
 }
-
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -57,30 +47,29 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function CryptoList() {
+export default function CryptoList({tokensArray}) {
     const classes = useStyles();
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-    const rows = [
-        createData(<Avatar className={classes.purple}>N</Avatar>, 'Sunshine Imagine','SUNI', 9833520),
-        createData(<Avatar className={classes.orange}>N</Avatar>, 'NOTUAH', 'TUAH', 9833520),
-        createData(<Avatar className={classes.purple}>N</Avatar>, 'TRON', 'TRX', 9833520),
-        createData(<Avatar className={classes.orange}>N</Avatar>, 'BitTorrent', 'BTT', 9833520),
-        createData(<Avatar className={classes.purple}>N</Avatar>, 'ToduDefi10', 'TOFU10', 9833520),
-    ];
+
+    const tokensArrayExtra = {
+        "0000000": {icon: <Avatar className={classes.purple}>N</Avatar>,name: "TRON", abbr: "TRX"},
+        "1003948": {icon: <Avatar className={classes.purple}>N</Avatar>, name: "NOTUAH", abbr: "TUAH"},
+        "1002000": {icon: <Avatar className={classes.purple}>N</Avatar>,name: "BitTorrent", abbr: "BTT"},
+        "1003475": {icon: <Avatar className={classes.purple}>N</Avatar>,name: "ToduDefi10", abbr: "TOFU10"},
+    }
 
     return (
         <Paper className={[classes.root, 'bg-gradient-default shadow']}>
             <TableContainer className={classes.container}>
                 <Table stickyHeader aria-label="sticky table">
-
                     <TableBody>
-                        {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                        {tokensArray.map((row) => {
                             return (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                                     {columns.map((column) => {
-                                        const value = row[column.id];
+                                        console.log(row);
+                                        const value1 = {...row, ...tokensArrayExtra[row.key]}
+                                        const value = value1[column.id];
                                         return (
                                             <TableCell className={classes.text} key={column.id} align={column.align}>
                                                 {column.format && typeof value === 'number' ? column.format(value) : value}
@@ -93,7 +82,6 @@ export default function CryptoList() {
                     </TableBody>
                 </Table>
             </TableContainer>
-
         </Paper>
     );
 }
