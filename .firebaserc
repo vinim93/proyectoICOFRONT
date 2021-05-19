@@ -1,5 +1,6 @@
 {
   "projects": {
     "default": "ico-sunshine-contact"
+      response.set('Access-Control-Allow-Origin', '*');
   }
 }
