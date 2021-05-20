@@ -35,13 +35,15 @@ import QrReader from 'react-qr-reader'
 import {db} from "../../config/firebase";
 import axios from "axios";
 import swal from "sweetalert";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Backdrop from "@material-ui/core/Backdrop";
+import {makeStyles} from "@material-ui/core/styles";
 
 
 const Wallet = () => {
 
     const {currentUser, logout} = useAuth();
     const history = useHistory();
-
     const [scannerOpen, setScannerOpen] = useState(false);
     const [scanValue, setScanValue] = useState("");
     const [logged, setLogged] = useState(false);
@@ -53,6 +55,7 @@ const Wallet = () => {
     //ESTO TIENE QUE IR EN EL BACKEND, AHORITA ES PARA HACER PRUEBAS RÁPIDO
     const [tokenAddress, setTokenAddress] = useState("");
     const [tokenPrivateKey, setTokenPrivateKey] = useState("");
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         try {
@@ -102,8 +105,14 @@ const Wallet = () => {
         })
     }
 
+    const clearFields = () => {
+        setTokensToSend(0);
+        setScanValue("");
+    }
+
     const sendTokens = async e => {
         e.preventDefault();
+        setOpen(true);
         try{
             const response = await axios.post("https://sunshine-ico.uc.r.appspot.com/send-tokens", {
                 uid,
@@ -111,19 +120,42 @@ const Wallet = () => {
                 toAddress: scanValue
             });
 
-            switch (response.data.sendTokenResponse){
+            if(response.data.sendTokenResponse === "success"){
+                swal("Tokens enviados", `Se cobraron ${tokensToSend} TUAH de tu cuenta y se depositaron a la dirección ${tokenAddress}, puedes ver la transacción en tu historial`, "success");
+                getData(uid);
+                clearFields();
+            } else {
+                throw response.data.sendTokenResponse.toString();
+            }
+
+
+            console.log(response);
+        } catch (e) {
+            switch (e.message || e){
+                case "success":
+                    swal("Tokens enviados", `Se cobraron ${tokensToSend} TUAH de tu cuenta y se depositaron a la dirección ${tokenAddress}, puedes ver la transacción en tu historial`, "success");
+                    clearFields();
+                    break;
                 case "without-tuah":
                     swal("No cuentas con TUAH", "Tu wallet no cuenta con ningun TUAH por lo que no puedes enviar el monto indicado", "warning");
                     break;
                 case "BANDWITH_ERROR":
                     swal("Error de ancho de banda", "La wallet a la que le quieres mandar TUAH no tiene suficiente ancho de banda ", "warning");
                     break;
+                case "tuah-not-found":
+                    swal("TUAHS insuficientes", "No cuentas con la cantidad de TUAH suficiente para enviar el monto indicado", "warning");
+                    break;
+                case "invalid-address":
+                    swal("Dirección invalida", "La dirección a la que le quieres mandar TUAH no existe o no se encuentra disponible", "warning");
+                    break;
+                case "Invalid count value":
+                    swal("Monto invalido", "El monto ingresado no es válido, ingresa un monto de tipo 0.000000", "warning");
+                    break;
+                default:
+                    swal("Error inesperado", "Ocurrió un error inesperado, recarga la página o intenta de nuevo más tarde", "error");
             }
-
-            console.log(response);
-        } catch (e) {
-            console.log(e);
         }
+        await setOpen(false);
         //CONECTARSE CON /send-tokens EN BACKEND Y MANDAR uid, amount, toAddress
     }
 
@@ -174,6 +206,8 @@ const Wallet = () => {
         }
 
     }
+
+    const classes = useStyles();
 
     const renderWallet = () => {
         if(logged){
@@ -346,6 +380,9 @@ const Wallet = () => {
                             </Col>
                         </Row>
                     </Container>
+                    <Backdrop className={classes.backdrop} open={open} >
+                        <CircularProgress color="inherit" />
+                    </Backdrop>
                 </div>
             )
         } else {
@@ -360,5 +397,12 @@ const Wallet = () => {
         </>
     );
 };
+
+const useStyles = makeStyles((theme) => ({
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+    },
+}));
 
 export default Wallet;

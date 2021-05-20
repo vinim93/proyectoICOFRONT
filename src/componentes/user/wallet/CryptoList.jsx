@@ -9,6 +9,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 
+//Icons
+import BTT from "../../../images/cryptoicons/btt_icon.png";
+import TRX from "../../../images/cryptoicons/trx_icon.png";
+import TUAH from "../../../images/cryptoicons/tuah_icon.png";
+
 const columns = [
     { id: 'icon', label: 'Icon', minWidth: 170 },
     { id: 'name', label: 'Name', minWidth: 170 },
@@ -52,9 +57,9 @@ export default function CryptoList({tokensArray}) {
 
 
     const tokensArrayExtra = {
-        "0000000": {icon: <Avatar className={classes.purple}>N</Avatar>,name: "TRON", abbr: "TRX"},
-        "1003948": {icon: <Avatar className={classes.purple}>N</Avatar>, name: "NOTUAH", abbr: "TUAH"},
-        "1002000": {icon: <Avatar className={classes.purple}>N</Avatar>,name: "BitTorrent", abbr: "BTT"},
+        "0000000": {icon: <Avatar className={classes.purple} src={TRX} />,name: "TRON", abbr: "TRX"},
+        "1003948": {icon: <Avatar src={TUAH} />, name: "NOTUAH", abbr: "TUAH"},
+        "1002000": {icon: <Avatar className={classes.purple} src={BTT} />,name: "BitTorrent", abbr: "BTT"},
         "1003475": {icon: <Avatar className={classes.purple}>N</Avatar>,name: "ToduDefi10", abbr: "TOFU10"},
     }
 
