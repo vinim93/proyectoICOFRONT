@@ -15,6 +15,7 @@ const WhitepaperHome = () => {
                     <img src={walpaper} alt="" data-toggle="modal" className="walp-img ml-0 mr-0" id="pdfcon"/>
                     <p className="walp-descargar">{t('Whitepaper.Click')}</p>
                 </Link>
+               
             </div>
         </div>
     );
