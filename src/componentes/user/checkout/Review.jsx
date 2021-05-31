@@ -42,7 +42,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                             city: getStates('city'),
                             line1: getStates('address')
                         }
-                }
+                    }
                 });
 
                 if (!error) {
@@ -168,8 +168,6 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                 swal("Monto inválido", "El monto máximo que puedes pagar en oxxo son de $10,000 MXN", "warning");
             }
 
-
-            
         } catch (e) {
             console.log("ERROR AL INTENTAR PAGAR CON OXXO, INFO: ");
             console.log(e.code, e.message);
@@ -229,7 +227,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
 export default function Review({getStates, uid, handleNext, email}) {
     const classes = useStyles();
     const products = [
-        {name: 'Sun Token', desc: (getStates("currencyType") === "MX" ? getStates("currency") * getStates("mxnToUsd") : getStates("currency")), price: getStates("currency") + ' ' + (getStates("currencyType") === "MX" ? "MXN" : "USD")},
+        {name: 'Sun Token', desc: (getStates("currencyType") === "MX" ? (getStates("currency") * getStates("mxnToUsd")).toFixed(6) : getStates("currency")), price: getStates("currency") + ' ' + (getStates("currencyType") === "MX" ? "MXN" : "USD")},
     ];
     const addresses = [getStates("address"), getStates("city"), getStates("stateLocation"), getStates("country")];
     const payments = [

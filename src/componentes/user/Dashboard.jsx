@@ -9,6 +9,7 @@ import {db} from "../config/firebase";
 import PurchaseHistory from "./PurchaseHistory";
 import CheckConnection from "./CheckConnection";
 import NumberFormat from "react-number-format";
+import axios from "axios";
 
 const Dashboard = () => {
     const {currentUser, logout} = useAuth();
@@ -26,9 +27,18 @@ const Dashboard = () => {
             await docRef.onSnapshot(doc => {
                 if(doc.exists){
                     setUserInfo(doc.data());
-                    setAmount(doc.data().suns);
+                    //setAmount(doc.data().suns);
                 }
-            })
+            });
+            await axios.get("https://sunshine-ico.uc.r.appspot.com/get-tuah", {
+                params: {
+                    uid: id
+                }
+            }).then(response => {
+                setAmount(response.data.amount);
+            }).catch(e => {
+                console.log(e);
+            });
         } catch (e) {
             console.log("Dashboard.jsx - getUserData()" + e);
         }
@@ -63,12 +73,7 @@ const Dashboard = () => {
 
                         <div className="col-12 d-flex justify-content-center">
                             <h1>
-                                <NumberFormat
-                                    type="text"
-                                    displayType="text"
-                                    value={amount}
-                                    thousandSeparator={true}
-                                />
+                                {amount.toString().slice(0, amount.toString().length-6) + "." + amount.toString().slice(amount.toString().length-6) || "Cargando..."}
                                 <br/>SUNIS</h1>
                         </div>
 

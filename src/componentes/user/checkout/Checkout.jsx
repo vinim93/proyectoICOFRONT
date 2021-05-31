@@ -217,7 +217,7 @@ export default function Checkout({uid, email, allData}) {
                                     </Typography>
                                     <img src={DONE} className="img-fluid mb-3" width="13%" alt="PAGO REALIZADO"/>
                                     <Typography variant="subtitle1">
-                                        {paymentMethod === "card" ? "¡Hemos enviado tu comprobante de pago al correo electrónico que registraste!" : "¡Tienes 24 hrs para realizar el pago en oxxo!"}
+                                        {paymentMethod === "card" ? "¡Gracias por tu compra, se verá reflejado en tu monto total y en tu cartera en aproximadamente 1 minito. Hemos enviado tu comprobante de pago al correo electrónico que registraste!" : "¡Tienes 24 hrs para realizar el pago en oxxo!"}
                                     </Typography>
                                     <Button variant="contained" color="primary" className={classes.button} onClick={buyAgain}>
                                         Comprar de nuevo

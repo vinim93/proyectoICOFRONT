@@ -38,6 +38,7 @@ import swal from "sweetalert";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
 import {makeStyles} from "@material-ui/core/styles";
+import NumberFormat from "react-number-format";
 
 
 const Wallet = () => {
@@ -80,9 +81,9 @@ const Wallet = () => {
             await docRef.onSnapshot(doc => {
                 if(doc.exists){
                     setUserInfo(doc.data());
-                    setAmount(doc.data().suns);
+                    //setAmount(doc.data().suns);
                 }
-            })
+            });
         } catch (e) {
             console.log("Wallet.jsx - getUserData()" + e);
         }
@@ -99,6 +100,7 @@ const Wallet = () => {
             setTokenAddress(response.data.tokenAddress);
             if(response.data.tokensArray){
                 setTokensArray(response.data.tokensArray)
+                setAmount(response.data.tokensArray.find(element => element.key === "1003948").value);
             }
         }).catch(e => {
             console.log(e);
@@ -232,12 +234,12 @@ const Wallet = () => {
                             </div>
                         </div>
                     </div>
+
                     <HeaderCards tokensNumber={amount}/>
                     {/* Page content */}
                     <Container className="mt--7" fluid>
                         <Row className="d-flex justify-content-center">
                             <Col className="mb-5 mb-xl-0" xl="7">
-
                                 <Card className="bg-gradient-default shadow">
                                     <CardHeader className="bg-transparent">
                                         <Row className="align-items-center">
@@ -321,7 +323,6 @@ const Wallet = () => {
                                                                     </FormControl>
                                                                 </div>
 
-
                                                                 <div className="col-12 mb-4 px-md-5">
 
                                                                     <TextField
@@ -351,7 +352,22 @@ const Wallet = () => {
                                                                 </div>
 
                                                                 <div className="col-12 px-md-5 d-flex justify-content-start">
-                                                                    <p className="text-light">SUNS restantes: <strong>{(amount - tokensToSend) || 0}</strong></p>
+                                                                    <p className="text-light">SUNS restantes:
+                                                                        <strong className={amount - tokensToSend < 0 ? "text-danger" : ""}>
+                                                                            <NumberFormat
+                                                                                type="text"
+                                                                                displayType="text"
+                                                                                value={amount - tokensToSend}
+                                                                                thousandSeparator={true}
+                                                                                decimalScale={6}
+                                                                                prefix=" "
+                                                                            />
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+
+                                                                <div className="col-12 px-md-5 d-flex justify-content-start">
+                                                                    <p className="text-danger"><strong>{amount - tokensToSend < 0 ? "No tienes suficientes TUAH para mandar" : ""}</strong></p>
                                                                 </div>
 
                                                                 <div className="col-12 px-md-5">
