@@ -138,6 +138,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                 id: "holaoxxo",
                 amount: getStates("currency"),
                 uid,
+                email,
                 exchange: {
                     usdToMxn: getStates("usdToMxn"),
                     mxnToUsd: getStates("mxnToUsd")
@@ -158,6 +159,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                     .then(function(result) {
                         // This promise resolves when the customer closes the modal
                         console.log("EL USUARIO CERRO EL MODAL");
+                        console.log(result);
                         if (result.error) {
                             // Display error to your customer
                             console.log(result.error);

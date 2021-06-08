@@ -64,15 +64,15 @@ export default function CryptoList({tokensArray}) {
     }
 
     return (
-        <Paper className={[classes.root, 'bg-gradient-default shadow']}>
+        <Paper className={'bg-gradient-default shadow w-100'}>
             <TableContainer className={classes.container}>
                 <Table stickyHeader aria-label="sticky table">
                     <TableBody>
-                        {tokensArray.map((row) => {
+                        {tokensArray.map((row, index) => {
                             return (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                                <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                                     {columns.map((column) => {
-                                        console.log(row);
+                                        //console.log(row);
                                         const value1 = {...row, ...tokensArrayExtra[row.key]}
                                         const value = value1[column.id];
                                         return (

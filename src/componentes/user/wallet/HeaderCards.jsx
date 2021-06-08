@@ -5,7 +5,7 @@ import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 import NumberFormat from "react-number-format";
 
 const Header = ({tokensNumber}) => {
-    console.log(tokensNumber);
+    //console.log(tokensNumber);
     return (
         <>
             <div className="header pb-8 pt-5 pt-md-8" style={{backgroundColor: "#ced4da"}}>

@@ -17,6 +17,7 @@ import "./../scss/argon-dashboard-react.scss";
 import "./../checkout/css/style.css";
 import HeaderCards from "./HeaderCards";
 import CryptoList from "./CryptoList";
+import TransactionsHistory from "./TransactionsHistory";
 
 //MATERIAL IMPORTS
 import TextField from '@material-ui/core/TextField';
@@ -64,9 +65,9 @@ const Wallet = () => {
             let id = currentUser.uid;
             setUid(id);
             getUserData(id);
-            console.log(userInfo);
-            console.log("HOLA");
-            console.log("ADIOS");
+            //console.log(userInfo);
+            //console.log("HOLA");
+            //console.log("ADIOS");
             setLogged(true);
             getData(id);
         } catch (e) {
@@ -95,8 +96,8 @@ const Wallet = () => {
                 uid: id
             }
         }).then(response => {
-            console.log("LISTO", response.data.tokenAddress);
-            console.log("LISTO2", response.data.tokensArray);
+            //console.log("LISTO", response.data.tokenAddress);
+            //console.log("LISTO2", response.data.tokensArray);
             setTokenAddress(response.data.tokenAddress);
             if(response.data.tokensArray){
                 setTokensArray(response.data.tokensArray)
@@ -194,17 +195,21 @@ const Wallet = () => {
     }
 
     const convertForSend = (number) => {
-        if(number > 0){
-            if(number % 1 === 0){
-                // es entero
-                return parseInt(number + "0".repeat(6));
+        try{
+            if(number > 0){
+                if(number % 1 === 0){
+                    // es entero
+                    return parseInt(number + "0".repeat(6));
+                } else {
+                    // es decimal
+                    let positionPoint = number.toString().indexOf(".");
+                    return (number + "0".repeat(6 - (number.toString().substring(positionPoint+1).length))).replace(".", "");
+                }
             } else {
-                // es decimal
-                let positionPoint = number.toString().indexOf(".");
-                return (number + "0".repeat(6 - (number.toString().substring(positionPoint+1).length))).replace(".", "");
+                return number;
             }
-        } else {
-            return number;
+        } catch (e) {
+            console.log(e);
         }
 
     }
@@ -353,21 +358,14 @@ const Wallet = () => {
 
                                                                 <div className="col-12 px-md-5 d-flex justify-content-start">
                                                                     <p className="text-light">SUNS restantes:
-                                                                        <strong className={amount - tokensToSend < 0 ? "text-danger" : ""}>
-                                                                            <NumberFormat
-                                                                                type="text"
-                                                                                displayType="text"
-                                                                                value={amount - tokensToSend}
-                                                                                thousandSeparator={true}
-                                                                                decimalScale={6}
-                                                                                prefix=" "
-                                                                            />
+                                                                        <strong className={amount - convertForSend(tokensToSend) < 0 ? "text-danger" : ""}>
+                                                                            {(amount - convertForSend(tokensToSend)).toString().slice(0, (amount - convertForSend(tokensToSend)).toString().length-6) + "." + (amount - convertForSend(tokensToSend)).toString().slice((amount - tokensToSend).toString().length-6)}
                                                                         </strong>
                                                                     </p>
                                                                 </div>
 
                                                                 <div className="col-12 px-md-5 d-flex justify-content-start">
-                                                                    <p className="text-danger"><strong>{amount - tokensToSend < 0 ? "No tienes suficientes TUAH para mandar" : ""}</strong></p>
+                                                                    <p className="text-danger"><strong>{amount - convertForSend(tokensToSend) < 0 ? "No tienes suficientes TUAH para mandar" : ""}</strong></p>
                                                                 </div>
 
                                                                 <div className="col-12 px-md-5">
@@ -393,6 +391,12 @@ const Wallet = () => {
                             </Col>
                             <Col className="mb-5 mb-xl-0" xl="5">
                                 <CryptoList tokensArray={tokensArray} />
+                            </Col>
+                        </Row>
+
+                        <Row className="d-flex justify-content-center">
+                            <Col className="mb-5 mb-xl-0" xl="12">
+                                <TransactionsHistory address={tokenAddress}/>
                             </Col>
                         </Row>
                     </Container>
