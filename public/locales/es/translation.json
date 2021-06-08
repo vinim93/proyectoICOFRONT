@@ -222,10 +222,9 @@
   "Whitepaper": {
     "Read": "Lee",
     "Click": "Click para descargar pdf",
-    "Urlesp": "https://cors-anywhere.herokuapp.com/https://firebasestorage.googleapis.com/v0/b/sunshine-ico.appspot.com/o/general%2FWHITEPAPER%20TRON%20FINAL%20esp.pdf?alt=media&token=333df966-5b07-424d-b0f2-8c3df447eb98",
-    "UrlespG": "https://firebasestorage.googleapis.com/v0/b/sunshine-ico.appspot.com/o/general%2FWHITEPAPER%20TRON%20FINAL%20esp.pdf?alt=media&token=333df966-5b07-424d-b0f2-8c3df447eb98"
-
-  }
+    "Urlesp": "//firebasestorage.googleapis.com/v0/b/sunshine-ico.appspot.com/o/WHITEPAPER%20SUNI.pdf?alt=media&token=6a606197-0768-449d-b35b-e9147ce27bfe",
+    "UrlespG": "https://firebasestorage.googleapis.com/v0/b/sunshine-ico.appspot.com/o/WHITEPAPER%20SUNI.pdf?alt=media&token=6a606197-0768-449d-b35b-e9147ce27bfe"
+    }
   
 }
 

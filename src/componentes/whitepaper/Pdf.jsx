@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,Component  } from 'react';
 import '../../App.css';
 import './Whitepaper.css';
 import Docpdf from '../../docs/Avance.pdf';
@@ -9,6 +9,9 @@ import { pdfjs } from 'react-pdf';
 import { useTranslation } from 'react-i18next';
 import ControlPanel from './ControlPanel';
 import { StartValueType } from 'tsparticles/dist/Enums';
+import PdfEsp1 from './WHITEPAPER_SUNI.pdf';
+
+
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 /*import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
@@ -17,9 +20,9 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css';*/
 
 
 const Pdf = () => {
-
+ 
   const { t } = useTranslation();
-
+  
   const docupdf = [
     {
       pdfesp: t(`Whitepaper.Urlesp`),
@@ -27,8 +30,6 @@ const Pdf = () => {
 
     }
   ];
-
-
 
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
@@ -49,8 +50,8 @@ const Pdf = () => {
         docupdf.map((value, index) => (
           <div id={index} className="col-12  fondopdf p-3 d-none d-md-block" >
 
-            < iframe width='800' data-toggle="collapse" data-target=".navbar-collapse.show" className="google-viewer" height='600' crossorigin="anonymous"
-              frameborder='0' src={value.pdfespG} ></iframe>
+            < iframe width='800' data-toggle="collapse" data-target=".navbar-collapse.show" className="google-viewer" height='600' 
+              frameBorder='0' src={value.pdfespG} ></iframe>
 
             <Loader isLoading={isLoading} />
           </div>
@@ -67,9 +68,12 @@ const Pdf = () => {
               setPageNumber={setPageNumber}
               setScale={setScale} />
             {console.log(value.pdfesp)}
-            <Document className="pdfcontainer " id={index} 
-            
-              file={value.pdfesp}
+            <Document  className="pdfcontainer " key={index} id={index} 
+             dataURI = "data:text/plain;base64,"
+              file={value.pdfesp
+              }
+              
+              
               onLoadSuccess={onDocumentLoadSuccess}
             >
 
