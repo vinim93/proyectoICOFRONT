@@ -18,6 +18,9 @@ import Dialog from "@material-ui/core/Dialog";
 import Slide from "@material-ui/core/Slide";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
+import Chip from '@material-ui/core/Chip';
+import FaceIcon from '@material-ui/icons/Face';
+import DoneIcon from '@material-ui/icons/Done';
 import DONE from './../../../images/done.png';
 
 const columns = [
@@ -87,18 +90,12 @@ const  TransactionsHistory = ({address}) => {
     const [transactions, setTransactions] = useState([{}]);
     const [allTransactions, setAllTransactions] = useState([{}]);
 
-    const[transactionDetails, setTransactionDetails] = useState({contractData: {}, });
-    const [hash, setHash] = useState("");
-    const [ownerAddress, setOwnerAddress] = useState("");
-    const [toAddress, setToAddress] = useState("");
-    const [amount, setAmount] = useState("");
-    const [date, setDate] = useState("");
+    const[transactionDetails, setTransactionDetails] = useState({contractData: {}, tokenInfo: {}, });
 
     const theme = useTheme();
-    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-    useEffect(async () => {
-        await retrieveTransactions(address);
+    useEffect(() => {
+        retrieveTransactions(address);
     }, [address]);
 
     const handleChangePage = (event, newPage) => {
@@ -126,7 +123,7 @@ const  TransactionsHistory = ({address}) => {
             let row = [];
             await data.map(value => {
                 //console.log(value);
-                row.push(createData(value.hash, value.contractData.amount, timeConverter(value.timestamp), value.block, value.contractData.tokenInfo.tokenAbbr));
+                row.push(createData(value.hash, value.toAddress === address ? value.contractData.amount : - value.contractData.amount, timeConverter(value.timestamp), value.toAddress === address ? <Chip label="INGRESO" color="primary" /> : <Chip label="EGRESO" color="secondary" />, value.tokenInfo.tokenAbbr));
             })
             await setTransactions(row);
             console.log(data);
@@ -162,7 +159,7 @@ const  TransactionsHistory = ({address}) => {
                                     </TableCell>
                                 ))}
                             </TableRow>
-                        </TableHead>
+                        </TableHead>      
                         <TableBody>
                             {transactions.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
                                 return (
@@ -171,7 +168,7 @@ const  TransactionsHistory = ({address}) => {
                                             const value = row[column.id];
                                             return (
                                                 <TableCell key={column.id} align={column.align}>
-                                                    {column.id !== "hash" ? column.format && typeof value === 'number' ? column.format(value) : value : <a onClick={e => onClickTransactionDetails(e.target.innerText)}>{value}</a>}
+                                                    {column.id !== "hash" ? column.format && typeof value === 'number' ? column.format(value) : value : <a className="btn btn-link" onClick={e => onClickTransactionDetails(e.target.innerText)}>{value}</a>}
                                                 </TableCell>
                                             );
                                         })}

@@ -153,6 +153,12 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                             billing_details: {
                                 name: getStates('name') + " " + getStates('lastname'),
                                 email,
+                                address: {
+                                    state: getStates('stateLocation'),
+                                    country: getStates('country'),
+                                    city: getStates('city'),
+                                    line1: getStates('address')
+                                }
                             },
                         },
                     })// Stripe.js will open a modal to display the OXXO voucher to your customer
