@@ -123,7 +123,7 @@ const  TransactionsHistory = ({address}) => {
             let row = [];
             await data.map(value => {
                 //console.log(value);
-                row.push(createData(value.hash, value.toAddress === address ? value.contractData.amount : - value.contractData.amount, timeConverter(value.timestamp), value.toAddress === address ? <Chip label="INGRESO" color="primary" /> : <Chip label="EGRESO" color="secondary" />, value.tokenInfo.tokenAbbr));
+                row.push(createData(value.hash, value.toAddress === address ? value.contractData.amount : - value.contractData.amount, timeConverter(value.timestamp), value.toAddress === address ? <Chip label="RECIBIDO" color="primary" /> : <Chip label="ENVIADO" color="secondary" />, value.tokenInfo.tokenAbbr));
             })
             await setTransactions(row);
             console.log(data);

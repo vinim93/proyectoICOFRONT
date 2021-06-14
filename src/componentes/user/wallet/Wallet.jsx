@@ -375,7 +375,7 @@ const Wallet = () => {
 
                                                             <div className="row mt-5 px-md-5">
                                                                 <div className="col-12 px-md-5">
-                                                                    <Button fullWidth variant="contained" size="large" type="submit" color="primary">
+                                                                    <Button fullWidth variant="contained" size="large" type="submit" style={{backgroundColor: "#0655af", color: "white"}}>
                                                                         ENVIAR
                                                                     </Button>
                                                                 </div>

@@ -49,6 +49,9 @@ const Navigation = () => {
         setAnchorEl(null);
         console.log(e);
         switch (e) {
+            case "index":
+                history.push("./");
+                break;
             case "profile":
                 history.push("./Profile");
                 break;
@@ -64,7 +67,7 @@ const Navigation = () => {
         if(logged) {
 
             return (
-                <nav className="navbar navbar-expand-lg navbar-light fixed-top bg-light" id="navbar">
+                <nav className="navbar navbar-expand-lg navbar-light fixed-top " id="navbar">
                     <div className="container-fluid">
                         <NavLink className="navbar-brand navegacion  " to="/">
                             <img className="  " src={logonav}/>
@@ -90,7 +93,7 @@ const Navigation = () => {
                             </a>
 
                             <div>
-                                <Button aria-controls="simple-menu" variant="contained" color="primary" aria-haspopup="true" onClick={handleClick2}>
+                                <Button aria-controls="simple-menu" variant="contained" style={{backgroundColor: "#0655af", color: "white"}} aria-haspopup="true" onClick={handleClick2}>
                                     {currentUser ? currentUser.email : "Invitado"} <ExpandMoreIcon />
                                 </Button>
                                 <Menu
@@ -100,6 +103,7 @@ const Navigation = () => {
                                     open={Boolean(anchorEl)}
                                     onClose={handleClose}
                                 >
+                                    <MenuItem id="index" onClick={e => handleClose(e.target.id)}>Inicio</MenuItem>
                                     <MenuItem id="profile" onClick={e => handleClose(e.target.id)}>Perfil</MenuItem>
                                     <MenuItem id="settings" onClick={e => handleClose(e.target.id)}>Ajustes</MenuItem>
                                     <MenuItem id="logout" onClick={e => handleClose(e.target.id)}>Cerrar sesión</MenuItem>

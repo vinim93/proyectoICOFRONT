@@ -8,23 +8,23 @@ const Header = ({tokensNumber}) => {
     //console.log(tokensNumber);
     return (
         <>
-            <div className="header pb-8 pt-5 pt-md-8" style={{backgroundColor: "#ced4da"}}>
+            <div className="header pb-8 pt-5 pt-md-8" style={{backgroundColor: "#ffffff"}}>
                 <Container fluid>
                     <div className="header-body">
                         {/* Card stats */}
                         <Row>
                             <Col lg="6" xl="6">
-                                <Card className="card-stats mb-4 mb-xl-0">
+                                <Card className="card-stats mb-4 mb-xl-0 bg-gradient-default">
                                     <CardBody>
                                         <Row>
                                             <div className="col">
                                                 <CardTitle
                                                     tag="h6"
-                                                    className="text-uppercase text-muted mb-0"
+                                                    className="text-uppercase text-muted mb-0 text-light"
                                                 >
                                                     Número de SUN tokens
                                                 </CardTitle>
-                                                <span className="h5 font-weight-bold mb-0 text-dark">
+                                                <span className="h5 font-weight-bold mb-0 text-light">
                                                      {tokensNumber.toString().slice(0, tokensNumber.toString().length-6) + "." + tokensNumber.toString().slice(tokensNumber.toString().length-6)}
                                                 </span>
                                             </div>
@@ -38,17 +38,17 @@ const Header = ({tokensNumber}) => {
                                 </Card>
                             </Col>
                             <Col lg="6" xl="6">
-                                <Card className="card-stats mb-4 mb-xl-0">
+                                <Card className="card-stats mb-4 mb-xl-0 bg-gradient-default">
                                     <CardBody>
                                         <Row>
                                             <div className="col">
                                                 <CardTitle
                                                     tag="h6"
-                                                    className="text-uppercase text-muted mb-0"
+                                                    className="text-uppercase text-muted mb-0 text-light"
                                                 >
                                                     Costo total (USD)
                                                 </CardTitle>
-                                                <span className="h5 font-weight-bold mb-0 text-dark">
+                                                <span className="h5 font-weight-bold mb-0 text-light">
                                                     {tokensNumber.toString().slice(0, tokensNumber.toString().length-6) + "." + tokensNumber.toString().slice(tokensNumber.toString().length-6)}
                                                 </span>
                                             </div>

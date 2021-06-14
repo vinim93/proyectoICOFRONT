@@ -28,6 +28,7 @@
     .show > .nav-link {
         color: $nav-pills-link-active-color;
         background-color: $nav-pills-link-active-bg;
+        border: 1px solid white;
     }
 
     @include media-breakpoint-down(xs) {
