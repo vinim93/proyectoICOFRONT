@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Celsym from "../../images/celsym.svg";
 import circulo1 from "../../images/circulo1.svg";
 import Celhawk from "../../images/celhawk.svg";
@@ -15,13 +15,22 @@ import Engrane5 from "../../images/engrane5.svg";
 import Engrane6 from "../../images/engrane6.svg";
 import Engrane7 from "../../images/engrane7.svg";
 import Zoom from 'react-reveal/Zoom';
-
-
 import {useTranslation} from 'react-i18next';
+import {useHistory} from "react-router-dom";
+import {useAuth} from "../contexts/AuthContext";
 
 const Proyectos = () => {
 
     const {t} = useTranslation();
+    const {currentUser, logout} = useAuth();
+    const history = useHistory();
+
+    useEffect(() => {
+        try {
+            let email = currentUser.email;
+            history.push("/");
+        } catch (e) {}
+    }, []);
 
     return (
         <div>

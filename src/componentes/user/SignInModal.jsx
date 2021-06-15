@@ -77,8 +77,8 @@ const SignInModal = () => {
         let provider = new firebase.auth.GoogleAuthProvider();
         await provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
         auth.languageCode = 'es';
-        //await auth.signInWithRedirect(provider);
-        auth.signInWithPopup(provider).then(async (result) => {
+        await auth.signInWithRedirect(provider);
+        await auth.getRedirectResult().then(async (result) => {
             console.log(result);
             let user = result.user;
             console.log(user.uid);
