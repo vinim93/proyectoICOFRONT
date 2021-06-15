@@ -59,6 +59,7 @@ const Navigation = () => {
                 handleLogout();
                 break;
             case "settings":
+                history.push("./Settings");
                 break;
         }
     };
