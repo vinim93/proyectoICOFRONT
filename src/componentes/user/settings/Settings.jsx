@@ -29,8 +29,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Settings() {
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
-    const {currentUser, logout} = useAuth();
+    const {currentUser, getAuthType, logout, credential} = useAuth();
     const [logged, setLogged] = useState(false);
+    const [hasPassword, setHasPassword] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
@@ -42,13 +43,26 @@ export default function Settings() {
                 history.push("/Home");
             } else {
                 setLogged(true);
-                history.push("/Profile");
+                history.push("/Settings");
+                console.log(currentUser.providerData);
+                verifyAuthType(currentUser.providerData);
             }
         } catch (e) {
             history.push("/Home");
             setLogged(false);
         }
     }, []);
+
+
+    const verifyAuthType = data => {
+        data.map(value => {
+            console.log(value.providerId);
+            if (value.providerId === "password"){
+                console.log("SI TIENE PASSWORD");
+                setHasPassword(true);
+            }
+        });
+    }
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
@@ -66,7 +80,7 @@ export default function Settings() {
                     <Typography className={classes.secondaryHeading}>Cambia tu contraseña</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <ChangePassword />
+                    {hasPassword ? <ChangePassword /> : <h5 style={{marginLeft: 40}}>No puedes cambiar tu contraseña porque elegiste iniciar sesión con Google</h5>}
                 </AccordionDetails>
             </Accordion>
             <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
