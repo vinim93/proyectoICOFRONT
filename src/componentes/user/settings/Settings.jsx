@@ -68,7 +68,7 @@ export default function Settings() {
     };
 
     return (
-        <div className="mt-5 pt-5 contenedor-profile">
+        <div className="mt-5 pt-5 contenedor-profile px-2 px-md-5">
             <Accordion className="mt-3" expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
