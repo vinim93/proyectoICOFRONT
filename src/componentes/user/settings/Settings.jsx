@@ -6,7 +6,6 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChangePassword from "./ChangePassword";
-import DeleteAccount from "./DeleteAccount";
 import {useAuth} from "../../contexts/AuthContext";
 import {useHistory} from "react-router-dom";
 
@@ -83,22 +82,6 @@ export default function Settings() {
                     {hasPassword ? <ChangePassword /> : <h5 style={{marginLeft: 40}}>No puedes cambiar tu contraseña porque elegiste iniciar sesión con Google</h5>}
                 </AccordionDetails>
             </Accordion>
-            <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel2bh-content"
-                    id="panel2bh-header"
-                >
-                    <Typography className={classes.heading}>Eliminar cuenta</Typography>
-                    <Typography className={classes.secondaryHeading}>
-                        Elimina tu cuenta de forma permanente
-                    </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <DeleteAccount />
-                </AccordionDetails>
-            </Accordion>
-
         </div>
     );
 }
