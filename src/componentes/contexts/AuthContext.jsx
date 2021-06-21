@@ -10,6 +10,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState(true);
+    const [credential, setCredential] = useState();
 
     const signup = (email, password) => {
         return auth.createUserWithEmailAndPassword(email, password);
@@ -27,6 +28,10 @@ export const AuthProvider = ({ children }) => {
         return auth.sendPasswordResetEmail(email);
     }
 
+    const getAuthType = async () => {
+        await auth.getRedirectResult().then(r => console.log(r));
+    }
+
     const updateEmail = (email) => {
         return currentUser.updateEmail(email);
     }
@@ -39,18 +44,21 @@ export const AuthProvider = ({ children }) => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user);
             setLoading(false);
+            setCredential(user);
         })
         return unsubscribe;
     }, []);
 
     const value = {
+        credential,
         currentUser,
         login,
         signup,
         logout,
         resetPassword,
         updateEmail,
-        updatePassword
+        updatePassword,
+        getAuthType
     }
 
     return (
