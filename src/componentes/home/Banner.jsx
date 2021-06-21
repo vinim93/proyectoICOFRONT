@@ -1,7 +1,7 @@
 import React, {useEffect, Component } from 'react';
 import ParticlesBackground from './ParticlesBackground.js';
 import ReactDOM from "react-dom";
-import monedag from "../../images/moneda2.gif";
+import monedag from "../../images/moneda2.webp";
 import monedafinal from "../../images/monedafinal.png";
 import 'bootstrap/dist/css/bootstrap.css';
 import Zoom from 'react-reveal/Zoom';
