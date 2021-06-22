@@ -14,8 +14,11 @@ import Input from '@material-ui/core/Input';
 import passwordValidator from "password-validator";
 import swal2 from "@sweetalert/with-react";
 import swal from "sweetalert";
-import {useHistory, useParams} from "react-router-dom";
+import {useHistory, useParams, Prompt} from "react-router-dom";
 import axios from "axios";
+import firebase from "firebase";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Backdrop from "@material-ui/core/Backdrop";
 
 
 const Recovery = () => {
@@ -26,12 +29,17 @@ const Recovery = () => {
     });
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
+    const [lastPassword, setLastPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [repeatPassword, setRepeatPassword] = useState("");
+    const [open, setOpen] = useState(false);
     const [ready, setReady] = useState(false);
     const history = useHistory();
-    const {id} = useParams();
+    //const {id} = useParams();
 
     useEffect(() => {
-        verifyToken(id);
+        //verifyToken(id);
+        emailLinkComplete();
     }, []);
 
     const verifyToken = async token => {
@@ -40,7 +48,7 @@ const Recovery = () => {
                 resetPasswordToken: token
             },
         }).then(response => {
-            if(response.data.message === "token-ok"){
+            if (response.data.message === "token-ok") {
                 console.log(response.data.uid);
                 setReady(true);
             } else {
@@ -52,104 +60,158 @@ const Recovery = () => {
         })
     }
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        if (password !== "" && password2 !== "") {
-            let schema = new passwordValidator();
-            schema
-                .is().min(8)
-                .is().max(100)
-                .has().uppercase()
-                .has().lowercase()
-                .has().digits(1)
-                .has().not().spaces();
+    const emailLinkComplete = () => {
+        // [START email_link_complete]
+        // Confirm the link is a sign-in with email link.
+        if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
+            // Additional state parameters can also be passed via URL.
+            // This can be used to continue the user's intended action before triggering
+            // the sign-in operation.
+            // Get the email if available. This should be available if the user completes
+            // the flow on the same device where they started it.
+            let email = window.localStorage.getItem('emailForSignIn');
+            if (!email) {
+                // User opened the link on a different device. To prevent session fixation
+                // attacks, ask the user to provide the associated email again. For example:
+                email = window.prompt('Please provide your email for confirmation');
+            }
+            // The client SDK will parse the code from the link for you.
+            firebase.auth().signInWithEmailLink(email, window.location.href)
+                .then((result) => {
+                    // Clear email from storage.
+                    window.localStorage.removeItem('emailForSignIn');
+                    console.log("SESION INICIADA?");
+                    console.log(result);
+                    // You can access the new user via result.user
+                    // Additional user info profile not available via:
+                    // result.additionalUserInfo.profile == null
+                    // You can check if the user is new or existing:
+                    // result.additionalUserInfo.isNewUser
+                })
+                .catch((error) => {
+                    // Some error occurred, you can inspect the code: error.code
+                    // Common errors could be invalid email and invalid or expired OTPs.
+                });
+        }
+        // [END email_link_complete]
+    }
 
-            if (schema.validate(password)) {
-                console.log("FORMATO VALIDO");
-                if(password === password2){
-                    swal({
-                        title: "Contraseña cambiada!",
-                        text: "Inicia sesión en tu cuenta con tu nueva contraseña",
-                        icon: "success",
-                        button: "Iniciar sesión!",
-                        closeOnClickOutside: false
-                    }).then(confirm => {
-                        if(confirm){
-                            //CAMBIAR PASS EN FIRESTORE
-                            //ENVIAR AL LOGIN
-                            history.push("/Home");
-                            document.getElementById("signInButton").click();
-                        }
+    const clearInputs = () => {
+        setNewPassword("");
+        setRepeatPassword("");
+    }
+
+    const handleChangePassword = async (e) => {
+        e.preventDefault();
+        setOpen(true);
+        try {
+            if (password === password2) {
+                let schema = new passwordValidator();
+                schema
+                    .is().min(8)
+                    .is().max(100)
+                    .has().uppercase()
+                    .has().lowercase()
+                    .has().digits(1)
+                    .has().not().spaces();
+
+                if (schema.validate(password)) {
+                    let user = firebase.auth().currentUser;
+                    await user.updatePassword(password).then(() => {
+                        clearInputs();
+                        swal({
+                            title: "Contraseña cambiada exitosamente",
+                            text: "Ahora puedes iniciar sesión con tu nueva contraseña",
+                            icon: "success",
+                            button: "¡Entendido!",
+                            closeOnClickOutside: false
+                        }).then(confirm => {
+                            if (confirm) {
+                                history.push("/");
+                            }
+                        });
                     });
                 } else {
-                    swal({
-                        title: "Las contraseñas no coinciden",
-                        text: "Asegurate de escribir las mismas contraseñas en los campos correspondientes!",
-                        icon: "warning",
-                        button: "Entendido!",
-                        closeOnClickOutside: false
-                    });
+                    swal2({
+                        text: "Tu contraseña debe cumplir con los siguientes requisitos",
+                        closeOnClickOutside: false,
+                        buttons: {
+                            cancel: "Entendido",
+                        },
+                        content: (
+                            <div className="container">
+                                <div className="row">
+                                    <ul>
+                                        {
+                                            schema.validate(newPassword, {list: true}).map((element, index) => {
+                                                switch (element) {
+                                                    case 'min':
+
+                                                        return (
+                                                            <li key={index} className="text-dark text-justify"><p
+                                                                className="text-danger">Mínimo 8 caracteres</p></li>
+                                                        )
+
+                                                    case 'max':
+                                                        return (
+                                                            <li key={index} className="text-dark text-justify"><p
+                                                                className="text-danger">Máximo 100 caracteres</p></li>
+                                                        )
+
+                                                    case 'uppercase':
+                                                        return (
+                                                            <li key={index} className="text-dark text-justify"><p
+                                                                className="text-danger">Mínimo una letra mayuscula</p>
+                                                            </li>
+                                                        )
+
+                                                    case 'lowercase':
+                                                        return (
+                                                            <li key={index} className="text-dark text-justify"><p
+                                                                className="text-danger">Mínimo 1 letra minuscula</p>
+                                                            </li>
+                                                        )
+
+                                                    case 'spaces':
+                                                        return (
+                                                            <li key={index} className="text-dark text-justify"><p
+                                                                className="text-danger">No debe contener espacios</p>
+                                                            </li>
+                                                        )
+
+                                                    case 'digits':
+                                                        return (
+                                                            <li key={index} className="text-dark text-justify"><p
+                                                                className="text-danger">Mínimo 1 número</p></li>
+                                                        )
+
+                                                }
+
+                                            })
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        )
+                    })
                 }
             } else {
-                swal2({
-                    text: "Tu contraseña debe cumplir con los siguientes requisitos",
-                    closeOnClickOutside: false,
-                    buttons: {
-                        cancel: "Entendido",
-                    },
-                    content: (
-                        <div className="container">
-                            <div className="row">
-                                <ul>
-                                    {
-                                        schema.validate(password, {list: true}).map((element, index) => {
-                                            console.log(element);
-                                            switch(element) {
-                                                case 'min':
-
-                                                    return(
-                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">Mínimo 8 caracteres</p></li>
-                                                    )
-
-                                                case 'max':
-                                                    return(
-                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">Máximo 100 caracteres</p></li>
-                                                    )
-
-                                                case 'uppercase':
-                                                    return(
-                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">Mínimo una letra mayuscula</p></li>
-                                                    )
-
-                                                case 'lowercase':
-                                                    return(
-                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">Mínimo 1 letra minuscula</p></li>
-                                                    )
-
-                                                case 'spaces':
-                                                    return(
-                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">No debe contener espacios</p></li>
-                                                    )
-
-                                                case 'digits':
-                                                    return(
-                                                        <li key={index} className="text-dark text-justify"><p className="text-danger">Mínimo 1 número</p></li>
-                                                    )
-
-                                            }
-
-                                        })
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                    )
-                })
+                swal({
+                    title: "Las contraseñas no coinciden",
+                    text: "Asegurate de que las contraseñas nuevas sean las mismas",
+                    icon: "info",
+                    button: "¡Entendido!",
+                    closeOnClickOutside: false
+                });
             }
-        } else {
-            //LLENA TODOS LOS CAMPOS
+        } catch (e) {
+            console.log("NO ES LA PASS");
+            console.log(e);
         }
+        setOpen(false);
+
     }
+
 
     const handleClickShowPassword = (id) => {
         if (id === 1) {
@@ -169,7 +231,7 @@ const Recovery = () => {
             <Card className={classes.root}>
 
                 <CardContent>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleChangePassword}>
                         <div className="row">
 
                             <div className="col-12">
@@ -238,6 +300,9 @@ const Recovery = () => {
                 <CardActions>
                 </CardActions>
             </Card>
+            <Backdrop className={classes.backdrop} open={open}>
+                <CircularProgress color="inherit"/>
+            </Backdrop>
         </div>
 
     );
@@ -256,5 +321,9 @@ const useStyles = makeStyles((theme) => ({
     },
     textField: {
         width: '25ch',
+    },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
     },
 }));

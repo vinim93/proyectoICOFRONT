@@ -5,7 +5,7 @@ import "./css/styles.css";
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
-
+import firebase from "firebase";
 
 const PasswordRecoveryModal = () => {
 
@@ -77,6 +77,42 @@ const PasswordRecoveryModal = () => {
         }
     }
 
+    const sendRecoveryTwo = async (e) => {
+        e.preventDefault();
+        let actionCodeSettings = {
+            // URL you want to redirect back to. The domain (www.example.com) for this
+            // URL must be in the authorized domains list in the Firebase Console.
+            url: 'https://localhost:3000/Recovery',
+            // This must be true.
+            handleCodeInApp: true,
+
+        };
+
+        await firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+            .then((r) => {
+                swal({
+                    title: "Correo enviado",
+                    text: "Se envió un correo de recuperación de cuenta",
+                    icon: "success",
+                    button: "Entendido!",
+                    closeOnClickOutside: false
+                });
+                // The link was successfully sent. Inform the user.
+                // Save the email locally so you don't need to ask the user for it again
+                // if they open the link on the same device.
+                window.localStorage.setItem('emailForSignIn', email);
+                // ...
+            })
+            .catch((error) => {
+                let errorCode = error.code;
+                let errorMessage = error.message;
+                console.log(errorCode, errorMessage);
+                // ...
+            });
+
+
+    }
+
     return (
 
         <div className="modal fade " id="recoveryModal" data-backdrop="static" data-keyboard="false"
@@ -93,7 +129,7 @@ const PasswordRecoveryModal = () => {
 
                     <div className="modal-body col-12 pl-xl-5 pr-xl-5">
 
-                        <form className="form" onSubmit={submitRecovery}>
+                        <form className="form" onSubmit={sendRecoveryTwo}>
                             <div className="container mt-5 pl-xl-5 pr-xl-5">
                                 <div className="row pl-xl-5 pr-xl-5">
 

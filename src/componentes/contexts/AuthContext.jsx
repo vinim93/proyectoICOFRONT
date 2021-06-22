@@ -42,6 +42,7 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
+            console.log("ESTAMOS EN CONTEXT = ", user);
             setCurrentUser(user);
             setLoading(false);
             setCredential(user);

@@ -10,6 +10,7 @@ import PurchaseHistory from "./PurchaseHistory";
 import CheckConnection from "./CheckConnection";
 import NumberFormat from "react-number-format";
 import axios from "axios";
+import firebase from "firebase";
 
 const Dashboard = () => {
     const {currentUser, logout} = useAuth();
@@ -60,6 +61,7 @@ const Dashboard = () => {
             setLogged(false);
         }
     },[]);
+
 
     const renderData = () => {
         if(logged && Object.keys(userInfo).length !== 0){

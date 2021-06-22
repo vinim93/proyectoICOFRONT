@@ -13,7 +13,7 @@ const Header = ({tokensNumber}) => {
                     <div className="header-body">
                         {/* Card stats */}
                         <Row>
-                            <Col lg="6" xl="6">
+                            <Col lg="12" xl="12">
                                 <Card className="card-stats mb-4 mb-xl-0 bg-gradient-default">
                                     <CardBody>
                                         <Row>
@@ -31,30 +31,6 @@ const Header = ({tokensNumber}) => {
                                             <Col className="col-auto">
                                                 <div className="icon icon-shape bg-yellow text-white rounded-circle shadow">
                                                     <i className="fas fa-users" />
-                                                </div>
-                                            </Col>
-                                        </Row>
-                                    </CardBody>
-                                </Card>
-                            </Col>
-                            <Col lg="6" xl="6">
-                                <Card className="card-stats mb-4 mb-xl-0 bg-gradient-default">
-                                    <CardBody>
-                                        <Row>
-                                            <div className="col">
-                                                <CardTitle
-                                                    tag="h6"
-                                                    className="text-uppercase text-muted mb-0 text-light"
-                                                >
-                                                    Costo total (USD)
-                                                </CardTitle>
-                                                <span className="h5 font-weight-bold mb-0 text-light">
-                                                    {tokensNumber.toString().slice(0, tokensNumber.toString().length-6) + "." + tokensNumber.toString().slice(tokensNumber.toString().length-6)}
-                                                </span>
-                                            </div>
-                                            <Col className="col-auto">
-                                                <div className="icon icon-shape bg-info text-white rounded-circle shadow">
-                                                    <i className="fas fa-percent" />
                                                 </div>
                                             </Col>
                                         </Row>

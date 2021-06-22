@@ -46,7 +46,7 @@ const App = () => {
                         <Route path="/" exact component={Dashboard} />
                         <Route path={"/Profile"} exact component={Profile}/>
                         <Route path={"/Checkout"} component={Checkout}/>
-                        <Route path="/Recovery/:id">
+                        <Route path="/Recovery">
                             <Recovery />
                         </Route>
                         <Route path={"/Wallet"} component={Wallet}/>
