@@ -13,7 +13,7 @@ import Button from '@material-ui/core/Button';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const stripePromise = loadStripe('pk_test_51IUDGUD9LA3P3AmKfFAk32py2vEcZs0LEw7FWhU8Ebp1YgNqJK09LkJyo11b5dCXWk6ZluCo3JBmTTdbSTc61EKq00EqsKyM49');
+const stripePromise = loadStripe('pk_live_51J5fXvL450xzXzaBHYnxKj1y6CnNv7XEH6VpEMDq1gfjSwdkEFp1uAswr7U85f8nAd12HKCAGGeW4Xm6mYViPeoj00vAOqyIKh');
 
 const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
     const classes = useStyles();

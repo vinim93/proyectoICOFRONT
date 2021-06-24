@@ -60,7 +60,7 @@ const Dashboard = () => {
             history.push("/Home");
             setLogged(false);
         }
-    },[]);
+    },[currentUser]);
 
 
     const renderData = () => {
@@ -75,7 +75,7 @@ const Dashboard = () => {
 
                         <div className="col-12 d-flex justify-content-center">
                             <h1>
-                                {amount.toString().slice(0, amount.toString().length-6) + "." + amount.toString().slice(amount.toString().length-6) || "Cargando..."}
+                                {signinEmail ? (amount.toString().slice(0, amount.toString().length-6) + "." + amount.toString().slice(amount.toString().length-6)) : "Invitado"}
                                 <br/>SUNIS</h1>
                         </div>
 
@@ -89,7 +89,7 @@ const Dashboard = () => {
                         </div>
 
                         <DollarMarktComponent />
-                        <PaymentComponent email={currentUser.email} userData={uid} allData={userInfo} />
+                        <PaymentComponent email={signinEmail} userData={uid} allData={userInfo} />
 
                     </div>
 

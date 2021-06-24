@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect, createContext } from "react"
 import { auth } from "../config/firebase"
+import {useHistory} from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -11,6 +12,7 @@ export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState(true);
     const [credential, setCredential] = useState();
+    const history = useHistory();
 
     const signup = (email, password) => {
         return auth.createUserWithEmailAndPassword(email, password);
@@ -46,7 +48,8 @@ export const AuthProvider = ({ children }) => {
             setCurrentUser(user);
             setLoading(false);
             setCredential(user);
-        })
+
+        });
         return unsubscribe;
     }, []);
 
