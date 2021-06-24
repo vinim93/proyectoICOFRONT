@@ -65,9 +65,6 @@ const Wallet = () => {
             let id = currentUser.uid;
             setUid(id);
             getUserData(id);
-            //console.log(userInfo);
-            //console.log("HOLA");
-            //console.log("ADIOS");
             setLogged(true);
             getData(id);
         } catch (e) {
@@ -86,7 +83,6 @@ const Wallet = () => {
                 }
             });
         } catch (e) {
-            console.log("Wallet.jsx - getUserData()" + e);
         }
     }
 
@@ -96,15 +92,12 @@ const Wallet = () => {
                 uid: id
             }
         }).then(response => {
-            //console.log("LISTO", response.data.tokenAddress);
-            //console.log("LISTO2", response.data.tokensArray);
             setTokenAddress(response.data.tokenAddress);
             if(response.data.tokensArray){
                 setTokensArray(response.data.tokensArray)
                 setAmount(response.data.tokensArray.find(element => element.key === "1003948").value);
             }
         }).catch(e => {
-            console.log(e);
         })
     }
 
@@ -132,7 +125,6 @@ const Wallet = () => {
             }
 
 
-            console.log(response);
         } catch (e) {
             switch (e.message || e){
                 case "success":
@@ -168,7 +160,6 @@ const Wallet = () => {
         const [facing2, setFacing]=useState("near");
 
         const handleError = (e) => {
-            console.log(e);
         }
 
         if(value){
@@ -183,7 +174,6 @@ const Wallet = () => {
                         style={{width: 350}}
                         onError={handleError}
                         onScan={data => {
-                            console.log(data);
                             if(data){
                                 setValue(data)
                             }
@@ -209,7 +199,6 @@ const Wallet = () => {
                 return number;
             }
         } catch (e) {
-            console.log(e);
         }
 
     }

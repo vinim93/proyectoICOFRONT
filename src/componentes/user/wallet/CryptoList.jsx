@@ -72,7 +72,6 @@ export default function CryptoList({tokensArray}) {
                             return (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                                     {columns.map((column) => {
-                                        //console.log(row);
                                         const value1 = {...row, ...tokensArrayExtra[row.key]}
                                         const value = value1[column.id];
                                         return (

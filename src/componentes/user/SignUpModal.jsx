@@ -86,7 +86,7 @@ const SignUpModal = () => {
                 window.location.reload();
                 clearStates();
             }).catch((error) => {
-                console.log(error);
+
             });
             /*============GUARDAR DATOS EN FIRESTORE===========*/
         } else {
@@ -129,7 +129,7 @@ const SignUpModal = () => {
                 setLoading(false);
             }).catch((error) => {
                 setLoading(false);
-                console.log(error);
+
             });
             /*============GUARDAR DATOS EN FIRESTORE===========*/
         }
@@ -141,7 +141,7 @@ const SignUpModal = () => {
             result = doc.exists ? "exists" : "not-exists";
         }).catch(error => {
             result = "error";
-            console.log("ERROR AL BUSCAR EL UID");
+
         });
         return result;
     }
@@ -182,7 +182,7 @@ const SignUpModal = () => {
                                     user.user.sendEmailVerification().then(r => {
                                         saveDataInFirestore(user.user.uid);
                                     }, (error) => {
-                                        console.log(error.code, error.message);
+
                                     })
 
                                     auth.signOut();
@@ -191,7 +191,7 @@ const SignUpModal = () => {
                                 setLoading(false);
                                 let errorCode = error.code;
                                 let errorMessage = error.message;
-                                console.log(errorCode, errorMessage);
+
 
                                 /*============== EL CORREO YA SE USA POR OTRA CUENTA ==================*/
                                 if (errorCode === "auth/email-already-in-use") {
@@ -252,7 +252,7 @@ const SignUpModal = () => {
                                 <ul>
                                     {
                                         schema.validate(password, {list: true}).map((element, index) => {
-                                            console.log(element);
+
                                             switch (element) {
                                                 case 'min':
 
@@ -320,9 +320,9 @@ const SignUpModal = () => {
         auth.languageCode = 'es';
         await auth.signInWithRedirect(provider);
         await auth.getRedirectResult().then(async (result) => {
-            console.log(result);
+
             let user = result.user;
-            console.log(user.uid);
+
             if (user.emailVerified) {
 
                 let userStatus = await searchDataInFirestore(user.uid);
@@ -374,7 +374,7 @@ const SignUpModal = () => {
                         privateKey: ""
                     });
                 }, (error) => {
-                    console.log(error.code, error.message);
+
                 });
                 auth.signOut();
             }
@@ -382,7 +382,7 @@ const SignUpModal = () => {
             auth.signOut();
             let errorCode = error.code;
             let errorMessage = error.message;
-            console.log(errorCode, errorMessage);
+
         })
 
     }

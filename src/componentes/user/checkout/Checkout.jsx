@@ -61,7 +61,7 @@ export default function Checkout({uid, email, allData}) {
                 }
             });
         } catch (e) {
-            console.log("NO AGARRA LA API DE INTERCAMBIO DE MONEDA = ", e);
+
         }
     }
 
@@ -135,7 +135,7 @@ export default function Checkout({uid, email, allData}) {
                             swal("Monto inválido", "Debes pagar la mínima cantidad de $1 USD", "warning");
                         }
                     } else if (currencyType === "MX") {
-                        console.log(typeof currency);
+
                         if (parseFloat(currency) >= usdToMxn.toFixed(2)) {
                             if (parseFloat(currency) <= usdToMxn.toFixed(2) * 1000) {
                                 setActiveStep(activeStep + 1);

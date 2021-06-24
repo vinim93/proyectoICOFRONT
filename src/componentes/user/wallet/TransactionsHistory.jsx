@@ -122,21 +122,20 @@ const  TransactionsHistory = ({address}) => {
             let data = result.data.data;
             let row = [];
             await data.map(value => {
-                //console.log(value);
+
                 row.push(createData(value.hash, value.toAddress === address ? value.contractData.amount : - value.contractData.amount, timeConverter(value.timestamp), value.toAddress === address ? <Chip label="RECIBIDO" color="primary" /> : <Chip label="ENVIADO" color="secondary" />, value.tokenInfo.tokenAbbr));
             })
             await setTransactions(row);
-            console.log(data);
+
             await setAllTransactions(data);
-            //console.log(result.data.data);
+
         } catch (e) {
-            console.log(e);
+
         }
     }
 
     const onClickTransactionDetails = (hash) => {
         let result = allTransactions.find(element => element.hash === hash);
-        console.log(result);
         setTransactionDetails(result);
         handleClickOpen();
     }

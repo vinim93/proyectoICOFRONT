@@ -48,7 +48,6 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                 if (!error) {
                     setLoading(true);
                     const {id} = paymentMethod;
-                    console.log("TIPO DE DIVISA = " + (currencyType.trim()==="MX" ? "MXN" : "USD"));
                     try {
                         const {data} = await axios.post('https://sunshine-ico.uc.r.appspot.com/api/checkout', {
                             id,
@@ -60,11 +59,8 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                                 mxnToUsd: getStates("mxnToUsd")
                             }
                         });
-                        console.log(data);
-                        console.log(getStates("paymentDone"))
                         if (data.codeResponse === 'succeeded') {
                             handleNext(true);
-                            console.log(getStates("paymentDone"));
                         } else if (data.codeResponse.code === 'card_declined') {
                             setOpen(false);
                             handleNext(false);
@@ -113,8 +109,6 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                     } catch (error) {
                         setOpen(false);
                         handleNext(false);
-                        console.log("MENSAJE");
-                        console.log(error);
                     }
                     setLoading(false);
                 } else {
@@ -130,10 +124,8 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
     }
 
     const buyTokenWithOxxo = async () => {
-        console.log("ENTRO A LA FUNCION");
         setOpen(true);
         try{
-            console.log("ENTRO AL TRY");
             const {data} = await axios.post('https://sunshine-ico.uc.r.appspot.com/create-payment-intent', {
                 id: "holaoxxo",
                 amount: getStates("currency"),
@@ -164,11 +156,9 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                     })// Stripe.js will open a modal to display the OXXO voucher to your customer
                     .then(function(result) {
                         // This promise resolves when the customer closes the modal
-                        console.log("EL USUARIO CERRO EL MODAL");
-                        console.log(result);
+
                         if (result.error) {
                             // Display error to your customer
-                            console.log(result.error);
                         }
                     });
                 handleNext(true);
@@ -177,10 +167,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
             }
 
         } catch (e) {
-            console.log("ERROR AL INTENTAR PAGAR CON OXXO, INFO: ");
-            console.log(e.code, e.message);
         }
-        console.log("AQUI YA DEBIO ACABAR LA FUNCION");
         setOpen(false);
     }
 

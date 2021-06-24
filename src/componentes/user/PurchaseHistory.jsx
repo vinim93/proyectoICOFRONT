@@ -174,7 +174,7 @@ export default function PurchaseHistory({uid}) {
                         }
                         elements.push(createData(id, tokens, price, date, paymentMethod));
                     } catch (e) {
-                        console.log(e.code);
+
                     }
                 });
                 setRows(elements);

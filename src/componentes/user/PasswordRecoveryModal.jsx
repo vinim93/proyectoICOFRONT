@@ -23,7 +23,7 @@ const PasswordRecoveryModal = () => {
             });
             sendMessage(response.data.codeResponse);
         } catch (e) {
-            console.log(e);
+
         }
         setLoading(false);
     }
@@ -66,7 +66,6 @@ const PasswordRecoveryModal = () => {
                 break;
 
             default:
-                console.log(res);
                 swal({
                     title: "Oops!",
                     text: "Ocurrio un error inesperado, recarga la página o intenta de nuevo más tarde",
@@ -106,7 +105,7 @@ const PasswordRecoveryModal = () => {
             .catch((error) => {
                 let errorCode = error.code;
                 let errorMessage = error.message;
-                console.log(errorCode, errorMessage);
+
                 // ...
             });
 

@@ -43,7 +43,6 @@ export default function Settings() {
             } else {
                 setLogged(true);
                 history.push("/Settings");
-                console.log(currentUser.providerData);
                 verifyAuthType(currentUser.providerData);
             }
         } catch (e) {
@@ -55,9 +54,7 @@ export default function Settings() {
 
     const verifyAuthType = data => {
         data.map(value => {
-            console.log(value.providerId);
             if (value.providerId === "password"){
-                console.log("SI TIENE PASSWORD");
                 setHasPassword(true);
             }
         });

@@ -38,10 +38,10 @@ const Dashboard = () => {
             }).then(response => {
                 setAmount(response.data.amount);
             }).catch(e => {
-                console.log(e);
+
             });
         } catch (e) {
-            console.log("Dashboard.jsx - getUserData()" + e);
+
         }
     }
 
@@ -55,7 +55,7 @@ const Dashboard = () => {
             history.push("/");
             getUserData(id);
         } catch (e) {
-            console.log("ACASO SERE YO SEÑOR?");
+
             setSigninEmail("");
             history.push("/Home");
             setLogged(false);

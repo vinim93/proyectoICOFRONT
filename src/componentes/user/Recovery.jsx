@@ -50,14 +50,14 @@ const Recovery = () => {
             },
         }).then(response => {
             if (response.data.message === "token-ok") {
-                console.log(response.data.uid);
+
                 setReady(true);
             } else {
-                console.log("No hay nada que mostrar");
+
                 setReady(false);
             }
         }).catch(e => {
-            console.log(e.data);
+
         })
     }
 
@@ -81,8 +81,6 @@ const Recovery = () => {
                 .then((result) => {
                     // Clear email from storage.
                     window.localStorage.removeItem('emailForSignIn');
-                    console.log("SESION INICIADA?");
-                    console.log(result);
                     // You can access the new user via result.user
                     // Additional user info profile not available via:
                     // result.additionalUserInfo.profile == null
@@ -206,8 +204,7 @@ const Recovery = () => {
                 });
             }
         } catch (e) {
-            console.log("NO ES LA PASS");
-            console.log(e);
+
         }
         setOpen(false);
 

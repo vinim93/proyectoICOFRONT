@@ -119,7 +119,7 @@ const Profile = () => {
                         case pngImage:
                             setFilePreview([URL.createObjectURL(e), "image"]);
                             setFileObject("image");
-                            console.log(e);
+
                             setFileFirestore(e);
                             break;
 
@@ -137,7 +137,7 @@ const Profile = () => {
                 swal("Archivo no válido", "Solo puedes subir un formato imagen o pdf", "error");
             }
         } catch (e) {
-            console.log(e);
+
         }
     }
 
@@ -221,7 +221,7 @@ const Profile = () => {
             });
 
         } catch (e) {
-            //console.log("Profile.jsx - getUserData()" + e);
+
         }
 
     }
@@ -236,7 +236,7 @@ const Profile = () => {
             });
             await setAuthToken("Bearer " + response.data.auth_token);
         } catch (e) {
-            //console.log(e);
+
         }
     }
 
@@ -249,7 +249,7 @@ const Profile = () => {
             });
             setCountriesAPI(response.data);
         } catch (e) {
-            //console.log(e);
+
         }
     }
 
@@ -262,7 +262,7 @@ const Profile = () => {
             });
             setStatesAPI(response.data);
         } catch (e) {
-            //console.log(e);
+
         }
     }
 
@@ -300,7 +300,7 @@ const Profile = () => {
                         let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                         setStates("setUploadValue", percentage);
                     }, error => {
-                        console.log(error);
+
                     }, () => {
                         storageRef.getDownloadURL().then(url => {
                             db.collection('credentials').doc(uid).update({

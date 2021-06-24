@@ -39,7 +39,7 @@ const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
                                         let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                                         setStates("setUploadValue", percentage);
                                     }, error => {
-                                        console.log(error);
+
                                     }, () => {
                                         storageRef.getDownloadURL().then(url => {
                                             db.collection('credentials').doc(uid).update({
@@ -64,7 +64,7 @@ const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
             }
 
         } catch (e) {
-            console.log("Profile.jsx - handleSubmit() -> " + e);
+
         }
     }
 

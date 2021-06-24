@@ -34,7 +34,7 @@ const SignInModal = () => {
             result = doc.exists ? "exists" : "not-exists";
         }).catch(error => {
             result = "error";
-            console.log("ERROR AL BUSCAR EL UID");
+
         });
         return result;
     }
@@ -66,7 +66,6 @@ const SignInModal = () => {
                 history.push("/");
                 window.location.reload();
             }).catch((error) => {
-                console.log(error);
             });
             /*============GUARDAR DATOS EN FIRESTORE===========*/
         }
@@ -79,14 +78,14 @@ const SignInModal = () => {
         auth.languageCode = 'es';
         await auth.signInWithRedirect(provider);
         await auth.getRedirectResult().then(async (result) => {
-            console.log(result);
+
             let user = result.user;
-            console.log(user.uid);
+
             if (user.emailVerified) {
-                console.log("VERIFICADO");
+
                 let userStatus = await searchDataInFirestore(user.uid);
                 if (userStatus === "exists") {
-                    console.log("SI EXISTE");
+
                     history.push("/");
                     window.location.reload();
                 } else if (userStatus === "not-exists") {
@@ -129,7 +128,7 @@ const SignInModal = () => {
                         countryComplete: ""
                     });
                 }, (error) => {
-                    console.log(error.code, error.message);
+
                 });
                 auth.signOut();
             }
@@ -137,7 +136,6 @@ const SignInModal = () => {
             auth.signOut();
             let errorCode = error.code;
             let errorMessage = error.message;
-            console.log(errorCode, errorMessage);
 
             switch (errorCode) {
                 case "auth/network-request-failed":
@@ -221,7 +219,6 @@ const SignInModal = () => {
 
                 default:
                     let errorMessage = error.message;
-                    console.log(errorCode, errorMessage);
             }
         }
 

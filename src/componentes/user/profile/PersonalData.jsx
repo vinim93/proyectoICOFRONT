@@ -84,7 +84,6 @@ const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
             }
 
         } catch (e) {
-            console.log("Profile.jsx - handleSubmit() -> " + e);
         }
     }
 

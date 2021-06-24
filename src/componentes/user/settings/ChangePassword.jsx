@@ -28,11 +28,8 @@ const ChangePassword = () => {
 
             await user.reauthenticateWithCredential(credential).then(() => {
                 result = true;
-                console.log("SI ES LA CONTRASEÑA");
             });
         } catch (e) {
-            console.log("NO ES LA CONTRASEÑA");
-            console.log(e);
             swal({
                 title: "Contraseña actual incorrecta",
                 text: "La contraseña proporcionada como actual no es correcta, intenta de nuevo",
@@ -151,8 +148,8 @@ const ChangePassword = () => {
                 }
             }
         } catch (e) {
-            console.log("NO ES LA PASS");
-            console.log(e);
+
+
         }
         setOpen(false);
 

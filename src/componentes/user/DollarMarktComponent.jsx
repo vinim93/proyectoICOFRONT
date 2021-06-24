@@ -11,7 +11,6 @@ const DollarMarktComponent = () => {
                 setCryptoData(response.data);
             })
         } catch (e) {
-            console.log(e);
         }
     }
 
