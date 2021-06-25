@@ -157,6 +157,8 @@ const SignUpModal = () => {
         setVerifiedCaptcha(false);
     }
 
+    
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -313,12 +315,13 @@ const SignUpModal = () => {
         }
     };
 
-    const signUpWithGoogle = () => {
+    const signUpWithGoogle = async () => {
 
         let provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
         auth.languageCode = 'es';
-        auth.signInWithPopup(provider).then(async (result) => {
+        await auth.signInWithRedirect(provider);
+        await auth.getRedirectResult().then(async (result) => {
             console.log(result);
             let user = result.user;
             console.log(user.uid);

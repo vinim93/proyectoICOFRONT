@@ -18,7 +18,12 @@ const currencies = [
     },
 ];
 
-const TokenAmount = ({currency, setCurrency, setStates, getStates}) => {
+const TokenAmount = ({currency, setCurrency, setStates, getStates, currencyConversor}) => {
+
+    useEffect(() => {
+        currencyConversor("USD", "MXN");
+        currencyConversor("MXN", "USD");
+    }, []);
 
     const conversor = (type, amount = "USD") => {
         switch (type) {
@@ -31,7 +36,7 @@ const TokenAmount = ({currency, setCurrency, setStates, getStates}) => {
                 break;
 
             case "MX":
-                return `${(amount * getStates("mxnToUsd")) || 0} USD - ${(amount * getStates("mxnToUsd")) || 0} SUN - ${amount || 0} MXN`;
+                return `${(amount * getStates("mxnToUsd")).toFixed(6) || 0} USD - ${(amount * getStates("mxnToUsd")).toFixed(6) || 0} SUN - ${amount || 0} MXN`;
                 break;
             default:
                 return `${amount || 0} USD - ${amount * 1 || 0} SUNI - ${(amount * getStates("usdToMxn").toFixed(2))} MXN`;

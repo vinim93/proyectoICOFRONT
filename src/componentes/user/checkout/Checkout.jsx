@@ -38,8 +38,6 @@ export default function Checkout({uid, email, allData}) {
     //SI TU EDITOR DE TEXTO TE INDICA QUE DICHOS ESTADOS NO ESTAN SIENDO UTILIZADOS REVISA LAS 2 FUNCIONES DE ABAJO
 
     useEffect(() => {
-        currencyConversor("USD", "MXN");
-        currencyConversor("MXN", "USD");
         setName(allData.name);
         setLastname(allData.lastname);
         setAddress(allData.address);
@@ -50,17 +48,23 @@ export default function Checkout({uid, email, allData}) {
 
     const currencyConversor = async (from, to) => {
         try {
-            //const result = await axios.get(`https://free.currconv.com/api/v7/convert?q=${from}_${to}&compact=ultra&apiKey=8a57011799b9d69fa40a`);
-            const result = await axios.get(`https://api.coingate.com/v2/rates/merchant/${from}/${to}`);
-            if (from === "USD" && to === "MXN") {
-                setUsdToMxn(result);
-            } else if (from === "MXN" && to === "USD") {
-                setMxnToUsd(result);
-            }
+            await axios.get('https://sunshine-ico.uc.r.appspot.com/api/exchange-currency', {
+                params: {
+                    from,
+                    to
+                }
+            }).then(response => {
+                if (from === "USD" && to === "MXN") {
+                    setUsdToMxn(response.data);
+                } else if (from === "MXN" && to === "USD") {
+                    setMxnToUsd(response.data);
+                }
+            });
         } catch (e) {
             console.log("NO AGARRA LA API DE INTERCAMBIO DE MONEDA = ", e);
         }
     }
+
 
     const setStates = (state, value) => {
         eval(state)(value);
@@ -74,7 +78,7 @@ export default function Checkout({uid, email, allData}) {
         switch (step) {
             case 0:
                 return <TokenAmount currency={currency} setCurrency={setCurrency} setStates={setStates}
-                                    getStates={getStates}/>;
+                                    getStates={getStates} currencyConversor={currencyConversor}/>;
             case 1:
                 return <PaymentForm handleNext={handleNext}/>;
             case 2:
@@ -213,7 +217,7 @@ export default function Checkout({uid, email, allData}) {
                                     </Typography>
                                     <img src={DONE} className="img-fluid mb-3" width="13%" alt="PAGO REALIZADO"/>
                                     <Typography variant="subtitle1">
-                                        {paymentMethod === "card" ? "¡Hemos enviado tu comprobante de pago al correo electrónico que registraste!" : "¡Tienes 24 hrs para realizar el pago en oxxo!"}
+                                        {paymentMethod === "card" ? "¡Gracias por tu compra, se verá reflejado en tu monto total y en tu cartera en aproximadamente 1 minito. Hemos enviado tu comprobante de pago al correo electrónico que registraste!" : "¡Tienes 24 hrs para realizar el pago en oxxo!"}
                                     </Typography>
                                     <Button variant="contained" color="primary" className={classes.button} onClick={buyAgain}>
                                         Comprar de nuevo

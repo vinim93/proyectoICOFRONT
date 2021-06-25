@@ -9,6 +9,8 @@ import {db} from "../config/firebase";
 import PurchaseHistory from "./PurchaseHistory";
 import CheckConnection from "./CheckConnection";
 import NumberFormat from "react-number-format";
+import axios from "axios";
+import firebase from "firebase";
 
 const Dashboard = () => {
     const {currentUser, logout} = useAuth();
@@ -26,9 +28,18 @@ const Dashboard = () => {
             await docRef.onSnapshot(doc => {
                 if(doc.exists){
                     setUserInfo(doc.data());
-                    setAmount(doc.data().suns);
+                    //setAmount(doc.data().suns);
                 }
-            })
+            });
+            await axios.get("https://sunshine-ico.uc.r.appspot.com/get-tuah", {
+                params: {
+                    uid: id
+                }
+            }).then(response => {
+                setAmount(response.data.amount);
+            }).catch(e => {
+                console.log(e);
+            });
         } catch (e) {
             console.log("Dashboard.jsx - getUserData()" + e);
         }
@@ -49,7 +60,8 @@ const Dashboard = () => {
             history.push("/Home");
             setLogged(false);
         }
-    },[]);
+    },[currentUser]);
+
 
     const renderData = () => {
         if(logged && Object.keys(userInfo).length !== 0){
@@ -63,12 +75,7 @@ const Dashboard = () => {
 
                         <div className="col-12 d-flex justify-content-center">
                             <h1>
-                                <NumberFormat
-                                    type="text"
-                                    displayType="text"
-                                    value={amount}
-                                    thousandSeparator={true}
-                                />
+                                {signinEmail ? (amount.toString().slice(0, amount.toString().length-6) + "." + amount.toString().slice(amount.toString().length-6)) : "Invitado"}
                                 <br/>SUNIS</h1>
                         </div>
 
@@ -82,7 +89,7 @@ const Dashboard = () => {
                         </div>
 
                         <DollarMarktComponent />
-                        <PaymentComponent email={currentUser.email} userData={uid} allData={userInfo} />
+                        <PaymentComponent email={signinEmail} userData={uid} allData={userInfo} />
 
                     </div>
 

@@ -13,7 +13,7 @@ import Button from '@material-ui/core/Button';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const stripePromise = loadStripe('pk_test_51IUDGUD9LA3P3AmKfFAk32py2vEcZs0LEw7FWhU8Ebp1YgNqJK09LkJyo11b5dCXWk6ZluCo3JBmTTdbSTc61EKq00EqsKyM49');
+const stripePromise = loadStripe('pk_live_51J5fXvL450xzXzaBHYnxKj1y6CnNv7XEH6VpEMDq1gfjSwdkEFp1uAswr7U85f8nAd12HKCAGGeW4Xm6mYViPeoj00vAOqyIKh');
 
 const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
     const classes = useStyles();
@@ -42,7 +42,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                             city: getStates('city'),
                             line1: getStates('address')
                         }
-                }
+                    }
                 });
 
                 if (!error) {
@@ -138,6 +138,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                 id: "holaoxxo",
                 amount: getStates("currency"),
                 uid,
+                email,
                 exchange: {
                     usdToMxn: getStates("usdToMxn"),
                     mxnToUsd: getStates("mxnToUsd")
@@ -152,12 +153,19 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                             billing_details: {
                                 name: getStates('name') + " " + getStates('lastname'),
                                 email,
+                                address: {
+                                    state: getStates('stateLocation'),
+                                    country: getStates('country'),
+                                    city: getStates('city'),
+                                    line1: getStates('address')
+                                }
                             },
                         },
                     })// Stripe.js will open a modal to display the OXXO voucher to your customer
                     .then(function(result) {
                         // This promise resolves when the customer closes the modal
                         console.log("EL USUARIO CERRO EL MODAL");
+                        console.log(result);
                         if (result.error) {
                             // Display error to your customer
                             console.log(result.error);
@@ -168,8 +176,6 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                 swal("Monto inválido", "El monto máximo que puedes pagar en oxxo son de $10,000 MXN", "warning");
             }
 
-
-            
         } catch (e) {
             console.log("ERROR AL INTENTAR PAGAR CON OXXO, INFO: ");
             console.log(e.code, e.message);
@@ -229,7 +235,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
 export default function Review({getStates, uid, handleNext, email}) {
     const classes = useStyles();
     const products = [
-        {name: 'Sun Token', desc: (getStates("currencyType") === "MX" ? getStates("currency") * getStates("mxnToUsd") : getStates("currency")), price: getStates("currency") + ' ' + (getStates("currencyType") === "MX" ? "MXN" : "USD")},
+        {name: 'Sun Token', desc: (getStates("currencyType") === "MX" ? (getStates("currency") * getStates("mxnToUsd")).toFixed(6) : getStates("currency")), price: getStates("currency") + ' ' + (getStates("currencyType") === "MX" ? "MXN" : "USD")},
     ];
     const addresses = [getStates("address"), getStates("city"), getStates("stateLocation"), getStates("country")];
     const payments = [
