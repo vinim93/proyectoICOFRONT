@@ -21,11 +21,13 @@ import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import FormControl from "@material-ui/core/FormControl";
+import SunshineFinder from "../../apis/SunshineFinder";
+
 
 const SignUpModal = () => {
 
     const sendReCAPTCHAValue = async (value) => {
-        const response = await axios.post("https://sunshine-ico.uc.r.appspot.com/api/recaptcha", {
+        const response = await SunshineFinder.post("/api/recaptcha", {
             captchaValue: value
         });
 
@@ -318,8 +320,7 @@ const SignUpModal = () => {
         let provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
         auth.languageCode = 'es';
-        await auth.signInWithRedirect(provider);
-        await auth.getRedirectResult().then(async (result) => {
+        await auth.signInWithPopup(provider).then(async (result) => {
 
             let user = result.user;
 

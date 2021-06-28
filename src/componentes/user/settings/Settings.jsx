@@ -6,7 +6,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChangePassword from "./ChangePassword";
-import {useAuth} from "../../contexts/AuthContext";
+import {useAuth} from "../../../contexts/AuthContext";
 import {useHistory} from "react-router-dom";
 
 

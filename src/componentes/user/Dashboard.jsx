@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useAuth} from "../contexts/AuthContext";
+import {useAuth} from "../../contexts/AuthContext";
 import {useHistory} from "react-router-dom";
 import moneda_dashboard from "../../images/moneda-dashboard.svg";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -7,10 +7,8 @@ import DollarMarktComponent from "./DollarMarktComponent";
 import PaymentComponent from "./PaymentComponent";
 import {db} from "../config/firebase";
 import PurchaseHistory from "./PurchaseHistory";
-import CheckConnection from "./CheckConnection";
-import NumberFormat from "react-number-format";
+import SunshineFinder from "../../apis/SunshineFinder";
 import axios from "axios";
-import firebase from "firebase";
 
 const Dashboard = () => {
     const {currentUser, logout} = useAuth();
@@ -31,7 +29,7 @@ const Dashboard = () => {
                     //setAmount(doc.data().suns);
                 }
             });
-            await axios.get("https://sunshine-ico.uc.r.appspot.com/get-tuah", {
+            await SunshineFinder.get("/get-tuah", {
                 params: {
                     uid: id
                 }

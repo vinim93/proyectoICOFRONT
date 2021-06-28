@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, createContext } from "react"
-import { auth } from "../config/firebase"
+import { auth } from "../componentes/config/firebase"
 import {useHistory} from "react-router-dom";
 
 const AuthContext = createContext();
@@ -44,7 +44,6 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
-            console.log("ESTAMOS EN CONTEXT = ", user);
             setCurrentUser(user);
             setLoading(false);
             setCredential(user);

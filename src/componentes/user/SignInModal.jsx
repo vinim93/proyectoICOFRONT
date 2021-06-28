@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import "firebase/auth";
 import swal from 'sweetalert';
-import {useAuth} from "../contexts/AuthContext";
+import {useAuth} from "../../contexts/AuthContext";
 import {NavLink, useHistory} from 'react-router-dom';
 import "./css/styles.css";
 import GoogleButton from 'react-google-button'
@@ -17,6 +17,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FilledInput from '@material-ui/core/FilledInput';
+import SunshineFinder from "../../apis/SunshineFinder";
 
 const SignInModal = () => {
 
@@ -34,15 +35,14 @@ const SignInModal = () => {
             result = doc.exists ? "exists" : "not-exists";
         }).catch(error => {
             result = "error";
-
         });
         return result;
     }
 
-    const saveDataInFirestore = (uid, data = {}) => {
+    const saveDataInFirestore = async (uid, data = {}) => {
         if (Object.keys(data).length > 0) {
             /*============GUARDAR DATOS EN FIRESTORE CON GOOGLE===========*/
-            db.collection("credentials").doc(uid).set({
+            await db.collection("credentials").doc(uid).set({
                 UUID: uid,
                 city: data.city.replace(/<[^>]+>/g, ''),
                 doc: "Pending".replace(/<[^>]+>/g, ''),
@@ -76,8 +76,7 @@ const SignInModal = () => {
         let provider = new firebase.auth.GoogleAuthProvider();
         await provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
         auth.languageCode = 'es';
-        await auth.signInWithRedirect(provider);
-        await auth.getRedirectResult().then(async (result) => {
+        await auth.signInWithPopup(provider).then(async (result) => {
 
             let user = result.user;
 
@@ -89,7 +88,7 @@ const SignInModal = () => {
                     history.push("/");
                     window.location.reload();
                 } else if (userStatus === "not-exists") {
-                    saveDataInFirestore(user.uid, {
+                    await saveDataInFirestore(user.uid, {
                         city: "",
                         email: user.email,
                         name: user.displayName,
@@ -113,8 +112,8 @@ const SignInModal = () => {
                 }
 
             } else {
-                user.sendEmailVerification().then(r => {
-                    saveDataInFirestore(user.uid, {
+                user.sendEmailVerification().then(async () => {
+                    await saveDataInFirestore(user.uid, {
                         city: "",
                         email: user.email,
                         name: user.displayName,
@@ -130,7 +129,7 @@ const SignInModal = () => {
                 }, (error) => {
 
                 });
-                auth.signOut();
+                await auth.signOut();
             }
         }).catch((error) => {
             auth.signOut();
@@ -152,7 +151,7 @@ const SignInModal = () => {
     }
 
     const sendReCAPTCHAValue = async (value) => {
-        const response = await axios.post("https://sunshine-ico.uc.r.appspot.com/api/recaptcha", {
+        const response = await SunshineFinder.post("/api/recaptcha", {
             captchaValue: value
         });
 

@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import {useAuth} from "../../contexts/AuthContext";
+import {useAuth} from "../../../contexts/AuthContext";
 import {useHistory} from "react-router-dom";
 import swal from "sweetalert";
 import {db, useStorage} from "../../config/firebase";

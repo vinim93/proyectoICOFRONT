@@ -4,7 +4,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.css';
 import monedag from "../../images/moneda.gif";
 import Banner from "./Banner";
-import {useAuth} from "../contexts/AuthContext";
+import {useAuth} from "../../contexts/AuthContext";
 import {useHistory} from "react-router-dom";
 
 /*const Banner =lazy(()=>import ('./Banner'));*/

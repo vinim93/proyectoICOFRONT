@@ -23,7 +23,7 @@ import Watsappicon from './images/watsapp-icon.png';
 import Dashboard from "./componentes/user/Dashboard";
 import Profile from "./componentes/user/profile/Profile";
 import Recovery from "./componentes/user/Recovery";
-import {AuthProvider} from "./componentes/contexts/AuthContext";
+import {AuthProvider} from "./contexts/AuthContext";
 import Checkout from "./componentes/user/checkout/Checkout";
 import Wallet from "./componentes/user/wallet/Wallet";
 import Settings from "./componentes/user/settings/Settings";

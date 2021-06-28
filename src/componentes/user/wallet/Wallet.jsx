@@ -8,7 +8,7 @@ import {
     Col,
 } from "reactstrap";
 
-import {useAuth} from "../../contexts/AuthContext";
+import {useAuth} from "../../../contexts/AuthContext";
 import {useHistory} from "react-router-dom";
 
 //OWN IMPORTATIONS

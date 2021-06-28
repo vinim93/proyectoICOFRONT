@@ -19,7 +19,7 @@ import axios from "axios";
 import firebase from "firebase";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
-import {useAuth} from "../contexts/AuthContext";
+import {useAuth} from "../../contexts/AuthContext";
 
 const Recovery = () => {
     const classes = useStyles();

@@ -7,7 +7,7 @@ import maparoad from '../../images/road-map.png';
 import monedafinal from "../../images/monedafinal.png";
 import {useTranslation} from 'react-i18next';
 import lineascar from "../../images/lineas.svg";
-import {useAuth} from "../contexts/AuthContext";
+import {useAuth} from "../../contexts/AuthContext";
 import {useHistory} from "react-router-dom";
 
 const RoaptoMapa = () => {

@@ -20,7 +20,7 @@ import CRIS from '../../images/team/CRIS.jpg';
 import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
 import Cardsworkers from "./cardsworkers.jsx";
-import {useAuth} from "../contexts/AuthContext";
+import {useAuth} from "../../contexts/AuthContext";
 import {useHistory} from "react-router-dom";
 
 

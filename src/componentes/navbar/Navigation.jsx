@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
 import USAFLAG from "../../images/usa_flag_icon.svg";
 import MEXICOFLAG from "../../images/mexico_flag_icon.svg";
-import {useAuth} from "../contexts/AuthContext";
+import {useAuth} from "../../contexts/AuthContext";
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';

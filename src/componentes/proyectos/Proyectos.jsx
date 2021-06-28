@@ -17,7 +17,7 @@ import Engrane7 from "../../images/engrane7.svg";
 import Zoom from 'react-reveal/Zoom';
 import {useTranslation} from 'react-i18next';
 import {useHistory} from "react-router-dom";
-import {useAuth} from "../contexts/AuthContext";
+import {useAuth} from "../../contexts/AuthContext";
 
 const Proyectos = () => {
 
