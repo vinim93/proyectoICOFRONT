@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import "../navbar/css/styles.css"
-import axios from "axios";
 import 'react-phone-number-input/style.css'
 import {db, auth} from "../config/firebase";
 import swal from "sweetalert";
@@ -22,6 +21,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import FormControl from "@material-ui/core/FormControl";
 import SunshineFinder from "../../apis/SunshineFinder";
+require('dotenv').config();
 
 
 const SignUpModal = () => {
@@ -557,7 +557,7 @@ const SignUpModal = () => {
                                     </div>
 
                                     <div className="form-group col-12 d-flex justify-content-center">
-                                        <ReCAPTCHA sitekey="6LceM4oaAAAAAJhirPQbyXB2KERNzwHUyoAspql-"
+                                        <ReCAPTCHA sitekey={process.env.REACT_APP_RECAPTCHA}
                                                    onChange={sendReCAPTCHAValue}/>
                                     </div>
 

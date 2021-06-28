@@ -6,7 +6,6 @@ import {NavLink, useHistory} from 'react-router-dom';
 import "./css/styles.css";
 import GoogleButton from 'react-google-button'
 import TextField from "@material-ui/core/TextField";
-import axios from "axios";
 import ReCAPTCHA from "react-google-recaptcha";
 import firebase from 'firebase';
 import {auth, db} from "../config/firebase";
@@ -18,6 +17,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FilledInput from '@material-ui/core/FilledInput';
 import SunshineFinder from "../../apis/SunshineFinder";
+require('dotenv').config();
 
 const SignInModal = () => {
 
@@ -321,7 +321,7 @@ const SignInModal = () => {
 
                                     <div
                                         className="input-group col-12 d-flex justify-content-center pl-xl-5 pr-xl-5 mt-3">
-                                        <ReCAPTCHA sitekey="6LceM4oaAAAAAJhirPQbyXB2KERNzwHUyoAspql-"
+                                        <ReCAPTCHA sitekey={process.env.REACT_APP_RECAPTCHA}
                                                    onChange={sendReCAPTCHAValue}/>
                                     </div>
 

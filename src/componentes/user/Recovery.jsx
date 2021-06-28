@@ -15,11 +15,11 @@ import passwordValidator from "password-validator";
 import swal2 from "@sweetalert/with-react";
 import swal from "sweetalert";
 import {useHistory} from "react-router-dom";
-import axios from "axios";
 import firebase from "firebase";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
 import {useAuth} from "../../contexts/AuthContext";
+import SunshineFinder from "../../apis/SunshineFinder";
 
 const Recovery = () => {
     const classes = useStyles();
@@ -44,7 +44,7 @@ const Recovery = () => {
     }, []);
 
     const verifyToken = async token => {
-        axios.get("https://sunshine-ico.uc.r.appspot.com/reset", {
+        SunshineFinder.get("/reset", {
             params: {
                 resetPasswordToken: token
             },

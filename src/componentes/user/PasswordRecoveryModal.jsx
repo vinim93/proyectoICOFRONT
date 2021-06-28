@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
 import firebase from "firebase";
+import SunshineFinder from "../../apis/SunshineFinder";
 
 const PasswordRecoveryModal = () => {
 
@@ -18,7 +19,7 @@ const PasswordRecoveryModal = () => {
         e.preventDefault();
         try{
             setLoading(true);
-            const response = await axios.post("https://sunshine-ico.uc.r.appspot.com/password-recovery", {
+            const response = await SunshineFinder.post("/password-recovery", {
                 email
             });
             sendMessage(response.data.codeResponse);

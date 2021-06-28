@@ -8,20 +8,15 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import axios from "axios";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogActions from "@material-ui/core/DialogActions";
-import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import Slide from "@material-ui/core/Slide";
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
-import FaceIcon from '@material-ui/icons/Face';
-import DoneIcon from '@material-ui/icons/Done';
 import DONE from './../../../images/done.png';
+import TronscanFinder from "../../../apis/TronscanFinder";
 
 const columns = [
     { id: 'hash', label: 'Hash', minWidth: 170 },
@@ -117,7 +112,7 @@ const  TransactionsHistory = ({address}) => {
 
     const retrieveTransactions = async (walletAddress) => {
         try{
-            const result = await axios.get(`https://apilist.tronscan.org/api/transaction?sort=-timestamp&count=true&limit=50&start=0&address=${walletAddress}`);
+            const result = await TronscanFinder.get(`/api/transaction?sort=-timestamp&count=true&limit=50&start=0&address=${walletAddress}`);
             //await setTransactions(result.data.data);
             let data = result.data.data;
             let row = [];

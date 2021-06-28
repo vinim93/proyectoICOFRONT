@@ -34,12 +34,11 @@ import CropFreeIcon from '@material-ui/icons/CropFree';
 import QRCode from "react-qr-code";
 import QrReader from 'react-qr-reader'
 import {db} from "../../config/firebase";
-import axios from "axios";
 import swal from "sweetalert";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
 import {makeStyles} from "@material-ui/core/styles";
-import NumberFormat from "react-number-format";
+import SunshineFinder from "../../../apis/SunshineFinder";
 
 
 const Wallet = () => {
@@ -87,7 +86,7 @@ const Wallet = () => {
     }
 
     const getData = async (id) => {
-        await axios.get("https://sunshine-ico.uc.r.appspot.com/tron-data", {
+        await SunshineFinder.get("/tron-data", {
             params: {
                 uid: id
             }
@@ -110,7 +109,7 @@ const Wallet = () => {
         e.preventDefault();
         setOpen(true);
         try{
-            const response = await axios.post("https://sunshine-ico.uc.r.appspot.com/send-tokens", {
+            const response = await SunshineFinder.post("/send-tokens", {
                 uid,
                 amount: convertForSend(tokensToSend),
                 toAddress: scanValue

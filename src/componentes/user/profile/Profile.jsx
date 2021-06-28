@@ -7,11 +7,11 @@ import {useAuth} from "../../../contexts/AuthContext";
 import {useHistory} from "react-router-dom";
 import swal from "sweetalert";
 import {db, useStorage} from "../../config/firebase";
-import axios from "axios";
 import Alert from '@material-ui/lab/Alert';
 import 'react-phone-input-2/lib/material.css'
 import {Document, Page} from 'react-pdf';
 import ExpansionComponent from "./ExpansionComponent";
+import PlacesFinder from "../../../apis/PlacesFinder";
 // reactstrap components
 import {
     Button,
@@ -228,7 +228,7 @@ const Profile = () => {
 
     const getAuthTokenCountries = async () => {
         try {
-            const response = await axios.get("https://www.universal-tutorial.com/api/getaccesstoken", {
+            const response = await PlacesFinder.get("/api/getaccesstoken", {
                 headers: {
                     "api-token": "8X4CFJBt--Ev5K8GkL_R9Z2lNS72XQ9ez_NutQRcq4bannc96Q4-YGjDq4IKqlDSFas",
                     "user-email": "taikus.jango@sunshine-imagine.io"
@@ -242,7 +242,7 @@ const Profile = () => {
 
     const getCountriesAPI = async () => {
         try {
-            const response = await axios.get("https://www.universal-tutorial.com/api/countries/", {
+            const response = await PlacesFinder.get("/api/countries/", {
                 headers: {
                     Authorization: jalaPorfavor
                 }
@@ -255,7 +255,7 @@ const Profile = () => {
 
     const getStatesAPI = async (countryAPI) => {
         try {
-            const response = await axios.get(`https://www.universal-tutorial.com/api/states/${countryAPI}`, {
+            const response = await PlacesFinder.get(`/api/states/${countryAPI}`, {
                 headers: {
                     Authorization: jalaPorfavor
                 }

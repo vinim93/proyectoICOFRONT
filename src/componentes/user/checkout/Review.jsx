@@ -7,13 +7,15 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import {loadStripe} from "@stripe/stripe-js";
 import {CardElement, Elements, useElements, useStripe} from "@stripe/react-stripe-js";
-import axios from "axios";
 import swal from "sweetalert";
 import Button from '@material-ui/core/Button';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import SunshineFinder from "../../../apis/SunshineFinder";
+require('dotenv').config();
 
-const stripePromise = loadStripe('pk_live_51J5fXvL450xzXzaBHYnxKj1y6CnNv7XEH6VpEMDq1gfjSwdkEFp1uAswr7U85f8nAd12HKCAGGeW4Xm6mYViPeoj00vAOqyIKh');
+
+const stripePromise = loadStripe(process.env.REACT_APP_PK_STRIPE);
 
 const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
     const classes = useStyles();
@@ -49,7 +51,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                     setLoading(true);
                     const {id} = paymentMethod;
                     try {
-                        const {data} = await axios.post('https://sunshine-ico.uc.r.appspot.com/api/checkout', {
+                        const {data} = await SunshineFinder.post('/api/checkout', {
                             id,
                             amount: getStates("currency") * 100,
                             uid,
@@ -126,7 +128,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
     const buyTokenWithOxxo = async () => {
         setOpen(true);
         try{
-            const {data} = await axios.post('https://sunshine-ico.uc.r.appspot.com/create-payment-intent', {
+            const {data} = await SunshineFinder.post('/create-payment-intent', {
                 id: "holaoxxo",
                 amount: getStates("currency"),
                 uid,

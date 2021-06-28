@@ -8,7 +8,6 @@ import PaymentComponent from "./PaymentComponent";
 import {db} from "../config/firebase";
 import PurchaseHistory from "./PurchaseHistory";
 import SunshineFinder from "../../apis/SunshineFinder";
-import axios from "axios";
 
 const Dashboard = () => {
     const {currentUser, logout} = useAuth();

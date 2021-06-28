@@ -14,7 +14,7 @@ import './css/style.css';
 import TokenAmount from "./TokenAmount";
 import DONE from './../../../images/done.png';
 import swal from "sweetalert";
-import axios from "axios";
+import SunshineFinder from "../../../apis/SunshineFinder";
 
 const steps = ['Token', 'Método', 'Datos', 'Compra'];
 
@@ -48,7 +48,7 @@ export default function Checkout({uid, email, allData}) {
 
     const currencyConversor = async (from, to) => {
         try {
-            await axios.get('https://sunshine-ico.uc.r.appspot.com/api/exchange-currency', {
+            await SunshineFinder.get('/api/exchange-currency', {
                 params: {
                     from,
                     to
