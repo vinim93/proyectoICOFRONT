@@ -96,12 +96,10 @@ margin: 0px;
   font-family: 'Lato', sans-serif;
   margin: 0px;
  }
- .fondogalaxy{
-   
-   
+ .fondogalaxy{   
    background-size:cover;
    background-position:top;
-   background-image: url("./images/FONDO\ HOME.jpg")!important;
+   background-image: url("./images/FONDO\ HOME.webp")!important;
    background-repeat:no-repeat;
    
    }

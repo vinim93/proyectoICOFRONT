@@ -72,19 +72,21 @@ const SignInModal = () => {
         }
     }
 
-    const signUpWithGoogle = () => {
+    const signUpWithGoogle = async () => {
 
         let provider = new firebase.auth.GoogleAuthProvider();
-        provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
+        await provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
         auth.languageCode = 'es';
-        auth.signInWithPopup(provider).then(async (result) => {
+        await auth.signInWithRedirect(provider);
+        await auth.getRedirectResult().then(async (result) => {
             console.log(result);
             let user = result.user;
             console.log(user.uid);
             if (user.emailVerified) {
-
+                console.log("VERIFICADO");
                 let userStatus = await searchDataInFirestore(user.uid);
                 if (userStatus === "exists") {
+                    console.log("SI EXISTE");
                     history.push("/");
                     window.location.reload();
                 } else if (userStatus === "not-exists") {
