@@ -1,34 +1,27 @@
 import React from "react";
-
 import './App.css';
-
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import 'bootstrap/dist/css/bootstrap.css';
-
 import "bootstrap/dist/css/manuel";
-
-import Navigation from "./componentes/navbar/Navigation";
+import Navigation from "./components/Navigation";
 import {
     BrowserRouter,
     Switch,
     Route,
-}
-    from "react-router-dom";
-import Acerca from "./componentes/acerca/Acerca";
-import Home from './componentes/home/Home';
-import Pdf from "./componentes/whitepaper/Pdf";
-import Foco from "./componentes/proyectos/Foco";
-import RoaptoMapa from './componentes/road_to_map/Roaptomap';
-import Watsappicon from './images/watsapp-icon.png';
-import Dashboard from "./componentes/user/Dashboard";
-import Profile from "./componentes/user/profile/Profile";
-import Recovery from "./componentes/user/Recovery";
-import {AuthProvider} from "./contexts/AuthContext";
-import Checkout from "./componentes/user/checkout/Checkout";
-import Wallet from "./componentes/user/wallet/Wallet";
-import Settings from "./componentes/user/settings/Settings";
+} from "react-router-dom";
+import Acerca from "./routes/Acerca";
+import Home from './routes/Home';
+import Pdf from "./routes/Pdf";
+import Proyectos from "./routes/Proyectos";
+import RoaptoMapa from './routes/Roaptomap';
+import Dashboard from "./routes/dashboard/Dashboard";
+import Profile from "./routes/dashboard/Profile";
+import Recovery from "./routes/Recovery";
+import {AuthProvider} from "./context/AuthContext";
+import Checkout from "./components/dashboard/checkout/Checkout";
+import Wallet from "./routes/dashboard/Wallet";
+import Settings from "./routes/dashboard/Settings";
 import "firebase/auth";
-
 
 const App = () => {
 
@@ -40,31 +33,19 @@ const App = () => {
                     <Switch>
                         <Route path="/Roaptomap" component={RoaptoMapa}/>
                         <Route path="/Acerca" component={Acerca}/>
-                        <Route path="/Proyectos" component={Foco}/>
+                        <Route path="/ProyectosComponent" component={Proyectos}/>
                         <Route path="/Home" component={Home}/>
                         <Route path="/Pdf" exact><Pdf/></Route>
-                        <Route path="/" exact component={Dashboard} />
+                        <Route path="/" exact component={Dashboard}/>
                         <Route path={"/Profile"} exact component={Profile}/>
                         <Route path={"/Checkout"} component={Checkout}/>
                         <Route path="/Recovery">
-                            <Recovery />
+                            <Recovery/>
                         </Route>
                         <Route path={"/Wallet"} component={Wallet}/>
                         <Route path={"/Settings"} component={Settings}/>
                     </Switch>
                 </AuthProvider>
-                <div className="whats-content">
-{/*
-                    <a href="https://api.whatsapp.com/send?phone=525584465710&text=hola%20%20quiero%20contactarneme%20con%20sunshine"
-                       className="whats-content" target="_blank">
-                        <img src={Watsappicon} alt="" className="whatsapp-img "/>
-                    </a>
-                    
-                    <a href="tel:525584465710" className="whats-content">
-                        <img src={Telicon} alt="" className="tel-img img-fluid"/>
-                    </a>
-                    */}
-                </div>
 
             </div>
         </BrowserRouter>

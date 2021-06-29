@@ -1,0 +1,39 @@
+.fondo{
+    background-image: url("../images/fondo_ventajas.svg");
+    width: 640px;
+    height: 427px;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #fff;
+    
+}
+
+.text-style{
+    font-size: 1.5rem;
+}
+.text-zep{
+  font-family: 'Josefin Sans';
+  white-space: normal;
+  font-size: 25px;
+}
+.img-meto{
+  position: relative;
+  background-color:#00234D4D ;
+  white-space:normal;
+ 
+  height: auto!important;
+  margin: 1vw;
+  padding: 1vw;
+
+justify-content: center;
+word-wrap: break-word!important; 
+    
+
+}
+.img-soporte{
+  height: 10vw;
+  width: 10vw;
+ 
+}
