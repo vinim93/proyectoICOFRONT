@@ -7,7 +7,6 @@ import Banner from "../components/Banner";
 import {useAuth} from "../context/AuthContext";
 import {useHistory} from "react-router-dom";
 
-/*const Banner =lazy(()=>import ('./Banner'));*/
 const Video = lazy(() => import ('../components/Video'));
 const Countdown = lazy(() => import ('../components/Countdown'));
 const Proyectos = lazy(() => import ('../components/ProyectosComponent'));
@@ -22,7 +21,7 @@ const Footer = lazy(() => import ('../components/Footer'));
 
 const Home = () => {
 
-    const {currentUser, logout} = useAuth();
+    const {currentUser} = useAuth();
     const history = useHistory();
 
     useEffect(() => {
@@ -38,7 +37,7 @@ const Home = () => {
             <Banner/>
             <Suspense fallback={
                 <div className="  container mt-5 text-center   justify-content-center">
-                    <img className="moneda-carga" align="top" src={monedag}/><p className="">CARGANDO...</p>
+                    <img className="moneda-carga" align="top" src={monedag}/><p>CARGANDO...</p>
                 </div>
             }>
                 <Video/>
@@ -51,7 +50,6 @@ const Home = () => {
                 <PreguntasFrecuentes/>
                 <Newsletter/>
                 <Footer/>
-
             </Suspense>
         </div>
     )

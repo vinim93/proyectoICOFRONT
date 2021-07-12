@@ -3,8 +3,6 @@ import Depmason from "../images/depmason.svg";
 import Imgpreg from "../images/imgpreg.svg";
 import Depmenos from "../images/depmenos.svg";
 import Fade from 'react-reveal/Fade';
-
-
 import {useTranslation} from 'react-i18next';
 
 const PreguntasFrecuentes = () => {
@@ -33,7 +31,7 @@ const PreguntasFrecuentes = () => {
             text: t('FAQ.Items.1.Text'),
             id: "myImageB"
         },
-      
+
         {
             icon: Depmason,
             title: t('FAQ.Items.2.Title'),
@@ -57,18 +55,18 @@ const PreguntasFrecuentes = () => {
                     items.map((value, index) => (
                         <div key={index}>
                             <Fade left cascade>
-                            <p className="">
-                                <button className="btn btn-preg1" onClick={() => changeIcon(value.id)}
-                                        type="button" data-toggle="collapse" data-target={"#"+value.id+"target"}
-                                        aria-expanded="false" aria-controls="collapseExample">
-                                    <img src={value.icon} id={value.id} alt="" className="mas"/>{value.title}
-                                </button>
-                            </p>
-                            <div className="collapse btn-res1 " id={value.id+"target"}>
-                                <div className="text-preg">
-                                    {value.text}
+                                <p className="">
+                                    <button className="btn btn-preg1" onClick={() => changeIcon(value.id)}
+                                            type="button" data-toggle="collapse" data-target={"#" + value.id + "target"}
+                                            aria-expanded="false" aria-controls="collapseExample">
+                                        <img src={value.icon} id={value.id} alt="" className="mas"/>{value.title}
+                                    </button>
+                                </p>
+                                <div className="collapse btn-res1 " id={value.id + "target"}>
+                                    <div className="text-preg">
+                                        {value.text}
+                                    </div>
                                 </div>
-                            </div>
                             </Fade>
                         </div>
                     ))
@@ -76,10 +74,10 @@ const PreguntasFrecuentes = () => {
 
             </div>
 
-                        <div className="col-md-6 col-12">
-                            <img src={Imgpreg} id="" className="PREGIMG d-none d-lg-block d-md-block"/>
+            <div className="col-md-6 col-12">
+                <img src={Imgpreg} id="" className="PREGIMG d-none d-lg-block d-md-block"/>
 
-                        </div>
+            </div>
 
         </div>
     );

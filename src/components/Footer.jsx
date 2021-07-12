@@ -36,11 +36,9 @@ const Footer = () => {
             email: email,
             comentarios: message,
 
-        })
-            .then(() => {
+        }).then(() => {
                 alert('Gracias por contactarnos');
-            })
-            .catch((error) => {
+            }).catch((error) => {
                 alert(error.message);
             });
         setName('');
@@ -54,13 +52,13 @@ const Footer = () => {
             <div className="col-12 ">
                 <a href="https://sunshine-imagine.com/">
 
-                <img src={Sol} alt=""/>
+                    <img src={Sol} alt=""/>
                 </a>
 
                 <a href="https://www.facebook.com/Sunshine-Imagine-Cripto-115833410321279">
                     <img src={Face} alt=""/>
                 </a>
-               
+
                 <a href="https://www.instagram.com/sunshine.imagine.cripto/">
 
                     <img src={Insta} alt=""/>
@@ -71,7 +69,7 @@ const Footer = () => {
                     <img src={Twiter} alt=""/>
                 </a>
 
-               {/* <img src={Youtube} alt=""/>*/}
+                {/* <img src={Youtube} alt=""/>*/}
 
                 <div className=" col-12 foottitulo">
 
@@ -94,15 +92,19 @@ const Footer = () => {
                         <div className="modal-dialog modal-xl modal-dialog-centered">
                             <div className="modal-content modalfootcont">
                                 <div className="modal-header ">
-                                    <h5 className=" modal-title col-12 " id="staticBackdropLabel">{t('ContactUs.Extra.0')} <svg
-                                        xmlns="http://www.w3.org/2000/svg" width="484.203" height="7.402"
-                                        viewBox="0 0 484.203 7.402">
-                                        <rect id="Rectángulo_187" data-name="Rectángulo 187" width="484.203"
-                                              height="7.402" fill="#dbb80b"/>
-                                    </svg> <p className="conectate "><br/>{t('ContactUs.Extra.1')}</p></h5>
+                                    <h5 className=" modal-title col-12 "
+                                        id="staticBackdropLabel">{t('ContactUs.Extra.0')}
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg" width="484.203" height="7.402"
+                                            viewBox="0 0 484.203 7.402">
+                                            <rect id="Rectángulo_187" data-name="Rectángulo 187" width="484.203"
+                                                  height="7.402" fill="#dbb80b"/>
+                                        </svg>
+                                        <p className="conectate "><br/>{t('ContactUs.Extra.1')}</p></h5>
 
 
-                                    <button type="button" className="close" id="closeEmailModal" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" className="close" id="closeEmailModal" data-dismiss="modal"
+                                            aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -143,7 +145,8 @@ const Footer = () => {
                                                     <button type="button" className="btn btn-secondary"
                                                             data-dismiss="modal">{t('ContactUs.Form.Close')}
                                                     </button>
-                                                    <button type="submit" className="btn btn-primary">{t('ContactUs.Form.Send')}</button>
+                                                    <button type="submit"
+                                                            className="btn btn-primary">{t('ContactUs.Form.Send')}</button>
                                                 </div>
                                             </form>
 
