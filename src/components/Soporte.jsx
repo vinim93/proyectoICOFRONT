@@ -1,5 +1,4 @@
 import React from 'react';
-import Openzepp from "../images/zeppelin_icon.svg";
 import Github from "../images/github_icon.svg";
 import 'bootstrap/dist/css/bootstrap.css';
 import "../css/styles.css";

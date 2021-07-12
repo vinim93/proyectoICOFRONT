@@ -1,7 +1,7 @@
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
-import logonav from '../icons/logonav.svg';
+import logonav from '../images/logonav.svg';
 import React, {useState} from 'react';
 import "firebase/auth";
 import {NavLink, useHistory} from 'react-router-dom';
