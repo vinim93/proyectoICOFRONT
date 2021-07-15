@@ -155,6 +155,7 @@ export default function PurchaseHistoryComponent({uid}) {
                         let price = null;
                         let date = null;
                         let paymentMethod = null;
+                        console.log(doc.data());
                         if (doc.data().payment_method_types[0] === "card") {
                             if (doc.data().currency === "usd") {
                                 price = "$" + (doc.data().amount / 100) || "PENDING";
@@ -170,6 +171,12 @@ export default function PurchaseHistoryComponent({uid}) {
                             tokens = doc.data().tokens_number || "PENDING";
                             price = "$" + doc.data().final_amount || "PENDING";
                             date = timeConverter(doc.data().created) || "PENDING";
+                            paymentMethod = doc.data().payment_method_types[0] || "PENDING";
+                        } else if(doc.data().payment_method_types[0] === "trx"){
+                            id = doc.data().id || "PENDING";
+                            tokens = doc.data().tokens || "PENDING";
+                            price = "$" + doc.data().price || "PENDING";
+                            date = timeConverter(doc.data().date) || "PENDING";
                             paymentMethod = doc.data().payment_method_types[0] || "PENDING";
                         }
                         elements.push(createData(id, tokens, price, date, paymentMethod));
