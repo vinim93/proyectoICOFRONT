@@ -16,6 +16,10 @@ const currencies = [
         value: "SUN",
         label: "SUN",
     },
+    {
+        value: "TRX",
+        label: "TRON",
+    },
 ];
 
 const TokenAmount = ({currency, setCurrency, setStates, getStates, currencyConversor}) => {
@@ -23,6 +27,8 @@ const TokenAmount = ({currency, setCurrency, setStates, getStates, currencyConve
     useEffect(() => {
         currencyConversor("USD", "MXN");
         currencyConversor("MXN", "USD");
+        currencyConversor("TRX", "USD");
+        currencyConversor("USD", "TRX");
     }, []);
 
     const conversor = (type, amount = "USD") => {
@@ -38,6 +44,10 @@ const TokenAmount = ({currency, setCurrency, setStates, getStates, currencyConve
             case "MX":
                 return `${(amount * getStates("mxnToUsd")).toFixed(6) || 0} USD - ${(amount * getStates("mxnToUsd")).toFixed(6) || 0} SUN - ${amount || 0} MXN`;
                 break;
+
+            case "TRX":
+                return `${amount || 0} TRX - ${(amount * getStates("trxToUsd")).toFixed(6)|| 0} SUNI`;
+                break;
             default:
                 return `${amount || 0} USD - ${amount * 1 || 0} SUNI - ${(amount * getStates("usdToMxn").toFixed(2))} MXN`;
         }
@@ -46,8 +56,13 @@ const TokenAmount = ({currency, setCurrency, setStates, getStates, currencyConve
     const typeCurrency = (val) => {
         setCurrency(val);
         let dollar = parseFloat(getStates("usdToMxn").toFixed(2));
+        let dollarTrx = parseFloat(getStates("usdToTrx").toFixed(2));
         val = parseFloat(val);
-        if ( (val >= 1 && val<=999999 && getStates("currencyType") === "USD") || (val >= dollar && val<=999999 && getStates("currencyType") === "MX") || (val >= 1 && val<=999999 && getStates("currencyType") === "SUN")) {
+        if ( (val >= 1 && val<=999999 && getStates("currencyType") === "USD") ||
+            (val >= dollar && val<=999999 && getStates("currencyType") === "MX") ||
+            (val >= 1 && val<=999999 && getStates("currencyType") === "SUN") ||
+            (val >= dollarTrx && val <=999999 && getStates("currencyType") === "TRX")
+        ) {
             document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-invalid");
             document.getElementById("inlineFormInputGroupCurrency").classList.add("is-valid");
         } else {

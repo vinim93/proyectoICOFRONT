@@ -17,7 +17,7 @@ require('dotenv').config();
 
 const stripePromise = loadStripe(process.env.REACT_APP_PK_STRIPE);
 
-const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
+const CheckoutForm = ({getStates, uid, handleNext, email, currencyType, addressToken}) => {
     const classes = useStyles();
     const stripe = useStripe();
     const elements = useElements();
@@ -129,7 +129,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
         setOpen(true);
         try{
             const {data} = await SunshineFinder.post('/create-payment-intent', {
-                id: "holaoxxo",
+                id: "oxxopayment",
                 amount: getStates("currency"),
                 uid,
                 email,
@@ -138,7 +138,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                     mxnToUsd: getStates("mxnToUsd")
                 }
             });
-            
+
             if(data.statusCode === "successful"){
                 stripe.confirmOxxoPayment(
                     data.clientSecret,
@@ -173,6 +173,25 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
         setOpen(false);
     }
 
+    const buyTokenWithTrx = async () => {
+        setOpen(true);
+        console.log(uid, getStates("trxToUsd"));
+        try{
+            const data = await SunshineFinder.post('/buy-with-trx', {
+                id: "trxpayment",
+                amount: getStates("currency"),
+                uid,
+                exchange: {
+                    trxToUsd: getStates("trxToUsd"),
+                    usdToTrx: getStates("usdToTrx")
+                }
+            });
+            console.log(data);
+        } catch (e) {
+        }
+        setOpen(false);
+        console.log(addressToken);
+    }
 
     return (
         <div>
@@ -203,15 +222,27 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
                             </Grid>
                         </Grid>
                     </form>
-                ) : (
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <Button variant="contained" size="large" color="primary" onClick={buyTokenWithOxxo}>
-                                {open ? "PROCESANDO..." : "GENERAR PAGO CON OXXO"}
-                            </Button>
-                        </Grid>
-                    </Grid>
-                )
+                ) :
+                    getStates("paymentMethod") === "trx" ?
+                        (
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <Button variant="contained" size="large" color="primary" onClick={buyTokenWithTrx}>
+                                        {open ? "PROCESANDO..." : "COMPRAR CON TRX"}
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        )
+                        :
+                            (
+                                <Grid container spacing={2}>
+                                    <Grid item xs={12}>
+                                        <Button variant="contained" size="large" color="primary" onClick={buyTokenWithOxxo}>
+                                            {open ? "PROCESANDO..." : "GENERAR PAGO CON OXXO"}
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                             )
             }
             <Backdrop className={classes.backdrop} open={open} >
                 <CircularProgress color="inherit" />
@@ -221,10 +252,10 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType}) => {
     );
 }
 
-export default function Review({getStates, uid, handleNext, email}) {
+export default function Review({getStates, uid, handleNext, email, addressToken}) {
     const classes = useStyles();
     const products = [
-        {name: 'Sun Token', desc: (getStates("currencyType") === "MX" ? (getStates("currency") * getStates("mxnToUsd")).toFixed(6) : getStates("currency")), price: getStates("currency") + ' ' + (getStates("currencyType") === "MX" ? "MXN" : "USD")},
+        {name: 'Sun Token', desc: (getStates("currencyType") === "MX" ? (getStates("currency") * getStates("mxnToUsd")).toFixed(6) :  getStates("currencyType") === "TRX" ? (getStates("currency") * getStates("trxToUsd")).toFixed(6) :getStates("currency")), price: getStates("currency") + ' ' + (getStates("currencyType") === "MX" ? "MXN" : getStates("currencyType") === "TRX" ? "TRX" : "USD")},
     ];
     const addresses = [getStates("address"), getStates("city"), getStates("stateLocation"), getStates("country")];
     const payments = [
@@ -261,7 +292,7 @@ export default function Review({getStates, uid, handleNext, email}) {
             <Grid container spacing={2}>
                 <Grid item xs={12} className="mt-3 mb-3">
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm getStates={getStates} uid={uid} handleNext={handleNext} email={email} currencyType={getStates("currencyType")}/>
+                        <CheckoutForm getStates={getStates} uid={uid} handleNext={handleNext} email={email} currencyType={getStates("currencyType")} addressToken={addressToken}/>
                     </Elements>
                 </Grid>
             </Grid>

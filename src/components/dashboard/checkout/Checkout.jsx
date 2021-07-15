@@ -24,6 +24,8 @@ export default function Checkout({uid, email, allData}) {
     const [currency, setCurrency] = useState(null);
     const [usdToMxn, setUsdToMxn] = useState(0);
     const [mxnToUsd, setMxnToUsd] = useState(0);
+    const [trxToUsd, setTrxToUsd] = useState(0);
+    const [usdToTrx, setUsdToTrx] = useState(0);
     const [name, setName] = useState("");
     const [lastname, setLastname] = useState("");
     const [address, setAddress] = useState("");
@@ -35,6 +37,7 @@ export default function Checkout({uid, email, allData}) {
     const [paymentDone, setPaymentDone] = useState(false);
     const [currencyType, setCurrencyType] = useState('USD');
     const [paymentMethod, setPaymentMethod] = useState('');
+    const [addressToken, setAddressToken] = useState('');
     //SI TU EDITOR DE TEXTO TE INDICA QUE DICHOS ESTADOS NO ESTAN SIENDO UTILIZADOS REVISA LAS 2 FUNCIONES DE ABAJO
 
     useEffect(() => {
@@ -44,6 +47,7 @@ export default function Checkout({uid, email, allData}) {
         setCity(allData.city);
         setStateLocation(allData.state);
         setCountry(allData.country);
+        setAddressToken(allData.addressToken);
     }, []);
 
     const currencyConversor = async (from, to) => {
@@ -58,11 +62,13 @@ export default function Checkout({uid, email, allData}) {
                     setUsdToMxn(response.data);
                 } else if (from === "MXN" && to === "USD") {
                     setMxnToUsd(response.data);
+                } else if(from === "TRX" && to === "USD"){
+                    setTrxToUsd(response.data);
+                } else if (from === "USD" && to === "TRX"){
+                    setUsdToTrx(response.data);
                 }
             });
-        } catch (e) {
-
-        }
+        } catch (e) {}
     }
 
 
@@ -84,7 +90,7 @@ export default function Checkout({uid, email, allData}) {
             case 2:
                 return <AddressForm getStates={getStates}/>;
             case 3:
-                return <Review getStates={getStates} uid={uid} handleNext={handleNext} email={email}/>;
+                return <Review getStates={getStates} uid={uid} handleNext={handleNext} email={email} addressToken={addressToken}/>;
             default:
                 throw new Error('Unknown step');
         }
@@ -121,6 +127,16 @@ export default function Checkout({uid, email, allData}) {
                         } else {
                             swal("Monto inválido", "Debes pagar la mínima cantidad de $1 USD", "warning");
                         }
+                    } else if(currencyType === "TRX"){
+                        if (parseFloat(currency) >= usdToTrx.toFixed(2)) {
+                            if (parseFloat(currency) <= 999999) {
+                                setActiveStep(activeStep + 1);
+                            } else {
+                                swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99", "warning");
+                            }
+                        } else {
+                            swal("Monto inválido", `Debes pagar la mínima cantidad de $${usdToMxn.toFixed(2)} MXN`, "warning");
+                        }
                     }
                 } else {
 
@@ -151,6 +167,12 @@ export default function Checkout({uid, email, allData}) {
                         } else {
                             swal("Monto inválido", "Debes pagar la mínima cantidad de $1 USD", "warning");
                         }
+                    } else if (currencyType === "TRX") {
+                        if (parseFloat(currency) >= 1/*usdToTrx.toFixed(2)*/) {
+                            setActiveStep(activeStep + 1);
+                        } else {
+                            swal("Monto inválido", `Debes pagar la mínima cantidad de $${usdToTrx.toFixed(2)} TRX`, "warning");
+                        }
                     }
 
                 }
@@ -167,6 +189,9 @@ export default function Checkout({uid, email, allData}) {
                         setPaymentMethod(paymentOption);
                         setActiveStep(activeStep + 1);
                     }
+                } else if(paymentOption === "trx") {
+                    setPaymentMethod(paymentOption);
+                    setActiveStep(activeStep + 1);
                 }
                 break;
             case 2:

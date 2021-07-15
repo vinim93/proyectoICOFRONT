@@ -14,6 +14,7 @@ const PaymentComponent = ({email, userData, allData}) => {
         history.push("/Profile");
     }
 
+
     return (
         <div className="modal fade" id="paymentModal" tabIndex="-1" role="dialog"
              aria-labelledby="exampleModalLabel" aria-hidden="true" >
