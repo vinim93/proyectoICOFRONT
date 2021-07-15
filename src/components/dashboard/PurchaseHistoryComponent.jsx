@@ -49,7 +49,7 @@ const stableSort = (array, comparator) => {
 const headCells = [
     {id: 'id', numeric: false, disablePadding: true, label: 'ID'},
     {id: 'tokens', numeric: true, disablePadding: false, label: 'Tokens'},
-    {id: 'price', numeric: true, disablePadding: false, label: 'Precio (USD)'},
+    {id: 'price', numeric: false, disablePadding: false, label: 'Precio (USD)'},
     {id: 'datetime', numeric: true, disablePadding: false, label: 'Fecha'},
     {id: 'cardDetails', numeric: true, disablePadding: false, label: 'Forma de pago'},
 ];
@@ -175,7 +175,7 @@ export default function PurchaseHistoryComponent({uid}) {
                         } else if(doc.data().payment_method_types[0] === "trx"){
                             id = doc.data().id || "PENDING";
                             tokens = doc.data().tokens || "PENDING";
-                            price = "$" + doc.data().price || "PENDING";
+                            price = doc.data().price + "(TRX)" || "PENDING";
                             date = timeConverter(doc.data().date) || "PENDING";
                             paymentMethod = doc.data().payment_method_types[0] || "PENDING";
                         }
@@ -254,7 +254,8 @@ export default function PurchaseHistoryComponent({uid}) {
                                                     displayType="text"
                                                     value={row.price}
                                                     thousandSeparator={true}
-                                                    prefix='$'
+                                                    prefix={!(row.price).includes("TRX") ? "$ " : ""}
+                                                    suffix={(row.price).includes("TRX") ? " TRX " : ""}
                                                 />
                                             </TableCell>
                                             <TableCell align="right">{row.datetime}</TableCell>
