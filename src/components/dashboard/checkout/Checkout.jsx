@@ -168,7 +168,7 @@ export default function Checkout({uid, email, allData}) {
                             swal("Monto inválido", "Debes pagar la mínima cantidad de $1 USD", "warning");
                         }
                     } else if (currencyType === "TRX") {
-                        if (parseFloat(currency) >= 1/*usdToTrx.toFixed(2)*/) {
+                        if (parseFloat(currency) >= usdToTrx.toFixed(2)) {
                             setActiveStep(activeStep + 1);
                         } else {
                             swal("Monto inválido", `Debes pagar la mínima cantidad de $${usdToTrx.toFixed(2)} TRX`, "warning");
@@ -238,11 +238,11 @@ export default function Checkout({uid, email, allData}) {
                             {activeStep === steps.length ? (
                                 <React.Fragment>
                                     <Typography variant="h5" gutterBottom>
-                                        {paymentMethod === "card" ? "¡Gracias por tu compra!" : "¡Referencia de oxxo generada!"}
+                                        {paymentMethod === "card" ? "¡Gracias por tu compra!" : paymentMethod === "oxxo" ? "¡Referencia de oxxo generada!" : "¡Pago con TRX aceptado!"}
                                     </Typography>
                                     <img src={DONE} className="img-fluid mb-3" width="13%" alt="PAGO REALIZADO"/>
                                     <Typography variant="subtitle1">
-                                        {paymentMethod === "card" ? "¡Gracias por tu compra, se verá reflejado en tu monto total y en tu cartera en aproximadamente 1 minito. Hemos enviado tu comprobante de pago al correo electrónico que registraste!" : "¡Tienes 24 hrs para realizar el pago en oxxo!"}
+                                        {paymentMethod === "card" ? "¡Gracias por tu compra, se verá reflejado en tu monto total y en tu cartera en aproximadamente 1 minito. Hemos enviado tu comprobante de pago al correo electrónico que registraste!" : paymentMethod === "oxxo" ? "¡Tienes 24 hrs para realizar el pago en oxxo!" : "Tus TUAH se reflejaran en aproximadamente 1 minuto, puedes visualizar la transacción en el historial de compra"}
                                     </Typography>
                                     <Button variant="contained" color="primary" className={classes.button} onClick={buyAgain}>
                                         Comprar de nuevo

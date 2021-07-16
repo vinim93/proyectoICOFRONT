@@ -177,7 +177,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType, addressT
         setOpen(true);
         console.log(uid, getStates("trxToUsd"));
         try{
-            const data = await SunshineFinder.post('/buy-with-trx', {
+            const {data} = await SunshineFinder.post('/buy-with-trx', {
                 id: "trxpayment",
                 amount: getStates("currency"),
                 uid,
@@ -186,7 +186,44 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType, addressT
                     usdToTrx: getStates("usdToTrx")
                 }
             });
-            console.log(data);
+            console.log(data.response);
+
+            switch (data.response) {
+                case "success":
+                    handleNext(true);
+                    break;
+
+                case "trx-send-failed":
+                    handleNext(false);
+                    swal("Transacción incompleta", "La transacción no se pudo realizar, verifica el monto de tus TRX e intenta de nuevo más tarde", "warning");
+                    break;
+
+                case "insufficient-trx":
+                    handleNext(false);
+                    swal("TRX insuficientes", "No cuentas con la cantidad suficiente de TRX para comprar TUAH", "warning");
+                    break;
+
+                case "insufficient-trx-reserve":
+                    handleNext(false);
+                    swal("Oops", "Parece que no puedes comprar más TUAH porque se agotaron, contactate con el equipo de soporte si piensas que se trata de un mensaje erroneo", "warning");
+                    break;
+
+                case "invalid-trx-cost":
+                    handleNext(false);
+                    swal("Ocurrió un error", "El monto de TUAH a devolver según la cantidad de TRX que quieres pagar no es correcta, recarga la pagina e intenta de nuevo", "warning");
+                    break;
+
+                case "invalid-minimum-trx":
+                    handleNext(false);
+                    swal("Cantidad mínima TRX invalida", "La cantidad de TRX que quieres pagar es menor al monto que se requiere el cual es "+ getStates("usdToTrx").toFixed(2) + " TRX", "warning");
+                    break;
+
+                default:
+                    handleNext(false);
+                    swal("Oops", "Ocurrió un error inesperado, intenta de nuevo más tarde", "error");
+                    break;
+            }
+
         } catch (e) {
         }
         setOpen(false);
