@@ -53,6 +53,7 @@ const Wallet = () => {
     const [userInfo, setUserInfo] = useState({});
     const [tokensToSend, setTokensToSend] = useState(0);
     const [tokensArray, setTokensArray] = useState([{}]);
+    const [allInfoTokens, setAllInfoTokens] = useState([{}]);
     //ESTO TIENE QUE IR EN EL BACKEND, AHORITA ES PARA HACER PRUEBAS RÁPIDO
     const [tokenAddress, setTokenAddress] = useState("");
     const [tokenPrivateKey, setTokenPrivateKey] = useState("");
@@ -91,10 +92,12 @@ const Wallet = () => {
                 uid: id
             }
         }).then(response => {
+            console.log(response);
             setTokenAddress(response.data.tokenAddress);
             if(response.data.tokensArray){
-                setTokensArray(response.data.tokensArray)
+                setTokensArray(response.data.tokensArray);
                 setAmount(response.data.tokensArray.find(element => element.key === "1003948").value);
+                setAllInfoTokens(response.data.allInfo);
             }
         }).catch(e => {
         })
@@ -378,7 +381,7 @@ const Wallet = () => {
                                 </Card>
                             </Col>
                             <Col className="mb-5 mb-xl-0" xl="5">
-                                <CryptoList tokensArray={tokensArray} />
+                                <CryptoList tokensArray={tokensArray} allInfoTokens={allInfoTokens} />
                             </Col>
                         </Row>
 
