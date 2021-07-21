@@ -20,7 +20,7 @@ import TronscanFinder from "../../../apis/TronscanFinder";
 
 const columns = [
     { id: 'hash', label: 'Hash', minWidth: 170 },
-    { id: 'amount', label: 'Monto', minWidth: 100, format: (value) => value.toString().slice(0, value.toString().length-6) + "." + value.toString().slice(value.toString().length-6) },
+    { id: 'amount', label: 'Monto', minWidth: 100, format: (value) => value },
     {
         id: 'date',
         label: 'Fecha/hora',
@@ -111,14 +111,14 @@ const  TransactionsHistory = ({address}) => {
     };
 
     const retrieveTransactions = async (walletAddress) => {
+        console.log(walletAddress);
         try{
             const result = await TronscanFinder.get(`/api/transaction?sort=-timestamp&count=true&limit=50&start=0&address=${walletAddress}`);
-            //await setTransactions(result.data.data);
             let data = result.data.data;
             let row = [];
             await data.map(value => {
-
-                row.push(createData(value.hash, value.toAddress === address ? value.contractData.amount : - value.contractData.amount, timeConverter(value.timestamp), value.toAddress === address ? <Chip label="RECIBIDO" color="primary" /> : <Chip label="ENVIADO" color="secondary" />, value.tokenInfo.tokenAbbr));
+                let decimal = value.tokenInfo.tokenDecimal;
+                row.push(createData(value.hash, value.toAddress === address ? value.contractData.amount / eval("1e"+decimal) || 0 : - value.contractData.amount / eval("1e"+decimal) || 0, timeConverter(value.timestamp), value.toAddress === address ? <Chip label="RECIBIDO" color="primary" /> : <Chip label="ENVIADO" color="secondary" />, (value.tokenInfo.tokenAbbr).toString().toUpperCase()));
             })
             await setTransactions(row);
 
@@ -160,6 +160,7 @@ const  TransactionsHistory = ({address}) => {
                                     <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                                         {columns.map((column) => {
                                             const value = row[column.id];
+                                            console.log(row);
                                             return (
                                                 <TableCell key={column.id} align={column.align}>
                                                     {column.id !== "hash" ? column.format && typeof value === 'number' ? column.format(value) : value : <a className="btn btn-link" onClick={e => onClickTransactionDetails(e.target.innerText)}>{value}</a>}
