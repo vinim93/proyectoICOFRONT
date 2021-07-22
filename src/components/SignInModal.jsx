@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import "firebase/auth";
 import swal from 'sweetalert';
 import {useAuth} from "../context/AuthContext";
-import {NavLink, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import "./dashboard/css/styles.css";
 import GoogleButton from 'react-google-button'
 import TextField from "@material-ui/core/TextField";
@@ -17,6 +17,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FilledInput from '@material-ui/core/FilledInput';
 import SunshineFinder from "../apis/SunshineFinder";
+
 require('dotenv').config();
 
 const SignInModal = () => {
@@ -24,7 +25,7 @@ const SignInModal = () => {
     const history = useHistory();
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
-    const {login, currentUser, logout} = useAuth();
+    const {login, logout} = useAuth();
     const [verifiedCaptcha, setVerifiedCaptcha] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -134,7 +135,6 @@ const SignInModal = () => {
         }).catch((error) => {
             auth.signOut();
             let errorCode = error.code;
-            let errorMessage = error.message;
 
             switch (errorCode) {
                 case "auth/network-request-failed":
@@ -145,6 +145,17 @@ const SignInModal = () => {
                         button: "¡Entendido!",
                         closeOnClickOutside: false
                     });
+                    break;
+
+                default:
+                    swal({
+                        title: "Error inesperado",
+                        text: "Ocurrió un error inesperado, recarga la página",
+                        icon: "info",
+                        button: "¡Entendido!",
+                        closeOnClickOutside: false
+                    });
+                    break;
             }
         })
 
@@ -217,7 +228,7 @@ const SignInModal = () => {
                     break;
 
                 default:
-                    let errorMessage = error.message;
+                    swal("Intenta de nuevo", "Ocurrio un error inesperado, intenta de nuevo", "warning");
             }
         }
 
@@ -345,12 +356,12 @@ const SignInModal = () => {
                             <div className="row pl-xl-5 pr-xl-5">
                                 <div className="col-12 mb-5">
 
-                                    <a style={{color: "white"}} href="#" onClick={openForgetPass} data-toggle="modal"
+                                    <button style={{color: "white"}} href="#" onClick={openForgetPass} data-toggle="modal"
                                        data-target="#recoveryModal">
                                         <h6>
                                             ¿Olvidaste la contraseña?
                                         </h6>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>

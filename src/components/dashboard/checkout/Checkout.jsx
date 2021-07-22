@@ -32,7 +32,6 @@ export default function Checkout({uid, email, allData}) {
     const [city, setCity] = useState("");
     const [stateLocation, setStateLocation] = useState("");
     const [country, setCountry] = useState("");
-    const [loading, setLoading] = useState(false);
     const [paymentID, setPaymentID] = useState("");
     const [paymentDone, setPaymentDone] = useState(false);
     const [currencyType, setCurrencyType] = useState('USD');
@@ -216,7 +215,6 @@ export default function Checkout({uid, email, allData}) {
         setCurrencyType('USD');
         setPaymentMethod('');
         setCurrency(null);
-        setLoading(false);
         setPaymentID("");
         setPaymentDone(false);
     }

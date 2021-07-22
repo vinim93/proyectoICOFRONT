@@ -21,7 +21,6 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType, addressT
     const classes = useStyles();
     const stripe = useStripe();
     const elements = useElements();
-    const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
     const [cardComplete, setCardComplete] = useState(false);
     const [readyStripe, setReadyStripe] = useState(false);
@@ -29,7 +28,6 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType, addressT
     const buyToken = async (e) => {
         e.preventDefault();
         if(cardComplete){
-            setLoading(true);
             if (getStates("currency") >= 1) {
                 setOpen(true);
                 const {error, paymentMethod} = await stripe.createPaymentMethod({
@@ -48,7 +46,6 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType, addressT
                 });
 
                 if (!error) {
-                    setLoading(true);
                     const {id} = paymentMethod;
                     try {
                         const {data} = await SunshineFinder.post('/api/checkout', {
@@ -106,21 +103,20 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType, addressT
                                 case 'amount_too_large':
                                     swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99", "warning");
                                     break;
+                                default:
+                                    swal("No se pudo procesar el pago", "Verifica que los datos que pusiste sean correctos o intenta de nuevo más tarde!", "error");
                             }
                         }
                     } catch (error) {
                         setOpen(false);
                         handleNext(false);
                     }
-                    setLoading(false);
                 } else {
                     swal("No se pudo procesar el pago", "Verifica que los datos que pusiste sean correctos o intenta de nuevo más tarde!", "error");
                 }
                 setOpen(false);
             } else {
-                setLoading(false);
             }
-            setLoading(false);
         }
 
     }
@@ -295,9 +291,6 @@ export default function Review({getStates, uid, handleNext, email, addressToken}
         {name: 'Sun Token', desc: (getStates("currencyType") === "MX" ? (getStates("currency") * getStates("mxnToUsd")).toFixed(6) :  getStates("currencyType") === "TRX" ? (getStates("currency") * getStates("trxToUsd")).toFixed(6) :getStates("currency")), price: getStates("currency") + ' ' + (getStates("currencyType") === "MX" ? "MXN" : getStates("currencyType") === "TRX" ? "TRX" : "USD")},
     ];
     const addresses = [getStates("address"), getStates("city"), getStates("stateLocation"), getStates("country")];
-    const payments = [
-        {name: 'Método de pago', detail: 'Tarjeta débito/crédito'},
-    ];
 
     return (
         <React.Fragment>

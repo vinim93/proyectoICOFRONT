@@ -340,7 +340,7 @@ const Profile = () => {
                                     <div className="card-profile-image">
                                         <a href="#pablo" onClick={(e) => e.preventDefault()}>
                                             <img
-                                                alt="..."
+                                                alt="Profile"
                                                 className="rounded-circle"
                                                 src={croppedImage || AVATAR}
                                             />

@@ -4,11 +4,11 @@ import tecnologias from "../images/tecnologias.svg";
 import 'bootstrap/dist/css/bootstrap.css';
 import contador from "../js/cuentaregresiva";
 import Zoom from 'react-reveal/Zoom';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 
 const Countdown = () => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
     useEffect(() => {
         contador("contador",
@@ -24,13 +24,13 @@ const Countdown = () => {
                     {t('CountdownL.Title')}
                 </p><br/>
                 <div className="container-contador">
-                <p id="contador" className=""></p>
+                    <p id="contador" className=""></p>
                 </div>
             </div>
 
             <ul className="rectangulo1   text-center">
                 <li className=" cont-li-cap">
-                    <img src={rectangulo1} className="rectanguloimg "/>
+                    <img src={rectangulo1} alt="Rectangulo img" className="rectanguloimg "/>
                 </li>
 
                 <li className=" row cap justify-content-around text-left">
@@ -38,12 +38,12 @@ const Countdown = () => {
                     <p className="col-4">HARD CAP<br/> <p className="cap-min">$ 250 M USD</p></p>
 
                 </li>
-                      <Zoom>
-                <li className=" tecno ">
-                   
-                        <img src={tecnologias} className=" img-tecno  "/>
-                   
-                </li>
+                <Zoom>
+                    <li className=" tecno ">
+
+                        <img src={tecnologias} alt="Img tecno" className="img-tecno"/>
+
+                    </li>
                 </Zoom>
             </ul>
 

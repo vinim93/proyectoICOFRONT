@@ -111,7 +111,6 @@ const  TransactionsHistory = ({address}) => {
     };
 
     const retrieveTransactions = async (walletAddress) => {
-        console.log(walletAddress);
         try{
             const result = await TronscanFinder.get(`/api/transaction?sort=-timestamp&count=true&limit=50&start=0&address=${walletAddress}`);
             let data = result.data.data;
@@ -160,7 +159,6 @@ const  TransactionsHistory = ({address}) => {
                                     <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                                         {columns.map((column) => {
                                             const value = row[column.id];
-                                            console.log(row);
                                             return (
                                                 <TableCell key={column.id} align={column.align}>
                                                     {column.id !== "hash" ? column.format && typeof value === 'number' ? column.format(value) : value : <a className="btn btn-link" onClick={e => onClickTransactionDetails(e.target.innerText)}>{value}</a>}
@@ -185,7 +183,6 @@ const  TransactionsHistory = ({address}) => {
             </Paper>
 
             <Dialog
-                fullWidth={"md"}
                 open={open}
                 TransitionComponent={Transition}
                 keepMounted
@@ -195,7 +192,7 @@ const  TransactionsHistory = ({address}) => {
             >
                 <DialogTitle id="alert-dialog-slide-title">Detalles</DialogTitle>
                 <DialogContent>
-                    <DialogContentText id="alert-dialog-slide-description">
+                    <DialogContentText component={"div"} id="alert-dialog-slide-description">
                         <div className="container-fluid">
 
 

@@ -55,7 +55,7 @@ const headCells = [
 ];
 
 const EnhancedTableHead = (props) => {
-    const {classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort} = props;
+    const {classes, order, orderBy, onRequestSort} = props;
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
     };
@@ -120,14 +120,58 @@ export default function PurchaseHistoryComponent({uid}) {
     const classes = useStyles();
     const [order, setOrder] = useState('desc');
     const [orderBy, setOrderBy] = useState('');
-    const [selected, setSelected] = useState([]);
+    const [selected] = useState([]);
     const [page, setPage] = useState(0);
     const [rows, setRows] = useState([]);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
     useEffect(() => {
+        const getData = (id) => {
+            let docRef = db.collection('credentials').doc(id).collection('transactions');
+            docRef
+                .orderBy("dateField", 'desc')
+                .onSnapshot((querySnapshot) => {
+                    let elements = [];
+                    querySnapshot.forEach((doc) => {
+                        try {
+                            let id = null;
+                            let tokens = null;
+                            let price = null;
+                            let date = null;
+                            let paymentMethod = null;
+                            if (doc.data().payment_method_types[0] === "card") {
+                                if (doc.data().currency === "usd") {
+                                    price = "$" + (doc.data().amount / 100) || "PENDING";
+                                } else if (doc.data().currency === "mxn") {
+                                    price = "$" + doc.data().final_amount || "PENDING";
+                                }
+                                id = doc.data().charges.data[0].id || "PENDING";
+                                tokens = doc.data().tokens_number || "PENDING";
+                                date = timeConverter(doc.data().created) || "PENDING";
+                                paymentMethod = doc.data().charges.data[0].payment_method_details.card.network + " " + doc.data().charges.data[0].payment_method_details.type + " " + "*".repeat(12) + doc.data().charges.data[0].payment_method_details.card.last4 || "PENDING";
+                            } else if (doc.data().payment_method_types[0] === "oxxo") {
+                                id = doc.data().charges.data[0].id || "PENDING";
+                                tokens = doc.data().tokens_number || "PENDING";
+                                price = "$" + doc.data().final_amount || "PENDING";
+                                date = timeConverter(doc.data().created) || "PENDING";
+                                paymentMethod = doc.data().payment_method_types[0] || "PENDING";
+                            } else if (doc.data().payment_method_types[0] === "trx") {
+                                id = doc.data().id || "PENDING";
+                                tokens = doc.data().tokens || "PENDING";
+                                price = doc.data().price + "(TRX)" || "PENDING";
+                                date = timeConverter(doc.data().date) || "PENDING";
+                                paymentMethod = doc.data().payment_method_types[0] || "PENDING";
+                            }
+                            elements.push(createData(id, tokens, price, date, paymentMethod));
+                        } catch (e) {
+
+                        }
+                    });
+                    setRows(elements);
+                })
+        }
         getData(uid);
-    }, []);
+    }, [uid]);
 
     const timeConverter = (UNIX_timestamp) => {
         let a = new Date(UNIX_timestamp * 1000);
@@ -140,52 +184,6 @@ export default function PurchaseHistoryComponent({uid}) {
         let sec = a.getSeconds();
         let time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
         return time;
-    }
-
-    const getData = (id) => {
-        let docRef = db.collection('credentials').doc(id).collection('transactions');
-        docRef
-            .orderBy("dateField", 'desc')
-            .onSnapshot((querySnapshot) => {
-                let elements = [];
-                querySnapshot.forEach((doc) => {
-                    try {
-                        let id = null;
-                        let tokens = null;
-                        let price = null;
-                        let date = null;
-                        let paymentMethod = null;
-                        console.log(doc.data());
-                        if (doc.data().payment_method_types[0] === "card") {
-                            if (doc.data().currency === "usd") {
-                                price = "$" + (doc.data().amount / 100) || "PENDING";
-                            } else if (doc.data().currency === "mxn") {
-                                price = "$" + doc.data().final_amount || "PENDING";
-                            }
-                            id = doc.data().charges.data[0].id || "PENDING";
-                            tokens = doc.data().tokens_number || "PENDING";
-                            date = timeConverter(doc.data().created) || "PENDING";
-                            paymentMethod = doc.data().charges.data[0].payment_method_details.card.network + " " + doc.data().charges.data[0].payment_method_details.type + " " + "*".repeat(12) + doc.data().charges.data[0].payment_method_details.card.last4 || "PENDING";
-                        } else if (doc.data().payment_method_types[0] === "oxxo") {
-                            id = doc.data().charges.data[0].id || "PENDING";
-                            tokens = doc.data().tokens_number || "PENDING";
-                            price = "$" + doc.data().final_amount || "PENDING";
-                            date = timeConverter(doc.data().created) || "PENDING";
-                            paymentMethod = doc.data().payment_method_types[0] || "PENDING";
-                        } else if(doc.data().payment_method_types[0] === "trx"){
-                            id = doc.data().id || "PENDING";
-                            tokens = doc.data().tokens || "PENDING";
-                            price = doc.data().price + "(TRX)" || "PENDING";
-                            date = timeConverter(doc.data().date) || "PENDING";
-                            paymentMethod = doc.data().payment_method_types[0] || "PENDING";
-                        }
-                        elements.push(createData(id, tokens, price, date, paymentMethod));
-                    } catch (e) {
-
-                    }
-                });
-                setRows(elements);
-            })
     }
 
     const handleRequestSort = (event, property) => {
@@ -337,7 +335,6 @@ EnhancedTableHead.propTypes = {
     classes: PropTypes.object.isRequired,
     numSelected: PropTypes.number.isRequired,
     onRequestSort: PropTypes.func.isRequired,
-    onSelectAllClick: PropTypes.func.isRequired,
     order: PropTypes.oneOf(['asc', 'desc']).isRequired,
     orderBy: PropTypes.string.isRequired,
     rowCount: PropTypes.number.isRequired,

@@ -92,7 +92,6 @@ const Wallet = () => {
                 uid: id
             }
         }).then(response => {
-            console.log(response);
             setTokenAddress(response.data.tokenAddress);
             if(response.data.tokensArray){
                 setTokensArray(response.data.tokensArray);

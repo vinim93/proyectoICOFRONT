@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import finalCoin from "../../../images/monedafinal.png";
 import NumberFormat from 'react-number-format';
 import TextField from '@material-ui/core/TextField';
@@ -29,25 +29,18 @@ const TokenAmount = ({currency, setCurrency, setStates, getStates, currencyConve
         currencyConversor("MXN", "USD");
         currencyConversor("TRX", "USD");
         currencyConversor("USD", "TRX");
-    }, []);
+    }, [currencyConversor]);
 
     const conversor = (type, amount = "USD") => {
         switch (type) {
             case "USD":
                 return `${amount || 0} USD - ${amount * 1 || 0} SUNI - ${(amount * getStates("usdToMxn")).toFixed(2) || 0} MXN`;
-                break;
-
             case "SUN":
                 return `${amount * 1 || 0} USD - ${amount || 0} SUNI - ${(amount * getStates("usdToMxn")).toFixed(2) || 0} MXN`;
-                break;
-
             case "MX":
                 return `${(amount * getStates("mxnToUsd")).toFixed(6) || 0} USD - ${(amount * getStates("mxnToUsd")).toFixed(6) || 0} SUN - ${amount || 0} MXN`;
-                break;
-
             case "TRX":
                 return `${amount || 0} TRX - ${(amount * getStates("trxToUsd")).toFixed(6)|| 0} SUNI`;
-                break;
             default:
                 return `${amount || 0} USD - ${amount * 1 || 0} SUNI - ${(amount * getStates("usdToMxn").toFixed(2))} MXN`;
         }
@@ -80,7 +73,7 @@ const TokenAmount = ({currency, setCurrency, setStates, getStates, currencyConve
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <img src={finalCoin} style={{width: 150}} className="img-fluid" alt="SUNSHINE COIN IMAGE"/>
+                        <img src={finalCoin} style={{width: 150}} className="img-fluid" alt="SUNSHINE COIN"/>
                         <h5 className="currency-value-title font-weight-bold mt-3">{conversor(getStates("currencyType"), currency)}</h5>
                     </div>
                 </div>

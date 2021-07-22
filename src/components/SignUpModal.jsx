@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import "./navbar/css/styles.css"
 import 'react-phone-number-input/style.css'
 import {db, auth} from "../config/firebase";
@@ -37,8 +37,6 @@ const SignUpModal = () => {
 
     }
 
-    const [countries, setCountries] = useState([]);
-    const [uploadValue, setUploadValue] = useState(0);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [apellido, setApellido] = useState("");
@@ -154,7 +152,6 @@ const SignUpModal = () => {
         setPassword('');
         setRepeteadPassword('');
         setApellido('');
-        setUploadValue(0);
         setCheckedValue(false);
         setVerifiedCaptcha(false);
     }
@@ -192,7 +189,6 @@ const SignUpModal = () => {
                                 }).catch((error) => {
                                 setLoading(false);
                                 let errorCode = error.code;
-                                let errorMessage = error.message;
 
 
                                 /*============== EL CORREO YA SE USA POR OTRA CUENTA ==================*/
@@ -293,8 +289,9 @@ const SignUpModal = () => {
                                                             className="text-danger">Mínimo 1 número</p></li>
                                                     )
 
+                                                default:
+                                                    return
                                             }
-
                                         })
                                     }
                                 </ul>
@@ -381,9 +378,6 @@ const SignUpModal = () => {
             }
         }).catch((error) => {
             auth.signOut();
-            let errorCode = error.code;
-            let errorMessage = error.message;
-
         })
 
     }

@@ -41,7 +41,11 @@ export default function CryptoList({tokensArray, allInfoTokens}) {
                                         if(row.key === "0000000"){
                                             value1 = {...row, ...{name: "TRON", abbr: "TRX", icon: <Avatar src={TRX}>$</Avatar>, precision: 6}}
                                         } else{
-                                            value1 = {...row, ...allInfoTokens[index], ...{icon: <Avatar src={`https://coin.top/production/upload/logo/${row.key}.png`}>$</Avatar>}}
+                                            try{
+                                                value1 = {...row, ...allInfoTokens[index], ...{icon: <Avatar src={`https://coin.top/production/upload/logo/${row.key}.png`}>$</Avatar>}}
+                                            } catch (e) {
+
+                                            }
                                         }
                                         const value = value1[column.id];
                                         return (

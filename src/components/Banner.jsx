@@ -24,15 +24,14 @@ const Banner = () => {
                             {t('Banner.Titulo.0')}
                             <p className="revo1">{t('Banner.Titulo.1')}</p>
                             <p className="tec1">{t('Banner.Titulo.2')}</p>
-                            <img className="moneda d-block  d-md-none" src={monedafinal}/>
+                            <img className="moneda d-block d-md-none" alt="Moneda" src={monedafinal}/>
                             <p className="  hometext1  text-center d-none  d-md-block">
                                 {t('Banner.Texto')}
                             </p>
                             <p className="hometext1 col-12 text-left  d-block  d-md-none">
                                 {t('Banner.Texto')} </p>
                             <div className="text-lg-center text-left text-sm-center">
-                                <button className="btn btn-light-moon btn-link boton1 disabled "
-                                        role="button" data-toggle="modal">
+                                <button className="btn btn-light-moon btn-link boton1 disabled" data-toggle="modal">
                                     {t('Banner.TextoBoton')}
                                 </button>
                             </div>
@@ -40,7 +39,7 @@ const Banner = () => {
                     </div>
                 </Zoom>
                 <div className=" col-lg-5 col-md-5 d-none col-sm-5 d-md-block contenedor">
-                    <img className="moneda" src={monedag}/>
+                    <img className="moneda" alt="Moneda principal" src={monedag}/>
                 </div>
             </div>
         </div>

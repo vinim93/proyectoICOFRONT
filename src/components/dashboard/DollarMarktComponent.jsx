@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import axios from "axios";
 import CoingeckoFinder from "../../apis/CoingeckoFinder";
 
 const DollarMarktComponent = () => {

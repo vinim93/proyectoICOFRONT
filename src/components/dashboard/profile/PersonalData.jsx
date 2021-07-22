@@ -1,24 +1,23 @@
 import 'date-fns';
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import {Button, TextField, Avatar} from '@material-ui/core';
+import {Button, TextField} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import DateFnsUtils from '@date-io/date-fns';
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
 import SaveIcon from '@material-ui/icons/Save';
 import swal from "sweetalert";
-import {db, useStorage} from "../../../config/firebase";
+import {db} from "../../../config/firebase";
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import PhoneInput from 'react-phone-input-2';
-import UploadImage from "./UploadImage";
 import 'react-phone-input-2/lib/material.css'
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
 
-const PersonalData = ({getStates, setStates, uid, profilePictureStatus}) => {
+const PersonalData = ({getStates, setStates, uid}) => {
 
     const classes = useStyles();
     const [open, setOpen] = useState(false);

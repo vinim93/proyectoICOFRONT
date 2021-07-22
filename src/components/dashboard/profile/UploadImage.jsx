@@ -21,7 +21,7 @@ const UploadImage = ({ uploadProfilePicture, getStates, setStates, profilePictur
 
     useEffect(() => {
         setHideButton(!(profilePictureStatus === 0));
-    }, []);
+    }, [profilePictureStatus]);
 
 
     const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
@@ -35,7 +35,7 @@ const UploadImage = ({ uploadProfilePicture, getStates, setStates, profilePictur
                 croppedAreaPixels,
                 rotation
             )
-            setStates("setCroppedImage", URL.createObjectURL(croppedImage))
+            setStates("setCroppedImage", URL.createObjectURL(croppedImage));
             setStates("setImage", croppedImage);
         } catch (e) {
             console.error(e);

@@ -26,8 +26,8 @@ const MapaApp = () => {
                     <div className="col-12">
                         <p className="dis-fondos">{t('MapaApp.Funding.Title')}</p>
                         <p className="dis-tokens">{t('MapaApp.Tokens.Title')}</p>
-                        <img src={Mapa} className=" mapaes d-none d-md-flex"/>
-                        <img src={Mapamini} className=" mapaes d-flex d-md-none"/>
+                        <img src={Mapa} alt="" className="mapaes d-none d-md-flex"/>
+                        <img src={Mapamini} alt="" className="mapaes d-flex d-md-none"/>
                         <p className="por-syn">40% <br/><p className="por-syn2">{t('MapaApp.Funding.Symphony')}</p></p>
                         <p className="por-hawk">30% <br/><p className="por-hawk2">{t('MapaApp.Funding.Hawk')}</p></p>
                         <p className="por-lion">30% <br/><p className="por-lion2">{t('MapaApp.Funding.Lion')}</p></p>
@@ -46,7 +46,7 @@ const MapaApp = () => {
                     <div className="col-12 d-none d-md-block">
                         <h1 className="titu-token text-center">{t('MapaApp.SunshineToken.Title')}</h1>
                         <p className="cont-text-moneda">
-                            <img src={Textmoneda} className=" col-6" align="left"/>
+                            <img src={Textmoneda} alt="" className=" col-6" align="left"/>
                             <p className="parrafos-tokens">{t('MapaApp.SunshineToken.Items.0')}</p>
                             <p className="parrafos-tokens">{t('MapaApp.SunshineToken.Items.1')}</p>
                             <p className="parrafos-tokens parra-3">{t('MapaApp.SunshineToken.Items.2')}</p>
@@ -57,14 +57,14 @@ const MapaApp = () => {
                     </div>
                     <div className="col-12 cont-token d-block d-md-none ">
                         <h1 className="titu-token text-center">{t('MapaApp.SunshineToken.Title')}</h1>
-                        <img src={monedafinal} className=" img-token   col-6" align="left"/>
+                        <img src={monedafinal} alt="" className="img-token col-6" align="left"/>
 
                         <div id="accordion">
 
                             <div class="btn card-token card ">
                                 <div class="">
                                     <a class=" btn-img-token1 card-link " data-toggle="collapse" href="#collapseOne">
-                                        <img src={Boton1token} className=" btn-img-token "/>
+                                        <img alt="" src={Boton1token} className="btn-img-token"/>
                                     </a>
                                 </div>
                                 <div id="collapseOne" class="collapse show position-absolute cont-text-token "
@@ -79,7 +79,7 @@ const MapaApp = () => {
                                 <div class="">
                                     <a class="  btn-img-token2 collapsed card-link" data-toggle="collapse"
                                        href="#collapseTwo">
-                                        <img src={Boton2token} className=" btn-img-token  "/>
+                                        <img alt="" src={Boton2token} className="btn-img-token"/>
                                     </a>
                                 </div>
                                 <div id="collapseTwo" class="collapse position-absolute cont-text-token "
@@ -94,7 +94,7 @@ const MapaApp = () => {
                                 <div class="">
                                     <a class="collapsed btn-img-token3 card-link" data-toggle="collapse"
                                        href="#collapseThree">
-                                        <img src={Boton3token} className=" btn-img-token  "/>
+                                        <img alt="" src={Boton3token} className="btn-img-token"/>
                                     </a>
                                 </div>
                                 <div id="collapseThree" class="collapse position-absolute cont-text-token "
@@ -108,7 +108,7 @@ const MapaApp = () => {
                             <div class="btn card-token card">
                                 <div class="">
                                     <a class="collapsed card-link" data-toggle="collapse" href="#collapsefour">
-                                        <img src={Boton4token} className="btn-img-token btn-img-token4  "/>
+                                        <img alt="" src={Boton4token} className="btn-img-token btn-img-token4"/>
                                     </a>
                                 </div>
                                 <div id="collapsefour" class="collapse position-absolute cont-text-token "
@@ -122,7 +122,7 @@ const MapaApp = () => {
                             <div class="btn card-token card">
                                 <div class="">
                                     <a class="collapsed card-link" data-toggle="collapse" href="#collapsefive">
-                                        <img src={Boton5token} className=" btn-img-token btn-img-token5 "/>
+                                        <img alt="" src={Boton5token} className="btn-img-token btn-img-token5"/>
                                     </a>
                                 </div>
                                 <div id="collapsefive" class="collapse position-absolute cont-text-token "
@@ -150,18 +150,17 @@ const MapaApp = () => {
                                 <li>{t('MapaApp.AppDownload.Items.2')}</li>
                             </ul>
                         </div>
-                        <p className="  disponible-text">{t('MapaApp.AppDownload.Avaliable')}:</p>
-                        <img src={Nuestraapp} className=" text-App-g "/>
-
+                        <p className="disponible-text">{t('MapaApp.AppDownload.Avaliable')}:</p>
+                        <img src={Nuestraapp} alt="" className="text-App-g"/>
 
                     </div>
                     <div className="col-12 goo-aple">
 
-                        <img src={Google} className="img-goo"/>
+                        <img src={Google} alt="" className="img-goo"/>
                     </div>
                     <div className="col-12 goo-aple">
 
-                        <img src={Apple} className="img-aple d-flex "/>
+                        <img src={Apple} alt="" className="img-aple d-flex"/>
                     </div>
                     <p className=" constru-cartera ">¡{t('MapaApp.AppDownload.Footer')}!</p>
                 </div>
