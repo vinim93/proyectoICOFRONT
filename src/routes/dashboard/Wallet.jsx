@@ -39,6 +39,8 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
 import {makeStyles} from "@material-ui/core/styles";
 import SunshineFinder from "../../apis/SunshineFinder";
+import {Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
+import DialogContentText from "@material-ui/core/DialogContentText";
 
 
 const Wallet = () => {
@@ -58,6 +60,10 @@ const Wallet = () => {
     const [tokenAddress, setTokenAddress] = useState("");
     const [tokenPrivateKey, setTokenPrivateKey] = useState("");
     const [open, setOpen] = useState(false);
+    const [smsCode, setSmsCode] = useState("");
+    const [openSmsModal, setOpenSmsModal] = useState(false);
+    const [requestNewCode, setRequestNewCode] = useState(false);
+    const  [newCodeSeconds, setNewCodeSeconds] = useState(0);
 
     useEffect(() => {
         try {
@@ -107,29 +113,32 @@ const Wallet = () => {
         setScanValue("");
     }
 
-    const sendTokens = async e => {
-        e.preventDefault();
+    const sendTokens = async () => {
         setOpen(true);
-        try{
-            const response = await SunshineFinder.post("/send-tokens", {
-                uid,
-                amount: convertForSend(tokensToSend),
-                toAddress: scanValue
-            });
+        try {
+            const verifySMS = await SunshineFinder.post("/verify-number", {uid, code: smsCode});
+            if(verifySMS.data.status){
+                const response = await SunshineFinder.post("/send-tokens", {
+                    uid,
+                    amount: convertForSend(tokensToSend),
+                    toAddress: scanValue
+                });
 
-            if(response.data.sendTokenResponse === "success"){
-                swal("Tokens enviados", `Se cobraron ${tokensToSend} TUAH de tu cuenta y se depositaron a la dirección ${tokenAddress}, puedes ver la transacción en tu historial`, "success");
-                getData(uid);
-                clearFields();
+                if(response.data.sendTokenResponse === "success"){
+                    setOpenSmsModal(false);
+                    swal("Tokens enviados", `Se cobraron ${tokensToSend} TUAH de tu cuenta y se depositaron a la dirección ${scanValue}, puedes ver la transacción en tu historial`, "success");
+                    await getData(uid);
+                    clearFields();
+                } else {
+                    throw response.data.sendTokenResponse.toString();
+                }
             } else {
-                throw response.data.sendTokenResponse.toString();
+                throw "sms-incorrect";
             }
-
-
         } catch (e) {
             switch (e.message || e){
                 case "success":
-                    swal("Tokens enviados", `Se cobraron ${tokensToSend} TUAH de tu cuenta y se depositaron a la dirección ${tokenAddress}, puedes ver la transacción en tu historial`, "success");
+                    swal("Tokens enviados", `Se cobraron ${tokensToSend} TUAH de tu cuenta y se depositaron a la dirección ${scanValue}, puedes ver la transacción en tu historial`, "success");
                     clearFields();
                     break;
                 case "without-tuah":
@@ -146,6 +155,52 @@ const Wallet = () => {
                     break;
                 case "Invalid count value":
                     swal("Monto invalido", "El monto ingresado no es válido, ingresa un monto de tipo 0.000000", "warning");
+                    break;
+                case "sms-incorrect":
+                    swal("Código SMS inválido", "El código que ingresaste no coincide con el que te llegó al telefono proporcionado o caducó, intenta de nuevo", "warning");
+                    break;
+                default:
+                    swal("Error inesperado", "Ocurrió un error inesperado, recarga la página o intenta de nuevo más tarde", "error");
+            }
+        }
+        setOpen(false);
+    }
+
+    const enableRequestSms = () => {
+        setTimeout(() => {
+            setRequestNewCode(true);
+        }, 60000);
+    }
+
+    const startTimer = () => {
+        let timeleft = 60;
+        let downloadTimer = setInterval(() => {
+            timeleft--;
+            setNewCodeSeconds(timeleft);
+            if(timeleft <= 0)
+                clearInterval(downloadTimer);
+        },1000);
+    }
+
+    const sendSmsCode = async e => {
+        e.preventDefault();
+        setOpen(true);
+        try{
+            const sendSMS = await SunshineFinder.post("/send-sms", {uid});
+            if(sendSMS.data.status){
+                setRequestNewCode(false);
+                setOpenSmsModal(true);
+                enableRequestSms();
+                startTimer();
+            } else {
+                throw "sms-not-sended";
+            }
+
+        } catch (e) {
+            switch (e.message || e){
+                case "sms-not-sended":
+                    swal("Código SMS inválido", "El código que ingresaste no coincide con el que te llegó al telefono proporcionado o caducó, intenta de nuevo", "warning");
+                    clearFields();
                     break;
                 default:
                     swal("Error inesperado", "Ocurrió un error inesperado, recarga la página o intenta de nuevo más tarde", "error");
@@ -285,11 +340,10 @@ const Wallet = () => {
                                                 </div>
                                                 <div className="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                                      aria-labelledby="tabs-icons-text-2-tab">
-                                                    <form onSubmit={sendTokens}>
+                                                    <form onSubmit={sendSmsCode}>
 
                                                         <div className="container px-md-5">
                                                             <div className="row px-md-5">
-
 
                                                                 <div className="col-12 mb-4 px-md-5">
                                                                     <FormControl fullWidth style={{backgroundColor: "#FFFFFF", fontWeight: "bold", borderRadius: 4}} variant="filled">
@@ -393,6 +447,35 @@ const Wallet = () => {
                     <Backdrop className={classes.backdrop} open={open} >
                         <CircularProgress color="inherit" />
                     </Backdrop>
+
+
+                    <Dialog open={openSmsModal} aria-labelledby="form-dialog-title">
+                        <DialogTitle id="form-dialog-title">Verificar código</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>
+                                Verifica el código que se envió a tu teléfono celular, si no llega en el lapso de 60 segundos puedes solicitar un nuevo código
+                            </DialogContentText>
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                id="smscode"
+                                label="Código"
+                                type="number"
+                                fullWidth
+                                value={smsCode}
+                                onChange={e => setSmsCode(e.target.value)}
+                            />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={requestNewCode ? sendSmsCode : null} disabled={!requestNewCode} color="primary">
+                                PEDIR NUEVO CODIGO ({newCodeSeconds})
+                            </Button>
+                            <Button onClick={sendTokens} color="primary">
+                                VERIFICAR
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+
                 </div>
             )
         } else {
