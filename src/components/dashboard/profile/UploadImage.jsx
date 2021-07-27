@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useEffect} from 'react'
+import React, {useState, useCallback, useEffect, useContext} from 'react'
 import Cropper from 'react-easy-crop'
 import Slider from '@material-ui/core/Slider'
 import Button from '@material-ui/core/Button'
@@ -8,10 +8,11 @@ import {makeStyles} from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import {ProfileContext} from "../../../context/ProfileContext";
 
-
-const UploadImage = ({ uploadProfilePicture, getStates, setStates, profilePictureStatus}) => {
+const UploadImage = ({ uploadProfilePicture, profilePictureStatus}) => {
     const classes = useStyles();
+    const profileContext = useContext(ProfileContext);
     const [imageSrc, setImageSrc] = useState(null);
     const [crop, setCrop] = useState({x: 0, y: 0});
     const [rotation, setRotation] = useState(0);
@@ -35,8 +36,8 @@ const UploadImage = ({ uploadProfilePicture, getStates, setStates, profilePictur
                 croppedAreaPixels,
                 rotation
             )
-            setStates("setCroppedImage", URL.createObjectURL(croppedImage));
-            setStates("setImage", croppedImage);
+            profileContext.setCroppedImage(URL.createObjectURL(croppedImage));
+            profileContext.setImage(croppedImage);
         } catch (e) {
             console.error(e);
         }
@@ -67,7 +68,7 @@ const UploadImage = ({ uploadProfilePicture, getStates, setStates, profilePictur
                                 data-backdrop='static' data-keyboard='false' onClick={!hideButton ? choiceImage : null}>
                             Elegir foto
                         </Button>
-                        {getStates("croppedImage" && getStates("image")) ? (<Button onClick={uploadProfilePicture}>Subir foto</Button>) : null}
+                        {profileContext.croppedImage && profileContext.image ? (<Button onClick={uploadProfilePicture}>Subir foto</Button>) : null}
                     </ButtonGroup>
                 ) : null
             }

@@ -1,8 +1,6 @@
 import 'date-fns';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import {useAuth} from "../../context/AuthContext";
 import {useHistory} from "react-router-dom";
 import swal from "sweetalert";
@@ -12,23 +10,12 @@ import 'react-phone-input-2/lib/material.css'
 import {Document, Page} from 'react-pdf';
 import ExpansionComponent from "../../components/dashboard/profile/ExpansionComponent";
 import PlacesFinder from "../../apis/PlacesFinder";
-// reactstrap components
-import {
-    Button,
-    Card,
-    CardHeader,
-    CardBody,
-    FormGroup,
-    Form,
-    Input,
-    Container,
-    Row,
-    Col,
-} from "reactstrap";
+import {Card, CardBody, Container, Row, Col,} from "reactstrap";
 import UploadImage from "../../components/dashboard/profile/UploadImage";
 import AVATAR from '../../images/avatardefault.png';
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
+import {ProfileContext} from "../../context/ProfileContext";
 
 const UserHeader = () => {
     return (
@@ -41,9 +28,7 @@ const UserHeader = () => {
                     backgroundPosition: "center top",
                 }}
             >
-                {/* Mask */}
                 <span className="mask bg-gradient-default opacity-8" />
-                {/* Header container */}
             </div>
         </>
     );
@@ -53,32 +38,16 @@ const UserHeader = () => {
 const Profile = () => {
 
     const classes = useStyles();
+    const profileContext = useContext(ProfileContext);
     const {currentUser, logout} = useAuth();
     const [logged, setLogged] = useState(false);
     const history = useHistory();
     const [uid, setUid] = useState("");
-    const [name, setName] = useState("");
-    const [lastname, setLastname] = useState("");
-    const [birthday, setBirthday] = useState("");
-    const [country, setCountry] = useState("");
-    const [countryCompleteName, setCountryCompleteName] = useState("");
-    const [stateLocation, setStateLocation] = useState("");
-    const [city, setCity] = useState("");
-    const [phone, setPhone] = useState("");
-    const [address, setAddress] = useState("");
-    const [profileStatus, setProfileStatus] = useState(0);
     const [doc, setDoc] = useState("");
     const [jalaPorfavor, setAuthToken] = useState("");
-    const [countriesAPI, setCountriesAPI] = useState([]);
-    const [statesAPI, setStatesAPI] = useState([]);
-    const [citiesAPI, setCitiesAPI] = useState([]);
     const [filePreview, setFilePreview] = useState([]);
-    const [fileFirestore, setFileFirestore] = useState(null);
-    const [uploadValue, setUploadValue] = useState(0);
-    const [fileObject, setFileObject] = useState("");
+
     const [profilePictureStatus, setProfilePictureStatus] = useState(0);
-    const [croppedImage, setCroppedImage] = useState(null);
-    const [image, setImage] = useState("");
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
@@ -118,15 +87,15 @@ const Profile = () => {
                         case jpegImage:
                         case pngImage:
                             setFilePreview([URL.createObjectURL(e), "image"]);
-                            setFileObject("image");
+                            profileContext.setFileObject("image");
 
-                            setFileFirestore(e);
+                            profileContext.setFileFirestore(e);
                             break;
 
                         case pdfDocument:
                             setFilePreview([URL.createObjectURL(e), "pdf"]);
-                            setFileObject("pdf");
-                            setFileFirestore(e);
+                            profileContext.setFileObject("pdf");
+                            profileContext.setFileFirestore(e);
                             break;
                     }
                 } else {
@@ -143,7 +112,7 @@ const Profile = () => {
 
     const showFile = () => {
 
-        if ((profileStatus === 1 || profileStatus === 2 || profileStatus === 5 || profileStatus === 7)) {
+        if ((profileContext.profileStatus === 1 || profileContext.profileStatus === 2 || profileContext.profileStatus === 5 || profileContext.profileStatus === 7)) {
             if (filePreview[1] === "image") {
                 return (
                     <div className="row d-flex justify-content-center">
@@ -168,7 +137,7 @@ const Profile = () => {
                 return null;
             }
         } else {
-            if (fileObject === "image") {
+            if (profileContext.fileObject === "image") {
                 return (
                     <div className="row d-flex justify-content-center">
                         <div className="col-12 col-sm-12 col-xl-6 w-25 h-25">
@@ -177,7 +146,7 @@ const Profile = () => {
                     </div>
 
                 )
-            } else if (fileObject === "pdf") {
+            } else if (profileContext.fileObject === "pdf") {
                 return (
                     <div className="row d-flex justify-content-center">
                         <div className="col-12 col-sm-12 col-xl-6 w-25 h-25">
@@ -202,21 +171,21 @@ const Profile = () => {
             let docRef = db.collection('credentials').doc(id);
             await docRef.onSnapshot(doc => {
                 if (doc.exists) {
-                    setName(doc.data().name);
-                    setLastname(doc.data().lastname);
-                    setBirthday(timeConverter(doc.data().birthday.seconds));
-                    setCountry(doc.data().country);
-                    setStateLocation(doc.data().state);
-                    setCity(doc.data().city);
-                    setPhone(doc.data().phone);
-                    setAddress(doc.data().address);
-                    setProfileStatus(doc.data().profileStatus);
+                    profileContext.setName(doc.data().name);
+                    profileContext.setLastname(doc.data().lastname);
+                    profileContext.setBirthday(timeConverter(doc.data().birthday.seconds));
+                    profileContext.setCountry(doc.data().country);
+                    profileContext.setStateLocation(doc.data().state);
+                    profileContext.setCity(doc.data().city);
+                    profileContext.setPhone(doc.data().phone);
+                    profileContext.setAddress(doc.data().address);
+                    profileContext.setProfileStatus(doc.data().profileStatus);
                     setDoc(doc.data().doc);
-                    setFileObject(doc.data().fileType);
+                    profileContext.setFileObject(doc.data().fileType);
                     setProfilePictureStatus(doc.data().profilePictureStatus);
-                    setCroppedImage(doc.data().profilePicture)
+                    profileContext.setCroppedImage(doc.data().profilePicture)
                     getStatesAPI(doc.data().countryComplete);
-                    setCountryCompleteName(doc.data().countryComplete);
+                    profileContext.setCountryCompleteName(doc.data().countryComplete);
                 }
             });
 
@@ -247,7 +216,7 @@ const Profile = () => {
                     Authorization: jalaPorfavor
                 }
             });
-            setCountriesAPI(response.data);
+            profileContext.setCountriesAPI(response.data);
         } catch (e) {
 
         }
@@ -260,7 +229,7 @@ const Profile = () => {
                     Authorization: jalaPorfavor
                 }
             });
-            setStatesAPI(response.data);
+            profileContext.setStatesAPI(response.data);
         } catch (e) {
 
         }
@@ -275,14 +244,6 @@ const Profile = () => {
         return new Date(time);
     }
 
-    const getStates = stateValueRequired => {
-        return eval(stateValueRequired);
-    }
-
-    const setStates = (stateRequired, value) => {
-        eval(stateRequired)(value);
-    }
-
     const uploadProfilePicture = () => {
         swal({
             title: "¿Estas seguro de subir esa foto?",
@@ -295,10 +256,10 @@ const Profile = () => {
                 if (willConfirm) {
                     setOpen(true);
                     const storageRef = useStorage.ref(`credentials/profilePictures-${uid}`);
-                    const task = storageRef.put(image);
+                    const task = storageRef.put(profileContext.image);
                     task.on('state_changed', snapshot => {
                         let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        setStates("setUploadValue", percentage);
+                        profileContext.setUploadValue(percentage);
                     }, error => {
 
                     }, () => {
@@ -330,7 +291,6 @@ const Profile = () => {
     return (
         <div className="pb-5 contenedor-profile">
             <UserHeader />
-            {/* Page content */}
             <Container className="mt-3 mt--7 mb-5" fluid>
                 <Row>
                     <Col className="order-xl-2 mb-5 mb-xl-0" xl="4">
@@ -342,7 +302,7 @@ const Profile = () => {
                                             <img
                                                 alt="Profile"
                                                 className="rounded-circle"
-                                                src={croppedImage || AVATAR}
+                                                src={profileContext.croppedImage || AVATAR}
                                             />
                                         </a>
                                     </div>
@@ -355,8 +315,7 @@ const Profile = () => {
                                         <div className="card-profile-stats d-flex justify-content-center mt-md-5">
                                             {
                                                 profilePictureStatus === 0 ? (
-                                                    <UploadImage uploadProfilePicture={uploadProfilePicture} getStates={getStates} setStates={setStates}
-                                                                 profilePictureStatus={profilePictureStatus}/>) : null
+                                                    <UploadImage uploadProfilePicture={uploadProfilePicture} profilePictureStatus={profilePictureStatus}/>) : null
                                             }
                                         </div>
                                     </div>
@@ -366,39 +325,39 @@ const Profile = () => {
                                 </Row>
                                 <div className="text-center text-dark mt-3">
                                     <h3>
-                                        {name} {lastname}
+                                        {profileContext.name} {profileContext.lastname}
                                         <span className="font-weight-light"></span>
                                     </h3>
                                     <div className="h5 font-weight-400 mt-3">
                                         <i className="ni location_pin mr-2" />
-                                        {getAge(birthday) ? `${getAge(birthday)} años` : '00 años'}
+                                        {getAge(profileContext.birthday) ? `${getAge(profileContext.birthday)} años` : '00 años'}
                                     </div>
                                     <div className="h5 font-weight-300">
                                         <i className="ni location_pin mr-2" />
-                                        +{phone || '0000000000'}
+                                        +{profileContext.phone || '0000000000'}
                                     </div>
 
                                     <div className="h5 mt-4">
                                         <i className="ni business_briefcase-24 mr-2" />
-                                        {city || 'Ciudad'}, {stateLocation || 'Estado'}, {countryCompleteName || 'País'}
+                                        {profileContext.city || 'Ciudad'}, {profileContext.stateLocation || 'Estado'}, {profileContext.countryCompleteName || 'País'}
                                     </div>
                                     <div>
                                         <i className="ni education_hat mr-2" />
-                                        {address || 'Dirección'}
+                                        {profileContext.address || 'Dirección'}
                                     </div>
                                     <hr className="my-4" />
 
                                     <div className={classes.alert}>
-                                        {profileStatus === 3 ?
+                                        {profileContext.profileStatus === 3 ?
                                             <Alert variant="filled" severity="warning">En espera de verificación — Se están
                                                 validando tus datos</Alert> : null}
-                                        {profileStatus === 4 ?
+                                        {profileContext.profileStatus === 4 ?
                                             <Alert variant="filled" severity="success">Cuenta verificada</Alert> : null}
-                                        {profileStatus === 5 ?
+                                        {profileContext.profileStatus === 5 ?
                                             <Alert variant="filled" severity="error">Cuenta no verificada — Verifica tu identificación oficial únicamente</Alert> : null}
-                                        {profileStatus === 6 ?
+                                        {profileContext.profileStatus === 6 ?
                                             <Alert variant="filled" severity="error">Cuenta no verificada — Verifica tus datos personales únicamente</Alert> : null}
-                                        {profileStatus === 7 ?
+                                        {profileContext.profileStatus === 7 ?
                                             <Alert variant="filled" severity="error">Cuenta no verificada — Verifica todos tus datos</Alert> : null}
                                     </div>
                                 </div>
@@ -407,7 +366,7 @@ const Profile = () => {
                     </Col>
                     <Col className="order-xl-1" xl="8">
                         <Card className="bg-secondary shadow">
-                            <ExpansionComponent getStates={getStates} setStates={setStates} uid={uid} showFile={showFile} setFile={setFile} profilePictureStatus={profilePictureStatus}/>
+                            <ExpansionComponent uid={uid} showFile={showFile} setFile={setFile} profilePictureStatus={profilePictureStatus}/>
                         </Card>
                     </Col>
                 </Row>

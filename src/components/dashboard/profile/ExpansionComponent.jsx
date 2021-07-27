@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -7,13 +7,14 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PersonalData from "./PersonalData";
 import VerifiedProfile from "./VerifiedProfile";
+import {ProfileContext} from "../../../context/ProfileContext";
 
-export default function ExpansionComponent({getStates, setStates, uid, showFile, setFile, profilePictureStatus}) {
+export default function ExpansionComponent({uid, showFile, setFile, profilePictureStatus}) {
     const classes = useStyles();
-
+    const {profileStatus} = useContext(ProfileContext);
     return (
         <div className={classes.root}>
-            <Accordion expanded={getStates("profileStatus")===0 || getStates("profileStatus")===6 || getStates("profileStatus")===7}>
+            <Accordion expanded={profileStatus===0 || profileStatus===6 || profileStatus===7}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
@@ -22,10 +23,10 @@ export default function ExpansionComponent({getStates, setStates, uid, showFile,
                     <Typography className={classes.heading}>Datos personales</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                   <PersonalData getStates={getStates} setStates={setStates} uid={uid} profilePictureStatus={profilePictureStatus}/>
+                   <PersonalData uid={uid} profilePictureStatus={profilePictureStatus}/>
                 </AccordionDetails>
             </Accordion>
-            <Accordion expanded={getStates("profileStatus")===1 || getStates("profileStatus")===2 || getStates("profileStatus")===5 || getStates("profileStatus")===7}>
+            <Accordion expanded={profileStatus===1 || profileStatus===2 || profileStatus===5 || profileStatus===7}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
@@ -34,7 +35,7 @@ export default function ExpansionComponent({getStates, setStates, uid, showFile,
                     <Typography className={classes.heading}>Verificación de perfíl</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <VerifiedProfile getStates={getStates} setStates={setStates} uid={uid} showFile={showFile} setFile={setFile}/>
+                    <VerifiedProfile uid={uid} showFile={showFile} setFile={setFile}/>
                 </AccordionDetails>
             </Accordion>
         </div>

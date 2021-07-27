@@ -1,5 +1,5 @@
 import 'date-fns';
-import React, { useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {Button, TextField} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
@@ -16,12 +16,14 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css'
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
+import {ProfileContext} from "../../../context/ProfileContext";
 
-const PersonalData = ({getStates, setStates, uid}) => {
+const PersonalData = ({uid}) => {
 
     const classes = useStyles();
+    const profileContext = useContext(ProfileContext);
     const [open, setOpen] = useState(false);
-    const masterCondition = getStates("profileStatus") === 0 || getStates("profileStatus") === 6 || getStates("profileStatus") === 7;
+    const masterCondition = profileContext.profileStatus === 0 || profileContext.profileStatus === 6 || profileContext.profileStatus === 7;
 
     const getAge = (birthDateString) => {
         let today = new Date();
@@ -35,15 +37,15 @@ const PersonalData = ({getStates, setStates, uid}) => {
     }
 
     const handleDateChange = (date) => {
-        setStates("setBirthday", date);
+        profileContext.setBirthday(date);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             if (masterCondition) {
-                if (getStates("name") !== "" && getStates("lastname") !== "" && getStates("birthday") !== "" && getStates("country") !== "" && getStates("stateLocation") !== "" && getStates("city") !== "" && getStates("phone") !== "" && getStates("address") !== "") {
-                    if (getAge(getStates("birthday")) >= 18) {
+                if (profileContext.name !== "" && profileContext.lastname !== "" && profileContext.birthday !== "" && profileContext.country !== "" && profileContext.stateLocation !== "" && profileContext.city !== "" && profileContext.phone !== "" && profileContext.address !== "") {
+                    if (getAge(profileContext.birthday) >= 18) {
                         swal({
                             title: "¿Estas seguro de subir la información?",
                             text: "Una vez enviada la información no se podrá modificar",
@@ -55,15 +57,15 @@ const PersonalData = ({getStates, setStates, uid}) => {
                                 if (willConfirm) {
                                     setOpen(true);
                                     db.collection('credentials').doc(uid).update({
-                                        birthday: getStates("birthday"),
-                                        city: getStates("city"),
-                                        country: getStates("country"),
-                                        lastname: getStates("lastname"),
-                                        name: getStates("name"),
-                                        phone: getStates("phone"),
-                                        state: getStates("stateLocation"),
-                                        countryComplete: getStates("countryCompleteName"),
-                                        address: getStates("address"),
+                                        birthday: profileContext.birthday,
+                                        city: profileContext.city,
+                                        country: profileContext.country,
+                                        lastname: profileContext.lastname,
+                                        name: profileContext.name,
+                                        phone: profileContext.phone,
+                                        state: profileContext.stateLocation,
+                                        countryComplete: profileContext.countryCompleteName,
+                                        address: profileContext.address,
                                         profileStatus: 1,
                                     }).then(() => {
                                         swal("Información actualizada", "¡La información de tu perfil ha sido actualizada con éxito!", "success");
@@ -105,15 +107,15 @@ const PersonalData = ({getStates, setStates, uid}) => {
                         <TextField variant="outlined" required
                                    disabled={!(masterCondition)}
                                    fullWidth id="outlined-basic" label="Nombre(s)"
-                                   style={{alignContent: "center"}} value={getStates("name")}
-                                   onChange={(masterCondition) ? e => setStates("setName", e.target.value) : () => false}/>
+                                   style={{alignContent: "center"}} value={profileContext.name}
+                                   onChange={(masterCondition) ? e => profileContext.setName(e.target.value) : () => false}/>
                     </div>
 
                     <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
                         <TextField variant="outlined" required
                                    disabled={!(masterCondition)}
-                                   fullWidth id="outlined-basic" label="Apellido(s)" value={getStates("lastname")}
-                                   onChange={(masterCondition) ? e => setStates("setLastname", e.target.value) : () => false}/>
+                                   fullWidth id="outlined-basic" label="Apellido(s)" value={profileContext.lastname}
+                                   onChange={(masterCondition) ? e => profileContext.setLastname(e.target.value): () => false}/>
                     </div>
 
                     <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
@@ -126,7 +128,7 @@ const PersonalData = ({getStates, setStates, uid}) => {
                                 fullWidth
                                 label="Fecha nacimiento"
                                 format="dd/MM/yyyy"
-                                value={getStates("birthday") ? getStates("birthday") : null}
+                                value={profileContext.birthday ? profileContext.birthday : null}
                                 onChange={(masterCondition) ? handleDateChange : () => false}
                                 KeyboardButtonProps={{
                                     'aria-label': 'change date',
@@ -146,18 +148,19 @@ const PersonalData = ({getStates, setStates, uid}) => {
                                             disabled={!(masterCondition)}
                                             labelId="demo-simple-select-label"
                                             id="demo-simple-select"
-                                            value={(masterCondition) ? getStates("country") : false}
+                                            value={(masterCondition) ? profileContext.country : false}
                                             onChange={
                                                 (masterCondition) ?
                                                     e => {
-                                                        setStates("setCountry", e.target.value)
-                                                        setStates("setStateLocation", "")
-                                                        setStates("setCity", "")
-                                                        setStates("getStatesAPI", e.currentTarget.id)
-                                                        setStates("setCountryCompleteName", e.currentTarget.id)
+                                                        profileContext.setCountry(e.target.value)
+                                                        profileContext.setStateLocation("")
+                                                        profileContext.setCity("")
+                                                        profileContext.setStatesAPI(e.currentTarget.id)
+                                                        profileContext.setCountryCompleteName(e.currentTarget.id)
+                                                        //setStates("getStatesAPI", e.currentTarget.id)
                                                     } : () => false}>
                                             {
-                                                getStates("countriesAPI").map((value, index) => (
+                                                profileContext.countriesAPI.map((value, index) => (
                                                     <MenuItem key={index} id={value.country_name}
                                                               value={value.country_short_name}>{value.country_name}</MenuItem>
                                                 ))
@@ -167,7 +170,7 @@ const PersonalData = ({getStates, setStates, uid}) => {
                                 ) : (
                                     <TextField variant="outlined" required
                                                disabled={!(masterCondition)}
-                                               fullWidth id="outlined-basic" label="País" value={getStates("country")}
+                                               fullWidth id="outlined-basic" label="País" value={profileContext.country}
                                     />
                                 )
                             }
@@ -187,15 +190,15 @@ const PersonalData = ({getStates, setStates, uid}) => {
                                             disabled={!(masterCondition)}
                                             labelId="demo-simple-select-label"
                                             id="demo-simple-select-state"
-                                            value={(masterCondition) ? getStates("stateLocation") : false}
+                                            value={(masterCondition) ? profileContext.stateLocation : false}
                                             onChange={
                                                 (masterCondition) ?
                                                     e => {
-                                                        setStates("setStateLocation", e.target.value)
-                                                        setStates("setCity", "")
+                                                        profileContext.setStateLocation(e.target.value);
+                                                        profileContext.setCity("");
                                                     } : () => false}>
                                             {
-                                                getStates("statesAPI").map((value, index) => (
+                                                profileContext.statesAPI.map((value, index) => (
                                                     <MenuItem key={index}
                                                               value={value.state_name}>{value.state_name}</MenuItem>
                                                 ))
@@ -206,7 +209,7 @@ const PersonalData = ({getStates, setStates, uid}) => {
                                     <TextField variant="outlined" required
                                                disabled={!(masterCondition)}
                                                fullWidth id="outlined-basic" label="Estado"
-                                               value={getStates("stateLocation")}
+                                               value={profileContext.stateLocation}
                                     />
                                 )
                             }
@@ -217,8 +220,8 @@ const PersonalData = ({getStates, setStates, uid}) => {
                     <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
                         <TextField variant="outlined" required
                                    disabled={!(masterCondition)}
-                                   fullWidth id="outlined-basic" label="Ciudad" value={getStates("city")}
-                                   onChange={(masterCondition) ? e => setStates("setCity", e.target.value) : () => false}/>
+                                   fullWidth id="outlined-basic" label="Ciudad" value={profileContext.city}
+                                   onChange={(masterCondition) ? e => profileContext.setCity(e.target.value): () => false}/>
                     </div>
 
                     <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
@@ -226,14 +229,14 @@ const PersonalData = ({getStates, setStates, uid}) => {
                             <TextField required variant="outlined"
                                        disabled={!(masterCondition)}
                                        fullWidth id="outlined-basic" label="Número telefonico"
-                                       value={"+" + getStates("phone")}
-                                       onChange={(masterCondition) ? e => setStates("setPhone", e.target.value) : () => false}/> :
+                                       value={"+" + profileContext.phone}
+                                       onChange={(masterCondition) ? e => profileContext.setPhone(e.target.value) : () => false}/> :
                             <PhoneInput
                                 disabled={!(masterCondition)}
                                 country={'mx'}
                                 inputStyle={{height: 56, width: "100%"}}
-                                value={getStates("phone")}
-                                onChange={(masterCondition) ? e => setStates("setPhone", e) : () => false}
+                                value={profileContext.phone}
+                                onChange={(masterCondition) ? e => profileContext.setPhone(e): () => false}
                             />}
 
                     </div>
@@ -249,8 +252,8 @@ const PersonalData = ({getStates, setStates, uid}) => {
                                 label="Dirección"
                                 multiline
                                 rows={4}
-                                value={getStates("address")}
-                                onChange={(masterCondition) ? e => setStates("setAddress", e.target.value) : () => false}
+                                value={profileContext.address}
+                                onChange={(masterCondition) ? e => profileContext.setAddress(e.target.value) : () => false}
                             />
                         </div>
                     </div>

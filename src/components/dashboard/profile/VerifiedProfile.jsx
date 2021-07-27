@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Typography from "@material-ui/core/Typography";
-import {Button, TextField} from "@material-ui/core";
+import {Button} from "@material-ui/core";
 import Camaraine from "../../../images/camaraine.svg";
 import Pdfine from "../../../images/pdfine.svg";
 import SaveIcon from "@material-ui/icons/Save";
@@ -10,19 +10,21 @@ import {makeStyles} from "@material-ui/core/styles";
 import {encryptData} from "../js/encrypt";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
+import {ProfileContext} from "../../../context/ProfileContext";
 
-const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
+const VerifiedProfile = ({uid, showFile, setFile}) => {
 
     const classes = useStyles();
+    const {profileStatus, address, fileFirestore, fileObject, setUploadValue} = useContext(ProfileContext);
     const [open, setOpen] = useState(false);
-    const masterCondition = getStates("profileStatus") === 1 || getStates("profileStatus") === 2 || getStates("profileStatus") === 5 || getStates("profileStatus") === 7;
+    const masterCondition = profileStatus === 1 || profileStatus === 2 || profileStatus === 5 || profileStatus === 7;
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
 
             if (masterCondition) {
-                if (getStates("address") !== "") {
-                    if (getStates("fileFirestore") !== null) {
+                if (address !== "") {
+                    if (fileFirestore !== null) {
                         swal({
                             title: "¿Estas seguro de subir la información?",
                             text: "Una vez enviada la información no se podrá modificar",
@@ -34,10 +36,10 @@ const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
                                 if (willDelete) {
                                     setOpen(true);
                                     const storageRef = useStorage.ref(`id/${encryptData(uid)}`);
-                                    const task = storageRef.put(getStates("fileFirestore"));
+                                    const task = storageRef.put(fileFirestore);
                                     task.on('state_changed', snapshot => {
                                         let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                                        setStates("setUploadValue", percentage);
+                                        setUploadValue(percentage);
                                     }, error => {
 
                                     }, () => {
@@ -45,7 +47,7 @@ const VerifiedProfile = ({getStates, setStates, uid, showFile, setFile}) => {
                                             db.collection('credentials').doc(uid).update({
                                                 profileStatus: 3,
                                                 doc: url,
-                                                fileType: getStates("fileObject"),
+                                                fileType: fileObject,
                                             }).then(() => {
                                                 setOpen(false);
                                                 swal("Información actualizada", "¡La información de tu perfil fue actualizada con éxito!", "success");
