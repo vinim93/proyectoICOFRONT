@@ -33,7 +33,6 @@ import CropFreeIcon from '@material-ui/icons/CropFree';
 //QR UTILITIES IMPORTATIONS
 import QRCode from "react-qr-code";
 import QrReader from 'react-qr-reader'
-import {db} from "../../config/firebase";
 import swal from "sweetalert";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -45,20 +44,18 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 
 const Wallet = () => {
 
-    const {currentUser, logout} = useAuth();
+    const {currentUser} = useAuth();
     const history = useHistory();
     const [scannerOpen, setScannerOpen] = useState(false);
     const [scanValue, setScanValue] = useState("");
     const [logged, setLogged] = useState(false);
     const [uid, setUid] = useState("");
     const [amount, setAmount] = useState(0);
-    const [userInfo, setUserInfo] = useState({});
     const [tokensToSend, setTokensToSend] = useState(0);
     const [tokensArray, setTokensArray] = useState([{}]);
     const [allInfoTokens, setAllInfoTokens] = useState([{}]);
     //ESTO TIENE QUE IR EN EL BACKEND, AHORITA ES PARA HACER PRUEBAS RÁPIDO
     const [tokenAddress, setTokenAddress] = useState("");
-    const [tokenPrivateKey, setTokenPrivateKey] = useState("");
     const [open, setOpen] = useState(false);
     const [smsCode, setSmsCode] = useState("");
     const [openSmsModal, setOpenSmsModal] = useState(false);
@@ -67,10 +64,8 @@ const Wallet = () => {
 
     useEffect(() => {
         try {
-            let email = currentUser.email;
             let id = currentUser.uid;
             setUid(id);
-            getUserData(id);
             setLogged(true);
             getData(id);
         } catch (e) {
@@ -79,18 +74,6 @@ const Wallet = () => {
         }
     }, []);
 
-    const getUserData = async(id) => {
-        try{
-            let docRef = db.collection('credentials').doc(id);
-            await docRef.onSnapshot(doc => {
-                if(doc.exists){
-                    setUserInfo(doc.data());
-                    //setAmount(doc.data().suns);
-                }
-            });
-        } catch (e) {
-        }
-    }
 
     const getData = async (id) => {
         await SunshineFinder.get("/tron-data", {

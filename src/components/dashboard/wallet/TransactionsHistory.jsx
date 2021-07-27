@@ -117,7 +117,7 @@ const  TransactionsHistory = ({address}) => {
             let row = [];
             await data.map(value => {
                 let decimal = value.tokenInfo.tokenDecimal;
-                row.push(createData(value.hash, value.toAddress === address ? value.contractData.amount / eval("1e"+decimal) || 0 : - value.contractData.amount / eval("1e"+decimal) || 0, timeConverter(value.timestamp), value.toAddress === address ? <Chip label="RECIBIDO" color="primary" /> : <Chip label="ENVIADO" color="secondary" />, (value.tokenInfo.tokenAbbr).toString().toUpperCase()));
+                row.push(createData(value.hash, value.toAddress === address ? value.contractData.amount / parseFloat("1e"+decimal) || 0 : - value.contractData.amount / parseFloat("1e"+decimal) || 0, timeConverter(value.timestamp), value.toAddress === address ? <Chip label="RECIBIDO" color="primary" /> : <Chip label="ENVIADO" color="secondary" />, (value.tokenInfo.tokenAbbr).toString().toUpperCase()));
             })
             await setTransactions(row);
 
