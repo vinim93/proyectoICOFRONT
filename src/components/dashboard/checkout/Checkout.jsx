@@ -74,8 +74,6 @@ export default function Checkout({uid, email, allData}) {
     }
 
     const handleNext = (payment = false, paymentOption = "") => {
-        console.log("PAYMENT OPTION = ", paymentOption);
-        console.log("PAYMENT METHOD handleNext = ", checkoutContext.paymentMethod);
         switch (activeStep) {
             case 0:
                 if (allData.profileStatus === 4) {
@@ -158,20 +156,28 @@ export default function Checkout({uid, email, allData}) {
                 break;
             case 1:
                 if (paymentOption === "card") {
-                    console.log("TOCO TARJETA");
-                    checkoutContext.setPaymentMethod(paymentOption);
-                    setActiveStep(activeStep + 1);
-                    console.log("PAYMENT METHOD handleNext 2 = ", checkoutContext.paymentMethod);
+                    if (checkoutContext.currencyType.toUpperCase() === "TRX"){
+                        swal("Pago con TRON inválido", "No puedes pagar con TRON, tienes que cambiar la divisa a alguna moneda nacional o internacional", "warning");
+                    } else {
+                        checkoutContext.setPaymentMethod(paymentOption);
+                        setActiveStep(activeStep + 1);
+                    }
                 } else if (paymentOption === "oxxo") {
-                    if (checkoutContext.currencyType === "USD") {
+                    if (checkoutContext.currencyType.toUpperCase() === "USD") {
                         swal("Pago con dolar inválido", "No puedes pagar en oxxo con dolar, tienes que cambiar la divisa a pesos mexicanos", "warning");
+                    } else if (checkoutContext.currencyType.toUpperCase() === "TRX"){
+                        swal("Pago con TRON inválido", "No puedes pagar en oxxo con TRON, tienes que cambiar la divisa a pesos mexicanos", "warning");
                     } else {
                         checkoutContext.setPaymentMethod(paymentOption);
                         setActiveStep(activeStep + 1);
                     }
                 } else if(paymentOption === "trx") {
-                    checkoutContext.setPaymentMethod(paymentOption);
-                    setActiveStep(activeStep + 1);
+                    if(checkoutContext.currencyType.toUpperCase() === "USD" || checkoutContext.currencyType.toUpperCase() === "MX"){
+                        swal("Pago con FIAT inválido", "No puedes pagar con divisa normal, debes elegir pago con TRON en el paso anterior", "warning");
+                    } else {
+                        checkoutContext.setPaymentMethod(paymentOption);
+                        setActiveStep(activeStep + 1);
+                    }
                 }
                 break;
             case 2:
@@ -188,8 +194,6 @@ export default function Checkout({uid, email, allData}) {
     };
 
     const handleBack = () => {
-        console.log("CURRENCY TYPE handleNext back = ", checkoutContext.currencyType);
-        console.log("PAYMENT METHOD handleNext back = ", checkoutContext.paymentMethod);
         setActiveStep(activeStep - 1);
     };
 

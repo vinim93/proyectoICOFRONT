@@ -17,7 +17,7 @@ require('dotenv').config();
 
 const stripePromise = loadStripe(process.env.REACT_APP_PK_STRIPE);
 
-const CheckoutForm = ({uid, handleNext, email, currencyType}) => {
+const CheckoutForm = ({uid, handleNext, email, currencyType, finalPrice}) => {
     const checkoutContext = useContext(CheckoutContext);
     const classes = useStyles();
     const stripe = useStripe();
@@ -119,7 +119,6 @@ const CheckoutForm = ({uid, handleNext, email, currencyType}) => {
             } else {
             }
         }
-
     }
 
     const buyTokenWithOxxo = async () => {
@@ -127,7 +126,7 @@ const CheckoutForm = ({uid, handleNext, email, currencyType}) => {
         try{
             const {data} = await SunshineFinder.post('/create-payment-intent', {
                 id: "oxxopayment",
-                amount: checkoutContext.currency,
+                amount: finalPrice,
                 uid,
                 email,
                 exchange: {
@@ -289,14 +288,32 @@ const CheckoutForm = ({uid, handleNext, email, currencyType}) => {
 export default function Review({uid, handleNext, email}) {
     const checkoutContext = useContext(CheckoutContext);
     const classes = useStyles();
+    let finalPrice = checkoutContext.currency;
+    if(checkoutContext.currencyType === "SUN" && checkoutContext.paymentMethod.toString().toUpperCase() === "OXXO"){
+        finalPrice = checkoutContext.currency * checkoutContext.usdToMxn.toFixed(2)
+    }
     const products = [
-        {name: 'Sun Token', desc: (checkoutContext.currencyType === "MX" ? (checkoutContext.currency * checkoutContext.mxnToUsd).toFixed(6) :  checkoutContext.currencyType === "TRX" ? (checkoutContext.currency * checkoutContext.trxToUsd).toFixed(6) :checkoutContext.currency), price: checkoutContext.currency + ' ' + (checkoutContext.currencyType === "MX" ? "MXN" : checkoutContext.currencyType === "TRX" ? "TRX" : "USD")},
+        {name: 'Sun Token',
+            desc: (
+                checkoutContext.currencyType === "MX"
+                    ? (checkoutContext.currency * checkoutContext.mxnToUsd).toFixed(6)
+                    : checkoutContext.currencyType === "TRX"
+                    ? (checkoutContext.currency * checkoutContext.trxToUsd).toFixed(6)
+                    : checkoutContext.currency
+            ),
+            price:
+                finalPrice + ' ' + (
+                    checkoutContext.currencyType === "MX"
+                        ? "MXN"
+                        : checkoutContext.currencyType === "TRX"
+                        ? "TRX"
+                        : checkoutContext.currencyType === "SUN" && checkoutContext.paymentMethod.toString().toUpperCase() === "OXXO"
+                        ? "MXN"
+                        : "USD"
+                )
+        },
     ];
     const addresses = [checkoutContext.address, checkoutContext.city, checkoutContext.stateLocation, checkoutContext.country];
-
-    React.useEffect(() => {
-        console.log("PAYMENT METHOD = ", checkoutContext.payment_method);
-    }, []);
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
@@ -320,14 +337,14 @@ export default function Review({uid, handleNext, email}) {
                 <ListItem className={classes.listItem}>
                     <ListItemText primary="Total"/>
                     <Typography variant="subtitle1" className={classes.total}>
-                        {checkoutContext.currency}
+                        {finalPrice}
                     </Typography>
                 </ListItem>
             </List>
             <Grid container spacing={2}>
                 <Grid item xs={12} className="mt-3 mb-3">
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm uid={uid} handleNext={handleNext} email={email} currencyType={checkoutContext.currencyType}/>
+                        <CheckoutForm uid={uid} handleNext={handleNext} email={email} currencyType={checkoutContext.currencyType} finalPrice={finalPrice}/>
                     </Elements>
                 </Grid>
             </Grid>
