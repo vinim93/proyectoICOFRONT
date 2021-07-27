@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
@@ -12,12 +12,13 @@ import Button from '@material-ui/core/Button';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import SunshineFinder from "../../../apis/SunshineFinder";
+import {CheckoutContext} from "../../../context/CheckoutContext";
 require('dotenv').config();
-
 
 const stripePromise = loadStripe(process.env.REACT_APP_PK_STRIPE);
 
-const CheckoutForm = ({getStates, uid, handleNext, email, currencyType, addressToken}) => {
+const CheckoutForm = ({uid, handleNext, email, currencyType}) => {
+    const checkoutContext = useContext(CheckoutContext);
     const classes = useStyles();
     const stripe = useStripe();
     const elements = useElements();
@@ -28,19 +29,19 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType, addressT
     const buyToken = async (e) => {
         e.preventDefault();
         if(cardComplete){
-            if (getStates("currency") >= 1) {
+            if (checkoutContext.currency >= 1) {
                 setOpen(true);
                 const {error, paymentMethod} = await stripe.createPaymentMethod({
                     type: 'card',
                     card: elements.getElement(CardElement),
                     billing_details: {
                         email,
-                        name: getStates('name') + " " + getStates('lastname'),
+                        name: checkoutContext.name + " " + checkoutContext.lastname,
                         address: {
-                            state: getStates('stateLocation'),
-                            country: getStates('country'),
-                            city: getStates('city'),
-                            line1: getStates('address')
+                            state: checkoutContext.stateLocation,
+                            country: checkoutContext.country,
+                            city: checkoutContext.city,
+                            line1: checkoutContext.address
                         }
                     }
                 });
@@ -50,12 +51,12 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType, addressT
                     try {
                         const {data} = await SunshineFinder.post('/api/checkout', {
                             id,
-                            amount: getStates("currency") * 100,
+                            amount: checkoutContext.currency * 100,
                             uid,
                             currency: (currencyType.trim()==="MX" ? "MXN" : "USD"),
                             exchange: {
-                                usdToMxn: getStates("usdToMxn"),
-                                mxnToUsd: getStates("mxnToUsd")
+                                usdToMxn: checkoutContext.usdToMxn,
+                                mxnToUsd: checkoutContext.mxnToUsd
                             }
                         });
                         if (data.codeResponse === 'succeeded') {
@@ -126,12 +127,12 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType, addressT
         try{
             const {data} = await SunshineFinder.post('/create-payment-intent', {
                 id: "oxxopayment",
-                amount: getStates("currency"),
+                amount: checkoutContext.currency,
                 uid,
                 email,
                 exchange: {
-                    usdToMxn: getStates("usdToMxn"),
-                    mxnToUsd: getStates("mxnToUsd")
+                    usdToMxn: checkoutContext.usdToMxn,
+                    mxnToUsd: checkoutContext.mxnToUsd
                 }
             });
 
@@ -141,13 +142,13 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType, addressT
                     {
                         payment_method: {
                             billing_details: {
-                                name: getStates('name') + " " + getStates('lastname'),
+                                name: checkoutContext.name + " " + checkoutContext.lastname,
                                 email,
                                 address: {
-                                    state: getStates('stateLocation'),
-                                    country: getStates('country'),
-                                    city: getStates('city'),
-                                    line1: getStates('address')
+                                    state: checkoutContext.stateLocation,
+                                    country: checkoutContext.country,
+                                    city: checkoutContext.city,
+                                    line1: checkoutContext.address
                                 }
                             },
                         },
@@ -171,15 +172,15 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType, addressT
 
     const buyTokenWithTrx = async () => {
         setOpen(true);
-        console.log(uid, getStates("trxToUsd"));
+        console.log(uid, checkoutContext.trxToUsd);
         try{
             const {data} = await SunshineFinder.post('/buy-with-trx', {
                 id: "trxpayment",
-                amount: getStates("currency"),
+                amount: checkoutContext.currency,
                 uid,
                 exchange: {
-                    trxToUsd: getStates("trxToUsd"),
-                    usdToTrx: getStates("usdToTrx")
+                    trxToUsd: checkoutContext.trxToUsd,
+                    usdToTrx: checkoutContext.usdToTrx
                 }
             });
             console.log(data.response);
@@ -211,7 +212,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType, addressT
 
                 case "invalid-minimum-trx":
                     handleNext(false);
-                    swal("Cantidad mínima TRX invalida", "La cantidad de TRX que quieres pagar es menor al monto que se requiere el cual es "+ getStates("usdToTrx").toFixed(2) + " TRX", "warning");
+                    swal("Cantidad mínima TRX invalida", "La cantidad de TRX que quieres pagar es menor al monto que se requiere el cual es "+ checkoutContext.usdToTrx.toFixed(2) + " TRX", "warning");
                     break;
 
                 default:
@@ -223,13 +224,13 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType, addressT
         } catch (e) {
         }
         setOpen(false);
-        console.log(addressToken);
+        console.log(checkoutContext.addressToken);
     }
 
     return (
         <div>
             {
-                getStates("paymentMethod") === "card" ? (
+                checkoutContext.paymentMethod === "card" ? (
                     <form onSubmit={buyToken}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
@@ -256,7 +257,7 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType, addressT
                         </Grid>
                     </form>
                 ) :
-                    getStates("paymentMethod") === "trx" ?
+                    checkoutContext.paymentMethod === "trx" ?
                         (
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
@@ -285,13 +286,17 @@ const CheckoutForm = ({getStates, uid, handleNext, email, currencyType, addressT
     );
 }
 
-export default function Review({getStates, uid, handleNext, email, addressToken}) {
+export default function Review({uid, handleNext, email}) {
+    const checkoutContext = useContext(CheckoutContext);
     const classes = useStyles();
     const products = [
-        {name: 'Sun Token', desc: (getStates("currencyType") === "MX" ? (getStates("currency") * getStates("mxnToUsd")).toFixed(6) :  getStates("currencyType") === "TRX" ? (getStates("currency") * getStates("trxToUsd")).toFixed(6) :getStates("currency")), price: getStates("currency") + ' ' + (getStates("currencyType") === "MX" ? "MXN" : getStates("currencyType") === "TRX" ? "TRX" : "USD")},
+        {name: 'Sun Token', desc: (checkoutContext.currencyType === "MX" ? (checkoutContext.currency * checkoutContext.mxnToUsd).toFixed(6) :  checkoutContext.currencyType === "TRX" ? (checkoutContext.currency * checkoutContext.trxToUsd).toFixed(6) :checkoutContext.currency), price: checkoutContext.currency + ' ' + (checkoutContext.currencyType === "MX" ? "MXN" : checkoutContext.currencyType === "TRX" ? "TRX" : "USD")},
     ];
-    const addresses = [getStates("address"), getStates("city"), getStates("stateLocation"), getStates("country")];
+    const addresses = [checkoutContext.address, checkoutContext.city, checkoutContext.stateLocation, checkoutContext.country];
 
+    React.useEffect(() => {
+        console.log("PAYMENT METHOD = ", checkoutContext.payment_method);
+    }, []);
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
@@ -300,7 +305,7 @@ export default function Review({getStates, uid, handleNext, email, addressToken}
 
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <Typography gutterBottom>{getStates("name")} {getStates("lastname")}</Typography>
+                    <Typography gutterBottom>{checkoutContext.name} {checkoutContext.lastname}</Typography>
                     <Typography gutterBottom>{addresses.join(', ')}</Typography>
                 </Grid>
             </Grid>
@@ -315,14 +320,14 @@ export default function Review({getStates, uid, handleNext, email, addressToken}
                 <ListItem className={classes.listItem}>
                     <ListItemText primary="Total"/>
                     <Typography variant="subtitle1" className={classes.total}>
-                        {getStates("currency")}
+                        {checkoutContext.currency}
                     </Typography>
                 </ListItem>
             </List>
             <Grid container spacing={2}>
                 <Grid item xs={12} className="mt-3 mb-3">
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm getStates={getStates} uid={uid} handleNext={handleNext} email={email} currencyType={getStates("currencyType")} addressToken={addressToken}/>
+                        <CheckoutForm uid={uid} handleNext={handleNext} email={email} currencyType={checkoutContext.currencyType}/>
                     </Elements>
                 </Grid>
             </Grid>

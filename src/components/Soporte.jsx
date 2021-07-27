@@ -26,7 +26,7 @@ const Soporte = () => {
                     {
                         items.map((value, index) => (
                             <div key={index} className=" img-meto m-4 col-12 col-lg-4 col-md-4">
-                                <img src={value.icon} className="img-fluid img-soporte   mt-1 mt-lg-5" alt=""/>
+                                <img src={value.icon} className="img-fluid img-soporte mt-1 mt-lg-5" alt="Support"/>
                                 <h4 className="mt-3">{value.title}</h4>
                                 <p className=" text-zep">
                                     {value.text}

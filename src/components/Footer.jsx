@@ -37,10 +37,10 @@ const Footer = () => {
             comentarios: message,
 
         }).then(() => {
-                alert('Gracias por contactarnos');
-            }).catch((error) => {
-                alert(error.message);
-            });
+            alert('Gracias por contactarnos');
+        }).catch((error) => {
+            alert(error.message);
+        });
         setName('');
         setEmail('');
         setMessage('');
@@ -48,30 +48,29 @@ const Footer = () => {
 
     return (
 
-        <div className="  row  con-footer con-conecta">
+        <div className="row con-footer con-conecta">
             <div className="col-12 ">
                 <a href="https://sunshine-imagine.com/">
 
-                    <img src={Sol} alt=""/>
+                    <img src={Sol} alt="Sol"/>
                 </a>
 
                 <a href="https://www.facebook.com/Sunshine-Imagine-Cripto-115833410321279">
-                    <img src={Face} alt=""/>
+                    <img src={Face} alt="Facebook"/>
                 </a>
 
                 <a href="https://www.instagram.com/sunshine.imagine.cripto/">
 
-                    <img src={Insta} alt=""/>
+                    <img src={Insta} alt="Instagram"/>
                 </a>
-                <img src={Linke} alt=""/>
+                <img src={Linke} alt="Linkedin"/>
 
                 <a href="https://twitter.com/ImagineCripto">
-                    <img src={Twiter} alt=""/>
+                    <img src={Twiter} alt="Twitter"/>
                 </a>
 
-                {/* <img src={Youtube} alt=""/>*/}
 
-                <div className=" col-12 foottitulo">
+                <div className="col-12 foottitulo">
 
                     <button type="button" className="btn" data-toggle="modal"
                             data-target="#staticBackdropcon">
@@ -92,7 +91,7 @@ const Footer = () => {
                         <div className="modal-dialog modal-xl modal-dialog-centered">
                             <div className="modal-content modalfootcont">
                                 <div className="modal-header ">
-                                    <h5 className=" modal-title col-12 "
+                                    <h5 className="modal-title col-12"
                                         id="staticBackdropLabel">{t('ContactUs.Extra.0')}
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg" width="484.203" height="7.402"
@@ -111,7 +110,7 @@ const Footer = () => {
                                 <div className="container">
                                     <div className="row ">
                                         <div className="col-md-6 modal-body">
-                                            <img src={monedafinal} className="img-fluid d-none d-lg-block" alt=""/>
+                                            <img src={monedafinal} className="img-fluid d-none d-lg-block" alt="Final coin"/>
                                         </div>
                                         <div className="col-lg-4">
                                             <form className="form-cont" onSubmit={handleSubmit}>
@@ -138,7 +137,7 @@ const Footer = () => {
                                                             onChange={(e) => setMessage(e.target.value)}
                                                             id="message"
                                                             placeholder={t('ContactUs.Form.Coments')}
-                                                            rows="10"></textarea>
+                                                            rows="10" />
 
                                                 </div>
                                                 <div className="modal-footer">
@@ -157,21 +156,12 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-
-
                     {/*--------------------------------------------------------------------------------------------*/}
                 </div>
-
-
-                <img src={Moneda2} className="img-fluid" alt=""/>
+                <img src={Moneda2} className="img-fluid" alt="Coin 2"/>
             </div>
-
-
         </div>
-
-
     )
-
 }
 
 export default Footer;

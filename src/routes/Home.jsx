@@ -1,4 +1,4 @@
-import React, {Suspense, lazy, useEffect, useState} from 'react';
+import React, {Suspense, lazy, useEffect} from 'react';
 import '../App.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -33,7 +33,7 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="container-fluid" className="">
+        <div className="container-fluid">
             <Banner/>
             <Suspense fallback={
                 <div className="  container mt-5 text-center   justify-content-center">
@@ -55,6 +55,4 @@ const Home = () => {
     )
 }
 
-
 export default Home;
-

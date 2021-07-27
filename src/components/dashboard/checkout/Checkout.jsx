@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
@@ -15,38 +15,26 @@ import TokenAmount from "./TokenAmount";
 import DONE from '../../../images/done.png';
 import swal from "sweetalert";
 import SunshineFinder from "../../../apis/SunshineFinder";
+import {CheckoutContext} from "../../../context/CheckoutContext";
 
 const steps = ['Token', 'Método', 'Datos', 'Compra'];
 
 export default function Checkout({uid, email, allData}) {
+
+    const checkoutContext = useContext(CheckoutContext);
+
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
-    const [currency, setCurrency] = useState(null);
-    const [usdToMxn, setUsdToMxn] = useState(0);
-    const [mxnToUsd, setMxnToUsd] = useState(0);
-    const [trxToUsd, setTrxToUsd] = useState(0);
-    const [usdToTrx, setUsdToTrx] = useState(0);
-    const [name, setName] = useState("");
-    const [lastname, setLastname] = useState("");
-    const [address, setAddress] = useState("");
-    const [city, setCity] = useState("");
-    const [stateLocation, setStateLocation] = useState("");
-    const [country, setCountry] = useState("");
-    const [paymentID, setPaymentID] = useState("");
-    const [paymentDone, setPaymentDone] = useState(false);
-    const [currencyType, setCurrencyType] = useState('USD');
-    const [paymentMethod, setPaymentMethod] = useState('');
-    const [addressToken, setAddressToken] = useState('');
     //SI TU EDITOR DE TEXTO TE INDICA QUE DICHOS ESTADOS NO ESTAN SIENDO UTILIZADOS REVISA LAS 2 FUNCIONES DE ABAJO
 
     useEffect(() => {
-        setName(allData.name);
-        setLastname(allData.lastname);
-        setAddress(allData.address);
-        setCity(allData.city);
-        setStateLocation(allData.state);
-        setCountry(allData.country);
-        setAddressToken(allData.addressToken);
+        checkoutContext.setName(allData.name);
+        checkoutContext.setLastname(allData.lastname);
+        checkoutContext.setAddress(allData.address);
+        checkoutContext.setCity(allData.city);
+        checkoutContext.setStateLocation(allData.state);
+        checkoutContext.setCountry(allData.country);
+        checkoutContext.setAddressToken(allData.addressToken);
     }, []);
 
     const currencyConversor = async (from, to) => {
@@ -58,51 +46,42 @@ export default function Checkout({uid, email, allData}) {
                 }
             }).then(response => {
                 if (from === "USD" && to === "MXN") {
-                    setUsdToMxn(response.data);
+                    checkoutContext.setUsdToMxn(response.data);
                 } else if (from === "MXN" && to === "USD") {
-                    setMxnToUsd(response.data);
+                    checkoutContext.setMxnToUsd(response.data);
                 } else if(from === "TRX" && to === "USD"){
-                    setTrxToUsd(response.data);
+                    checkoutContext.setTrxToUsd(response.data);
                 } else if (from === "USD" && to === "TRX"){
-                    setUsdToTrx(response.data);
+                    checkoutContext.setUsdToTrx(response.data);
                 }
             });
         } catch (e) {}
     }
 
-
-    const setStates = (state, value) => {
-        eval(state)(value);
-    }
-
-    const getStates = (state) => {
-        return eval(state);
-    }
-
     const getStepContent = (step) => {
         switch (step) {
             case 0:
-                return <TokenAmount currency={currency} setCurrency={setCurrency} setStates={setStates}
-                                    getStates={getStates} currencyConversor={currencyConversor}/>;
+                return <TokenAmount currencyConversor={currencyConversor}/>;
             case 1:
                 return <PaymentForm handleNext={handleNext}/>;
             case 2:
-                return <AddressForm getStates={getStates}/>;
+                return <AddressForm />;
             case 3:
-                return <Review getStates={getStates} uid={uid} handleNext={handleNext} email={email} addressToken={addressToken}/>;
+                return <Review uid={uid} handleNext={handleNext} email={email}/>;
             default:
                 throw new Error('Unknown step');
         }
     }
 
     const handleNext = (payment = false, paymentOption = "") => {
+        console.log("PAYMENT OPTION = ", paymentOption);
+        console.log("PAYMENT METHOD handleNext = ", checkoutContext.paymentMethod);
         switch (activeStep) {
             case 0:
-
                 if (allData.profileStatus === 4) {
-                    if (currencyType === "USD") {
-                        if (parseFloat(currency) >= 1) {
-                            if (parseFloat(currency) <= 999999) {
+                    if (checkoutContext.currencyType === "USD") {
+                        if (parseFloat(checkoutContext.currency) >= 1) {
+                            if (parseFloat(checkoutContext.currency) <= 999999) {
                                 setActiveStep(activeStep + 1);
                             } else {
                                 swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99", "warning");
@@ -110,38 +89,38 @@ export default function Checkout({uid, email, allData}) {
                         } else {
                             swal("Monto inválido", "Debes pagar la mínima cantidad de $1 USD", "warning");
                         }
-                    } else if (currencyType === "MX") {
-                        if (parseFloat(currency) >= usdToMxn.toFixed(2)) {
-                            if (parseFloat(currency) <= 999999) {
+                    } else if (checkoutContext.currencyType === "MX") {
+                        if (parseFloat(checkoutContext.currency) >= checkoutContext.usdToMxn.toFixed(2)) {
+                            if (parseFloat(checkoutContext.currency) <= 999999) {
                                 setActiveStep(activeStep + 1);
                             } else {
                                 swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99", "warning");
                             }
                         } else {
-                            swal("Monto inválido", `Debes pagar la mínima cantidad de $${usdToMxn.toFixed(2)} MXN`, "warning");
+                            swal("Monto inválido", `Debes pagar la mínima cantidad de $${checkoutContext.usdToMxn.toFixed(2)} MXN`, "warning");
                         }
-                    } else if (currencyType === "SUN") {
-                        if (parseFloat(currency) >= 1) {
+                    } else if (checkoutContext.currencyType === "SUN") {
+                        if (parseFloat(checkoutContext.currency) >= 1) {
                             setActiveStep(activeStep + 1);
                         } else {
                             swal("Monto inválido", "Debes pagar la mínima cantidad de $1 USD", "warning");
                         }
-                    } else if(currencyType === "TRX"){
-                        if (parseFloat(currency) >= usdToTrx.toFixed(2)) {
-                            if (parseFloat(currency) <= 999999) {
+                    } else if(checkoutContext.currencyType === "TRX"){
+                        if (parseFloat(checkoutContext.currency) >= checkoutContext.usdToTrx.toFixed(2)) {
+                            if (parseFloat(checkoutContext.currency) <= 999999) {
                                 setActiveStep(activeStep + 1);
                             } else {
                                 swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99", "warning");
                             }
                         } else {
-                            swal("Monto inválido", `Debes pagar la mínima cantidad de $${usdToMxn.toFixed(2)} MXN`, "warning");
+                            swal("Monto inválido", `Debes pagar la mínima cantidad de $${checkoutContext.usdToMxn.toFixed(2)} MXN`, "warning");
                         }
                     }
                 } else {
 
-                    if (currencyType === "USD") {
-                        if (parseFloat(currency) >= 1) {
-                            if (parseFloat(currency) <= 1000) {
+                    if (checkoutContext.currencyType === "USD") {
+                        if (parseFloat(checkoutContext.currency) >= 1) {
+                            if (parseFloat(checkoutContext.currency) <= 1000) {
                                 setActiveStep(activeStep + 1);
                             } else {
                                 swal("Cantidad limitada", "Tu límite es de $1000 USD, si deseas incrementar tu límite de depósito debes ir a tu perfíl y verificar tu cuenta", "warning");
@@ -149,28 +128,28 @@ export default function Checkout({uid, email, allData}) {
                         } else {
                             swal("Monto inválido", "Debes pagar la mínima cantidad de $1 USD", "warning");
                         }
-                    } else if (currencyType === "MX") {
+                    } else if (checkoutContext.currencyType === "MX") {
 
-                        if (parseFloat(currency) >= usdToMxn.toFixed(2)) {
-                            if (parseFloat(currency) <= usdToMxn.toFixed(2) * 1000) {
+                        if (parseFloat(checkoutContext.currency) >= checkoutContext.usdToMxn.toFixed(2)) {
+                            if (parseFloat(checkoutContext.currency) <= checkoutContext.usdToMxn.toFixed(2) * 1000) {
                                 setActiveStep(activeStep + 1);
                             } else {
-                                swal("Cantidad limitada", `Tu límite es de $${usdToMxn.toFixed(2) * 1000} MXN, si deseas incrementar tu límite de depósito debes ir a tu perfíl y verificar tu cuenta`, "warning");
+                                swal("Cantidad limitada", `Tu límite es de $${checkoutContext.usdToMxn.toFixed(2) * 1000} MXN, si deseas incrementar tu límite de depósito debes ir a tu perfíl y verificar tu cuenta`, "warning");
                             }
                         } else {
-                            swal("Monto inválido", `Debes pagar la mínima cantidad de $${usdToMxn.toFixed(2)} MXN`, "warning");
+                            swal("Monto inválido", `Debes pagar la mínima cantidad de $${checkoutContext.usdToMxn.toFixed(2)} MXN`, "warning");
                         }
-                    } else if (currencyType === "SUN") {
-                        if (parseFloat(currency) >= 1) {
+                    } else if (checkoutContext.currencyType === "SUN") {
+                        if (parseFloat(checkoutContext.currency) >= 1) {
                             setActiveStep(activeStep + 1);
                         } else {
                             swal("Monto inválido", "Debes pagar la mínima cantidad de $1 USD", "warning");
                         }
-                    } else if (currencyType === "TRX") {
-                        if (parseFloat(currency) >= usdToTrx.toFixed(2)) {
+                    } else if (checkoutContext.currencyType === "TRX") {
+                        if (parseFloat(checkoutContext.currency) >= checkoutContext.usdToTrx.toFixed(2)) {
                             setActiveStep(activeStep + 1);
                         } else {
-                            swal("Monto inválido", `Debes pagar la mínima cantidad de $${usdToTrx.toFixed(2)} TRX`, "warning");
+                            swal("Monto inválido", `Debes pagar la mínima cantidad de $${checkoutContext.usdToTrx.toFixed(2)} TRX`, "warning");
                         }
                     }
 
@@ -179,22 +158,24 @@ export default function Checkout({uid, email, allData}) {
                 break;
             case 1:
                 if (paymentOption === "card") {
-                    setPaymentMethod(paymentOption);
+                    console.log("TOCO TARJETA");
+                    checkoutContext.setPaymentMethod(paymentOption);
                     setActiveStep(activeStep + 1);
+                    console.log("PAYMENT METHOD handleNext 2 = ", checkoutContext.paymentMethod);
                 } else if (paymentOption === "oxxo") {
-                    if (currencyType === "USD") {
+                    if (checkoutContext.currencyType === "USD") {
                         swal("Pago con dolar inválido", "No puedes pagar en oxxo con dolar, tienes que cambiar la divisa a pesos mexicanos", "warning");
                     } else {
-                        setPaymentMethod(paymentOption);
+                        checkoutContext.setPaymentMethod(paymentOption);
                         setActiveStep(activeStep + 1);
                     }
                 } else if(paymentOption === "trx") {
-                    setPaymentMethod(paymentOption);
+                    checkoutContext.setPaymentMethod(paymentOption);
                     setActiveStep(activeStep + 1);
                 }
                 break;
             case 2:
-                if (name !== "" && lastname !== "" && address !== "" && city !== "" && stateLocation !== "" && country !== "") {
+                if (checkoutContext.name !== "" && checkoutContext.lastname !== "" && checkoutContext.address !== "" && checkoutContext.city !== "" && checkoutContext.stateLocation !== "" && checkoutContext.country !== "") {
                     setActiveStep(activeStep + 1);
                 }
                 break;
@@ -207,16 +188,18 @@ export default function Checkout({uid, email, allData}) {
     };
 
     const handleBack = () => {
+        console.log("CURRENCY TYPE handleNext back = ", checkoutContext.currencyType);
+        console.log("PAYMENT METHOD handleNext back = ", checkoutContext.paymentMethod);
         setActiveStep(activeStep - 1);
     };
 
     const buyAgain = () => {
         setActiveStep(0);
-        setCurrencyType('USD');
-        setPaymentMethod('');
-        setCurrency(null);
-        setPaymentID("");
-        setPaymentDone(false);
+        checkoutContext.setCurrencyType('USD');
+        checkoutContext.setPaymentMethod('');
+        checkoutContext.setCurrency(null);
+        checkoutContext.setPaymentID("");
+        checkoutContext.setPaymentDone(false);
     }
 
     return (
@@ -236,11 +219,11 @@ export default function Checkout({uid, email, allData}) {
                             {activeStep === steps.length ? (
                                 <React.Fragment>
                                     <Typography variant="h5" gutterBottom>
-                                        {paymentMethod === "card" ? "¡Gracias por tu compra!" : paymentMethod === "oxxo" ? "¡Referencia de oxxo generada!" : "¡Pago con TRX aceptado!"}
+                                        {checkoutContext.paymentMethod === "card" ? "¡Gracias por tu compra!" : checkoutContext.paymentMethod === "oxxo" ? "¡Referencia de oxxo generada!" : "¡Pago con TRX aceptado!"}
                                     </Typography>
                                     <img src={DONE} className="img-fluid mb-3" width="13%" alt="PAGO REALIZADO"/>
                                     <Typography variant="subtitle1">
-                                        {paymentMethod === "card" ? "¡Gracias por tu compra, se verá reflejado en tu monto total y en tu cartera en aproximadamente 1 minito. Hemos enviado tu comprobante de pago al correo electrónico que registraste!" : paymentMethod === "oxxo" ? "¡Tienes 24 hrs para realizar el pago en oxxo!" : "Tus TUAH se reflejaran en aproximadamente 1 minuto, puedes visualizar la transacción en el historial de compra"}
+                                        {checkoutContext.paymentMethod === "card" ? "¡Gracias por tu compra, se verá reflejado en tu monto total y en tu cartera en aproximadamente 1 minito. Hemos enviado tu comprobante de pago al correo electrónico que registraste!" : checkoutContext.paymentMethod === "oxxo" ? "¡Tienes 24 hrs para realizar el pago en oxxo!" : "Tus TUAH se reflejaran en aproximadamente 1 minuto, puedes visualizar la transacción en el historial de compra"}
                                     </Typography>
                                     <Button variant="contained" color="primary" className={classes.button} onClick={buyAgain}>
                                         Comprar de nuevo

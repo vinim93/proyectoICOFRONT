@@ -16,11 +16,11 @@ import Proyectos from "./routes/Proyectos";
 import RoaptoMapa from './routes/Roaptomap';
 import Dashboard from "./routes/dashboard/Dashboard";
 import Profile from "./routes/dashboard/Profile";
-import Recovery from "./routes/Recovery";
 import {AuthProvider} from "./context/AuthContext";
 import Checkout from "./components/dashboard/checkout/Checkout";
 import Wallet from "./routes/dashboard/Wallet";
 import Settings from "./routes/dashboard/Settings";
+import {CheckoutContextProvider} from "./context/CheckoutContext";
 import "firebase/auth";
 
 const App = () => {
@@ -29,22 +29,21 @@ const App = () => {
         <BrowserRouter>
             <div className="App" data-toggle="collapse" data-target=".navbar-collapse.show">
                 <AuthProvider>
-                    <Navigation/>
-                    <Switch>
-                        <Route path="/Roaptomap" component={RoaptoMapa}/>
-                        <Route path="/Acerca" component={Acerca}/>
-                        <Route path="/ProyectosComponent" component={Proyectos}/>
-                        <Route path="/Home" component={Home}/>
-                        <Route path="/Pdf" exact><Pdf/></Route>
-                        <Route path="/" exact component={Dashboard}/>
-                        <Route path={"/Profile"} exact component={Profile}/>
-                        <Route path={"/Checkout"} component={Checkout}/>
-                        <Route path="/Recovery">
-                            <Recovery/>
-                        </Route>
-                        <Route path={"/Wallet"} component={Wallet}/>
-                        <Route path={"/Settings"} component={Settings}/>
-                    </Switch>
+                    <CheckoutContextProvider>
+                        <Navigation/>
+                        <Switch>
+                            <Route path="/Roaptomap" component={RoaptoMapa}/>
+                            <Route path="/Acerca" component={Acerca}/>
+                            <Route path="/ProyectosComponent" component={Proyectos}/>
+                            <Route path="/Home" component={Home}/>
+                            <Route path="/Pdf" exact><Pdf/></Route>
+                            <Route path="/" exact component={Dashboard}/>
+                            <Route path={"/Profile"} exact component={Profile}/>
+                            <Route path={"/Checkout"} component={Checkout}/>
+                            <Route path={"/Wallet"} component={Wallet}/>
+                            <Route path={"/Settings"} component={Settings}/>
+                        </Switch>
+                    </CheckoutContextProvider>
                 </AuthProvider>
 
             </div>

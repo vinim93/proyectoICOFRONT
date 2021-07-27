@@ -10,12 +10,11 @@ import PurchaseHistoryComponent from "../../components/dashboard/PurchaseHistory
 import SunshineFinder from "../../apis/SunshineFinder";
 
 const Dashboard = () => {
-    const {currentUser, logout} = useAuth();
+    const {currentUser} = useAuth();
     const [signinEmail, setSigninEmail] = useState("");
     const [uid, setUid] = useState("");
     const [amount, setAmount] = useState(0);
     const [logged, setLogged] = useState(false);
-    const [cryptoData, setCryptoData] = useState([{}]);
     const [userInfo, setUserInfo] = useState({});
     const history = useHistory();
 
@@ -25,7 +24,6 @@ const Dashboard = () => {
             await docRef.onSnapshot(doc => {
                 if(doc.exists){
                     setUserInfo(doc.data());
-                    //setAmount(doc.data().suns);
                 }
             });
             await SunshineFinder.get("/get-tuah", {

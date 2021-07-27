@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from "react";
+                                                                                   import React, {useState, useEffect} from "react";
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Footer from '../components/Footer';
 import Linkecontact from "../images/linkecontact.svg";
 import Twitercontact from "../images/twitercontact.svg";
-import {db} from "../config/firebase";
 import '../css/acerca.css';
 import {useTranslation} from 'react-i18next';
 import ACCESIBILIDAD from '../images/Accesibilidad-01.png';
@@ -26,38 +25,15 @@ import {useHistory} from "react-router-dom";
 const Acerca = () => {
 
     const {t} = useTranslation();
-    const [team, setTeam] = useState([]);
-    const [differencesItems, setDifferencesItems] = useState([]);
-    const {currentUser, logout} = useAuth();
+    const {currentUser} = useAuth();
     const history = useHistory();
 
-    const fetchData = async () => {
-        const collections = ['team', 'differencesItems'];
-        await collections.forEach(element => {
-            db.collection(element)
-                .get()
-                .then(snapshot => {
-                    let tempArray = [];
-                    snapshot
-                        .docs.forEach(item => {
-                        tempArray.push(item.data());
-                    });
-                    //LA SIGUIENTE LINEA ES PARA GUARDAR LOS DATOS EN EL STATE CORRESPONDIENTE SEGUN CADA ELEMENTO DEL ARRAY "collections"
-                    // EJ. setTeam(tempArray) , setDifferencesItems(tempArray), etc...
-                    //NOTA: eval NO DEBERIA SER USADO PARA GUARDAR DATOS EN UNA COLECCION, AQUI SE USA PARA MOSTRAR DATOS EN EL LADO DEL CLIENTE SOLAMENTE
-                    eval(`set${element.charAt(0).toUpperCase() + element.slice(1)}`)(tempArray);
-                })
-        });
-    }
-
     useEffect(() => {
-        //fetchData();
         try {
             let email = currentUser.email;
             history.push("/");
         } catch (e) {}
     }, []);
-
 
     const differences = [
         {
@@ -136,9 +112,7 @@ const Acerca = () => {
     ]
 
     return (
-        <div className="">
-
-
+        <div>
             <div className="container-fluid">
                 <Fade left cascade>
                     <div className="row mt-5 mb-5 pt-5 pb-5 pl-md-5 pr-md-5 pl-lg-5 pr-lg-5 pl-xl-5 pr-xl-5 bg-about2">
@@ -153,16 +127,12 @@ const Acerca = () => {
                                style={{fontSize: 30}}>
                                 {t('AboutSection.Introduction.0')}
                             </p>
-
                         </div>
-
                     </div>
 
                     <div className="row justify-content-center">
-
-                        <div className="  col-md-3 cont-card-mision  p-5 ">
-
-                            <div className=" d-flex justify-content-center mt-5    ">
+                        <div className="  col-md-3 cont-card-mision p-5">
+                            <div className="d-flex justify-content-center mt-5">
                                 <h3 className="title-vision ">   {t('AboutSection.Mision.Title')}</h3>
                             </div>
                             <div className="col-12 d-flex text-center ">
@@ -170,48 +140,38 @@ const Acerca = () => {
                             </div>
                         </div>
 
-
-                        <div className="  col-md-3  cont-card-mision p-5 ">
-
-                            <div className="d-flex  justify-content-center mt-5  ">
-                                <h3 className="title-vision "> {t('AboutSection.Vision.Title')}</h3>
+                        <div className="col-md-3 cont-card-mision p-5">
+                            <div className="d-flex justify-content-center mt-5">
+                                <h3 className="title-vision"> {t('AboutSection.Vision.Title')}</h3>
                             </div>
-                            <div className="col-12 d-flex text-center ">
-                                <h5 className="parrafo-vision p-1">{t('AboutSection.Vision.description')}
-
-                                </h5>
+                            <div className="col-12 d-flex text-center">
+                                <h5 className="parrafo-vision p-1">{t('AboutSection.Vision.description')}</h5>
                             </div>
                         </div>
                     </div>
                 </Fade>
 
-                <div className="  row  pb-5  justify-content-center">
-                    <div className="col-12  pt-4 pb-4">
-                        <h1 className="text-size-title-differences text-center"><Fade left
-                                                                                      cascade>{t('AboutSection.Differences.Title')}</Fade>
+                <div className="row pb-5 justify-content-center">
+                    <div className="col-12 pt-4 pb-4">
+                        <h1 className="text-size-title-differences text-center">
+                            <Fade left cascade>{t('AboutSection.Differences.Title')}</Fade>
                         </h1>
                     </div>
                     {
                         differences.map((value, index) => (
                             <Zoom>
                                 <div id={index}
-                                     className=" col-12 col-sm-12 row col-lg-4 col-xl-4 cont-diferencia    ">
-                                    <img src={value.image} alt="" className="icons-differences "/>
+                                     className=" col-12 col-sm-12 row col-lg-4 col-xl-4 cont-diferencia">
+                                    <img src={value.image} alt="Member photo" className="icons-differences"/>
                                     <h3 className="text-center">{value.title}</h3>
                                     <p className="text-center">{value.description}</p>
                                 </div>
                             </Zoom>
                         ))
                     }
-
-
                 </div>
-
-
                 <CardsWorkers/>
-
                 <div className="container-fluid pb-5 d-block d-md-none">
-
                     <div className="container ">
                         <div className="row pb-5">
                             {
@@ -258,23 +218,14 @@ const Acerca = () => {
                             <button className="btn bg-cards text-light btn-lg btn-block" data-toggle="modal"
                                     data-target="#staticBackdropcon">{t('AboutSection.ButtonText')}</button>
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
             <div className="container-fluid">
                 <Footer/>
             </div>
-
-
         </div>
-
-
     )
 }
-
 
 export default Acerca;

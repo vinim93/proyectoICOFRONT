@@ -1,7 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import finalCoin from "../../../images/monedafinal.png";
 import NumberFormat from 'react-number-format';
 import TextField from '@material-ui/core/TextField';
+import {CheckoutContext} from "../../../context/CheckoutContext";
+
 
 const currencies = [
     {
@@ -22,7 +24,9 @@ const currencies = [
     },
 ];
 
-const TokenAmount = ({currency, setCurrency, setStates, getStates, currencyConversor}) => {
+const TokenAmount = ({currencyConversor}) => {
+
+    const checkoutContext = useContext(CheckoutContext);
 
     useEffect(() => {
         currencyConversor("USD", "MXN");
@@ -34,27 +38,27 @@ const TokenAmount = ({currency, setCurrency, setStates, getStates, currencyConve
     const conversor = (type, amount = "USD") => {
         switch (type) {
             case "USD":
-                return `${amount || 0} USD - ${amount * 1 || 0} SUNI - ${(amount * getStates("usdToMxn")).toFixed(2) || 0} MXN`;
+                return `${amount || 0} USD - ${amount * 1 || 0} SUNI - ${(amount * checkoutContext.usdToMxn).toFixed(2) || 0} MXN`;
             case "SUN":
-                return `${amount * 1 || 0} USD - ${amount || 0} SUNI - ${(amount * getStates("usdToMxn")).toFixed(2) || 0} MXN`;
+                return `${amount * 1 || 0} USD - ${amount || 0} SUNI - ${(amount * checkoutContext.usdToMxn).toFixed(2) || 0} MXN`;
             case "MX":
-                return `${(amount * getStates("mxnToUsd")).toFixed(6) || 0} USD - ${(amount * getStates("mxnToUsd")).toFixed(6) || 0} SUN - ${amount || 0} MXN`;
+                return `${(amount * checkoutContext.mxnToUsd).toFixed(6) || 0} USD - ${(amount * checkoutContext.mxnToUsd).toFixed(6) || 0} SUN - ${amount || 0} MXN`;
             case "TRX":
-                return `${amount || 0} TRX - ${(amount * getStates("trxToUsd")).toFixed(6)|| 0} SUNI`;
+                return `${amount || 0} TRX - ${(amount * checkoutContext.trxToUsd).toFixed(6)|| 0} SUNI`;
             default:
-                return `${amount || 0} USD - ${amount * 1 || 0} SUNI - ${(amount * getStates("usdToMxn").toFixed(2))} MXN`;
+                return `${amount || 0} USD - ${amount * 1 || 0} SUNI - ${(amount * checkoutContext.usdToMxn.toFixed(2))} MXN`;
         }
     }
 
     const typeCurrency = (val) => {
-        setCurrency(val);
-        let dollar = parseFloat(getStates("usdToMxn").toFixed(2));
-        let dollarTrx = parseFloat(getStates("usdToTrx").toFixed(2));
+        checkoutContext.setCurrency(val);
+        let dollar = parseFloat(checkoutContext.usdToMxn.toFixed(2));
+        let dollarTrx = parseFloat(checkoutContext.usdToTrx.toFixed(2));
         val = parseFloat(val);
-        if ( (val >= 1 && val<=999999 && getStates("currencyType") === "USD") ||
-            (val >= dollar && val<=999999 && getStates("currencyType") === "MX") ||
-            (val >= 1 && val<=999999 && getStates("currencyType") === "SUN") ||
-            (val >= dollarTrx && val <=999999 && getStates("currencyType") === "TRX")
+        if ( (val >= 1 && val<=999999 && checkoutContext.currencyType === "USD") ||
+            (val >= dollar && val<=999999 && checkoutContext.currencyType === "MX") ||
+            (val >= 1 && val<=999999 && checkoutContext.currencyType === "SUN") ||
+            (val >= dollarTrx && val <=999999 && checkoutContext.currencyType === "TRX")
         ) {
             document.getElementById("inlineFormInputGroupCurrency").classList.remove("is-invalid");
             document.getElementById("inlineFormInputGroupCurrency").classList.add("is-valid");
@@ -65,7 +69,7 @@ const TokenAmount = ({currency, setCurrency, setStates, getStates, currencyConve
     }
 
     const handleChange = (event) => {
-        setStates("setCurrencyType", event.target.value);
+        checkoutContext.setCurrencyType(event.target.value);
     };
 
     return (
@@ -74,7 +78,7 @@ const TokenAmount = ({currency, setCurrency, setStates, getStates, currencyConve
                 <div className="row">
                     <div className="col-12">
                         <img src={finalCoin} style={{width: 150}} className="img-fluid" alt="SUNSHINE COIN"/>
-                        <h5 className="currency-value-title font-weight-bold mt-3">{conversor(getStates("currencyType"), currency)}</h5>
+                        <h5 className="currency-value-title font-weight-bold mt-3">{conversor(checkoutContext.currencyType, checkoutContext.currency)}</h5>
                     </div>
                 </div>
 
@@ -83,7 +87,7 @@ const TokenAmount = ({currency, setCurrency, setStates, getStates, currencyConve
                         <TextField
                             id="outlined-select-currency-native"
                             select
-                            value={getStates("currencyType")}
+                            value={checkoutContext.currencyType}
                             onChange={handleChange}
                             SelectProps={{
                                 native: true,
@@ -105,10 +109,10 @@ const TokenAmount = ({currency, setCurrency, setStates, getStates, currencyConve
                             id="inlineFormInputGroupCurrency"
                             name="input-name"
                             placeholder="Cantidad en dolares"
-                            value={currency}
-                            thousandSeparator={getStates("currencyType") !== "SUN"}
+                            value={checkoutContext.currency}
+                            thousandSeparator={checkoutContext.currencyType !== "SUN"}
                             onValueChange={(values) => typeCurrency(values.value)}
-                            prefix={getStates("currencyType") === "SUN" ? '' : '$'}
+                            prefix={checkoutContext.currencyType === "SUN" ? '' : '$'}
                         />
                     </div>
                 </div>

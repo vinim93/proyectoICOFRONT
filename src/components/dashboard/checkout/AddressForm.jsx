@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import {CheckoutContext} from "../../../context/CheckoutContext";
 
-export default function AddressForm({getStates}) {
+export default function AddressForm() {
+
+    const checkoutContext = useContext(CheckoutContext);
+
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
@@ -19,7 +23,7 @@ export default function AddressForm({getStates}) {
                         fullWidth
                         autoComplete="given-name"
                         variant="outlined"
-                        value={getStates("name")}
+                        value={checkoutContext.name}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -31,7 +35,7 @@ export default function AddressForm({getStates}) {
                         fullWidth
                         autoComplete="family-name"
                         variant="outlined"
-                        value={getStates("lastname")}
+                        value={checkoutContext.lastname}
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -43,7 +47,7 @@ export default function AddressForm({getStates}) {
                         fullWidth
                         autoComplete="shipping address-line1"
                         variant="outlined"
-                        value={getStates("address")}
+                        value={checkoutContext.address}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -55,7 +59,7 @@ export default function AddressForm({getStates}) {
                         fullWidth
                         autoComplete="shipping address-level2"
                         variant="outlined"
-                        value={getStates("city")}
+                        value={checkoutContext.city}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -66,7 +70,7 @@ export default function AddressForm({getStates}) {
                         variant="outlined"
                         label="Estado/Provincia/Región"
                         fullWidth
-                        value={getStates("stateLocation")}
+                        value={checkoutContext.stateLocation}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -78,7 +82,7 @@ export default function AddressForm({getStates}) {
                         fullWidth
                         autoComplete="shipping country"
                         variant="outlined"
-                        value={getStates("country")}
+                        value={checkoutContext.country}
                     />
                 </Grid>
             </Grid>

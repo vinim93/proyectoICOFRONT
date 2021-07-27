@@ -29,45 +29,47 @@ const ProyectosComponent = () => {
         try {
             let email = currentUser.email;
             history.push("/");
-        } catch (e) {}
+        } catch (e) {
+        }
     }, []);
 
     return (
         <div>
-            
+
             <div className="row">
                 <div className="col-12 sec6">
                     <span className="titulo6 ">{t('Projects.Title')}</span>
                 </div>
             </div>
             <div className="row">
-                <div className="col-12 contenedor-engra  ">
+                <div className="col-12 contenedor-engra">
                     <div className=" d-flex justify-content-start ">
-                        <button className=" btn fap-btn2 " type="button" data-toggle="modal"
+                        <button className=" btn fap-btn2" type="button" data-toggle="modal"
                                 data-target="#bd-example-modal-lg">
-                                   
+
                             <div className="modal fade modal-fullscreen bd-example-modal-lg" id="bd-example-modal-lg"
                                  data-backdrop="static" data-keyboard="false"
                                  tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                                  aria-hidden="true">
                                 <div className="modal-dialog modal-xl modal-dialog-centered">
-                                    <button hidden type="button" id="closeSynmphonyModal" className="close" data-dismiss="modal"
+                                    <button hidden type="button" id="closeSynmphonyModal" className="close"
+                                            data-dismiss="modal"
                                             aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
-                                <Zoom>
-                                    <div className="modal-content  modal-sym ">
-                                    
-                                        <div className="modal-body row container-fluid ">
+                                    <Zoom>
+                                        <div className="modal-content modal-sym ">
 
-                                            <div className="col-12 col-xl-4">
+                                            <div className="modal-body row container-fluid ">
 
-                                                <img src={Celsym} alt="" className="modal-imgsym img-fluid "
-                                                />
-                                            </div>
-                                            <div className="col-12 col-xl-8">
+                                                <div className="col-12 col-xl-4">
 
-                                                 <span className="modal-titu">  {t('Projects.Symphony.ModalTitle')}
+                                                    <img src={Celsym} alt="Celsym" className="modal-imgsym img-fluid "
+                                                    />
+                                                </div>
+                                                <div className="col-12 col-xl-8">
+
+                                                 <span className="modal-titu">{t('Projects.Symphony.ModalTitle')}
                                                      <p className="modal-text">({t('Projects.Symphony.Type')})
                                                          <p className="modal-cuerpo">
                                                             {t('Projects.Symphony.Text')}
@@ -75,15 +77,15 @@ const ProyectosComponent = () => {
                                                      </p>
                                                  </span>
 
+                                                </div>
                                             </div>
+
                                         </div>
-                                        
-                                    </div>
                                     </Zoom>
                                 </div>
                             </div>
-                            
-                            <img src={circulo1} className="fap-btn2-1" alt=""/>
+
+                            <img src={circulo1} className="fap-btn2-1" alt="Circle 1"/>
                             <svg className="svg1" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                  width="70mm" height="70mm" viewBox="0 0 120 120">
                                 <circle className="circle1" cx="60" cy="60" r="50"
@@ -99,19 +101,18 @@ const ProyectosComponent = () => {
                     </div>
 
                     <div className="col-12 d-flex justify-content-center ">
-                        <button className="btn  fap-btn3  " type="button" data-toggle="modal"
+                        <button className="btn fap-btn3" type="button" data-toggle="modal"
                                 data-target=".bd-example-modal-lg3">
-                            <div className="modal  fade modal-fullscreen bd-example-modal-lg3" tabIndex="-1" role="dialog"
+                            <div className="modal  fade modal-fullscreen bd-example-modal-lg3" tabIndex="-1"
+                                 role="dialog"
                                  aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div
                                     className="modal-dialog modal-cont modal-dialog-centered modal-dialog-scrollable  modal-xl ">
                                     <div className=" modal-content p-0 modal-sym ">
                                         <div className="modal-body row container-fluid ">
 
-
                                             <div className="col-lg-4 col-12 justify-content-center">
-
-                                                <img src={Celhawk} alt="" className="modal-imgsym img-fluid "
+                                                <img src={Celhawk} alt="Hawk" className="modal-imgsym img-fluid "
                                                 />
                                             </div>
                                             <div className="col-lg-8 col-12">
@@ -131,7 +132,7 @@ const ProyectosComponent = () => {
                             </div>
 
 
-                            <img src={circulo2} className="fap-btn3-2" alt=""/>
+                            <img src={circulo2} className="fap-btn3-2" alt="Circle 2"/>
                             <svg className="svg2" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                  width="70mm" height="70mm" viewBox="0 0 120 120">
                                 <circle cx="60" className="circle2" cy="60" r="50"
@@ -144,10 +145,11 @@ const ProyectosComponent = () => {
 
                     <div className="d-flex justify-content-end">
 
-                        <button className="btn   fap-btn4"
+                        <button className="btn fap-btn4"
                                 type="button" data-toggle="modal"
                                 data-target=".bd-example-modal-lg2">
-                            <div className="modal  fade modal-fullscreen bd-example-modal-lg2" tabIndex="-1" role="dialog"
+                            <div className="modal  fade modal-fullscreen bd-example-modal-lg2" tabIndex="-1"
+                                 role="dialog"
                                  aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div className="modal-dialog modal-cont modal-xl">
                                     <div className=" modal-content modal-sym ">
@@ -155,7 +157,7 @@ const ProyectosComponent = () => {
 
                                             <div className="col-lg-3 col-12 cont-cel">
 
-                                                <img src={Cellyon} alt="" className="modal-imgsym img-fluid"
+                                                <img src={Cellyon} alt="Lyon" className="modal-imgsym img-fluid"
                                                 />
                                             </div>
                                             <div className="col-lg-9 col-12">
@@ -176,7 +178,7 @@ const ProyectosComponent = () => {
                             </div>
 
 
-                            <img src={circulo3} className="fap-btn4-3" alt=""/>
+                            <img src={circulo3} className="fap-btn4-3" alt="Circle 3"/>
                             <svg className="svg3" version="1.1"
                                  xmlns="http://www.w3.org/2000/svg"
                                  width="70mm" height="70mm" viewBox="0 0 120 120">
@@ -189,18 +191,18 @@ const ProyectosComponent = () => {
                         <p className="textsyn3"><br/>{t('Projects.Lion.ModalTitle')}</p><p
                         className=" mintext3">{t('Projects.Lion.Type')}</p>
                     </div>
-                    <img src={Engranaje} alt="" className="engranaje engranejegris"/>
+                    <img src={Engranaje} alt="Engranaje" className="engranaje engranejegris"/>
 
                     <div className="row">
                         <div className="col-6 focoenv-cont">
-                            <img src={fococontorno} alt="foco" className="focoenv"/>
-                            <img src={Engrane1} alt="" className="engrane1foc engranaje"/>
-                            <img src={Engrane2} alt="" className="engrane2foc engranaje"/>
-                            <img src={Engrane3} alt="" className="engrane3foc engranaje"/>
-                            <img src={Engrane4} alt="" className="engrane4foc engranaje"/>
-                            <img src={Engrane5} alt="" className="engrane5foc engranaje"/>
-                            <img src={Engrane6} alt="" className="engrane6foc engranaje"/>
-                            <img src={Engrane7} alt="" className="engrane7foc engranaje"/>
+                            <img src={fococontorno} alt="Foco 1" className="focoenv"/>
+                            <img src={Engrane1} alt="Foco 1" className="engrane1foc engranaje"/>
+                            <img src={Engrane2} alt="Foco 2" className="engrane2foc engranaje"/>
+                            <img src={Engrane3} alt="Foco 3" className="engrane3foc engranaje"/>
+                            <img src={Engrane4} alt="Foco 4" className="engrane4foc engranaje"/>
+                            <img src={Engrane5} alt="Foco 5" className="engrane5foc engranaje"/>
+                            <img src={Engrane6} alt="Foco 6" className="engrane6foc engranaje"/>
+                            <img src={Engrane7} alt="Foco 7" className="engrane7foc engranaje"/>
 
                         </div>
                     </div>
@@ -209,7 +211,7 @@ const ProyectosComponent = () => {
 
 
             </div>
-       
+
         </div>
     );
 };
