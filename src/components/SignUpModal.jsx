@@ -63,19 +63,19 @@ const SignUpModal = () => {
             /*============GUARDAR DATOS EN FIRESTORE CON GOOGLE===========*/
             db.collection("credentials").doc(uid).set({
                 UUID: uid,
-                city: data.city.replace(/<[^>]+>/g, ''),
+                city: "".replace(/<[^>]+>/g, ''),
                 doc: "".replace(/<[^>]+>/g, ''),
                 email: data.email.replace(/<[^>]+>/g, ''),
                 name: data.name.replace(/<[^>]+>/g, ''),
                 phone: data.phone === null ? "".replace(/<[^>]+>/g, '') : data.phone.replace(/<[^>]+>/g, ''),
-                authType: data.authType.replace(/<[^>]+>/g, ''),
-                birthday: data.birthday.replace(/<[^>]+>/g, ''),
-                country: data.country.replace(/<[^>]+>/g, ''),
-                state: data.state.replace(/<[^>]+>/g, ''),
-                address: data.address.replace(/<[^>]+>/g, ''),
+                authType: "GOOGLE".replace(/<[^>]+>/g, ''),
+                birthday: "".replace(/<[^>]+>/g, ''),
+                country: "".replace(/<[^>]+>/g, ''),
+                state: "".replace(/<[^>]+>/g, ''),
+                address: "".replace(/<[^>]+>/g, ''),
                 suns: 0,
-                countryComplete: data.countryComplete.replace(/<[^>]+>/g, ''),
-                profileStatus: data.profileStatus,
+                countryComplete: "".replace(/<[^>]+>/g, ''),
+                profileStatus: 0,
                 fileType: "".replace(/<[^>]+>/g, ''),
                 profilePicture: "".replace(/<[^>]+>/g, ''),
                 profilePictureStatus: 0,
@@ -330,19 +330,9 @@ const SignUpModal = () => {
                     clearStates();
                 } else if (userStatus === "not-exists"){
                     saveDataInFirestore(user.uid, {
-                        city: "",
                         email: user.email,
                         name: user.displayName,
                         phone: user.phoneNumber,
-                        authType: "GOOGLE",
-                        birthday: "",
-                        country: "",
-                        state: "",
-                        address: "",
-                        profileStatus: 0,
-                        countryComplete: "",
-                        addressToken: "",
-                        privateKey: ""
                     });
                 } else {
                     swal({
@@ -357,19 +347,9 @@ const SignUpModal = () => {
             } else {
                 user.sendEmailVerification().then(r => {
                     saveDataInFirestore(user.uid, {
-                        city: "",
                         email: user.email,
                         name: user.displayName,
                         phone: user.phoneNumber,
-                        authType: "GOOGLE",
-                        birthday: "",
-                        country: "",
-                        state: "",
-                        address: "",
-                        profileStatus: 0,
-                        countryComplete: "",
-                        addressToken: "",
-                        privateKey: ""
                     });
                 }, (error) => {
 

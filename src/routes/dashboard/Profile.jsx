@@ -44,7 +44,6 @@ const Profile = () => {
     const history = useHistory();
     const [uid, setUid] = useState("");
     const [doc, setDoc] = useState("");
-    const [jalaPorfavor, setAuthToken] = useState("");
     const [filePreview, setFilePreview] = useState([]);
 
     const [profilePictureStatus, setProfilePictureStatus] = useState(0);
@@ -71,7 +70,7 @@ const Profile = () => {
             history.push("/Home");
             setLogged(false);
         }
-    }, [jalaPorfavor]);
+    }, [profileContext.jalaPorfavor]);
 
     const setFile = (e) => {
         try {
@@ -184,7 +183,7 @@ const Profile = () => {
                     profileContext.setFileObject(doc.data().fileType);
                     setProfilePictureStatus(doc.data().profilePictureStatus);
                     profileContext.setCroppedImage(doc.data().profilePicture)
-                    getStatesAPI(doc.data().countryComplete);
+                    profileContext.getStatesAPI(doc.data().countryComplete);
                     profileContext.setCountryCompleteName(doc.data().countryComplete);
                 }
             });
@@ -203,7 +202,7 @@ const Profile = () => {
                     "user-email": "taikus.jango@sunshine-imagine.io"
                 }
             });
-            await setAuthToken("Bearer " + response.data.auth_token);
+            await profileContext.setAuthToken("Bearer " + response.data.auth_token);
         } catch (e) {
 
         }
@@ -213,23 +212,10 @@ const Profile = () => {
         try {
             const response = await PlacesFinder.get("/api/countries/", {
                 headers: {
-                    Authorization: jalaPorfavor
+                    Authorization: profileContext.jalaPorfavor
                 }
             });
             profileContext.setCountriesAPI(response.data);
-        } catch (e) {
-
-        }
-    }
-
-    const getStatesAPI = async (countryAPI) => {
-        try {
-            const response = await PlacesFinder.get(`/api/states/${countryAPI}`, {
-                headers: {
-                    Authorization: jalaPorfavor
-                }
-            });
-            profileContext.setStatesAPI(response.data);
         } catch (e) {
 
         }

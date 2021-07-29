@@ -1,4 +1,5 @@
 import React, {useState, createContext} from 'react';
+import PlacesFinder from "../apis/PlacesFinder";
 
 
 export const ProfileContext = createContext();
@@ -21,6 +22,20 @@ export const ProfileContextProvider = props => {
     const [fileFirestore, setFileFirestore] = useState(null);
     const [fileObject, setFileObject] = useState("");
     const [uploadValue, setUploadValue] = useState(0);
+    const [jalaPorfavor, setAuthToken] = useState("");
+
+    const getStatesAPI = async (countryAPI) => {
+        try {
+            const response = await PlacesFinder.get(`/api/states/${countryAPI}`, {
+                headers: {
+                    Authorization: jalaPorfavor
+                }
+            });
+            setStatesAPI(response.data);
+        } catch (e) {
+
+        }
+    }
 
     const value = {
         croppedImage, setCroppedImage,
@@ -39,7 +54,9 @@ export const ProfileContextProvider = props => {
         statesAPI, setStatesAPI,
         fileFirestore, setFileFirestore,
         fileObject, setFileObject,
-        uploadValue, setUploadValue
+        uploadValue, setUploadValue,
+        jalaPorfavor, setAuthToken,
+        getStatesAPI
     }
 
     return (

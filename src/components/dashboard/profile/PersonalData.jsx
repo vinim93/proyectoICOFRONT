@@ -1,7 +1,7 @@
 import 'date-fns';
 import React, {useContext, useState} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import {Button, TextField} from '@material-ui/core';
+import {makeStyles, withStyles} from '@material-ui/core/styles';
+import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import DateFnsUtils from '@date-io/date-fns';
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
@@ -17,6 +17,11 @@ import 'react-phone-input-2/lib/material.css'
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
 import {ProfileContext} from "../../../context/ProfileContext";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import SunshineFinder from "../../../apis/SunshineFinder";
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 const PersonalData = ({uid}) => {
 
@@ -24,6 +29,10 @@ const PersonalData = ({uid}) => {
     const profileContext = useContext(ProfileContext);
     const [open, setOpen] = useState(false);
     const masterCondition = profileContext.profileStatus === 0 || profileContext.profileStatus === 6 || profileContext.profileStatus === 7;
+    const [smsCode, setSmsCode] = useState("");
+    const [openSmsModal, setOpenSmsModal] = useState(false);
+    const [requestNewCode, setRequestNewCode] = useState(false);
+    const  [newCodeSeconds, setNewCodeSeconds] = useState(0);
 
     const getAge = (birthDateString) => {
         let today = new Date();
@@ -40,8 +49,60 @@ const PersonalData = ({uid}) => {
         profileContext.setBirthday(date);
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
+        setOpen(true);
+        try{
+            const verifySMS = await SunshineFinder.post("/verify-number-profile", {uid, code: smsCode});
+            if(verifySMS.data.status){
+                db.collection('credentials').doc(uid).update({
+                    birthday: profileContext.birthday,
+                    city: profileContext.city,
+                    country: profileContext.country,
+                    lastname: profileContext.lastname,
+                    name: profileContext.name,
+                    phone: profileContext.phone,
+                    state: profileContext.stateLocation,
+                    countryComplete: profileContext.countryCompleteName,
+                    address: profileContext.address,
+                    profileStatus: 1,
+                }).then(() => {
+                    swal("Información actualizada", "¡La información de tu perfil ha sido actualizada con éxito!", "success");
+                    setOpenSmsModal(false);
+                    setOpen(false);
+                });
+            } else {
+                throw "sms-incorrect";
+            }
+        } catch (e) {
+            switch (e.message || e){
+                case "sms-incorrect":
+                    swal("Código SMS inválido", "El código que ingresaste no coincide con el que te llegó al telefono proporcionado o caducó, intenta de nuevo", "warning");
+                    break;
+                default:
+                    swal("Error inesperado", "Ocurrió un error inesperado, recarga la página o intenta de nuevo más tarde", "error");
+            }
+        }
+
+    }
+
+    const enableRequestSms = () => {
+        setTimeout(() => {
+            setRequestNewCode(true);
+        }, 60000);
+    }
+
+    const startTimer = () => {
+        let timeleft = 60;
+        let downloadTimer = setInterval(() => {
+            timeleft--;
+            setNewCodeSeconds(timeleft);
+            if(timeleft <= 0)
+                clearInterval(downloadTimer);
+        },1000);
+    }
+
+    const sendSmsCode = async () => {
+        setOpen(true);
         try {
             if (masterCondition) {
                 if (profileContext.name !== "" && profileContext.lastname !== "" && profileContext.birthday !== "" && profileContext.country !== "" && profileContext.stateLocation !== "" && profileContext.city !== "" && profileContext.phone !== "" && profileContext.address !== "") {
@@ -53,40 +114,76 @@ const PersonalData = ({uid}) => {
                             buttons: true,
                             dangerMode: true,
                         })
-                            .then((willConfirm) => {
+                            .then(async (willConfirm) => {
                                 if (willConfirm) {
-                                    setOpen(true);
-                                    db.collection('credentials').doc(uid).update({
-                                        birthday: profileContext.birthday,
-                                        city: profileContext.city,
-                                        country: profileContext.country,
-                                        lastname: profileContext.lastname,
-                                        name: profileContext.name,
-                                        phone: profileContext.phone,
-                                        state: profileContext.stateLocation,
-                                        countryComplete: profileContext.countryCompleteName,
-                                        address: profileContext.address,
-                                        profileStatus: 1,
-                                    }).then(() => {
-                                        swal("Información actualizada", "¡La información de tu perfil ha sido actualizada con éxito!", "success");
+                                    const sendSMS = await SunshineFinder.post("/send-sms-profile", {uid, phone: profileContext.phone});
+                                    if(sendSMS.data.status){
                                         setOpen(false);
-                                    });
+                                        setRequestNewCode(false);
+                                        setOpenSmsModal(true);
+                                        enableRequestSms();
+                                        startTimer();
+                                    } else {
+                                        throw "sms-not-sended";
+                                    }
+                                } else {
+                                    setOpen(false);
                                 }
                             });
 
                     } else {
+                        setOpen(false);
                         swal("Debes ser mayor de edad", "Para poder continuar con la verificación de tus datos debes contar con la mayoria de edad", "warning");
                     }
 
                 } else {
+                    setOpen(false);
                     swal("Información incompleta", "Llena todos los campos correspondientes para poder continuar", "warning");
                 }
 
             }
 
         } catch (e) {
+            switch (e.message || e){
+                case "sms-not-sended":
+                    swal("Código SMS inválido", "El código que ingresaste no coincide con el que te llegó al telefono proporcionado o caducó, intenta de nuevo", "warning");
+                    break;
+                default:
+                    swal("Error inesperado", "Ocurrió un error inesperado, recarga la página o intenta de nuevo más tarde", "error");
+            }
         }
     }
+
+    const handleClose = () => {
+        setOpenSmsModal(false);
+    };
+
+    const styles = (theme) => ({
+        root: {
+            margin: 0,
+            padding: theme.spacing(2),
+        },
+        closeButton: {
+            position: 'absolute',
+            right: theme.spacing(1),
+            top: theme.spacing(1),
+            color: theme.palette.grey[500],
+        },
+    });
+
+    const DialogTitle = withStyles(styles)((props) => {
+        const { children, classes, onClose, ...other } = props;
+        return (
+            <MuiDialogTitle disableTypography className={classes.root} {...other}>
+                <Typography variant="h6">{children}</Typography>
+                {onClose ? (
+                    <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+                        <CloseIcon />
+                    </IconButton>
+                ) : null}
+            </MuiDialogTitle>
+        );
+    });
 
     return (
         <div>
@@ -94,9 +191,6 @@ const PersonalData = ({uid}) => {
             <Typography className={classes.title} variant="h4" component="h4">
                 Datos personales
             </Typography>
-            <form className={classes.root}
-                  id={(masterCondition) ? "profileform" : ""}
-                  onSubmit={(masterCondition) ? handleSubmit : () => false}>
                 <Typography className={classes.title} variant="subtitle2" component="h2"
                             color="textSecondary">
                     Verifica que tus datos y foto coincidan con tu identificación oficial
@@ -155,9 +249,8 @@ const PersonalData = ({uid}) => {
                                                         profileContext.setCountry(e.target.value)
                                                         profileContext.setStateLocation("")
                                                         profileContext.setCity("")
-                                                        profileContext.setStatesAPI(e.currentTarget.id)
+                                                        profileContext.getStatesAPI(e.currentTarget.id);
                                                         profileContext.setCountryCompleteName(e.currentTarget.id)
-                                                        //setStates("getStatesAPI", e.currentTarget.id)
                                                     } : () => false}>
                                             {
                                                 profileContext.countriesAPI.map((value, index) => (
@@ -257,10 +350,7 @@ const PersonalData = ({uid}) => {
                             />
                         </div>
                     </div>
-
-
                 </div>
-
 
                 <div className="row">
                     <div className="col-12 d-flex justify-content-center">
@@ -270,6 +360,7 @@ const PersonalData = ({uid}) => {
                             color="primary"
                             size="large"
                             className={classes.button}
+                            onClick={sendSmsCode}
                             startIcon={<SaveIcon/>}
                             type={(masterCondition) ? "submit" : "button"}
                         >
@@ -277,10 +368,40 @@ const PersonalData = ({uid}) => {
                         </Button>
                     </div>
                 </div>
-            </form>
             <Backdrop className={classes.backdrop} open={open} >
                 <CircularProgress color="inherit" />
             </Backdrop>
+
+
+            <Dialog open={openSmsModal} onClose={handleClose} aria-labelledby="customized-dialog-title" aria-labelledby="form-dialog-title">
+                <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                    Verificar código
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Verifica el código que se envió a tu teléfono celular, si no llega en el lapso de 60 segundos puedes solicitar un nuevo código
+                    </DialogContentText>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="smscode"
+                        label="Código"
+                        type="number"
+                        fullWidth
+                        value={smsCode}
+                        onChange={e => setSmsCode(e.target.value)}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={requestNewCode ? sendSmsCode : null} disabled={!requestNewCode} color="primary">
+                        PEDIR NUEVO CODIGO ({newCodeSeconds})
+                    </Button>
+                    <Button onClick={handleSubmit} color="primary">
+                        VERIFICAR
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
         </div>
     );
 };

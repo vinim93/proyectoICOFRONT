@@ -29,6 +29,8 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import CropFreeIcon from '@material-ui/icons/CropFree';
+import Tooltip from '@material-ui/core/Tooltip';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 
 //QR UTILITIES IMPORTATIONS
 import QRCode from "react-qr-code";
@@ -61,6 +63,7 @@ const Wallet = () => {
     const [openSmsModal, setOpenSmsModal] = useState(false);
     const [requestNewCode, setRequestNewCode] = useState(false);
     const  [newCodeSeconds, setNewCodeSeconds] = useState(0);
+    const [openTooltip, setOpenTooltip] = useState(false);
 
     useEffect(() => {
         try {
@@ -243,6 +246,13 @@ const Wallet = () => {
     }
 
     const classes = useStyles();
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(tokenAddress.toString());
+        setOpenTooltip(true);
+        setTimeout(() => {
+            setOpenTooltip(false);
+        }, 3000);
+    }
 
     const renderWallet = () => {
         if(logged){
@@ -315,10 +325,14 @@ const Wallet = () => {
                                                         </div>
                                                     </div>
                                                     <div className="col-12 mt-5">
-                                                        <h6 className="text-uppercase text-light ls-1 mb-1">
+                                                        <h6 className="text-uppercase text-light ls-1 mb-3">
                                                             Wallet address
                                                         </h6>
-                                                        <p className="text-light">{tokenAddress}</p>
+                                                        <Tooltip title={openTooltip ? "Copiado" : "Copiar"}>
+                                                            <p className="text-light" onClick={copyToClipboard} style={{cursor: "pointer"}}>
+                                                                {tokenAddress} <FileCopyIcon style={{ fontSize: 15 }}/>
+                                                            </p>
+                                                        </Tooltip>
                                                     </div>
                                                 </div>
                                                 <div className="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
