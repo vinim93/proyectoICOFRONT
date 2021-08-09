@@ -5,9 +5,11 @@ import WARNING from "../../images/warning_icon.png";
 import {makeStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import {useHistory} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 
 const PaymentComponent = ({email, userData, allData}) => {
+    const {t} = useTranslation();
     const history = useHistory();
     const classes = useStyles();
     const gotoProfile = () => {
@@ -21,7 +23,9 @@ const PaymentComponent = ({email, userData, allData}) => {
             <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div className="modal-content py-0">
                     <div className="modal-header">
-                        <h5 className="modal-title-dashboard" id="exampleModalLabel">Proceso de pago</h5>
+                        <h5 className="modal-title-dashboard" id="exampleModalLabel">
+                            {t('Dashboard.Index.BuyComponent.Title')}
+                        </h5>
                         <button type="button" id="closeModalCheckout" className="close-modal" data-dismiss="modal"
                                 aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -33,12 +37,11 @@ const PaymentComponent = ({email, userData, allData}) => {
                             : <div className="modal-body">
                                 <img src={WARNING} className="img-fluid w-25 mb-5" alt="Warning"/>
                                 <h3 className="text-dark mb-5">
-                                    Completa tus datos personales en el apartado de perfil para
-                                    poder comprar tokens
+                                    {t('Dashboard.Index.BuyComponent.CompleteProfile')}
                                 </h3>
                                 <Button variant="contained" onClick={gotoProfile} size="large" color="primary"
                                         className={classes.margin} data-dismiss="modal" aria-label="Close">
-                                    Ir a mi perfil
+                                    {t('Dashboard.Index.BuyComponent.GotoProfile')}
                                 </Button>
                             </div>
                     }

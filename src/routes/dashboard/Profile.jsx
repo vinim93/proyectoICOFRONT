@@ -16,6 +16,7 @@ import AVATAR from '../../images/avatardefault.png';
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
 import {ProfileContext} from "../../context/ProfileContext";
+import {useTranslation} from "react-i18next";
 
 const UserHeader = () => {
     return (
@@ -36,7 +37,7 @@ const UserHeader = () => {
 
 
 const Profile = () => {
-
+    const {t} = useTranslation();
     const classes = useStyles();
     const profileContext = useContext(ProfileContext);
     const {currentUser, logout} = useAuth();
@@ -98,11 +99,11 @@ const Profile = () => {
                             break;
                     }
                 } else {
-                    swal("Archivo muy pesado", "Tu archivo excede el peso permitido, maximo 5 MB", "error");
+                    swal(t('Dashboard.Index.Profile.Modals.0.Title'), t('Dashboard.Index.Profile.Modals.0.Text'), "error");
                 }
 
             } else {
-                swal("Archivo no válido", "Solo puedes subir un formato imagen o pdf", "error");
+                swal(t('Dashboard.Index.Profile.Modals.1.Title'), t('Dashboard.Index.Profile.Modals.1.Text'), "error");
             }
         } catch (e) {
 
@@ -154,18 +155,14 @@ const Profile = () => {
                                 frameBorder="0" width="100%" height="300"></iframe>
                         </div>
                     </div>
-
                 )
             } else {
                 return null;
             }
-
         }
-
-
     }
 
-    const getUserData = async (id) => {
+    const getUserData = async id => {
         try {
             let docRef = db.collection('credentials').doc(id);
             await docRef.onSnapshot(doc => {
@@ -187,11 +184,9 @@ const Profile = () => {
                     profileContext.setCountryCompleteName(doc.data().countryComplete);
                 }
             });
-
         } catch (e) {
 
         }
-
     }
 
     const getAuthTokenCountries = async () => {
@@ -232,8 +227,8 @@ const Profile = () => {
 
     const uploadProfilePicture = () => {
         swal({
-            title: "¿Estas seguro de subir esa foto?",
-            text: "Una vez enviada la foto no se podrá modificar, asegúrate de que cumpla los requisitos antes mencionados",
+            title: t('Dashboard.Index.Profile.Modals.2.Title'),
+            text: t('Dashboard.Index.Profile.Modals.2.Text'),
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -255,7 +250,7 @@ const Profile = () => {
                                 profilePictureStatus: 1
                             }).then(() => {
                                 setOpen(false);
-                                swal("La foto de tu perfil ha sido actualizada con éxito", "", "success");
+                                swal(t('Dashboard.Index.Profile.Modals.3.Title'), t('Dashboard.Index.Profile.Modals.3.Text'), "success");
                             });
                         })
                     });
@@ -316,7 +311,7 @@ const Profile = () => {
                                     </h3>
                                     <div className="h5 font-weight-400 mt-3">
                                         <i className="ni location_pin mr-2" />
-                                        {getAge(profileContext.birthday) ? `${getAge(profileContext.birthday)} años` : '00 años'}
+                                        {getAge(profileContext.birthday) ? `${getAge(profileContext.birthday)} ${t('Dashboard.Index.Profile.ShowData.Years')}` : `00 ${t('Dashboard.Index.Profile.ShowData.Years')}`}
                                     </div>
                                     <div className="h5 font-weight-300">
                                         <i className="ni location_pin mr-2" />
@@ -325,26 +320,35 @@ const Profile = () => {
 
                                     <div className="h5 mt-4">
                                         <i className="ni business_briefcase-24 mr-2" />
-                                        {profileContext.city || 'Ciudad'}, {profileContext.stateLocation || 'Estado'}, {profileContext.countryCompleteName || 'País'}
+                                        {profileContext.city || t('Dashboard.Index.Profile.ShowData.City')}, {profileContext.stateLocation || t('Dashboard.Index.Profile.ShowData.State')}, {profileContext.countryCompleteName || t('Dashboard.Index.Profile.ShowData.Country')}
                                     </div>
                                     <div>
                                         <i className="ni education_hat mr-2" />
-                                        {profileContext.address || 'Dirección'}
+                                        {profileContext.address || t('Dashboard.Index.Profile.ShowData.Address')}
                                     </div>
                                     <hr className="my-4" />
 
                                     <div className={classes.alert}>
                                         {profileContext.profileStatus === 3 ?
-                                            <Alert variant="filled" severity="warning">En espera de verificación — Se están
-                                                validando tus datos</Alert> : null}
+                                            <Alert variant="filled" severity="warning">
+                                                {t('Dashboard.Index.Profile.ShowData.ProfileStatus.0')}
+                                            </Alert> : null}
                                         {profileContext.profileStatus === 4 ?
-                                            <Alert variant="filled" severity="success">Cuenta verificada</Alert> : null}
+                                            <Alert variant="filled" severity="success">
+                                                {t('Dashboard.Index.Profile.ShowData.ProfileStatus.1')}
+                                            </Alert> : null}
                                         {profileContext.profileStatus === 5 ?
-                                            <Alert variant="filled" severity="error">Cuenta no verificada — Verifica tu identificación oficial únicamente</Alert> : null}
+                                            <Alert variant="filled" severity="error">
+                                                {t('Dashboard.Index.Profile.ShowData.ProfileStatus.2')}
+                                            </Alert> : null}
                                         {profileContext.profileStatus === 6 ?
-                                            <Alert variant="filled" severity="error">Cuenta no verificada — Verifica tus datos personales únicamente</Alert> : null}
+                                            <Alert variant="filled" severity="error">
+                                                {t('Dashboard.Index.Profile.ShowData.ProfileStatus.3')}
+                                            </Alert> : null}
                                         {profileContext.profileStatus === 7 ?
-                                            <Alert variant="filled" severity="error">Cuenta no verificada — Verifica todos tus datos</Alert> : null}
+                                            <Alert variant="filled" severity="error">
+                                                {t('Dashboard.Index.Profile.ShowData.ProfileStatus.4')}
+                                            </Alert> : null}
                                     </div>
                                 </div>
                             </CardBody>

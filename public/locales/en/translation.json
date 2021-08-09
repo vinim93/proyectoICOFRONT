@@ -78,7 +78,6 @@
         "Title": "What is a cryptocurrency?",
         "Text": "It is a virtual currency that was born as a means of digital exchange, allowing instant transactions through the internet. Through the use of cryptography, the transactions carried out with it are secured and verified, in addition cryptography controls the creation of new units of a particular currency."
       },
-      
       {
         "Title": "Who can buy a SUNI?",
         "Text": "Anyone who is of legal age and wants to buy a SUNI can do so."
@@ -116,12 +115,14 @@
       "This token is called SUNSHINE IMAGINE",
       "SUNSHINE is for entrepreneurs, people who want to go a step further, for those who do not settle for little, SUNSHINE is the future, it is for those who want greatness, who lost their fear and decided to take control of their life."
     ],
-    "Mision":{
-      "Title":"MISSION",
-      "description":"Bring value and collaborate with Suniholders to strengthen their present and build their sustainable future over time."},
-      "Vision":{
-       "Title":"VISIÓN",
-       "description":"Maintain ourselves as a reliable company in the market, with solidity and optimal quality guaranteeing the investment of the Suniholders and generating the expected level of profitability."},
+    "Mision": {
+      "Title": "MISSION",
+      "description": "Bring value and collaborate with Suniholders to strengthen their present and build their sustainable future over time."
+    },
+    "Vision": {
+      "Title": "VISIÓN",
+      "description": "Maintain ourselves as a reliable company in the market, with solidity and optimal quality guaranteeing the investment of the Suniholders and generating the expected level of profitability."
+    },
     "Differences": {
       "Title": "WHAT MAKES US DIFFERENT?",
       "Items": [
@@ -222,5 +223,409 @@
   "Whitepaper": {
     "Read": "READ",
     "Click": "Click to download pdf"
+  },
+  "Dashboard": {
+    "Menu": {
+      "Home": "Home",
+      "Profile": "Profile",
+      "Settings": "Settings",
+      "Logout": "Log out"
+    },
+    "Index": {
+      "Buttons": {
+        "CryptoMarkt": "Cypto markt",
+        "Buy": "Buy",
+        "Wallet": "Wallet"
+      },
+      "PhoneMessages": {
+        "Title": "Check code",
+        "Text": "Verify the code that was sent to your cell phone, if it does not arrive within 60 seconds you can request a new code",
+        "AskNewCode": "REQUEST NEW CODE",
+        "Verify": "Verify",
+        "Code": "SMS Code"
+      },
+      "PurchaseHistory": {
+        "Title": "Purchase history",
+        "Price": "Price",
+        "Date": "Date",
+        "PaymentMethod": "Payment method",
+        "RowsPerPage": "Rows per page"
+      },
+      "CryptoMarkt": {
+        "Title": "Dollar markt"
+      },
+      "BuyComponent": {
+        "Title": "Payment process",
+        "CompleteProfile": "Complete your personal information in the profile section to be able to buy tokens",
+        "GotoProfile": "Go to my profile",
+        "Menu": {
+          "Token": "Token",
+          "Method": "Method",
+          "Data": "Data",
+          "Buy": "Purchase"
+        },
+        "TokenOption": {
+          "CurrencySelect": "Select your currency",
+          "NextButton": "Next",
+          "Modals": {
+            "LimitAmount": {
+              "Title1": "Very large quantity",
+              "Text1": "The amount must not be greater than $ 999,999.99",
+              "Title2": "Limited quantity",
+              "Text2": "Your limit is $ 1000 USD, if you want to increase your deposit limit you must go to your profile and verify your account",
+              "Abbr21": "Your limit is",
+              "Abbr22": "if you want to increase your deposit limit you must go to your profile and verify your account",
+              "InvalidAmount": {
+                "Title": "Invalid amount",
+                "Text": "You must pay the minimum amount of $ 1 USD",
+                "Abbr": "You must pay the minimum amount of $"
+              }
+            }
+          }
+        },
+        "MethodOption": {
+          "Title": "Payment method",
+          "Card": "Credit / debit card",
+          "Oxxo": "Payment in oxxo",
+          "TRX": "Payment with TRON (TRX)",
+          "NextButton": "Next",
+          "BackButton": "Back",
+          "Modals": {
+            "Card": {
+              "Title": "Payment with invalid TRON",
+              "Text": "You cannot pay with TRON, you have to change the currency to a national or international currency"
+            },
+            "Oxxo": {
+              "Title1": "Payment with invalid dollar",
+              "Text1": "You cannot pay in oxxo with dollars, you have to change the currency to Mexican pesos",
+              "Title2": "Payment with invalid TRON",
+              "Text2": "You cannot pay in oxxo with TRON, you have to change the currency to Mexican pesos"
+            },
+            "Trx": {
+              "Title": "Invalid FIAT payment",
+              "Text": "You cannot pay with normal currency, you must choose payment with TRON in the previous step"
+            }
+          }
+        },
+        "DataOption": {
+          "Title": "Personal information",
+          "Name": "Name",
+          "Lastname": "Last name",
+          "Address": "Address",
+          "City": "City",
+          "State": "State / Province / Region",
+          "Country": "Country",
+          "NextButton": "Next",
+          "BackButton": "Back"
+        },
+        "BuyOption": {
+          "Title": "Details of payment",
+          "Description": "TUAH Token",
+          "BackButton": "Back",
+          "BuyButton": "Buy token",
+          "Modals": {
+            "DeclinedCard": {
+              "Title": "Rejected card",
+              "Texts": [
+                "Contact your bank to resolve the issue or try again later",
+                "Your card seems to have insufficient funds",
+                "It seems that your card has a theft report, contact your bank to solve the problem",
+                "Your card is not supported. Please use Visa or Mastercard",
+                "An error occurred while processing the payment with the indicated card, please try another"
+              ]
+            },
+            "ExpiredCard": [
+              {
+                "Title": "Expired card",
+                "Text": "It seems that your card has expired, contact your bank"
+              },
+              {
+                "Title": "Incorrect CVC",
+                "Text": "Check the CVC code of your card and try again, otherwise, contact your bank"
+              },
+              {
+                "Title": "Incorrect data",
+                "Text": "Verify that your card details are correct, if so, contact your bank to solve the problem"
+              },
+              {
+                "Title": "Very small amount",
+                "Text": "The entered purchase amount is too small to be processed"
+              },
+              {
+                "Title": "Check the amount",
+                "Text": "The amount must have valid cents"
+              },
+              {
+                "Title": "Very large quantity",
+                "Text": "The amount must not be greater than $ 999,999.99"
+              }
+            ],
+            "DefaultValue": {
+              "Title": "Payment could not be processed",
+              "Text": "Check that the data you entered is correct or try again later!"
+            },
+            "Oxxo": {
+              "Title": "Invalid amount",
+              "Text": "The maximum amount you can pay in oxxo is $ 10,000 MXN"
+            },
+            "Trx": [
+              {
+                "Title": "Incomplete transaction",
+                "Text": "The transaction could not be made, check the amount of your TRX and try again later"
+              },
+              {
+                "Title": "Insufficient TRX",
+                "Text": "You don't have enough TRX to buy TUAH"
+              },
+              {
+                "Title": "Oops",
+                "Text": "It seems that you cannot buy more TUAH because they are sold out, contact the support team if you think it is a wrong message"
+              },
+              {
+                "Title": "An error occurred",
+                "Text": "The amount of TUAH to return according to the amount of TRX you want to pay is not correct, reload the page and try again"
+              },
+              {
+                "Title": "Minimum amount TRX invalid",
+                "Text": "The amount of TRX you want to pay is less than the amount that is required which is"
+              },
+              {
+                "Title": "Oops",
+                "Text": "An unexpected error occurred, please try again later"
+              }
+            ],
+            "ButtonsMessages": {
+              "BuyToken": "BUY TOKEN",
+              "Loading": "LOADING...",
+              "Processing": "PROCESSING...",
+              "BuyWithTrx": "SHOP WITH TRX",
+              "BuyWithOxxo": "GENERATE PAYMENT WITH OXXO"
+            }
+          }
+        },
+        "SuccessPayment": {
+          "CardTitle": "Thanks for your purchase!",
+          "CardText": "Thank you for your purchase, it will be reflected in your total amount and in your portfolio in approximately 1 minute. We have sent your proof of payment to the email you registered!",
+          "OxxoTitle": "Generated oxxo reference!",
+          "OxxoText": "You have 24 hours to make the payment in oxxo!",
+          "TrxTitle": "TRX payment accepted!",
+          "TrxText": "Your TUAH will be reflected in approximately 1 minute, you can view the transaction in the purchase history",
+          "BuyAgainButton": "Buy again"
+        }
+      },
+      "Wallet": {
+        "SpotWallet": {
+          "Receive": "Receive",
+          "Send": "Send",
+          "Copy": "Copy",
+          "Copied": "Copied",
+          "DestinationAddressField": "Destination address",
+          "AmountField": "Amount (TUAH)",
+          "AmountToSend": "TUAH to send",
+          "RemainingAmount": "TUAH remaining",
+          "SendButton": "Send",
+          "WithoutTokens": "You don't have enough TUAH to send"
+        },
+        "Header": {
+          "TokensAmount": "NUMBER OF TOKENS TUAH"
+        },
+        "TransactionsHistory": {
+          "Amount": "Amount",
+          "Date": "Date/time",
+          "Block": "Block",
+          "Received": "Received",
+          "Sended": "Sent",
+          "Details": {
+            "Title": "Details",
+            "Transmitter": "TRANSMITTER",
+            "Reveiver": "RECEIVER",
+            "Amount": "AMOUNT",
+            "Block": "BLOCK",
+            "Date": "DATE"
+          },
+          "Rows": "Rows per page",
+          "Modals": {
+            "Success": {
+              "Title": "Sent tokens",
+              "Text": [
+                "they were charged from your account and deposited to the address ",
+                "you can see the transaction in your history"
+              ]
+            },
+            "Errors": [
+              {
+                "Title": "You do not have TUAH",
+                "Text": "Your wallet does not have any TUAH so you cannot send the indicated amount"
+              },
+              {
+                "Title": "Bandwidth error",
+                "Text": "The wallet you want to send TUAH to does not have enough bandwidth"
+              },
+              {
+                "Title": "Insufficient TUAHS",
+                "Text": "You do not have enough TUAH to send the indicated amount"
+              },
+              {
+                "Title": "Invalid address",
+                "Text": "The address you want to send TUAH to does not exist or is not available"
+              },
+              {
+                "Title": "Invalid amount",
+                "Text": "The amount entered is not valid, enter an amount of type 0.000000"
+              },
+              {
+                "Title": "Invalid SMS code",
+                "Text": "The code you entered does not match the one you received on the phone provided or it has expired, try again"
+              },
+              {
+                "Title": "Unexpected error",
+                "Text": "An unexpected error occurred, please reload the page or try again later"
+              }
+            ]
+          }
+        }
+      },
+      "Profile": {
+        "PersonalData": {
+          "Title": "Personal information",
+          "Text": "Verify that your data and photo match your official identification",
+          "Name": "Name",
+          "Lastname": "Last name",
+          "Date": "Date of birth",
+          "Country": "Country",
+          "State": "State",
+          "City": "City",
+          "Phone": "Phone",
+          "Address": "Address",
+          "SendButton": "Send",
+          "Modals": [
+            {
+              "Title": "Updated information",
+              "Text": "Your profile information has been updated successfully!"
+            },
+            {
+              "Title": "Invalid SMS code",
+              "Text": "The code you entered does not match the one you received on the phone provided or it has expired, try again"
+            },
+            {
+              "Title": "Unexpected error",
+              "Text": "An unexpected error occurred, please reload the page or try again later"
+            },
+            {
+              "Title": "Are you sure to upload the information?",
+              "Text": "Once the information has been sent, it cannot be modified"
+            },
+            {
+              "Title": "You must be of legal age",
+              "Text": "In order to continue with the verification of your data you must be of legal age"
+            },
+            {
+              "Title": "Incomplete information",
+              "Text": "Fill in all the corresponding fields to continue"
+            }
+          ]
+        },
+        "VerifiedProfile": {
+          "Title": "Profile verification",
+          "Subtitle1": "Upload an official document (INE, Passport, Driver's License ...)",
+          "Text": "Verify that your data matches the personal data you previously provided us",
+          "Subtitle": "Official identification",
+          "SendButton": "Send verification",
+          "Modals": [
+            {
+              "Title": "Are you sure to upload the information?",
+              "Text": "Once the information has been sent, it cannot be modified"
+            },
+            {
+              "Title": "Updated information",
+              "Text": "Your profile information was updated successfully!"
+            },
+            {
+              "Title": "You need to upload your official identification",
+              "Text": "In order to continue with the verification of your data you must upload a photo or pdf of your official identification on both sides!"
+            },
+            {
+              "Title": "Missing information",
+              "Text": "Fill in all the corresponding fields to continue!"
+            }
+          ]
+        },
+        "Modals": [
+          {
+            "Title": "Very heavy file",
+            "Text": "Your file exceeds the allowed weight, maximum 5 MB"
+          },
+          {
+            "Title": "Invalid file",
+            "Text": "You can only upload an image or pdf format"
+          },
+          {
+            "Title": "Are you sure to upload that photo?",
+            "Text": "Once the photo is sent, it cannot be modified, make sure it meets the aforementioned requirements"
+          },
+          {
+            "Title": "Your profile photo has been updated successfully",
+            "Text": ""
+          }
+        ],
+        "ShowData": {
+          "Years": "years",
+          "City": "City",
+          "Address": "Address",
+          "State": "State",
+          "Country": "Country",
+          "ProfileStatus": [
+            "Awaiting verification - Your data is being validated",
+            "Verified account",
+            "Account not verified - Verify your official ID only",
+            "Account not verified - Verify your personal data only",
+            "Account not verified - Verify all your data"
+          ],
+          "UploadImage": {
+            "Title": "Choose photo",
+            "AdaptYourImage": "Adapt your image",
+            "Finish": "Finalize"
+          }
+        }
+      },
+      "Settings": {
+        "LastPassword": "Old Password",
+        "NewPassword": "New password",
+        "RepeatPassword": "Repeat new password",
+        "ChangePassword": "Change Password",
+        "Password": {
+          "Title": "Password",
+          "Subtitle": "Change your password",
+          "PrincipalMessage": "You can't change your password because you chose to log in with Google"
+        },
+        "Modals": [
+          {
+            "Title": "Incorrect current password",
+            "Text": "The password provided as current is not correct, please try again"
+          },
+          {
+            "Title": "Password changed successfully",
+            "Text": "Now you can log in with your new password"
+          },
+          {
+            "Title": "Your password must meet the following requirements",
+            "Button": "Ok",
+            "Options": [
+              "At least 8 characters",
+              "Maximum 100 characters",
+              "At least one capital letter",
+              "At least 1 lowercase letter",
+              "Must not contain spaces",
+              "At least 1 number"
+            ]
+          },
+          {
+            "Title": "Passwords do not match",
+            "Text": "Make sure the new passwords are the same",
+            "Button": "Ok"
+          }
+        ]
+      }
+    }
   }
 }

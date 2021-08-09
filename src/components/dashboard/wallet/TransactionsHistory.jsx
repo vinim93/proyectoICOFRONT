@@ -17,73 +17,67 @@ import { useTheme } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import DONE from '../../../images/done.png';
 import TronscanFinder from "../../../apis/TronscanFinder";
-
-const columns = [
-    { id: 'hash', label: 'Hash', minWidth: 170 },
-    { id: 'amount', label: 'Monto', minWidth: 100, format: (value) => value },
-    {
-        id: 'date',
-        label: 'Fecha/hora',
-        minWidth: 170,
-        align: 'right',
-        format: (value) => value,
-    },
-    {
-        id: 'block',
-        label: 'Bloque',
-        minWidth: 170,
-        align: 'right',
-    },
-    {
-        id: 'token',
-        label: 'Token',
-        minWidth: 170,
-        align: 'right',
-    },
-];
-
-function createData(hash, amount, date, block, token) {
-    return { hash, amount, date, block, token };
-}
-
-
-const useStyles = makeStyles({
-    root: {
-        width: '100%',
-    },
-    container: {
-        maxHeight: 440,
-    },
-});
-
-const timeConverter = (UNIX_timestamp) => {
-    let a = new Date(UNIX_timestamp);
-    let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    let year = a.getFullYear();
-    let month = months[a.getMonth()];
-    let date = a.getDate();
-    let hour = a.getHours();
-    let min = a.getMinutes();
-    let sec = a.getSeconds();
-    let time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
-    return time;
-}
-
-const formattedAmount = (amount= "0") => {
-    return amount.toString().slice(0, amount.toString().length-6) + "." + amount.toString().slice(amount.toString().length-6);
-}
+import {useTranslation} from "react-i18next";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const  TransactionsHistory = ({address}) => {
+
+const TransactionsHistory = ({address}) => {
+    const {t} = useTranslation();
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [transactions, setTransactions] = useState([{}]);
     const [allTransactions, setAllTransactions] = useState([{}]);
+
+    const columns = [
+        { id: 'hash', label: 'Hash', minWidth: 170 },
+        { id: 'amount', label: t('Dashboard.Index.Wallet.TransactionsHistory.Amount'), minWidth: 100, format: (value) => value },
+        {
+            id: 'date',
+            label: t('Dashboard.Index.Wallet.TransactionsHistory.Date'),
+            minWidth: 170,
+            align: 'right',
+            format: (value) => value,
+        },
+        {
+            id: 'block',
+            label: t('Dashboard.Index.Wallet.TransactionsHistory.Block'),
+            minWidth: 170,
+            align: 'right',
+        },
+        {
+            id: 'token',
+            label: 'Token',
+            minWidth: 170,
+            align: 'right',
+        },
+    ];
+
+    const createData = (hash, amount, date, block, token) => {
+        return { hash, amount, date, block, token };
+    }
+
+    const timeConverter = (UNIX_timestamp) => {
+        let a = new Date(UNIX_timestamp);
+        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        let year = a.getFullYear();
+        let month = months[a.getMonth()];
+        let date = a.getDate();
+        let hour = a.getHours();
+        let min = a.getMinutes();
+        let sec = a.getSeconds();
+        let time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
+        return time;
+    }
+
+    const formattedAmount = (amount= "0") => {
+        return amount.toString().slice(0, amount.toString().length-6) + "." + amount.toString().slice(amount.toString().length-6);
+    }
+
 
     const[transactionDetails, setTransactionDetails] = useState({contractData: {}, tokenInfo: {}, });
 
@@ -117,10 +111,9 @@ const  TransactionsHistory = ({address}) => {
             let row = [];
             await data.map(value => {
                 let decimal = value.tokenInfo.tokenDecimal;
-                row.push(createData(value.hash, value.toAddress === address ? value.contractData.amount / parseFloat("1e"+decimal) || 0 : - value.contractData.amount / parseFloat("1e"+decimal) || 0, timeConverter(value.timestamp), value.toAddress === address ? <Chip label="RECIBIDO" color="primary" /> : <Chip label="ENVIADO" color="secondary" />, (value.tokenInfo.tokenAbbr).toString().toUpperCase()));
-            })
+                row.push(createData(value.hash, value.toAddress === address ? value.contractData.amount / parseFloat("1e"+decimal) || 0 : - value.contractData.amount / parseFloat("1e"+decimal) || 0, timeConverter(value.timestamp), value.toAddress === address ? <Chip label={t('Dashboard.Index.Wallet.TransactionsHistory.Received')} color="primary" /> : <Chip label={t('Dashboard.Index.Wallet.TransactionsHistory.Sended')} color="secondary" />, (value.tokenInfo.tokenAbbr).toString().toUpperCase()));
+            });
             await setTransactions(row);
-
             await setAllTransactions(data);
 
         } catch (e) {
@@ -152,7 +145,7 @@ const  TransactionsHistory = ({address}) => {
                                     </TableCell>
                                 ))}
                             </TableRow>
-                        </TableHead>      
+                        </TableHead>
                         <TableBody>
                             {transactions.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
                                 return (
@@ -190,7 +183,9 @@ const  TransactionsHistory = ({address}) => {
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle id="alert-dialog-slide-title">Detalles</DialogTitle>
+                <DialogTitle id="alert-dialog-slide-title">
+                    {t('Dashboard.Index.Wallet.TransactionsHistory.Details.Title')}
+                </DialogTitle>
                 <DialogContent>
                     <DialogContentText component={"div"} id="alert-dialog-slide-description">
                         <div className="container-fluid">
@@ -206,27 +201,27 @@ const  TransactionsHistory = ({address}) => {
                                     <p><a href={`https://tronscan.org/#/transaction/${transactionDetails.hash}`} target="_blank">{transactionDetails.hash}</a> </p>
                                 </div>
 
-                                <strong>BLOQUE:</strong>
+                                <strong>{t('Dashboard.Index.Wallet.TransactionsHistory.Details.Block')}:</strong>
                                 <div className="col-12 d-flex justify-content-start">
                                     <p><a href={`https://tronscan.org/#/block/${transactionDetails.block}`} target="_blank">{transactionDetails.block}</a> </p>
                                 </div>
 
-                                <strong>EMISOR:</strong>
+                                <strong>{t('Dashboard.Index.Wallet.TransactionsHistory.Details.Transmitter')}:</strong>
                                 <div className="col-12 d-flex justify-content-start">
                                     <p>  {transactionDetails.contractData.owner_address}</p>
                                 </div>
 
-                                <strong>RECEPTOR:</strong>
+                                <strong>{t('Dashboard.Index.Wallet.TransactionsHistory.Details.Reveiver')}:</strong>
                                 <div className="col-12 d-flex justify-content-start">
                                     <p>   {transactionDetails.contractData.to_address}</p>
                                 </div>
 
-                                <strong>MONTO:</strong>
+                                <strong>{t('Dashboard.Index.Wallet.TransactionsHistory.Details.Amount')}:</strong>
                                 <div className="col-12 d-flex justify-content-start">
                                     <p> { formattedAmount(transactionDetails.contractData.amount) } <img src={transactionDetails.tokenInfo.tokenLogo} className="img-fluid" style={{width: 20}} alt=""/> ({transactionDetails.tokenInfo.tokenAbbr})</p>
                                 </div>
 
-                                <strong>FECHA:</strong>
+                                <strong>{t('Dashboard.Index.Wallet.TransactionsHistory.Details.Date')}:</strong>
                                 <div className="col-12 d-flex justify-content-start">
                                     <p>   {timeConverter(transactionDetails.timestamp)}</p>
                                 </div>
@@ -245,3 +240,13 @@ const  TransactionsHistory = ({address}) => {
 }
 
 export default TransactionsHistory;
+
+
+const useStyles = makeStyles({
+    root: {
+        width: '100%',
+    },
+    container: {
+        maxHeight: 440,
+    },
+});

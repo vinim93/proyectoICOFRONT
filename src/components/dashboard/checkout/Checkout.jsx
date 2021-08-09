@@ -16,16 +16,23 @@ import DONE from '../../../images/done.png';
 import swal from "sweetalert";
 import SunshineFinder from "../../../apis/SunshineFinder";
 import {CheckoutContext} from "../../../context/CheckoutContext";
+import {useTranslation} from "react-i18next";
 
-const steps = ['Token', 'Método', 'Datos', 'Compra'];
 
 export default function Checkout({uid, email, allData}) {
-
+    const {t} = useTranslation();
     const checkoutContext = useContext(CheckoutContext);
 
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
     //SI TU EDITOR DE TEXTO TE INDICA QUE DICHOS ESTADOS NO ESTAN SIENDO UTILIZADOS REVISA LAS 2 FUNCIONES DE ABAJO
+
+    const steps = [
+        t('Dashboard.Index.BuyComponent.Menu.Token'),
+        t('Dashboard.Index.BuyComponent.Menu.Method'),
+        t('Dashboard.Index.BuyComponent.Menu.Data'),
+        t('Dashboard.Index.BuyComponent.Menu.Buy')
+    ];
 
     useEffect(() => {
         checkoutContext.setName(allData.name);
@@ -82,36 +89,36 @@ export default function Checkout({uid, email, allData}) {
                             if (parseFloat(checkoutContext.currency) <= 999999) {
                                 setActiveStep(activeStep + 1);
                             } else {
-                                swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99", "warning");
+                                swal(t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.Title1'), t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.Text1'), "warning");
                             }
                         } else {
-                            swal("Monto inválido", "Debes pagar la mínima cantidad de $1 USD", "warning");
+                            swal(t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.InvalidAmount.Title'), t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.InvalidAmount.Text'), "warning");
                         }
                     } else if (checkoutContext.currencyType === "MX") {
                         if (parseFloat(checkoutContext.currency) >= checkoutContext.usdToMxn.toFixed(2)) {
                             if (parseFloat(checkoutContext.currency) <= 999999) {
                                 setActiveStep(activeStep + 1);
                             } else {
-                                swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99", "warning");
+                                swal(t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.Title1'), t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.Text1'), "warning");
                             }
                         } else {
-                            swal("Monto inválido", `Debes pagar la mínima cantidad de $${checkoutContext.usdToMxn.toFixed(2)} MXN`, "warning");
+                            swal(t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.InvalidAmount.Title'), `${t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.InvalidAmount.Abbr')} ${checkoutContext.usdToMxn.toFixed(2)} MXN`, "warning");
                         }
                     } else if (checkoutContext.currencyType === "SUN") {
                         if (parseFloat(checkoutContext.currency) >= 1) {
                             setActiveStep(activeStep + 1);
                         } else {
-                            swal("Monto inválido", "Debes pagar la mínima cantidad de $1 USD", "warning");
+                            swal(t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.InvalidAmount.Title'), t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.InvalidAmount.Text'), "warning");
                         }
                     } else if(checkoutContext.currencyType === "TRX"){
                         if (parseFloat(checkoutContext.currency) >= checkoutContext.usdToTrx.toFixed(2)) {
                             if (parseFloat(checkoutContext.currency) <= 999999) {
                                 setActiveStep(activeStep + 1);
                             } else {
-                                swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99", "warning");
+                                swal(t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.Title1'), t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.Text1'), "warning");
                             }
                         } else {
-                            swal("Monto inválido", `Debes pagar la mínima cantidad de $${checkoutContext.usdToMxn.toFixed(2)} MXN`, "warning");
+                            swal(t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.InvalidAmount.Title'), `${t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.InvalidAmount.Abbr')} ${checkoutContext.usdToMxn.toFixed(2)} MXN`, "warning");
                         }
                     }
                 } else {
@@ -121,10 +128,10 @@ export default function Checkout({uid, email, allData}) {
                             if (parseFloat(checkoutContext.currency) <= 1000) {
                                 setActiveStep(activeStep + 1);
                             } else {
-                                swal("Cantidad limitada", "Tu límite es de $1000 USD, si deseas incrementar tu límite de depósito debes ir a tu perfíl y verificar tu cuenta", "warning");
+                                swal(t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.Title2'), t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.Text2'), "warning");
                             }
                         } else {
-                            swal("Monto inválido", "Debes pagar la mínima cantidad de $1 USD", "warning");
+                            swal(t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.InvalidAmount.Title'), t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.InvalidAmount.Text'), "warning");
                         }
                     } else if (checkoutContext.currencyType === "MX") {
 
@@ -132,22 +139,22 @@ export default function Checkout({uid, email, allData}) {
                             if (parseFloat(checkoutContext.currency) <= checkoutContext.usdToMxn.toFixed(2) * 1000) {
                                 setActiveStep(activeStep + 1);
                             } else {
-                                swal("Cantidad limitada", `Tu límite es de $${checkoutContext.usdToMxn.toFixed(2) * 1000} MXN, si deseas incrementar tu límite de depósito debes ir a tu perfíl y verificar tu cuenta`, "warning");
+                                swal(t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.Title2'), `${t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.Abbr21')} $${checkoutContext.usdToMxn.toFixed(2) * 1000} MXN, ${t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.Abbr22')}`, "warning");
                             }
                         } else {
-                            swal("Monto inválido", `Debes pagar la mínima cantidad de $${checkoutContext.usdToMxn.toFixed(2)} MXN`, "warning");
+                            swal(t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.InvalidAmount.Title'), `${t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.InvalidAmount.Abbr')} ${checkoutContext.usdToMxn.toFixed(2)} MXN`, "warning");
                         }
                     } else if (checkoutContext.currencyType === "SUN") {
                         if (parseFloat(checkoutContext.currency) >= 1) {
                             setActiveStep(activeStep + 1);
                         } else {
-                            swal("Monto inválido", "Debes pagar la mínima cantidad de $1 USD", "warning");
+                            swal(t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.InvalidAmount.Title'), t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.InvalidAmount.Text'), "warning");
                         }
                     } else if (checkoutContext.currencyType === "TRX") {
                         if (parseFloat(checkoutContext.currency) >= checkoutContext.usdToTrx.toFixed(2)) {
                             setActiveStep(activeStep + 1);
                         } else {
-                            swal("Monto inválido", `Debes pagar la mínima cantidad de $${checkoutContext.usdToTrx.toFixed(2)} TRX`, "warning");
+                            swal(t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.InvalidAmount.Title'), `${t('Dashboard.Index.BuyComponent.TokenOption.Modals.LimitAmount.InvalidAmount.Abbr')} ${checkoutContext.usdToTrx.toFixed(2)} TRX`, "warning");
                         }
                     }
 
@@ -157,23 +164,23 @@ export default function Checkout({uid, email, allData}) {
             case 1:
                 if (paymentOption === "card") {
                     if (checkoutContext.currencyType.toUpperCase() === "TRX"){
-                        swal("Pago con TRON inválido", "No puedes pagar con TRON, tienes que cambiar la divisa a alguna moneda nacional o internacional", "warning");
+                        swal(t('Dashboard.Index.BuyComponent.MethodOption.Modals.Card.Title'), t('Dashboard.Index.BuyComponent.MethodOption.Modals.Card.Text'), "warning");
                     } else {
                         checkoutContext.setPaymentMethod(paymentOption);
                         setActiveStep(activeStep + 1);
                     }
                 } else if (paymentOption === "oxxo") {
                     if (checkoutContext.currencyType.toUpperCase() === "USD") {
-                        swal("Pago con dolar inválido", "No puedes pagar en oxxo con dolar, tienes que cambiar la divisa a pesos mexicanos", "warning");
+                        swal(t('Dashboard.Index.BuyComponent.MethodOption.Modals.Oxxo.Title1'), t('Dashboard.Index.BuyComponent.MethodOption.Modals.Oxxo.Text1'), "warning");
                     } else if (checkoutContext.currencyType.toUpperCase() === "TRX"){
-                        swal("Pago con TRON inválido", "No puedes pagar en oxxo con TRON, tienes que cambiar la divisa a pesos mexicanos", "warning");
+                        swal(t('Dashboard.Index.BuyComponent.MethodOption.Modals.Oxxo.Title2'), t('Dashboard.Index.BuyComponent.MethodOption.Modals.Oxxo.Text2'), "warning");
                     } else {
                         checkoutContext.setPaymentMethod(paymentOption);
                         setActiveStep(activeStep + 1);
                     }
                 } else if(paymentOption === "trx") {
                     if(checkoutContext.currencyType.toUpperCase() === "USD" || checkoutContext.currencyType.toUpperCase() === "MX"){
-                        swal("Pago con FIAT inválido", "No puedes pagar con divisa normal, debes elegir pago con TRON en el paso anterior", "warning");
+                        swal(t('Dashboard.Index.BuyComponent.MethodOption.Modals.Trx.Title'), t('Dashboard.Index.BuyComponent.MethodOption.Modals.Trx.Text'), "warning");
                     } else {
                         checkoutContext.setPaymentMethod(paymentOption);
                         setActiveStep(activeStep + 1);
@@ -223,14 +230,14 @@ export default function Checkout({uid, email, allData}) {
                             {activeStep === steps.length ? (
                                 <React.Fragment>
                                     <Typography variant="h5" gutterBottom>
-                                        {checkoutContext.paymentMethod === "card" ? "¡Gracias por tu compra!" : checkoutContext.paymentMethod === "oxxo" ? "¡Referencia de oxxo generada!" : "¡Pago con TRX aceptado!"}
+                                        {checkoutContext.paymentMethod === "card" ? t('Dashboard.Index.BuyComponent.SuccessPayment.CardTitle') : checkoutContext.paymentMethod === "oxxo" ? t('Dashboard.Index.BuyComponent.SuccessPayment.OxxoTitle') : t('Dashboard.Index.BuyComponent.SuccessPayment.TrxTitle')}
                                     </Typography>
                                     <img src={DONE} className="img-fluid mb-3" width="13%" alt="PAGO REALIZADO"/>
                                     <Typography variant="subtitle1">
-                                        {checkoutContext.paymentMethod === "card" ? "¡Gracias por tu compra, se verá reflejado en tu monto total y en tu cartera en aproximadamente 1 minito. Hemos enviado tu comprobante de pago al correo electrónico que registraste!" : checkoutContext.paymentMethod === "oxxo" ? "¡Tienes 24 hrs para realizar el pago en oxxo!" : "Tus TUAH se reflejaran en aproximadamente 1 minuto, puedes visualizar la transacción en el historial de compra"}
+                                        {checkoutContext.paymentMethod === "card" ? t('Dashboard.Index.BuyComponent.SuccessPayment.CardText') : checkoutContext.paymentMethod === "oxxo" ? t('Dashboard.Index.BuyComponent.SuccessPayment.OxxoText') : t('Dashboard.Index.BuyComponent.SuccessPayment.TrxText')}
                                     </Typography>
                                     <Button variant="contained" color="primary" className={classes.button} onClick={buyAgain}>
-                                        Comprar de nuevo
+                                        {t('Dashboard.Index.BuyComponent.SuccessPayment.BuyAgainButton')}
                                     </Button>
                                 </React.Fragment>
                             ) : (
@@ -239,7 +246,7 @@ export default function Checkout({uid, email, allData}) {
                                     <div className={classes.buttons}>
                                         {activeStep !== 0 && (
                                             <Button onClick={handleBack} className={classes.button}>
-                                                Atrás
+                                                {t('Dashboard.Index.BuyComponent.MethodOption.BackButton')}
                                             </Button>
                                         )}
                                         {activeStep === steps.length - 1  ? null : (
@@ -249,7 +256,7 @@ export default function Checkout({uid, email, allData}) {
                                                 onClick={handleNext}
                                                 className={classes.button}
                                             >
-                                                Siguiente
+                                                {t('Dashboard.Index.BuyComponent.TokenOption.NextButton')}
                                             </Button>
                                         )
                                         }

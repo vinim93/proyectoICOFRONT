@@ -9,8 +9,10 @@ import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import {ProfileContext} from "../../../context/ProfileContext";
+import {useTranslation} from "react-i18next";
 
 const UploadImage = ({ uploadProfilePicture, profilePictureStatus}) => {
+    const {t} = useTranslation();
     const classes = useStyles();
     const profileContext = useContext(ProfileContext);
     const [imageSrc, setImageSrc] = useState(null);
@@ -66,7 +68,7 @@ const UploadImage = ({ uploadProfilePicture, profilePictureStatus}) => {
                         <Button disabled={hideButton} variant="contained" color="primary" component="span" data-toggle="modal"
                                 data-target="#uploadImage"
                                 data-backdrop='static' data-keyboard='false' onClick={!hideButton ? choiceImage : null}>
-                            Elegir foto
+                            {t('Dashboard.Index.Profile.ShowData.UploadImage.Title')}
                         </Button>
                         {profileContext.croppedImage && profileContext.image ? (<Button onClick={uploadProfilePicture}>Subir foto</Button>) : null}
                     </ButtonGroup>
@@ -79,7 +81,9 @@ const UploadImage = ({ uploadProfilePicture, profilePictureStatus}) => {
                     <div className="modal-content py-0">
 
                         <div className="modal-header">
-                            <h5 className="modal-title-dashboard" id="exampleModalLabel">Adapta tu imagen</h5>
+                            <h5 className="modal-title-dashboard" id="exampleModalLabel">
+                                {t('Dashboard.Index.Profile.ShowData.UploadImage.AdaptYourImage')}
+                            </h5>
                             <button type="button" className="close-modal" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -125,7 +129,7 @@ const UploadImage = ({ uploadProfilePicture, profilePictureStatus}) => {
                                         classes={{root: classes.cropButton}}
                                         data-dismiss="modal" aria-label="Close"
                                     >
-                                        Finalizar
+                                        {t('Dashboard.Index.Profile.ShowData.UploadImage.Finish')}
                                     </Button>
                                 </div>
                                 <input type="file" hidden id="choiceImage" onChange={onFileChange} accept="image/*"/>

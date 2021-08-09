@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import {db} from "../../config/firebase";
 import NumberFormat from "react-number-format";
+import {useTranslation} from "react-i18next";
 
 const createData = (id, tokens, price, datetime, cardDetails) => {
     return {id, tokens, price, datetime, cardDetails};
@@ -46,19 +47,22 @@ const stableSort = (array, comparator) => {
     return stabilizedThis.map((el) => el[0]);
 }
 
-const headCells = [
-    {id: 'id', numeric: false, disablePadding: true, label: 'ID'},
-    {id: 'tokens', numeric: true, disablePadding: false, label: 'Tokens'},
-    {id: 'price', numeric: false, disablePadding: false, label: 'Precio (USD)'},
-    {id: 'datetime', numeric: true, disablePadding: false, label: 'Fecha'},
-    {id: 'cardDetails', numeric: true, disablePadding: false, label: 'Forma de pago'},
-];
 
 const EnhancedTableHead = (props) => {
+    const {t} = useTranslation();
     const {classes, order, orderBy, onRequestSort} = props;
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
     };
+
+    const headCells = [
+        {id: 'id', numeric: false, disablePadding: true, label: 'ID'},
+        {id: 'tokens', numeric: true, disablePadding: false, label: 'Tokens'},
+        {id: 'price', numeric: false, disablePadding: false, label: `${t('Dashboard.Index.PurchaseHistory.Price')} (USD)`},
+        {id: 'datetime', numeric: true, disablePadding: false, label: t('Dashboard.Index.PurchaseHistory.Date')},
+        {id: 'cardDetails', numeric: true, disablePadding: false, label: t('Dashboard.Index.PurchaseHistory.PaymentMethod')},
+    ];
+
 
     return (
         <TableHead>
@@ -93,6 +97,7 @@ const EnhancedTableHead = (props) => {
 }
 
 const EnhancedTableToolbar = (props) => {
+    const {t} = useTranslation();
     const classes = useToolbarStyles();
     const {numSelected} = props;
 
@@ -108,7 +113,7 @@ const EnhancedTableToolbar = (props) => {
                 </Typography>
             ) : (
                 <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-                    Historial de compra
+                    {t('Dashboard.Index.PurchaseHistory.Title')}
                 </Typography>
             )}
 
@@ -277,6 +282,7 @@ export default function PurchaseHistoryComponent({uid}) {
                     page={page}
                     onChangePage={handleChangePage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
+
                 />
             </Paper>
         </div>

@@ -3,6 +3,7 @@ import finalCoin from "../../../images/monedafinal.png";
 import NumberFormat from 'react-number-format';
 import TextField from '@material-ui/core/TextField';
 import {CheckoutContext} from "../../../context/CheckoutContext";
+import {useTranslation} from "react-i18next";
 
 
 const currencies = [
@@ -25,7 +26,7 @@ const currencies = [
 ];
 
 const TokenAmount = ({currencyConversor}) => {
-
+    const {t} = useTranslation();
     const checkoutContext = useContext(CheckoutContext);
 
     useEffect(() => {
@@ -93,7 +94,7 @@ const TokenAmount = ({currencyConversor}) => {
                                 native: true,
                             }}
                             fullWidth
-                            helperText="Selecciona tu divisa"
+                            helperText={t('Dashboard.Index.BuyComponent.TokenOption.CurrencySelect')}
                         >
                             {currencies.map((option) => (
                                 <option key={option.value} value={option.value}>

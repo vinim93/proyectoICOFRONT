@@ -22,9 +22,10 @@ import SunshineFinder from "../../../apis/SunshineFinder";
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import {useTranslation} from "react-i18next";
 
 const PersonalData = ({uid}) => {
-
+    const {t} = useTranslation();
     const classes = useStyles();
     const profileContext = useContext(ProfileContext);
     const [open, setOpen] = useState(false);
@@ -66,7 +67,7 @@ const PersonalData = ({uid}) => {
                     address: profileContext.address,
                     profileStatus: 1,
                 }).then(() => {
-                    swal("Información actualizada", "¡La información de tu perfil ha sido actualizada con éxito!", "success");
+                    swal(t('Dashboard.Index.Profile.PersonalData.Modals.0.Title'), t('Dashboard.Index.Profile.PersonalData.Modals.0.Text'), "success");
                     setOpenSmsModal(false);
                     setOpen(false);
                 });
@@ -76,10 +77,10 @@ const PersonalData = ({uid}) => {
         } catch (e) {
             switch (e.message || e){
                 case "sms-incorrect":
-                    swal("Código SMS inválido", "El código que ingresaste no coincide con el que te llegó al telefono proporcionado o caducó, intenta de nuevo", "warning");
+                    swal(t('Dashboard.Index.Profile.PersonalData.Modals.1.Title'), t('Dashboard.Index.Profile.PersonalData.Modals.1.Text'), "warning");
                     break;
                 default:
-                    swal("Error inesperado", "Ocurrió un error inesperado, recarga la página o intenta de nuevo más tarde", "error");
+                    swal(t('Dashboard.Index.Profile.PersonalData.Modals.2.Title'), t('Dashboard.Index.Profile.PersonalData.Modals.2.Text'), "error");
             }
         }
 
@@ -108,8 +109,8 @@ const PersonalData = ({uid}) => {
                 if (profileContext.name !== "" && profileContext.lastname !== "" && profileContext.birthday !== "" && profileContext.country !== "" && profileContext.stateLocation !== "" && profileContext.city !== "" && profileContext.phone !== "" && profileContext.address !== "") {
                     if (getAge(profileContext.birthday) >= 18) {
                         swal({
-                            title: "¿Estas seguro de subir la información?",
-                            text: "Una vez enviada la información no se podrá modificar",
+                            "title": t('Dashboard.Index.Profile.PersonalData.Modals.3.Title'),
+                            text: t('Dashboard.Index.Profile.PersonalData.Modals.3.Text'),
                             icon: "warning",
                             buttons: true,
                             dangerMode: true,
@@ -133,23 +134,22 @@ const PersonalData = ({uid}) => {
 
                     } else {
                         setOpen(false);
-                        swal("Debes ser mayor de edad", "Para poder continuar con la verificación de tus datos debes contar con la mayoria de edad", "warning");
+                        swal(t('Dashboard.Index.Profile.PersonalData.Modals.4.Title'), t('Dashboard.Index.Profile.PersonalData.Modals.4.Text'), "warning");
                     }
 
                 } else {
                     setOpen(false);
-                    swal("Información incompleta", "Llena todos los campos correspondientes para poder continuar", "warning");
+                    swal(t('Dashboard.Index.Profile.PersonalData.Modals.5.Title'), t('Dashboard.Index.Profile.PersonalData.Modals.5.Text'), "warning");
                 }
-
             }
 
         } catch (e) {
             switch (e.message || e){
                 case "sms-not-sended":
-                    swal("Código SMS inválido", "El código que ingresaste no coincide con el que te llegó al telefono proporcionado o caducó, intenta de nuevo", "warning");
+                    swal(t('Dashboard.Index.Profile.PersonalData.Modals.1.Title'), t('Dashboard.Index.Profile.PersonalData.Modals.1.Text'), "warning");
                     break;
                 default:
-                    swal("Error inesperado", "Ocurrió un error inesperado, recarga la página o intenta de nuevo más tarde", "error");
+                    swal(t('Dashboard.Index.Profile.PersonalData.Modals.2.Title'), t('Dashboard.Index.Profile.PersonalData.Modals.2.Text'), "error");
             }
         }
     }
@@ -189,18 +189,18 @@ const PersonalData = ({uid}) => {
         <div>
 
             <Typography className={classes.title} variant="h4" component="h4">
-                Datos personales
+                {t('Dashboard.Index.Profile.PersonalData.Title')}
             </Typography>
                 <Typography className={classes.title} variant="subtitle2" component="h2"
                             color="textSecondary">
-                    Verifica que tus datos y foto coincidan con tu identificación oficial
+                    {t('Dashboard.Index.Profile.PersonalData.Text')}
                 </Typography>
                 <div className="row mt-3">
 
                     <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
                         <TextField variant="outlined" required
                                    disabled={!(masterCondition)}
-                                   fullWidth id="outlined-basic" label="Nombre(s)"
+                                   fullWidth id="outlined-basic" label={t('Dashboard.Index.Profile.PersonalData.Name')}
                                    style={{alignContent: "center"}} value={profileContext.name}
                                    onChange={(masterCondition) ? e => profileContext.setName(e.target.value) : () => false}/>
                     </div>
@@ -208,7 +208,7 @@ const PersonalData = ({uid}) => {
                     <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
                         <TextField variant="outlined" required
                                    disabled={!(masterCondition)}
-                                   fullWidth id="outlined-basic" label="Apellido(s)" value={profileContext.lastname}
+                                   fullWidth id="outlined-basic" label={t('Dashboard.Index.Profile.PersonalData.Lastname')} value={profileContext.lastname}
                                    onChange={(masterCondition) ? e => profileContext.setLastname(e.target.value): () => false}/>
                     </div>
 
@@ -220,7 +220,7 @@ const PersonalData = ({uid}) => {
                                 id="date-picker-dialog"
                                 disabled={!(masterCondition)}
                                 fullWidth
-                                label="Fecha nacimiento"
+                                label={t('Dashboard.Index.Profile.PersonalData.Date')}
                                 format="dd/MM/yyyy"
                                 value={profileContext.birthday ? profileContext.birthday : null}
                                 onChange={(masterCondition) ? handleDateChange : () => false}
@@ -236,7 +236,7 @@ const PersonalData = ({uid}) => {
                             {
                                 (masterCondition) ? (
                                     <>
-                                        <InputLabel id="demo-simple-select-label">País</InputLabel>
+                                        <InputLabel id="demo-simple-select-label">{t('Dashboard.Index.Profile.PersonalData.Country')}</InputLabel>
                                         <Select
                                             required
                                             disabled={!(masterCondition)}
@@ -263,7 +263,7 @@ const PersonalData = ({uid}) => {
                                 ) : (
                                     <TextField variant="outlined" required
                                                disabled={!(masterCondition)}
-                                               fullWidth id="outlined-basic" label="País" value={profileContext.country}
+                                               fullWidth id="outlined-basic" label={t('Dashboard.Index.Profile.PersonalData.Country')} value={profileContext.country}
                                     />
                                 )
                             }
@@ -277,7 +277,7 @@ const PersonalData = ({uid}) => {
                             {
                                 (masterCondition) ? (
                                     <>
-                                        <InputLabel id="demo-simple-select-label">Estado</InputLabel>
+                                        <InputLabel id="demo-simple-select-label">{t('Dashboard.Index.Profile.PersonalData.State')}</InputLabel>
                                         <Select
                                             required
                                             disabled={!(masterCondition)}
@@ -301,7 +301,7 @@ const PersonalData = ({uid}) => {
                                 ) : (
                                     <TextField variant="outlined" required
                                                disabled={!(masterCondition)}
-                                               fullWidth id="outlined-basic" label="Estado"
+                                               fullWidth id="outlined-basic" label={t('Dashboard.Index.Profile.PersonalData.State')}
                                                value={profileContext.stateLocation}
                                     />
                                 )
@@ -313,7 +313,7 @@ const PersonalData = ({uid}) => {
                     <div className="col-12 col-sm-12 col-md-6 col-lg-4 px-5 mt-5">
                         <TextField variant="outlined" required
                                    disabled={!(masterCondition)}
-                                   fullWidth id="outlined-basic" label="Ciudad" value={profileContext.city}
+                                   fullWidth id="outlined-basic" label={t('Dashboard.Index.Profile.PersonalData.City')} value={profileContext.city}
                                    onChange={(masterCondition) ? e => profileContext.setCity(e.target.value): () => false}/>
                     </div>
 
@@ -321,7 +321,7 @@ const PersonalData = ({uid}) => {
                         {!(masterCondition) ?
                             <TextField required variant="outlined"
                                        disabled={!(masterCondition)}
-                                       fullWidth id="outlined-basic" label="Número telefonico"
+                                       fullWidth id="outlined-basic" label={t('Dashboard.Index.Profile.PersonalData.Phone')}
                                        value={"+" + profileContext.phone}
                                        onChange={(masterCondition) ? e => profileContext.setPhone(e.target.value) : () => false}/> :
                             <PhoneInput
@@ -342,7 +342,7 @@ const PersonalData = ({uid}) => {
                                 disabled={!(masterCondition)}
                                 fullWidth
                                 id="standard-multiline-static"
-                                label="Dirección"
+                                label={t('Dashboard.Index.Profile.PersonalData.Address')}
                                 multiline
                                 rows={4}
                                 value={profileContext.address}
@@ -364,7 +364,7 @@ const PersonalData = ({uid}) => {
                             startIcon={<SaveIcon/>}
                             type={(masterCondition) ? "submit" : "button"}
                         >
-                            Enviar
+                            {t('Dashboard.Index.Profile.PersonalData.SendButton')}
                         </Button>
                     </div>
                 </div>
@@ -375,17 +375,17 @@ const PersonalData = ({uid}) => {
 
             <Dialog open={openSmsModal} onClose={handleClose} aria-labelledby="customized-dialog-title" aria-labelledby="form-dialog-title">
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    Verificar código
+                    {t('Dashboard.Index.PhoneMessages.Title')}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Verifica el código que se envió a tu teléfono celular, si no llega en el lapso de 60 segundos puedes solicitar un nuevo código
+                        {t('Dashboard.Index.PhoneMessages.Text')}
                     </DialogContentText>
                     <TextField
                         autoFocus
                         margin="dense"
                         id="smscode"
-                        label="Código"
+                        label={t('Dashboard.Index.PhoneMessages.Code')}
                         type="number"
                         fullWidth
                         value={smsCode}
@@ -394,10 +394,10 @@ const PersonalData = ({uid}) => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={requestNewCode ? sendSmsCode : null} disabled={!requestNewCode} color="primary">
-                        PEDIR NUEVO CODIGO ({newCodeSeconds})
+                        {t('Dashboard.Index.PhoneMessages.AskNewCode')} ({newCodeSeconds})
                     </Button>
                     <Button onClick={handleSubmit} color="primary">
-                        VERIFICAR
+                        {t('Dashboard.Index.PhoneMessages.Verify')}
                     </Button>
                 </DialogActions>
             </Dialog>

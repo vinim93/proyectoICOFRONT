@@ -8,9 +8,10 @@ import swal2 from '@sweetalert/with-react';
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
 import {makeStyles} from "@material-ui/core/styles";
+import {useTranslation} from "react-i18next";
 
 const ChangePassword = () => {
-
+    const {t} = useTranslation();
     const [lastPassword, setLastPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
@@ -31,8 +32,8 @@ const ChangePassword = () => {
             });
         } catch (e) {
             swal({
-                title: "Contraseña actual incorrecta",
-                text: "La contraseña proporcionada como actual no es correcta, intenta de nuevo",
+                title: t('Dashboard.Index.Settings.Modals.0.Title'),
+                text: t('Dashboard.Index.Settings.Modals.0.Text'),
                 icon: "warning",
                 button: "¡Entendido!",
                 closeOnClickOutside: false
@@ -69,8 +70,8 @@ const ChangePassword = () => {
                         await user.updatePassword(newPassword).then(() => {
                             clearInputs();
                             swal({
-                                title: "Contraseña cambiada exitosamente",
-                                text: "Ahora puedes iniciar sesión con tu nueva contraseña",
+                                title: t('Dashboard.Index.Settings.Modals.1.Title'),
+                                text: t('Dashboard.Index.Settings.Modals.1.Text'),
                                 icon: "success",
                                 button: "¡Entendido!",
                                 closeOnClickOutside: false
@@ -78,10 +79,10 @@ const ChangePassword = () => {
                         });
                     } else {
                         swal2({
-                            text: "Tu contraseña debe cumplir con los siguientes requisitos",
+                            text: t('Dashboard.Index.Settings.Modals.2.Title'),
                             closeOnClickOutside: false,
                             buttons: {
-                                cancel: "Entendido",
+                                cancel: t('Dashboard.Index.Settings.Modals.2.Button'),
                             },
                             content: (
                                 <div className="container">
@@ -94,37 +95,49 @@ const ChangePassword = () => {
 
                                                             return (
                                                                 <li key={index} className="text-dark text-justify"><p
-                                                                    className="text-danger">Mínimo 8 caracteres</p></li>
+                                                                    className="text-danger">
+                                                                    {t('Dashboard.Index.Settings.Modals.2.Options.0')}
+                                                                </p></li>
                                                             )
 
                                                         case 'max':
                                                             return (
                                                                 <li key={index} className="text-dark text-justify"><p
-                                                                    className="text-danger">Máximo 100 caracteres</p></li>
+                                                                    className="text-danger">
+                                                                    {t('Dashboard.Index.Settings.Modals.2.Options.1')}
+                                                                </p></li>
                                                             )
 
                                                         case 'uppercase':
                                                             return (
                                                                 <li key={index} className="text-dark text-justify"><p
-                                                                    className="text-danger">Mínimo una letra mayuscula</p></li>
+                                                                    className="text-danger">
+                                                                    {t('Dashboard.Index.Settings.Modals.2.Options.2')}
+                                                                </p></li>
                                                             )
 
                                                         case 'lowercase':
                                                             return (
                                                                 <li key={index} className="text-dark text-justify"><p
-                                                                    className="text-danger">Mínimo 1 letra minuscula</p></li>
+                                                                    className="text-danger">
+                                                                    {t('Dashboard.Index.Settings.Modals.2.Options.3')}
+                                                                </p></li>
                                                             )
 
                                                         case 'spaces':
                                                             return (
                                                                 <li key={index} className="text-dark text-justify"><p
-                                                                    className="text-danger">No debe contener espacios</p></li>
+                                                                    className="text-danger">
+                                                                    {t('Dashboard.Index.Settings.Modals.2.Options.4')}
+                                                                </p></li>
                                                             )
 
                                                         case 'digits':
                                                             return (
                                                                 <li key={index} className="text-dark text-justify"><p
-                                                                    className="text-danger">Mínimo 1 número</p></li>
+                                                                    className="text-danger">
+                                                                    {t('Dashboard.Index.Settings.Modals.2.Options.5')}
+                                                                </p></li>
                                                             )
 
                                                     }
@@ -139,10 +152,10 @@ const ChangePassword = () => {
                     }
                 } else {
                     swal({
-                        title: "Las contraseñas no coinciden",
-                        text: "Asegurate de que las contraseñas nuevas sean las mismas",
+                        title: t('Dashboard.Index.Settings.Modals.3.Title'),
+                        text: t('Dashboard.Index.Settings.Modals.3.Text'),
                         icon: "info",
-                        button: "¡Entendido!",
+                        button: t('Dashboard.Index.Settings.Modals.3.Button'),
                         closeOnClickOutside: false
                     });
                 }
@@ -165,7 +178,7 @@ const ChangePassword = () => {
                                        required
                                        fullWidth
                                        id="outlined-basic"
-                                       label="Contraseña anterior"
+                                       label={t('Dashboard.Index.Settings.LastPassword')}
                                        type={"password"}
                                        style={{alignContent: "center"}}
                                        value={lastPassword}
@@ -177,7 +190,7 @@ const ChangePassword = () => {
                                        required
                                        fullWidth
                                        id="outlined-basic"
-                                       label="Contraseña nueva"
+                                       label={t('Dashboard.Index.Settings.NewPassword')}
                                        type={"password"}
                                        style={{alignContent: "center"}}
                                        value={newPassword}
@@ -189,7 +202,7 @@ const ChangePassword = () => {
                                        required
                                        fullWidth
                                        id="outlined-basic"
-                                       label="Repetir contraseña nueva"
+                                       label={t('Dashboard.Index.Settings.RepeatPassword')}
                                        type={"password"}
                                        style={{alignContent: "center"}}
                                        value={repeatPassword}
@@ -204,7 +217,7 @@ const ChangePassword = () => {
                                 startIcon={<SaveIcon/>}
                                 type={"submit"}
                             >
-                                Cambiar contraseña
+                                {t('Dashboard.Index.Settings.ChangePassword')}
                             </Button>
                         </div>
                     </div>

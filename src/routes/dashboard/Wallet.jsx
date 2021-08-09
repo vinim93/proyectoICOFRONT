@@ -38,14 +38,18 @@ import QrReader from 'react-qr-reader'
 import swal from "sweetalert";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
-import {makeStyles} from "@material-ui/core/styles";
+import {makeStyles, withStyles} from "@material-ui/core/styles";
 import SunshineFinder from "../../apis/SunshineFinder";
 import {Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
 import DialogContentText from "@material-ui/core/DialogContentText";
+import {useTranslation} from "react-i18next";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
+import Typography from "@material-ui/core/Typography";
+import CloseIcon from "@material-ui/icons/Close";
 
 
 const Wallet = () => {
-
+    const {t} = useTranslation();
     const {currentUser} = useAuth();
     const history = useHistory();
     const [scannerOpen, setScannerOpen] = useState(false);
@@ -56,14 +60,14 @@ const Wallet = () => {
     const [tokensToSend, setTokensToSend] = useState(0);
     const [tokensArray, setTokensArray] = useState([{}]);
     const [allInfoTokens, setAllInfoTokens] = useState([{}]);
-    //ESTO TIENE QUE IR EN EL BACKEND, AHORITA ES PARA HACER PRUEBAS RÁPIDO
     const [tokenAddress, setTokenAddress] = useState("");
     const [open, setOpen] = useState(false);
     const [smsCode, setSmsCode] = useState("");
     const [openSmsModal, setOpenSmsModal] = useState(false);
     const [requestNewCode, setRequestNewCode] = useState(false);
-    const  [newCodeSeconds, setNewCodeSeconds] = useState(0);
+    const [newCodeSeconds, setNewCodeSeconds] = useState(0);
     const [openTooltip, setOpenTooltip] = useState(false);
+
 
     useEffect(() => {
         try {
@@ -90,8 +94,7 @@ const Wallet = () => {
                 setAmount(response.data.tokensArray.find(element => element.key === "1003948").value);
                 setAllInfoTokens(response.data.allInfo);
             }
-        }).catch(e => {
-        })
+        }).catch(e => {});
     }
 
     const clearFields = () => {
@@ -112,7 +115,7 @@ const Wallet = () => {
 
                 if(response.data.sendTokenResponse === "success"){
                     setOpenSmsModal(false);
-                    swal("Tokens enviados", `Se cobraron ${tokensToSend} TUAH de tu cuenta y se depositaron a la dirección ${scanValue}, puedes ver la transacción en tu historial`, "success");
+                    swal(t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Title'), `${tokensToSend} ${t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Text[0]')} ${scanValue}, ${t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Text[1]')}`, "success");
                     await getData(uid);
                     clearFields();
                 } else {
@@ -124,29 +127,30 @@ const Wallet = () => {
         } catch (e) {
             switch (e.message || e){
                 case "success":
-                    swal("Tokens enviados", `Se cobraron ${tokensToSend} TUAH de tu cuenta y se depositaron a la dirección ${scanValue}, puedes ver la transacción en tu historial`, "success");
+                    swal(t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Title'), `${tokensToSend} ${t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Text[0]')} ${scanValue}, ${t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Text[1]')}`, "success");
                     clearFields();
                     break;
-                case "without-tuah":
-                    swal("No cuentas con TUAH", "Tu wallet no cuenta con ningun TUAH por lo que no puedes enviar el monto indicado", "warning");
+                case "without-tokens":
+                    swal(t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.0.Title'), t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.0.Text'), "warning");
                     break;
                 case "BANDWITH_ERROR":
-                    swal("Error de ancho de banda", "La wallet a la que le quieres mandar TUAH no tiene suficiente ancho de banda ", "warning");
+                    swal(t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.1.Title'), t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.1.Text'), "warning");
                     break;
-                case "tuah-not-found":
-                    swal("TUAHS insuficientes", "No cuentas con la cantidad de TUAH suficiente para enviar el monto indicado", "warning");
+                case "tokens-not-found":
+                    swal(t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.2.Title'), t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.2.Text'), "warning");
                     break;
                 case "invalid-address":
-                    swal("Dirección invalida", "La dirección a la que le quieres mandar TUAH no existe o no se encuentra disponible", "warning");
+                    swal(t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.3.Title'), t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.3.Text'), "warning");
                     break;
                 case "Invalid count value":
-                    swal("Monto invalido", "El monto ingresado no es válido, ingresa un monto de tipo 0.000000", "warning");
+                    swal(t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.4.Title'), t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.4.Text'), "warning");
                     break;
                 case "sms-incorrect":
-                    swal("Código SMS inválido", "El código que ingresaste no coincide con el que te llegó al telefono proporcionado o caducó, intenta de nuevo", "warning");
+
+                    swal(t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.5.Title'), t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.5.Text'), "warning");
                     break;
                 default:
-                    swal("Error inesperado", "Ocurrió un error inesperado, recarga la página o intenta de nuevo más tarde", "error");
+                    swal(t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.6.Title'), t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.6.Text'), "error");
             }
         }
         setOpen(false);
@@ -185,11 +189,12 @@ const Wallet = () => {
         } catch (e) {
             switch (e.message || e){
                 case "sms-not-sended":
-                    swal("Código SMS inválido", "El código que ingresaste no coincide con el que te llegó al telefono proporcionado o caducó, intenta de nuevo", "warning");
+                    const title = t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.5.Title');
+                    swal(t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.5.Title'), t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.5.Text'), "warning");
                     clearFields();
                     break;
                 default:
-                    swal("Error inesperado", "Ocurrió un error inesperado, recarga la página o intenta de nuevo más tarde", "error");
+                    swal(t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.6.Title'), t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.6.Text'), "error");
             }
         }
         await setOpen(false);
@@ -199,10 +204,6 @@ const Wallet = () => {
     const ReadQR = ({setScanValue}) => {
 
         const [value, setValue] = useState("");
-        const [facing2, setFacing]=useState("near");
-
-        const handleError = (e) => {
-        }
 
         if(value){
             setScanValue(value);
@@ -214,7 +215,6 @@ const Wallet = () => {
                     <QrReader
                         delay={1000}
                         style={{width: 350}}
-                        onError={handleError}
                         onScan={data => {
                             if(data){
                                 setValue(data)
@@ -254,6 +254,37 @@ const Wallet = () => {
         }, 3000);
     }
 
+    const handleClose = () => {
+        setOpenSmsModal(false);
+    };
+
+    const styles = (theme) => ({
+        root: {
+            margin: 0,
+            padding: theme.spacing(2),
+        },
+        closeButton: {
+            position: 'absolute',
+            right: theme.spacing(1),
+            top: theme.spacing(1),
+            color: theme.palette.grey[500],
+        },
+    });
+
+    const DialogTitle = withStyles(styles)((props) => {
+        const { children, classes, onClose, ...other } = props;
+        return (
+            <MuiDialogTitle disableTypography {...other}>
+                <Typography variant="h6">{children}</Typography>
+                {onClose ? (
+                    <IconButton aria-label="close" onClick={onClose}>
+                        <CloseIcon />
+                    </IconButton>
+                ) : null}
+            </MuiDialogTitle>
+        );
+    });
+
     const renderWallet = () => {
         if(logged){
             return(
@@ -279,7 +310,6 @@ const Wallet = () => {
                     </div>
 
                     <HeaderCards tokensNumber={amount}/>
-                    {/* Page content */}
                     <Container className="mt--7" fluid>
                         <Row className="d-flex justify-content-center">
                             <Col className="mb-5 mb-xl-0" xl="7">
@@ -290,7 +320,7 @@ const Wallet = () => {
                                                 <p className="text-uppercase text-light mb-0">
                                                     Spot wallet
                                                 </p>
-                                                <h6 className="text-white mb-3">SUN</h6>
+                                                <h6 className="text-white mb-3">TUAHS</h6>
                                             </div>
                                             <div className="col-12">
                                                 <div className="nav-wrapper">
@@ -301,13 +331,17 @@ const Wallet = () => {
                                                                id="tabs-icons-text-1-tab" data-toggle="tab"
                                                                href="#tabs-icons-text-1" role="tab"
                                                                aria-controls="tabs-icons-text-1"
-                                                               aria-selected="true">Recibir</a>
+                                                               aria-selected="true">
+                                                                {t('Dashboard.Index.Wallet.SpotWallet.Receive')}
+                                                            </a>
                                                         </li>
                                                         <li className="nav-item">
                                                             <a className="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab"
                                                                data-toggle="tab" href="#tabs-icons-text-2" role="tab"
                                                                aria-controls="tabs-icons-text-2"
-                                                               aria-selected="false">Enviar</a>
+                                                               aria-selected="false">
+                                                                {t('Dashboard.Index.Wallet.SpotWallet.Send')}
+                                                            </a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -328,7 +362,7 @@ const Wallet = () => {
                                                         <h6 className="text-uppercase text-light ls-1 mb-3">
                                                             Wallet address
                                                         </h6>
-                                                        <Tooltip title={openTooltip ? "Copiado" : "Copiar"}>
+                                                        <Tooltip title={openTooltip ? t('Dashboard.Index.Wallet.SpotWallet.Copied') : t('Dashboard.Index.Wallet.SpotWallet.Copy')}>
                                                             <p className="text-light" onClick={copyToClipboard} style={{cursor: "pointer"}}>
                                                                 {tokenAddress} <FileCopyIcon style={{ fontSize: 15 }}/>
                                                             </p>
@@ -344,7 +378,9 @@ const Wallet = () => {
 
                                                                 <div className="col-12 mb-4 px-md-5">
                                                                     <FormControl fullWidth style={{backgroundColor: "#FFFFFF", fontWeight: "bold", borderRadius: 4}} variant="filled">
-                                                                        <InputLabel htmlFor="filled-adornment-password">Dirección de destino</InputLabel>
+                                                                        <InputLabel htmlFor="filled-adornment-password">
+                                                                            {t('Dashboard.Index.Wallet.SpotWallet.DestinationAddressField')}
+                                                                        </InputLabel>
                                                                         <FilledInput
                                                                             id="filled-adornment-password"
                                                                             required
@@ -375,7 +411,7 @@ const Wallet = () => {
                                                                         fullWidth
                                                                         required
                                                                         id="filled-basic"
-                                                                        label="Cantidad (SUN):"
+                                                                        label={t('Dashboard.Index.Wallet.SpotWallet.AmountField')}
                                                                         value={tokensToSend}
                                                                         onChange={e => {
                                                                             if(tokensToSend === 0){
@@ -394,11 +430,11 @@ const Wallet = () => {
                                                             <div className="row mt-2 px-md-5">
 
                                                                 <div className="col-12 px-md-5 d-flex justify-content-start">
-                                                                    <p className="text-light">SUNS a enviar: <strong>{tokensToSend}</strong></p>
+                                                                    <p className="text-light">{t('Dashboard.Index.Wallet.SpotWallet.AmountToSend')}: <strong>{tokensToSend}</strong></p>
                                                                 </div>
 
                                                                 <div className="col-12 px-md-5 d-flex justify-content-start">
-                                                                    <p className="text-light">SUNS restantes:
+                                                                    <p className="text-light">{t('Dashboard.Index.Wallet.SpotWallet.RemainingAmount')}:
                                                                         <strong className={amount - convertForSend(tokensToSend) < 0 ? "text-danger" : ""}>
                                                                             {(amount - convertForSend(tokensToSend)).toString().slice(0, (amount - convertForSend(tokensToSend)).toString().length-6) + "." + (amount - convertForSend(tokensToSend)).toString().slice((amount - tokensToSend).toString().length-6)}
                                                                         </strong>
@@ -406,7 +442,7 @@ const Wallet = () => {
                                                                 </div>
 
                                                                 <div className="col-12 px-md-5 d-flex justify-content-start">
-                                                                    <p className="text-danger"><strong>{amount - convertForSend(tokensToSend) < 0 ? "No tienes suficientes TUAH para mandar" : ""}</strong></p>
+                                                                    <p className="text-danger"><strong>{amount - convertForSend(tokensToSend) < 0 ? t('Dashboard.Index.Wallet.SpotWallet.WithoutTokens') : ""}</strong></p>
                                                                 </div>
 
                                                                 <div className="col-12 px-md-5">
@@ -417,7 +453,7 @@ const Wallet = () => {
                                                             <div className="row mt-5 px-md-5">
                                                                 <div className="col-12 px-md-5">
                                                                     <Button fullWidth variant="contained" size="large" type="submit" style={{backgroundColor: "#0655af", color: "white"}}>
-                                                                        ENVIAR
+                                                                        {t('Dashboard.Index.Wallet.SpotWallet.SendButton')}
                                                                     </Button>
                                                                 </div>
                                                             </div>
@@ -446,11 +482,13 @@ const Wallet = () => {
                     </Backdrop>
 
 
-                    <Dialog open={openSmsModal} aria-labelledby="form-dialog-title">
-                        <DialogTitle id="form-dialog-title">Verificar código</DialogTitle>
+                    <Dialog open={openSmsModal} aria-labelledby="customized-dialog-title" aria-labelledby="form-dialog-title">
+                        <DialogTitle onClose={handleClose} id="customized-dialog-title">
+                            {t('Dashboard.Index.PhoneMessages.Title')}
+                        </DialogTitle>
                         <DialogContent>
                             <DialogContentText>
-                                Verifica el código que se envió a tu teléfono celular, si no llega en el lapso de 60 segundos puedes solicitar un nuevo código
+                                {t('Dashboard.Index.PhoneMessages.Text')}
                             </DialogContentText>
                             <TextField
                                 autoFocus
@@ -465,10 +503,10 @@ const Wallet = () => {
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={requestNewCode ? sendSmsCode : null} disabled={!requestNewCode} color="primary">
-                                PEDIR NUEVO CODIGO ({newCodeSeconds})
+                                {t('Dashboard.Index.PhoneMessages.AskNewCode')} ({newCodeSeconds})
                             </Button>
                             <Button onClick={sendTokens} color="primary">
-                                VERIFICAR
+                                {t('Dashboard.Index.PhoneMessages.Verify')}
                             </Button>
                         </DialogActions>
                     </Dialog>

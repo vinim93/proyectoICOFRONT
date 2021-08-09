@@ -2,15 +2,15 @@ import React from "react";
 
 // reactstrap components
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
-import NumberFormat from "react-number-format";
+import {useTranslation} from "react-i18next";
 
 const Header = ({tokensNumber}) => {
+    const {t} = useTranslation();
     return (
         <>
             <div className="header pb-8 pt-5 pt-md-8" style={{backgroundColor: "#ffffff"}}>
                 <Container fluid>
                     <div className="header-body">
-                        {/* Card stats */}
                         <Row>
                             <Col lg="12" xl="12">
                                 <Card className="card-stats mb-4 mb-xl-0 bg-gradient-default">
@@ -21,7 +21,7 @@ const Header = ({tokensNumber}) => {
                                                     tag="h6"
                                                     className="text-uppercase text-muted mb-0 text-light"
                                                 >
-                                                    Número de SUN tokens
+                                                    {t('Dashboard.Index.Wallet.Header.TokensAmount')}
                                                 </CardTitle>
                                                 <span className="h5 font-weight-bold mb-0 text-light">
                                                      {tokensNumber.toString().slice(0, tokensNumber.toString().length-6) + "." + tokensNumber.toString().slice(tokensNumber.toString().length-6)}

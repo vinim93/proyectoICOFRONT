@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import CoingeckoFinder from "../../apis/CoingeckoFinder";
+import {useTranslation} from "react-i18next";
 
 const DollarMarktComponent = () => {
-
+    const {t} = useTranslation();
     const [cryptoData, setCryptoData] = useState([{}]);
 
     useEffect(() => {
@@ -24,7 +25,7 @@ const DollarMarktComponent = () => {
             <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title-dashboard" id="exampleModalLabel">Mercado Dólar</h5>
+                        <h5 className="modal-title-dashboard" id="exampleModalLabel">{t('Dashboard.Index.CryptoMarkt.Title')}</h5>
                         <button type="button" className="close-modal" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

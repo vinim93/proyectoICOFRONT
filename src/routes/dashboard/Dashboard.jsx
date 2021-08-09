@@ -8,8 +8,11 @@ import PaymentComponent from "../../components/dashboard/PaymentComponent";
 import {db} from "../../config/firebase";
 import PurchaseHistoryComponent from "../../components/dashboard/PurchaseHistoryComponent";
 import SunshineFinder from "../../apis/SunshineFinder";
+import {useTranslation} from "react-i18next";
+require('dotenv').config();
 
 const Dashboard = () => {
+    const {t} = useTranslation();
     const {currentUser} = useAuth();
     const [signinEmail, setSigninEmail] = useState("");
     const [uid, setUid] = useState("");
@@ -26,18 +29,13 @@ const Dashboard = () => {
                     setUserInfo(doc.data());
                 }
             });
-            await SunshineFinder.get("/get-tuah", {
+            const response = await SunshineFinder.get("/get-token", {
                 params: {
                     uid: id
                 }
-            }).then(response => {
-                setAmount(response.data.amount);
-            }).catch(e => {
-
             });
-        } catch (e) {
-
-        }
+            setAmount(response.data.amount);
+        } catch (e) {}
     }
 
     useEffect(() => {
@@ -75,12 +73,12 @@ const Dashboard = () => {
                         </div>
 
                         <div className="col-12 d-flex justify-content-center mt-5">
-                            <button className="material" data-toggle="modal" data-target="#exampleModal">Mercado de criptos<ExpandMoreIcon style={{ fontSize: 40 }} /> </button>
+                            <button className="material" data-toggle="modal" data-target="#exampleModal">{t('Dashboard.Index.Buttons.CryptoMarkt')}<ExpandMoreIcon style={{ fontSize: 40 }} /> </button>
                         </div>
 
                         <div className="col-12">
-                            <button className="btn material2 ml-3 mr-3" data-toggle="modal" data-target="#paymentModal" data-backdrop='static' data-keyboard='false'>Comprar</button>
-                            <a className="btn material2 ml-3 mr-3" href="Wallet">Wallet</a>
+                            <button className="btn material2 ml-3 mr-3" data-toggle="modal" data-target="#paymentModal" data-backdrop='static' data-keyboard='false'>{t('Dashboard.Index.Buttons.Buy')}</button>
+                            <a className="btn material2 ml-3 mr-3" href="Wallet">{t('Dashboard.Index.Buttons.Wallet')}</a>
                         </div>
 
                         <DollarMarktComponent />

@@ -8,6 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChangePassword from "../../components/dashboard/settings/ChangePassword";
 import {useAuth} from "../../context/AuthContext";
 import {useHistory} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Settings() {
+    const {t} = useTranslation();
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
     const {currentUser, getAuthType, logout, credential} = useAuth();
@@ -72,11 +74,11 @@ export default function Settings() {
                     aria-controls="panel1bh-content"
                     id="panel1bh-header"
                 >
-                    <Typography className={classes.heading}>Contraseña</Typography>
-                    <Typography className={classes.secondaryHeading}>Cambia tu contraseña</Typography>
+                    <Typography className={classes.heading}>{t('Dashboard.Index.Settings.Password.Title')}</Typography>
+                    <Typography className={classes.secondaryHeading}>{t('Dashboard.Index.Settings.Password.Subtitle')}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    {hasPassword ? <ChangePassword /> : <h5 style={{marginLeft: 40}}>No puedes cambiar tu contraseña porque elegiste iniciar sesión con Google</h5>}
+                    {hasPassword ? <ChangePassword /> : <h5 style={{marginLeft: 40}}>{t('Dashboard.Index.Settings.Password.PrincipalMessage')}</h5>}
                 </AccordionDetails>
             </Accordion>
         </div>

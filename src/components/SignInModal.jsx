@@ -41,51 +41,48 @@ const SignInModal = () => {
     }
 
     const saveDataInFirestore = async (uid, data = {}) => {
-        if (Object.keys(data).length > 0) {
-            /*============GUARDAR DATOS EN FIRESTORE CON GOOGLE===========*/
-            await db.collection("credentials").doc(uid).set({
-                UUID: uid,
-                city: data.city.replace(/<[^>]+>/g, ''),
-                doc: "Pending".replace(/<[^>]+>/g, ''),
-                email: data.email.replace(/<[^>]+>/g, ''),
-                name: data.name.replace(/<[^>]+>/g, ''),
-                phone: data.phone === null ? "Pending".replace(/<[^>]+>/g, '') : data.phone.replace(/<[^>]+>/g, ''),
-                authType: data.authType.replace(/<[^>]+>/g, ''),
-                birthday: data.birthday.replace(/<[^>]+>/g, ''),
-                country: data.country.replace(/<[^>]+>/g, ''),
-                state: data.state.replace(/<[^>]+>/g, ''),
-                address: data.address.replace(/<[^>]+>/g, ''),
-                suns: 0,
-                countryComplete: data.countryComplete.replace(/<[^>]+>/g, ''),
-                profileStatus: data.profileStatus,
-                addressToken: "",
-                privateKey: "",
-                fileType: "".replace(/<[^>]+>/g, ''),
-                profilePicture: "".replace(/<[^>]+>/g, ''),
-                profilePictureStatus: 0,
-            }).then(docRef => {
+        try{
+            if (Object.keys(data).length > 0) {
+                /*============GUARDAR DATOS EN FIRESTORE CON GOOGLE===========*/
+                await db.collection("credentials").doc(uid).set({
+                    UUID: uid,
+                    city: data.city.replace(/<[^>]+>/g, ''),
+                    doc: "Pending".replace(/<[^>]+>/g, ''),
+                    email: data.email.replace(/<[^>]+>/g, ''),
+                    name: data.name.replace(/<[^>]+>/g, ''),
+                    phone: data.phone === null ? "Pending".replace(/<[^>]+>/g, '') : data.phone.replace(/<[^>]+>/g, ''),
+                    authType: data.authType.replace(/<[^>]+>/g, ''),
+                    birthday: data.birthday.replace(/<[^>]+>/g, ''),
+                    country: data.country.replace(/<[^>]+>/g, ''),
+                    state: data.state.replace(/<[^>]+>/g, ''),
+                    address: data.address.replace(/<[^>]+>/g, ''),
+                    suns: 0,
+                    countryComplete: data.countryComplete.replace(/<[^>]+>/g, ''),
+                    profileStatus: data.profileStatus,
+                    addressToken: "",
+                    privateKey: "",
+                    fileType: "".replace(/<[^>]+>/g, ''),
+                    profilePicture: "".replace(/<[^>]+>/g, ''),
+                    profilePictureStatus: 0,
+                });
                 history.push("/");
                 window.location.reload();
-            }).catch((error) => {
-            });
-            /*============GUARDAR DATOS EN FIRESTORE===========*/
-        }
+                /*============GUARDAR DATOS EN FIRESTORE===========*/
+            }
+        } catch (e) {}
     }
 
     const signUpWithGoogle = async () => {
 
-        let provider = new firebase.auth.GoogleAuthProvider();
-        await provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
-        auth.languageCode = 'es';
-        await auth.signInWithPopup(provider).then(async (result) => {
-
+        try{
+            let provider = new firebase.auth.GoogleAuthProvider();
+            await provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
+            auth.languageCode = 'es';
+            const result = await auth.signInWithPopup(provider);
             let user = result.user;
-
             if (user.emailVerified) {
-
                 let userStatus = await searchDataInFirestore(user.uid);
                 if (userStatus === "exists") {
-
                     history.push("/");
                     window.location.reload();
                 } else if (userStatus === "not-exists") {
@@ -113,29 +110,25 @@ const SignInModal = () => {
                 }
 
             } else {
-                user.sendEmailVerification().then(async () => {
-                    await saveDataInFirestore(user.uid, {
-                        city: "",
-                        email: user.email,
-                        name: user.displayName,
-                        phone: user.phoneNumber,
-                        authType: "GOOGLE",
-                        birthday: "",
-                        country: "",
-                        state: "",
-                        address: "",
-                        profileStatus: 0,
-                        countryComplete: ""
-                    });
-                }, (error) => {
-
+                await user.sendEmailVerification();
+                await saveDataInFirestore(user.uid, {
+                    city: "",
+                    email: user.email,
+                    name: user.displayName,
+                    phone: user.phoneNumber,
+                    authType: "GOOGLE",
+                    birthday: "",
+                    country: "",
+                    state: "",
+                    address: "",
+                    profileStatus: 0,
+                    countryComplete: ""
                 });
                 await auth.signOut();
             }
-        }).catch((error) => {
-            auth.signOut();
+        } catch (error) {
+            await auth.signOut();
             let errorCode = error.code;
-
             switch (errorCode) {
                 case "auth/network-request-failed":
                     swal({
@@ -157,8 +150,7 @@ const SignInModal = () => {
                     });
                     break;
             }
-        })
-
+        }
     }
 
     const sendReCAPTCHAValue = async (value) => {
@@ -169,7 +161,6 @@ const SignInModal = () => {
         if (response.data.status === "success") {
             setVerifiedCaptcha(true);
         }
-
     }
 
     const signIn = async (e) => {

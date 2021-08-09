@@ -11,9 +11,10 @@ import {encryptData} from "../js/encrypt";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
 import {ProfileContext} from "../../../context/ProfileContext";
+import {useTranslation} from "react-i18next";
 
 const VerifiedProfile = ({uid, showFile, setFile}) => {
-
+    const {t} = useTranslation();
     const classes = useStyles();
     const {profileStatus, address, fileFirestore, fileObject, setUploadValue} = useContext(ProfileContext);
     const [open, setOpen] = useState(false);
@@ -26,8 +27,8 @@ const VerifiedProfile = ({uid, showFile, setFile}) => {
                 if (address !== "") {
                     if (fileFirestore !== null) {
                         swal({
-                            title: "¿Estas seguro de subir la información?",
-                            text: "Una vez enviada la información no se podrá modificar",
+                            title: t('Dashboard.Index.Profile.VerifiedProfile.Modals.0.Title'),
+                            text: t('Dashboard.Index.Profile.VerifiedProfile.Modals.0.Text'),
                             icon: "warning",
                             buttons: true,
                             dangerMode: true,
@@ -50,18 +51,18 @@ const VerifiedProfile = ({uid, showFile, setFile}) => {
                                                 fileType: fileObject,
                                             }).then(() => {
                                                 setOpen(false);
-                                                swal("Información actualizada", "¡La información de tu perfil fue actualizada con éxito!", "success");
+                                                swal(t('Dashboard.Index.Profile.VerifiedProfile.Modals.1.Title'), t('Dashboard.Index.Profile.VerifiedProfile.Modals.1.Text'), "success");
                                             });
                                         })
                                     })
                                 }
                             });
                     } else {
-                        swal("Te falta subir tu identifiación oficial", "Para poder continuar con la verificación de tus datos debes subir una foto o pdf de tu identifiacaión oficial de ambos lados!", "warning");
+                        swal(t('Dashboard.Index.Profile.VerifiedProfile.Modals.2.Title'), t('Dashboard.Index.Profile.VerifiedProfile.Modals.2.Text'), "warning");
                     }
 
                 } else {
-                    swal("Información faltante", "Llena todos los campos correspondientes para poder continuar!", "warning");
+                    swal(t('Dashboard.Index.Profile.VerifiedProfile.Modals.3.Title'), t('Dashboard.Index.Profile.VerifiedProfile.Modals.3.Text'), "warning");
                 }
             }
 
@@ -78,13 +79,13 @@ const VerifiedProfile = ({uid, showFile, setFile}) => {
 
                 <div className="col-12">
                     <Typography className={classes.title} variant="h4" component="h4">
-                        Sube un documento oficial (INE, Pasaporte, Licencia de conducir...)
+                        {t('Dashboard.Index.Profile.VerifiedProfile.Subtitle1')}
                     </Typography>
                 </div>
 
                 <Typography className={classes.title} variant="subtitle2" component="h2"
                             color="textSecondary">
-                    Verifica que tus datos coincidan con los datos personales que nos proporcionaste previamente
+                    {t('Dashboard.Index.Profile.VerifiedProfile.Text')}
                 </Typography>
 
 
@@ -92,7 +93,7 @@ const VerifiedProfile = ({uid, showFile, setFile}) => {
 
                     <div className="col-12">
                         <Typography className={classes.title} variant="h6" component="h6">
-                            Identificación oficial
+                            {t('Dashboard.Index.Profile.VerifiedProfile.Title')}
                         </Typography>
                     </div>
 
@@ -131,15 +132,6 @@ const VerifiedProfile = ({uid, showFile, setFile}) => {
                                                                 {showFile()}
                                                             </div>
 
-                                                            {/*}
-                                                            <div>
-                                                                <progress value={uploadValue} max="100">
-                                                                    {uploadValue}%
-                                                                </progress>
-                                                                <p className="btn form-regi">{`${uploadValue}%`}</p>
-                                                            </div>
-                                                            {*/}
-
                                                         </div>
                                                     </span>
                         }
@@ -157,7 +149,7 @@ const VerifiedProfile = ({uid, showFile, setFile}) => {
                             startIcon={<SaveIcon/>}
                             type={(masterCondition) ? "submit" : "button"}
                         >
-                            Enviar verificación
+                            {t('Dashboard.Index.Profile.VerifiedProfile.SendButton')}
                         </Button>
                     </div>
                 </div>

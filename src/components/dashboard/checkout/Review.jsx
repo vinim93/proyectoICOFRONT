@@ -13,11 +13,13 @@ import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import SunshineFinder from "../../../apis/SunshineFinder";
 import {CheckoutContext} from "../../../context/CheckoutContext";
+import {useTranslation} from "react-i18next";
 require('dotenv').config();
 
 const stripePromise = loadStripe(process.env.REACT_APP_PK_STRIPE);
 
 const CheckoutForm = ({uid, handleNext, email, currencyType, finalPrice}) => {
+    const {t} = useTranslation();
     const checkoutContext = useContext(CheckoutContext);
     const classes = useStyles();
     const stripe = useStripe();
@@ -66,20 +68,20 @@ const CheckoutForm = ({uid, handleNext, email, currencyType, finalPrice}) => {
                             handleNext(false);
                             switch (data.codeResponse.decline_code) {
                                 case 'generic_decline':
-                                    swal("Tarjeta rechazada", "Comunicate con tu banco para resolver el problema o inténtalo más tarde", "warning");
+                                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.DeclinedCard.Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.DeclinedCard.Texts[0]'), "warning");
                                     break;
                                 case 'insufficient_funds':
-                                    swal("Tarjeta rechazada", "Parece que tu tarjeta no tiene fondos suficientes", "warning");
+                                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.DeclinedCard.Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.DeclinedCard.Texts[1]'), "warning");
                                     break;
                                 case 'lost_card':
                                 case 'stolen_card':
-                                    swal("Tarjeta rechazada", "Parece que tu tarjeta tiene reporte de robo, comunicate con tu banco para resolver el problema", "warning");
+                                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.DeclinedCard.Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.DeclinedCard.Texts[2]'), "warning");
                                     break;
                                 case "card_not_supported":
-                                    swal("Tarjeta rechazada", "Tu tarjeta no es soportada. Por favor usa Visa o Mastercard", "warning");
+                                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.DeclinedCard.Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.DeclinedCard.Texts[3]'), "warning");
                                     break;
                                 default:
-                                    swal("Tarjeta rechazada", "Ocurrió un error al procesar el pago con la tarjeta indicada, intenta con otra", "warning");
+                                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.DeclinedCard.Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.DeclinedCard.Texts[4]'), "warning");
                                     break;
                             }
                         } else {
@@ -87,25 +89,25 @@ const CheckoutForm = ({uid, handleNext, email, currencyType, finalPrice}) => {
                             handleNext(false);
                             switch (data.codeResponse.code) {
                                 case 'expired_card':
-                                    swal("Tarjeta expirada", "Parece que tu tarjeta expiró, comunicate con tu banco", "warning");
+                                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.ExpiredCard[0].Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.ExpiredCard[0].Text'), "warning");
                                     break;
                                 case 'incorrect_cvc':
-                                    swal("CVC Incorrecto", "Revisa el código CVC de tu tarjeta e inténtalo de nuevo, de lo contrario, comunicate con tu banco", "warning");
+                                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.ExpiredCard[1].Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.ExpiredCard[1].Text'), "warning");
                                     break;
                                 case 'incorrect_number':
-                                    swal("Datos incorrectos", "Verifica que los datos de tu tarjeta sean correctos, de ser así, comunicate con tu banco para resolver el problema", "warning");
+                                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.ExpiredCard[2].Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.ExpiredCard[2].Text'), "warning");
                                     break;
                                 case 'amount_too_small':
-                                    swal("Monto muy pequeño", "El monto ingresado de compra es muy pequeño para poder ser procesado", "warning");
+                                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.ExpiredCard[3].Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.ExpiredCard[3].Text'), "warning");
                                     break;
                                 case 'parameter_invalid_integer':
-                                    swal("Verifica el monto", "El monto debe tener centavos válidos", "warning");
+                                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.ExpiredCard[4].Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.ExpiredCard[4].Text'), "warning");
                                     break;
                                 case 'amount_too_large':
-                                    swal("Cantidad muy grande", "El monto no debe ser mayor a $999,999.99", "warning");
+                                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.ExpiredCard[5].Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.ExpiredCard[5].Text'), "warning");
                                     break;
                                 default:
-                                    swal("No se pudo procesar el pago", "Verifica que los datos que pusiste sean correctos o intenta de nuevo más tarde!", "error");
+                                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.DefaultValue.Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.DefaultValue.Text'), "error");
                             }
                         }
                     } catch (error) {
@@ -113,7 +115,7 @@ const CheckoutForm = ({uid, handleNext, email, currencyType, finalPrice}) => {
                         handleNext(false);
                     }
                 } else {
-                    swal("No se pudo procesar el pago", "Verifica que los datos que pusiste sean correctos o intenta de nuevo más tarde!", "error");
+                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.DefaultValue.Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.DefaultValue.Text'), "error");
                 }
                 setOpen(false);
             } else {
@@ -161,7 +163,7 @@ const CheckoutForm = ({uid, handleNext, email, currencyType, finalPrice}) => {
                     });
                 handleNext(true);
             } else if (data.statusCode === "amount-exceeded"){
-                swal("Monto inválido", "El monto máximo que puedes pagar en oxxo son de $10,000 MXN", "warning");
+                swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.Oxxo.Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.Oxxo.Text'), "warning");
             }
 
         } catch (e) {
@@ -191,32 +193,32 @@ const CheckoutForm = ({uid, handleNext, email, currencyType, finalPrice}) => {
 
                 case "trx-send-failed":
                     handleNext(false);
-                    swal("Transacción incompleta", "La transacción no se pudo realizar, verifica el monto de tus TRX e intenta de nuevo más tarde", "warning");
+                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.Trx[0].Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.Trx[0].Text'), "warning");
                     break;
 
                 case "insufficient-trx":
                     handleNext(false);
-                    swal("TRX insuficientes", "No cuentas con la cantidad suficiente de TRX para comprar TUAH", "warning");
+                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.Trx[1].Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.Trx[1].Text'), "warning");
                     break;
 
                 case "insufficient-trx-reserve":
                     handleNext(false);
-                    swal("Oops", "Parece que no puedes comprar más TUAH porque se agotaron, contactate con el equipo de soporte si piensas que se trata de un mensaje erroneo", "warning");
+                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.Trx[2].Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.Trx[2].Text'), "warning");
                     break;
 
                 case "invalid-trx-cost":
                     handleNext(false);
-                    swal("Ocurrió un error", "El monto de TUAH a devolver según la cantidad de TRX que quieres pagar no es correcta, recarga la pagina e intenta de nuevo", "warning");
+                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.Trx[3].Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.Trx[3].Text'), "warning");
                     break;
 
                 case "invalid-minimum-trx":
                     handleNext(false);
-                    swal("Cantidad mínima TRX invalida", "La cantidad de TRX que quieres pagar es menor al monto que se requiere el cual es "+ checkoutContext.usdToTrx.toFixed(2) + " TRX", "warning");
+                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.Trx[4].Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.Trx[4].Text') + " " + checkoutContext.usdToTrx.toFixed(2) + " TRX", "warning");
                     break;
 
                 default:
                     handleNext(false);
-                    swal("Oops", "Ocurrió un error inesperado, intenta de nuevo más tarde", "error");
+                    swal(t('Dashboard.Index.BuyComponent.BuyOption.Modals.Trx[5].Title'), t('Dashboard.Index.BuyComponent.BuyOption.Modals.Trx[5].Text'), "error");
                     break;
             }
 
@@ -250,7 +252,7 @@ const CheckoutForm = ({uid, handleNext, email, currencyType, finalPrice}) => {
                             </Grid>
                             <Grid item xs={12}>
                                 <Button disabled={!readyStripe} variant="contained" size="large" color="primary" type="submit">
-                                    {readyStripe ? "COMPRAR TOKEN" : "CARGANDO..."}
+                                    {readyStripe ? t('Dashboard.Index.BuyComponent.BuyOption.Modals.ButtonsMessages.BuyToken') : t('Dashboard.Index.BuyComponent.BuyOption.Modals.ButtonsMessages.Loading')}
                                 </Button>
                             </Grid>
                         </Grid>
@@ -261,7 +263,7 @@ const CheckoutForm = ({uid, handleNext, email, currencyType, finalPrice}) => {
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
                                     <Button variant="contained" size="large" color="primary" onClick={buyTokenWithTrx}>
-                                        {open ? "PROCESANDO..." : "COMPRAR CON TRX"}
+                                        {open ? t('Dashboard.Index.BuyComponent.BuyOption.Modals.ButtonsMessages.Processing') : t('Dashboard.Index.BuyComponent.BuyOption.Modals.ButtonsMessages.BuyWithTrx')}
                                     </Button>
                                 </Grid>
                             </Grid>
@@ -271,7 +273,7 @@ const CheckoutForm = ({uid, handleNext, email, currencyType, finalPrice}) => {
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
                                         <Button variant="contained" size="large" color="primary" onClick={buyTokenWithOxxo}>
-                                            {open ? "PROCESANDO..." : "GENERAR PAGO CON OXXO"}
+                                            {open ? t('Dashboard.Index.BuyComponent.BuyOption.Modals.ButtonsMessages.Processing') : t('Dashboard.Index.BuyComponent.BuyOption.Modals.ButtonsMessages.BuyWithOxxo')}
                                         </Button>
                                     </Grid>
                                 </Grid>
@@ -286,6 +288,8 @@ const CheckoutForm = ({uid, handleNext, email, currencyType, finalPrice}) => {
 }
 
 export default function Review({uid, handleNext, email}) {
+
+    const {t} = useTranslation();
     const checkoutContext = useContext(CheckoutContext);
     const classes = useStyles();
     let finalPrice = checkoutContext.currency;
@@ -317,7 +321,7 @@ export default function Review({uid, handleNext, email}) {
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
-                Datos del pago
+                {t('Dashboard.Index.BuyComponent.BuyOption.Title')}
             </Typography>
 
             <Grid container spacing={2}>
@@ -343,7 +347,7 @@ export default function Review({uid, handleNext, email}) {
             </List>
             <Grid container spacing={2}>
                 <Grid item xs={12} className="mt-3 mb-3">
-                    <Elements stripe={stripePromise}>
+                    <Elements stripe={stripePromise} >
                         <CheckoutForm uid={uid} handleNext={handleNext} email={email} currencyType={checkoutContext.currencyType} finalPrice={finalPrice}/>
                     </Elements>
                 </Grid>

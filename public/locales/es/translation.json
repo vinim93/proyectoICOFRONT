@@ -112,13 +112,15 @@
     "ButtonText": "¿Te gustaria unirte a nuestro equipo?",
     "Introduction": [
       "Somos un equipo de profesionales que trabajan para revolucionar el mundo digital financiero a través del compromiso y la transparencia, ofreciendo resultados favorables a los suniholders para consolidarse como socios estratégicos en el logro de sus objetivos."
-     ],
-     "Mision":{
-       "Title":"MISIÓN",
-       "description":"Aportar valor y colaborar con los Suniholders a fortalecer su presente y construir su futuro sostenible en el tiempo."},
-       "Vision":{
-        "Title":"VISIÓN",
-        "description":"Mantenernos como una empresa confiable en el mercado, con solidez y óptima calidad garantizando la inversión de los Suniholders y generando el nivel de rentabilidad esperado."},
+    ],
+    "Mision": {
+      "Title": "MISIÓN",
+      "description": "Aportar valor y colaborar con los Suniholders a fortalecer su presente y construir su futuro sostenible en el tiempo."
+    },
+    "Vision": {
+      "Title": "VISIÓN",
+      "description": "Mantenernos como una empresa confiable en el mercado, con solidez y óptima calidad garantizando la inversión de los Suniholders y generando el nivel de rentabilidad esperado."
+    },
     "Differences": {
       "Title": "¿QUÉ NOS DIFERENCIA?",
       "Items": [
@@ -219,5 +221,409 @@
   "Whitepaper": {
     "Read": "Lee",
     "Click": "Click para descargar pdf"
+  },
+  "Dashboard": {
+    "Menu": {
+      "Home": "Inicio",
+      "Profile": "Perfil",
+      "Settings": "Ajustes",
+      "Logout": "Cerrar sesión"
+    },
+    "Index": {
+      "Buttons": {
+        "CryptoMarkt": "Mercado de criptos",
+        "Buy": "Comprar",
+        "Wallet": "Wallet"
+      },
+      "PhoneMessages": {
+        "Title": "Verificar código",
+        "Text": "Verifica el código que se envió a tu teléfono celular, si no llega en el lapso de 60 segundos puedes solicitar un nuevo código",
+        "AskNewCode": "PEDIR NUEVO CÓDIGO",
+        "Verify": "VERIFICAR",
+        "Code": "Código"
+      },
+      "PurchaseHistory": {
+        "Title": "Historial de compra",
+        "Price": "Precio",
+        "Date": "Fecha",
+        "PaymentMethod": "Forma de pago",
+        "RowsPerPage": "Filas por página"
+      },
+      "CryptoMarkt": {
+        "Title": "Mercado de dólar"
+      },
+      "BuyComponent": {
+        "Title": "Proceso de pago",
+        "CompleteProfile": "Completa tus datos personales en el apartado de perfil para poder comprar tokens",
+        "GotoProfile": "Ir a mi perfil",
+        "Menu": {
+          "Token": "Token",
+          "Method": "Método",
+          "Data": "Datos",
+          "Buy": "Compra"
+        },
+        "TokenOption": {
+          "CurrencySelect": "Selecciona tu divisa",
+          "NextButton": "Siguiente",
+          "Modals": {
+            "LimitAmount": {
+              "Title1": "Cantidad muy grande",
+              "Text1": "El monto no debe ser mayor a $999,999.99",
+              "Title2": "Cantidad limitada",
+              "Text2": "Tu límite es de $1000 USD, si deseas incrementar tu límite de depósito debes ir a tu perfíl y verificar tu cuenta",
+              "Abbr21": "Tu límite es de",
+              "Abbr22": "si deseas incrementar tu límite de depósito debes ir a tu perfíl y verificar tu cuenta",
+              "InvalidAmount": {
+                "Title": "Monto inválido",
+                "Text": "Debes pagar la mínima cantidad de $1 USD",
+                "Abbr": "Debes pagar la mínima cantidad de $"
+              }
+            }
+          }
+        },
+        "MethodOption": {
+          "Title": "Método de pago",
+          "Card": "Tarjeta crédito / débito",
+          "Oxxo": "Pago en oxxo",
+          "TRX": "Pago con TRON (TRX)",
+          "NextButton": "Siguiente",
+          "BackButton": "Atrás",
+          "Modals": {
+            "Card": {
+              "Title": "Pago con TRON inválido",
+              "Text": "No puedes pagar con TRON, tienes que cambiar la divisa a alguna moneda nacional o internacional"
+            },
+            "Oxxo": {
+              "Title1": "Pago con dolar inválido",
+              "Text1": "No puedes pagar en oxxo con dolar, tienes que cambiar la divisa a pesos mexicanos",
+              "Title2": "Pago con TRON inválido",
+              "Text2": "No puedes pagar en oxxo con TRON, tienes que cambiar la divisa a pesos mexicanos"
+            },
+            "Trx": {
+              "Title": "Pago con FIAT inválido",
+              "Text": "No puedes pagar con divisa normal, debes elegir pago con TRON en el paso anterior"
+            }
+          }
+        },
+        "DataOption": {
+          "Title": "Datos personales",
+          "Name": "Nombre(s)",
+          "Lastname": "Apellido(s)",
+          "Address": "Dirección",
+          "City": "Ciudad",
+          "State": "Estado/Provincia/Región",
+          "Country": "País",
+          "NextButton": "Siguiente",
+          "BackButton": "Atrás"
+        },
+        "BuyOption": {
+          "Title": "Datos del pago",
+          "Description": "Suni Token",
+          "BackButton": "Atrás",
+          "BuyButton": "Comprar token",
+          "Modals": {
+            "DeclinedCard": {
+              "Title": "Tarjeta rechazada",
+              "Texts": [
+                "Comunicate con tu banco para resolver el problema o inténtalo más tarde",
+                "Parece que tu tarjeta no tiene fondos suficientes",
+                "Parece que tu tarjeta tiene reporte de robo, comunicate con tu banco para resolver el problema",
+                "Tu tarjeta no es soportada. Por favor usa Visa o Mastercard",
+                "Ocurrió un error al procesar el pago con la tarjeta indicada, intenta con otra"
+              ]
+            },
+            "ExpiredCard": [
+              {
+                "Title": "Tarjeta expirada",
+                "Text": "Parece que tu tarjeta expiró, comunicate con tu banco"
+              },
+              {
+                "Title": "CVC Incorrecto",
+                "Text": "Revisa el código CVC de tu tarjeta e inténtalo de nuevo, de lo contrario, comunicate con tu banco"
+              },
+              {
+                "Title": "Datos incorrectos",
+                "Text": "Verifica que los datos de tu tarjeta sean correctos, de ser así, comunicate con tu banco para resolver el problema"
+              },
+              {
+                "Title": "Monto muy pequeño",
+                "Text": "El monto ingresado de compra es muy pequeño para poder ser procesado"
+              },
+              {
+                "Title": "Verifica el monto",
+                "Text": "El monto debe tener centavos válidos"
+              },
+              {
+                "Title": "Cantidad muy grande",
+                "Text": "El monto no debe ser mayor a $999,999.99"
+              }
+            ],
+            "DefaultValue": {
+              "Title": "No se pudo procesar el pago",
+              "Text": "Verifica que los datos que pusiste sean correctos o intenta de nuevo más tarde!"
+            },
+            "Oxxo": {
+              "Title": "Monto inválido",
+              "Text": "El monto máximo que puedes pagar en oxxo son de $10,000 MXN"
+            },
+            "Trx": [
+              {
+                "Title": "Transacción incompleta",
+                "Text": "La transacción no se pudo realizar, verifica el monto de tus TRX e intenta de nuevo más tarde"
+              },
+              {
+                "Title": "TRX insuficientes",
+                "Text": "No cuentas con la cantidad suficiente de TRX para comprar TUAH"
+              },
+              {
+                "Title": "Oops",
+                "Text": "Parece que no puedes comprar más TUAH porque se agotaron, contactate con el equipo de soporte si piensas que se trata de un mensaje erroneo"
+              },
+              {
+                "Title": "Ocurrió un error",
+                "Text": "El monto de TUAH a devolver según la cantidad de TRX que quieres pagar no es correcta, recarga la pagina e intenta de nuevo"
+              },
+              {
+                "Title": "Cantidad mínima TRX invalida",
+                "Text": "La cantidad de TRX que quieres pagar es menor al monto que se requiere el cual es"
+              },
+              {
+                "Title": "Oops",
+                "Text": "Ocurrió un error inesperado, intenta de nuevo más tarde"
+              }
+            ],
+            "ButtonsMessages": {
+              "BuyToken": "COMPRAR TOKEN",
+              "Loading": "CARGANDO...",
+              "Processing": "PROCESANDO...",
+              "BuyWithTrx": "COMPRAR CON TRX",
+              "BuyWithOxxo": "GENERAR PAGO CON OXXO"
+            }
+          }
+        },
+        "SuccessPayment": {
+          "CardTitle": "¡Gracias por tu compra!",
+          "CardText": "¡Gracias por tu compra, se verá reflejado en tu monto total y en tu cartera en aproximadamente 1 minito. Hemos enviado tu comprobante de pago al correo electrónico que registraste!",
+          "OxxoTitle": "¡Referencia de oxxo generada!",
+          "OxxoText": "¡Tienes 24 hrs para realizar el pago en oxxo!",
+          "TrxTitle": "¡Pago con TRX aceptado!",
+          "TrxText": "Tus TUAH se reflejaran en aproximadamente 1 minuto, puedes visualizar la transacción en el historial de compra",
+          "BuyAgainButton": "Comprar de nuevo"
+        }
+      },
+      "Wallet": {
+        "SpotWallet": {
+          "Receive": "Recibir",
+          "Send": "Enviar",
+          "Copy": "Copiar",
+          "Copied": "Copiado",
+          "DestinationAddressField": "Dirección de destino",
+          "AmountField": "Cantidad (TUAH)",
+          "AmountToSend": "TUAH a enviar",
+          "RemainingAmount": "TUAH restantes",
+          "SendButton": "Enviar",
+          "WithoutTokens": "No tienes suficientes TUAH para mandar"
+        },
+        "Header": {
+          "TokensAmount": "NÚMERO DE TOKENS TUAH"
+        },
+        "TransactionsHistory": {
+          "Amount": "Monto",
+          "Date": "Fecha/hora",
+          "Block": "Bloque",
+          "Received": "Recibido",
+          "Sended": "Enviado",
+          "Details": {
+            "Title": "Detalles",
+            "Transmitter": "EMISOR",
+            "Reveiver": "RECEPTOR",
+            "Amount": "MONTO",
+            "Block": "BLOQUE",
+            "Date": "FECHA"
+          },
+          "Rows": "Filas por pagina",
+          "Modals": {
+            "Success": {
+              "Title": "Tokens enviados",
+              "Text": [
+                "se cobraron de tu cuenta y se depositaron a la dirección",
+                "puedes ver la transacción en tu historial"
+              ]
+            },
+            "Errors": [
+              {
+                "Title": "No cuentas con TUAH",
+                "Text": "Tu wallet no cuenta con ningun TUAH por lo que no puedes enviar el monto indicado"
+              },
+              {
+                "Title": "Error de ancho de banda",
+                "Text": "La wallet a la que le quieres mandar TUAH no tiene suficiente ancho de banda"
+              },
+              {
+                "Title": "TUAHS insuficientes",
+                "Text": "No cuentas con la cantidad de TUAH suficiente para enviar el monto indicado"
+              },
+              {
+                "Title": "Dirección invalida",
+                "Text": "La dirección a la que le quieres mandar TUAH no existe o no se encuentra disponible"
+              },
+              {
+                "Title": "Monto invalido",
+                "Text": "El monto ingresado no es válido, ingresa un monto de tipo 0.000000"
+              },
+              {
+                "Title": "Código SMS inválido",
+                "Text": "El código que ingresaste no coincide con el que te llegó al telefono proporcionado o caducó, intenta de nuevo"
+              },
+              {
+                "Title": "Error inesperado",
+                "Text": "Ocurrió un error inesperado, recarga la página o intenta de nuevo más tarde"
+              }
+            ]
+          }
+        }
+      },
+      "Profile": {
+        "PersonalData": {
+          "Title": "Datos personales",
+          "Text": "Verifica que tus datos y foto coincidan con tu identificación oficial",
+          "Name": "Nombre(s)",
+          "Lastname": "Apellido(s)",
+          "Date": "Fecha de nacimiento",
+          "Country": "País",
+          "State": "Estado",
+          "City": "Ciudad",
+          "Phone": "Teléfono",
+          "Address": "Dirección",
+          "SendButton": "Enviar",
+          "Modals": [
+            {
+              "Title": "Información actualizada",
+              "Text": "¡La información de tu perfil ha sido actualizada con éxito!"
+            },
+            {
+              "Title": "Código SMS inválido",
+              "Text": "El código que ingresaste no coincide con el que te llegó al telefono proporcionado o caducó, intenta de nuevo"
+            },
+            {
+              "Title": "Error inesperado",
+              "Text": "Ocurrió un error inesperado, recarga la página o intenta de nuevo más tarde"
+            },
+            {
+              "Title": "¿Estas seguro de subir la información?",
+              "Text": "Una vez enviada la información no se podrá modificar"
+            },
+            {
+              "Title": "Debes ser mayor de edad",
+              "Text": "Para poder continuar con la verificación de tus datos debes contar con la mayoria de edad"
+            },
+            {
+              "Title": "Información incompleta",
+              "Text": "Llena todos los campos correspondientes para poder continuar"
+            }
+          ]
+        },
+        "VerifiedProfile": {
+          "Title": "Verificación de perfil",
+          "Subtitle1": "Sube un documento oficial (INE, Pasaporte, Licencia de conducir...)",
+          "Text": "Verifica que tus datos coincidan con los datos personales que nos proporcionaste previamente",
+          "Subtitle": "Identificación oficial",
+          "SendButton": "Enviar verificación",
+          "Modals": [
+            {
+              "Title": "¿Estas seguro de subir la información?",
+              "Text": "Una vez enviada la información no se podrá modificar"
+            },
+            {
+              "Title": "Información actualizada",
+              "Text": "¡La información de tu perfil fue actualizada con éxito!"
+            },
+            {
+              "Title": "Te falta subir tu identifiación oficial",
+              "Text": "¡Para poder continuar con la verificación de tus datos debes subir una foto o pdf de tu identifiacaión oficial de ambos lados!"
+            },
+            {
+              "Title": "Información faltante",
+              "Text": "¡Llena todos los campos correspondientes para poder continuar!"
+            }
+          ]
+        },
+        "Modals": [
+          {
+            "Title": "Archivo muy pesado",
+            "Text": "Tu archivo excede el peso permitido, maximo 5 MB"
+          },
+          {
+            "Title": "Archivo no válido",
+            "Text": "Solo puedes subir un formato imagen o pdf"
+          },
+          {
+            "Title": "¿Estas seguro de subir esa foto?",
+            "Text": "Una vez enviada la foto no se podrá modificar, asegúrate de que cumpla los requisitos antes mencionados"
+          },
+          {
+            "Title": "La foto de tu perfil ha sido actualizada con éxito",
+            "Text": ""
+          }
+        ],
+        "ShowData": {
+          "Years": "años",
+          "City": "Ciudad",
+          "Address": "Dirección",
+          "State": "Estado",
+          "Country": "País",
+          "ProfileStatus": [
+            "En espera de verificación — Se están validando tus datos",
+            "Cuenta verificada",
+            "Cuenta no verificada — Verifica tu identificación oficial únicamente",
+            "Cuenta no verificada — Verifica tus datos personales únicamente",
+            "Cuenta no verificada — Verifica todos tus datos"
+          ],
+          "UploadImage": {
+            "Title": "Elegir foto",
+            "AdaptYourImage": "Adapta tu imagen",
+            "Finish": "Finalizar"
+          }
+        }
+      },
+      "Settings": {
+        "LastPassword": "Contraseña anterior",
+        "NewPassword": "Contraseña nueva",
+        "RepeatPassword": "Repetir contraseña nueva",
+        "ChangePassword": "Cambiar contraseña",
+        "Password": {
+          "Title": "Contraseña",
+          "Subtitle": "Cambia tu contraseña",
+          "PrincipalMessage": "No puedes cambiar tu contraseña porque elegiste iniciar sesión con Google"
+        },
+        "Modals": [
+          {
+            "Title": "Contraseña actual incorrecta",
+            "Text": "La contraseña proporcionada como actual no es correcta, intenta de nuevo"
+          },
+          {
+            "Title": "Contraseña cambiada exitosamente",
+            "Text": "Ahora puedes iniciar sesión con tu nueva contraseña"
+          },
+          {
+            "Title": "Tu contraseña debe cumplir con los siguientes requisitos",
+            "Button": "Entendido",
+            "Options": [
+              "Mínimo 8 caracteres",
+              "Máximo 100 caracteres",
+              "Mínimo una letra mayuscula",
+              "Mínimo 1 letra minuscula",
+              "No debe contener espacios",
+              "Mínimo 1 número"
+            ]
+          },
+          {
+            "Title": "Las contraseñas no coinciden",
+            "Text": "Asegurate de que las contraseñas nuevas sean las mismas",
+            "Button": "Entendido"
+          }
+        ]
+      }
+    }
   }
 }

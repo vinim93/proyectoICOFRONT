@@ -8,8 +8,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PersonalData from "./PersonalData";
 import VerifiedProfile from "./VerifiedProfile";
 import {ProfileContext} from "../../../context/ProfileContext";
+import {useTranslation} from "react-i18next";
 
 export default function ExpansionComponent({uid, showFile, setFile, profilePictureStatus}) {
+    const {t} = useTranslation();
     const classes = useStyles();
     const {profileStatus} = useContext(ProfileContext);
     return (
@@ -20,7 +22,7 @@ export default function ExpansionComponent({uid, showFile, setFile, profilePictu
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
-                    <Typography className={classes.heading}>Datos personales</Typography>
+                    <Typography className={classes.heading}>{t('Dashboard.Index.Profile.PersonalData.Title')}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                    <PersonalData uid={uid} profilePictureStatus={profilePictureStatus}/>
@@ -32,7 +34,7 @@ export default function ExpansionComponent({uid, showFile, setFile, profilePictu
                     aria-controls="panel2a-content"
                     id="panel2a-header"
                 >
-                    <Typography className={classes.heading}>Verificación de perfíl</Typography>
+                    <Typography className={classes.heading}>{t('Dashboard.Index.Profile.VerifiedProfile.Title')}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <VerifiedProfile uid={uid} showFile={showFile} setFile={setFile}/>

@@ -111,11 +111,10 @@ const Navigation = () => {
                                     open={Boolean(anchorEl)}
                                     onClose={handleClose}
                                 >
-                                    <MenuItem id="index" onClick={e => handleClose(e.target.id)}>Inicio</MenuItem>
-                                    <MenuItem id="profile" onClick={e => handleClose(e.target.id)}>Perfil</MenuItem>
-                                    <MenuItem id="settings" onClick={e => handleClose(e.target.id)}>Ajustes</MenuItem>
-                                    <MenuItem id="logout" onClick={e => handleClose(e.target.id)}>Cerrar
-                                        sesión</MenuItem>
+                                    <MenuItem id="index" onClick={e => handleClose(e.target.id)}>{t('Dashboard.Menu.Home')}</MenuItem>
+                                    <MenuItem id="profile" onClick={e => handleClose(e.target.id)}>{t('Dashboard.Menu.Profile')}</MenuItem>
+                                    <MenuItem id="settings" onClick={e => handleClose(e.target.id)}>{t('Dashboard.Menu.Settings')}</MenuItem>
+                                    <MenuItem id="logout" onClick={e => handleClose(e.target.id)}>{t('Dashboard.Menu.Logout')}</MenuItem>
                                 </Menu>
                             </div>
 
