@@ -1,7 +1,3 @@
-import React, {Component} from 'react';
-import $ from "jquery";
-
-
 document.addEventListener("DOMContentLoaded", function (e) {
 
     let ubicacionPrincipal = window.pageYOffset;

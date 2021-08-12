@@ -30,37 +30,30 @@ export default function Settings() {
     const {t} = useTranslation();
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
-    const {currentUser, getAuthType, logout, credential} = useAuth();
-    const [logged, setLogged] = useState(false);
+    const {currentUser, logout} = useAuth();
     const [hasPassword, setHasPassword] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
         try {
-            let email = currentUser.email;
+            const verifyAuthType = data => {
+                data.forEach(value => {
+                    if (value.providerId === "password"){
+                        setHasPassword(true);
+                    }
+                });
+            }
             if (!currentUser.emailVerified) {
-                setLogged(false);
                 logout();
                 history.push("/Home");
             } else {
-                setLogged(true);
                 history.push("/Settings");
                 verifyAuthType(currentUser.providerData);
             }
         } catch (e) {
             history.push("/Home");
-            setLogged(false);
         }
-    }, []);
-
-
-    const verifyAuthType = data => {
-        data.map(value => {
-            if (value.providerId === "password"){
-                setHasPassword(true);
-            }
-        });
-    }
+    }, [currentUser, history, logout]);
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);

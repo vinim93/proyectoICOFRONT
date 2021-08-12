@@ -1,4 +1,4 @@
-                                                                                   import React, {useState, useEffect} from "react";
+import React, {useEffect} from "react";
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Footer from '../components/Footer';
@@ -30,10 +30,11 @@ const Acerca = () => {
 
     useEffect(() => {
         try {
-            let email = currentUser.email;
-            history.push("/");
+            if('email' in currentUser){
+                history.push("/");
+            }
         } catch (e) {}
-    }, []);
+    }, [currentUser, history]);
 
     const differences = [
         {
@@ -162,7 +163,7 @@ const Acerca = () => {
                             <Zoom>
                                 <div id={index}
                                      className=" col-12 col-sm-12 row col-lg-4 col-xl-4 cont-diferencia">
-                                    <img src={value.image} alt="Member photo" className="icons-differences"/>
+                                    <img src={value.image} alt="Member" className="icons-differences"/>
                                     <h3 className="text-center">{value.title}</h3>
                                     <p className="text-center">{value.description}</p>
                                 </div>
@@ -181,7 +182,7 @@ const Acerca = () => {
 
                                             <div className="card-img-top mt-5">
                                                 <img className="rounded-circle img-fluid teams-images w-50"
-                                                     src={value.image} alt="Card image cap"/>
+                                                     src={value.image} alt="Card cap"/>
                                             </div>
 
                                             <div className="card-body mt-3 d-block">
@@ -194,13 +195,14 @@ const Acerca = () => {
                                             <div className="card-body border-top">
                                                 <div className="row">
                                                     <div className="col-6">
-                                                        <a href={value.social.linkedin} target="_blank">
+                                                        <a href={value.social.linkedin} rel="noreferrer" target="_blank">
                                                             <img src={Linkecontact} alt="face"/>
                                                         </a>
                                                     </div>
                                                     <div className="col-6">
                                                         <a href={value.social.twitter || "#"}
                                                            className={value.social.twitter || "disabled"}
+                                                           rel="noreferrer"
                                                            target="_blank">
                                                             <img src={Twitercontact} alt="face"/>
                                                         </a>

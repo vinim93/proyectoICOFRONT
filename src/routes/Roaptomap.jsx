@@ -16,11 +16,12 @@ const RoaptoMapa = () => {
 
     useEffect(() => {
         try {
-            let email = currentUser.email;
-            history.push("/");
+            if('email' in currentUser){
+                history.push("/");
+            }
         } catch (e) {
         }
-    }, []);
+    }, [currentUser, history]);
 
     return (
         <div className="road">

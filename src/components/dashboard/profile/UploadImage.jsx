@@ -43,7 +43,7 @@ const UploadImage = ({ uploadProfilePicture, profilePictureStatus}) => {
         } catch (e) {
             console.error(e);
         }
-    }, [imageSrc, croppedAreaPixels, rotation]);
+    }, [imageSrc, croppedAreaPixels, rotation, profileContext]);
 
     const onFileChange = async (e) => {
         if (e.target.files && e.target.files.length > 0) {

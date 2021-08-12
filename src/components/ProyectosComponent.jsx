@@ -22,16 +22,17 @@ import {useAuth} from "../context/AuthContext";
 const ProyectosComponent = () => {
 
     const {t} = useTranslation();
-    const {currentUser, logout} = useAuth();
+    const {currentUser} = useAuth();
     const history = useHistory();
 
     useEffect(() => {
         try {
-            let email = currentUser.email;
-            history.push("/");
+            if('email' in currentUser){
+                history.push("/");
+            }
         } catch (e) {
         }
-    }, []);
+    }, [currentUser, history]);
 
     return (
         <div>

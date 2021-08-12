@@ -26,18 +26,19 @@ const Home = () => {
 
     useEffect(() => {
         try {
-            let email = currentUser.email;
-            history.push("/");
+            if('email' in currentUser){
+                history.push("/");
+            }
         } catch (e) {
         }
-    }, []);
+    }, [currentUser, history]);
 
     return (
         <div className="container-fluid">
             <Banner/>
             <Suspense fallback={
                 <div className="  container mt-5 text-center   justify-content-center">
-                    <img className="moneda-carga" align="top" src={monedag}/><p>CARGANDO...</p>
+                    <img className="moneda-carga" align="top" alt="Coin loading" src={monedag}/><p>CARGANDO...</p>
                 </div>
             }>
                 <Video/>

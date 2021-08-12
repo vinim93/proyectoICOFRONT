@@ -17,11 +17,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FilledInput from '@material-ui/core/FilledInput';
 import SunshineFinder from "../apis/SunshineFinder";
+import {useTranslation} from "react-i18next";
 
 require('dotenv').config();
 
 const SignInModal = () => {
-
+    const {t} = useTranslation();
     const history = useHistory();
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
@@ -101,10 +102,10 @@ const SignInModal = () => {
                     });
                 } else {
                     swal({
-                        title: "Ocurrió un error",
-                        text: "Ocurrió un error inesperado, inténtalo de nuevo más tarde",
+                        title: t('Navbar.Modals.SignIn.Modals.0.Title'),
+                        text: t('Navbar.Modals.SignIn.Modals.0.Text'),
                         icon: "error",
-                        button: "¡Entendido!",
+                        button: t('Navbar.Modals.SignIn.Understood'),
                         closeOnClickOutside: false
                     });
                 }
@@ -132,20 +133,22 @@ const SignInModal = () => {
             switch (errorCode) {
                 case "auth/network-request-failed":
                     swal({
-                        title: "Error de red",
-                        text: "Un error de red (como tiempo de espera, conexión interrumpida o host inalcanzable) ocurrió",
+                        title: t('Navbar.Modals.SignIn.Modals.1.Title'),
+                        text: t('Navbar.Modals.SignIn.Modals.1.Text'),
                         icon: "error",
-                        button: "¡Entendido!",
+                        button: t('Navbar.Modals.SignIn.Understood'),
                         closeOnClickOutside: false
                     });
                     break;
 
+                case "auth/popup-closed-by-user":
+                    break;
                 default:
                     swal({
-                        title: "Error inesperado",
-                        text: "Ocurrió un error inesperado, recarga la página",
+                        title: t('Navbar.Modals.SignIn.Modals.2.Title'),
+                        text: t('Navbar.Modals.SignIn.Modals.2.Text'),
                         icon: "info",
-                        button: "¡Entendido!",
+                        button: t('Navbar.Modals.SignIn.Understood'),
                         closeOnClickOutside: false
                     });
                     break;
@@ -195,31 +198,31 @@ const SignInModal = () => {
             logout();
             switch (errorCode) {
                 case "auth/user-not-found":
-                    swal("Usuario no encontrado", "La cuenta de correo proporcionada no está registrada", "warning");
+                    swal(t('Navbar.Modals.SignIn.Modals.3.Title'), t('Navbar.Modals.SignIn.Modals.3.Text'), "warning");
                     break;
 
                 case "auth/wrong-password":
-                    swal("Datos incorrectos", "Contraseña incorrecta", "warning");
+                    swal(t('Navbar.Modals.SignIn.Modals.4.Title'), t('Navbar.Modals.SignIn.Modals.4.Text'), "warning");
                     break;
 
                 case "auth/invalid-email":
-                    swal("Datos incorrectos", "Solo puedes ingresar una cuenta de correo válida", "warning");
+                    swal(t('Navbar.Modals.SignIn.Modals.5.Title'), t('Navbar.Modals.SignIn.Modals.5.Text'), "warning");
                     break;
 
                 case "email_not_verified":
-                    swal("Correo no verificado", "Revisa tu bandeja de entrada de tu correo y verifica tu cuenta", "warning");
+                    swal(t('Navbar.Modals.SignIn.Modals.6.Title'), t('Navbar.Modals.SignIn.Modals.6.Text'), "warning");
                     break;
 
                 case "auth/too-many-requests":
-                    swal("Cuenta desactivada", "El acceso a esta cuenta ha sido desactivado temporalmente debido a los intentos de inicio de sesión fallidos, puedes recuperarla reestableciendo tu contraseña o intentarlo más tarde", "warning");
+                    swal(t('Navbar.Modals.SignIn.Modals.7.Title'), t('Navbar.Modals.SignIn.Modals.7.Text'), "warning");
                     break;
 
                 case "captcha_not_verified":
-                    swal("Verifica el CAPTCHA", "Verifica el CAPTCHA de nuevo para poder continuar", "warning");
+                    swal(t('Navbar.Modals.SignIn.Modals.8.Title'), t('Navbar.Modals.SignIn.Modals.8.Text'), "warning");
                     break;
 
                 default:
-                    swal("Intenta de nuevo", "Ocurrio un error inesperado, intenta de nuevo", "warning");
+                    swal(t('Navbar.Modals.SignIn.Modals.9.Title'), t('Navbar.Modals.SignIn.Modals.9.Text'), "warning");
             }
         }
 
@@ -255,7 +258,7 @@ const SignInModal = () => {
                 <div className="modal-content registrobody   pl-xl-5 pr-xl-5 ">
 
                     <div className="modal-header">
-                        <h5 className="modal-title col-12 text-light" id="staticBackdropLabel">Tu cuenta</h5>
+                        <h5 className="modal-title col-12 text-light" id="staticBackdropLabel">{t('Navbar.Modals.SignIn.Title')}</h5>
                         <button type="button" id="closeSignInModal" className="close" data-dismiss="modal"
                                 aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -266,7 +269,7 @@ const SignInModal = () => {
 
                         <div className="form-group col-12 d-flex justify-content-center">
                             <GoogleButton
-                                label='Iniciar sesión con Google'
+                                label={t('Navbar.Modals.SignIn.GoogleButton')}
                                 onClick={signUpWithGoogle}
                                 style={{width: 500, borderRadius: 3}}
                             />
@@ -288,7 +291,7 @@ const SignInModal = () => {
                                                    id="email"
                                                    name="email"
                                                    value={email}
-                                                   label="Correo electrónico"
+                                                   label={t('Navbar.Modals.SignIn.Email')}
                                                    type="text"
                                                    onChange={e => setEmail(e.target.value)} variant="filled"/>
                                     </div>
@@ -297,7 +300,7 @@ const SignInModal = () => {
 
                                         <FormControl fullWidth className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
                                                      variant="filled">
-                                            <InputLabel htmlFor="filled-adornment-password">Contraseña *</InputLabel>
+                                            <InputLabel htmlFor="filled-adornment-password">{t('Navbar.Modals.SignIn.Pass')} *</InputLabel>
                                             <FilledInput
                                                 id="signin-password"
                                                 type={values.showPassword ? 'text' : 'password'}
@@ -324,7 +327,9 @@ const SignInModal = () => {
                                     <div
                                         className="input-group col-12 d-flex justify-content-center pl-xl-5 pr-xl-5 mt-3">
                                         <ReCAPTCHA sitekey={process.env.REACT_APP_RECAPTCHA}
-                                                   onChange={sendReCAPTCHAValue}/>
+                                                   onChange={sendReCAPTCHAValue}
+                                                   hl={t('Lan')}
+                                        />
                                     </div>
 
                                     <div className="form-group col-12 mt-4 mb-5">
@@ -334,9 +339,9 @@ const SignInModal = () => {
                                                 disabled={loading}>
                                             {loading ? (
                                                 <div className="spinner-border text-dark" role="status">
-                                                    <span className="sr-only">Entrando...</span>
+                                                    <span className="sr-only">{t('Navbar.Modals.SignIn.Loading')}...</span>
                                                 </div>
-                                            ) : "ENTRAR"}
+                                            ) : t('Navbar.Modals.SignIn.In')}
                                         </button>
                                     </div>
                                 </div>
@@ -350,7 +355,7 @@ const SignInModal = () => {
                                     <button style={{color: "white"}} href="#" onClick={openForgetPass} data-toggle="modal"
                                        data-target="#recoveryModal">
                                         <h6>
-                                            ¿Olvidaste la contraseña?
+                                            {t('Navbar.Modals.SignIn.ForgotPassword')}
                                         </h6>
                                     </button>
                                 </div>

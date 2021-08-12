@@ -1,10 +1,125 @@
 {
+  "Lan": "en",
   "Navbar": {
     "Acerca": "About",
     "Proyectos": "Projects",
     "RoadToMap": "Road to map",
     "SignIn": "Sign In ",
-    "SignUp": "Sign Up "
+    "SignUp": "Sign Up ",
+    "Modals": {
+      "SignIn": {
+        "Title": "Sign in",
+        "Email": "Email",
+        "Pass": "Password",
+        "GoogleButton": "Sign in with Google",
+        "In": "Sign in",
+        "ForgotPassword": "Forgot your password?",
+        "Loading": "Loading",
+        "Understood": "Understood",
+        "Modals": [
+          {
+            "Title": "An error occurred",
+            "Text": "An unexpected error occurred, please try again later"
+          },
+          {
+            "Title": "Network error",
+            "Text": "A network error (such as timeout, connection interrupted, or host unreachable) occurred"
+          },
+          {
+            "Title": "Unexpected error",
+            "Text": "An unexpected error occurred, reload the page"
+          },
+          {
+            "Title": "User not found",
+            "Text": "The email account provided is not registered"
+          },
+          {
+            "Title": "Incorrect data",
+            "Text": "Incorrect password"
+          },
+          {
+            "Title": "Incorrect data",
+            "Text": "You can only enter a valid email account"
+          },
+          {
+            "Title": "Email not verified",
+            "Text": "Check your email inbox and verify your account"
+          },
+          {
+            "Title": "Account deactivated",
+            "Text": "Access to this account has been temporarily disabled due to failed login attempts, you can recover it by resetting your password or try again later"
+          },
+          {
+            "Title": "Check the CAPTCHA",
+            "Text": "Check the CAPTCHA again to continue"
+          },
+          {
+            "Title": "Try again",
+            "Text": "An unexpected error occurred, please try again"
+          }
+        ]
+      },
+
+      "SignUp": {
+        "Title": "Sign up",
+        "Name": "Name",
+        "Lastname": "Last name",
+        "Email": "Email",
+        "Pass": "Password",
+        "RepeatPass": "Repeat your password",
+        "Terms": "Accept terms and conditions",
+        "In": "Sign up",
+        "GoogleButton": "Sign in with Google",
+        "Loading": "Loading",
+        "Understood": "Understood",
+        "Modals": [
+          {
+            "Title": "Successful registration!",
+            "Text": "We sent a link to the email you provided to verify your account."
+          },
+          {
+            "Title": "Check the CAPTCHA",
+            "Text": "Try to check the CAPTCHA again to be able to continue"
+          },
+          {
+            "Title": "Warning",
+            "Text": "You must accept the terms and conditions to register"
+          },
+          {
+            "Title": "Passwords do not match",
+            "Text": "Make sure to write the same passwords in the corresponding fields"
+          },
+          {
+            "Title": "",
+            "Text": "Your password must meet the following requirements",
+            "Requirements": [
+              "Minimum 8 characters",
+              "Maximum 100 characters",
+              "Minimum one capital letter",
+              "Minimum 1 lowercase letter",
+              "Must not contain spaces",
+              "Minimum 1 number"
+            ]
+          },
+          {
+            "Title": "Warning",
+            "Text": "You must fill in all the fields"
+          },
+          {
+            "Title": "Oops",
+            "Text": "The email address is already in use"
+          },
+          {
+            "Title": "Oops",
+            "Text": "The password must be at least 8 characters long!"
+          },
+          {
+            "Title": "An error occurred",
+            "Text": "An unexpected error occurred, please try again later"
+          }
+        ]
+      }
+    }
   },
   "Banner": {
     "Titulo": [

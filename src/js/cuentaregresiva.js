@@ -1,5 +1,4 @@
 import '../App.css';
-import React from 'react';
 import Lineadias from '../images/lineadias.svg';
 
 export default function contador(id, limitDate, finalMessage) {

@@ -30,9 +30,9 @@ const Pdf = () => {
 
             <div className="col-12 fondopdf p-3 d-none d-md-block">
 
-                <iframe width='800' data-toggle="collapse" data-target=".navbar-collapse.show"
-                         className="google-viewer" height='600' frameborder='0'
-                         src="https://firebasestorage.googleapis.com/v0/b/sunshine-ico.appspot.com/o/WHITEPAPER%20SUNI.pdf?alt=media&token=6a606197-0768-449d-b35b-e9147ce27bfe"></iframe>
+                <iframe width='800' title="pdf viewer" data-toggle="collapse" data-target=".navbar-collapse.show"
+    className="google-viewer" height='600' frameborder='0'
+    src="https://firebasestorage.googleapis.com/v0/b/sunshine-ico.appspot.com/o/WHITEPAPER%20SUNI.pdf?alt=media&token=6a606197-0768-449d-b35b-e9147ce27bfe"/>
                 <Loader isLoading={isLoading}/>
 
             </div>

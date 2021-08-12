@@ -21,24 +21,25 @@ const Dashboard = () => {
     const [userInfo, setUserInfo] = useState({});
     const history = useHistory();
 
-    const getUserData = async(id) => {
-        try{
-            let docRef = db.collection('credentials').doc(id);
-            await docRef.onSnapshot(doc => {
-                if(doc.exists){
-                    setUserInfo(doc.data());
-                }
-            });
-            const response = await SunshineFinder.get("/get-token", {
-                params: {
-                    uid: id
-                }
-            });
-            setAmount(response.data.amount);
-        } catch (e) {}
-    }
 
     useEffect(() => {
+        const getUserData = async id => {
+            try{
+                let docRef = db.collection('credentials').doc(id);
+                await docRef.onSnapshot(doc => {
+                    if(doc.exists){
+                        setUserInfo(doc.data());
+                    }
+                });
+                const response = await SunshineFinder.get("/get-token", {
+                    params: {
+                        uid: id
+                    }
+                });
+                setAmount(response.data.amount);
+            } catch (e) {}
+        }
+
         try{
             let email = currentUser.email;
             let id = currentUser.uid;
@@ -48,12 +49,11 @@ const Dashboard = () => {
             history.push("/");
             getUserData(id);
         } catch (e) {
-
             setSigninEmail("");
             history.push("/Home");
             setLogged(false);
         }
-    },[currentUser]);
+    },[currentUser, history]);
 
 
     const renderData = () => {

@@ -34,7 +34,7 @@ const TokenAmount = ({currencyConversor}) => {
         currencyConversor("MXN", "USD");
         currencyConversor("TRX", "USD");
         currencyConversor("USD", "TRX");
-    }, []);
+    }, [currencyConversor]);
 
     const conversor = (type, amount = "USD") => {
         switch (type) {

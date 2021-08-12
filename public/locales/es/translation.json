@@ -1,10 +1,125 @@
 {
+  "Lan": "es",
   "Navbar": {
     "Acerca": "Acerca de",
     "Proyectos": "Proyectos",
     "RoadToMap": "Road to map",
     "SignIn": "Iniciar sesión ",
-    "SignUp": "Crea tu cuenta "
+    "SignUp": "Crea tu cuenta ",
+    "Modals": {
+      "SignIn": {
+        "Title": "Iniciar sesión",
+        "Email": "Correo electrónico",
+        "Pass": "Contraseña",
+        "GoogleButton": "Iniciar sesión con Google",
+        "In": "Entrar",
+        "ForgotPassword": "¿Olvidaste la contraseña?",
+        "Loading": "Cargando",
+        "Understood": "Entendido",
+        "Modals": [
+          {
+            "Title": "Ocurrió un error",
+            "Text": "Ocurrió un error inesperado, inténtalo de nuevo más tarde"
+          },
+          {
+            "Title": "Error de red",
+            "Text": "Un error de red (como tiempo de espera, conexión interrumpida o host inalcanzable) ocurrió"
+          },
+          {
+            "Title": "Error inesperado",
+            "Text": "Ocurrió un error inesperado, recarga la página"
+          },
+          {
+            "Title": "Usuario no encontrado",
+            "Text": "La cuenta de correo proporcionada no está registrada"
+          },
+          {
+            "Title": "Datos incorrectos",
+            "Text": "Contraseña incorrecta"
+          },
+          {
+            "Title": "Datos incorrectos",
+            "Text": "Solo puedes ingresar una cuenta de correo válida"
+          },
+          {
+            "Title": "Correo no verificado",
+            "Text": "Revisa tu bandeja de entrada de tu correo y verifica tu cuenta"
+          },
+          {
+            "Title": "Cuenta desactivada",
+            "Text": "El acceso a esta cuenta ha sido desactivado temporalmente debido a los intentos de inicio de sesión fallidos, puedes recuperarla reestableciendo tu contraseña o intentarlo más tarde"
+          },
+          {
+            "Title": "Verifica el CAPTCHA",
+            "Text": "Verifica el CAPTCHA de nuevo para poder continuar"
+          },
+          {
+            "Title": "Intenta de nuevo",
+            "Text": "Ocurrio un error inesperado, intenta de nuevo"
+          }
+        ]
+      },
+
+      "SignUp": {
+        "Title": "Registrarse",
+        "Name": "Nombre",
+        "Lastname": "Apellido",
+        "Email": "Correo electrónico",
+        "Pass": "Contraseña",
+        "RepeatPass": "Repite tu contraseña",
+        "Terms": "Aceptar términos y condiciones",
+        "In": "Registrate",
+        "GoogleButton": "Iniciar sesión con Google",
+        "Loading": "Cargando",
+        "Understood": "Entendido",
+        "Modals": [
+          {
+            "Title": "¡Registro exitoso!",
+            "Text": "Enviamos un enlace al correo electrónico que proporcionaste para verificar tu cuenta."
+          },
+          {
+            "Title": "Verifica el CAPTCHA",
+            "Text": "Intenta verificar el CAPTCHA de nuevo para poder continuar"
+          },
+          {
+            "Title": "Advertencia",
+            "Text": "Debes aceptar los términos y condiciones para poder registrarte"
+          },
+          {
+            "Title": "Las contraseñas no coinciden",
+            "Text": "Asegurate de escribir las mismas contraseñas en los campos correspondientes"
+          },
+          {
+            "Title": "",
+            "Text": "Tu contraseña debe cumplir con los siguientes requisitos",
+            "Requirements": [
+              "Mínimo 8 caracteres",
+              "Máximo 100 caracteres",
+              "Mínimo una letra mayuscula",
+              "Mínimo 1 letra minuscula",
+              "No debe contener espacios",
+              "Mínimo 1 número"
+            ]
+          },
+          {
+            "Title": "Advertencia",
+            "Text": "Debes llenar todos los campos"
+          },
+          {
+            "Title": "Oops",
+            "Text": "La dirección de correo ya se encuentra en uso"
+          },
+          {
+            "Title": "Oops",
+            "Text": "La contraseña debe tener al menos 8 caracteres!"
+          },
+          {
+            "Title": "Ocurrió un error",
+            "Text": "Ocurrió un error inesperado, inténtalo de nuevo más tarde"
+          }
+        ]
+      }
+    }
   },
   "Banner": {
     "Titulo": [

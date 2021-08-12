@@ -140,6 +140,8 @@ const ChangePassword = () => {
                                                                 </p></li>
                                                             )
 
+                                                        default :
+                                                            return null;
                                                     }
 
                                                 })

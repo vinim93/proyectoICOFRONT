@@ -13,7 +13,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import Dialog from "@material-ui/core/Dialog";
 import Slide from "@material-ui/core/Slide";
-import { useTheme } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import DONE from '../../../images/done.png';
 import TronscanFinder from "../../../apis/TronscanFinder";
@@ -25,13 +24,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 
 const TransactionsHistory = ({address}) => {
-    const {t} = useTranslation();
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [transactions, setTransactions] = useState([{}]);
     const [allTransactions, setAllTransactions] = useState([{}]);
+    const {t} = useTranslation();
 
     const columns = [
         { id: 'hash', label: 'Hash', minWidth: 170 },
@@ -78,14 +77,28 @@ const TransactionsHistory = ({address}) => {
         return amount.toString().slice(0, amount.toString().length-6) + "." + amount.toString().slice(amount.toString().length-6);
     }
 
-
     const[transactionDetails, setTransactionDetails] = useState({contractData: {}, tokenInfo: {}, });
 
-    const theme = useTheme();
-
     useEffect(() => {
+        const retrieveTransactions = async (walletAddress) => {
+            try{
+                const result = await TronscanFinder.get(`/api/transaction?sort=-timestamp&count=true&limit=50&start=0&address=${walletAddress}`);
+                let data = result.data.data;
+                let row = [];
+                await data.forEach(value => {
+                    let decimal = value.tokenInfo.tokenDecimal;
+                    row.push(createData(value.hash, value.toAddress === address ? value.contractData.amount / parseFloat("1e"+decimal) || 0 : - value.contractData.amount / parseFloat("1e"+decimal) || 0, timeConverter(value.timestamp), value.toAddress === address ? <Chip label={t('Dashboard.Index.Wallet.TransactionsHistory.Received')} color="primary" /> : <Chip label={t('Dashboard.Index.Wallet.TransactionsHistory.Sended')} color="secondary" />, (value.tokenInfo.tokenAbbr).toString().toUpperCase()));
+                });
+                await setTransactions(row);
+                await setAllTransactions(data);
+
+            } catch (e) {
+
+            }
+        }
+
         retrieveTransactions(address);
-    }, [address]);
+    }, [address, t]);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -103,23 +116,6 @@ const TransactionsHistory = ({address}) => {
     const handleClose = () => {
         setOpen(false);
     };
-
-    const retrieveTransactions = async (walletAddress) => {
-        try{
-            const result = await TronscanFinder.get(`/api/transaction?sort=-timestamp&count=true&limit=50&start=0&address=${walletAddress}`);
-            let data = result.data.data;
-            let row = [];
-            await data.map(value => {
-                let decimal = value.tokenInfo.tokenDecimal;
-                row.push(createData(value.hash, value.toAddress === address ? value.contractData.amount / parseFloat("1e"+decimal) || 0 : - value.contractData.amount / parseFloat("1e"+decimal) || 0, timeConverter(value.timestamp), value.toAddress === address ? <Chip label={t('Dashboard.Index.Wallet.TransactionsHistory.Received')} color="primary" /> : <Chip label={t('Dashboard.Index.Wallet.TransactionsHistory.Sended')} color="secondary" />, (value.tokenInfo.tokenAbbr).toString().toUpperCase()));
-            });
-            await setTransactions(row);
-            await setAllTransactions(data);
-
-        } catch (e) {
-
-        }
-    }
 
     const onClickTransactionDetails = (hash) => {
         let result = allTransactions.find(element => element.hash === hash);
@@ -154,7 +150,7 @@ const TransactionsHistory = ({address}) => {
                                             const value = row[column.id];
                                             return (
                                                 <TableCell key={column.id} align={column.align}>
-                                                    {column.id !== "hash" ? column.format && typeof value === 'number' ? column.format(value) : value : <a className="btn btn-link" onClick={e => onClickTransactionDetails(e.target.innerText)}>{value}</a>}
+                                                    {column.id !== "hash" ? column.format && typeof value === 'number' ? column.format(value) : value : <button className="btn btn-link" onClick={e => onClickTransactionDetails(e.target.innerText)}>{value}</button>}
                                                 </TableCell>
                                             );
                                         })}
@@ -198,12 +194,12 @@ const TransactionsHistory = ({address}) => {
 
                                 <strong>HASH:</strong>
                                 <div className="col-12 d-flex justify-content-start">
-                                    <p><a href={`https://tronscan.org/#/transaction/${transactionDetails.hash}`} target="_blank">{transactionDetails.hash}</a> </p>
+                                    <p><a href={`https://tronscan.org/#/transaction/${transactionDetails.hash}`} rel="noreferrer" target="_blank">{transactionDetails.hash}</a> </p>
                                 </div>
 
                                 <strong>{t('Dashboard.Index.Wallet.TransactionsHistory.Details.Block')}:</strong>
                                 <div className="col-12 d-flex justify-content-start">
-                                    <p><a href={`https://tronscan.org/#/block/${transactionDetails.block}`} target="_blank">{transactionDetails.block}</a> </p>
+                                    <p><a href={`https://tronscan.org/#/block/${transactionDetails.block}`} rel="noreferrer" target="_blank">{transactionDetails.block}</a> </p>
                                 </div>
 
                                 <strong>{t('Dashboard.Index.Wallet.TransactionsHistory.Details.Transmitter')}:</strong>

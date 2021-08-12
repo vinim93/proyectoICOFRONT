@@ -88,15 +88,15 @@ const Navigation = () => {
                                 </li>
                             </ul>
 
-                            <a href="#" className="btn btn-link" onClick={() => handleClick('en')}
+                            <button className="btn btn-link" onClick={() => handleClick('en')}
                                data-toggle="collapse" data-target=".navbar-collapse.show">
                                 <img src={USAFLAG} className="img-fluid" style={{width: 50}} alt=""/>
-                            </a>
+                            </button>
 
-                            <a href="#" className="btn btn-link" onClick={() => handleClick('es')}
+                            <button className="btn btn-link" onClick={() => handleClick('es')}
                                data-toggle="collapse" data-target=".navbar-collapse.show">
                                 <img src={MEXICOFLAG} className="img-fluid" style={{width: 50}} alt=""/>
-                            </a>
+                            </button>
 
                             <div>
                                 <Button aria-controls="simple-menu" variant="contained"
@@ -160,30 +160,30 @@ const Navigation = () => {
                                     </NavLink>
                                 </li>
                             </ul>
-                            <a href="#" data-toggle="collapse" data-target=".navbar-collapse.show">
+                            <button className="btn btn-link" data-toggle="collapse" data-target=".navbar-collapse.show">
                                 <button type="button" id="signInButton" className="navsesion btn btn-link"
                                         data-toggle="modal" data-target="#signInModal"
                                 >{t('Navbar.SignIn')}
                                 </button>
-                            </a>
+                            </button>
 
-                            <a href="#" data-toggle="collapse" data-target=".navbar-collapse.show">
+                            <button className="btn btn-link" data-toggle="collapse" data-target=".navbar-collapse.show">
                                 <button type="button" className="navsesion btn btn-link" data-toggle="modal"
                                         data-target="#signUpModal"
                                 >
                                     {t('Navbar.SignUp')}
                                 </button>
-                            </a>
+                            </button>
 
-                            <a href="#" className="btn btn-link" onClick={() => handleClick('en')}
+                            <button className="btn btn-link" onClick={() => handleClick('en')}
                                data-toggle="collapse" data-target=".navbar-collapse.show">
                                 <img src={USAFLAG} className="img-fluid" style={{width: 50}} alt=""/>
-                            </a>
+                            </button>
 
-                            <a href="#" className="btn btn-link" onClick={() => handleClick('es')}
+                            <button className="btn btn-link" onClick={() => handleClick('es')}
                                data-toggle="collapse" data-target=".navbar-collapse.show">
                                 <img src={MEXICOFLAG} className="img-fluid" style={{width: 50}} alt=""/>
-                            </a>
+                            </button>
 
                         </div>
                         <SignUpModal/>

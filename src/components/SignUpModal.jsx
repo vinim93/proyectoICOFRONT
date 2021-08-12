@@ -21,22 +21,13 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import FormControl from "@material-ui/core/FormControl";
 import SunshineFinder from "../apis/SunshineFinder";
+import {useTranslation} from "react-i18next";
 require('dotenv').config();
 
 
 const SignUpModal = () => {
 
-    const sendReCAPTCHAValue = async (value) => {
-        const response = await SunshineFinder.post("/api/recaptcha", {
-            captchaValue: value
-        });
-
-        if (response.data.status === "success") {
-            setVerifiedCaptcha(true);
-        }
-
-    }
-
+    const {t} = useTranslation();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [apellido, setApellido] = useState("");
@@ -46,6 +37,20 @@ const SignUpModal = () => {
     const [loading, setLoading] = useState(false);
     const [verifiedCaptcha, setVerifiedCaptcha] = useState(false);
     const history = useHistory();
+
+    const sendReCAPTCHAValue = async (value) => {
+        try{
+            const response = await SunshineFinder.post("/api/recaptcha", {
+                captchaValue: value
+            });
+
+            if (response.data.status === "success") {
+                setVerifiedCaptcha(true);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     //VALIDATIONS
     const validations = {
@@ -58,91 +63,85 @@ const SignUpModal = () => {
         setCheckedValue(e.target.checked);
     }
 
-    const saveDataInFirestore = (uid, data = {}) => {
-        if (Object.keys(data).length > 0) {
-            /*============GUARDAR DATOS EN FIRESTORE CON GOOGLE===========*/
-            db.collection("credentials").doc(uid).set({
-                UUID: uid,
-                city: "".replace(/<[^>]+>/g, ''),
-                doc: "".replace(/<[^>]+>/g, ''),
-                email: data.email.replace(/<[^>]+>/g, ''),
-                name: data.name.replace(/<[^>]+>/g, ''),
-                phone: data.phone === null ? "".replace(/<[^>]+>/g, '') : data.phone.replace(/<[^>]+>/g, ''),
-                authType: "GOOGLE".replace(/<[^>]+>/g, ''),
-                birthday: "".replace(/<[^>]+>/g, ''),
-                country: "".replace(/<[^>]+>/g, ''),
-                state: "".replace(/<[^>]+>/g, ''),
-                address: "".replace(/<[^>]+>/g, ''),
-                suns: 0,
-                countryComplete: "".replace(/<[^>]+>/g, ''),
-                profileStatus: 0,
-                fileType: "".replace(/<[^>]+>/g, ''),
-                profilePicture: "".replace(/<[^>]+>/g, ''),
-                profilePictureStatus: 0,
-                addressToken: "",
-                privateKey: ""
-            }).then(docRef => {
+    const saveDataInFirestore = async (uid, data = {}) => {
+        try{
+            if (Object.keys(data).length > 0) {
+                /*============GUARDAR DATOS EN FIRESTORE CON GOOGLE===========*/
+                await db.collection("credentials").doc(uid).set({
+                    UUID: uid,
+                    city: "".replace(/<[^>]+>/g, ''),
+                    doc: "".replace(/<[^>]+>/g, ''),
+                    email: data.email.replace(/<[^>]+>/g, ''),
+                    name: data.name.replace(/<[^>]+>/g, ''),
+                    phone: data.phone === null ? "".replace(/<[^>]+>/g, '') : data.phone.replace(/<[^>]+>/g, ''),
+                    authType: "GOOGLE".replace(/<[^>]+>/g, ''),
+                    birthday: "".replace(/<[^>]+>/g, ''),
+                    country: "".replace(/<[^>]+>/g, ''),
+                    state: "".replace(/<[^>]+>/g, ''),
+                    address: "".replace(/<[^>]+>/g, ''),
+                    suns: 0,
+                    countryComplete: "".replace(/<[^>]+>/g, ''),
+                    profileStatus: 0,
+                    fileType: "".replace(/<[^>]+>/g, ''),
+                    profilePicture: "".replace(/<[^>]+>/g, ''),
+                    profilePictureStatus: 0,
+                    addressToken: "",
+                    privateKey: ""
+                });
                 history.push("/");
                 window.location.reload();
                 clearStates();
-            }).catch((error) => {
-
-            });
-            /*============GUARDAR DATOS EN FIRESTORE===========*/
-        } else {
-            /*============GUARDAR DATOS EN FIRESTORE===========*/
-            db.collection("credentials").doc(uid).set({
-                UUID: uid,
-                city: "".replace(/<[^>]+>/g, ''),
-                doc: "".replace(/<[^>]+>/g, ''),
-                email: email.replace(/<[^>]+>/g, ''),
-                name: name.replace(/<[^>]+>/g, ''),
-                lastname: apellido.replace(/<[^>]+>/g, ''),
-                phone: "".replace(/<[^>]+>/g, ''),
-                authType: "EMAIL".replace(/<[^>]+>/g, ''),
-                birthday: "".replace(/<[^>]+>/g, ''),
-                country: "".replace(/<[^>]+>/g, ''),
-                state: "".replace(/<[^>]+>/g, ''),
-                address: "".replace(/<[^>]+>/g, ''),
-                profileStatus: 0,
-                suns: 0,
-                countryComplete: "".replace(/<[^>]+>/g, ''),
-                fileType: "".replace(/<[^>]+>/g, ''),
-                profilePicture: "".replace(/<[^>]+>/g, ''),
-                profilePictureStatus: 0,
-                addressToken: "",
-                privateKey: ""
-            }).then(docRef => {
-                swal({
-                    title: "¡Registro exitoso!",
-                    text: "Enviamos un enlace al correo electrónico que proporcionaste para verificar tu cuenta.",
-                    icon: "success",
-                    button: "¡Entendido!",
-                    closeOnClickOutside: false
-                }).then(confirm => {
-                    if (confirm) {
-                        document.getElementById("closeModalSignUp").click();
-                        document.getElementById("signInButton").click();
-                    }
+                /*============GUARDAR DATOS EN FIRESTORE===========*/
+            } else {
+                /*============GUARDAR DATOS EN FIRESTORE===========*/
+                await db.collection("credentials").doc(uid).set({
+                    UUID: uid,
+                    city: "".replace(/<[^>]+>/g, ''),
+                    doc: "".replace(/<[^>]+>/g, ''),
+                    email: email.replace(/<[^>]+>/g, ''),
+                    name: name.replace(/<[^>]+>/g, ''),
+                    lastname: apellido.replace(/<[^>]+>/g, ''),
+                    phone: "".replace(/<[^>]+>/g, ''),
+                    authType: "EMAIL".replace(/<[^>]+>/g, ''),
+                    birthday: "".replace(/<[^>]+>/g, ''),
+                    country: "".replace(/<[^>]+>/g, ''),
+                    state: "".replace(/<[^>]+>/g, ''),
+                    address: "".replace(/<[^>]+>/g, ''),
+                    profileStatus: 0,
+                    suns: 0,
+                    countryComplete: "".replace(/<[^>]+>/g, ''),
+                    fileType: "".replace(/<[^>]+>/g, ''),
+                    profilePicture: "".replace(/<[^>]+>/g, ''),
+                    profilePictureStatus: 0,
+                    addressToken: "",
+                    privateKey: ""
                 });
-                clearStates();
-                setLoading(false);
-            }).catch((error) => {
-                setLoading(false);
-
-            });
-            /*============GUARDAR DATOS EN FIRESTORE===========*/
+                const confirm = await swal({
+                    title: t('Navbar.Modals.SignUp.Modals.0.Title'),
+                    text: t('Navbar.Modals.SignUp.Modals.0.Text'),
+                    icon: "success",
+                    button: t('Navbar.Modals.SignUp.Understood'),
+                    closeOnClickOutside: false
+                });
+                if (confirm) {
+                    document.getElementById("closeModalSignUp").click();
+                    document.getElementById("signInButton").click();
+                }
+                /*============GUARDAR DATOS EN FIRESTORE===========*/
+            }
+        } catch (e) {
+            setLoading(false);
         }
     }
 
     const searchDataInFirestore = async id => {
         let result = null;
-        await db.collection('credentials').doc(id).get().then(doc => {
+        try{
+            const doc = await db.collection('credentials').doc(id).get();
             result = doc.exists ? "exists" : "not-exists";
-        }).catch(error => {
+        } catch (e) {
             result = "error";
-
-        });
+        }
         return result;
     }
 
@@ -157,159 +156,153 @@ const SignUpModal = () => {
     }
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (validations.requiredFields()) {
+        try{
+            if (validations.requiredFields()) {
 
-            let schema = new passwordValidator();
-            schema
-                .is().min(8)
-                .is().max(100)
-                .has().uppercase()
-                .has().lowercase()
-                .has().digits(1)
-                .has().not().spaces();
+                let schema = new passwordValidator();
+                schema
+                    .is().min(8)
+                    .is().max(100)
+                    .has().uppercase()
+                    .has().lowercase()
+                    .has().digits(1)
+                    .has().not().spaces();
 
-            if (schema.validate(password)) {
-                if (password === repeatedPassword) {
-                    if (checkedValue) {
-                        if (verifiedCaptcha) {
-                            setLoading(true);
-                            auth.createUserWithEmailAndPassword(email, password)
-                                .then((user) => {
-
-                                    user.user.sendEmailVerification().then(r => {
-                                        saveDataInFirestore(user.user.uid);
-                                    }, (error) => {
-
-                                    })
-
-                                    auth.signOut();
-
-                                }).catch((error) => {
-                                setLoading(false);
-                                let errorCode = error.code;
-
-
-                                /*============== EL CORREO YA SE USA POR OTRA CUENTA ==================*/
-                                if (errorCode === "auth/email-already-in-use") {
-                                    swal({
-                                        title: "Oops",
-                                        text: "La dirección de correo ya se encuentra en uso",
-                                        icon: "warning",
-                                        button: "¡Entendido!",
-                                        closeOnClickOutside: false
-                                    });
-                                } else if (errorCode === "auth/weak-password") {
-                                    swal({
-                                        title: "Oops",
-                                        text: "La contraseña debe tener al menos 8 caracteres!",
-                                        icon: "warning",
-                                        button: "¡Entendido!"
-                                    });
-                                }
-
-                            });
+                if (schema.validate(password)) {
+                    if (password === repeatedPassword) {
+                        if (checkedValue) {
+                            if (verifiedCaptcha) {
+                                setLoading(true);
+                                const user = await auth.createUserWithEmailAndPassword(email, password);
+                                await user.user.sendEmailVerification();
+                                await saveDataInFirestore(user.user.uid);
+                                await auth.signOut();
+                            } else {
+                                swal({
+                                    title: t('Navbar.Modals.SignUp.Modals.1.Title'),
+                                    text: t('Navbar.Modals.SignUp.Modals.1.Text'),
+                                    icon: "warning",
+                                    button: t('Navbar.Modals.SignUp.Understood')
+                                });
+                            }
                         } else {
                             swal({
-                                title: "Verifica el CAPTCHA",
-                                text: "Intenta verificar el CAPTCHA de nuevo para poder continuar",
+                                title: t('Navbar.Modals.SignUp.Modals.2.Title'),
+                                text: t('Navbar.Modals.SignUp.Modals.2.Text'),
                                 icon: "warning",
-                                button: "¡Entendido!"
+                                button: t('Navbar.Modals.SignUp.Understood'),
+                                closeOnClickOutside: false
                             });
                         }
                     } else {
                         swal({
-                            title: "Advertencia",
-                            text: "Debes aceptar los términos y condiciones para poder registrarte",
+                            title: t('Navbar.Modals.SignUp.Modals.3.Title'),
+                            text: t('Navbar.Modals.SignUp.Modals.3.Text'),
                             icon: "warning",
-                            button: "¡Entendido!",
+                            button: t('Navbar.Modals.SignUp.Understood'),
                             closeOnClickOutside: false
                         });
                     }
+
                 } else {
-                    swal({
-                        title: "Las contraseñas no coinciden",
-                        text: "Asegurate de escribir las mismas contraseñas en los campos correspondientes",
-                        icon: "warning",
-                        button: "¡Entendido!",
-                        closeOnClickOutside: false
-                    });
+                    swal2({
+                        text: t('Navbar.Modals.SignUp.Modals.4.Text'),
+                        closeOnClickOutside: false,
+                        buttons: {
+                            cancel: t('Navbar.Modals.SignUp.Understood'),
+                        },
+                        content: (
+                            <div className="container">
+                                <div className="row">
+                                    <ul>
+                                        {
+                                            schema.validate(password, {list: true}).map((element, index) => {
+
+                                                switch (element) {
+                                                    case 'min':
+
+                                                        return (
+                                                            <li key={index} className="text-dark text-justify"><p
+                                                                className="text-danger">{t('Navbar.Modals.SignUp.Modals.4.Requirements.0')}</p></li>
+                                                        )
+
+                                                    case 'max':
+                                                        return (
+                                                            <li key={index} className="text-dark text-justify"><p
+                                                                className="text-danger">{t('Navbar.Modals.SignUp.Modals.4.Requirements.1')}</p></li>
+                                                        )
+
+                                                    case 'uppercase':
+                                                        return (
+                                                            <li key={index} className="text-dark text-justify"><p
+                                                                className="text-danger">{t('Navbar.Modals.SignUp.Modals.4.Requirements.2')}</p></li>
+                                                        )
+
+                                                    case 'lowercase':
+                                                        return (
+                                                            <li key={index} className="text-dark text-justify"><p
+                                                                className="text-danger">{t('Navbar.Modals.SignUp.Modals.4.Requirements.3')}</p></li>
+                                                        )
+
+                                                    case 'spaces':
+                                                        return (
+                                                            <li key={index} className="text-dark text-justify"><p
+                                                                className="text-danger">{t('Navbar.Modals.SignUp.Modals.4.Requirements.4')}</p></li>
+                                                        )
+
+                                                    case 'digits':
+                                                        return (
+                                                            <li key={index} className="text-dark text-justify"><p
+                                                                className="text-danger">{t('Navbar.Modals.SignUp.Modals.4.Requirements.5')}</p></li>
+                                                        )
+
+                                                    default:
+                                                        return null;
+                                                }
+                                            })
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        )
+                    })
                 }
 
             } else {
-                swal2({
-                    text: "Tu contraseña debe cumplir con los siguientes requisitos",
-                    closeOnClickOutside: false,
-                    buttons: {
-                        cancel: "Entendido",
-                    },
-                    content: (
-                        <div className="container">
-                            <div className="row">
-                                <ul>
-                                    {
-                                        schema.validate(password, {list: true}).map((element, index) => {
-
-                                            switch (element) {
-                                                case 'min':
-
-                                                    return (
-                                                        <li key={index} className="text-dark text-justify"><p
-                                                            className="text-danger">Mínimo 8 caracteres</p></li>
-                                                    )
-
-                                                case 'max':
-                                                    return (
-                                                        <li key={index} className="text-dark text-justify"><p
-                                                            className="text-danger">Máximo 100 caracteres</p></li>
-                                                    )
-
-                                                case 'uppercase':
-                                                    return (
-                                                        <li key={index} className="text-dark text-justify"><p
-                                                            className="text-danger">Mínimo una letra mayuscula</p></li>
-                                                    )
-
-                                                case 'lowercase':
-                                                    return (
-                                                        <li key={index} className="text-dark text-justify"><p
-                                                            className="text-danger">Mínimo 1 letra minuscula</p></li>
-                                                    )
-
-                                                case 'spaces':
-                                                    return (
-                                                        <li key={index} className="text-dark text-justify"><p
-                                                            className="text-danger">No debe contener espacios</p></li>
-                                                    )
-
-                                                case 'digits':
-                                                    return (
-                                                        <li key={index} className="text-dark text-justify"><p
-                                                            className="text-danger">Mínimo 1 número</p></li>
-                                                    )
-
-                                                default:
-                                                    return
-                                            }
-                                        })
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                    )
-                })
+                swal({
+                    title: t('Navbar.Modals.SignUp.Modals.5.Title'),
+                    text: t('Navbar.Modals.SignUp.Modals.5.Text'),
+                    icon: "warning",
+                    button: t('Navbar.Modals.SignUp.Understood'),
+                    closeOnClickOutside: false
+                });
             }
+        } catch (e) {
+            setLoading(false);
+            let errorCode = e.code;
 
-        } else {
-            swal({
-                title: "Advertencia",
-                text: "Debes llenar todos los campos",
-                icon: "warning",
-                button: "¡Entendido!",
-                closeOnClickOutside: false
-            });
+
+            /*============== EL CORREO YA SE USA POR OTRA CUENTA ==================*/
+            if (errorCode === "auth/email-already-in-use") {
+                swal({
+                    title: t('Navbar.Modals.SignUp.Modals.6.Title'),
+                    text: t('Navbar.Modals.SignUp.Modals.6.Text'),
+                    icon: "warning",
+                    button: t('Navbar.Modals.SignUp.Understood'),
+                    closeOnClickOutside: false
+                });
+            } else if (errorCode === "auth/weak-password") {
+                swal({
+                    title: t('Navbar.Modals.SignUp.Modals.7.Title'),
+                    text: t('Navbar.Modals.SignUp.Modals.7.Text'),
+                    icon: "warning",
+                    button: t('Navbar.Modals.SignUp.Understood')
+                });
+            }
         }
+
     };
 
     const signUpWithGoogle = async () => {
@@ -336,8 +329,8 @@ const SignUpModal = () => {
                     });
                 } else {
                     swal({
-                        title: "Ocurrió un error",
-                        text: "Ocurrió un error inesperado, inténtalo de nuevo más tarde",
+                        title: t('Navbar.Modals.SignUp.Modals.8.Title'),
+                        text: t('Navbar.Modals.SignUp.Modals.8.Text'),
                         icon: "error",
                         button: "Entendido!",
                         closeOnClickOutside: false
@@ -391,20 +384,18 @@ const SignUpModal = () => {
                 <div className="modal-content  registrobody pl-xl-5 pr-xl-5">
 
                     <div className="modal-header">
-                        <h5 className="modal-title col-12 text-light" id="staticBackdropLabel">Crea tu cuenta</h5>
+                        <h5 className="modal-title col-12 text-light" id="staticBackdropLabel">{t('Navbar.Modals.SignUp.Title')}</h5>
                         <button type="button" id="closeModalSignUp" className="close" data-dismiss="modal"
                                 aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
 
-
                     <div className="modal-body col-12 pl-xl-5 pr-xl-5">
-
 
                         <div className="form-group col-12 d-flex justify-content-center">
                             <GoogleButton
-                                label='Iniciar sesión con Google'
+                                label={t('Navbar.Modals.SignUp.GoogleButton')}
                                 onClick={signUpWithGoogle}
                                 style={{width: 500, borderRadius: 3}}
                             />
@@ -423,7 +414,7 @@ const SignUpModal = () => {
                                                    id="name"
                                                    name="name"
                                                    value={name}
-                                                   label="Nombre"
+                                                   label={t('Navbar.Modals.SignUp.Name')}
                                                    type="text"
                                                    onChange={(e) => setName(e.target.value)} variant="filled"/>
 
@@ -438,7 +429,7 @@ const SignUpModal = () => {
                                                    className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
                                                    id="lastname"
                                                    name="lastnane"
-                                                   label="Apellido"
+                                                   label={t('Navbar.Modals.SignUp.Lastname')}
                                                    value={apellido}
                                                    type="text"
                                                    onChange={(e) => setApellido(e.target.value)} variant="filled"/>
@@ -450,7 +441,8 @@ const SignUpModal = () => {
                                                    fullWidth
                                                    style={{backgroundColor: "#FFFFFF", fontWeight: "bold"}}
                                                    className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
-                                                   id="outlined-basic" label="Email"
+                                                   id="outlined-basic"
+                                                   label={t('Navbar.Modals.SignUp.Email')}
                                                    value={email}
                                                    type="email"
                                                    onChange={(e) => setEmail(e.target.value)} variant="filled"/>
@@ -460,7 +452,7 @@ const SignUpModal = () => {
 
                                         <FormControl fullWidth className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
                                                      variant="filled">
-                                            <InputLabel htmlFor="filled-adornment-password">Contraseña *</InputLabel>
+                                            <InputLabel htmlFor="filled-adornment-password">{t('Navbar.Modals.SignUp.Pass')} *</InputLabel>
                                             <FilledInput
                                                 id="signup-password"
                                                 type={values.showPassword1 ? 'text' : 'password'}
@@ -488,7 +480,7 @@ const SignUpModal = () => {
 
                                         <FormControl fullWidth className="ml-lg-5 mr-lg-5 ml-xl-5 mr-xl-5"
                                                      variant="filled">
-                                            <InputLabel htmlFor="filled-adornment-password">Repite tu contraseña
+                                            <InputLabel htmlFor="filled-adornment-password">{t('Navbar.Modals.SignUp.RepeatPass')}
                                                 *</InputLabel>
                                             <FilledInput
                                                 id="signup-password"
@@ -524,7 +516,7 @@ const SignUpModal = () => {
                                                                           onChange={handleCheckboxState}
                                                                           required={true}
                                                                           name="terminosyCondiciones"/>}
-                                                            label="Aceptar términos y condiciones" required
+                                                            label={t('Navbar.Modals.SignUp.Terms')} required
                                                             name="terminosYCondiciones"
                                                         />
                                                     </span>
@@ -542,9 +534,9 @@ const SignUpModal = () => {
                                                 disabled={loading}>
                                             {loading ? (
                                                 <div className="spinner-border text-dark" role="status">
-                                                    <span className="sr-only">Registrando...</span>
+                                                    <span className="sr-only">{t('Navbar.Modals.SignUp.Loading')}...</span>
                                                 </div>
-                                            ) : "REGISTRATE"}
+                                            ) : t('Navbar.Modals.SignUp.In')}
                                         </button>
                                     </div>
 

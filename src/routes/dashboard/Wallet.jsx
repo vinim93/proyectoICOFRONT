@@ -40,7 +40,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
 import {makeStyles, withStyles} from "@material-ui/core/styles";
 import SunshineFinder from "../../apis/SunshineFinder";
-import {Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
+import {Dialog, DialogActions, DialogContent} from "@material-ui/core";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import {useTranslation} from "react-i18next";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
@@ -79,7 +79,7 @@ const Wallet = () => {
             history.push("/Home");
             setLogged(false);
         }
-    }, []);
+    }, [currentUser, history]);
 
 
     const getData = async (id) => {
@@ -119,10 +119,10 @@ const Wallet = () => {
                     await getData(uid);
                     clearFields();
                 } else {
-                    throw response.data.sendTokenResponse.toString();
+                    throw new Error(response.data.sendTokenResponse.toString());
                 }
             } else {
-                throw "sms-incorrect";
+                throw new Error("sms-incorrect");
             }
         } catch (e) {
             switch (e.message || e){
@@ -183,13 +183,12 @@ const Wallet = () => {
                 enableRequestSms();
                 startTimer();
             } else {
-                throw "sms-not-sended";
+                throw new Error("sms-not-sended");
             }
 
         } catch (e) {
             switch (e.message || e){
                 case "sms-not-sended":
-                    const title = t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.5.Title');
                     swal(t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.5.Title'), t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Errors.5.Text'), "warning");
                     clearFields();
                     break;
@@ -289,7 +288,7 @@ const Wallet = () => {
         if(logged){
             return(
                 <div className="mt-5 mt-md-0 bodyWallet">
-                    <a href="#" type="button" id="openScanner" data-toggle="modal"
+                    <div type="button" id="openScanner" data-toggle="modal"
                        data-target="#exampleModalCenter" />
 
                     <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog"
@@ -482,7 +481,7 @@ const Wallet = () => {
                     </Backdrop>
 
 
-                    <Dialog open={openSmsModal} aria-labelledby="customized-dialog-title" aria-labelledby="form-dialog-title">
+                    <Dialog open={openSmsModal} aria-labelledby="customized-dialog-title">
                         <DialogTitle onClose={handleClose} id="customized-dialog-title">
                             {t('Dashboard.Index.PhoneMessages.Title')}
                         </DialogTitle>

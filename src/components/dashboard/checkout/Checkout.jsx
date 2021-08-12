@@ -42,7 +42,7 @@ export default function Checkout({uid, email, allData}) {
         checkoutContext.setStateLocation(allData.state);
         checkoutContext.setCountry(allData.country);
         checkoutContext.setAddressToken(allData.addressToken);
-    }, []);
+    }, [allData, checkoutContext]);
 
     const currencyConversor = async (from, to) => {
         try {
@@ -197,6 +197,8 @@ export default function Checkout({uid, email, allData}) {
                     setActiveStep(activeStep + 1);
                 }
                 break;
+            default :
+
         }
     };
 

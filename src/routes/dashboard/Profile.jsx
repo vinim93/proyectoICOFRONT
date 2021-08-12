@@ -41,7 +41,6 @@ const Profile = () => {
     const classes = useStyles();
     const profileContext = useContext(ProfileContext);
     const {currentUser, logout} = useAuth();
-    const [logged, setLogged] = useState(false);
     const history = useHistory();
     const [uid, setUid] = useState("");
     const [doc, setDoc] = useState("");
@@ -52,14 +51,39 @@ const Profile = () => {
 
     useEffect(() => {
         try {
-            let email = currentUser.email;
+
+            const getUserData = async id => {
+                try {
+                    let docRef = db.collection('credentials').doc(id);
+                    await docRef.onSnapshot(doc => {
+                        if (doc.exists) {
+                            profileContext.setName(doc.data().name);
+                            profileContext.setLastname(doc.data().lastname);
+                            profileContext.setBirthday(timeConverter(doc.data().birthday.seconds));
+                            profileContext.setCountry(doc.data().country);
+                            profileContext.setStateLocation(doc.data().state);
+                            profileContext.setCity(doc.data().city);
+                            profileContext.setPhone(doc.data().phone);
+                            profileContext.setAddress(doc.data().address);
+                            profileContext.setProfileStatus(doc.data().profileStatus);
+                            setDoc(doc.data().doc);
+                            profileContext.setFileObject(doc.data().fileType);
+                            setProfilePictureStatus(doc.data().profilePictureStatus);
+                            profileContext.setCroppedImage(doc.data().profilePicture)
+                            profileContext.getStatesAPI(doc.data().countryComplete);
+                            profileContext.setCountryCompleteName(doc.data().countryComplete);
+                        }
+                    });
+                } catch (e) {
+
+                }
+            }
+
             let id = currentUser.uid;
             if (!currentUser.emailVerified) {
-                setLogged(false);
                 logout();
                 history.push("/Home");
             } else {
-                setLogged(true);
                 history.push("/Profile");
                 getUserData(id);
                 setUid(id);
@@ -69,9 +93,8 @@ const Profile = () => {
             }
         } catch (e) {
             history.push("/Home");
-            setLogged(false);
         }
-    }, [profileContext.jalaPorfavor]);
+    }, [profileContext.jalaPorfavor, currentUser, logout]);
 
     const setFile = (e) => {
         try {
@@ -97,6 +120,9 @@ const Profile = () => {
                             profileContext.setFileObject("pdf");
                             profileContext.setFileFirestore(e);
                             break;
+
+                        default:
+                            return null;
                     }
                 } else {
                     swal(t('Dashboard.Index.Profile.Modals.0.Title'), t('Dashboard.Index.Profile.Modals.0.Text'), "error");
@@ -150,42 +176,13 @@ const Profile = () => {
                 return (
                     <div className="row d-flex justify-content-center">
                         <div className="col-12 col-sm-12 col-xl-6 w-25 h-25">
-                            <iframe
-                                src={doc}
-                                frameBorder="0" width="100%" height="300"></iframe>
+                            <iframe src={doc} title="Pdf" frameBorder="0" width="100%" height="300"/>
                         </div>
                     </div>
                 )
             } else {
                 return null;
             }
-        }
-    }
-
-    const getUserData = async id => {
-        try {
-            let docRef = db.collection('credentials').doc(id);
-            await docRef.onSnapshot(doc => {
-                if (doc.exists) {
-                    profileContext.setName(doc.data().name);
-                    profileContext.setLastname(doc.data().lastname);
-                    profileContext.setBirthday(timeConverter(doc.data().birthday.seconds));
-                    profileContext.setCountry(doc.data().country);
-                    profileContext.setStateLocation(doc.data().state);
-                    profileContext.setCity(doc.data().city);
-                    profileContext.setPhone(doc.data().phone);
-                    profileContext.setAddress(doc.data().address);
-                    profileContext.setProfileStatus(doc.data().profileStatus);
-                    setDoc(doc.data().doc);
-                    profileContext.setFileObject(doc.data().fileType);
-                    setProfilePictureStatus(doc.data().profilePictureStatus);
-                    profileContext.setCroppedImage(doc.data().profilePicture)
-                    profileContext.getStatesAPI(doc.data().countryComplete);
-                    profileContext.setCountryCompleteName(doc.data().countryComplete);
-                }
-            });
-        } catch (e) {
-
         }
     }
 

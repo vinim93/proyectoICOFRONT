@@ -1,7 +1,7 @@
 import 'date-fns';
 import React, {useContext, useState} from 'react';
 import {makeStyles, withStyles} from '@material-ui/core/styles';
-import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField} from '@material-ui/core';
+import {Button, Dialog, DialogActions, DialogContent, TextField} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import DateFnsUtils from '@date-io/date-fns';
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
@@ -72,7 +72,7 @@ const PersonalData = ({uid}) => {
                     setOpen(false);
                 });
             } else {
-                throw "sms-incorrect";
+                throw new Error("sms-incorrect");
             }
         } catch (e) {
             switch (e.message || e){
@@ -125,7 +125,7 @@ const PersonalData = ({uid}) => {
                                         enableRequestSms();
                                         startTimer();
                                     } else {
-                                        throw "sms-not-sended";
+                                        throw new Error("sms-not-sended");
                                     }
                                 } else {
                                     setOpen(false);
@@ -155,6 +155,7 @@ const PersonalData = ({uid}) => {
     }
 
     const handleClose = () => {
+        setOpen(false);
         setOpenSmsModal(false);
     };
 
@@ -373,7 +374,7 @@ const PersonalData = ({uid}) => {
             </Backdrop>
 
 
-            <Dialog open={openSmsModal} onClose={handleClose} aria-labelledby="customized-dialog-title" aria-labelledby="form-dialog-title">
+            <Dialog open={openSmsModal} onClose={handleClose} aria-labelledby="customized-dialog-title">
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                     {t('Dashboard.Index.PhoneMessages.Title')}
                 </DialogTitle>
