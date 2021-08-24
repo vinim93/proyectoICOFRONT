@@ -23,6 +23,7 @@ import Settings from "./routes/dashboard/Settings";
 import {CheckoutContextProvider} from "./context/CheckoutContext";
 import {ProfileContextProvider} from "./context/ProfileContext";
 import "firebase/auth";
+import Recovery from "./routes/Recovery";
 
 const App = () => {
 
@@ -44,6 +45,7 @@ const App = () => {
                                 <Route path={"/Checkout"} component={Checkout}/>
                                 <Route path={"/Wallet"} component={Wallet}/>
                                 <Route path={"/Settings"} component={Settings}/>
+                                <Route path="/Recovery" component={Recovery} />
                             </Switch>
                         </ProfileContextProvider>
                     </CheckoutContextProvider>

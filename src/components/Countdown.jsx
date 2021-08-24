@@ -16,34 +16,36 @@ const Countdown = () => {
     }, []);
 
     return (
-        <div className="row fondosec3-alter fondosec3">
+        <div className="container-fluid">
+            <div className="row fondosec3-alter fondosec3">
 
-            <div className="col-12">
-                <p className="sec3con">
-                    {t('CountdownL.Title')}
-                </p><br/>
-                <div className="container-contador">
-                    <p id="contador"></p>
+                <div className="col-12">
+                    <p className="sec3con">
+                        {t('CountdownL.Title')}
+                    </p><br/>
+                    <div className="container-contador">
+                        <p id="contador"></p>
+                    </div>
                 </div>
-            </div>
 
-            <ul className="rectangulo1 text-center">
-                <li className=" cont-li-cap">
-                    <img src={rectangulo1} alt="Rectangulo img" className="rectanguloimg"/>
-                </li>
-
-                <li className="row cap justify-content-around text-left">
-                    <p className="col-4">SOFT CAP<br/><p className="cap-min">$ 15 M USD</p></p>
-                    <p className="col-4">HARD CAP<br/> <p className="cap-min">$ 250 M USD</p></p>
-
-                </li>
-                <Zoom>
-                    <li className="tecno">
-                        <img src={tecnologias} alt="Img tecno" className="img-tecno"/>
+                <ul className="rectangulo1 text-center">
+                    <li className=" cont-li-cap">
+                        <img src={rectangulo1} alt="Rectangulo img" className="rectanguloimg"/>
                     </li>
-                </Zoom>
-            </ul>
 
+                    <li className="row cap justify-content-around text-left">
+                        <p className="col-4">SOFT CAP<br/><p className="cap-min">$ 15 M USD</p></p>
+                        <p className="col-4">HARD CAP<br/> <p className="cap-min">$ 250 M USD</p></p>
+
+                    </li>
+                    <Zoom>
+                        <li className="tecno">
+                            <img src={tecnologias} alt="Img tecno" className="img-tecno"/>
+                        </li>
+                    </Zoom>
+                </ul>
+
+            </div>
         </div>
     );
 };

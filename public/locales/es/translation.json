@@ -341,10 +341,12 @@
     "Menu": {
       "Home": "Inicio",
       "Profile": "Perfil",
+      "Wallet": "Billetera",
       "Settings": "Ajustes",
       "Logout": "Cerrar sesión"
     },
     "Index": {
+      "Loading": "Cargando",
       "Buttons": {
         "CryptoMarkt": "Mercado de criptos",
         "Buy": "Comprar",

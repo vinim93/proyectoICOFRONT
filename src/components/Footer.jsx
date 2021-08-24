@@ -48,8 +48,8 @@ const Footer = () => {
 
     return (
 
-        <div className="row con-footer con-conecta">
-            <div className="col-12 ">
+        <div className="container-fluid con-footer con-conecta">
+            <div className="col-12">
                 <a href="https://sunshine-imagine.com/">
 
                     <img src={Sol} alt="Sol"/>

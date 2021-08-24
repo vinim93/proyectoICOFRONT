@@ -352,7 +352,7 @@ const SignInModal = () => {
                             <div className="row pl-xl-5 pr-xl-5">
                                 <div className="col-12 mb-5">
 
-                                    <button style={{color: "white"}} href="#" onClick={openForgetPass} data-toggle="modal"
+                                    <button style={{color: "white"}} className="btn btn-link" onClick={openForgetPass} data-toggle="modal"
                                        data-target="#recoveryModal">
                                         <h6>
                                             {t('Navbar.Modals.SignIn.ForgotPassword')}

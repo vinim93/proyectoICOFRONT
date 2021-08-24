@@ -343,10 +343,12 @@
     "Menu": {
       "Home": "Home",
       "Profile": "Profile",
+      "Wallet": "Wallet",
       "Settings": "Settings",
       "Logout": "Log out"
     },
     "Index": {
+      "Loading": "Loading",
       "Buttons": {
         "CryptoMarkt": "Cypto markt",
         "Buy": "Buy",

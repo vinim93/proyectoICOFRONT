@@ -17,7 +17,7 @@ const Soporte = () => {
     ];
 
     return (
-        <div className="row">
+        <div className="container-fluid">
             <div className="col-12 fondoedi">
                 <span className="text-soporte">
                     {t('Support.Title')}

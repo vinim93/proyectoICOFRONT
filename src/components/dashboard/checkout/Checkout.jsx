@@ -19,7 +19,7 @@ import {CheckoutContext} from "../../../context/CheckoutContext";
 import {useTranslation} from "react-i18next";
 
 
-export default function Checkout({uid, email, allData}) {
+export default function Checkout({uid, allData}) {
     const {t} = useTranslation();
     const checkoutContext = useContext(CheckoutContext);
 
@@ -74,7 +74,7 @@ export default function Checkout({uid, email, allData}) {
             case 2:
                 return <AddressForm />;
             case 3:
-                return <Review uid={uid} handleNext={handleNext} email={email}/>;
+                return <Review uid={uid} handleNext={handleNext} email={allData.email}/>;
             default:
                 throw new Error('Unknown step');
         }

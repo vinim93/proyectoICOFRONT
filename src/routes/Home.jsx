@@ -34,10 +34,10 @@ const Home = () => {
     }, [currentUser, history]);
 
     return (
-        <div className="container-fluid">
+        <div>
             <Banner/>
             <Suspense fallback={
-                <div className="  container mt-5 text-center   justify-content-center">
+                <div className="mt-5 text-center justify-content-center">
                     <img className="moneda-carga" align="top" alt="Coin loading" src={monedag}/><p>CARGANDO...</p>
                 </div>
             }>

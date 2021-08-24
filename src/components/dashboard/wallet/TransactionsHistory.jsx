@@ -17,13 +17,14 @@ import Chip from '@material-ui/core/Chip';
 import DONE from '../../../images/done.png';
 import TronscanFinder from "../../../apis/TronscanFinder";
 import {useTranslation} from "react-i18next";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
 
-const TransactionsHistory = ({address}) => {
+const TransactionsHistory = ({address, dataLoaded}) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [page, setPage] = useState(0);
@@ -127,39 +128,43 @@ const TransactionsHistory = ({address}) => {
     return (
         <>
             <Paper className={classes.root}>
-                <TableContainer className={classes.container}>
-                    <Table stickyHeader aria-label="sticky table">
-                        <TableHead>
-                            <TableRow>
-                                {columns.map((column) => (
-                                    <TableCell
-                                        key={column.id}
-                                        align={column.align}
-                                        style={{ minWidth: column.minWidth }}
-                                    >
-                                        {column.label}
-                                    </TableCell>
-                                ))}
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {transactions.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
-                                return (
-                                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                                        {columns.map((column) => {
-                                            const value = row[column.id];
-                                            return (
-                                                <TableCell key={column.id} align={column.align}>
-                                                    {column.id !== "hash" ? column.format && typeof value === 'number' ? column.format(value) : value : <button className="btn btn-link" onClick={e => onClickTransactionDetails(e.target.innerText)}>{value}</button>}
-                                                </TableCell>
-                                            );
-                                        })}
+                {
+                    dataLoaded ? (
+                        <TableContainer className={classes.container}>
+                            <Table stickyHeader aria-label="sticky table">
+                                <TableHead>
+                                    <TableRow>
+                                        {columns.map((column) => (
+                                            <TableCell
+                                                key={column.id}
+                                                align={column.align}
+                                                style={{ minWidth: column.minWidth }}
+                                            >
+                                                {column.label}
+                                            </TableCell>
+                                        ))}
                                     </TableRow>
-                                );
-                            })}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                                </TableHead>
+                                <TableBody>
+                                    {transactions.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
+                                        return (
+                                            <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                                                {columns.map((column) => {
+                                                    const value = row[column.id];
+                                                    return (
+                                                        <TableCell key={column.id} align={column.align}>
+                                                            {column.id !== "hash" ? column.format && typeof value === 'number' ? column.format(value) : value : <button className="btn btn-link" onClick={e => onClickTransactionDetails(e.target.innerText)}>{value}</button>}
+                                                        </TableCell>
+                                                    );
+                                                })}
+                                            </TableRow>
+                                        );
+                                    })}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    ) : (<CircularProgress style={{color: "black", marginTop: 30}} size={50} />)
+                }
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 100]}
                     component="div"

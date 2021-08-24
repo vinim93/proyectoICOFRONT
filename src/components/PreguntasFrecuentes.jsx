@@ -47,7 +47,7 @@ const PreguntasFrecuentes = () => {
     ]
 
     return (
-        <div className="row fondo-preg">
+        <div className="container-fluid fondo-preg">
             <p className="frecprec">{t('FAQ.Title')}</p>
             <div className="col-lg-6 col-md-6 col-12 preguntas">
 

@@ -27,7 +27,7 @@ const ProyectosComponent = () => {
 
     useEffect(() => {
         try {
-            if('email' in currentUser){
+            if ('email' in currentUser) {
                 history.push("/");
             }
         } catch (e) {
@@ -35,8 +35,7 @@ const ProyectosComponent = () => {
     }, [currentUser, history]);
 
     return (
-        <div>
-
+        <div className="container-fluid">
             <div className="row">
                 <div className="col-12 sec6">
                     <span className="titulo6 ">{t('Projects.Title')}</span>

@@ -46,6 +46,7 @@ import {useTranslation} from "react-i18next";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
+import OtpInput from "react-otp-input";
 
 
 const Wallet = () => {
@@ -67,6 +68,7 @@ const Wallet = () => {
     const [requestNewCode, setRequestNewCode] = useState(false);
     const [newCodeSeconds, setNewCodeSeconds] = useState(0);
     const [openTooltip, setOpenTooltip] = useState(false);
+    const [dataLoaded, setDataLoaded] = useState(false);
 
 
     useEffect(() => {
@@ -83,18 +85,23 @@ const Wallet = () => {
 
 
     const getData = async (id) => {
-        await SunshineFinder.get("/tron-data", {
-            params: {
-                uid: id
-            }
-        }).then(response => {
+        try{
+            const response = await SunshineFinder.get("/tron-data", {
+                params: {
+                    uid: id
+                }
+            });
             setTokenAddress(response.data.tokenAddress);
             if(response.data.tokensArray){
                 setTokensArray(response.data.tokensArray);
                 setAmount(response.data.tokensArray.find(element => element.key === "1003948").value);
                 setAllInfoTokens(response.data.allInfo);
             }
-        }).catch(e => {});
+            setDataLoaded(true);
+        } catch (e) {
+
+        }
+
     }
 
     const clearFields = () => {
@@ -115,7 +122,7 @@ const Wallet = () => {
 
                 if(response.data.sendTokenResponse === "success"){
                     setOpenSmsModal(false);
-                    swal(t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Title'), `${tokensToSend} ${t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Text[0]')} ${scanValue}, ${t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Text[1]')}`, "success");
+                    swal(t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Title'), `${tokensToSend} ${t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Text.0')} ${scanValue}, ${t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Text.1')}`, "success");
                     await getData(uid);
                     clearFields();
                 } else {
@@ -127,7 +134,7 @@ const Wallet = () => {
         } catch (e) {
             switch (e.message || e){
                 case "success":
-                    swal(t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Title'), `${tokensToSend} ${t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Text[0]')} ${scanValue}, ${t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Text[1]')}`, "success");
+                    swal(t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Title'), `${tokensToSend} ${t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Text.0')} ${scanValue}, ${t('Dashboard.Index.Wallet.TransactionsHistory.Modals.Success.Text.1')}`, "success");
                     clearFields();
                     break;
                 case "without-tokens":
@@ -176,15 +183,26 @@ const Wallet = () => {
         e.preventDefault();
         setOpen(true);
         try{
-            const sendSMS = await SunshineFinder.post("/send-sms", {uid});
-            if(sendSMS.data.status){
-                setRequestNewCode(false);
-                setOpenSmsModal(true);
-                enableRequestSms();
-                startTimer();
+            const verifyAddress = await SunshineFinder.get("/verify-wallet", {
+                params: {
+                    uid
+                }
+            });
+
+            if(verifyAddress){
+                const sendSMS = await SunshineFinder.post("/send-sms", {uid});
+                if(sendSMS.data.status){
+                    setRequestNewCode(false);
+                    setOpenSmsModal(true);
+                    enableRequestSms();
+                    startTimer();
+                } else {
+                    throw new Error("sms-not-sended");
+                }
             } else {
-                throw new Error("sms-not-sended");
+                swal('Wallet no existente', 'La wallet ni existe prro', "warning");
             }
+
 
         } catch (e) {
             switch (e.message || e){
@@ -308,7 +326,7 @@ const Wallet = () => {
                         </div>
                     </div>
 
-                    <HeaderCards tokensNumber={amount}/>
+                    <HeaderCards tokensNumber={amount} dataLoaded={dataLoaded}/>
                     <Container className="mt--7" fluid>
                         <Row className="d-flex justify-content-center">
                             <Col className="mb-5 mb-xl-0" xl="7">
@@ -353,9 +371,13 @@ const Wallet = () => {
                                                 <div className="tab-pane fade show active" id="tabs-icons-text-1"
                                                      role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
                                                     <div className="col-12 d-flex justify-content-center">
-                                                        <div style={{borderColor: "white", border: "solid", backgroundColor: "white", width: "min-content"}}>
-                                                            <QRCode value={tokenAddress} />
-                                                        </div>
+                                                            {
+                                                                dataLoaded ? (
+                                                                    <div style={{borderColor: "white", border: "solid", backgroundColor: "white", width: "min-content"}}>
+                                                                        <QRCode value={tokenAddress} />
+                                                                    </div>
+                                                                ) : (<CircularProgress style={{color: "white"}} size={50} />)
+                                                            }
                                                     </div>
                                                     <div className="col-12 mt-5">
                                                         <h6 className="text-uppercase text-light ls-1 mb-3">
@@ -372,92 +394,98 @@ const Wallet = () => {
                                                      aria-labelledby="tabs-icons-text-2-tab">
                                                     <form onSubmit={sendSmsCode}>
 
-                                                        <div className="container px-md-5">
-                                                            <div className="row px-md-5">
+                                                        {
+                                                            dataLoaded ? (
+                                                                    <div className="container px-md-5">
+                                                                        <div className="row px-md-5">
 
-                                                                <div className="col-12 mb-4 px-md-5">
-                                                                    <FormControl fullWidth style={{backgroundColor: "#FFFFFF", fontWeight: "bold", borderRadius: 4}} variant="filled">
-                                                                        <InputLabel htmlFor="filled-adornment-password">
-                                                                            {t('Dashboard.Index.Wallet.SpotWallet.DestinationAddressField')}
-                                                                        </InputLabel>
-                                                                        <FilledInput
-                                                                            id="filled-adornment-password"
-                                                                            required
-                                                                            type={'text'}
-                                                                            value={scanValue}
-                                                                            onChange={e => setScanValue(e.target.value)}
-                                                                            endAdornment={
-                                                                                <InputAdornment position="end">
-                                                                                    <IconButton
-                                                                                        aria-label="toggle password visibility"
-                                                                                        onClick={() => {
-                                                                                            setScannerOpen(true);
-                                                                                            document.getElementById("openScanner").click();
-                                                                                        }}
-                                                                                        edge="end"
-                                                                                    >
-                                                                                        <CropFreeIcon />
-                                                                                    </IconButton>
-                                                                                </InputAdornment>
-                                                                            }
-                                                                        />
-                                                                    </FormControl>
-                                                                </div>
+                                                                            <div className="col-12 mb-4 px-md-5">
+                                                                                <FormControl fullWidth style={{backgroundColor: "#FFFFFF", fontWeight: "bold", borderRadius: 4}} variant="filled">
+                                                                                    <InputLabel htmlFor="filled-adornment-password">
+                                                                                        {t('Dashboard.Index.Wallet.SpotWallet.DestinationAddressField')}
+                                                                                    </InputLabel>
+                                                                                    <FilledInput
+                                                                                        id="filled-adornment-password"
+                                                                                        required
+                                                                                        type={'text'}
+                                                                                        value={scanValue}
+                                                                                        onChange={e => setScanValue(e.target.value)}
+                                                                                        endAdornment={
+                                                                                            <InputAdornment position="end">
+                                                                                                <IconButton
+                                                                                                    aria-label="toggle password visibility"
+                                                                                                    onClick={() => {
+                                                                                                        setScannerOpen(true);
+                                                                                                        document.getElementById("openScanner").click();
+                                                                                                    }}
+                                                                                                    edge="end"
+                                                                                                >
+                                                                                                    <CropFreeIcon />
+                                                                                                </IconButton>
+                                                                                            </InputAdornment>
+                                                                                        }
+                                                                                    />
+                                                                                </FormControl>
+                                                                            </div>
 
-                                                                <div className="col-12 mb-4 px-md-5">
+                                                                            <div className="col-12 mb-4 px-md-5">
 
-                                                                    <TextField
-                                                                        fullWidth
-                                                                        required
-                                                                        id="filled-basic"
-                                                                        label={t('Dashboard.Index.Wallet.SpotWallet.AmountField')}
-                                                                        value={tokensToSend}
-                                                                        onChange={e => {
-                                                                            if(tokensToSend === 0){
-                                                                                setTokensToSend(null);
-                                                                            }
-                                                                            setTokensToSend(e.target.value);
+                                                                                <TextField
+                                                                                    fullWidth
+                                                                                    required
+                                                                                    id="filled-basic"
+                                                                                    label={t('Dashboard.Index.Wallet.SpotWallet.AmountField')}
+                                                                                    value={tokensToSend}
+                                                                                    onChange={e => {
+                                                                                        if(tokensToSend === 0){
+                                                                                            setTokensToSend(null);
+                                                                                        }
+                                                                                        setTokensToSend(e.target.value);
 
-                                                                        }}
-                                                                        variant="filled"
-                                                                        style={{backgroundColor: "#FFFFFF", fontWeight: "bold", borderRadius: 4}}
-                                                                    />
+                                                                                    }}
+                                                                                    variant="filled"
+                                                                                    style={{backgroundColor: "#FFFFFF", fontWeight: "bold", borderRadius: 4}}
+                                                                                />
 
-                                                                </div>
-                                                            </div>
+                                                                            </div>
+                                                                        </div>
 
-                                                            <div className="row mt-2 px-md-5">
+                                                                        <div className="row mt-2 px-md-5">
 
-                                                                <div className="col-12 px-md-5 d-flex justify-content-start">
-                                                                    <p className="text-light">{t('Dashboard.Index.Wallet.SpotWallet.AmountToSend')}: <strong>{tokensToSend}</strong></p>
-                                                                </div>
+                                                                            <div className="col-12 px-md-5 d-flex justify-content-start">
+                                                                                <p className="text-light">{t('Dashboard.Index.Wallet.SpotWallet.AmountToSend')}: <strong>{tokensToSend}</strong></p>
+                                                                            </div>
 
-                                                                <div className="col-12 px-md-5 d-flex justify-content-start">
-                                                                    <p className="text-light">{t('Dashboard.Index.Wallet.SpotWallet.RemainingAmount')}:
-                                                                        <strong className={amount - convertForSend(tokensToSend) < 0 ? "text-danger" : ""}>
-                                                                            {(amount - convertForSend(tokensToSend)).toString().slice(0, (amount - convertForSend(tokensToSend)).toString().length-6) + "." + (amount - convertForSend(tokensToSend)).toString().slice((amount - tokensToSend).toString().length-6)}
-                                                                        </strong>
-                                                                    </p>
-                                                                </div>
+                                                                            <div className="col-12 px-md-5 d-flex justify-content-start">
+                                                                                <p className="text-light">{t('Dashboard.Index.Wallet.SpotWallet.RemainingAmount')}:
+                                                                                    <strong className={amount - convertForSend(tokensToSend) < 0 ? "text-danger" : ""}>
+                                                                                        {(amount - convertForSend(tokensToSend)).toString().slice(0, (amount - convertForSend(tokensToSend)).toString().length-6) + "." + (amount - convertForSend(tokensToSend)).toString().slice((amount - tokensToSend).toString().length-6)}
+                                                                                    </strong>
+                                                                                </p>
+                                                                            </div>
 
-                                                                <div className="col-12 px-md-5 d-flex justify-content-start">
-                                                                    <p className="text-danger"><strong>{amount - convertForSend(tokensToSend) < 0 ? t('Dashboard.Index.Wallet.SpotWallet.WithoutTokens') : ""}</strong></p>
-                                                                </div>
+                                                                            <div className="col-12 px-md-5 d-flex justify-content-start">
+                                                                                <p className="text-danger"><strong>{amount - convertForSend(tokensToSend) < 0 ? t('Dashboard.Index.Wallet.SpotWallet.WithoutTokens') : ""}</strong></p>
+                                                                            </div>
 
-                                                                <div className="col-12 px-md-5">
-                                                                    <Divider light style={{backgroundColor: "#FFFFFF"}} />
-                                                                </div>
-                                                            </div>
+                                                                            <div className="col-12 px-md-5">
+                                                                                <Divider light style={{backgroundColor: "#FFFFFF"}} />
+                                                                            </div>
+                                                                        </div>
 
-                                                            <div className="row mt-5 px-md-5">
-                                                                <div className="col-12 px-md-5">
-                                                                    <Button fullWidth variant="contained" size="large" type="submit" style={{backgroundColor: "#0655af", color: "white"}}>
-                                                                        {t('Dashboard.Index.Wallet.SpotWallet.SendButton')}
-                                                                    </Button>
-                                                                </div>
-                                                            </div>
+                                                                        <div className="row mt-5 px-md-5">
+                                                                            <div className="col-12 px-md-5">
+                                                                                <Button fullWidth variant="contained" size="large" type="submit" style={{backgroundColor: "#0655af", color: "white"}}>
+                                                                                    {t('Dashboard.Index.Wallet.SpotWallet.SendButton')}
+                                                                                </Button>
+                                                                            </div>
+                                                                        </div>
 
-                                                        </div>
+                                                                    </div>
+                                                            ) :
+                                                                (<CircularProgress style={{color: "white"}} size={50} />)
+                                                        }
+
                                                     </form>
                                                 </div>
                                             </div>
@@ -466,13 +494,13 @@ const Wallet = () => {
                                 </Card>
                             </Col>
                             <Col className="mb-5 mb-xl-0" xl="5">
-                                <CryptoList tokensArray={tokensArray} allInfoTokens={allInfoTokens} />
+                                <CryptoList tokensArray={tokensArray} allInfoTokens={allInfoTokens} dataLoaded={dataLoaded} />
                             </Col>
                         </Row>
 
                         <Row className="d-flex justify-content-center">
                             <Col className="mb-5 mb-xl-0" xl="12">
-                                <TransactionsHistory address={tokenAddress}/>
+                                <TransactionsHistory address={tokenAddress} dataLoaded={dataLoaded}/>
                             </Col>
                         </Row>
                     </Container>
@@ -489,15 +517,24 @@ const Wallet = () => {
                             <DialogContentText>
                                 {t('Dashboard.Index.PhoneMessages.Text')}
                             </DialogContentText>
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="smscode"
-                                label="Código"
-                                type="number"
-                                fullWidth
+                            <OtpInput
+                                separator={
+                                    <span><strong>-</strong></span>
+                                }
+                                isInputNum={true}
+                                numInputs={6}
                                 value={smsCode}
-                                onChange={e => setSmsCode(e.target.value)}
+                                onChange={e => setSmsCode(e)}
+                                inputStyle={{
+                                    marginTop: 15,
+                                    marginBottom: 15,
+                                    width: "3rem",
+                                    height: "3rem",
+                                    margin: "0 1rem",
+                                    fontSize: "2rem",
+                                    borderRadius: 4,
+                                    border: "1px solid rgba(0,0,0,0.3)"
+                                }}
                             />
                         </DialogContent>
                         <DialogActions>

@@ -9,6 +9,7 @@ import {db} from "../../config/firebase";
 import PurchaseHistoryComponent from "../../components/dashboard/PurchaseHistoryComponent";
 import SunshineFinder from "../../apis/SunshineFinder";
 import {useTranslation} from "react-i18next";
+import {CircularProgress} from "@material-ui/core";
 require('dotenv').config();
 
 const Dashboard = () => {
@@ -19,6 +20,7 @@ const Dashboard = () => {
     const [amount, setAmount] = useState(0);
     const [logged, setLogged] = useState(false);
     const [userInfo, setUserInfo] = useState({});
+    const [dataLoaded, setDataLoaded] = useState(false);
     const history = useHistory();
 
 
@@ -37,6 +39,7 @@ const Dashboard = () => {
                     }
                 });
                 setAmount(response.data.amount);
+                setDataLoaded(true);
             } catch (e) {}
         }
 
@@ -68,7 +71,7 @@ const Dashboard = () => {
 
                         <div className="col-12 d-flex justify-content-center">
                             <h1>
-                                {signinEmail ? (amount.toString().slice(0, amount.toString().length-6) + "." + amount.toString().slice(amount.toString().length-6)) : "Invitado"}
+                                {dataLoaded ? (amount.toString().slice(0, amount.toString().length-6) + "." + amount.toString().slice(amount.toString().length-6)) : t('Dashboard.Index.Loading')}
                                 <br/>SUNIS</h1>
                         </div>
 
@@ -82,12 +85,12 @@ const Dashboard = () => {
                         </div>
 
                         <DollarMarktComponent />
-                        <PaymentComponent email={signinEmail} userData={uid} allData={userInfo} />
+                        <PaymentComponent userData={uid} allData={userInfo} />
 
                     </div>
 
                     <div className="row mt-5">
-                        <PurchaseHistoryComponent uid={uid} />
+                        <PurchaseHistoryComponent uid={uid} dataLoaded={dataLoaded} />
                     </div>
 
                 </div>

@@ -80,23 +80,10 @@ body {
     z-index: 1041 !important;
 }
 
-.navbar {
-    color: black !important;
-    font-size: 10px;
-    background-color: white;
-
-}
-
-.navegacion {
-    color: black !important;
-    font-size: 20px !important;
-    font-family: 'Lato', sans-serif;
-    margin: 0px;
-
-}
-
-.navbar-brand:hover {
-    text-decoration: underline !important;
+.myShadow{
+    -webkit-box-shadow: 0 25px 4px -4px black;
+    -moz-box-shadow: 0 10px 4px -4px black;
+    box-shadow: 0 1px 10px -4px black;
 }
 
 .navacer {

@@ -8,10 +8,11 @@ import {useHistory} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 
 
-const PaymentComponent = ({email, userData, allData}) => {
+const PaymentComponent = ({userData, allData}) => {
     const {t} = useTranslation();
     const history = useHistory();
     const classes = useStyles();
+    console.log("ALLDATA=", allData);
     const gotoProfile = () => {
         history.push("/Profile");
     }
@@ -33,7 +34,7 @@ const PaymentComponent = ({email, userData, allData}) => {
                     </div>
                     {
                         allData.profileStatus !== 0
-                            ? <Checkout uid={userData} email={email} allData={allData}/>
+                            ? <Checkout uid={userData} allData={allData}/>
                             : <div className="modal-body">
                                 <img src={WARNING} className="img-fluid w-25 mb-5" alt="Warning"/>
                                 <h3 className="text-dark mb-5">
