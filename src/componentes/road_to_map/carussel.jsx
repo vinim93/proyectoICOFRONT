@@ -21,10 +21,11 @@ import "./carrousel.css";
 const DemoCarousel = () => {
     const {t} = useTranslation();
         return (
-            
-            <Carousel  className="d-block  d-md-none"showArrows={true} infiniteLoop autoPlay
+            <>
+
+            <Carousel  className="d-block  d-md-none"showArrows={true} infiniteLoop={false} autoPlay
             emulateTouch={true}
-             transitionTime={600}onChange={onChange} onClickItem={onClickItem} onClickThumb={onClickThumb} >
+            transitionTime={600}onChange={onChange} onClickItem={onClickItem} onClickThumb={onClickThumb} >
                 
                 <div className="cont-car-carrusel ">
                 <img className="img-fluid" src={fondocarro} />
@@ -63,7 +64,49 @@ const DemoCarousel = () => {
                     <p className="legend">{t('RoadToMap.7')}</p>
                 </div>
             </Carousel>
-        );
+            <Carousel  className="d-none  d-md-block"showArrows={true} infiniteLoop={false} autoPlay
+            emulateTouch={true} centerMode={true} centerSlidePercentage={50}
+             transitionTime={600}onChange={onChange} onClickItem={onClickItem} onClickThumb={onClickThumb}>
+                  <div className="cont-car-carrusel ">
+                <img className="img-fluid" src={fondocarro} />
+                   
+                   
+                    <p className="legend">{t('RoadToMap.0')}</p>
+                </div>
+                <div className="cont-car-carrusel ">
+                    <img className=" img-fluid" src={fondocarro3} />
+                    <p className="legend">{t('RoadToMap.1')}</p>
+                </div>
+                <div className="cont-car-carrusel ">
+                    <img className=" img-fluid" src={fondocarro2} />
+                    <p className="legend">{t('RoadToMap.2')}</p>
+                </div>
+                <div className="cont-car-carrusel ">
+                    <img  className=" img-fluid" src={fondocarro4} />
+                    <p className="legend">{t('RoadToMap.3')}</p>
+                </div>
+                <div className="cont-car-carrusel ">
+                    <img className=" img-fluid" src={fondocarro5} />
+                    <p className="legend">{t('RoadToMap.4')}</p>
+                </div>
+                <div className="cont-car-carrusel">
+                    <img className=" img-fluid" src={fondocarro6} />
+                    <p className="legend">{t('RoadToMap.5')}</p>
+                </div>
+                <div className="cont-car-carrusel">
+               
+                    <img className="" src={fondocarro7} />
+                    <p className="legend">{t('RoadToMap.6')}</p>
+                </div>
+                <div className="cont-car-carrusel">
+               
+                    <img className=" img-fluid" src={fondocarro8} />
+                    <p className="legend">{t('RoadToMap.7')}</p>
+                </div>
+            </Carousel>       
+                 </>
+           
+             );
         }
 
 

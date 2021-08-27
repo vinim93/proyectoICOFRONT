@@ -12,7 +12,7 @@ window.onscroll=function(){
         document.getElementById('navbar').style.top='0';
     }
     else{
-          document.getElementById('navbar').style.top='-100px';
+          document.getElementById('navbar').style.top='-10vw';
     }
     ubicacionPrincipal=Dezplazamiento_actual ;
 }

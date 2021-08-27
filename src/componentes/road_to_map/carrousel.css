@@ -3,11 +3,11 @@
 
 .control-dots{
     position: absolute !important;
-     margin-bottom: 69.2%!important;
+     margin-bottom: 38.5%!important;
    justify-content:space-around!important;
      
      list-style: none;
-     left: -47vw;
+     left: -45vw;
      width: 195vw!important;
      z-index: 2!important;
      
@@ -86,22 +86,74 @@
     color: #000000!important;
     font-family: 'Josefin Sans'!important;
     background-color: transparent!important;
-    font-size: 7vw!important;
+    font-size: 4vw;
     font-weight: bold;
     left:  55%!important;
 }
  
-@media  screen and (max-width: 520px) {
+
+
+@media  screen and (max-width: 2500px) {
+    .legend{
+         font-size: 4vw!important;       
+    }
+
     .control-dots{
-    
-        left: -48vw;
-        width: 195vw!important;
-        margin-bottom: 72.1%!important;
+       
+        margin-bottom: 37.5%!important;   
         
        }
        .linea-car-1{
-     
+       
         margin-top: 19.5%!important;
-      
+        
+    
+        
        }
+}
+
+@media screen and (max-width:1230px){
+   
+}
+@media screen and (max-width:996px){
+    
+}
+@media screen and (max-width:840px){
+  
+}
+
+
+@media  screen and (max-width: 770px) {
+    .legend{
+ 
+       
+        font-size: 7vw!important;
+       
+    }
+    .control-dots{
+    
+       
+        margin-bottom: 73.1%!important;
+        left: -48vw!important;
+        
+       }
+}
+@media  screen and (max-width: 580px) {
+    .control-dots{
+          
+        margin-bottom: 72.5%!important;
+        
+       }
+
+}
+   
+@media  screen and (max-width: 520px) {
+  
+    
+       .legend{
+ 
+       
+        font-size: 8vw!important;
+       
+    }
 }

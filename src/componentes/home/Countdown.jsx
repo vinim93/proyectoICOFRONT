@@ -29,15 +29,15 @@ const Countdown = () => {
             </div>
 
             <ul className="rectangulo1   text-center">
-                <li className=" cont-li-cap">
+                <li className=" cont-li-cap mb-5">
                     <img src={rectangulo1} className="rectanguloimg "/>
                 </li>
 
-                <li className=" row cap justify-content-around text-left">
+                {/*<li className=" row cap justify-content-around text-left">
                     <p className="col-4">SOFT CAP<br/><p className="cap-min">$ 15 M USD</p></p>
                     <p className="col-4">HARD CAP<br/> <p className="cap-min">$ 250 M USD</p></p>
 
-                </li>
+                </li>*/}
                       <Zoom>
                 <li className=" tecno ">
                    

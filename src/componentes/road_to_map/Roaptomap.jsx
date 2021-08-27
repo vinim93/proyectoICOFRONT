@@ -25,11 +25,13 @@ const RoaptoMapa = () => {
     return (
 
         <div className=" road ">
+           
             <div className="row ">
-            <img  className="img-fluid linea-car-1 d-flex d-md-none"src={lineascar} alt="linacarrusel"/>
+
+            <img  className="img-fluid linea-car-1 d-flex "src={lineascar} alt="linacarrusel"/>
                 <p className="text-roap-map  ">
-                    <h1 align="center">ROAD MAP</h1>
-                   
+                    <h1 align="center">ROAD MAP</h1></p>
+                    {/*
                     <p className="text-roap-1 d-none d-md-flex">{t('RoadToMap.0')}</p>
                     <p className="text-roap-2 d-none d-md-flex">{t('RoadToMap.1')}</p>
                     <p className="text-roap-3 d-none d-md-flex">{t('RoadToMap.2')}</p>
@@ -42,7 +44,7 @@ const RoaptoMapa = () => {
                 </p>
                 
                 <img src={maparoad} className=" d-none d-md-flex  maparoad " alt=""/>
-                 
+                    */}
             </div>
            
 <DemoCarousel/>
